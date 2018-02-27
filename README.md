@@ -1,18 +1,18 @@
 # Dimensions
-- 1D
-- 2D
+- ~~1D~~
+- ~~2D~~
 - 3D
 
 # Format
-- Matériel
-- Application
+- ~~Matériel~~
+- ~~Application~~
 - Jeu
 
 # Représentation
-- 1e personne
-- 3e personne
-- Dieu
-- Matériel
+- ~~1e personne~~
+- ~~3e personne~~
+- Omniscient
+- ~~Matériel~~
 
 # Limitations
 - Linéaire
