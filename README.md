@@ -19,31 +19,31 @@
 - Ouvert
 
 # Idées
-- Jeu de tir (Chasse)
-- Jeu de stratégie en temps réel
-- Jeu de plateforme
-- Jeu de rôles
-- Jeu de parcours
-- Jeu d’évolution
-- Jeu de cache-cache
+- Jeu de tir
+- ~~Jeu de stratégie en temps réel~~
+- ~~Jeu de plateforme~~
+- ~~Jeu de rôles~~
+- ~~Jeu de parcours~~
+- ~~Jeu d’évolution~~
+- ~~Jeu de cache-cache~~
 - Jeu de survie
-- Jeu éducatif / pédagogique
-- Mini-jeux (Pousse végétative)
-- Simulation (Astronomique, Scientifique, Pilotage, Spatiale, Balistique, Chute libre, etc.)
-- Simulateur optique
-- Simulateur naturelle (Jardin)
-- Simulateur de coupe d’arbre.
-- Simulation de Pont / Édifice / Explosition / Destruction
+- ~~Jeu éducatif / pédagogique~~
+- ~~Mini-jeux (Pousse végétative)~~
+- ~~Simulation (Astronomique, Pilotage, Spatiale, Balistique, Chute libre, etc.)~~
+- ~~Simulateur optique~~
+- ~~Simulateur naturelle (Jardin)~~
+- ~~Simulateur de coupe d’arbre.~~
+- Simulation de Pont / Édifice / Explosion / Destruction
 - Simulateur de Grue
-- Simulateur biologique
+- ~~Simulateur biologique~~
 - Simulateur de réseau électrique / électronique
-- Simulation de Société / Ville
+- ~~Simulation de Société / Ville~~
 - Grimpeur Motorisé
-- Sports et Divertissement (Fléchettes, Golf, Pool, Curling, Basket, etc.)
-- Lanceur de projectile
-- Escarmouche
-- Drone
-- Cryptographie
-- Simulateur chimique.
-- Traitement (Image / Voix)
-- Application de modélisation
+- ~~Sports et Divertissement (Fléchettes, Golf, Pool, Curling, Basket, etc.)~~
+- ~~Lanceur de projectile~~
+- ~~Escarmouche~~
+- ~~Drone~~
+- ~~Cryptographie~~
+- ~~Simulateur chimique.~~
+- ~~Traitement (Image / Voix)~~
+- ~~Application de modélisation~~
