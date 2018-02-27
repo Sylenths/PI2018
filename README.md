@@ -19,14 +19,15 @@
 - Ouvert
 
 # Idées
-- Jeu de tir
+- ~~Jeu de tir~~
 - ~~Jeu de stratégie en temps réel~~
 - ~~Jeu de plateforme~~
 - ~~Jeu de rôles~~
 - ~~Jeu de parcours~~
 - ~~Jeu d’évolution~~
 - ~~Jeu de cache-cache~~
-- Jeu de survie
+- ~~Jeu de survie~~
+- ~~Jeu d'évasion~~
 - ~~Jeu éducatif / pédagogique~~
 - ~~Mini-jeux (Pousse végétative)~~
 - ~~Simulation (Astronomique, Pilotage, Spatiale, Balistique, Chute libre, etc.)~~
@@ -34,11 +35,12 @@
 - ~~Simulateur naturelle (Jardin)~~
 - ~~Simulateur de coupe d’arbre.~~
 - Simulation de Pont / Édifice / Explosion / Destruction
-- Simulateur de Grue
+- Simulation de construction
+- ~~Simulateur de Grue~~
 - ~~Simulateur biologique~~
-- Simulateur de réseau électrique / électronique
+- Simulateur électrique / électronique
 - ~~Simulation de Société / Ville~~
-- Grimpeur Motorisé
+- ~~Grimpeur Motorisé~~
 - ~~Sports et Divertissement (Fléchettes, Golf, Pool, Curling, Basket, etc.)~~
 - ~~Lanceur de projectile~~
 - ~~Escarmouche~~
