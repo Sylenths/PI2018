@@ -50,9 +50,9 @@ class NomClasse {
 private:
     //code
 protected:
-	//code
+    //code
 public:
-	//code
+    //code
 };
 ```
 
@@ -68,12 +68,12 @@ struct NomClasse {
 
 ```C++
 switch(case) {
-	case 1:
-		//code
-	break;
+    case 1:
+    	//code
+    break;
 
-	default:
-	break;
+    default:
+    break;
 }
 ```
 
@@ -81,7 +81,7 @@ switch(case) {
 
 ```C++
 if(condition) {
-	//code
+    //code
 }
 ```
 
@@ -95,7 +95,7 @@ for(int i = 0; i < 10; ++i) {
 ## Itérateur
 ```C++
 for(auto it : structureDeDonnées) {
-	//code
+    //code
 }
 ```
 
@@ -103,7 +103,7 @@ for(auto it : structureDeDonnées) {
 
 ```C++
 while(condition) {
-	//code
+    //code
 }
 ```
 
