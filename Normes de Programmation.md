@@ -4,9 +4,10 @@
 
  - 1 tab = 4 espaces
 
- - Les noms des variables, des fonctions et des commentaires (non destinés à doxygen) en anglais doivent:
-    - Idéalement, contenir un verbe à l'infinitif.
-    - Être en anglais.
+ - Les noms des variables, les fonctions et les commentaires (non destinés à doxygen) doivent idéalement être en anglais.
+ 
+ - Les noms de fonctions et de méthodes devraient contenir verbe à l'infinitif représentatif de l'action effectuée.
+
 
 # Code
 
