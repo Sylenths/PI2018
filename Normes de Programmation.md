@@ -44,7 +44,7 @@ type nomFonctionCamelCase(type var, type var2) {
 
 ## Classes
 
-````C++
+```C++
 class NomClasse {
 private:
     //code
