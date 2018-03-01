@@ -4,7 +4,9 @@
 
  - 1 tab = 4 espaces
 
- - Les noms des variables, des fonctions et les commentaires (non destinés à doxygen) doivent idéalement être en anglais.
+ - Les noms des variables, des fonctions et les commentaires (non destinés à Doxygen) doivent idéalement être en anglais.
+ 
+ - Les commentaires destinés à Doxygen devront être en français.
  
  - Les noms de fonctions et de méthodes devraient contenir verbe à l'infinitif représentatif de l'action effectuée.
 
