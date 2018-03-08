@@ -19,5 +19,6 @@ Afin de se procurer des objets, il existe deux types de monnaies : l’énergie 
   - Ventilateurs d'aération
   - Colonnes de bâtiment
   - Tuiles de toiture en asphaltes
+  - Spéculateurs de prix SIMcoin pour qu'on puisse avoir plus d'argent artificiellement
   
 // TODO : Décrire en détail la démonstration d'une partie.
