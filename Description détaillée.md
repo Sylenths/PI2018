@@ -15,5 +15,9 @@ Afin de se procurer des objets, il existe deux types de monnaies : l’énergie 
   - Piles importées
   - Vélo stationnaire lié à des piles rechargeables
   - Un moteur électrique fonctionnant au pétrole ou au charbon
+  - Achats en ligne livré via parachute (pour la livraison des piles et des cartes graphiques)
+  - Ventilateurs d'aération
+  - Colonnes
+  - Tuiles de toiture en asphaltes
   
 // TODO : Décrire en détail la démonstration d'une partie.
