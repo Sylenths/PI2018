@@ -11,10 +11,9 @@ Afin de se procurer des objets, il existe deux types de monnaies : l’énergie 
 // TODO : Décrire tous les types de matériaux et toutes les caractéristiques en précisant les effets sur la jouabilité.
 
 // TODO : Décrire les « bâtiments » connus à ce jour, tels les sources d'énergie et les mineurs de SIMcoin.
-  
-  *Sources d'énergie*
-  ⋅⋅*Piles importées
-  ⋅⋅*Vélo stationnaire lié à des piles rechargeables
-  ⋅⋅*Un moteur électrique fonctionnant au pétrole ou au charbon
+  Sources d'énergie
+  - Piles importées
+  - Vélo stationnaire lié à des piles rechargeables
+  - Un moteur électrique fonctionnant au pétrole ou au charbon
   
 // TODO : Décrire en détail la démonstration d'une partie.
