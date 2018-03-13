@@ -3,10 +3,10 @@
  - En cas d'erreur lors du commit suivre cette syntaxe : Correction - Classe(s) - Brève description.
  - Vous devez choisir entre Create, Modify, Debug ou Remove.
 
-# Format des descripitons pour les fichiers C++ du projet. (Commit)
+# Format des descriptions pour les fichiers C++ du projet. (Commit)
 [Create / Modify / Debug / Remove] - Classe(s) - Brève description de ce qui a été fait.
 
-# Format des descripitons pour les fichiers de documentation et autres fichiers.
+# Format des descriptions pour les fichiers de documentation et autres fichiers.
 Lorsque l'on modifie un seul fichier directement dans gitHub, nous ometterons le nom du fichier.
 
 Exemple: [Create / Modify / Remove] - Brève description.
