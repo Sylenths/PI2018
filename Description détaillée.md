@@ -10,6 +10,15 @@ Afin de se procurer des objets, il existe deux types de monnaies : l’énergie 
 
 // TODO : Décrire tous les types de matériaux et toutes les caractéristiques en précisant les effets sur la jouabilité.
 
+ Materiaux | Resistance | Isolation | Masse | Points de rupture | Prix
+ ------------ | ------------- | ------------ | ------------- | ------------ | -------------
+ Plastique | 5 | 2 | 2 | 5 | 1
+ Bois | 4 | 3 | 3 | 4 | 2
+ Pierre | 3 | 4 | 4 | 3 | 3
+ Métal | 2 | 5 | 5 | 2 | 4
+ SIMtium | 1 | 1 | 1 | 1 | 5
+ 
+ 
 // TODO : Décrire les « bâtiments » connus à ce jour, tels les sources d'énergie et les mineurs de SIMcoin.
 
   - Piles importées
