@@ -8,6 +8,7 @@
 
 # Format des descripitons pour les fichiers de documentation et autres fichiers.
 Lorsque l'on modifie un seul fichier directement dans gitHub, nous ometterons le nom du fichier.
+
 Exemple: [Create / Modify / Remove] - Brève description.
 
 Sinon, nous suiverons le modèle suivant:
