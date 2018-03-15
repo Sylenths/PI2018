@@ -14,16 +14,6 @@ La deuxième phase est celle ou une catastrophe se produit. Cette phase comporte
 
 // TODO : Décrire tous les types de matériaux et toutes les caractéristiques en précisant les effets sur la jouabilité.
 
- Materiaux | Resistance | Masse | Points de rupture | Prix
- ------------ | ------------- | ------------ | ------------- | ------------ | -------------
- Carton | 5 | 2 | 5 | 1
- Bois | 4 | 3 | 4 | 2
- Pierre | 3 | 4 | 3 | 3
- Métal | 2 | 5 | 2 | 4
- SIMtium | 1 | 1 | 1 | 5
- 
-La résistance du matériaux change la quantité de Newton nécessaire afin de l'emdommager. La masse affecte le poids d'une structure dans une gravité quelconque. Le point de rupture est la capcité qu'à un matériaux à soutenir un autre. Par exemple, un abri fait d'une fondation en carton et de murs en métal sera incapable de se soutenir car la masse du métal est de beaucoup supérieure à celle du carton et le point de rupture du carton est très faible. Le prix est le montant de ressources nécessaire afin de construire une structure en un certain matériaux. 
- 
 // TODO : Décrire les « bâtiments » connus à ce jour, tels les sources d'énergie et les mineurs de SIMcoin.
 
 Les objets connus sont séparés en deux catégories : les structures et les machines. Les structures sont utilisées pour construire l'abri, disponiples en plusieurs matériaux, tandis que les machines sont des objets utilisant les monnaies, connectés avec les fils.
@@ -45,5 +35,15 @@ Cube | Sert de fondation | Le joueur choisi la largeur et longueur et place la f
 Mur | Va sur la fondation, protège des intempéries | Le joueur sélectionne la fondation, la longueur du mur et la hauteur. Il peut ne pas sélectionner de fondation mais les murs seront plus vulnérables. 
 Toit | Va sur les murs | Disponibles en plusieurs types (plat, hexagonal, pyramidal), le joueur choisi la longueur, le type et la grosseur. Détruit lorsqu'il n'est soutenu que par deux ou moins murs. 
 Planché | Permet de faire des étages et certains types de toits | Le joueur choisi les murs ainsi que la largeur et longueur
+
+ Materiaux | Resistance | Masse | Points de rupture | Prix
+ ------------ | ------------- | ------------ | ------------- | ------------
+ Carton | 5 | 2 | 5 | 1
+ Bois | 4 | 3 | 4 | 2
+ Pierre | 3 | 4 | 3 | 3
+ Métal | 2 | 5 | 2 | 4
+ SIMtium | 1 | 1 | 1 | 5
+ 
+La résistance du matériaux change la quantité de Newton nécessaire afin de l'emdommager. La masse affecte le poids d'une structure dans une gravité quelconque. Le point de rupture est la capcité qu'à un matériaux à soutenir un autre. Par exemple, un abri fait d'une fondation en carton et de murs en métal sera incapable de se soutenir car la masse du métal est de beaucoup supérieure à celle du carton et le point de rupture du carton est très faible. Le prix est le montant de ressources nécessaire afin de construire une structure en un certain matériaux. 
 
 // TODO : Décrire en détail la démonstration d'une partie.
