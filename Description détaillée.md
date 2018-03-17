@@ -1,10 +1,8 @@
-Le joueur doit protéger plusieurs humains et plusieurs infrastructures.
+# But
 
-Le joueur aura à sa disposition plusieurs objets, de diverses formes, composés de matériaux différents, avec différentes caractéristiques et liables à d’autres objets.
+Le joueur devra gérer des infrastructures afin de protéger des humains d'intempéries environnementales.
 
-Ces objets prennent un certain temps à construire et à réparer selon le nombre d’humains restant. Ces objets seront endommagés ou détruits par des intempéries et diverses catastrophes naturelles.
-
-Afin de se procurer des objets, il existe deux types de ressources : l’énergie et les SIMCoins. L’énergie est gagnée selon le nombre de sources d’énergie connectées tandis que les SIMCoins sont gagnés à la fin d’un tour selon le nombre de structures de minage et l’énergie disponible.
+# Description
 
 La première phase d'un tour cera celle où le joueur devra construire ou réparer sa base. Son objectif primaire sera de protéger ses humains et il pourra aussi, à sa guise, protéger ses machines et autres infrastructures. Il disposera d'un certain nombre de SIMCoins qu'il devra utiliser pour acheter les pièces ou les appareils dont-il à besoin. Le joueur devra gérer l'énergie dont-il dispose. Lorsque celui-ci utilisera des appareils, ceux-ci consommeront de l'énergie et il devra alouer un certain nombre d'énergie pour les appareils,  ce qui affectera leur efficacité.
 
@@ -12,11 +10,17 @@ La deuxième phase est celle où une catastrophe se produit. Cette phase comport
 
 # Objets
 
+Le joueur aura à sa disposition plusieurs objets, de diverses formes, composés de matériaux différents, avec différentes caractéristiques et liables à d’autres objets.
+
+Ces objets prennent un certain temps à construire et à réparer selon le nombre d’humains restant. Ces objets seront endommagés ou détruits par des intempéries et diverses catastrophes naturelles.
+
+Afin de se procurer des objets, il existe deux types de ressources : l’énergie et les SIMCoins. L’énergie est gagnée selon le nombre de sources d’énergie connectées tandis que les SIMCoins sont gagnés à la fin d’un tour selon le nombre de structures de minage et l’énergie disponible.
+
 Les objets connus sont séparés en deux catégories : les structures et les machines.
 
 ## Machines
 
-Les structures sont utilisées pour construire l'abri, disponiples en plusieurs matériaux.
+Les machines sont des objets utilisant les monnaies, connectés avec les fils.
 
 Machines | Description
 ------------ | -------------
@@ -31,7 +35,7 @@ Champ de force | Diminue la vitesse des projectiles entrant, selon un certain vo
 
 ## Structures
 
-Les machines sont des objets utilisant les monnaies, connectés avec les fils.
+Les structures sont utilisées pour construire l'abri, disponiples en plusieurs matériaux.
 
 Structure | Description | Construction 
 ------------ | ------------- | ------------- 
