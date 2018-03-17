@@ -10,7 +10,13 @@ La première phase d'un tour cera celle où le joueur devra construire ou répar
 
 La deuxième phase est celle où une catastrophe se produit. Cette phase comportera certains types d'intempéries qui endommagerons les structures du joueur et infligera des blessures aux humains.
 
-Les objets connus sont séparés en deux catégories : les structures et les machines. Les structures sont utilisées pour construire l'abri, disponiples en plusieurs matériaux, tandis que les machines sont des objets utilisant les monnaies, connectés avec les fils.
+# Objets
+
+Les objets connus sont séparés en deux catégories : les structures et les machines.
+
+## Machines
+
+Les structures sont utilisées pour construire l'abri, disponiples en plusieurs matériaux.
 
 Machines | Description
 ------------ | -------------
@@ -22,6 +28,10 @@ Interrupteur | Couper le courant. S'installe en serie avec des fils conducteurs.
 Régulateur de température | Modifie la température. Le joueur pourra choisir une augmentation ou diminution de la température ambiante. Le choix affectera la consommation d'énergie du régulateur.
 SIMCoins Miner | Génère un certain nombre de nombres aléatoires à chaque tour qui sera déterminé par le joueur et qui affectera sa consommation d'énergie. S'il trouve le bon nombre, un SIMCoin sera ajouté au total du joueur et un nouveau nombre sera généré. Plus le joueur choisit de nombres, plus ça consommera de l'énergie. En revanche, si il est chanceux et trouve les bons nombres rapidement, il trouvera beaucoup de SIMCoins.
 Champ de force | Diminue la vitesse des projectiles entrant, selon un certain volume qui sera déterminé par le joueur et qui affectera sa consomation d'énergie.
+
+## Structures
+
+Les machines sont des objets utilisant les monnaies, connectés avec les fils.
 
 Structure | Description | Construction 
 ------------ | ------------- | ------------- 
@@ -45,6 +55,8 @@ La résistance du matériaux change la quantité de Newton nécessaire afin de l
 *Le cuivre et l'or sont spéciaux car ils ne sont applicables que pour les fils conducteurs. Non seulement le joueur choisira parmis deux matériaux, ce qui affectera leur résistance, mais il choisira aussi parmis deux grosseurs de fil (soit petit et gros), ce qui modifira la portée et le prix.
 
 //TODO : Ajouter les types d'intempéries et une brève description
+
+# Exemple
 
 Une partie typique se déroulerait comme suit :
 
