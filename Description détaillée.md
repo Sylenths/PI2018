@@ -60,6 +60,8 @@ La résistance du matériaux change la quantité de Newton nécessaire afin de l
 
 *Le cuivre et l'or sont spéciaux car ils ne sont applicables que pour les fils conducteurs. Non seulement le joueur choisira parmis deux matériaux, ce qui affectera leur résistance, mais il choisira aussi parmis deux grosseurs de fil (soit petit et gros), ce qui modifira la portée et le prix.
 
+# Intempéries
+
 //TODO : Ajouter les types d'intempéries et une brève description
 
 # Exemple
