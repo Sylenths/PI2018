@@ -44,6 +44,8 @@ Mur | Va sur la fondation, protège des intempéries | Le joueur sélectionne la
 Toit | Va sur les murs | Disponibles en plusieurs types (plat, hexagonal, pyramidal), le joueur choisi la longueur, le type et la grosseur. Détruit lorsqu'il n'est soutenu que par deux ou moins murs. 
 Planché | Permet de faire des étages et certains types de toits | Le joueur choisi les murs ainsi que la largeur et la longueur.
 
+### Matériaux
+
 Materiaux | Resistance | Masse | Points de rupture | Prix
 ------------ | ------------- | ------------ | ------------- | ------------
 Carton | 5 | 2 | 5 | 1
