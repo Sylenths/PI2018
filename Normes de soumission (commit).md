@@ -20,9 +20,10 @@ Sinon, nous suiverons le modèle suivant:
  - À chaque fois que l'on ajoute un ou plusieurs fichiers (image, modèles, textures. [...])
  
 # Rappel des commandes
-- git commit -am " Commit "
-- git add "nom de(s) fichier(s)"
+- git log
 - git status -s
-- git remove "nom de(s) fichier(s)"
+- git commit -am "Commentaire"
+- git add [fichierA fichierB ...]
+- git remove [fichierA fichierB ...]
 - git pull origin master
 - git push origin master
