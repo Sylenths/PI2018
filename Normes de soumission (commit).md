@@ -20,10 +20,12 @@ Sinon, nous suiverons le modèle suivant:
  - À chaque fois que l'on ajoute un ou plusieurs fichiers (image, modèles, textures. [...])
  
 # Rappel des commandes
+- git config --global user.name "Prénom Nom"
+- git config --global user.email "adresse@courriel.qc.ca"
 - git log
 - git status -s
-- git commit -am "Commentaire"
 - git add [fichierA fichierB ...]
 - git remove [fichierA fichierB ...]
+- git commit -am "Commentaire"
 - git pull origin master
 - git push origin master
