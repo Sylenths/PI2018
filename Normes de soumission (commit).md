@@ -20,6 +20,8 @@ Sinon, nous suiverons le modèle suivant:
  - À chaque fois que l'on ajoute un ou plusieurs fichiers (image, modèles, textures. [...])
  
 # Rappel des commandes
+- eval $(ssh-agent)
+- ssh-add [CléPrivée]
 - git config --global user.name "Prénom Nom"
 - git config --global user.email "adresse@courriel.qc.ca"
 - git log
