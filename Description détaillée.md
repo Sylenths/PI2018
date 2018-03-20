@@ -24,7 +24,7 @@ Les machines sont des objets utilisant les monnaies, connectés avec les fils.
 
 Machines | Description
 ------------ | -------------
-Héolienne | Génère de l'énergie avec la force du vent.
+Éolienne | Génère de l'énergie avec la force du vent.
 Panneau solaire | Génère de l'énergie avec la lumière du soleil.
 Pile | Emmagasine l'énergie qui n'est pas utilisé à chaque tour.
 Fil conducteur | Transporte le courant généré aux appareils/piles. Le joueur aura le choix entre deux types de matériaux et un diamètre qui affecteron la résistance du fil.
