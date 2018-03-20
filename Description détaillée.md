@@ -64,6 +64,11 @@ La résistance du matériaux change la quantité de Newton nécessaire afin de l
 
 Pour la construction de structures, le joueur disposera de plusieurs outils. Le premier étant un outil lui permetant de créer des fondations au sol. Les fondation permettent de créer une base solide pour les murs. Le joueur poura placer des carrés au sol et ceux-ci représenterons la première ébauche de la base. Ensuite, le joueur pourra construire automatiquement des murs à partir d'une fondation qu'il aura créé au préalable. Le joueur aura le choix de plusieurs matériaux (voir tableau des matériaux) et il pourra aussi choisir la hauteur des murs. Le choix des matériaux et la hauteur des murs affecterons le prix. Pour terminer sa base, le joueur devra y installer un toit. Plusieurs formes de toits seront disponible; Un toit simple (ou planché), un toit avec un seul pan, un toit avec deux pans et un toit avec quatres pans. Le joueur devra entrer les dimensions du toit (longueur, largeur, hauteur), et choisir un matériaux. À partir de ces données, un toit sera généré automatiquement et le joueur pourra le placer sur les murs. Le prix d'un toit sera déterminé par le type de matériaux utilisé et par son aire totale. Chaques coté de toit et chaque mur disposerons d'un point d'encrage. Un toit doit être obligatoirement connecté à au moins deux point d'encrage, sinon celui-ci s'écroule.
 
+## Énergie
+
+
+// TODO : Décrire comment seront connecté les structures et comment la distribution d'énergie aux différents objets sera géré.
+
 
 # Intempéries
 
