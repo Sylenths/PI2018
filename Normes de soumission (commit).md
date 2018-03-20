@@ -29,5 +29,5 @@ Sinon, nous suiverons le modèle suivant:
 - git add [fichierA fichierB ...]
 - git remove [fichierA fichierB ...]
 - git commit -am "Commentaire"
-- git pull origin master
-- git push origin master
+- git pull origin [branche]
+- git push origin [branche]
