@@ -14,7 +14,7 @@ Exemple: [Create / Modify / Remove] - Brève description.
 Sinon, nous suiverons le modèle suivant:
 [Create / Modify / Remove] - Nom des fichier - Brève description.
 
-# Fréquence des commits
+# Fréquence suggérée des commits
  - À chaque fois que l'on quitte ou qu'on arrête de travailler sur le projet.
  - À chaque modification significative (ajout de fonctionnalité, création de header, correction d'un bug, suppression,[...]).
  - À chaque fois que l'on ajoute un ou plusieurs fichiers (image, modèles, textures. [...])
