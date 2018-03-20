@@ -64,13 +64,22 @@ La résistance du matériaux change la quantité de Newton nécessaire afin de l
 
 Pour la construction de structures, le joueur disposera de plusieurs outils. Le premier étant un outil lui permetant de créer des fondations au sol. Les fondation permettent de créer une base solide pour les murs. Le joueur poura placer des carrés au sol et ceux-ci représenterons la première ébauche de la base. Ensuite, le joueur pourra construire automatiquement des murs à partir d'une fondation qu'il aura créé au préalable. Le joueur aura le choix de plusieurs matériaux (voir tableau des matériaux) et il pourra aussi choisir la hauteur des murs. Le choix des matériaux et la hauteur des murs affecterons le prix. Pour terminer sa base, le joueur devra y installer un toit. Plusieurs formes de toits seront disponible; Un toit simple (ou planché), un toit avec un seul pan, un toit avec deux pans et un toit avec quatres pans. Le joueur devra entrer les dimensions du toit (longueur, largeur, hauteur), et choisir un matériaux. À partir de ces données, un toit sera généré automatiquement et le joueur pourra le placer sur les murs. Le prix d'un toit sera déterminé par le type de matériaux utilisé et par son aire totale. Chaques coté de toit et chaque mur disposerons d'un point d'encrage. Un toit doit être obligatoirement connecté à au moins deux point d'encrage, sinon celui-ci s'écroule.
 
-## Énergie
-
-// TODO : Décrire comment seront connecté les structures et comment la distribution d'énergie aux différents objets sera géré.
 
 # Intempéries
 
-// TODO : Ajouter les types d'intempéries et une brève description
+//TODO : Ajouter les types d'intempéries et une brève description
+
+Intempéries | Description
+------------ | -------------
+Pluie/Acide | Les pluies ou les pluies acides, auront pour effet de réduire la résistance des matériaux.
+Neige/Acide | La neige produira une accumulation sur les toits et cette accumulation produira une force sur le toit. Si la température se réchauffe, la neige fond et elle aura le même effet que la pluie sur les toit ou elle se serait accumulé.
+Grèle/Météorites | Projectiles qui endomagent les structures/objets. Les météorites peuvent faire prendre des objets en feu.
+Vent/Tornade | Le vent applique une force sur les structures et les tornades sont du vents avec des projectiles.
+Feu | Le feu s'appliquerait à une certaine pièce de structure ou à une machine, et il se propagerait plus ou moins rapidement et il ferait plus ou moins de dommages dépendament du matériau.
+Température | Elle affecterait le fonctionnement de certains appareils et la résistance de certains matériaux. La température infligerait aussi des dommages aux humains ne se trouvant pas dans une zone tempérée.
+Éclair | Fait prendre l'objet touché en feu. Si un humain est touché, il subi des dommages.
+Tremblement de terre | Réduit le point de rupture des matériaux.
+Radiation | Inflige des dégats par tour aux humains se trouvant dans la zone de radiation.
 
 
 # Exemple
