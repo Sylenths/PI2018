@@ -77,7 +77,7 @@ Pour la construction de structure, le joueur disposera de plusieurs outils. Le p
 Intempéries | Description
 ------------ | -------------
 Pluie/Acide | Les pluies ou les pluies acides auront pour effet de réduire la résistance des matériaux.
-Neige/Acide | La neige produira une accumulation sur les toits et cette accumulation produira une force sur le toit. Si la température se réchauffe, la neige fond et elle aura le même effet que la pluie sur les toits où elle se serait accumulée.
+Neige/Acide | La neige produira une accumulation sur les toits et cette accumulation produira une force sur le toit. Étant donné que les toits auront un point de rupture, si la force est trop grande, le toit s'écroulera. Si la température se réchauffe, la neige fond et elle aura le même effet que la pluie sur les toits où elle se serait accumulée.
 Grèle/Météorites | Projectiles qui endommage les structures/objets. Les météorites peuvent faire prendre des objets en feu.
 Vent/Tornade | Le vent applique une force sur les structures. Les tornades agissent comme du vent avec des projectiles.
 Feu | Le feu s'appliquerait à une certaine pièce de structure ou à une machine, il se propagerait et il ferait plus ou moins de dommages dépendamment du matériel.
