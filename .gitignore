@@ -1,1 +1,13 @@
 source/.idea
+.idea
+*.dia~
+CMakeCache.txt
+cmake_install.cmake
+source.cbp
+Makefile
+SDLProject
+source.cbp
+source.cbp
+CMakeFiles
+
+
