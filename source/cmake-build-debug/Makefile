@@ -47,10 +47,10 @@ RM = "C:\Program Files\JetBrains\CLion 2017.1.3\bin\cmake\bin\cmake.exe" -E remo
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\msys64\home\1629264\source
+CMAKE_SOURCE_DIR = C:\msys64\home\1679903\.ssh\PI2018\source
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\msys64\home\1629264\source\cmake-build-debug
+CMAKE_BINARY_DIR = C:\msys64\home\1679903\.ssh\PI2018\source\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\msys64\home\1629264\source\cmake-build-debug\CMakeFiles C:\msys64\home\1629264\source\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\msys64\home\1679903\.ssh\PI2018\source\cmake-build-debug\CMakeFiles C:\msys64\home\1679903\.ssh\PI2018\source\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\msys64\home\1629264\source\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\msys64\home\1679903\.ssh\PI2018\source\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
