@@ -68,6 +68,10 @@ Pour la construction de structure, le joueur disposera de plusieurs outils. Le p
 
 Les sources d'énergie (éolienne, panneau solaire, etc.) fournissent du courants aux machines consommant de l'énergie si celles-ci y sont connectées. Les sources et les machines se connectent entre-elles avec des fils conducteurs. Dépendement de la résistance des fils, ceux-ci dissipent l'énergie. Si un circuit est trop long, l'énergie pourrait manquer au bout du circuit. Chaque circuit est indépendant les uns des autres.
 
+Schéma d'un circuit lors d'un tour complet
+
+![graphique électricité](images/electricity0000.png)
+
 # Intempéries
 
 Intempéries | Description
