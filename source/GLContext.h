@@ -39,20 +39,28 @@ public:
     /// \param angle L'inclinaison de l'angle.
     /// \param nearPlane Distance de la zone de vue rapproché.
     /// \param farPlane Distance de la zone de vue éloignée.
-    void setFrustum(double angle, double nearPlane, double farPlane){
+    /// \param is2D Permet de savoir si l'objet est en 2D ou 3D.
+    void setFrustum(double angle, double nearPlane, double farPlane, bool is2D){
         int width, height;
         SDL_GetWindowSize(sdlwindow, &width, &height);
-        double right = std::tan(angle / 2.0) * nearPlane;
-        double top = ((double)height / (double) width) * right;
-
-        Matric projectionMatrix;
-        projectionMatrix.loadProjection(right, top, nearPlane, farPlane);
-
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glMultMatrixd(projectionMatrix.matrix);
+        if(is2D) {
+            glOrtho(0.0, (double) width, (double) height, 0.0, 1.0, -1.0);
+        }
 
+        else {
+            double right = std::tan(angle / 2.0) * nearPlane;
+            double top = ((double) height / (double) width) * right;
+
+            Matric projectionMatrix;
+            projectionMatrix.loadProjection(right, top, nearPlane, farPlane);
+            glMultMatrixd(projectionMatrix.matrix);
+
+        }
         glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+
     }
     /// Replacer le curseur de la souris au centre de la fenêtre.
     void RessetMousePosition(){
