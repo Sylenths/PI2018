@@ -80,7 +80,7 @@ Pluie/Acide | Les pluies ou les pluies acides auront pour effet de réduire la r
 Neige/Acide | La neige produira une accumulation sur les toits et cette accumulation produira une force sur le toit. Étant donné que les toits auront un point de rupture, si la force est trop grande, le toit s'écroulera. Si la température se réchauffe, la neige fond et elle aura le même effet que la pluie sur les toits où elle se serait accumulée.
 Grèle/Météorites | Projectiles qui endommage les structures/objets. Les météorites peuvent faire prendre des objets en feu.
 Vent/Tornade | Le vent applique une force sur les structures. Les tornades agissent comme du vent avec des projectiles.
-Feu | Le feu s'appliquerait à une certaine pièce de structure ou à une machine, il se propagerait et il ferait plus ou moins de dommages dépendamment du matériel.
+Feu | Le feu s'appliquerait à une certaine pièce de structure ou à une machine, il se propagerait et il ferait plus ou moins de dommages dépendamment du matériel. Il serait déclanché par d'autres intempéries.
 Température | Elle affecterait le fonctionnement de certains appareils et la résistance de certains matériaux. La température infligerait aussi des dommages aux humains ne se trouvant pas dans une zone tempérée.
 Éclair | Fait prendre l'objet touché en feu. Si un humain est touché, il subit des dommages.
 Tremblement de terre | Réduit le point de rupture des matériaux.
