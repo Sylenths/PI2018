@@ -54,11 +54,11 @@ Pierre | 3 | 4 | 3 | 3
 Métal | 2 | 5 | 2 | 4
 SIMtium | 1 | 1 | 1 | 5
 Cuivre* | 5 | ∅ | ∅ | 1
-Or* | 1 | ∅ | ∅ | 5
+Argent* | 1 | ∅ | ∅ | 5
  
 La résistance du matériau change la quantité de Newton nécessaire pour l'endommager. La masse affecte le poids d'une structure dans une gravité quelconque. Le point de rupture est la capacité qu'à un matériau à soutenir un autre. Par exemple, un abri fait d'une fondation en carton et de murs en métal sera incapable de se soutenir car la masse du métal est beaucoup supérieure à celle du carton et le point de rupture du carton est très faible. Le prix est le montant de ressources nécessaires afin de construire une structure en un certain matériau. 
 
-*Le cuivre et l'or sont spéciaux, car ils ne sont applicables que pour les fils conducteurs. Non seulement le joueur choisira parmi deux matériaux, ce qui affectera leur résistance, mais il choisira aussi parmi deux grosseurs de fil (soit petit et gros), ce qui modifiera la portée et le prix.
+*Le cuivre et l'argent sont spéciaux, car ils ne sont applicables que pour les fils conducteurs. Non seulement le joueur choisira parmi deux matériaux et il choisira aussi la grosseurs du fil (en millimètres, qu'il choisira lui-même), ce qui affectera sa résistance.
 
 # Construction
 
@@ -89,40 +89,26 @@ Radiation | Inflige des dégâts par tour aux humains se trouvant dans la zone d
 
 # Exemple
 
+# Exemple
+
 Une partie typique se déroulerait comme suit :
 
 *Le joueur commence la partie en phase construction dans un monde avec dix humains qu'il doit protéger, une pile chargée avec 100 énergie, 100 SIMCoins et un SIMCoins Miner.*
 
-*Le joueur décide d'acheter des cubes en carton afin de faire une fondation de format 5 x 5 avec l'argent disponible au début de la partie. Ensuite, il y connecte des murs en carton de deux "cubes" (on parle ici des cubes dont est fait l'environnement 3D du jeu). Il relie ensuite sa pile à son SIMCoins Miner avec du fil de cuivre de petit diamètre et fait fonctionner ce dernier à pleine capacité. Étant donné que le joueur sait que l'intempérie qu'il devra survivre est un vent faible, il décide de ne pas construire de toit et termine son tour.*
+*Le joueur décide d'acheter des cubes en carton afin de faire une fondation de format 5 x 5 au coût de 48 SIMCoins. Ensuite, il y connecte des murs en carton de deux "cubes" de hauteur (on parle ici des cubes dont est fait l'environnement 3D du jeu) au coût de 32 SIMCoins. Il relie ensuite sa pile à son SIMCoins Miner avec du fil de cuivre de 2mm de diamètre et de 3m de longueur au coût de 3 SIMCoins et fait fonctionner ce dernier à pleine capacité, ce qui consomme 75 d'énergie par tour et le fil en consomme 2. Il décide de prendre une chance et de ne pas construire de toit et termine son tour avec 17 SIMCoins*
 
-*Lorsque la phase de construction est terminée, la première péripétie se produit. C'est un vent léger qui endommage légèrement les murs en carton sans les détruire.*
+*Lorsque la phase de construction est terminée, la première péripétie se produit. C'est un vent léger qui endommage légèrement les murs en carton sans les détruire. Au total, il lui reste 23 d'énergie à la fin de la phase de survie.*
 
-*À la fin de la vague le joueur se voit allouer des SIMCoins par son SIMCoins Miner.*
+*À la fin de la vague le joueur se voit allouer 146 SIMCoins par son SIMCoins Miner.*
 
-*Au deuxième tour le joueur répare les murs en carton avec ses humains. Il décide d'acheter une éolienne, car il sait que la prochaine intempérie sera un vent très faible. Il la connecte à sa pile et au SIMCoins avec un petit fil de cuivre. Il met en marche son éolienne et met en marche encore une fois son SIMCoins Miner à pleine capacité et termine son tour.*
+*Au deuxième tour le joueur répare les murs en carton avec ses humains. Il décide d'acheter une éolienne au coût de 150 SIMCoins. Il la connecte à sa pile et au SIMCoins avec un fil de cuivre de 2mm de diamètre et de 4m de longueur au coût de 4 SIMCoins et à la consommation de 3 d'énergie. Il met en marche son éolienne et encore une fois son SIMCoins Miner à pleine capacité à 75 d'énergie et termine son tour avec 9 SIMCoins restant.*
 
-*La deuxième péripétie est un vent très léger avec une légère pluie. Le vent et la pluie endommagent légèrement le carton, le SIMCoins Miner et la pile mais le vent a permis à l'héolienne de générer de l'énergie. Par contre, les humains ont perdu de la vie à cause de la pluie puisqu'il n'y avait pas de toit.*
+*La deuxième péripétie est un vent très léger avec une légère pluie. Le vent et la pluie endommagent légèrement le carton, le SIMCoins Miner et la pile mais le vent a permis à l'héolienne de générer de l'énergie. Par contre, les humains ont perdu de la vie à cause de la pluie puisqu'il n'y avait pas de toit. Le SIMCoins miner a consommé toute l'énergie dans la pile (soit 23 d'énergie) mais a réussi à fonctionner à pleine capacité durant tout le tour grâce à l'éolienne.*
 
-*À la fin de la vague le joueur se voit alloué des SIMCoins par son SIMcoins Miner et l'énergie générée par l'éolienne a rempli la pile.*
+*À la fin de la vague le joueur se voit alloué 146 SIMCoins par son SIMcoins Miner et l'énergie générée par l'éolienne restante à remplie la pile à 50 d'énergie.*
 
-*Au troisième tour le joueur répare les murs en carton et ses machines avec ses humains. De plus, il ajoute un toit en bois à quatre plans de format 5 x 5 x 3 et le place sur sa base. Il ajuste le SIMCoins Miner pour qu'il n'utilise qu'une quantité moyenne d'énergie et désactive l'éolienne pour ne pas l'endommager puisque la prochaine intempérie est un tremblement de terre. Il termine son tour.*
+*Au troisième tour le joueur répare les murs en carton et ses machines avec ses humains. De plus, il ajoute un toit en bois à quatre plans de format 5 x 5 x 3 au coût de 100 SIMCoins et le place sur sa base. Il ajuste le SIMCoins Miner pour qu'il n'utilise qu'une quantité moyenne d'énergie (soit 50 d'énergie) et désactive l'éolienne pour ne pas risquer de l'endommager. Il termine son tour avec 55 SIMCoins.*
 
 *La troisième intempérie est un tremblement de terre qui détruit les murs en carton, ce qui cause la chute du toit. Ce dernier tombe sur les humains et les tue.*
 
 *Puisque tous les humains sont morts la partie est terminée et le score final est compatibilisé.*
-
-////////////////////////////
-
-Au début de la partie, le joueur sera dans un monde avec 10 humains qu'il va devoir protéger, une pile chargée avec 100 d'énergie et un SIMCoins Miner. Il aura 100 SIMCoins qu'il pourra utiliser pour acheter des structures et des machines.
-
-Par exemple, le joueur pourrait acheter des cubes de carton pour faire les fondations de sa base qui pourrait être de grandeur 5x5 ce qui coûte 48 SIMCoins auquel il pourrait connecter des murs en carton de 2 de haut, ce qui coûte 32 SIMCoins. De plus, il connecte son SIMCoin Miner à sa pile avec un fil de cuivre de 2mm de diamètre d'une longueur de 3m ce qui coûte 3 SIMCoins et le fait fonctionner à pleine capacité.
-Lorsque la phase de construction est terminée, la première catastrophe se produit. La premiere intempérie est un vent léger qui endommage légèrement les murs en carton.
-Vers la fin de la vague, le joueur se voit allouer 146 SIMCoins par son SIMCoin Miner qui utilise 75 énergie.
-
-Durant le deuxième tour, le joueur répare les murs en carton et achète une héolienne pour 175 SIMCoins qu'il connecte à sa pile avec un fil de cuivre de 2mm de diamètre d'une longueur de 4m ce qui coûte 4 SIMCoins.
-Lorsque la phase de construction est terminée, la deuxième catastrophe se produit. Le deuxième intemperie est un vent très léger qui endommage légèrement les murs en carton, mais génère de l'énergie grâce à l'éolienne. De plus, la pluie endommage les structures en carton, la pile, le SIMCoin Miner et les humains perdent de la vie à cause de la pluie.
-Vers la fin de la vague, le joueur se voit alouer 138 SIMCoins par son SIMCoin Miner et 10 énergies avec l'éolienne, mais le SIMCoin Miner utilise 50 énergie.
-
-Durant le troisième tour, le joueur répare les murs en carton et ces machines. De plus, il ajoute un toit en bois à quatre plans de taille 5x5x3 ce qui lui coute 100 SIMCoins qu'il place sur sa base.
-Lorsque la phase de construction est terminée, la deuxième catastrophe se produit. La troisième intempérie est un tremblement de terre qui détruit les murs en carton, ce qui cause la chute du toit. Ce dernier tombe sur les humains et les tue. 
-Puisque tout les humains sont mort, la partie est terminée.
