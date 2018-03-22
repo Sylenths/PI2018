@@ -9,6 +9,7 @@ Type de ressource | Préfixe
  Icones | ico 
  Textures | tex 
  Images | img 
+ Police de caractère | font
  
 - Nous nommerons nos ressources de cette manière: 
 
