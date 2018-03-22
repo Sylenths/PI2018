@@ -24,6 +24,7 @@ Sinon, nous suiverons le modèle suivant:
 - ssh-add [CléPrivée]
 - git config --global user.name "Prénom Nom"
 - git config --global user.email "adresse@courriel.qc.ca"
+- git clone git@github.com:Cegep-Joliette-SIM/PI2018.git
 - git log
 - git status -s
 - git add [fichierA fichierB ...]
@@ -31,3 +32,4 @@ Sinon, nous suiverons le modèle suivant:
 - git commit -am "Commentaire"
 - git pull origin [branche]
 - git push origin [branche]
+
