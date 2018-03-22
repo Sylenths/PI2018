@@ -11,7 +11,7 @@
 
 class Window {
 protected:
-    SDL_Window *sdlwindow;  ///< Composante sdlwindow.
+    SDL_Window* sdlwindow;  ///< Composante sdlwindow.
 
 public:
     Window(const char* title, int x, int y, int width, int height, unsigned int windowflags){

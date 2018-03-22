@@ -8,7 +8,6 @@
 #ifndef SDLPROJECT_MATRIX_H
 #define SDLPROJECT_MATRIX_H
 
-#include "Vector3D.h"
 #define m11 matrix[0]
 #define m12 matrix[1]
 #define m13 matrix[2]
@@ -26,7 +25,7 @@
 #define m43 matrix[14]
 #define m44 matrix[15]
 
-
+#include "Vector3D.h"
 
 class Matrix {
 public:

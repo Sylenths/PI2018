@@ -6,7 +6,7 @@ class Singleton {
 private:
     static T* instance;
 public:
-    static T* ObtenirInstance(){
+    static T* getInstance(){
         if(!instance)
             instance = new T();
         return instance;
