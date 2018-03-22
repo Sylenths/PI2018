@@ -1,6 +1,5 @@
-
-#ifndef SINGLETON_SINGLETON_H
-#define SINGLETON_SINGLETON_H
+#ifndef SINGLETON_H
+#define SINGLETON_H
 
 template <typename T>
 class Singleton {
@@ -17,4 +16,4 @@ template <typename T>
 T* Singleton<T>::instance = NULL;
 
 
-#endif //SINGLETON_SINGLETON_H
+#endif
