@@ -47,6 +47,6 @@ FIND_PACKAGE_HANDLE_STANDARD_ARGS(SDL2 REQUIRED_VARS SDL2_LIBRARY SDL2_INCLUDE_D
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp ProjetFinal.h Menu.h MainMenu.h Settings.h InGameOverlay.h InGameESC.h Image2D.h RotatingImage.h .idea/Model.h TextureID.h .idea/Font.h Resource.h ResourceManager.h)
 add_executable(source ${SOURCE_FILES})
 target_link_libraries(source ${SDL2_LIBRARY_TEMP})

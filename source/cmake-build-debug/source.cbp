@@ -82,6 +82,45 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/.idea/Font.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/.idea/Model.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Image2D.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/InGameESC.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/InGameOverlay.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/MainMenu.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Menu.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/ProjetFinal.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Resource.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/ResourceManager.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/RotatingImage.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Settings.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/TextureID.h">
+			<Option target="source"/>
+		</Unit>
 		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/main.cpp">
 			<Option target="source"/>
 		</Unit>
