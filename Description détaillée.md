@@ -66,13 +66,9 @@ Pour la construction de structure, le joueur disposera de plusieurs outils. Le p
 
 # Énergie
 
-Les sources d'énergie fournissent du courants aux machines consommant de l'énergie si celle-ci sont connectées. Les sources et les machines se connectent entre-elles avec des fils conducteurs. Dépendement de la résistance des fils, ceux-ci dissipent de l'énergie ce qui réduit leur efficacité, et de ce fait consomment de l'énergie. Chaque circuit est indépendant les uns des autres. Si un circuit est trop long sans source, l'énergie pourrait manquer au bout du circuit.
-// TODO : Décrire comment seront connectées les structures et comment la distribution d'énergie aux différents objets sera gérée.
-
+Les sources d'énergie (éolienne, panneau solaire, etc.) fournissent du courants aux machines consommant de l'énergie si celles-ci y sont connectées. Les sources et les machines se connectent entre-elles avec des fils conducteurs. Dépendement de la résistance des fils, ceux-ci dissipent l'énergie. Si un circuit est trop long, l'énergie pourrait manquer au bout du circuit. Chaque circuit est indépendant les uns des autres.
 
 # Intempéries
-
-//TODO : Ajouter les types d'intempéries et une brève description
 
 Intempéries | Description
 ------------ | -------------
