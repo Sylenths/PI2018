@@ -64,9 +64,9 @@ La résistance du matériau change la quantité de Newton nécessaire pour l'end
 
 Pour la construction de structure, le joueur disposera de plusieurs outils. Le premier étant un outil lui permettant de créer des fondations au sol. Les fondations permettent de créer une base solide pour les murs. Le joueur pourra placer des carrés au sol et ceux-ci représenteront la première ébauche de la base. Ensuite, le joueur pourra construire automatiquement des murs à partir d'une fondation qu'il aura créée au préalable. Le joueur aura le choix de plusieurs matériaux (voir tableau des matériaux) et il pourra aussi choisir la hauteur des murs. Le choix des matériaux et la hauteur des murs affecteront le prix. Pour terminer sa base, le joueur devra y installer un toit. Plusieurs formes de toits seront disponibles; Un toit simple (ou planché), un toit avec un seul pan, un toit avec deux pans et un toit avec quatre pans. Le joueur devra entrer les dimensions du toit (longueur, largeur, hauteur), et choisir un matériau. À partir de ces données, un toit sera généré automatiquement et le joueur pourra le placer sur les murs. Le prix d'un toit sera déterminé par le type de matériaux utilisés et par son aire totale. Chaque coté de toit et chaque mur disposera d'un point d'ancrage. Un toit doit être obligatoirement connecté à au moins deux point d'ancrage, sinon celui-ci s'écroule.
 
-## Énergie
+# Énergie
 
-
+Les sources d'énergie fournissent du courants aux machines consommant de l'énergie si celle-ci sont connectées. Les sources et les machines se connectent entre-elles avec des fils conducteurs. Dépendement de la résistance des fils, ceux-ci dissipent de l'énergie ce qui réduit leur efficacité, et de ce fait consomment de l'énergie. Chaque circuit est indépendant les uns des autres. Si un circuit est trop long sans source, l'énergie pourrait manquer au bout du circuit.
 // TODO : Décrire comment seront connectées les structures et comment la distribution d'énergie aux différents objets sera gérée.
 
 
@@ -85,9 +85,6 @@ Température | Elle affecterait le fonctionnement de certains appareils et la r�
 Éclair | Fait prendre l'objet touché en feu. Si un humain est touché, il subit des dommages.
 Tremblement de terre | Réduit le point de rupture des matériaux.
 Radiation | Inflige des dégâts par tour aux humains se trouvant dans la zone de radiation.
-
-
-# Exemple
 
 # Exemple
 
