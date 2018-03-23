@@ -109,3 +109,28 @@ while(condition) {
 }
 ```
 
+## Doxygen header
+
+```
+/// \brief Représentation de matrice à inclure.
+/// \details Matrice 4 x 4.
+/// \author Antoine Legault et les autres
+/// \date 20 février 2018
+/// \version 0.1
+/// \warning Risque de planter si mal utilisé.
+/// \bug Problèmes connus
+```
+## Doxygen in-code
+
+```
+double* matrix; ///< Composante matrix.
+
+/// Multiplication de matrice.
+    /// \param v Vecteur multiplicateur.
+    /// \return Vecteur résultant de la multiplication.
+    Vector3D operator*( const Vector3D& v) const {
+        return Vector3D(v.x*m11 + v.y*m21 + v.z*m31 + m41, v.x*m12 + v.y*m22 + v.z*m32 + m42, v.x*m13 + v.y*m23 + v.z*m33 + m43);
+    }
+    
+```
+
