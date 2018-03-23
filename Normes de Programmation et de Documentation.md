@@ -10,10 +10,42 @@
  
  - Les noms de fonctions et de méthodes devraient contenir un verbe à l'infinitif représentatif de l'action effectuée.
 
+# Doxygen
+
+## En-tête de classe Doxygen (avant Ifndef-Define dans un \*.h)
+
+```C++
+/// \brief <Brève description>
+/// \details <Description plus détaillée de la classe>
+/// \author <Liste des noms auteurs, séparés par une virgule>
+/// \date <Date de dernière modification>
+/// \version <Version du fichier>
+/// \warnings <Avertissements relatifs à l'utilisation de la classe>
+/// \bugs <Bugs connnus de la classe>
+```
+
+## Description des données membres publiques
+
+```C++
+int entier;///< Description courte de la donnée membre.
+```
+
+## Description des méthodes publiques
+```C++
+/// Description courte de la méthode.
+/// \param great Description brève du paramètre.
+/// \return Description brève du retour de la fonction.
+int doSomething(bool great){
+    /*...code...*/
+    return anAwesomeInt;
+}
+```
+Un `\param` doit être présent pour chaque paramètre de la méthode. Ne pas en mettre si rien n'est passé à la méthode.
+`\return` est omis si le type de la méthode est void.
 
 # Code
 
-## Ifndef-Define class{/*...*/}; Endif
+## Ifndef-Define class{/\*...code...\*/}; Endif
 
 ```C++
 #ifndef define...
@@ -43,7 +75,7 @@ int* nomCamelCase;
 type nomFonctionCamelCase(type var, type var2) {
     //code
 }
-````
+```
 
 ## Classes
 
@@ -108,29 +140,3 @@ while(condition) {
     //code
 }
 ```
-
-## Doxygen header
-
-```
-/// \brief Représentation de matrice à inclure.
-/// \details Matrice 4 x 4.
-/// \author Antoine Legault et les autres
-/// \date 20 février 2018
-/// \version 0.1
-/// \warning Risque de planter si mal utilisé.
-/// \bug Problèmes connus
-```
-## Doxygen in-code
-
-```
-double* matrix; ///< Composante matrix.
-
-/// Multiplication de matrice.
-    /// \param v Vecteur multiplicateur.
-    /// \return Vecteur résultant de la multiplication.
-    Vector3D operator*( const Vector3D& v) const {
-        return Vector3D(v.x*m11 + v.y*m21 + v.z*m31 + m41, v.x*m12 + v.y*m22 + v.z*m32 + m42, v.x*m13 + v.y*m23 + v.z*m33 + m43);
-    }
-    
-```
-
