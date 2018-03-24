@@ -5,7 +5,7 @@
 ## Texturisation
 - Les textures doivent être carré.
 ## Taille de la fenêtre et des menus
-- Tout doit entrer dans une fenêtre fixe de 1280 pixels de largeur et 768 pixels de hauteur.
+- Tout doit entrer dans une fenêtre fixe de 1280 pixels de largeur et 720 pixels de hauteur.
 
 
 //TODO : Déterminer les limites des textures et des modèles.
