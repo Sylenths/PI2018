@@ -14,6 +14,7 @@ class Resource{
 private:
 
 public:
+    virtual void nothing () = 0;
 
 };
 

@@ -41,6 +41,10 @@ public:
     std::string getDescription(){
 
     }
+
+    void nothing (){
+
+    }
 };
 
 
