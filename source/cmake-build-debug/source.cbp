@@ -8,143 +8,143 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/msys64/home/Jade/PI2018/source/cmake-build-debug"/>
+				<Option working_dir="C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/msys64/home/Jade/PI2018/source/cmake-build-debug"/>
+				<Option working_dir="C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="source">
-				<Option output="C:/msys64/home/Jade/PI2018/source/cmake-build-debug/source.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/msys64/home/Jade/PI2018/source/cmake-build-debug"/>
+				<Option output="C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/source.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/msys64/home/Jade/PI2018/source/Optional"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../include/c++/7.2.0"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../include/c++/7.2.0/x86_64-w64-mingw32"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../include/c++/7.2.0/backward"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/include"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../include"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/include-fixed"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="C:/msys64/home/Utilisateur/PI2018/source/Optional"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/include"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/include-fixed"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 source"/>
-					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 source"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="source/fast">
-				<Option output="C:/msys64/home/Jade/PI2018/source/cmake-build-debug/source.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/msys64/home/Jade/PI2018/source/cmake-build-debug"/>
+				<Option output="C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/source.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/msys64/home/Jade/PI2018/source/Optional"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../include/c++/7.2.0"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../include/c++/7.2.0/x86_64-w64-mingw32"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../include/c++/7.2.0/backward"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/include"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../include"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/include-fixed"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="C:/msys64/home/Utilisateur/PI2018/source/Optional"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/x86_64-w64-mingw32"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include/c++/6.1.0/backward"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/include"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../include"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/include-fixed"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 source/fast"/>
-					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 source/fast"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/msys64/home/Jade/PI2018/source/cmake-build-debug"/>
+				<Option working_dir="C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Jade/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/msys64/home/Utilisateur/PI2018/source/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Font.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Font.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/GLContext.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/GLContext.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Image2D.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Image2D.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/InGameESC.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/InGameESC.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/InGameOverlay.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/InGameOverlay.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/MainMenu.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/MainMenu.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Matrix.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Matrix.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Menu.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Menu.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Observable.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Observable.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Observer.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Observer.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/ProjetFinal.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/ProjetFinal.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Resource.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Resource.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/ResourceManager.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/ResourceManager.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/RotatingImage.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/RotatingImage.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Settings.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Settings.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Singleton.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Singleton.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/TextureID.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/TextureID.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Vector3D.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Vector3D.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/Window.h">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Window.h">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/main.cpp">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/main.cpp">
 			<Option target="source"/>
 		</Unit>
-		<Unit filename="C:/msys64/home/Jade/PI2018/source/CMakeLists.txt">
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
