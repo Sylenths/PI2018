@@ -92,6 +92,11 @@ source.exe: CMakeFiles/source.dir/main.cpp.obj
 source.exe: CMakeFiles/source.dir/build.make
 source.exe: C:/msys64/mingw64/lib/libSDL2main.a
 source.exe: C:/msys64/mingw64/lib/libSDL2main.a
+source.exe: C:/msys64/mingw64/lib/libSDL2main.a
+source.exe: C:/msys64/mingw64/lib/libSDL2.dll.a
+source.exe: C:/msys64/mingw64/lib/libSDL2_ttf.dll.a
+source.exe: C:/msys64/mingw64/lib/libSDL2_image.dll.a
+source.exe: C:/msys64/mingw64/lib/libSDL2main.a
 source.exe: C:/msys64/mingw64/lib/libSDL2.dll.a
 source.exe: C:/msys64/mingw64/lib/libSDL2_ttf.dll.a
 source.exe: C:/msys64/mingw64/lib/libSDL2_image.dll.a

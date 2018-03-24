@@ -84,6 +84,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Button.h">
+			<Option target="source"/>
+		</Unit>
 		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Font.h">
 			<Option target="source"/>
 		</Unit>
@@ -99,6 +102,9 @@
 		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/InGameOverlay.h">
 			<Option target="source"/>
 		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Label.h">
+			<Option target="source"/>
+		</Unit>
 		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/MainMenu.h">
 			<Option target="source"/>
 		</Unit>
@@ -106,6 +112,9 @@
 			<Option target="source"/>
 		</Unit>
 		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Menu.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Model.h">
 			<Option target="source"/>
 		</Unit>
 		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Observable.h">
@@ -130,6 +139,9 @@
 			<Option target="source"/>
 		</Unit>
 		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Singleton.h">
+			<Option target="source"/>
+		</Unit>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/TextField.h">
 			<Option target="source"/>
 		</Unit>
 		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/TextureID.h">
