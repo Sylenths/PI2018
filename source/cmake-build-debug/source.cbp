@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Font.h">
+			<Option target="source"/>
+		</Unit>
 		<Unit filename="C:/msys64/home/Utilisateur/PI2018/source/Image2D.h">
 			<Option target="source"/>
 		</Unit>

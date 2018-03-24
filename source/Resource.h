@@ -9,7 +9,11 @@
 #define SOURCE_RESOURCE_H
 
 
-class Resource {
+
+class Resource{
+private:
+
+public:
 
 };
 
