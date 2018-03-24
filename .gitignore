@@ -8,7 +8,7 @@ Makefile
 SDLProject
 source.cbp
 source.cbp
-CMakeFiles
+source/cmake-build-debug/CMakeFiles
 source/cmake-build-debug/source.cbp
 source/cmake-build-debug/Makefile
 source/cmake-build-debug/cmake_install.cmake
