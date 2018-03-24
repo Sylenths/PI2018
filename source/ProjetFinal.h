@@ -22,13 +22,13 @@
 
 class ProjetFinal : public Singleton<ProjetFinal> {
 public:
-    ResourceManager* ressourceManagerList; ///< Composante Liste de ressourceManager
+    ResourceManager* ressourceManager; ///< Composante  ressource Manager qui va nous permettre de gérer nos ressources.
     GLContext* glContext; ///< Composante glContext
     std::list<Menu>* menuList; ///< Composante List de menu
 
 
     ProjetFinal(const char* title, int x, int y, int width, int height, unsigned int windowflags = 0){
-        ressourceManagerList = new ResourceManager();
+        ressourceManager = new ResourceManager();
         glContext = new GLContext(title,x ,y ,width , height, windowflags);
         menuList = new std::list<Menu>;
         glContext->setFrustum(90.0, 0.1, 1000.0, false);
@@ -37,9 +37,9 @@ public:
     ~ ProjetFinal () {
         delete (glContext);
         delete (menuList);
-        delete (ressourceManagerList);
+        delete (ressourceManager);
     }
-
+    /// Représente la boucle de jeu
     void run(){
 
         glEnable(GL_DEPTH_TEST);
@@ -66,9 +66,9 @@ public:
             }
             glContext->clear();
             glContext->refresh();
-    }
+         }
 
-        }
+    }
 
 };
 
