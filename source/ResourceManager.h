@@ -18,7 +18,7 @@ private:
 public:
     /// Ajouter une texture.
     void addResource(){
-        
+
     }
     /// Supprimer une texture.
     void removeResource(){
