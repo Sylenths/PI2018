@@ -12,7 +12,7 @@
 #include "Window.h"
 #include <SDL2/SDL_opengl.h>
 #include <cmath>
-#include "Matric.h"
+#include "Matrix.h"
 
 class GLContext : public Window{
 private:
@@ -53,7 +53,7 @@ public:
             double right = std::tan(angle / 2.0) * nearPlane;
             double top = ((double) height / (double) width) * right;
 
-            Matric projectionMatrix;
+            Matrix projectionMatrix;
             projectionMatrix.loadProjection(right, top, nearPlane, farPlane);
             glMultMatrixd(projectionMatrix.matrix);
 
