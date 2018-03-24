@@ -20,21 +20,21 @@
 #include "Menu.h"
 #include "Observable.h"
 
-class ProjetFinal : public Singleton {
+class ProjetFinal : public Singleton<ProjetFinal> {
 public:
     ResourceManager* ressourceManagerList; ///< Composante Liste de ressourceManager
-    GLContext* glContext; ///< Composante Liste de ressourceManager
-    std::list<Menu>* menuList; ///< Composante
-    //GLContext glContext("SDL - OpenGL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1000, 700, 0);
+    GLContext* glContext; ///< Composante glContext
+    std::list<Menu>* menuList; ///< Composante List de menu
 
 
     ProjetFinal(const char* title, int x, int y, int width, int height, unsigned int windowflags = 0){
         ressourceManagerList = new ResourceManager();
         glContext = new GLContext(title,x ,y ,width , height, windowflags);
         menuList = new std::list<Menu>;
+        glContext->setFrustum(90.0, 0.1, 1000.0, false);
     }
 
-    ProjetFinal~(){
+    ~ ProjetFinal () {
         delete (glContext);
         delete (menuList);
         delete (ressourceManagerList);
@@ -47,7 +47,6 @@ public:
         glEnable(GL_LIGHTING);
         glEnable(GL_LIGHT0);
 
-        SDL_ShowCursor(SDL_DISABLE);
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         SDL_Event sdlEvent;
@@ -69,7 +68,7 @@ public:
             glContext->refresh();
     }
 
-
+        }
 
 };
 

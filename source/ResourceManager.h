@@ -15,7 +15,7 @@
 class ResourceManager {
 private:
     std::map<std::string, Resource*> textures;  ///< Composante Map de textures.
-    std::map<std::string, Resource*> Fonts;     ///< Composante Map de polices d'écriture.
+    std::map<std::string, Resource*> fonts;     ///< Composante Map de polices d'écriture.
 public:
     /// Ajouter une texture.
     void addResource(){
