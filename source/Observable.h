@@ -22,6 +22,10 @@ public:
         observers.push_back(observer);
     }
 
+    void unsubscribe(Observer<T>* observer) {
+        observers.remove(observer);
+    }
+
     /// Permettre de se faire avertir d'un évènement.
     /// \param arg Entreprendre une action suite à la notification.
     void notify(T arg){

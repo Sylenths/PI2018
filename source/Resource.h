@@ -5,17 +5,14 @@
 /// \version 0.1
 /// \warning Mettre les warning si nécessaire.
 /// \bug Problèmes connus
-#ifndef SOURCE_RESOURCE_H
-#define SOURCE_RESOURCE_H
-
-
+#ifndef RESOURCE_H
+#define RESOURCE_H
 
 class Resource{
 private:
 
 public:
-    virtual void nothing () = 0;
-
+    virtual void nothing() = 0;
 };
 
 

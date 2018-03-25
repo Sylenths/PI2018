@@ -23,7 +23,7 @@ public:
 
     /// Récupérer l'ID de la texture.
     /// \param filename Le nom du fichier de la texture.
-    unsigned int getID(const char* filename){
+    unsigned int getID(const char* filename, std::string description){
             glGenTextures(1, &openGLID);
             glBindTexture(GL_TEXTURE_2D, openGLID);
 
@@ -34,12 +34,14 @@ public:
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
+            this -> description = description;
+
             return openGLID;
     }
 
     /// Description de la texture.
     std::string getDescription(){
-
+        return description;
     }
 
     void nothing (){

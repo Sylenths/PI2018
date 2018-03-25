@@ -7,6 +7,7 @@
 /// \bug Problèmes connus
 #ifndef SOURCE_FONT_H
 #define SOURCE_FONT_H
+
 #include "Resource.h"
 
 class Font : public Resource{
