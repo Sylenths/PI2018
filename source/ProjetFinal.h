@@ -26,8 +26,7 @@ public:
     GLContext* glContext; ///< Composante glContext
     std::list<Menu>* menuList; ///< Composante List de menu
 
-
-    ProjetFinal(const char* title, int x, int y, int width, int height, unsigned int windowflags = 0){
+    ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
         ressourceManager = new ResourceManager();
         glContext = new GLContext(title,x ,y ,width , height, windowflags);
         menuList = new std::list<Menu>;
