@@ -29,7 +29,7 @@
 
 class Matrix {
 public:
-double* matrix; ///< Composante matrix.
+double* matrix; ///< Création de la matrix.
 
     Matrix(){
         matrix = new double[16];

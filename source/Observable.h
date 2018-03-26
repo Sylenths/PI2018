@@ -14,7 +14,7 @@
 template <typename T>
 class Observable {
 private:
-    std::list<Observer<T>*> observers;  ///< Composante liste d'observers.
+    std::list<Observer<T>*> observers;  ///< Liste d'observateurs.
 
 public:
     /// Permettre de s'inscrire à un évènement.
@@ -31,7 +31,7 @@ public:
     void notify(T arg){
         typename std::list<Observer<T>*>::iterator it = observers.begin();
         for (int i = 0; i <observers.size() ; ++i) {
-            (*it++)->notification(arg);
+            (*it++)->notify(arg);
         }
 
         /*

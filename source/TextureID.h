@@ -17,8 +17,8 @@
 
 class TextureID : public Resource{
 private:
-    unsigned int openGLID;      ///< Composante ID des textures.
-    std::string description;    ///< Composante Description de la texture.
+    unsigned int openGLID;      ///< ID des textures.
+    std::string description;    ///< Description de la texture.
 public:
 
     /// Récupérer l'ID de la texture.

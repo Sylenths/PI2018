@@ -15,7 +15,7 @@
 #include <vector>
 
 #include "Matrix.h"
-#include "Vector.h"
+#include "Vector3D.h"
 #include "TextureID.h"
 
 class Mesh{
@@ -140,8 +140,8 @@ public:
     }
 
     void transform(Matrix& m) {
-        Vector nv;
-        Vector v;
+        Vector3D nv;
+        Vector3D v;
         int I, J, K;
 
         for (int i = 0; i < vertexCount; ++i) {
@@ -149,13 +149,13 @@ public:
             J = I + 1;
             K = I + 2;
 
-            Vector v = Vector(vertices[I], vertices[J], vertices[K]);
+            Vector3D v = Vector3D(vertices[I], vertices[J], vertices[K]);
             v = m*v;
             vertices[I]     = v.x;
             vertices[J]     = v.y;
             vertices[K]     = v.z;
 
-            v = Vector(normals[I], normals[J], normals[K]);
+            v = Vector3D(normals[I], normals[J], normals[K]);
             v = m*v;
             normals[I]     = v.x;
             normals[J]     = v.y;

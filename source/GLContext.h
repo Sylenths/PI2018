@@ -16,7 +16,7 @@
 
 class GLContext : public Window{
 private:
-    SDL_GLContext glContext;    ///< Composante glContext.
+    SDL_GLContext glContext;    ///< Gestion de la fênetre.
 public:
     GLContext(const char* title, int x, int y, int width, int height, unsigned int windowflags = 0) : Window(title, x,y,width, height, windowflags | SDL_WINDOW_OPENGL){
         glContext = SDL_GL_CreateContext(sdlwindow);

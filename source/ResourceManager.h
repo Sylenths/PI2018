@@ -15,7 +15,7 @@
 
 class ResourceManager {
 private:
-    std::map<std::string, Resource*> resources;  ///< Composante Map de textures.
+    std::map<std::string, Resource*> resources;  ///< Map de textures.
 public:
 
     /// Destruction de toutes les ressources vers la fin du jeu. Utilisation de la magie auto.

@@ -22,12 +22,12 @@
 
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
-    ResourceManager* resourceManager; ///< Composante  ressource Manager qui va nous permettre de gérer nos ressources.
-    GLContext* glContext; ///< Composante glContext
-    std::list<Menu>* menuList; ///< Composante List de menu
+    ResourceManager* resourceManager; ///< Ressource Manager qui va nous permettre de gérer nos ressources.
+    GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
+    std::list<Menu>* menuList; ///< List de menu
     SDL_Event* sdlEvent;
 
-    std::map<std::string, Observable<SDL_Event*>*> observables; ///< Composante des cartes d'observable
+    std::map<std::string, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
     std::string defaultPath;
 
