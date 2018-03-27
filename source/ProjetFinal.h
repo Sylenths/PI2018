@@ -28,8 +28,6 @@ private:
 
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
-    std::string defaultPath;
-
 public:
 
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
@@ -101,10 +99,6 @@ public:
          }
 
     }
-    void setDefaultPath(std::string defaultPath) {
-        this -> defaultPath = defaultPath;
-    }
-
 
 };
 
