@@ -48,9 +48,9 @@ public:
     /// Représente la boucle de jeu
 
     void getTextureID(const char* filename, std::string textureName){
-            unsigned int TextureID;
-            glGenTextures(1, &TextureID);
-            glBindTexture(GL_TEXTURE_2D, TextureID);
+            unsigned int textureID;
+            glGenTextures(1, &textureID);
+            glBindTexture(GL_TEXTURE_2D, textureID);
 
             SDL_Surface* surface = IMG_Load(filename);
             glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, surface->w, surface->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
@@ -59,7 +59,7 @@ public:
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-            ResourceManager::getInstance()->addTexture(textureName, TextureID);
+            ResourceManager::getInstance()->addTexture(textureName, textureID);
     }
 
     void run(){
