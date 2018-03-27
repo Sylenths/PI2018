@@ -5,7 +5,7 @@
 
 class Highscore : public Menu{
 public:
-    void loadGame() {
+    void loadMenu() {
 
     }
 };

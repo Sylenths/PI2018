@@ -13,7 +13,7 @@
 
 class Settings : public Menu{
 public:
-    void loadGame() {
+    void loadMenu() {
 
     }
 };

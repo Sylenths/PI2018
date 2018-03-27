@@ -38,13 +38,8 @@ public:
 
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
         glContext = new GLContext(title,x ,y ,width , height, windowflags);
-<<<<<<< HEAD
         glContext->setFrustum(90.0, 0.1, 1000.0, false);
-=======
-        menuList = new std::list<Menu*>;
         glContext->setFrustum(90.0, 0.1, 1000.0, true);
-
->>>>>>> 2b585d2a22d2cc4b016dcf6e5eeedb3f7dcd48ac
         sdlEvent = new SDL_Event();
 
         menuMap["MainMenu"] = new MainMenu;
@@ -52,6 +47,7 @@ public:
         menuMap["InGameOverlay"] = new InGameOverlay;
         menuMap["InGameESC"] = new InGameESC;
         menuMap["Highscore"] = new Highscore;
+        
 
     }
 
@@ -116,16 +112,9 @@ public:
                 }
             }
             glContext->clear();
-<<<<<<< HEAD
 
             tstModel->draw();
             glContext->refresh();
-
-=======
-            tstModel->draw();
-            glContext->refresh();
-
->>>>>>> 2b3bfcad563e17a8683c9054f56a561419345341
 
          }
 

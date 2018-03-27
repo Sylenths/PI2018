@@ -12,7 +12,7 @@
 
 class InGameOverlay : public Menu {
 public:
-    void loadGame() {
+    void loadMenu() {
 
     }
 };

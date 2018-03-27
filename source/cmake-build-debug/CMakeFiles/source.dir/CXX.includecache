@@ -6,31 +6,47 @@
 
 #IncludeRegexTransform: 
 
-/home/etudiant/Téléchargements/PI2018/source/GLContext.h
+C:/msys64/home/Jade/PI2018/source/GLContext.h
 SDL2/SDL.h
 -
 Window.h
-/home/etudiant/Téléchargements/PI2018/source/Window.h
+C:/msys64/home/Jade/PI2018/source/Window.h
 SDL2/SDL_opengl.h
 -
 cmath
 -
 Matrix.h
-/home/etudiant/Téléchargements/PI2018/source/Matrix.h
+C:/msys64/home/Jade/PI2018/source/Matrix.h
 
-/home/etudiant/Téléchargements/PI2018/source/Image2D.h
+C:/msys64/home/Jade/PI2018/source/Highscore.h
+Menu.h
+C:/msys64/home/Jade/PI2018/source/Menu.h
+
+C:/msys64/home/Jade/PI2018/source/Image2D.h
 Model.h
-/home/etudiant/Téléchargements/PI2018/source/Model.h
+C:/msys64/home/Jade/PI2018/source/Model.h
 Matrix.h
-/home/etudiant/Téléchargements/PI2018/source/Matrix.h
+C:/msys64/home/Jade/PI2018/source/Matrix.h
 
-/home/etudiant/Téléchargements/PI2018/source/Matrix.h
+C:/msys64/home/Jade/PI2018/source/InGameESC.h
+Menu.h
+C:/msys64/home/Jade/PI2018/source/Menu.h
+
+C:/msys64/home/Jade/PI2018/source/InGameOverlay.h
+Menu.h
+C:/msys64/home/Jade/PI2018/source/Menu.h
+
+C:/msys64/home/Jade/PI2018/source/MainMenu.h
+Menu.h
+C:/msys64/home/Jade/PI2018/source/Menu.h
+
+C:/msys64/home/Jade/PI2018/source/Matrix.h
 Vector3D.h
-/home/etudiant/Téléchargements/PI2018/source/Vector3D.h
+C:/msys64/home/Jade/PI2018/source/Vector3D.h
 
-/home/etudiant/Téléchargements/PI2018/source/Menu.h
+C:/msys64/home/Jade/PI2018/source/Menu.h
 
-/home/etudiant/Téléchargements/PI2018/source/Mesh.h
+C:/msys64/home/Jade/PI2018/source/Mesh.h
 iostream
 -
 string
@@ -40,31 +56,31 @@ fstream
 vector
 -
 Matrix.h
-/home/etudiant/Téléchargements/PI2018/source/Matrix.h
+C:/msys64/home/Jade/PI2018/source/Matrix.h
 Vector3D.h
-/home/etudiant/Téléchargements/PI2018/source/Vector3D.h
+C:/msys64/home/Jade/PI2018/source/Vector3D.h
 
-/home/etudiant/Téléchargements/PI2018/source/Model.h
+C:/msys64/home/Jade/PI2018/source/Model.h
 Resource.h
-/home/etudiant/Téléchargements/PI2018/source/Resource.h
+C:/msys64/home/Jade/PI2018/source/Resource.h
 Observer.h
-/home/etudiant/Téléchargements/PI2018/source/Observer.h
+C:/msys64/home/Jade/PI2018/source/Observer.h
 TextureID.h
-/home/etudiant/Téléchargements/PI2018/source/TextureID.h
+C:/msys64/home/Jade/PI2018/source/TextureID.h
 Mesh.h
-/home/etudiant/Téléchargements/PI2018/source/Mesh.h
+C:/msys64/home/Jade/PI2018/source/Mesh.h
 ResourceManager.h
-/home/etudiant/Téléchargements/PI2018/source/ResourceManager.h
+C:/msys64/home/Jade/PI2018/source/ResourceManager.h
 
-/home/etudiant/Téléchargements/PI2018/source/Observable.h
+C:/msys64/home/Jade/PI2018/source/Observable.h
 Observer.h
-/home/etudiant/Téléchargements/PI2018/source/Observer.h
+C:/msys64/home/Jade/PI2018/source/Observer.h
 list
 -
 
-/home/etudiant/Téléchargements/PI2018/source/Observer.h
+C:/msys64/home/Jade/PI2018/source/Observer.h
 
-/home/etudiant/Téléchargements/PI2018/source/ProjetFinal.h
+C:/msys64/home/Jade/PI2018/source/ProjetFinal.h
 list
 -
 string
@@ -76,33 +92,47 @@ SDL2/SDL_ttf.h
 SDL2/SDL_image.h
 -
 Singleton.h
-/home/etudiant/Téléchargements/PI2018/source/Singleton.h
+C:/msys64/home/Jade/PI2018/source/Singleton.h
 ResourceManager.h
-/home/etudiant/Téléchargements/PI2018/source/ResourceManager.h
+C:/msys64/home/Jade/PI2018/source/ResourceManager.h
 GLContext.h
-/home/etudiant/Téléchargements/PI2018/source/GLContext.h
+C:/msys64/home/Jade/PI2018/source/GLContext.h
 Menu.h
-/home/etudiant/Téléchargements/PI2018/source/Menu.h
+C:/msys64/home/Jade/PI2018/source/Menu.h
 Observable.h
-/home/etudiant/Téléchargements/PI2018/source/Observable.h
+C:/msys64/home/Jade/PI2018/source/Observable.h
+MainMenu.h
+C:/msys64/home/Jade/PI2018/source/MainMenu.h
+Settings.h
+C:/msys64/home/Jade/PI2018/source/Settings.h
+InGameOverlay.h
+C:/msys64/home/Jade/PI2018/source/InGameOverlay.h
+InGameESC.h
+C:/msys64/home/Jade/PI2018/source/InGameESC.h
+Highscore.h
+C:/msys64/home/Jade/PI2018/source/Highscore.h
 Image2D.h
-/home/etudiant/Téléchargements/PI2018/source/Image2D.h
+C:/msys64/home/Jade/PI2018/source/Image2D.h
 
-/home/etudiant/Téléchargements/PI2018/source/Resource.h
+C:/msys64/home/Jade/PI2018/source/Resource.h
 
-/home/etudiant/Téléchargements/PI2018/source/ResourceManager.h
+C:/msys64/home/Jade/PI2018/source/ResourceManager.h
 iterator
 -
 map
 -
 Singleton.h
-/home/etudiant/Téléchargements/PI2018/source/Singleton.h
+C:/msys64/home/Jade/PI2018/source/Singleton.h
 Resource.h
-/home/etudiant/Téléchargements/PI2018/source/Resource.h
+C:/msys64/home/Jade/PI2018/source/Resource.h
 
-/home/etudiant/Téléchargements/PI2018/source/Singleton.h
+C:/msys64/home/Jade/PI2018/source/Settings.h
+Menu.h
+C:/msys64/home/Jade/PI2018/source/Menu.h
 
-/home/etudiant/Téléchargements/PI2018/source/TextureID.h
+C:/msys64/home/Jade/PI2018/source/Singleton.h
+
+C:/msys64/home/Jade/PI2018/source/TextureID.h
 string
 -
 SDL2/SDL_opengl.h
@@ -110,23 +140,23 @@ SDL2/SDL_opengl.h
 SDL2/SDL.h
 -
 SDL2/SDL_image.h
-/home/etudiant/Téléchargements/PI2018/source/SDL2/SDL_image.h
+C:/msys64/home/Jade/PI2018/source/SDL2/SDL_image.h
 Resource.h
-/home/etudiant/Téléchargements/PI2018/source/Resource.h
+C:/msys64/home/Jade/PI2018/source/Resource.h
 
-/home/etudiant/Téléchargements/PI2018/source/Vector3D.h
+C:/msys64/home/Jade/PI2018/source/Vector3D.h
 cmath
-/home/etudiant/Téléchargements/PI2018/source/cmath
+C:/msys64/home/Jade/PI2018/source/cmath
 
-/home/etudiant/Téléchargements/PI2018/source/Window.h
+C:/msys64/home/Jade/PI2018/source/Window.h
 SDL2/SDL.h
 -
 
-/home/etudiant/Téléchargements/PI2018/source/main.cpp
+C:/msys64/home/Jade/PI2018/source/main.cpp
 string
 -
 ProjetFinal.h
-/home/etudiant/Téléchargements/PI2018/source/ProjetFinal.h
+C:/msys64/home/Jade/PI2018/source/ProjetFinal.h
 Matrix.h
-/home/etudiant/Téléchargements/PI2018/source/Matrix.h
+C:/msys64/home/Jade/PI2018/source/Matrix.h
 
