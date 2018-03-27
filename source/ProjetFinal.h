@@ -23,10 +23,10 @@
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
-    std::list<Menu>* menuList; ///< List de menu
+    std::list<Menu>* menuList; ///< Liste de menu
     SDL_Event* sdlEvent;
 
-    std::map<std::string, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
+    std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
     std::string defaultPath;
 
@@ -76,9 +76,6 @@ public:
 
          */
 
-        //TODO ajout d'observables
-        observables["onMouseClick"] = new Observable<SDL_Event*>();
-
         //TODO ajout d'objet à afficher
 
         //resourceManager->addResource("bouton", new );
@@ -91,6 +88,12 @@ public:
                     case SDL_QUIT:
                         isOpen = false;
                         break;
+
+                    default:
+                        if(!observables[sdlEvent->type])
+                            observables[sdlEvent->type] = new Observable<SDL_Event*>;
+                        observables[sdlEvent->type]->notify(sdlEvent);
+
                 }
             }
             glContext->clear();
