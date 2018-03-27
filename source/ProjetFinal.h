@@ -35,7 +35,7 @@ public:
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
         glContext = new GLContext(title,x ,y ,width , height, windowflags);
         menuList = new std::list<Menu*>;
-        glContext->setFrustum(90.0, 0.1, 1000.0, false);
+        glContext->setFrustum(90.0, 0.1, 1000.0, true);
 
         sdlEvent = new SDL_Event();
     }
@@ -68,6 +68,9 @@ public:
         glEnable(GL_LIGHTING);
         glEnable(GL_LIGHT0);
 
+        glEnable(GL_BLEND);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         /*
@@ -82,7 +85,7 @@ public:
 
         getTextureID("test.png", "test");
 
-        Image2D* tstModel = new Image2D("test", 2, 3, 0, 4.0, 2.0);
+        Image2D* tstModel = new Image2D("test", 500, 100, 0, 500.0, 500.0);
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
@@ -99,9 +102,11 @@ public:
                 }
             }
             glContext->clear();
-            glContext->refresh();
 
             tstModel->draw();
+            glContext->refresh();
+
+
          }
 
     }
