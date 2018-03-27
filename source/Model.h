@@ -161,7 +161,7 @@ public:
     }
 
 
-    virtual void draw() {
+    void draw() {
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         glEnableClientState(GL_VERTEX_ARRAY);
