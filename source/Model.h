@@ -32,6 +32,7 @@ public:
         vertices = normals = texCoords = nullptr;
 
         if(objFile) {
+
             std::vector<double> vVertices, vTexCoords, vNormals;
             std::vector<double> verticesEasy, texEasy, normalsEasy;
 
