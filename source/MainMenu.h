@@ -8,9 +8,15 @@
 #ifndef SOURCE_MAINMENU_H
 #define SOURCE_MAINMENU_H
 
+#include "Menu.h"
 
-class MainMenu {
+class MainMenu : public Menu{
+private:
 
+public:
+    void loadMenu(){
+
+    }
 };
 
 
