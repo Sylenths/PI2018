@@ -8,9 +8,13 @@
 #ifndef SOURCE_INGAMEOVERLAY_H
 #define SOURCE_INGAMEOVERLAY_H
 
+#include "Menu.h"
 
-class InGameOverlay {
+class InGameOverlay : public Menu {
+public:
+    void loadGame() {
 
+    }
 };
 
 
