@@ -20,6 +20,8 @@
 #include "Menu.h"
 #include "Observable.h"
 
+#include "Image2D.h"
+
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
@@ -83,7 +85,9 @@ public:
 
         //resourceManager->addResource("bouton", new );
 
+        getTextureID("test.png", "test");
 
+        Image2D* tstModel = new Image2D("test", 2, 3, 0, 4, 2);
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
@@ -95,6 +99,8 @@ public:
             }
             glContext->clear();
             glContext->refresh();
+
+            tstModel->draw();
          }
 
     }

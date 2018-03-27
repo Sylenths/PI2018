@@ -12,7 +12,7 @@ class Resource{
 private:
 
 public:
-    virtual void nothing() = 0;
+    //virtual void nothing() = 0;
 };
 
 

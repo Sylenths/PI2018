@@ -11,6 +11,8 @@ int main(int argc, char* argv[]) {
     ProjetFinal::getInstance()->setDefaultPath(path);
     ProjetFinal::getInstance()->run();
 
+
+
     ProjetFinal::deleteInstance();
     SDL_Quit();
     return 0;

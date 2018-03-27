@@ -36,7 +36,7 @@ double* matrix; ///< Création de la matrix.
     }
 
     ~Matrix(){
-        delete[] matrix;
+        //delete[] matrix;
     }
     /// Loader la matrice de projection.
     /// \param r le coté "r".

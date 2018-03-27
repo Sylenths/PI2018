@@ -16,22 +16,18 @@
 
 #include "Matrix.h"
 #include "Vector3D.h"
-#include "TextureID.h"
 
-class Mesh{
-private:
+class Mesh {
+protected:
     unsigned int vertexCount;
     unsigned int texCount;
     unsigned int normalCount;
     double *vertices, *texCoords, *normals;
 
-    TextureID* textureID;
-
 public:
     Mesh() {
         vertexCount = texCount = normalCount = 0;
         vertices = normals = texCoords = nullptr;
-        textureID = nullptr;
     }
 
     ~Mesh() {
@@ -139,33 +135,28 @@ public:
         fichier.close();
     }
 
-    void transform(Matrix& m) {
+    void transform(Matrix m) {
         Vector3D nv;
-        Vector3D v;
-        int I, J, K;
+        unsigned int x, y, z;
 
-        for (int i = 0; i < vertexCount; ++i) {
-            I = i*3;
-            J = I + 1;
-            K = I + 2;
+        for(int i = 0; i < vertexCount; ++i) {
+            x = i * 3;
+            y = x + 1;
+            z = x + 2;
 
-            Vector3D v = Vector3D(vertices[I], vertices[J], vertices[K]);
-            v = m*v;
-            vertices[I]     = v.x;
-            vertices[J]     = v.y;
-            vertices[K]     = v.z;
+            nv = m * Vector3D(vertices[x] - m.m41, vertices[y] - m.m42, vertices[z] - m.m43);
+            vertices[x] = nv.x + m.m41;
+            vertices[y] = nv.y + m.m42;
+            vertices[z] = nv.z + m.m43;
 
-            v = Vector3D(normals[I], normals[J], normals[K]);
-            v = m*v;
-            normals[I]     = v.x;
-            normals[J]     = v.y;
-            normals[K]     = v.z;
+            nv = m * Vector3D(normals[x] - m.m41, normals[y] - m.m42, normals[z] - m.m43);
+            normals[x] = nv.x + m.m41;
+            normals[y] = nv.y + m.m42;
+            normals[z] = nv.z + m.m43;
+
         }
     }
 
-    void setTextureID(TextureID* textureID) {
-        this -> textureID = textureID;
-    }
 
     void draw() {
         glEnableClientState(GL_VERTEX_ARRAY);
