@@ -102,10 +102,16 @@ public:
                 }
             }
             glContext->clear();
+<<<<<<< HEAD
 
             tstModel->draw();
             glContext->refresh();
 
+=======
+            tstModel->draw();
+            glContext->refresh();
+
+>>>>>>> 2b3bfcad563e17a8683c9054f56a561419345341
 
          }
 
