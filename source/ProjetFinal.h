@@ -19,14 +19,18 @@
 #include "GLContext.h"
 #include "Menu.h"
 #include "Observable.h"
-
+#include "MainMenu.h"
+#include "Settings.h"
+#include "InGameOverlay.h"
+#include "InGameESC.h"
+#include "Highscore.h"
 #include "Image2D.h"
 
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
-    std::list<Menu*>* menuList; ///< Liste de menu
-    SDL_Event* sdlEvent;
+    std::map<std::string, Menu*> menuMap; ///< Carte de menu
+    SDL_Event* sdlEvent; // Gestionnaire d'évennements
 
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
@@ -34,15 +38,25 @@ public:
 
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
         glContext = new GLContext(title,x ,y ,width , height, windowflags);
+<<<<<<< HEAD
+        glContext->setFrustum(90.0, 0.1, 1000.0, false);
+=======
         menuList = new std::list<Menu*>;
         glContext->setFrustum(90.0, 0.1, 1000.0, true);
 
+>>>>>>> 2b585d2a22d2cc4b016dcf6e5eeedb3f7dcd48ac
         sdlEvent = new SDL_Event();
+
+        menuMap["MainMenu"] = new MainMenu;
+        menuMap["Settings"] = new Settings;
+        menuMap["InGameOverlay"] = new InGameOverlay;
+        menuMap["InGameESC"] = new InGameESC;
+        menuMap["Highscore"] = new Highscore;
+
     }
 
     ~ProjetFinal () {
         delete (glContext);
-        delete (menuList);
         delete (sdlEvent);
     }
     /// Représente la boucle de jeu
