@@ -11,11 +11,13 @@
 
 #include <iterator>
 #include <map>
+#include "Singleton.h"
 #include "Resource.h"
 
-class ResourceManager {
+class ResourceManager : public Singleton<ResourceManager> {
 private:
-	std::map<std::string, Resource*> resources;  ///< Map de textures.
+    std::map<std::string, Resource*> resources;  ///< Map de ressources.
+    std::map<std::string, unsigned int> textures;
 public:
 
 	/// Destruction de toutes les ressources vers la fin du jeu.
@@ -29,21 +31,37 @@ public:
 	}
 
 	/// Ajouter une ressource.
-	void addResource(std::string resourceKey, Resource* resource){
+    void addResource(std::string resourceKey, Resource* resource) {
 		resources[resourceKey] = resource;
 	}
 	/// Supprimer une ressource AVEC DESTRUCTEUR. ATTENTION!
-	void removeResource(std::string resourceKey){
+    void removeResource(std::string resourceKey) {
 		if(resources[resourceKey]) {
 			delete resources[resourceKey];
 			resources.erase(resourceKey);
 		}
 	}
 	/// Récupérer une ressource.
-	Resource* getResource(std::string resourceKey){
+    Resource* getResource(std::string resourceKey) {
 		if(resources[resourceKey])
 			return resources[resourceKey];
 	}
+
+    void addTexture(std::string textureKey, unsigned int textureID) {
+        textures[textureKey] = textureID;
+    }
+
+    void removeTexture(std::string textureKey) {
+        if(textures[textureKey]) {
+            textures.erase(textureKey);
+        }
+    }
+
+    unsigned int getTexture(std::string textureKey) {
+        if(textures[textureKey]) {
+            return textures[textureKey];
+        }
+    }
 };
 
 
