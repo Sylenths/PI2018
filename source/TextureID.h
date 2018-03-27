@@ -1,10 +1,10 @@
 /// \brief Permet de récupérer la numéro de la texture.
 /// \details Permet de classer les textures.
-/// \author Antoine Legault
-/// \date 24 mars 2018
+/// \author Antoine Legault, Samuel Labelle
+/// \date 27 mars 2018
 /// \version 0.1
-/// \warning Mettre les warning si nécessaire.
-/// \bug Problèmes connus
+/// \warning Aucun.
+/// \bug Aucun.
 #ifndef SOURCE_TEXTUREID_H
 #define SOURCE_TEXTUREID_H
 
@@ -17,7 +17,7 @@
 
 class TextureID : public Resource{
 private:
-    unsigned int openGLID;      ///< ID des textures.
+    unsigned int openGLID;      ///< ID de la texture.
     std::string description;    ///< Description de la texture.
 public:
 

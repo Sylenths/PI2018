@@ -1,7 +1,7 @@
 /// \brief Représentation d'une instance unique utilisable partout.
-/// \details Permet de déclarer une instance unique global.
-/// \author Antoine Legault
-/// \date 24 mars 2018
+/// \details Permet de déclarer une instance unique globale.
+/// \author Antoine Legault, Samuel Labelle
+/// \date 27 mars 2018
 /// \version 0.2
 
 #ifndef SINGLETON_H
@@ -19,6 +19,7 @@ public:
         return instance;
     }
 
+	/// Effacer l'instance.
     static void deleteInstance() {
       delete instance;
     }

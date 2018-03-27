@@ -42,7 +42,7 @@ public:
         sdlEvent = new SDL_Event();
     }
 
-    ~ ProjetFinal () {
+    ~ProjetFinal () {
         delete (glContext);
         delete (menuList);
         delete (resourceManager);
