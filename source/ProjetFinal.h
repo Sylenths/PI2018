@@ -99,9 +99,10 @@ public:
                 }
             }
             glContext->clear();
+            tstModel->draw();
             glContext->refresh();
 
-            tstModel->draw();
+
          }
 
     }
