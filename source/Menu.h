@@ -13,7 +13,6 @@ class Menu {
 private:
 
 public:
-
     virtual void loadMenu() = 0;
 };
 

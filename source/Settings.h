@@ -9,9 +9,13 @@
 #ifndef SOURCE_SETTINGS_H
 #define SOURCE_SETTINGS_H
 
+#include "Menu.h"
 
-class Settings {
+class Settings : public Menu{
+public:
+    void loadGame() {
 
+    }
 };
 
 
