@@ -47,7 +47,7 @@ public:
     }
     /// Représente la boucle de jeu
 
-    void getID(const char* filename, std::string textureName){
+    void getTextureID(const char* filename, std::string textureName){
             unsigned int TextureID;
             glGenTextures(1, &TextureID);
             glBindTexture(GL_TEXTURE_2D, TextureID);
