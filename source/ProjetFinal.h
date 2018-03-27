@@ -25,12 +25,10 @@
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
-    std::list<Menu>* menuList; ///< List de menu
+    std::list<Menu>* menuList; ///< Liste de menu
     SDL_Event* sdlEvent;
 
-    std::map<std::string, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
-
-    std::string defaultPath;
+    std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
 public:
 
@@ -50,9 +48,9 @@ public:
     /// Représente la boucle de jeu
 
     void getTextureID(const char* filename, std::string textureName){
-            unsigned int TextureID;
-            glGenTextures(1, &TextureID);
-            glBindTexture(GL_TEXTURE_2D, TextureID);
+            unsigned int textureID;
+            glGenTextures(1, &textureID);
+            glBindTexture(GL_TEXTURE_2D, textureID);
 
             SDL_Surface* surface = IMG_Load(filename);
             glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, surface->w, surface->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
@@ -61,7 +59,7 @@ public:
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-            ResourceManager::getInstance()->addTexture(textureName, TextureID);
+            ResourceManager::getInstance()->addTexture(textureName, textureID);
     }
 
     void run(){
@@ -78,9 +76,6 @@ public:
 
          */
 
-        //TODO ajout d'observables
-        observables["onMouseClick"] = new Observable<SDL_Event*>();
-
         //TODO ajout d'objet à afficher
 
         //resourceManager->addResource("bouton", new );
@@ -95,6 +90,12 @@ public:
                     case SDL_QUIT:
                         isOpen = false;
                         break;
+
+                    default:
+                        if(!observables[sdlEvent->type])
+                            observables[sdlEvent->type] = new Observable<SDL_Event*>;
+                        observables[sdlEvent->type]->notify(sdlEvent);
+
                 }
             }
             glContext->clear();
@@ -104,10 +105,6 @@ public:
          }
 
     }
-    void setDefaultPath(std::string defaultPath) {
-        this -> defaultPath = defaultPath;
-    }
-
 
 };
 
