@@ -25,7 +25,7 @@
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
-    std::list<Menu>* menuList; ///< Liste de menu
+    std::list<Menu*>* menuList; ///< Liste de menu
     SDL_Event* sdlEvent;
 
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
@@ -34,7 +34,7 @@ public:
 
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
         glContext = new GLContext(title,x ,y ,width , height, windowflags);
-        menuList = new std::list<Menu>;
+        menuList = new std::list<Menu*>;
         glContext->setFrustum(90.0, 0.1, 1000.0, false);
 
         sdlEvent = new SDL_Event();
@@ -82,7 +82,7 @@ public:
 
         getTextureID("test.png", "test");
 
-        Image2D* tstModel = new Image2D("test", 2, 3, 0, 4, 2);
+        Image2D* tstModel = new Image2D("test", 2, 3, 0, 4.0, 2.0);
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
