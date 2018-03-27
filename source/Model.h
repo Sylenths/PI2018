@@ -17,6 +17,7 @@
 class Model : public Resource, public Observer<SDL_Event*>{
 protected:
     Mesh* mesh;
+	unsigned int textureID
 
 public:
     Model(Mesh* mesh, TextureID* textureID = nullptr) {
@@ -25,7 +26,7 @@ public:
             mesh->setTextureID(textureID);
     }
 
-    virtual bool notify(SDL_Event* sdlEvent) = 0;
+    virtual void notify(SDL_Event* sdlEvent) = 0;
     virtual void nothing() = 0;
     virtual void draw() = 0;
 };

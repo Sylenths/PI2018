@@ -13,7 +13,7 @@ template <typename  T>
 class Observer {
 public:
     /// Notifier les observateurs pour un type d'évènement.
-    virtual bool notify(T arg) = 0;
+    virtual void notify(T arg) = 0;
 };
 
 

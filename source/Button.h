@@ -19,7 +19,7 @@ public:
 
     }
 
-    bool notify(SDL_Event* sdlEvent) {
+    void notify(SDL_Event* sdlEvent) {
 
     }
 };
