@@ -72,6 +72,10 @@ public:
             ResourceManager::getInstance()->addTexture(textureName, textureID);
     }
 
+    void setFrustum(bool is2D) {
+        glContext->setFrustum(90.0, 0.1, 1000.0, is2D);
+    }
+
     void run(){
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);
@@ -115,7 +119,6 @@ public:
 
             tstModel->draw();
             glContext->refresh();
-
          }
 
     }
