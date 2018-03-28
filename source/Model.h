@@ -1,18 +1,24 @@
 /// \brief La maille est la somme de tous les points pour former une forme géométrique dans OpenGL.
 /// \details
-/// \author Tai Chen Li
-/// \date 25 mars 2018
-/// \version 0.1
-/// \warning Mettre les warning si nécessaire.
-/// \bug Problèmes connus
+/// \author Tai Chen Li, samuel Labelle
+/// \date 28 mars 2018
+/// \version 0.2
+/// \warning Aucuns.
+/// \bug Aucuns.
+
 
 #ifndef SOURCE_MODEL_H
 #define SOURCE_MODEL_H
 
+#include <fstream>
+#include <vector>
+#include <string>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
+
 #include "Resource.h"
 #include "Observer.h"
 #include "TextureID.h"
-#include "Mesh.h"
 #include "ResourceManager.h"
 
 class Model : public Resource, public Observer<SDL_Event*> {
@@ -25,6 +31,10 @@ protected:
     unsigned int textureID;
 
 public:
+
+	/// Constructeur.
+	/// \param textureName Nom de la texture à appliquer au modèle.
+	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
     Model(std::string textureName, const char* objFile = nullptr) {
         textureID = ResourceManager::getInstance()->getTexture(textureName);
 
@@ -133,12 +143,15 @@ public:
     }
 
 
+	/// Destructeur.
     ~Model() {
         delete[] vertices;
         delete[] normals;
         delete[] texCoords;
     }
 
+	/// Applique une matrice de transformation au modèle.
+	/// \param m Matrice de transformation.
     void transform(Matrix m) {
         Vector3D nv;
         unsigned int x, y, z;
@@ -161,7 +174,7 @@ public:
         }
     }
 
-
+	/// Affiche le modèle.
     void draw() {
         glBindTexture(GL_TEXTURE_2D, textureID);
 

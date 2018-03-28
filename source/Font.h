@@ -3,12 +3,14 @@
 /// \authors Antoine Legault, Guillaume Julien-Desmarchais
 /// \date 24 mars 2018
 /// \version 0.4
-/// \warning Mettre les warning si nécessaire.
-/// \bug Problèmes connus
+/// \warning Aucuns
+/// \bug Aucuns
 #ifndef SOURCE_FONT_H
 #define SOURCE_FONT_H
 
 #include <SDL2/SDL_ttf.h>
+
+#include "Resource.h"
 
 class Font : public Resource {
 
@@ -18,8 +20,8 @@ private:
 public:
 	
     /// Constructeur.
-	/// \param filename Nom du font
-	/// \param pixelSize La taille de pixel
+	/// \param filename Nom du fichier contenant la police de caractères.
+	/// \param pixelSize La taille des caractères.
     Font(const char* filename, int pixelSize = 12) { //
         font = TTF_OpenFont(filename, pixelSize);
     }

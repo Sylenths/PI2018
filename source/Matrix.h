@@ -1,10 +1,10 @@
-/// \brief Représentation de matrice à inclure.
+/// \brief Représentation d'une matrice.
 /// \details Matrice 4 x 4.
-/// \author Antoine Legault
-/// \date 20 février 2018
+/// \author Antoine Legault, Samuel Labelle
+/// \date 28 mars 2018
 /// \version 0.1
 /// \warning Risque de planter si mal utilisé.
-/// \bug Problèmes connus
+/// \bug Aucuns.
 #ifndef SDLPROJECT_MATRIX_H
 #define SDLPROJECT_MATRIX_H
 
@@ -29,7 +29,7 @@
 
 class Matrix {
 public:
-double* matrix; ///< Création de la matrix.
+double* matrix; ///< Création de la matrice.
 
     Matrix(){
         matrix = new double[16];
@@ -38,7 +38,7 @@ double* matrix; ///< Création de la matrix.
     ~Matrix(){
         //delete[] matrix;
     }
-    /// Loader la matrice de projection.
+    /// Charger la matrice de projection.
     /// \param r le coté "r".
     /// \param t le coté "t".
     /// \param n le coté "n".
@@ -49,7 +49,7 @@ double* matrix; ///< Création de la matrix.
          m31 = 0.0;                 m32 = 0.0;                  m33 = (-(f + n))/(f - n);   m34 = -1;
          m41 = 0.0;                 m42 = 0.0;                  m43 = (-2*f*n)/(f-n);       m44 = 0.0;
      }
-    /// Loader la matrice de vue.
+    /// Charger la matrice de vue.
     /// \param f le vecteur de devant (front).
     /// \param s le vecteur de coté (side).
     /// \param u le vecteur de dessus (up).
@@ -60,7 +60,7 @@ double* matrix; ///< Création de la matrix.
         m41 = 0.0;  m42 = 0.0;  m43 = 0.0;   m44 = 1.0;
 
     }
-    /// Loader la matrice identité.
+    /// Charger la matrice identité.
      void loadIdentity(){
          m11 = 1.0;  m12 = 0.0;  m13 = 0.0;  m14 = 0.0;
          m21 = 0.0;  m22 = 1.0;  m23 = 0.0;  m24 = 0.0;
@@ -68,8 +68,8 @@ double* matrix; ///< Création de la matrix.
          m41 = 0.0;  m42 = 0.0;  m43 = 0.0;  m44 = 1.0;
      }
 
-    /// Loader la matrice de roation en x.
-    /// \param angle l'inclinaison de l'angle.
+    /// Charger la matrice de roation en x.
+    /// \param angle l'angle de rotation.
     void LoadXRotation(const double& angle){
         double c = cos(angle);
         double s = sin(angle);
@@ -79,8 +79,8 @@ double* matrix; ///< Création de la matrix.
         m31 = 0.0;  m32 = s;            m33 = c;            m34 = 0.0;
         m41 = 0.0;  m42 = 0.0;          m43 = 0.0;          m44 = 1.0;
     }
-    /// Loader la matrice de roation en y.
-    /// \param angle l'inclinaison de l'angle.
+    /// Charger la matrice de roation en y.
+    /// \param angle l'angle de rotation.
     void LoadYRotation(const double& angle){
         double c = cos(angle);
         double s = sin(angle);
@@ -90,8 +90,8 @@ double* matrix; ///< Création de la matrix.
         m31 = -s;           m32 = 0.0;          m33 = c;                   m34 = 1.0;
         m41 = 0.0;          m42 = 0.0;          m43 = 0.0;                 m44 = 1.0;
     }
-    /// Loader la matrice de roation en z.
-    /// \param angle l'inclinaison de l'angle.
+    /// Charger la matrice de roation en z.
+    /// \param angle l'angle de rotation.
     void LoadZRotation(const double& angle){
         double c = cos(angle);
         double s = sin(angle);
@@ -101,10 +101,10 @@ double* matrix; ///< Création de la matrix.
         m31 = 0.0;          m32 = 0.0;          m33 = 1.0;          m34 = 0.0;
         m41 = 0.0;          m42 = 0.0;          m43 = 0.0;          m44 = 1.0;
     }
-    /// Loader la matrice de roation ultime.
+    /// Charger la matrice de roation ultime.
     /// \param p le vecteur pour le stockage de données.
     /// \param a le vecteur de données.
-    /// \param angle l'inclinaison de l'angle.
+    /// \param angle l'angle de rotation.
     void loadRotate(const Vector3D& p, const Vector3D& a, const double& angle){
         Vector3D A(a); A.Normalize();
         double S = std::sin(angle);

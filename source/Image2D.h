@@ -1,12 +1,25 @@
+/// \brief Représentation d'une image 2D.
+/// \details Crée un modèle 3D plat pour y recevoir une texture ou une image.
+/// \author Gabriel Bourdages, Samuel Labelle
+/// \date 28 mars 2018
+/// \version 0.1
+/// \warning Aucuns.
+/// \bug Aucuns.
 
-#ifndef SOURCE_IMAGE2D_H
-#define SOURCE_IMAGE2D_H
+#ifndef IMAGE2D_H
+#define IMAGE2D_H
 
 #include "Model.h"
 #include "Matrix.h"
 
 class Image2D : public Model {
 public:
+    /// Constructeur.
+    /// \param textureName Nom de la texture de l'image.
+    /// \param x Position en x par rapport au coin gauche en haut.
+    /// \param y Position en y par rapport au coin gauche en haut.
+    /// \param width Largeur de l'image.
+    /// \param height Hauteur de l'image.
     Image2D(std::string textureName, unsigned int x, unsigned int y, double width = 0, double height = 0) : Model(textureName) {
         vertexCount = normalCount = texCount = 6;
 
@@ -41,6 +54,8 @@ public:
         };
     }
 
+	/// Réception de notifications d'événements SDL.
+	/// \param sdlEvent Événement SDL.
     void notify(SDL_Event* sdlEvent) {}
 
 

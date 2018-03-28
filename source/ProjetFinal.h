@@ -1,10 +1,10 @@
 /// \brief Représentation du cadre du jeu.
 /// \details Le coeur du projet, l'application.
-/// \author Antoine Legault, Jade St-Pierre Bouchard, Tai Chen Li
-/// \date 24 mars 2018, 25 mars 2018
+/// \author Antoine Legault, Jade St-Pierre Bouchard, Tai Chen Li, Samuel Labelle
+/// \date 28 mars 2018
 /// \version 0.1
-/// \warning Mettre les warning si nécessaire.
-/// \bug Problèmes connus
+/// \warning Aucuns.
+/// \bug Aucuns.
 #ifndef PROJETFINAL_H
 #define PROJETFINAL_H
 
@@ -39,6 +39,13 @@ private:
 
 public:
 
+	/// Constructeur
+    /// \param title Titre de la fenêtre.
+    /// \param x Position en x du coin droit en haut de la fenêtre, par rapport à l'écran.
+    /// \param y Position en y du coin droit en haut de la fenêtre, par rapport à l'écran.
+    /// \param width Largeur de la fenêtre, en pixels.
+    /// \param height Hauteur de la fenêtre, en pixels.
+    /// \param windowflags Flags SDL.
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
         glContext = new GLContext(title,x ,y ,width , height, windowflags);
         glContext->setFrustum(90.0, 0.1, 1000.0, true);
@@ -50,7 +57,7 @@ public:
         menuMap["InGameESC"] = new InGameESC;
         menuMap["Highscore"] = new Highscore;
     }
-
+    /// Destructeur
     ~ProjetFinal () {
         delete (glContext);
         delete (sdlEvent);
@@ -72,13 +79,13 @@ public:
             ResourceManager::getInstance()->addTexture(textureName, textureID);
     }
 
-    /// Permet de changer le mode d'affichage du projet entre 2D et 3D
-    /// \param is2D est un booléan représentant si c'est un 2D (true), ou un 2D (false)
+    /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
+    /// \param is2D Booléen représentant si c'est en 2D (true), ou en 3D (false).
     void setFrustum(bool is2D) {
         glContext->setFrustum(90.0, 0.1, 1000.0, is2D);
     }
 
-    /// Représente la boucle de jeu
+    /// Représente la boucle de jeu.
 
     void run(std::string filePath){
         glEnable(GL_DEPTH_TEST);
@@ -140,7 +147,7 @@ public:
     }
 
     void test() {
-        std::cout << "Hello World!";
+        //std::cout << "Hello World!";
     }
 
 };

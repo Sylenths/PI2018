@@ -1,10 +1,10 @@
 /// \brief Représentation d'un bouton
 /// \details Pour réagir au clic de souris et autre si possible
-/// \author Tai Chen Li
-/// \date 25 mars 2018
+/// \author Tai Chen Li, Samuel Labelle
+/// \date 28 mars 2018
 /// \version 0.1
-/// \warning Mettre les warning si nécessaire.
-/// \bug Problèmes connus
+/// \warning Aucuns.
+/// \bug Aucuns.
 
 #ifndef BUTTON_H
 #define BUTTON_H
@@ -16,6 +16,13 @@ private:
     void (*onClick)();  ///< Le pointeur de fonction vers quoi on veut réagir avec nos événements
 
 public:
+	/// Constructeur.
+	/// \param onClick Fonction Activée par le bouton.
+	/// \param textureName Nom de la texture du bouton.
+	/// \param x Position en x par rapport au coin gauche en haut.
+	/// \param y Position en y par rapport au coin gauche en haut.
+	/// \param width Largeur du bouton.
+	/// \param height Hauteur du bouton.
     Button(void (*onClick)(), std::string textureName, unsigned int x, unsigned int y, double width = 0, double height = 0) : Model(textureName){
         setOnClick(onClick);
 
@@ -51,7 +58,8 @@ public:
                 1.0,1.0,
         };
     }
-
+	/// Réception de notifications d'événements SDL.
+	/// \param sdlEvent Événement SDL.
     void notify(SDL_Event* sdlEvent) { /*
         if (sdlEvent->key.keysym.sym == SDL_MOUSEBUTTONDOWN)
             if (sdlEvent->)
