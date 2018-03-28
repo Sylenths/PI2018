@@ -1,6 +1,6 @@
 /// \brief Représentation de tous les resources nécessaires au projet.
 /// \details Classe virtuelle.
-/// \author Antoine Legault
+/// \author Antoine Legault et Tai Chen Li
 /// \date 24 mars 2018
 /// \version 0.1
 /// \warning Mettre les warning si nécessaire.
@@ -13,6 +13,11 @@ private:
 
 public:
     //virtual void nothing() = 0;
+
+    /// Cette fonction permet de dessiner la ressource dans la fenêtre. ELLE POURRAIT ÊTRE REMPLACÉ PAR SON ENFANT. Sinon, draw() ne fait rien.
+
+    virtual void draw() {}
+
 };
 
 

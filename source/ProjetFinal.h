@@ -5,8 +5,8 @@
 /// \version 0.1
 /// \warning Mettre les warning si nécessaire.
 /// \bug Problèmes connus
-#ifndef SOURCE_PROJETFINAL_H
-#define SOURCE_PROJETFINAL_H
+#ifndef PROJETFINAL_H
+#define PROJETFINAL_H
 
 #include <list>
 #include <string>
@@ -30,7 +30,7 @@ class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
     std::map<std::string, Menu*> menuMap; ///< Carte de menu
-    SDL_Event* sdlEvent; // Gestionnaire d'évennements
+    SDL_Event* sdlEvent; ///< Gestionnaire d'évennements
 
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
@@ -38,7 +38,6 @@ public:
 
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
         glContext = new GLContext(title,x ,y ,width , height, windowflags);
-        glContext->setFrustum(90.0, 0.1, 1000.0, false);
         glContext->setFrustum(90.0, 0.1, 1000.0, true);
         sdlEvent = new SDL_Event();
 
@@ -47,15 +46,13 @@ public:
         menuMap["InGameOverlay"] = new InGameOverlay;
         menuMap["InGameESC"] = new InGameESC;
         menuMap["Highscore"] = new Highscore;
-        
-
     }
 
     ~ProjetFinal () {
         delete (glContext);
         delete (sdlEvent);
     }
-    /// Représente la boucle de jeu
+
 
     void getTextureID(const char* filename, std::string textureName){
             unsigned int textureID;
@@ -72,11 +69,15 @@ public:
             ResourceManager::getInstance()->addTexture(textureName, textureID);
     }
 
+    /// Permet de changer le mode d'affichage du projet entre 2D et 3D
+    /// \param is2D est un booléan représentant si c'est un 2D (true), ou un 2D (false)
     void setFrustum(bool is2D) {
         glContext->setFrustum(90.0, 0.1, 1000.0, is2D);
     }
 
-    void run(){
+    /// Représente la boucle de jeu
+
+    void run(std::string filePath){
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_LIGHTING);
@@ -97,9 +98,11 @@ public:
 
         //resourceManager->addResource("bouton", new );
 
-        getTextureID("test.png", "test");
+        getTextureID((filePath + "start.png").c_str(), "start");
 
-        Image2D* tstModel = new Image2D("test", 500, 100, 0, 500.0, 500.0);
+        Image2D* tstModel = new Image2D("start", 500, 100, 0, 500.0, 500.0);
+        ResourceManager::getInstance()->addResource("start", tstModel);
+
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
@@ -117,7 +120,8 @@ public:
             }
             glContext->clear();
 
-            tstModel->draw();
+            ResourceManager::getInstance()->getResource("start")->draw();
+
             glContext->refresh();
          }
 
