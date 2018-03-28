@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PI2018:  Fichier source de source/GLContext.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PI2018
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">GLContext.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SDLPROJECT_GLCONTEXT_H</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SDLPROJECT_GLCONTEXT_H</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL.h&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL_opengl.h&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;Window.h&quot;</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;Matrix.h&quot;</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_g_l_context.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_l_context.html">GLContext</a> : <span class="keyword">public</span> <a class="code" href="class_window.html">Window</a>{</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    SDL_GLContext glContext; </div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_g_l_context.html#a7fcab81e563e8dd533a1950b1aa45067">   29</a></span>&#160;    <a class="code" href="class_g_l_context.html#a7fcab81e563e8dd533a1950b1aa45067">GLContext</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* title, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> windowflags = 0) : <a class="code" href="class_window.html">Window</a>(title, x,y,width, height, windowflags | SDL_WINDOW_OPENGL) {</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        glContext = SDL_GL_CreateContext(<a class="code" href="class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7">sdlwindow</a>);</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div><div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_g_l_context.html#aae8b3e070f7f2a9ecf235202f2e330dd">   33</a></span>&#160;    <a class="code" href="class_g_l_context.html#aae8b3e070f7f2a9ecf235202f2e330dd">~GLContext</a>() {</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        SDL_GL_DeleteContext(glContext);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_g_l_context.html#a224adc913631ac7762e762264a7a41f5">   38</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_g_l_context.html#a224adc913631ac7762e762264a7a41f5">clear</a>() {</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_g_l_context.html#a1e4e8d544e8e6f57d5d54e24c1e943a5">   43</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_g_l_context.html#a1e4e8d544e8e6f57d5d54e24c1e943a5">grabInput</a>(){</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        SDL_SetWindowGrab(<a class="code" href="class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7">sdlwindow</a>, SDL_TRUE);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        SDL_SetRelativeMouseMode(SDL_TRUE);</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div><div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_g_l_context.html#a76d1db346b8303fb60eaf0753daa2c1f">   49</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_g_l_context.html#a76d1db346b8303fb60eaf0753daa2c1f">releaseInput</a>(){</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        SDL_SetWindowGrab(<a class="code" href="class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7">sdlwindow</a>, SDL_FALSE);</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        SDL_SetRelativeMouseMode(SDL_FALSE);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_g_l_context.html#a0c0b3a51e6326cbd66acbdd573d5c8bd">   55</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_g_l_context.html#a0c0b3a51e6326cbd66acbdd573d5c8bd">refresh</a>() {</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        SDL_GL_SwapWindow(<a class="code" href="class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7">sdlwindow</a>);</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div><div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_g_l_context.html#a34ff8c32f759b592b093f22547d4564f">   63</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_g_l_context.html#a34ff8c32f759b592b093f22547d4564f">setFrustum</a>(<span class="keywordtype">double</span> angle, <span class="keywordtype">double</span> nearPlane, <span class="keywordtype">double</span> farPlane, <span class="keywordtype">bool</span> is2D) {</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">int</span> width, height;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        SDL_GetWindowSize(<a class="code" href="class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7">sdlwindow</a>, &amp;width, &amp;height);</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        glMatrixMode(GL_PROJECTION);</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        glLoadIdentity();</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">if</span>(is2D) {</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            glOrtho(0.0, (<span class="keywordtype">double</span>) width, (<span class="keywordtype">double</span>) height, 0.0, 1.0, -1.0);</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">else</span> {</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordtype">double</span> right = std::tan(angle / 2.0) * nearPlane;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordtype">double</span> top = ((double) height / (<span class="keywordtype">double</span>) width) * right;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <a class="code" href="class_matrix.html">Matrix</a> projectionMatrix;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            projectionMatrix.<a class="code" href="class_matrix.html#ab0334689a1a07e7b73e31e965c838205">loadProjection</a>(right, top, nearPlane, farPlane);</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            glMultMatrixd(projectionMatrix.<a class="code" href="class_matrix.html#aec29b5641994179fae88ea2d464fc45a">matrix</a>);</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        glMatrixMode(GL_MODELVIEW);</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        glLoadIdentity();</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div><div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="class_g_l_context.html#a593755ff1b774418e2b47243f5c66790">   86</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_g_l_context.html#a593755ff1b774418e2b47243f5c66790">resetMousePosition</a>() {</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        SDL_WarpMouseInWindow(<a class="code" href="class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7">sdlwindow</a>, 640, 360);</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif //SDLPROJECT_GLCONTEXT_H</span></div><div class="ttc" id="class_window_html_a2fbd44b18a6d7d817eeb8d7d75733ba7"><div class="ttname"><a href="class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7">Window::sdlwindow</a></div><div class="ttdeci">SDL_Window * sdlwindow</div><div class="ttdoc">Affichage de la fenêtres. </div><div class="ttdef"><b>Definition:</b> Window.h:14</div></div>
+<div class="ttc" id="class_g_l_context_html_a7fcab81e563e8dd533a1950b1aa45067"><div class="ttname"><a href="class_g_l_context.html#a7fcab81e563e8dd533a1950b1aa45067">GLContext::GLContext</a></div><div class="ttdeci">GLContext(const char *title, int x, int y, int width, int height, unsigned int windowflags=0)</div><div class="ttdef"><b>Definition:</b> GLContext.h:29</div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Représentation de la fenêtre. </div><div class="ttdef"><b>Definition:</b> Window.h:12</div></div>
+<div class="ttc" id="class_g_l_context_html_a1e4e8d544e8e6f57d5d54e24c1e943a5"><div class="ttname"><a href="class_g_l_context.html#a1e4e8d544e8e6f57d5d54e24c1e943a5">GLContext::grabInput</a></div><div class="ttdeci">void grabInput()</div><div class="ttdoc">Prends le contrôle de la souris et du clavier. </div><div class="ttdef"><b>Definition:</b> GLContext.h:43</div></div>
+<div class="ttc" id="class_g_l_context_html_aae8b3e070f7f2a9ecf235202f2e330dd"><div class="ttname"><a href="class_g_l_context.html#aae8b3e070f7f2a9ecf235202f2e330dd">GLContext::~GLContext</a></div><div class="ttdeci">~GLContext()</div><div class="ttdoc">Destructeur. </div><div class="ttdef"><b>Definition:</b> GLContext.h:33</div></div>
+<div class="ttc" id="class_matrix_html_aec29b5641994179fae88ea2d464fc45a"><div class="ttname"><a href="class_matrix.html#aec29b5641994179fae88ea2d464fc45a">Matrix::matrix</a></div><div class="ttdeci">double * matrix</div><div class="ttdoc">Création de la matrice. </div><div class="ttdef"><b>Definition:</b> Matrix.h:32</div></div>
+<div class="ttc" id="class_matrix_html_ab0334689a1a07e7b73e31e965c838205"><div class="ttname"><a href="class_matrix.html#ab0334689a1a07e7b73e31e965c838205">Matrix::loadProjection</a></div><div class="ttdeci">void loadProjection(const double &amp;r, const double &amp;t, const double &amp;n, const double &amp;f)</div><div class="ttdef"><b>Definition:</b> Matrix.h:46</div></div>
+<div class="ttc" id="class_g_l_context_html_a593755ff1b774418e2b47243f5c66790"><div class="ttname"><a href="class_g_l_context.html#a593755ff1b774418e2b47243f5c66790">GLContext::resetMousePosition</a></div><div class="ttdeci">void resetMousePosition()</div><div class="ttdoc">Replacer le curseur de la souris au centre de la fenêtre. </div><div class="ttdef"><b>Definition:</b> GLContext.h:86</div></div>
+<div class="ttc" id="class_g_l_context_html_a224adc913631ac7762e762264a7a41f5"><div class="ttname"><a href="class_g_l_context.html#a224adc913631ac7762e762264a7a41f5">GLContext::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Effacer le contenu de la fenêtre. </div><div class="ttdef"><b>Definition:</b> GLContext.h:38</div></div>
+<div class="ttc" id="class_g_l_context_html_a0c0b3a51e6326cbd66acbdd573d5c8bd"><div class="ttname"><a href="class_g_l_context.html#a0c0b3a51e6326cbd66acbdd573d5c8bd">GLContext::refresh</a></div><div class="ttdeci">void refresh()</div><div class="ttdoc">Rafraîchir le contenu de la fenêtre. </div><div class="ttdef"><b>Definition:</b> GLContext.h:55</div></div>
+<div class="ttc" id="class_matrix_html"><div class="ttname"><a href="class_matrix.html">Matrix</a></div><div class="ttdef"><b>Definition:</b> Matrix.h:30</div></div>
+<div class="ttc" id="class_g_l_context_html"><div class="ttname"><a href="class_g_l_context.html">GLContext</a></div><div class="ttdoc">Représentation du contexte de la fenêtre. </div><div class="ttdef"><b>Definition:</b> GLContext.h:18</div></div>
+<div class="ttc" id="class_g_l_context_html_a34ff8c32f759b592b093f22547d4564f"><div class="ttname"><a href="class_g_l_context.html#a34ff8c32f759b592b093f22547d4564f">GLContext::setFrustum</a></div><div class="ttdeci">void setFrustum(double angle, double nearPlane, double farPlane, bool is2D)</div><div class="ttdef"><b>Definition:</b> GLContext.h:63</div></div>
+<div class="ttc" id="class_g_l_context_html_a76d1db346b8303fb60eaf0753daa2c1f"><div class="ttname"><a href="class_g_l_context.html#a76d1db346b8303fb60eaf0753daa2c1f">GLContext::releaseInput</a></div><div class="ttdeci">void releaseInput()</div><div class="ttdoc">Rends le contrôle de la souris et du clavier. </div><div class="ttdef"><b>Definition:</b> GLContext.h:49</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>
