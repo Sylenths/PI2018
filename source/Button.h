@@ -23,7 +23,7 @@ public:
 	/// \param y Position en y par rapport au coin gauche en haut.
 	/// \param width Largeur du bouton.
 	/// \param height Hauteur du bouton.
-    Button(void (*onClick)(), std::string textureName, unsigned int x, unsigned int y, double width = 0, double height = 0) : Model(textureName){
+    Button(void (*onClick)(), std::string textureName, unsigned int x, unsigned int y, unsigned int z, double width = 0, double height = 0) : Model(textureName){
         setOnClick(onClick);
 
         vertexCount = normalCount = texCount = 6;
