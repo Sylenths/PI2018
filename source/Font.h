@@ -9,24 +9,23 @@
 #define SOURCE_FONT_H
 
 #include <SDL2/SDL_ttf.h>
-#include "Resource.h"
-#include "ResourceManager.h"
-class Font : public Resource{
+
+class Font : public Resource {
 
 private:
     TTF_Font* font; ///< Pointeur de font.
 
-    public:
-
+public:
+	
     /// Constructeur.
 	/// \param filename Nom du font
 	/// \param pixelSize La taille de pixel
-    Font(const char* filename, int pixelSize = 12){ //
+    Font(const char* filename, int pixelSize = 12) { //
         font = TTF_OpenFont(filename, pixelSize);
     }
     
     /// Destructeur.
-    ~Font(){
+    ~Font() {
         TTF_CloseFont(font);
         font = nullptr; //To be safe...
     }
