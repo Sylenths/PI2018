@@ -1,0 +1,112 @@
+\hypertarget{class_button}{}\section{Button Class Reference}
+\label{class_button}\index{Button@{Button}}
+
+
+Représentation d\textquotesingle{}un bouton.  
+
+
+
+
+{\ttfamily \#include $<$Button.\+h$>$}
+
+Inheritance diagram for Button\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_button}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_button_a6873b27a9ded45b8b3c4d76efb34a5ca}{Button} (void($\ast$on\+Click)(), std\+::string texture\+Name, unsigned int x, unsigned int y, double width=0, double height=0)
+\item 
+void \hyperlink{class_button_a356536921e929a79edc11754e08ac405}{notify} (S\+D\+L\+\_\+\+Event $\ast$sdl\+Event)
+\item 
+void \hyperlink{class_button_aaf6bcd2cee8cceb7c7b28663f326b86a}{set\+On\+Click} (void($\ast$on\+Click)())
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Représentation d\textquotesingle{}un bouton. 
+
+Pour réagir au clic de souris et autre si possible \begin{DoxyAuthor}{Author}
+Tai Chen Li, Samuel Labelle 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+28 mars 2018 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyWarning}{Warning}
+Aucuns. 
+\end{DoxyWarning}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000001}{Bug}]Aucuns. \end{DoxyRefDesc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_button_a6873b27a9ded45b8b3c4d76efb34a5ca}{}\index{Button@{Button}!Button@{Button}}
+\index{Button@{Button}!Button@{Button}}
+\subsubsection[{Button(void($\ast$on\+Click)(), std\+::string texture\+Name, unsigned int x, unsigned int y, double width=0, double height=0)}]{\setlength{\rightskip}{0pt plus 5cm}Button\+::\+Button (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)()}]{on\+Click, }
+\item[{std\+::string}]{texture\+Name, }
+\item[{unsigned int}]{x, }
+\item[{unsigned int}]{y, }
+\item[{double}]{width = {\ttfamily 0}, }
+\item[{double}]{height = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_button_a6873b27a9ded45b8b3c4d76efb34a5ca}
+Constructeur. 
+\begin{DoxyParams}{Parameters}
+{\em on\+Click} & Fonction Activée par le bouton. \\
+\hline
+{\em texture\+Name} & Nom de la texture du bouton. \\
+\hline
+{\em x} & Position en x par rapport au coin gauche en haut. \\
+\hline
+{\em y} & Position en y par rapport au coin gauche en haut. \\
+\hline
+{\em width} & Largeur du bouton. \\
+\hline
+{\em height} & Hauteur du bouton. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_button_a356536921e929a79edc11754e08ac405}{}\index{Button@{Button}!notify@{notify}}
+\index{notify@{notify}!Button@{Button}}
+\subsubsection[{notify(\+S\+D\+L\+\_\+\+Event $\ast$sdl\+Event)}]{\setlength{\rightskip}{0pt plus 5cm}void Button\+::notify (
+\begin{DoxyParamCaption}
+\item[{S\+D\+L\+\_\+\+Event $\ast$}]{sdl\+Event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_button_a356536921e929a79edc11754e08ac405}
+Réception de notifications d\textquotesingle{}événements S\+D\+L. 
+\begin{DoxyParams}{Parameters}
+{\em sdl\+Event} & Événement S\+D\+L. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_observer_a78133bb6a438c1c111b944e9283dcd07}{Observer$<$ S\+D\+L\+\_\+\+Event $\ast$ $>$}.
+
+\hypertarget{class_button_aaf6bcd2cee8cceb7c7b28663f326b86a}{}\index{Button@{Button}!set\+On\+Click@{set\+On\+Click}}
+\index{set\+On\+Click@{set\+On\+Click}!Button@{Button}}
+\subsubsection[{set\+On\+Click(void($\ast$on\+Click)())}]{\setlength{\rightskip}{0pt plus 5cm}void Button\+::set\+On\+Click (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)()}]{on\+Click}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_button_aaf6bcd2cee8cceb7c7b28663f326b86a}
+Configurer le pointeur de fonction vers la bonne fonction 
+\begin{DoxyParams}{Parameters}
+{\em La} & fonction vers laquelle on veut que le bouton pointe. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Button.\+h\end{DoxyCompactItemize}

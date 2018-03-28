@@ -1,0 +1,88 @@
+\hypertarget{class_window}{}\section{Window Class Reference}
+\label{class_window}\index{Window@{Window}}
+
+
+Représentation de la fenêtre.  
+
+
+
+
+{\ttfamily \#include $<$Window.\+h$>$}
+
+Inheritance diagram for Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_window}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_window_a96efd3d806565db46c9328c64347a48e}{Window} (const char $\ast$title, int x, int y, int width, int height, unsigned int windowflags)
+\item 
+\hypertarget{class_window_ab3914a3846297c08fe8aa8cd724c8fc8}{}virtual void \hyperlink{class_window_ab3914a3846297c08fe8aa8cd724c8fc8}{clear} ()=0\label{class_window_ab3914a3846297c08fe8aa8cd724c8fc8}
+
+\begin{DoxyCompactList}\small\item\em Méthode virtuelle pour effacer le contenu de la fenêtre. \end{DoxyCompactList}\item 
+\hypertarget{class_window_ac36d7bab3105b0a4c3d5d94fc6ad6fdd}{}virtual void \hyperlink{class_window_ac36d7bab3105b0a4c3d5d94fc6ad6fdd}{refresh} ()=0\label{class_window_ac36d7bab3105b0a4c3d5d94fc6ad6fdd}
+
+\begin{DoxyCompactList}\small\item\em Méthode virtuelle pour rafraîchir le contenu de la fenêtre. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_window_a2fbd44b18a6d7d817eeb8d7d75733ba7}{}S\+D\+L\+\_\+\+Window $\ast$ \hyperlink{class_window_a2fbd44b18a6d7d817eeb8d7d75733ba7}{sdlwindow}\label{class_window_a2fbd44b18a6d7d817eeb8d7d75733ba7}
+
+\begin{DoxyCompactList}\small\item\em Affichage de la fenêtres. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Représentation de la fenêtre. 
+
+Affichage de la fenêtre. \begin{DoxyAuthor}{Author}
+Antoine Legault, Samuel Labelle 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+27 mars 2018 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyWarning}{Warning}
+Aucun. 
+\end{DoxyWarning}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000022}{Bug}]Aucun. \end{DoxyRefDesc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_window_a96efd3d806565db46c9328c64347a48e}{}\index{Window@{Window}!Window@{Window}}
+\index{Window@{Window}!Window@{Window}}
+\subsubsection[{Window(const char $\ast$title, int x, int y, int width, int height, unsigned int windowflags)}]{\setlength{\rightskip}{0pt plus 5cm}Window\+::\+Window (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{title, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height, }
+\item[{unsigned int}]{windowflags}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_window_a96efd3d806565db46c9328c64347a48e}
+Constructeur. 
+\begin{DoxyParams}{Parameters}
+{\em title} & Titre de la fenètre. \\
+\hline
+{\em x} & Position en x du coin droit en haut de la fenètre sur l\textquotesingle{}écran. \\
+\hline
+{\em y} & Position en y du coin droit en haut de la fenètre sur l\textquotesingle{}écran. \\
+\hline
+{\em width} & Largeur de la fenètre, en pixels. \\
+\hline
+{\em height} & Hauteur de la fenètre, en pixels. \\
+\hline
+{\em flags} & Flags S\+D\+L. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Window.\+h\end{DoxyCompactItemize}

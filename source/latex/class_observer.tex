@@ -1,0 +1,43 @@
+\hypertarget{class_observer}{}\section{Observer$<$ T $>$ Class Template Reference}
+\label{class_observer}\index{Observer$<$ T $>$@{Observer$<$ T $>$}}
+
+
+Représentation d\textquotesingle{}un observateur.  
+
+
+
+
+{\ttfamily \#include $<$Observer.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_observer_a78133bb6a438c1c111b944e9283dcd07}{}virtual void \hyperlink{class_observer_a78133bb6a438c1c111b944e9283dcd07}{notify} (T arg)=0\label{class_observer_a78133bb6a438c1c111b944e9283dcd07}
+
+\begin{DoxyCompactList}\small\item\em Reçoit une notification de l\textquotesingle{}observable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$class Observer$<$ T $>$}
+
+Représentation d\textquotesingle{}un observateur. 
+
+Permet de déclarer un observateur qui réagit aux évènements. \begin{DoxyAuthor}{Author}
+Antoine Legault, Tai Chen Li, Samuel Labelle 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+28 mars 2018 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyWarning}{Warning}
+On retourne un bool pour arrêter l\textquotesingle{}itération dans observable si possible pour sauver du temps de processeur. 
+\end{DoxyWarning}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000011}{Bug}]Aucuns. \end{DoxyRefDesc}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Observer.\+h\end{DoxyCompactItemize}

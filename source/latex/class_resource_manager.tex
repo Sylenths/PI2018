@@ -1,0 +1,108 @@
+\hypertarget{class_resource_manager}{}\section{Resource\+Manager Class Reference}
+\label{class_resource_manager}\index{Resource\+Manager@{Resource\+Manager}}
+
+
+Gestionnaire de toutes les ressources utilisées dans le projet.  
+
+
+
+
+{\ttfamily \#include $<$Resource\+Manager.\+h$>$}
+
+Inheritance diagram for Resource\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_resource_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_resource_manager_a671c186e4630599e7e36d000c53eaf80}{}\hyperlink{class_resource_manager_a671c186e4630599e7e36d000c53eaf80}{$\sim$\+Resource\+Manager} ()\label{class_resource_manager_a671c186e4630599e7e36d000c53eaf80}
+
+\begin{DoxyCompactList}\small\item\em Destruction de toutes les ressources vers la fin du jeu. \end{DoxyCompactList}\item 
+\hypertarget{class_resource_manager_ac78303eb794db103a0d43480ea42207b}{}void \hyperlink{class_resource_manager_ac78303eb794db103a0d43480ea42207b}{add\+Resource} (std\+::string resource\+Key, \hyperlink{class_resource}{Resource} $\ast$resource)\label{class_resource_manager_ac78303eb794db103a0d43480ea42207b}
+
+\begin{DoxyCompactList}\small\item\em Ajouter une ressource. \end{DoxyCompactList}\item 
+\hypertarget{class_resource_manager_ab643fdd28a7929892b5d5d1ae2686601}{}void \hyperlink{class_resource_manager_ab643fdd28a7929892b5d5d1ae2686601}{remove\+Resource} (std\+::string resource\+Key)\label{class_resource_manager_ab643fdd28a7929892b5d5d1ae2686601}
+
+\begin{DoxyCompactList}\small\item\em Supprimer une ressource A\+V\+E\+C D\+E\+S\+T\+R\+U\+C\+T\+E\+U\+R. A\+T\+T\+E\+N\+T\+I\+O\+N! \end{DoxyCompactList}\item 
+\hypertarget{class_resource_manager_ae94da99cedb67a52f3326ed83b9f3c0f}{}\hyperlink{class_resource}{Resource} $\ast$ \hyperlink{class_resource_manager_ae94da99cedb67a52f3326ed83b9f3c0f}{get\+Resource} (std\+::string resource\+Key)\label{class_resource_manager_ae94da99cedb67a52f3326ed83b9f3c0f}
+
+\begin{DoxyCompactList}\small\item\em Récupérer une ressource. \end{DoxyCompactList}\item 
+void \hyperlink{class_resource_manager_a850b34fa48b9e5fbb26f64b0b03cc657}{add\+Texture} (std\+::string texture\+Key, unsigned int texture\+I\+D)
+\item 
+void \hyperlink{class_resource_manager_a0df01e70b147a488544728b4afbefca5}{remove\+Texture} (std\+::string texture\+Key)
+\item 
+unsigned int \hyperlink{class_resource_manager_ae1f882a42ea298740729f3a5b73f238c}{get\+Texture} (std\+::string texture\+Key)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Gestionnaire de toutes les ressources utilisées dans le projet. 
+
+Gère et permet d\textquotesingle{}avoir accès à, de rajouter ou d\textquotesingle{}enlever des images, des textures, des modèles 3\+D et des polices de caractères associés à un nom. \begin{DoxyAuthor}{Author}
+Antoine Legault, Jade St-\/\+Pierre Bouchard, Tai Chen Li, Samuel Labelle 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+28 mars 2018 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+0.\+2 
+\end{DoxyVersion}
+\begin{DoxyWarning}{Warning}
+Ajouter avec add() une ressource dont le nom est déjà utilisé écrasera l\textquotesingle{}ancienne ressource et causera une fuite de mémoire. \hyperlink{class_resource_manager_ab643fdd28a7929892b5d5d1ae2686601}{remove\+Resource()} détruit la ressource en plus de libérer son identificateur. 
+\end{DoxyWarning}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000016}{Bug}]Aucun. \end{DoxyRefDesc}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_resource_manager_a850b34fa48b9e5fbb26f64b0b03cc657}{}\index{Resource\+Manager@{Resource\+Manager}!add\+Texture@{add\+Texture}}
+\index{add\+Texture@{add\+Texture}!Resource\+Manager@{Resource\+Manager}}
+\subsubsection[{add\+Texture(std\+::string texture\+Key, unsigned int texture\+I\+D)}]{\setlength{\rightskip}{0pt plus 5cm}void Resource\+Manager\+::add\+Texture (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{texture\+Key, }
+\item[{unsigned int}]{texture\+I\+D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_resource_manager_a850b34fa48b9e5fbb26f64b0b03cc657}
+Ajouter une paire nom / identifiant numérique de texture Open\+G\+L. 
+\begin{DoxyParams}{Parameters}
+{\em texture\+Key} & Nom de la texture. \\
+\hline
+{\em texture\+I\+D} & Identifiant numérique de texture Open\+G\+L. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_resource_manager_ae1f882a42ea298740729f3a5b73f238c}{}\index{Resource\+Manager@{Resource\+Manager}!get\+Texture@{get\+Texture}}
+\index{get\+Texture@{get\+Texture}!Resource\+Manager@{Resource\+Manager}}
+\subsubsection[{get\+Texture(std\+::string texture\+Key)}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Resource\+Manager\+::get\+Texture (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{texture\+Key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_resource_manager_ae1f882a42ea298740729f3a5b73f238c}
+Récupérer l\textquotesingle{}identifiant de texture Open\+G\+L à partir du nom d\textquotesingle{}une texture. 
+\begin{DoxyParams}{Parameters}
+{\em texture\+Key} & Nom de la texture. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Identifiant numérique de texture Open\+G\+L. 
+\end{DoxyReturn}
+\hypertarget{class_resource_manager_a0df01e70b147a488544728b4afbefca5}{}\index{Resource\+Manager@{Resource\+Manager}!remove\+Texture@{remove\+Texture}}
+\index{remove\+Texture@{remove\+Texture}!Resource\+Manager@{Resource\+Manager}}
+\subsubsection[{remove\+Texture(std\+::string texture\+Key)}]{\setlength{\rightskip}{0pt plus 5cm}void Resource\+Manager\+::remove\+Texture (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{texture\+Key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_resource_manager_a0df01e70b147a488544728b4afbefca5}
+Supprimer un identifiant numérique de texture Open\+G\+L. 
+\begin{DoxyParams}{Parameters}
+{\em texture\+Key} & Nom de la texture. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Resource\+Manager.\+h\end{DoxyCompactItemize}

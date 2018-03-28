@@ -1,0 +1,111 @@
+\hypertarget{class_model}{}\section{Model Class Reference}
+\label{class_model}\index{Model@{Model}}
+
+
+La maille est la somme de tous les points pour former une forme géométrique dans Open\+G\+L.  
+
+
+
+
+{\ttfamily \#include $<$Model.\+h$>$}
+
+Inheritance diagram for Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_model}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_model_a937b79174d504d60dad6b36219ab5c3d}{Model} (std\+::string texture\+Name, const char $\ast$obj\+File=nullptr)
+\item 
+\hypertarget{class_model_ad6ebd2062a0b823db841a0b88baac4c0}{}\hyperlink{class_model_ad6ebd2062a0b823db841a0b88baac4c0}{$\sim$\+Model} ()\label{class_model_ad6ebd2062a0b823db841a0b88baac4c0}
+
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+void \hyperlink{class_model_abb7259ff422782ae7c182d2d40c80cc7}{transform} (\hyperlink{class_matrix}{Matrix} m)
+\item 
+\hypertarget{class_model_ac7b168fc3a84f9ac2b558d1019869ca7}{}void \hyperlink{class_model_ac7b168fc3a84f9ac2b558d1019869ca7}{draw} ()\label{class_model_ac7b168fc3a84f9ac2b558d1019869ca7}
+
+\begin{DoxyCompactList}\small\item\em Affiche le modèle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_model_aef8356f6096d0acb524a2dcd00c9e846}{}unsigned int {\bfseries vertex\+Count}\label{class_model_aef8356f6096d0acb524a2dcd00c9e846}
+
+\item 
+\hypertarget{class_model_a2f811c1e5a739a274f3533b286b01d00}{}unsigned int {\bfseries tex\+Count}\label{class_model_a2f811c1e5a739a274f3533b286b01d00}
+
+\item 
+\hypertarget{class_model_a3f823f731f25148bdc68ca464f960266}{}unsigned int {\bfseries normal\+Count}\label{class_model_a3f823f731f25148bdc68ca464f960266}
+
+\item 
+\hypertarget{class_model_a14417491d4b3b245104d19630c5b757c}{}double $\ast$ {\bfseries vertices}\label{class_model_a14417491d4b3b245104d19630c5b757c}
+
+\item 
+\hypertarget{class_model_ae2eee8e706c0f99a026e75e6ac03f853}{}double $\ast$ {\bfseries tex\+Coords}\label{class_model_ae2eee8e706c0f99a026e75e6ac03f853}
+
+\item 
+\hypertarget{class_model_a34e9b7eb4b1c7afffc32a6bf19416734}{}double $\ast$ {\bfseries normals}\label{class_model_a34e9b7eb4b1c7afffc32a6bf19416734}
+
+\item 
+\hypertarget{class_model_a83576072a6cd63739163f88a3c4d96c0}{}unsigned int {\bfseries texture\+I\+D}\label{class_model_a83576072a6cd63739163f88a3c4d96c0}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La maille est la somme de tous les points pour former une forme géométrique dans Open\+G\+L. 
+
+\begin{DoxyAuthor}{Author}
+Tai Chen Li, samuel Labelle 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+28 mars 2018 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+0.\+2 
+\end{DoxyVersion}
+\begin{DoxyWarning}{Warning}
+Aucuns. 
+\end{DoxyWarning}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000009}{Bug}]Aucuns. \end{DoxyRefDesc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_model_a937b79174d504d60dad6b36219ab5c3d}{}\index{Model@{Model}!Model@{Model}}
+\index{Model@{Model}!Model@{Model}}
+\subsubsection[{Model(std\+::string texture\+Name, const char $\ast$obj\+File=nullptr)}]{\setlength{\rightskip}{0pt plus 5cm}Model\+::\+Model (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{texture\+Name, }
+\item[{const char $\ast$}]{obj\+File = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_model_a937b79174d504d60dad6b36219ab5c3d}
+Constructeur. 
+\begin{DoxyParams}{Parameters}
+{\em texture\+Name} & Nom de la texture à appliquer au modèle. \\
+\hline
+{\em obj\+File} & Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_model_abb7259ff422782ae7c182d2d40c80cc7}{}\index{Model@{Model}!transform@{transform}}
+\index{transform@{transform}!Model@{Model}}
+\subsubsection[{transform(\+Matrix m)}]{\setlength{\rightskip}{0pt plus 5cm}void Model\+::transform (
+\begin{DoxyParamCaption}
+\item[{{\bf Matrix}}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_model_abb7259ff422782ae7c182d2d40c80cc7}
+Applique une matrice de transformation au modèle. 
+\begin{DoxyParams}{Parameters}
+{\em m} & Matrice de transformation. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Model.\+h\end{DoxyCompactItemize}

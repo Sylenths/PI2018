@@ -1,0 +1,144 @@
+\hypertarget{class_matrix}{}\section{Matrix Class Reference}
+\label{class_matrix}\index{Matrix@{Matrix}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_matrix_ab0334689a1a07e7b73e31e965c838205}{load\+Projection} (const double \&r, const double \&t, const double \&n, const double \&f)
+\item 
+void \hyperlink{class_matrix_a3243fadb4a01257180fc0eba682d15e6}{load\+View} (const \hyperlink{class_vector3_d}{Vector3\+D} \&f, const \hyperlink{class_vector3_d}{Vector3\+D} \&s, const \hyperlink{class_vector3_d}{Vector3\+D} \&u)
+\item 
+\hypertarget{class_matrix_a980ae445a0df5fab5b4e68ce83221853}{}void \hyperlink{class_matrix_a980ae445a0df5fab5b4e68ce83221853}{load\+Identity} ()\label{class_matrix_a980ae445a0df5fab5b4e68ce83221853}
+
+\begin{DoxyCompactList}\small\item\em Charger la matrice identité. \end{DoxyCompactList}\item 
+void \hyperlink{class_matrix_a50f5775388d269a694d9171cc2428dd7}{Load\+X\+Rotation} (const double \&angle)
+\item 
+void \hyperlink{class_matrix_aa45dd6685b5fee1398e1a895febec386}{Load\+Y\+Rotation} (const double \&angle)
+\item 
+void \hyperlink{class_matrix_a755f07dd36da615b173b6b4471bde8c3}{Load\+Z\+Rotation} (const double \&angle)
+\item 
+void \hyperlink{class_matrix_a9b4b68461e79c87b836d1bfe899ff763}{load\+Rotate} (const \hyperlink{class_vector3_d}{Vector3\+D} \&p, const \hyperlink{class_vector3_d}{Vector3\+D} \&a, const double \&angle)
+\item 
+\hyperlink{class_vector3_d}{Vector3\+D} \hyperlink{class_matrix_aff7d90c4ef700003076a87230c06a66f}{operator$\ast$} (const \hyperlink{class_vector3_d}{Vector3\+D} \&v) const 
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_matrix_aec29b5641994179fae88ea2d464fc45a}{}double $\ast$ \hyperlink{class_matrix_aec29b5641994179fae88ea2d464fc45a}{matrix}\label{class_matrix_aec29b5641994179fae88ea2d464fc45a}
+
+\begin{DoxyCompactList}\small\item\em Création de la matrice. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_matrix_ab0334689a1a07e7b73e31e965c838205}{}\index{Matrix@{Matrix}!load\+Projection@{load\+Projection}}
+\index{load\+Projection@{load\+Projection}!Matrix@{Matrix}}
+\subsubsection[{load\+Projection(const double \&r, const double \&t, const double \&n, const double \&f)}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::load\+Projection (
+\begin{DoxyParamCaption}
+\item[{const double \&}]{r, }
+\item[{const double \&}]{t, }
+\item[{const double \&}]{n, }
+\item[{const double \&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_matrix_ab0334689a1a07e7b73e31e965c838205}
+Charger la matrice de projection. 
+\begin{DoxyParams}{Parameters}
+{\em r} & le coté \char`\"{}r\char`\"{}. \\
+\hline
+{\em t} & le coté \char`\"{}t\char`\"{}. \\
+\hline
+{\em n} & le coté \char`\"{}n\char`\"{}. \\
+\hline
+{\em f} & le coté \char`\"{}f\char`\"{}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_matrix_a9b4b68461e79c87b836d1bfe899ff763}{}\index{Matrix@{Matrix}!load\+Rotate@{load\+Rotate}}
+\index{load\+Rotate@{load\+Rotate}!Matrix@{Matrix}}
+\subsubsection[{load\+Rotate(const Vector3\+D \&p, const Vector3\+D \&a, const double \&angle)}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::load\+Rotate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\+D} \&}]{p, }
+\item[{const {\bf Vector3\+D} \&}]{a, }
+\item[{const double \&}]{angle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_matrix_a9b4b68461e79c87b836d1bfe899ff763}
+Charger la matrice de roation ultime. 
+\begin{DoxyParams}{Parameters}
+{\em p} & le vecteur pour le stockage de données. \\
+\hline
+{\em a} & le vecteur de données. \\
+\hline
+{\em angle} & l\textquotesingle{}angle de rotation. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_matrix_a3243fadb4a01257180fc0eba682d15e6}{}\index{Matrix@{Matrix}!load\+View@{load\+View}}
+\index{load\+View@{load\+View}!Matrix@{Matrix}}
+\subsubsection[{load\+View(const Vector3\+D \&f, const Vector3\+D \&s, const Vector3\+D \&u)}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::load\+View (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\+D} \&}]{f, }
+\item[{const {\bf Vector3\+D} \&}]{s, }
+\item[{const {\bf Vector3\+D} \&}]{u}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_matrix_a3243fadb4a01257180fc0eba682d15e6}
+Charger la matrice de vue. 
+\begin{DoxyParams}{Parameters}
+{\em f} & le vecteur de devant (front). \\
+\hline
+{\em s} & le vecteur de coté (side). \\
+\hline
+{\em u} & le vecteur de dessus (up). \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_matrix_a50f5775388d269a694d9171cc2428dd7}{}\index{Matrix@{Matrix}!Load\+X\+Rotation@{Load\+X\+Rotation}}
+\index{Load\+X\+Rotation@{Load\+X\+Rotation}!Matrix@{Matrix}}
+\subsubsection[{Load\+X\+Rotation(const double \&angle)}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Load\+X\+Rotation (
+\begin{DoxyParamCaption}
+\item[{const double \&}]{angle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_matrix_a50f5775388d269a694d9171cc2428dd7}
+Charger la matrice de roation en x. 
+\begin{DoxyParams}{Parameters}
+{\em angle} & l\textquotesingle{}angle de rotation. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_matrix_aa45dd6685b5fee1398e1a895febec386}{}\index{Matrix@{Matrix}!Load\+Y\+Rotation@{Load\+Y\+Rotation}}
+\index{Load\+Y\+Rotation@{Load\+Y\+Rotation}!Matrix@{Matrix}}
+\subsubsection[{Load\+Y\+Rotation(const double \&angle)}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Load\+Y\+Rotation (
+\begin{DoxyParamCaption}
+\item[{const double \&}]{angle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_matrix_aa45dd6685b5fee1398e1a895febec386}
+Charger la matrice de roation en y. 
+\begin{DoxyParams}{Parameters}
+{\em angle} & l\textquotesingle{}angle de rotation. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_matrix_a755f07dd36da615b173b6b4471bde8c3}{}\index{Matrix@{Matrix}!Load\+Z\+Rotation@{Load\+Z\+Rotation}}
+\index{Load\+Z\+Rotation@{Load\+Z\+Rotation}!Matrix@{Matrix}}
+\subsubsection[{Load\+Z\+Rotation(const double \&angle)}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Load\+Z\+Rotation (
+\begin{DoxyParamCaption}
+\item[{const double \&}]{angle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_matrix_a755f07dd36da615b173b6b4471bde8c3}
+Charger la matrice de roation en z. 
+\begin{DoxyParams}{Parameters}
+{\em angle} & l\textquotesingle{}angle de rotation. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_matrix_aff7d90c4ef700003076a87230c06a66f}{}\index{Matrix@{Matrix}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Matrix@{Matrix}}
+\subsubsection[{operator$\ast$(const Vector3\+D \&v) const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\+D} Matrix\+::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\+D} \&}]{v}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_matrix_aff7d90c4ef700003076a87230c06a66f}
+Multiplication de matrice. 
+\begin{DoxyParams}{Parameters}
+{\em v} & Vecteur multiplicateur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vecteur résultant de la multiplication. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Matrix.\+h\end{DoxyCompactItemize}

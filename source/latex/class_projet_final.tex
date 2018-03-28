@@ -1,0 +1,109 @@
+\hypertarget{class_projet_final}{}\section{Projet\+Final Class Reference}
+\label{class_projet_final}\index{Projet\+Final@{Projet\+Final}}
+
+
+Représentation du cadre du jeu.  
+
+
+
+
+{\ttfamily \#include $<$Projet\+Final.\+h$>$}
+
+Inheritance diagram for Projet\+Final\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_projet_final}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_projet_final_a87682faa1a37e08de15cb2dda19871ed}{Projet\+Final} (const char $\ast$title=\char`\"{}P.\+I. 2018\char`\"{}, int x=S\+D\+L\+\_\+\+W\+I\+N\+D\+O\+W\+P\+O\+S\+\_\+\+C\+E\+N\+T\+E\+R\+E\+D, int y=S\+D\+L\+\_\+\+W\+I\+N\+D\+O\+W\+P\+O\+S\+\_\+\+C\+E\+N\+T\+E\+R\+E\+D, int width=1280, int height=720, unsigned int windowflags=0)
+\item 
+\hypertarget{class_projet_final_a72bb803a8447c986acb05e414fbd7edd}{}\hyperlink{class_projet_final_a72bb803a8447c986acb05e414fbd7edd}{$\sim$\+Projet\+Final} ()\label{class_projet_final_a72bb803a8447c986acb05e414fbd7edd}
+
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+\hypertarget{class_projet_final_ae5ea1c3d2e86273a7f829c10a5c5bbaf}{}void {\bfseries get\+Texture\+I\+D} (const char $\ast$filename, std\+::string texture\+Name)\label{class_projet_final_ae5ea1c3d2e86273a7f829c10a5c5bbaf}
+
+\item 
+void \hyperlink{class_projet_final_a3960167ffdcd242d8298880aa0f30187}{set\+Frustum} (bool is2\+D)
+\item 
+\hypertarget{class_projet_final_a12616db72c2d19bfe4eba5cc3e9d6eb9}{}void \hyperlink{class_projet_final_a12616db72c2d19bfe4eba5cc3e9d6eb9}{run} (std\+::string file\+Path)\label{class_projet_final_a12616db72c2d19bfe4eba5cc3e9d6eb9}
+
+\begin{DoxyCompactList}\small\item\em Représente la boucle de jeu. \end{DoxyCompactList}\item 
+\hypertarget{class_projet_final_a226ccc2bb95e587873a1adf2689a1192}{}\hyperlink{class_vector3_d}{Vector3\+D} {\bfseries get2\+D\+Texture\+Size} (const char $\ast$file\+Path)\label{class_projet_final_a226ccc2bb95e587873a1adf2689a1192}
+
+\item 
+\hypertarget{class_projet_final_a48593276330adfdfb87591953ccb5507}{}void {\bfseries test} ()\label{class_projet_final_a48593276330adfdfb87591953ccb5507}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Représentation du cadre du jeu. 
+
+Le coeur du projet, l\textquotesingle{}application. \begin{DoxyAuthor}{Author}
+Antoine Legault, Jade St-\/\+Pierre Bouchard, Tai Chen Li, Samuel Labelle 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+28 mars 2018 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyWarning}{Warning}
+Aucuns. 
+\end{DoxyWarning}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000014}{Bug}]Aucuns. \end{DoxyRefDesc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_projet_final_a87682faa1a37e08de15cb2dda19871ed}{}\index{Projet\+Final@{Projet\+Final}!Projet\+Final@{Projet\+Final}}
+\index{Projet\+Final@{Projet\+Final}!Projet\+Final@{Projet\+Final}}
+\subsubsection[{Projet\+Final(const char $\ast$title=""P.\+I. 2018"", int x=\+S\+D\+L\+\_\+\+W\+I\+N\+D\+O\+W\+P\+O\+S\+\_\+\+C\+E\+N\+T\+E\+R\+E\+D, int y=\+S\+D\+L\+\_\+\+W\+I\+N\+D\+O\+W\+P\+O\+S\+\_\+\+C\+E\+N\+T\+E\+R\+E\+D, int width=1280, int height=720, unsigned int windowflags=0)}]{\setlength{\rightskip}{0pt plus 5cm}Projet\+Final\+::\+Projet\+Final (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{title = {\ttfamily \char`\"{}P.I.~2018\char`\"{}}, }
+\item[{int}]{x = {\ttfamily SDL\+\_\+WINDOWPOS\+\_\+CENTERED}, }
+\item[{int}]{y = {\ttfamily SDL\+\_\+WINDOWPOS\+\_\+CENTERED}, }
+\item[{int}]{width = {\ttfamily 1280}, }
+\item[{int}]{height = {\ttfamily 720}, }
+\item[{unsigned int}]{windowflags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_final_a87682faa1a37e08de15cb2dda19871ed}
+Constructeur 
+\begin{DoxyParams}{Parameters}
+{\em title} & Titre de la fenêtre. \\
+\hline
+{\em x} & Position en x du coin droit en haut de la fenêtre, par rapport à l\textquotesingle{}écran. \\
+\hline
+{\em y} & Position en y du coin droit en haut de la fenêtre, par rapport à l\textquotesingle{}écran. \\
+\hline
+{\em width} & Largeur de la fenêtre, en pixels. \\
+\hline
+{\em height} & Hauteur de la fenêtre, en pixels. \\
+\hline
+{\em windowflags} & Flags S\+D\+L. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_projet_final_a3960167ffdcd242d8298880aa0f30187}{}\index{Projet\+Final@{Projet\+Final}!set\+Frustum@{set\+Frustum}}
+\index{set\+Frustum@{set\+Frustum}!Projet\+Final@{Projet\+Final}}
+\subsubsection[{set\+Frustum(bool is2\+D)}]{\setlength{\rightskip}{0pt plus 5cm}void Projet\+Final\+::set\+Frustum (
+\begin{DoxyParamCaption}
+\item[{bool}]{is2\+D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_projet_final_a3960167ffdcd242d8298880aa0f30187}
+Permet de changer le mode d\textquotesingle{}affichage du projet entre 2\+D et 3\+D. 
+\begin{DoxyParams}{Parameters}
+{\em is2\+D} & Booléen représentant si c\textquotesingle{}est en 2\+D (true), ou en 3\+D (false). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Projet\+Final.\+h\end{DoxyCompactItemize}
