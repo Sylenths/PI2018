@@ -20,11 +20,9 @@ private:
 
     /// Constructeur.
 	/// \param filename Nom du font
-	/// \param RessourceName Nom de la ressource
 	/// \param pixelSize La taille de pixel
-    Font(const char* filename, const char* RessourceName, int pixelSize = 12){ //
+    Font(const char* filename, int pixelSize = 12){ //
         font = TTF_OpenFont(filename, pixelSize);
-        ResourceManager::getInstance()->addResource(RessourceName, this);
     }
     
     /// Destructeur.
