@@ -7,7 +7,7 @@
 
 class Image2D : public Model {
 public:
-    Image2D(std::string textureName, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Model(textureName) {
+    Image2D(std::string textureName, unsigned int x, unsigned int y, double width = 0, double height = 0) : Model(textureName) {
         vertexCount = normalCount = texCount = 6;
 
         vertices = new double[vertexCount * 3] {

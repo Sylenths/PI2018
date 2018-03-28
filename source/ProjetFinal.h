@@ -25,6 +25,9 @@
 #include "InGameESC.h"
 #include "Highscore.h"
 #include "Image2D.h"
+#include "Vector3D.h"
+
+#include "onClickFunctionsPart1.h"
 
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
@@ -98,10 +101,12 @@ public:
 
         //resourceManager->addResource("bouton", new );
 
-        getTextureID((filePath + "start.png").c_str(), "start");
+        //getTextureID((filePath + "start.png").c_str(), "start");
 
-        Image2D* tstModel = new Image2D("start", 500, 100, 0, 500.0, 500.0);
-        ResourceManager::getInstance()->addResource("start", tstModel);
+        //Image2D* tstModel = new Image2D("start", 500, 100, 500.0, 500.0);
+        //ResourceManager::getInstance()->addResource("start", tstModel);
+
+
 
         bool isOpen = true;
         while (isOpen){
@@ -115,19 +120,31 @@ public:
                         if(!observables[sdlEvent->type])
                             observables[sdlEvent->type] = new Observable<SDL_Event*>;
                         observables[sdlEvent->type]->notify(sdlEvent);
-
                 }
             }
             glContext->clear();
 
-            ResourceManager::getInstance()->getResource("start")->draw();
+            //ResourceManager::getInstance()->getResource("start")->draw();
 
             glContext->refresh();
          }
 
     }
 
+    Vector3D get2DTextureSize(const char* filePath) {
+        SDL_Surface* surface = IMG_Load(filePath);
+        Vector3D size = {(double)surface->w, (double)surface->h, 0};
+        SDL_FreeSurface(surface);
+
+        return size;
+    }
+
+    void test() {
+        std::cout << "Hello World!";
+    }
+
 };
 
+#include "onClickFunctionsPart2.h"
 
 #endif
