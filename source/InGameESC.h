@@ -6,10 +6,6 @@
 
 class InGameESC : public Menu{
 public:
-
-    void loadMenu() {
-
-    }
     void draw (){
 
     }

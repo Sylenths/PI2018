@@ -10,7 +10,8 @@
 #define ONCLICKFUNCTIONSPART2_H
 
 void testFUNCTION() {
-    ProjetFinal::getInstance()->test();
+    //ProjetFinal::getInstance()->test();
+    
 }
 
 #endif
