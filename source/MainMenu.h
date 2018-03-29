@@ -17,6 +17,7 @@
 #include "onClickFunctionsPart1.h"
 #include "onClickFunctionsPart2.h"
 
+
 class MainMenu : public Menu {
 private:
     Model* startButton;         ///< Bouton pour commencer la partie.
@@ -24,8 +25,9 @@ private:
     Model* highscoreButton;     ///< Bouton pour accéder au tableau des highscores.
     Model* imageMenu;           ///< Image principal du menu.
 
-    //Ceci va disparaitre
-    void (*onClick)();
+    void (*onClickStart)();
+    void (*onClickHighscore)();
+    void (*onClickSettings)();
 public:
 
 
@@ -36,16 +38,18 @@ public:
         imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
         ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
 
-        startButton = new Button ( onClick, ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0, 298, 128);
+        startButton = new Button ( onClickStart, ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonStart", startButton);
 
-        settingsButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0, 298, 128);
+        settingsButton = new Button( onClickSettings, ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
 
-        highscoreButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0, 298, 128);
+        highscoreButton = new Button( onClickHighscore, ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
 
-
+        onClickHighscore = nullptr;
+        onClickSettings = nullptr;
+        onClickStart = nullptr;
 
 
     }
