@@ -18,12 +18,12 @@ private:
 public:
 	/// Constructeur.
 	/// \param onClick Fonction Activée par le bouton.
-	/// \param textureName Nom de la texture du bouton.
+    /// \param textureID Identificateur de la texture.
 	/// \param x Position en x par rapport au coin gauche en haut.
 	/// \param y Position en y par rapport au coin gauche en haut.
 	/// \param width Largeur du bouton.
 	/// \param height Hauteur du bouton.
-    Button(void (*onClick)(), std::string textureName, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Model(textureName){
+    Button(void (*onClick)(), unsigned int textureID, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Model(textureID){
         this -> x = x;
         this -> y = y;
         this -> z = z;
