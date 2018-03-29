@@ -39,6 +39,12 @@ public:
         ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(highscoreButtom);
     }
 
+    void draw(){
+        startButtom->draw();
+        settingButtom->draw();
+        imageMenu->draw();
+    }
+
 
 };
 
