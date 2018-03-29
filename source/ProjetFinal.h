@@ -31,6 +31,9 @@
 #include "onClickFunctionsPart1.h"
 #include "Button.h"
 
+#define IN2D 1
+#define IN3D 0
+
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
@@ -41,17 +44,24 @@ private:
 
 public:
 
-
+    /// Change le menu  afficher pour le menu Settings
     void changeMenuSettings() {
         menuDisplay = menuMap["Settings"];
     }
+
+    /// Change le menu  afficher pour le menu HighScore
     void changeMenuHighscore(){
         menuDisplay = menuMap["Highscore"];
     }
+
+    /// Change le menu affiche pour le InGameOverlay
     void changeMenuStart(){
         menuDisplay = menuMap["InGameOverlay"];
     }
 
+    /// Chargeur de texture (les mets automatiquement dans le ressource manager).
+    /// \param filename Fichier de texture a charger.
+    /// \param textureName Nom significatif a donner a la texture.
     void getTextureID(const char* filename, std::string textureName){
             unsigned int textureID;
             glGenTextures(1, &textureID);
@@ -67,7 +77,7 @@ public:
             ResourceManager::getInstance()->addTexture(textureName, textureID);
     }
 
-
+    /// Subscribe de tous les observateurs.
     void subscribeObservers(){
         if(!observables[SDL_MOUSEBUTTONDOWN])
             observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event *>;
@@ -77,6 +87,7 @@ public:
 
     }
 
+    /// Charge toutes les textures necessaire au programme
     void loadTextures() {
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
@@ -98,7 +109,6 @@ public:
     /// \param width Largeur de la fenêtre, en pixels.
     /// \param height Hauteur de la fenêtre, en pixels.
     /// \param windowflags Flags SDL.
-
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0) {
         glContext = new GLContext(title, x, y, width, height, windowflags);
         glContext->setFrustum(90.0, 0.1, 1000.0, true);
@@ -133,7 +143,6 @@ public:
     }
 
     /// Représente la boucle de jeu.
-
     void run(std::string filePath){
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);
@@ -142,7 +151,7 @@ public:
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        setFrustum(true);
+        setFrustum(IN2D);
 
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
