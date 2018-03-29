@@ -16,6 +16,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
+#include "Font.h"
 #include "Resource.h"
 #include "Observer.h"
 
