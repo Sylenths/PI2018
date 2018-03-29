@@ -9,6 +9,9 @@
 #ifndef ONCLICKFUNCTIONSPART2_H
 #define ONCLICKFUNCTIONSPART2_H
 
+#include "Singleton.h"
+#include "ProjetFinal.h"
+
 void testFUNCTION() {
     ProjetFinal::getInstance()->test();
     

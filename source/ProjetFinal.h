@@ -132,8 +132,6 @@ public:
         //TODO ajout d'objet à afficher
         loadTextures();
 
-        menuDisplay->loadMenu();
-
         //resourceManager->addResource("bouton", new );
 
       /*  getTextureID((filePath + "start.png").c_str(), "start");
