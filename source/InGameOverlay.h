@@ -12,9 +12,6 @@
 
 class InGameOverlay : public Menu {
 public:
-    void loadMenu() {
-
-    }
 
     void draw(){
 

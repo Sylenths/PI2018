@@ -26,6 +26,7 @@
 #include "Highscore.h"
 #include "Image2D.h"
 #include "Vector3D.h"
+#include "Label.h"
 
 #include "onClickFunctionsPart1.h"
 #include "Button.h"
@@ -87,13 +88,18 @@ public:
     }
 
     void loadTextures() {
+        //Textures boutons menu principal
         getTextureID("images/start.png", "ButtonStart");
         getTextureID("images/settings.png", "ButtonSettings");
         getTextureID("images/highscore.png", "ButtonHighScore");
         getTextureID("images/maisonApp.png", "FondMaison");
 
+        //Textures boutons settings
+        getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
+        getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
+        getTextureID("images/noButtonSettings_placeoholder.png", "ButtonFPS");
+        getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");
     }
-
     void suscribeObservers(){
        // ResourceManager::getInstance()->getResource("ButtonStart")->
     }
@@ -126,8 +132,6 @@ public:
 
         //TODO ajout d'objet à afficher
         loadTextures();
-
-        menuDisplay->loadMenu();
 
         //resourceManager->addResource("bouton", new );
 
