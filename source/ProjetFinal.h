@@ -111,7 +111,7 @@ public:
 
         //TODO ajout d'objet à afficher
 
-        menuDisplay->loadMenu(observables[SDL_MOUSEBUTTONDOWN]);
+        menuDisplay->loadMenu();
 
         //resourceManager->addResource("bouton", new );
 

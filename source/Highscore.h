@@ -8,6 +8,10 @@ public:
     void loadMenu() {
 
     }
+
+    void draw(){
+
+    }
 };
 
 

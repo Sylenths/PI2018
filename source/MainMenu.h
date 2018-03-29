@@ -34,9 +34,9 @@ public:
     }
 
     void loadMenu(){
-        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(startButtom);
+      /*  ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(startButtom);
         ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(settingButtom);
-        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(highscoreButtom);
+        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(highscoreButtom); */
     }
 
 
