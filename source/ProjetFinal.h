@@ -65,7 +65,10 @@ public:
     ~ProjetFinal () {
         delete (glContext);
         delete (sdlEvent);
-        //TODO Delete menuMap.
+        for(auto it : menuMap){
+            delete(it.second);
+        }
+        delete(menuMap);
     }
 
 
