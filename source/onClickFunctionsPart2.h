@@ -11,6 +11,7 @@
 
 void testFUNCTION() {
     ProjetFinal::getInstance()->test();
+    
 }
 
 #endif
