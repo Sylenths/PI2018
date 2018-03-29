@@ -17,7 +17,10 @@ public:
     /// Cette fonction permet de dessiner la ressource dans la fenêtre. ELLE POURRAIT ÊTRE REMPLACÉ PAR SON ENFANT. Sinon, draw() ne fait rien.
 
     virtual void draw() {}
+    /// Cette methode retourne le pointeur de TTF_Font lorsque demande. La classe Font a aussi une methode getFont().
+    virtual TTF_Font* getFont(){
 
+    }
 };
 
 
