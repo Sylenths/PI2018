@@ -136,7 +136,7 @@ public:
 
                     default:
                         if(!observables[sdlEvent->type])
-                            observables[sdlEvent->type] = new Observable<SDL_Event*>;
+                            observables[sdlEvent->type] = new Observable<SDL_Event *>;
                         observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
