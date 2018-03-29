@@ -101,7 +101,12 @@ public:
         getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");
     }
     void suscribeObservers(){
-       // ResourceManager::getInstance()->getResource}<Button>("ButtonStart")->
+       if(!observables[SDL_MOUSEBUTTONDOWN])
+           observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event *>;
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
+        
     }
 
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
