@@ -17,9 +17,9 @@
 
 class MainMenu : public Menu {
 private:
-    Model* startButtom;
-    Model* settingButtom;
-    Model* highscoreButtom;
+    Model* startButton;
+    Model* settingsButton;
+    Model* highscoreButton;
     Model* imageMenu;
 
     void (*onClick)();
@@ -27,11 +27,19 @@ public:
 
     MainMenu(){
 
-        /*startButtom = new Button ( onClick,"images/start.png", 967, 543, 0, 298, 128);
-        settingButtom = new Button( onClick, "images/settings.png", 967, 363, 0, 298, 128);
-        highscoreButtom = new Button( onClick, "images/highscore.png", 967, 178, 0, 298, 128);*/
-        //imageMenu = new Image2D("images/maisonApp.png", 0, 720, 0, 1280, 720);
-        //ProjetFinal::getInstance()->getTextureID("images/start.png", "BoutonStart");
+
+        imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
+        ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
+
+        startButton = new Button ( onClick, ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0, 298, 128);
+        ResourceManager::getInstance()->addResource("ButtonStart", startButton);
+
+        settingsButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0, 298, 128);
+        ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
+
+        highscoreButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0, 298, 128);
+        ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
+
 
 
 
@@ -40,14 +48,16 @@ public:
     void loadMenu(){
         /*ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(startButtom);
         ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(settingButtom);
-        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(highscoreButtom);*/
+        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(highscoreButtom);
+         */
     }
 
     void draw(){
-        /*   startButtom->draw();
-        settingButtom->draw();
-        highscoreButtom->draw();
-        imageMenu->draw();*/
+
+        startButton->draw();
+        settingsButton->draw();
+        highscoreButton->draw();
+        imageMenu->draw();
     }
 
 

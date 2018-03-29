@@ -21,6 +21,7 @@
 class Label : public Image2D{
 private:
     std::string text;
+
 public:
     /// Ajoute la texture avec le texte dans le resourceManager
     /// \param La string qui servira de clé dans la texture
