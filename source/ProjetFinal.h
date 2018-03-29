@@ -88,10 +88,17 @@ public:
     }
 
     void loadTextures() {
+        //Textures boutons menu principal
         getTextureID("images/start.png", "ButtonStart");
         getTextureID("images/settings.png", "ButtonSettings");
         getTextureID("images/highscore.png", "ButtonHighScore");
         getTextureID("images/maisonApp.png", "FondMaison");
+
+        //Textures boutons settings
+        getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
+        getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
+        getTextureID("images/noButtonSettings_placeoholder.png", "ButtonFPS");
+        getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");
 
 
     }
