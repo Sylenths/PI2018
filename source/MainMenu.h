@@ -12,6 +12,7 @@
 #include "Model.h"
 #include "Button.h"
 #include "Image2D.h"
+#include "ProjetFinal.h"
 
 class MainMenu : public Menu {
 private:
@@ -24,15 +25,26 @@ private:
 public:
 
     MainMenu(){
-        startButtom = new Button ( onClick,"start.png", 967, 543, 0, 298, 128);
-        settingButtom = new Button( onClick, "settings.png", 967, 363, 0, 298, 128);
-        highscoreButtom = new Button( onClick, "highscore.png", 967, 178, 0, 298, 128);
-        imageMenu = new Image2D("maisonApp.png", 0, 720, 0, 1280, 720);
+        startButtom = new Button ( onClick,"images/start.png", 967, 543, 0, 298, 128);
+        settingButtom = new Button( onClick, "images/settings.png", 967, 363, 0, 298, 128);
+        highscoreButtom = new Button( onClick, "images/highscore.png", 967, 178, 0, 298, 128);
+        imageMenu = new Image2D("images/maisonApp.png", 0, 720, 0, 1280, 720);
+        //ProjetFinal::getInstance()->getTextureID("images/start.png", "BoutonStart");
+
+
     }
 
     void loadMenu(){
-        
+        /*ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(startButtom);
+        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(settingButtom);
+        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(highscoreButtom);*/
+    }
 
+    void draw(){
+        startButtom->draw();
+        settingButtom->draw();
+        highscoreButtom->draw();
+        imageMenu->draw();
     }
 
 

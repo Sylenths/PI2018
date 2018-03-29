@@ -16,6 +16,7 @@ private:
 
 public:
     virtual void loadMenu() = 0;
+    virtual void draw() = 0;
 };
 
 
