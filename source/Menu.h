@@ -8,6 +8,8 @@
 #ifndef SOURCE_MENU_H
 #define SOURCE_MENU_H
 
+#include "ProjetFinal.h"
+
 
 class Menu {
 private:
