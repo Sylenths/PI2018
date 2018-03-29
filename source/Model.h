@@ -19,7 +19,6 @@
 #include "Font.h"
 #include "Resource.h"
 #include "Observer.h"
-
 class Model : public Resource, public Observer<SDL_Event*> {
 protected:
     unsigned int vertexCount; ///< Nombre de vertice

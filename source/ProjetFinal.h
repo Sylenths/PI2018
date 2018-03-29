@@ -49,19 +49,7 @@ public:
     /// \param width Largeur de la fenêtre, en pixels.
     /// \param height Hauteur de la fenêtre, en pixels.
     /// \param windowflags Flags SDL.
-    ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
-        glContext = new GLContext(title,x ,y ,width , height, windowflags);
-        glContext->setFrustum(90.0, 0.1, 1000.0, true);
-        sdlEvent = new SDL_Event();
 
-        menuMap["MainMenu"] = new MainMenu;
-        menuMap["Settings"] = new Settings;
-        menuMap["InGameOverlay"] = new InGameOverlay;
-        menuMap["InGameESC"] = new InGameESC;
-        menuMap["Highscore"] = new Highscore;
-
-        menuDisplay = menuMap["MainMenu"];
-    }
     /// Destructeur
     ~ProjetFinal () {
         delete (glContext);
@@ -88,12 +76,25 @@ public:
     }
 
     void loadTextures() {
-        getTextureID("images/start.png", "ButtonStart");
-        getTextureID("images/settings.png", "ButtonSettings");
-        getTextureID("images/highscore.png", "ButtonHighScore");
-        getTextureID("images/maisonApp.png", "FondMaison");
+        getTextureID("../../images/start.png", "ButtonStart");
+        getTextureID("../../images/settings.png", "ButtonSettings");
+        getTextureID("../../images/highscore.png", "ButtonHighScore");
+        getTextureID("../../images/maisonApp.png", "FondMaison");
 
 
+    }
+    ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
+        glContext = new GLContext(title,x ,y ,width , height, windowflags);
+        glContext->setFrustum(90.0, 0.1, 1000.0, true);
+        sdlEvent = new SDL_Event();
+        loadTextures();
+        menuMap["MainMenu"] = new MainMenu;
+        menuMap["Settings"] = new Settings;
+        menuMap["InGameOverlay"] = new InGameOverlay;
+        menuMap["InGameESC"] = new InGameESC;
+        menuMap["Highscore"] = new Highscore;
+
+        menuDisplay = menuMap["MainMenu"];
     }
 
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
@@ -123,7 +124,7 @@ public:
          */
 
         //TODO ajout d'objet à afficher
-        loadTextures();
+
 
         menuDisplay->loadMenu();
 

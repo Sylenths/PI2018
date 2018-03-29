@@ -30,13 +30,13 @@ public:
 
         vertices = new double[vertexCount * 3] {
 
-                0.0 + x  , 0.0 + y   , 0.0, //P1T1F1
-                width + x, height + y, 0.0, //P2T1F1
-                0.0 + x  , height + y, 0.0, //P3T1F1
+                0.0 + x  , 0.0 + y   , z, //P1T1F1
+                width + x, height + y, z, //P2T1F1
+                0.0 + x  , height + y, z, //P3T1F1
 
-                0.0 + x  , 0.0 + y   , 0.0, //P1T2F1
-                width + x, 0.0 + y   , 0.0, //P2T2F1
-                width + x, height + y, 0.0, //P3T2F1
+                0.0 + x  , 0.0 + y   , z, //P1T2F1
+                width + x, 0.0 + y   , z, //P2T2F1
+                width + x, height + y, z, //P3T2F1
         };
 
         normals = new double[normalCount * 3] {

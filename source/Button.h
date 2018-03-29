@@ -9,11 +9,13 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include <functional>
 #include "Model.h"
+#include "Image2D.h"
 
-class Button : public Model{
+class Button : public Image2D{
 private:
-    void (*onClick)();  ///< Le pointeur de fonction vers quoi on veut réagir avec nos événements
+    std::function<void()> onClick;  ///< Le pointeur de méthode vers quoi on veut réagir avec nos événements
 
 public:
 	/// Constructeur.
@@ -23,47 +25,8 @@ public:
 	/// \param y Position en y par rapport au coin gauche en haut.
 	/// \param width Largeur du bouton.
 	/// \param height Hauteur du bouton.
-    Button(void (*onClick)(), unsigned int textureID, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Model(textureID){
-        this -> x = x;
-        this -> y = y;
-        this -> z = z;
+    Button( unsigned int textureID, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Image2D(textureID,x,y,z,width,height){
 
-        this -> width = width;
-        this -> height = height;
-
-        setOnClick(onClick);
-
-        vertexCount = normalCount = texCount = 6;
-
-        vertices = new double[vertexCount * 3] {
-
-                0.0 + x  , 0.0 + y   , 0.0, //P1T1F1
-                width + x, height + y, 0.0, //P2T1F1
-                0.0 + x  , height + y, 0.0, //P3T1F1
-
-                0.0 + x  , 0.0 + y   , 0.0, //P1T2F1
-                width + x, 0.0 + y   , 0.0, //P2T2F1
-                width + x, height + y, 0.0, //P3T2F1
-        };
-
-        normals = new double[normalCount * 3] {
-                0.0, 0.0, 1.0, //P1T1F1
-                0.0, 0.0, 1.0, //P2T1F1
-                0.0, 0.0, 1.0, //P3T1F1
-
-                0.0, 0.0, 1.0, //P1T2F1
-                0.0, 0.0, 1.0, //P2T2F1
-                0.0, 0.0, 1.0, //P3T2F1
-        };
-
-        texCoords = new double[texCount * 2] {
-                0.0,0.0,
-                1.0,1.0,
-                0.0,1.0,
-                0.0,0.0,
-                1.0,0.0,
-                1.0,1.0,
-        };
     }
 	/// Réception de notifications d'événements SDL.
 	/// \param sdlEvent Événement SDL.
@@ -82,9 +45,9 @@ public:
 
     }
 
-    /// Configurer le pointeur de fonction vers la bonne fonction
-    /// \param La fonction vers laquelle on veut que le bouton pointe.
-    void setOnClick(void (*onClick)()) {
+    /// Bind une méthode d'une certaine classe
+    /// \param Pour binder une méthode d'une certaine classe utiliser : std::bind(&Class::function, object) PS: ne pas oublier &
+    void setOnClick(std::function<void()> onClick) {
         this -> onClick = onClick;
     }
 

@@ -24,12 +24,19 @@ private:
 
 public:
     /// Ajoute la texture avec le texte dans le resourceManager
-    /// \param La string qui servira de clé dans la texture
-    /// \param Le texte qui sera texturisé
     /// \param La font utilisee
     /// \param La couleur du texte qui sera texturisé
+    /// \param Le texte qui sera texturisé
+    /// \param La x position
+    /// \param La y position
+    /// \param La z position
+    /// \param La width
+    /// \param La height
+
+
 
     Label(TTF_Font* font,SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int w, unsigned int h) : Image2D(0,x,y,z,w,h){
+        this->text = text;
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
 
         glGenTextures(1, &textureID);

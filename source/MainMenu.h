@@ -14,6 +14,7 @@
 #include "Image2D.h"
 #include "ProjetFinal.h"
 #include "ResourceManager.h"
+#include "Label.h"
 
 class MainMenu : public Menu {
 private:
@@ -21,26 +22,28 @@ private:
     Model* settingsButton;
     Model* highscoreButton;
     Model* imageMenu;
+    Model* testLabel;
 
-    void (*onClick)();
+
 public:
 
     MainMenu(){
 
 
-        imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
+        imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0.8, 1280, 720);
         ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
 
-        startButton = new Button ( onClick, ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0, 298, 128);
+        startButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0.3, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonStart", startButton);
 
-        settingsButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0, 298, 128);
+        settingsButton = new Button( ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0.2, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
 
-        highscoreButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0, 298, 128);
+        highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0.1, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
 
-
+        testLabel = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(),{255,255,255,255},"test",50,50,0.7,140,140);
+        ((Label*) testLabel)->updateTextTexture("test2.0",ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(),{255,255,255,255});
 
 
     }
@@ -53,11 +56,12 @@ public:
     }
 
     void draw(){
-
+        testLabel->draw();
+        imageMenu->draw();
         startButton->draw();
         settingsButton->draw();
         highscoreButton->draw();
-        imageMenu->draw();
+
     }
 
 
