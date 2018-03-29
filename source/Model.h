@@ -152,7 +152,7 @@ public:
 
             fichier.close();
         }
-            /*
+            /* ANCIEN CHARGEUR DE MODEL
 
             std::vector<double> vVertices, vTexCoords, vNormals;
             std::vector<double> verticesEasy, texEasy, normalsEasy;
