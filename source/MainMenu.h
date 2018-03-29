@@ -21,7 +21,6 @@ private:
     Model* settingsButton;
     Model* highscoreButton;
     Model* imageMenu;
-    Model* wassup;
 
     void (*onClick)();
 public:
@@ -29,19 +28,17 @@ public:
     MainMenu(){
 
 
-        startButton = new Button ( onClick, ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 543, 0, 298, 128);
-        ResourceManager::getInstance()->addResource("ButtonStart", startButton);
-
-        settingsButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 363, 0, 298, 128);
-        ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
-
-        highscoreButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 363, 0, 298, 128);
-        ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
-
-        imageMenu = new Button( onClick, ResourceManager::getInstance()->getTexture("FondMaison"), 967, 363, 0, 298, 128);
+        imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
         ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
 
+        startButton = new Button ( onClick, ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0, 298, 128);
+        ResourceManager::getInstance()->addResource("ButtonStart", startButton);
 
+        settingsButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0, 298, 128);
+        ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
+
+        highscoreButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0, 298, 128);
+        ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
 
 
 
@@ -51,10 +48,12 @@ public:
     void loadMenu(){
         /*ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(startButtom);
         ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(settingButtom);
-        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(highscoreButtom);*/
+        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(highscoreButtom);
+         */
     }
 
     void draw(){
+
         startButton->draw();
         settingsButton->draw();
         highscoreButton->draw();
