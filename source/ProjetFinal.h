@@ -26,6 +26,7 @@
 #include "Highscore.h"
 #include "Image2D.h"
 #include "Vector3D.h"
+#include "Label.h"
 
 #include "onClickFunctionsPart1.h"
 #include "Button.h"

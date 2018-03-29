@@ -18,7 +18,9 @@
 #include <SDL2/SDL_ttf.h>
 #include "ResourceManager.h"
 
-class Label{
+class Label : public Image2D{
+private:
+    std::string text;
 public:
     /// Ajoute la texture avec le texte dans le resourceManager
     /// \param La string qui servira de clé dans la texture
@@ -26,21 +28,32 @@ public:
     /// \param La font utilisee
     /// \param La couleur du texte qui sera texturisé
 
-    static void createTextTexture(std::string texNameRM, std::string text, TTF_Font* font, SDL_Color color){
+    Label(TTF_Font* font,SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int w, unsigned int h) : Image2D(0,x,y,z,w,h){
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
-        unsigned int openGLID = 5;
 
-        glGenTextures(1, &openGLID);
-        glBindTexture(GL_TEXTURE_2D, openGLID);
+        glGenTextures(1, &textureID);
+        glBindTexture(GL_TEXTURE_2D, textureID);
 
         glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, sdlSurface->w, sdlSurface->h,0, GL_RGBA, GL_UNSIGNED_BYTE, sdlSurface->pixels);
         SDL_FreeSurface(sdlSurface);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        ResourceManager::getInstance()->addTexture(texNameRM,openGLID);
     }
+    void updateTextTexture(std::string text, TTF_Font* font, SDL_Color color){
+        SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
+        glDeleteTextures(1,&textureID);
 
+        glGenTextures(1, &textureID);
+        glBindTexture(GL_TEXTURE_2D, textureID);
+
+        glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, sdlSurface->w, sdlSurface->h,0, GL_RGBA, GL_UNSIGNED_BYTE, sdlSurface->pixels);
+        SDL_FreeSurface(sdlSurface);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    }
 
 };
 #endif //SOURCE_LABEL_H

@@ -21,7 +21,6 @@ private:
     Model* settingButtom;
     Model* highscoreButtom;
     Model* imageMenu;
-    Model* wassup;
 
     void (*onClick)();
 public:
@@ -30,9 +29,8 @@ public:
 
         /*startButtom = new Button ( onClick,"images/start.png", 967, 543, 0, 298, 128);
         settingButtom = new Button( onClick, "images/settings.png", 967, 363, 0, 298, 128);
-        highscoreButtom = new Button( onClick, "images/highscore.png", 967, 178, 0, 298, 128);
-        wassup = new Image2D("tex - wassupLabel",50,60,0,140,140);
-        imageMenu = new Image2D("images/maisonApp.png", 0, 720, 0, 1280, 720);*/
+        highscoreButtom = new Button( onClick, "images/highscore.png", 967, 178, 0, 298, 128);*/
+        //imageMenu = new Image2D("images/maisonApp.png", 0, 720, 0, 1280, 720);
         //ProjetFinal::getInstance()->getTextureID("images/start.png", "BoutonStart");
 
 
@@ -46,10 +44,10 @@ public:
     }
 
     void draw(){
-        startButtom->draw();
+        /*   startButtom->draw();
         settingButtom->draw();
         highscoreButtom->draw();
-        imageMenu->draw();
+        imageMenu->draw();*/
     }
 
 
