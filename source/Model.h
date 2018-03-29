@@ -1,6 +1,6 @@
 /// \brief La maille est la somme de tous les points pour former une forme géométrique dans OpenGL.
 /// \details
-/// \author Tai Chen Li, samuel Labelle
+/// \author Tai Chen Li, samuel Labelle, Gabriel Bourdages
 /// \date 28 mars 2018
 /// \version 0.2
 /// \warning Aucuns.
@@ -16,6 +16,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
+#include "Font.h"
 #include "Resource.h"
 #include "Observer.h"
 #include "TextureID.h"
@@ -23,20 +24,27 @@
 
 class Model : public Resource, public Observer<SDL_Event*> {
 protected:
-    unsigned int vertexCount;
-    unsigned int texCount;
-    unsigned int normalCount;
+    unsigned int vertexCount; ///< Nombre de vertice
+    unsigned int texCount; ///< Nombre de coordonné de texture
+    unsigned int normalCount; ///< Nombre de normal
     double *vertices, *texCoords, *normals;
 
-    unsigned int textureID;
+    unsigned int x; ///< Position du model en x
+    unsigned int y; ///< Position du model en y
+    unsigned int z; ///< Position du model en z
+
+    unsigned int width; ///< Largeur du model (pour image en 2D)
+    unsigned int height; ///< Hauteur du model (pour image en 2D)
+
+    unsigned int textureID; ///< Identificateur de la texture
 
 public:
 
 	/// Constructeur.
-	/// \param textureName Nom de la texture à appliquer au modèle.
+    /// \param textureID Identificateur de la texture.
 	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
-    Model(std::string textureName, const char* objFile = nullptr) {
-        textureID = ResourceManager::getInstance()->getTexture(textureName);
+    Model(unsigned int textureID, const char* objFile = nullptr) {
+        this->textureID = textureID;
 
         vertexCount = texCount = normalCount = 0;
         vertices = normals = texCoords = nullptr;

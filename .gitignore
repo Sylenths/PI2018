@@ -1,4 +1,6 @@
 source/.idea
 source/CMakeLists.txt.user
 source/cmake-build-debug
-
+source/latex
+source/doxygen_sqlite3
+source/configfichier

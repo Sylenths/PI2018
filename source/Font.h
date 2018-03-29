@@ -31,6 +31,10 @@ public:
         TTF_CloseFont(font);
         font = nullptr; //To be safe...
     }
+
+    TTF_Font* getFont(){
+        return font;
+    }
 };
 
 

@@ -9,13 +9,47 @@
 #define SOURCE_MAINMENU_H
 
 #include "Menu.h"
+#include "Model.h"
+#include "Button.h"
+#include "Image2D.h"
+#include "ProjetFinal.h"
+#include "ResourceManager.h"
 
 class MainMenu : public Menu {
 private:
+    Model* startButtom;
+    Model* settingButtom;
+    Model* highscoreButtom;
+    Model* imageMenu;
+    Model* wassup;
 
+    void (*onClick)();
 public:
-    void loadMenu(){
 
+    MainMenu(){
+
+        /*startButtom = new Button ( onClick,"images/start.png", 967, 543, 0, 298, 128);
+        settingButtom = new Button( onClick, "images/settings.png", 967, 363, 0, 298, 128);
+        highscoreButtom = new Button( onClick, "images/highscore.png", 967, 178, 0, 298, 128);
+        wassup = new Image2D("tex - wassupLabel",50,60,0,140,140);
+        imageMenu = new Image2D("images/maisonApp.png", 0, 720, 0, 1280, 720);*/
+        //ProjetFinal::getInstance()->getTextureID("images/start.png", "BoutonStart");
+
+
+
+    }
+
+    void loadMenu(){
+        /*ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(startButtom);
+        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(settingButtom);
+        ProjetFinal::observables[SDL_MOUSEBUTTONDOWN]->subscribe(highscoreButtom);*/
+    }
+
+    void draw(){
+        startButtom->draw();
+        settingButtom->draw();
+        highscoreButtom->draw();
+        imageMenu->draw();
     }
 
 

@@ -15,12 +15,17 @@
 class Image2D : public Model {
 public:
     /// Constructeur.
-    /// \param textureName Nom de la texture de l'image.
+    /// \param textureID Identificateur de la texture.
     /// \param x Position en x par rapport au coin gauche en haut.
     /// \param y Position en y par rapport au coin gauche en haut.
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
-    Image2D(std::string textureName, unsigned int x, unsigned int y, double width = 0, double height = 0) : Model(textureName) {
+    Image2D(unsigned int textureID, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Model(textureID) {
+
+        this -> x = x;
+        this -> y = y;
+        this -> z = z;
+
         vertexCount = normalCount = texCount = 6;
 
         vertices = new double[vertexCount * 3] {

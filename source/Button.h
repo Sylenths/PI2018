@@ -18,12 +18,19 @@ private:
 public:
 	/// Constructeur.
 	/// \param onClick Fonction Activée par le bouton.
-	/// \param textureName Nom de la texture du bouton.
+    /// \param textureID Identificateur de la texture.
 	/// \param x Position en x par rapport au coin gauche en haut.
 	/// \param y Position en y par rapport au coin gauche en haut.
 	/// \param width Largeur du bouton.
 	/// \param height Hauteur du bouton.
-    Button(void (*onClick)(), std::string textureName, unsigned int x, unsigned int y, double width = 0, double height = 0) : Model(textureName){
+    Button(void (*onClick)(), unsigned int textureID, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Model(textureID){
+        this -> x = x;
+        this -> y = y;
+        this -> z = z;
+
+        this -> width = width;
+        this -> height = height;
+
         setOnClick(onClick);
 
         vertexCount = normalCount = texCount = 6;
@@ -60,11 +67,19 @@ public:
     }
 	/// Réception de notifications d'événements SDL.
 	/// \param sdlEvent Événement SDL.
-    void notify(SDL_Event* sdlEvent) { /*
-        if (sdlEvent->key.keysym.sym == SDL_MOUSEBUTTONDOWN)
-            if (sdlEvent->)
+    void notify(SDL_Event* sdlEvent) {
+        if (sdlEvent->button.button == SDL_BUTTON_LEFT) {
+            if (sdlEvent->button.x >= x) {
+                if (sdlEvent->button.x <= (x + width)) {
+                    if (sdlEvent->button.y >= y) {
+                        if (sdlEvent->button.y <= (y + height)) {
+                            onClick();
+                        }
+                    }
+                }
+            }
+        }
 
-            */
     }
 
     /// Configurer le pointeur de fonction vers la bonne fonction
