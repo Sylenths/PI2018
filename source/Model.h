@@ -48,6 +48,111 @@ public:
         vertices = normals = texCoords = nullptr;
 
         if(objFile) {
+            std::vector<double> vVertices, vNormals, vTexCoords;
+            std::vector<unsigned int> vVerticesIndex, vNormalsIndex, vTexCoordsIndex;
+
+            //vVertices.push_back(0.0);
+
+            std::string str = " ";
+            std::ifstream fichier(objFile);
+            while(!str.empty()) {
+                str.clear();
+                fichier >> str;
+                double composante;
+                unsigned int index;
+                switch(str[0]) {
+                    case 'v' :
+                        if(str.size() == 1) {
+                            // TODO: Lire composante du sommet...
+                            for(int i = 0; i < 3; i++) {
+                                fichier >> composante;
+                                vVertices.push_back(composante);
+                            }
+                        }
+                        else
+                            switch(str[1]) {
+                                case 't':
+                                    // TODO: Lire coordo texture...
+                                    for(int i = 0; i < 2; i++) {
+                                        fichier >> composante;
+                                        vTexCoords.push_back(composante);
+                                    }
+                                    break;
+
+                                case 'n':
+                                    //TODO: Lire composante normales...
+                                    for(int i = 0; i < 3; i++) {
+                                        fichier >> composante;
+                                        vNormals.push_back(composante);
+                                    }
+                                    break;
+                            }
+                        break;
+                    case 'f' :
+                        for(int i = 0; i < 3; i++) {
+                            fichier >> index;
+                            vVerticesIndex.push_back(index);
+                            fichier.ignore();
+
+                            fichier >> index;
+                            vTexCoordsIndex.push_back(index);
+                            fichier.ignore();
+
+                            fichier >> index;
+                            vNormalsIndex.push_back(index);
+                            fichier.ignore();
+                        }
+                        break;
+
+                    default:
+                        fichier.ignore(30, 10);
+                        break;
+                }
+            }
+            // TODO: lire...
+            vertexCount = vVerticesIndex.size();
+            unsigned int xi, yi, zi, x, y, z;
+
+            vertices = new double[3 * vertexCount];
+            for(int i = 0; i < vertexCount; i++) {
+                xi = ((vVerticesIndex[i] - 1) * 3);
+                yi = xi + 1;
+                zi = xi + 2;
+                x = i * 3;
+                y = x + 1;
+                z = x + 2;
+                vertices[x] = vVertices[xi];
+                vertices[y] = vVertices[yi];
+                vertices[z] = vVertices[zi];
+            }
+
+            texCoords = new double[2 * vertexCount];
+            for(int i = 0; i < vertexCount; i++) {
+                xi = ((vTexCoordsIndex[i] - 1) * 2);
+                yi = xi + 1;
+                x = i * 2;
+                y = x + 1;
+                texCoords[x] = vTexCoords[xi];
+                texCoords[y] = 1 - vTexCoords[yi];
+            }
+
+            normals = new double[3 * vertexCount];
+            for(int i = 0; i < vertexCount; i++) {
+                xi = ((vNormalsIndex[i] - 1) * 3);
+                yi = xi + 1;
+                zi = xi + 2;
+                x = i * 3;
+                y = x + 1;
+                z = x + 2;
+                normals[x] = vNormals[xi];
+                normals[y] = vNormals[yi];
+                normals[z] = vNormals[zi];
+            }
+
+
+            fichier.close();
+        }
+            /*
 
             std::vector<double> vVertices, vTexCoords, vNormals;
             std::vector<double> verticesEasy, texEasy, normalsEasy;
@@ -145,7 +250,7 @@ public:
 
             // TODO: Lire...
             fichier.close();
-        }
+        } */
     }
 
 
