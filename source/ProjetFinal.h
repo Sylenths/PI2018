@@ -68,7 +68,6 @@ public:
         for(auto it : menuMap){
             delete(it.second);
         }
-        delete(menuMap);
     }
 
 
