@@ -84,6 +84,15 @@ public:
             ResourceManager::getInstance()->addTexture(textureName, textureID);
     }
 
+    void loadTextures() {
+        getTextureID("images/start.png", "ButtonStart");
+        getTextureID("images/settings.png", "ButtonSettings");
+        getTextureID("images/highscore.png", "ButtonHighScore");
+        getTextureID("images/maisonApp.png", "FondMaison");
+
+
+    }
+
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
     /// \param is2D Booléen représentant si c'est en 2D (true), ou en 3D (false).
     void setFrustum(bool is2D) {
@@ -100,6 +109,7 @@ public:
 
         glEnable(GL_BLEND);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                setFrustum(true);
 
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -110,6 +120,7 @@ public:
          */
 
         //TODO ajout d'objet à afficher
+        loadTextures();
 
         menuDisplay->loadMenu();
 
