@@ -42,36 +42,6 @@ private:
 
 public:
 
-	/// Constructeur
-    /// \param title Titre de la fenêtre.
-    /// \param x Position en x du coin droit en haut de la fenêtre, par rapport à l'écran.
-    /// \param y Position en y du coin droit en haut de la fenêtre, par rapport à l'écran.
-    /// \param width Largeur de la fenêtre, en pixels.
-    /// \param height Hauteur de la fenêtre, en pixels.
-    /// \param windowflags Flags SDL.
-    ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
-        glContext = new GLContext(title,x ,y ,width , height, windowflags);
-        glContext->setFrustum(90.0, 0.1, 1000.0, true);
-        sdlEvent = new SDL_Event();
-
-        menuMap["MainMenu"] = new MainMenu;
-        menuMap["Settings"] = new Settings;
-        menuMap["InGameOverlay"] = new InGameOverlay;
-        menuMap["InGameESC"] = new InGameESC;
-        menuMap["Highscore"] = new Highscore;
-
-        menuDisplay = menuMap["MainMenu"];
-    }
-    /// Destructeur
-    ~ProjetFinal () {
-        delete (glContext);
-        delete (sdlEvent);
-        for (auto it : menuMap) {
-            delete (it.second);
-        }
-    }
-
-
     void getTextureID(const char* filename, std::string textureName){
             unsigned int textureID;
             glGenTextures(1, &textureID);
@@ -95,11 +65,43 @@ public:
         getTextureID("images/maisonApp.png", "FondMaison");
 
         //Textures boutons settings
-        getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
+        /*getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
         getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
         getTextureID("images/noButtonSettings_placeoholder.png", "ButtonFPS");
-        getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");
+        getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");*/
     }
+
+	/// Constructeur
+    /// \param title Titre de la fenêtre.
+    /// \param x Position en x du coin droit en haut de la fenêtre, par rapport à l'écran.
+    /// \param y Position en y du coin droit en haut de la fenêtre, par rapport à l'écran.
+    /// \param width Largeur de la fenêtre, en pixels.
+    /// \param height Hauteur de la fenêtre, en pixels.
+    /// \param windowflags Flags SDL.
+    ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
+        glContext = new GLContext(title,x ,y ,width , height, windowflags);
+        glContext->setFrustum(90.0, 0.1, 1000.0, true);
+        sdlEvent = new SDL_Event();
+        loadTextures();
+        menuMap["MainMenu"] = new MainMenu;
+        menuMap["Settings"] = new Settings;
+        menuMap["InGameOverlay"] = new InGameOverlay;
+        menuMap["InGameESC"] = new InGameESC;
+        menuMap["Highscore"] = new Highscore;
+
+        menuDisplay = menuMap["MainMenu"];
+    }
+    /// Destructeur
+    ~ProjetFinal () {
+        delete (glContext);
+        delete (sdlEvent);
+        for (auto it : menuMap) {
+            delete (it.second);
+        }
+    }
+
+
+
     void suscribeObservers(){
        // ResourceManager::getInstance()->getResource("ButtonStart")->
     }
@@ -131,7 +133,7 @@ public:
          */
 
         //TODO ajout d'objet à afficher
-        loadTextures();
+
 
         //resourceManager->addResource("bouton", new );
 
