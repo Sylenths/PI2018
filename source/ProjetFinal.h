@@ -66,8 +66,8 @@ public:
     ~ProjetFinal () {
         delete (glContext);
         delete (sdlEvent);
-        for(auto it : menuMap){
-            delete(it.second);
+        for (auto it : menuMap) {
+            delete (it.second);
         }
     }
 
@@ -99,8 +99,9 @@ public:
         getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
         getTextureID("images/noButtonSettings_placeoholder.png", "ButtonFPS");
         getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");
-
-
+    }
+    void suscribeObservers(){
+       // ResourceManager::getInstance()->getResource("ButtonStart")->
     }
 
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
@@ -118,8 +119,8 @@ public:
         glEnable(GL_LIGHT0);
 
         glEnable(GL_BLEND);
-                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-                setFrustum(true);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        setFrustum(true);
 
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
