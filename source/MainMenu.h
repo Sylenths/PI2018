@@ -25,10 +25,10 @@ private:
 public:
 
     MainMenu(){
-        startButtom = new Button ( onClick,"start.png", 967, 543, 0, 298, 128);
-        settingButtom = new Button( onClick, "settings.png", 967, 363, 0, 298, 128);
-        highscoreButtom = new Button( onClick, "highscore.png", 967, 178, 0, 298, 128);
-        imageMenu = new Image2D("maisonApp.png", 0, 720, 0, 1280, 720);
+        startButtom = new Button ( onClick,"images/start.png", 967, 543, 0, 298, 128);
+        settingButtom = new Button( onClick, "images/settings.png", 967, 363, 0, 298, 128);
+        highscoreButtom = new Button( onClick, "images/highscore.png", 967, 178, 0, 298, 128);
+        imageMenu = new Image2D("images/maisonApp.png", 0, 720, 0, 1280, 720);
 
 
     }
@@ -42,6 +42,7 @@ public:
     void draw(){
         startButtom->draw();
         settingButtom->draw();
+        highscoreButtom->draw();
         imageMenu->draw();
     }
 
