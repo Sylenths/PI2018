@@ -3,6 +3,8 @@
 /// \author Antoine Legault, Samuel Labelle
 /// \date 27 mars 2018
 /// \version 0.2
+/// \warning Aucun.
+/// \bug Aucun.
 
 #ifndef SINGLETON_H
 #define SINGLETON_H

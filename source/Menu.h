@@ -8,12 +8,29 @@
 #ifndef SOURCE_MENU_H
 #define SOURCE_MENU_H
 
+#include <list>
+
+#include "Model.h"
 
 class Menu {
 private:
+    std::list<Model*>* models; ///< Liste de modèles qui permet d'accéder aux différents éléments de l'affichage
 
 public:
+    /// Constructeur
+    Menu() {
+        models = new std::list<Model*>;
+    }
+
+    /// Destructeur
+    ~Menu() {
+        while(models)
+            models->remove(0);
+        delete models;
+    }
+
     virtual void loadMenu() = 0;
+    virtual void draw() = 0;
 };
 
 

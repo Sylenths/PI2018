@@ -1,42 +1,62 @@
 /// \brief Représentation du contexte de la fenêtre.
-/// \details Forme et grandeur de la fenêtre affiché.
-/// \author Antoine Legault
-/// \date 20 février 2018
-/// \version 0.1
-/// \warning Risque de planter si mal utilisé.
-/// \bug aucun bug
+/// \details Fenêtre contenant un contexte de rendu OpenGL capable d'affichage 2D et 3D.
+/// \author Antoine Legault, Samuel Labelle
+/// \date 28 mars 2018
+/// \version 0.2
+/// \warning La position à laquelle la souris est retournée dans resetMousePos() est hardcodée.
+/// \bug Aucun connus.
 #ifndef SDLPROJECT_GLCONTEXT_H
 #define SDLPROJECT_GLCONTEXT_H
 
 #include <SDL2/SDL.h>
-#include "Window.h"
 #include <SDL2/SDL_opengl.h>
 #include <cmath>
+
+#include "Window.h"
 #include "Matrix.h"
 
 class GLContext : public Window{
 private:
-    SDL_GLContext glContext;    ///< Gestion de la fênetre.
+    SDL_GLContext glContext; ///< Contexte OpenGL-SDL
 public:
+	/// Constructeur
+	/// \param title Titre de la fenêtre.
+	/// \param x Position en x du coin droit en haut de la fenêtre, par rapport à l'écran.
+	/// \param y Position en y du coin droit en haut de la fenêtre, par rapport à l'écran.
+	/// \param width Largeur de la fenêtre, en pixels.
+	/// \param height Hauteur de la fenêtre, en pixels.
+	/// \param flags Flags SDL.
     GLContext(const char* title, int x, int y, int width, int height, unsigned int windowflags = 0) : Window(title, x,y,width, height, windowflags | SDL_WINDOW_OPENGL) {
         glContext = SDL_GL_CreateContext(sdlwindow);
     }
-
+	/// Destructeur.
     ~GLContext() {
         SDL_GL_DeleteContext(glContext);
     }
 
-    /// Vider le contenu de la fenêtre.
+    /// Effacer le contenu de la fenêtre.
     void clear() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
-    /// Rafraichir le contenu de la fenêtre.
+	/// Prends le contrôle de la souris et du clavier.
+	void grabInput(){
+		SDL_SetWindowGrab(sdlwindow, SDL_TRUE);
+		SDL_SetRelativeMouseMode(SDL_TRUE);
+	}
+
+	/// Rends le contrôle de la souris et du clavier.
+	void releaseInput(){
+		SDL_SetWindowGrab(sdlwindow, SDL_FALSE);
+		SDL_SetRelativeMouseMode(SDL_FALSE);
+	}
+
+    /// Rafraîchir le contenu de la fenêtre.
     void refresh() {
         SDL_GL_SwapWindow(sdlwindow);
     }
     /// Affichage de l'environnement graphique.
-    /// \param angle L'inclinaison de l'angle.
+    /// \param angle Angle du champ de vision.
     /// \param nearPlane Distance de la zone de vue rapproché.
     /// \param farPlane Distance de la zone de vue éloignée.
     /// \param is2D Permet de savoir si l'objet est en 2D ou 3D.
@@ -63,8 +83,8 @@ public:
 
     }
     /// Replacer le curseur de la souris au centre de la fenêtre.
-    void RessetMousePosition() {
-        SDL_WarpMouseInWindow(sdlwindow, 500, 350);
+    void resetMousePosition() {
+        SDL_WarpMouseInWindow(sdlwindow, 640, 360);
         SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
     }
 

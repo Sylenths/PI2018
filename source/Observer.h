@@ -1,10 +1,10 @@
 /// \brief Représentation d'un observateur.
 /// \details Permet de déclarer un observateur qui réagit aux évènements.
-/// \author Antoine Legault, Tai Chen Li
-/// \date 24 mars 2018
+/// \author Antoine Legault, Tai Chen Li, Samuel Labelle
+/// \date 28 mars 2018
 /// \version 0.1
 /// \warning On retourne un bool pour arrêter l'itération dans observable si possible pour sauver du temps de processeur.
-/// \bug Problèmes connus
+/// \bug Aucuns.
 
 #ifndef OBSERVER_H
 #define OBSERVER_H
@@ -12,7 +12,7 @@
 template <typename  T>
 class Observer {
 public:
-    /// Notifier les observateurs pour un type d'évènement.
+    /// Reçoit une notification de l'observable.
     virtual void notify(T arg) = 0;
 };
 

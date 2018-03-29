@@ -1,32 +1,50 @@
 /// \brief La maille est la somme de tous les points pour former une forme géométrique dans OpenGL.
 /// \details
-/// \author Tai Chen Li
-/// \date 25 mars 2018
-/// \version 0.1
-/// \warning Mettre les warning si nécessaire.
-/// \bug Problèmes connus
+/// \author Tai Chen Li, samuel Labelle, Gabriel Bourdages
+/// \date 28 mars 2018
+/// \version 0.2
+/// \warning Aucuns.
+/// \bug Aucuns.
+
 
 #ifndef SOURCE_MODEL_H
 #define SOURCE_MODEL_H
 
+#include <fstream>
+#include <vector>
+#include <string>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
+
+#include "Font.h"
 #include "Resource.h"
 #include "Observer.h"
 #include "TextureID.h"
-#include "Mesh.h"
 #include "ResourceManager.h"
 
 class Model : public Resource, public Observer<SDL_Event*> {
 protected:
-    unsigned int vertexCount;
-    unsigned int texCount;
-    unsigned int normalCount;
+    unsigned int vertexCount; ///< Nombre de vertice
+    unsigned int texCount; ///< Nombre de coordonné de texture
+    unsigned int normalCount; ///< Nombre de normal
     double *vertices, *texCoords, *normals;
 
-    unsigned int textureID;
+    unsigned int x; ///< Position du model en x
+    unsigned int y; ///< Position du model en y
+    unsigned int z; ///< Position du model en z
+
+    unsigned int width; ///< Largeur du model (pour image en 2D)
+    unsigned int height; ///< Hauteur du model (pour image en 2D)
+
+    unsigned int textureID; ///< Identificateur de la texture
 
 public:
-    Model(std::string textureName, const char* objFile = nullptr) {
-        textureID = ResourceManager::getInstance()->getTexture(textureName);
+
+	/// Constructeur.
+    /// \param textureID Identificateur de la texture.
+	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
+    Model(unsigned int textureID, const char* objFile = nullptr) {
+        this->textureID = textureID;
 
         vertexCount = texCount = normalCount = 0;
         vertices = normals = texCoords = nullptr;
@@ -133,12 +151,15 @@ public:
     }
 
 
+	/// Destructeur.
     ~Model() {
         delete[] vertices;
         delete[] normals;
         delete[] texCoords;
     }
 
+	/// Applique une matrice de transformation au modèle.
+	/// \param m Matrice de transformation.
     void transform(Matrix m) {
         Vector3D nv;
         unsigned int x, y, z;
@@ -161,7 +182,7 @@ public:
         }
     }
 
-
+	/// Affiche le modèle.
     void draw() {
         glBindTexture(GL_TEXTURE_2D, textureID);
 

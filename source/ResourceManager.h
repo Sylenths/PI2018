@@ -1,7 +1,7 @@
 /// \brief Gestionnaire de toutes les ressources utilisées dans le projet.
 /// \details Gère et permet d'avoir accès à, de rajouter ou d'enlever des images, des textures, des modèles 3D et des polices de caractères associés à un nom.
 /// \author Antoine Legault, Jade St-Pierre Bouchard, Tai Chen Li, Samuel Labelle
-/// \date 27 mars 2018
+/// \date 28 mars 2018
 /// \version 0.2
 /// \warning Ajouter avec add() une ressource dont le nom est déjà utilisé écrasera l'ancienne ressource et causera une fuite de mémoire. removeResource() détruit la ressource en plus de libérer son identificateur.
 /// \bug Aucun.
@@ -24,7 +24,7 @@ public:
 	~ResourceManager() {
 
 		std::map<std::string, Resource*>::iterator it = resources.begin();
-		while(it != resources.end()){
+		while(it != resources.end()) {
 			delete ((*it).second);// (*it).second is the Resource* of the current map "container"
 			it = resources.erase(it);// Remove map "container" at current it position then set it to next map "container".
 		}
@@ -46,17 +46,23 @@ public:
 		if(resources[resourceKey])
 			return resources[resourceKey];
 	}
-
+	/// Ajouter une paire nom / identifiant numérique de texture OpenGL.
+	/// \param textureKey Nom de la texture.
+	/// \param textureID Identifiant numérique de texture OpenGL.
     void addTexture(std::string textureKey, unsigned int textureID) {
         textures[textureKey] = textureID;
     }
 
+	/// Supprimer un identifiant numérique de texture OpenGL.
+	/// \param textureKey Nom de la texture.
     void removeTexture(std::string textureKey) {
         if(textures[textureKey]) {
             textures.erase(textureKey);
         }
     }
-
+	/// Récupérer l'identifiant de texture OpenGL à partir du nom d'une texture.
+	/// \param textureKey Nom de la texture.
+	/// \return Identifiant numérique de texture OpenGL.
     unsigned int getTexture(std::string textureKey) {
         if(textures[textureKey]) {
             return textures[textureKey];

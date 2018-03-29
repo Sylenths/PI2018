@@ -3,34 +3,37 @@
 /// \authors Antoine Legault, Guillaume Julien-Desmarchais
 /// \date 24 mars 2018
 /// \version 0.4
-/// \warning Mettre les warning si nécessaire.
-/// \bug Problèmes connus
+/// \warning Aucuns
+/// \bug Aucuns
 #ifndef SOURCE_FONT_H
 #define SOURCE_FONT_H
 
 #include <SDL2/SDL_ttf.h>
+
 #include "Resource.h"
-#include "ResourceManager.h"
-class Font : public Resource{
+
+class Font : public Resource {
 
 private:
     TTF_Font* font; ///< Pointeur de font.
 
-    public:
-
+public:
+	
     /// Constructeur.
-	/// \param filename Nom du font
-	/// \param RessourceName Nom de la ressource
-	/// \param pixelSize La taille de pixel
-    Font(const char* filename, const char* RessourceName, int pixelSize = 12){ //
+	/// \param filename Nom du fichier contenant la police de caractères.
+	/// \param pixelSize La taille des caractères.
+    Font(const char* filename, int pixelSize = 12) { //
         font = TTF_OpenFont(filename, pixelSize);
-        ResourceManager::getInstance()->addResource(RessourceName, this);
     }
     
     /// Destructeur.
-    ~Font(){
+    ~Font() {
         TTF_CloseFont(font);
         font = nullptr; //To be safe...
+    }
+
+    TTF_Font* getFont(){
+        return font;
     }
 };
 
