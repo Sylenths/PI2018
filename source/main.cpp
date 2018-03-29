@@ -1,5 +1,6 @@
 #include "ProjetFinal.h"
 #include "Matrix.h"
+#include "Label.h"
 
 
 int main(int argc, char* argv[]) {
@@ -19,11 +20,15 @@ int main(int argc, char* argv[]) {
     }
 
     SDL_Init(SDL_INIT_VIDEO);
+    TTF_Init();
+    ResourceManager::getInstance()->addResource("font - arial12",new Font("arial.ttf"));
+    Label::createTextTexture("tex - wassupLabel", "wassup", ResourceManager::getInstance()->getResource("font - arial12")->getFont(),{255,255,255,255});
     ProjetFinal::getInstance()->run(filePath.c_str());
 
 
     ProjetFinal::deleteInstance();
     ResourceManager::deleteInstance();
+    TTF_Quit();
     SDL_Quit();
     return 0;
 }

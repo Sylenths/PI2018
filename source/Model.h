@@ -1,6 +1,6 @@
 /// \brief La maille est la somme de tous les points pour former une forme géométrique dans OpenGL.
 /// \details
-/// \author Tai Chen Li, samuel Labelle
+/// \author Tai Chen Li, samuel Labelle, Gabriel Bourdages
 /// \date 28 mars 2018
 /// \version 0.2
 /// \warning Aucuns.
@@ -16,6 +16,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
+#include "Font.h"
 #include "Resource.h"
 #include "Observer.h"
 #include "TextureID.h"
