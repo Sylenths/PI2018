@@ -10,5 +10,5 @@
 #define ONCLICKFUNCTIONSPART1_H
 
 void testFUNCTION();
-
+void changeMenu();
 #endif
