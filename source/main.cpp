@@ -16,9 +16,9 @@ int main(int argc, char* argv[]) {
      */
 
 
-    while (filePath.back() != '/') { // On doit écrire backslash deux fois de suite, car c'est un caractère spécial pour C et C++.
+  /*  while (filePath.back() != '/') { // On doit écrire backslash deux fois de suite, car c'est un caractère spécial pour C et C++.
         filePath.pop_back();
-    }
+    }*/
 
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();

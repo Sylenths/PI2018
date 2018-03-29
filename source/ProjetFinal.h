@@ -42,24 +42,6 @@ private:
 
 public:
 
-	/// Constructeur
-    /// \param title Titre de la fenêtre.
-    /// \param x Position en x du coin droit en haut de la fenêtre, par rapport à l'écran.
-    /// \param y Position en y du coin droit en haut de la fenêtre, par rapport à l'écran.
-    /// \param width Largeur de la fenêtre, en pixels.
-    /// \param height Hauteur de la fenêtre, en pixels.
-    /// \param windowflags Flags SDL.
-
-    /// Destructeur
-    ~ProjetFinal () {
-        delete (glContext);
-        delete (sdlEvent);
-        for(auto it : menuMap){
-            delete(it.second);
-        }
-    }
-
-
     void getTextureID(const char* filename, std::string textureName){
             unsigned int textureID;
             glGenTextures(1, &textureID);
@@ -76,15 +58,29 @@ public:
     }
 
     void loadTextures() {
+        //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
         getTextureID("../../images/settings.png", "ButtonSettings");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
         getTextureID("../../images/maisonApp.png", "FondMaison");
 
-
+        //Textures boutons settings
+        /*getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
+        getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
+        getTextureID("images/noButtonSettings_placeoholder.png", "ButtonFPS");
+        getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");*/
     }
-    ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0){
-        glContext = new GLContext(title,x ,y ,width , height, windowflags);
+
+	/// Constructeur
+    /// \param title Titre de la fenêtre.
+    /// \param x Position en x du coin droit en haut de la fenêtre, par rapport à l'écran.
+    /// \param y Position en y du coin droit en haut de la fenêtre, par rapport à l'écran.
+    /// \param width Largeur de la fenêtre, en pixels.
+    /// \param height Hauteur de la fenêtre, en pixels.
+    /// \param windowflags Flags SDL.
+
+    ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0) {
+        glContext = new GLContext(title, x, y, width, height, windowflags);
         glContext->setFrustum(90.0, 0.1, 1000.0, true);
         sdlEvent = new SDL_Event();
         loadTextures();
@@ -93,9 +89,33 @@ public:
         menuMap["InGameOverlay"] = new InGameOverlay;
         menuMap["InGameESC"] = new InGameESC;
         menuMap["Highscore"] = new Highscore;
-
         menuDisplay = menuMap["MainMenu"];
     }
+
+    /// Destructeur
+    ~ProjetFinal () {
+        delete (glContext);
+        delete (sdlEvent);
+        for (auto it : menuMap) {
+            delete (it.second);
+        }
+    }
+
+
+
+
+
+
+
+    void suscribeObservers(){
+       if(!observables[SDL_MOUSEBUTTONDOWN])
+           observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event *>;
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
+        
+    }
+
 
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
     /// \param is2D Booléen représentant si c'est en 2D (true), ou en 3D (false).
@@ -112,8 +132,8 @@ public:
         glEnable(GL_LIGHT0);
 
         glEnable(GL_BLEND);
-                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-                setFrustum(true);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        setFrustum(true);
 
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -124,9 +144,6 @@ public:
          */
 
         //TODO ajout d'objet à afficher
-
-
-        menuDisplay->loadMenu();
 
         //resourceManager->addResource("bouton", new );
 
@@ -152,13 +169,14 @@ public:
                     default:
                         if(!observables[sdlEvent->type])
                             observables[sdlEvent->type] = new Observable<SDL_Event *>;
-                        observables[sdlEvent->type]->notify(sdlEvent);
+                       // observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
             glContext->clear();
 
             menuDisplay->draw();
-           // ResourceManager::getInstance()->getResource("start")->draw();
+            // Le path n'est pas bon, Je N'ai pas fichier image
+            //ResourceManager::getInstance()->getResource<Resource*>("start")->draw();
 
             glContext->refresh();
          }
