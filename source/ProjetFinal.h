@@ -34,6 +34,7 @@ class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
     std::map<std::string, Menu*> menuMap; ///< Carte de menu
+    Menu* menuDisplay;
     SDL_Event* sdlEvent; ///< Gestionnaire d'évennements
 
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
@@ -57,11 +58,14 @@ public:
         menuMap["InGameOverlay"] = new InGameOverlay;
         menuMap["InGameESC"] = new InGameESC;
         menuMap["Highscore"] = new Highscore;
+
+        menuDisplay = menuMap["MainMenu"];
     }
     /// Destructeur
     ~ProjetFinal () {
         delete (glContext);
         delete (sdlEvent);
+        //TODO Delete menuMap.
     }
 
 
@@ -107,9 +111,11 @@ public:
 
         //TODO ajout d'objet à afficher
 
+        menuDisplay->loadMenu();
+
         //resourceManager->addResource("bouton", new );
 
-        getTextureID((filePath + "start.png").c_str(), "start");
+      /*  getTextureID((filePath + "start.png").c_str(), "start");
 
         Vector3D dimension = get2DTextureSize((filePath + "start.png").c_str());
 
@@ -119,7 +125,7 @@ public:
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(testButton);
 
         ResourceManager::getInstance()->addResource("start", testButton);
-
+*/
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
@@ -136,7 +142,8 @@ public:
             }
             glContext->clear();
 
-            ResourceManager::getInstance()->getResource("start")->draw();
+            menuDisplay->draw();
+           // ResourceManager::getInstance()->getResource("start")->draw();
 
             glContext->refresh();
          }
