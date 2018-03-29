@@ -10,5 +10,7 @@
 #define ONCLICKFUNCTIONSPART1_H
 
 void testFUNCTION();
-void changeMenu();
+void changeMenuSettings();
+void changeMenuStart();
+void changeMenuHighscore();
 #endif

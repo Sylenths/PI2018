@@ -35,12 +35,22 @@ class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
     std::map<std::string, Menu*> menuMap; ///< Carte de menu
-    Menu* menuDisplay;
     SDL_Event* sdlEvent; ///< Gestionnaire d'évennements
-
+    Menu* menuDisplay;
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
 public:
+
+
+    void changeMenuSettings() {
+        menuDisplay = menuMap["Settings"];
+    }
+    void changeMenuHighscore(){
+        menuDisplay = menuMap["Highscore"];
+    }
+    void changeMenuStart(){
+        menuDisplay = menuMap["InGameOverlay"];
+    }
 
     void getTextureID(const char* filename, std::string textureName){
             unsigned int textureID;
@@ -55,6 +65,16 @@ public:
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
             ResourceManager::getInstance()->addTexture(textureName, textureID);
+    }
+
+
+    void subscribeObservers(){
+        if(!observables[SDL_MOUSEBUTTONDOWN])
+            observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event *>;
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
+
     }
 
     void loadTextures() {
@@ -90,6 +110,7 @@ public:
         menuMap["InGameESC"] = new InGameESC;
         menuMap["Highscore"] = new Highscore;
         menuDisplay = menuMap["MainMenu"];
+        subscribeObservers();
     }
 
     /// Destructeur
@@ -103,18 +124,6 @@ public:
 
 
 
-
-
-
-
-    void suscribeObservers(){
-       if(!observables[SDL_MOUSEBUTTONDOWN])
-           observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event *>;
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
-        
-    }
 
 
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
@@ -195,9 +204,21 @@ public:
         //std::cout << "Hello World!";
     }
 
-
-
 };
+
+void testFUNCTION() {
+    ProjetFinal::getInstance()->test();
+}
+
+void changeMenuStart() {
+    ProjetFinal::getInstance()->changeMenuStart();
+}
+void changeMenuSettings(){
+    ProjetFinal::getInstance()->changeMenuSettings();
+}
+void changeMenuHighscore(){
+    ProjetFinal::getInstance()->changeMenuHighscore();
+}
 
 #include "onClickFunctionsPart2.h"
 

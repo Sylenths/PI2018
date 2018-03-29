@@ -9,15 +9,4 @@
 #ifndef ONCLICKFUNCTIONSPART2_H
 #define ONCLICKFUNCTIONSPART2_H
 
-#include "Singleton.h"
-
-void testFUNCTION() {
-    //ProjetFinal::getInstance()->test();
-}
-
-
-void changeMenu(std::map<std::string, Menu*> menuMap){
-    //ProjetFinal::getInstance()->menuDisplay = menuMap;
-}
-
 #endif

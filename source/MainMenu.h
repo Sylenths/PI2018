@@ -17,12 +17,14 @@
 
 #include "Label.h"
 
+
 class MainMenu : public Menu {
 private:
     Model* startButton;
     Model* settingsButton;
     Model* highscoreButton;
     Model* imageMenu;
+
 
 
 
@@ -45,8 +47,7 @@ public:
         highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0.1, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
 
-
-
+        
     }
 
     void draw(){
