@@ -29,6 +29,7 @@ public:
         settingButtom = new Button( onClick, "images/settings.png", 967, 363, 0, 298, 128);
         highscoreButtom = new Button( onClick, "images/highscore.png", 967, 178, 0, 298, 128);
         imageMenu = new Image2D("images/maisonApp.png", 0, 720, 0, 1280, 720);
+        //ProjetFinal::getInstance()->getTextureID("images/start.png", "BoutonStart");
 
 
     }
