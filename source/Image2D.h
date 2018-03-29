@@ -20,7 +20,12 @@ public:
     /// \param y Position en y par rapport au coin gauche en haut.
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
-    Image2D(std::string textureName, unsigned int x, unsigned int y, unsigned int z, double width = 0, double height = 0) : Model(textureName) {
+    Image2D(std::string textureName, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Model(textureName) {
+
+        this -> x = x;
+        this -> y = y;
+        this -> z = z;
+
         vertexCount = normalCount = texCount = 6;
 
         vertices = new double[vertexCount * 3] {

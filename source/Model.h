@@ -28,6 +28,9 @@ protected:
     unsigned int normalCount;
     double *vertices, *texCoords, *normals;
 
+    unsigned int x, y, z;
+    unsigned int width, height;
+
     unsigned int textureID;
 
 public:

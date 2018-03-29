@@ -28,6 +28,7 @@
 #include "Vector3D.h"
 
 #include "onClickFunctionsPart1.h"
+#include "Button.h"
 
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
@@ -108,12 +109,16 @@ public:
 
         //resourceManager->addResource("bouton", new );
 
-        //getTextureID((filePath + "start.png").c_str(), "start");
+        getTextureID((filePath + "start.png").c_str(), "start");
 
-        //Image2D* tstModel = new Image2D("start", 500, 100, 500.0, 500.0);
-        //ResourceManager::getInstance()->addResource("start", tstModel);
+        Vector3D dimension = get2DTextureSize((filePath + "start.png").c_str());
 
+        Button* testButton = new Button(testFUNCTION, "start", 100, 100, 1, dimension.x, dimension.y);
+        if(!observables[SDL_MOUSEBUTTONDOWN])
+            observables[SDL_MOUSEBUTTONDOWN]= new Observable<SDL_Event*>;
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(testButton);
 
+        ResourceManager::getInstance()->addResource("start", testButton);
 
         bool isOpen = true;
         while (isOpen){
@@ -131,7 +136,7 @@ public:
             }
             glContext->clear();
 
-            //ResourceManager::getInstance()->getResource("start")->draw();
+            ResourceManager::getInstance()->getResource("start")->draw();
 
             glContext->refresh();
          }
