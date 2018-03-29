@@ -101,7 +101,7 @@ public:
         getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");
     }
     void suscribeObservers(){
-       // ResourceManager::getInstance()->getResource("ButtonStart")->
+       // ResourceManager::getInstance()->getResource}<Button>("ButtonStart")->
     }
 
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
