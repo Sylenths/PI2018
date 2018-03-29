@@ -17,9 +17,9 @@
 
 class MainMenu : public Menu {
 private:
-    Model* startButtom;
-    Model* settingButtom;
-    Model* highscoreButtom;
+    Model* startButton;
+    Model* settingsButton;
+    Model* highscoreButton;
     Model* imageMenu;
     Model* wassup;
 
@@ -28,12 +28,21 @@ public:
 
     MainMenu(){
 
-        /*startButtom = new Button ( onClick,"images/start.png", 967, 543, 0, 298, 128);
-        settingButtom = new Button( onClick, "images/settings.png", 967, 363, 0, 298, 128);
-        highscoreButtom = new Button( onClick, "images/highscore.png", 967, 178, 0, 298, 128);
-        wassup = new Image2D("tex - wassupLabel",50,60,0,140,140);
-        imageMenu = new Image2D("images/maisonApp.png", 0, 720, 0, 1280, 720);*/
-        //ProjetFinal::getInstance()->getTextureID("images/start.png", "BoutonStart");
+
+        startButton = new Button ( onClick, ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 543, 0, 298, 128);
+        ResourceManager::getInstance()->addResource("ButtonStart", startButton);
+
+        settingsButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 363, 0, 298, 128);
+        ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
+
+        highscoreButton = new Button( onClick, ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 363, 0, 298, 128);
+        ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
+
+        imageMenu = new Button( onClick, ResourceManager::getInstance()->getTexture("FondMaison"), 967, 363, 0, 298, 128);
+        ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
+
+
+
 
 
 
@@ -46,9 +55,9 @@ public:
     }
 
     void draw(){
-        startButtom->draw();
-        settingButtom->draw();
-        highscoreButtom->draw();
+        startButton->draw();
+        settingsButton->draw();
+        highscoreButton->draw();
         imageMenu->draw();
     }
 

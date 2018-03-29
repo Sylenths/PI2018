@@ -18,7 +18,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "ResourceManager.h"
 
-class Label{
+class Label {
 public:
     /// Ajoute la texture avec le texte dans le resourceManager
     /// \param La string qui servira de clé dans la texture
