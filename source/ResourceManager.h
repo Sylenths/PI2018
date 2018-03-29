@@ -13,6 +13,7 @@
 #include <map>
 #include "Singleton.h"
 #include "Resource.h"
+#include "SDL2/SDL_opengl.h"
 
 class ResourceManager : public Singleton<ResourceManager> {
 private:
@@ -42,9 +43,10 @@ public:
 		}
 	}
 	/// Récupérer une ressource.
-    Resource* getResource(std::string resourceKey) {
+    template <typename T>
+    T getResource(std::string resourceKey) {
 		if(resources[resourceKey])
-			return resources[resourceKey];
+			return (T)resources[resourceKey];
 	}
 	/// Ajouter une paire nom / identifiant numérique de texture OpenGL.
 	/// \param textureKey Nom de la texture.
@@ -57,6 +59,7 @@ public:
 	/// \param textureKey Nom de la texture.
     void removeTexture(std::string textureKey) {
         if(textures[textureKey]) {
+            glDeleteTextures(1,&textures[textureKey]);
             textures.erase(textureKey);
         }
     }

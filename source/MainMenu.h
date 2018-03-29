@@ -32,6 +32,7 @@ public:
     /// Constructeur
     MainMenu(){
 
+
         imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
         ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
 
@@ -50,6 +51,7 @@ public:
     }
 
     void draw(){
+
         startButton->draw();
         settingsButton->draw();
         highscoreButton->draw();

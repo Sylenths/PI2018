@@ -22,8 +22,8 @@ int main(int argc, char* argv[]) {
 
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
-    //ResourceManager::getInstance()->addResource("font - arial12",new Font("arial.ttf"));
-    //Label::createTextTexture("tex - wassupLabel", "wassup", ResourceManager::getInstance()->getResource("font - arial12")->getFont(),{255,255,255,255});
+    ResourceManager::getInstance()->addResource("font - arial12",new Font("../Fonts/arial.ttf"));
+
     ProjetFinal::getInstance()->run(filePath.c_str());
 
 
