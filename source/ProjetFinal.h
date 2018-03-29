@@ -65,10 +65,9 @@ public:
     ~ProjetFinal () {
         delete (glContext);
         delete (sdlEvent);
-        for(auto it : menuMap){
-            delete(it.second);
+        for (auto it : menuMap) {
+            delete (it.second);
         }
-        delete(menuMap);
     }
 
 
@@ -93,7 +92,10 @@ public:
         getTextureID("images/highscore.png", "ButtonHighScore");
         getTextureID("images/maisonApp.png", "FondMaison");
 
+    }
 
+    void suscribeObservers(){
+       // ResourceManager::getInstance()->getResource("ButtonStart")->
     }
 
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
