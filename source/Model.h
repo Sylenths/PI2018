@@ -18,8 +18,6 @@
 
 #include "Resource.h"
 #include "Observer.h"
-#include "TextureID.h"
-#include "ResourceManager.h"
 
 class Model : public Resource, public Observer<SDL_Event*> {
 protected:
