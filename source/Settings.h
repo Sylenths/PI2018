@@ -9,8 +9,6 @@
 #ifndef SOURCE_SETTINGS_H
 #define SOURCE_SETTINGS_H
 
-#include "Menu.h"
-
 class Settings : public Menu{
 private:
     Model* leftArrowButton, * rightArrowButton, * FPSButton, * backButton;

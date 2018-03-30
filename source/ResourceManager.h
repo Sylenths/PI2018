@@ -9,11 +9,7 @@
 #ifndef SOURCE_RESOURCEMANAGER_H
 #define SOURCE_RESOURCEMANAGER_H
 
-#include <iterator>
-#include <map>
-#include "Singleton.h"
 #include "Resource.h"
-#include "SDL2/SDL_opengl.h"
 
 class ResourceManager : public Singleton<ResourceManager> {
 private:

@@ -8,10 +8,6 @@
 #ifndef SOURCE_MENU_H
 #define SOURCE_MENU_H
 
-#include <list>
-
-#include "Model.h"
-
 class Menu {
 private:
 

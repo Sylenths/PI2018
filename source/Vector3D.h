@@ -10,8 +10,6 @@
 #ifndef SINGLETON_VECTOR3D_H
 #define SINGLETON_VECTOR3D_H
 
-#include "cmath"
-
 class Vector3D {
 public:
     double x; ///< Composante x.

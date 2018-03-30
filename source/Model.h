@@ -10,15 +10,8 @@
 #ifndef SOURCE_MODEL_H
 #define SOURCE_MODEL_H
 
-#include <fstream>
-#include <vector>
-#include <string>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
-
-#include "Font.h"
-#include "Resource.h"
 #include "Observer.h"
+
 class Model : public Resource, public Observer<SDL_Event*> {
 protected:
     unsigned int vertexCount; ///< Nombre de vertice

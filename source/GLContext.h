@@ -8,14 +8,9 @@
 #ifndef SDLPROJECT_GLCONTEXT_H
 #define SDLPROJECT_GLCONTEXT_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
-#include <cmath>
-
 #include "Window.h"
-#include "Matrix.h"
 
-class GLContext : public Window{
+class GLContext : public Window {
 private:
     SDL_GLContext glContext; ///< Contexte OpenGL-SDL
 public:

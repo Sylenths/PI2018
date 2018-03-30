@@ -9,11 +9,9 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include <functional>
-#include "Model.h"
 #include "Image2D.h"
 
-class Button : public Image2D{
+class Button : public Image2D {
 private:
     std::function<void()> onClick;  ///< Le pointeur de méthode vers quoi on veut réagir avec nos événements
 

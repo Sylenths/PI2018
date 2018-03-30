@@ -8,10 +8,6 @@
 #ifndef SOURCE_FONT_H
 #define SOURCE_FONT_H
 
-#include <SDL2/SDL_ttf.h>
-
-#include "Resource.h"
-
 class Font : public Resource {
 
 private:

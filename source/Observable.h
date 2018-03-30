@@ -9,7 +9,6 @@
 #define OBSERVABLE_H
 
 #include "Observer.h"
-#include <list>
 
 template <typename T>
 class Observable {

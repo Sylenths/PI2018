@@ -11,13 +11,6 @@
 #ifndef SOURCE_LABEL_H
 #define SOURCE_LABEL_H
 
-#include <string>
-#include <SDL2/SDL_opengl.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#include "ResourceManager.h"
-
 class Label : public Image2D{
 private:
     std::string text;

@@ -8,15 +8,8 @@
 #ifndef SOURCE_MAINMENU_H
 #define SOURCE_MAINMENU_H
 
-#include "Menu.h"
-#include "Model.h"
 #include "Button.h"
 #include "Image2D.h"
-#include "ProjetFinal.h"
-#include "ResourceManager.h"
-
-#include "Label.h"
-
 
 class MainMenu : public Menu {
 private:
