@@ -1,7 +1,4 @@
-                             #include "ProjetFinal.h"
-#include "Matrix.h"
-//#include "Label.h"
-
+#include "ProjetFinal.h"
 
 int main(int argc, char* argv[]) {
     std::string filePath = argv[0];
