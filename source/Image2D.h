@@ -11,8 +11,10 @@
 
 #include "Model.h"
 #include "Matrix.h"
+#include "includes.h"
 
 class Image2D : public Model {
+private:
 public:
     /// Constructeur.
     /// \param textureID Identificateur de la texture.
@@ -62,6 +64,7 @@ public:
 	/// Réception de notifications d'événements SDL.
 	/// \param sdlEvent Événement SDL.
     void notify(SDL_Event* sdlEvent) {}
+
 
 
 };

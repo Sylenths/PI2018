@@ -10,13 +10,14 @@
 
 #include "Button.h"
 #include "Image2D.h"
+#include "includes.h"
 
 class MainMenu : public Menu {
 private:
-    Model* startButton;
-    Model* settingsButton;
-    Model* highscoreButton;
-    Model* imageMenu;
+    Button* startButton;
+    Button* settingsButton;
+    Button* highscoreButton;
+    Image2D* imageMenu;
 
 
 
@@ -33,12 +34,15 @@ public:
 
         startButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0.3, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonStart", startButton);
+        //startButton->setOnClick(std::bind(&ProjetFinal::changeMenuStart, startButton));
 
         settingsButton = new Button( ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0.2, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
+        //settingsButton->setOnClick(std::bind(&ProjetFinal::changeMenuSettings, settingsButton));
 
         highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0.1, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
+        //highscoreButton->setOnClick(std::bind(&ProjetFinal::changeMenuHighscore, highscoreButton));
 
         
     }

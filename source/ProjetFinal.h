@@ -34,8 +34,16 @@ public:
     }
 
     /// Change le menu affiche pour le InGameOverlay
-    void changeMenuStart(){
+    void changeMenuInGameOverlay(){
         menuDisplay = menuMap["InGameOverlay"];
+    }
+    /// Change le menu affiche pour le MainMenu
+    void changeMenuMainMenu(){
+        menuDisplay = menuMap["MainMenu"];
+    }
+    /// Change la visibilité du nombre d'images par seconde
+    void setShowFPS(){
+
     }
 
     /// Chargeur de texture (les mets automatiquement dans le ressource manager).
@@ -63,6 +71,8 @@ public:
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
 
     }
 
@@ -166,7 +176,7 @@ public:
                     default:
                         if(!observables[sdlEvent->type])
                             observables[sdlEvent->type] = new Observable<SDL_Event *>;
-                       // observables[sdlEvent->type]->notify(sdlEvent);
+                         observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
             glContext->clear();
@@ -198,15 +208,6 @@ void testFUNCTION() {
     ProjetFinal::getInstance()->test();
 }
 
-void changeMenuStart() {
-    ProjetFinal::getInstance()->changeMenuStart();
-}
-void changeMenuSettings(){
-    ProjetFinal::getInstance()->changeMenuSettings();
-}
-void changeMenuHighscore(){
-    ProjetFinal::getInstance()->changeMenuHighscore();
-}
 
 #include "onClickFunctionsPart2.h"
 
