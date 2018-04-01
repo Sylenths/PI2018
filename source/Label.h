@@ -32,21 +32,23 @@ public:
         this->text = text;
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
 
-        glGenTextures(1, &textureID);
-        glBindTexture(GL_TEXTURE_2D, textureID);
+        glGenTextures(1, &textureToDraw);
+        glBindTexture(GL_TEXTURE_2D, textureToDraw);
 
         glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, sdlSurface->w, sdlSurface->h,0, GL_RGBA, GL_UNSIGNED_BYTE, sdlSurface->pixels);
         SDL_FreeSurface(sdlSurface);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+        textureIDs["default"] = textureToDraw;
     }
     void updateTextTexture(std::string text, TTF_Font* font, SDL_Color color){
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
-        glDeleteTextures(1,&textureID);
+        glDeleteTextures(1,&textureToDraw);
 
-        glGenTextures(1, &textureID);
-        glBindTexture(GL_TEXTURE_2D, textureID);
+        glGenTextures(1, &textureToDraw);
+        glBindTexture(GL_TEXTURE_2D, textureToDraw);
 
         glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, sdlSurface->w, sdlSurface->h,0, GL_RGBA, GL_UNSIGNED_BYTE, sdlSurface->pixels);
         SDL_FreeSurface(sdlSurface);
@@ -54,6 +56,7 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
+        textureIDs["default"] = textureToDraw;
     }
 
 };

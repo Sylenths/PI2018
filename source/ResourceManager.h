@@ -25,6 +25,12 @@ public:
 			delete ((*it).second);// (*it).second is the Resource* of the current map "container"
 			it = resources.erase(it);// Remove map "container" at current it position then set it to next map "container".
 		}
+
+        std::map<std::string, unsigned int>::iterator ittex = textures.begin();
+        while(ittex != textures.end()) {
+            glDeleteTextures(1,&((*ittex).second));// (*it).second is the Resource* of the current map "container"
+            ittex = textures.erase(ittex);// Remove map "container" at current it position then set it to next map "container".
+        }
 	}
 
 	/// Ajouter une ressource.

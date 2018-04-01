@@ -26,7 +26,9 @@ protected:
     unsigned int width; ///< Largeur du model (pour image en 2D)
     unsigned int height; ///< Hauteur du model (pour image en 2D)
 
-    unsigned int textureID; ///< Identificateur de la texture
+    unsigned int textureToDraw; ///< Identificateur de la texture
+
+    std::map<std::string, unsigned int> textureIDs;
 
 public:
 
@@ -34,7 +36,10 @@ public:
     /// \param textureID Identificateur de la texture.
 	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
     Model(unsigned int textureID, const char* objFile = nullptr) {
-        this->textureID = textureID;
+
+        textureIDs["default"] = textureID;
+        textureToDraw = textureID;
+
 
         vertexCount = texCount = normalCount = 0;
         vertices = normals = texCoords = nullptr;
@@ -253,6 +258,22 @@ public:
         delete[] texCoords;
     }
 
+    void setTexture(std::string name = "", unsigned int ID = 0) {
+        if((name == "") && (ID == 0))
+            textureToDraw = textureIDs["default"];
+
+
+        if((name != "") && (ID == 0))
+            textureToDraw = textureIDs[name];
+
+        if((name != "") && (ID != 0))
+            textureIDs[name] = textureToDraw = ID;
+
+
+
+    }
+
+
 	/// Applique une matrice de transformation au modèle.
 	/// \param m Matrice de transformation.
     void transform(Matrix m) {
@@ -279,7 +300,7 @@ public:
 
 	/// Affiche le modèle.
     void draw() {
-        glBindTexture(GL_TEXTURE_2D, textureID);
+        glBindTexture(GL_TEXTURE_2D, textureToDraw);
 
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_NORMAL_ARRAY);
