@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vector3d',['Vector3D',['../class_vector3_d.html',1,'Vector3D'],['../class_vector3_d.html#a31683a34920c7ea8def35f1d8703b70a',1,'Vector3D::Vector3D(const double &amp;x=0., const double &amp;y=0., const double &amp;z=0.)'],['../class_vector3_d.html#a765ee7fc4bf9c338cb96fbd0499257a1',1,'Vector3D::Vector3D(const Vector3D &amp;v)']]]
+  ['vector',['Vector',['../struct_vector.html',1,'Vector'],['../struct_vector.html#a00a6666b729cc2cef28849c477bdff14',1,'Vector::Vector(const double &amp;x=0., const double &amp;y=0., const double &amp;z=0.)'],['../struct_vector.html#a5f04e343b7306ad11f8a82c89b486764',1,'Vector::Vector(const Vector &amp;v)']]],
+  ['vertexcount',['vertexCount',['../class_model.html#aef8356f6096d0acb524a2dcd00c9e846',1,'Model']]]
 ];

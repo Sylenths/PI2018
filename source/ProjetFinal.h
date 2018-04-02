@@ -190,9 +190,9 @@ public:
 
     }
 
-    Vector3D get2DTextureSize(const char* filePath) {
+    Vector get2DTextureSize(const char* filePath) {
         SDL_Surface* surface = IMG_Load(filePath);
-        Vector3D size = {(double)surface->w, (double)surface->h, 0};
+        Vector size = {(double)surface->w, (double)surface->h, 0};
         SDL_FreeSurface(surface);
 
         return size;

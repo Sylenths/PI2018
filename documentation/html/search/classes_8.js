@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['resource',['Resource',['../class_resource.html',1,'']]],
-  ['resourcemanager',['ResourceManager',['../class_resource_manager.html',1,'']]],
-  ['rotatingimage',['RotatingImage',['../class_rotating_image.html',1,'']]]
+  ['observable',['Observable',['../class_observable.html',1,'']]],
+  ['observer',['Observer',['../class_observer.html',1,'']]],
+  ['observer_3c_20sdl_5fevent_20_2a_3e',['Observer&lt; SDL_Event *&gt;',['../class_observer.html',1,'']]]
 ];

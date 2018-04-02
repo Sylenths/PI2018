@@ -1,6 +1,6 @@
 /// \brief La maille est la somme de tous les points pour former une forme géométrique dans OpenGL.
 /// \details
-/// \author Tai Chen Li, samuel Labelle, Gabriel Bourdages
+/// \author Tai Chen Li, Samuel Labelle, Gabriel Bourdages
 /// \date 28 mars 2018
 /// \version 0.2
 /// \warning Aucuns.
@@ -273,30 +273,27 @@ public:
 
     }
 
-
 	/// Applique une matrice de transformation au modèle.
 	/// \param m Matrice de transformation.
-    void transform(Matrix m) {
-        Vector3D nv;
-        unsigned int x, y, z;
+	void transform(Matrix& m){//matrix not being a reference causes crashes (because no copy constructor is defined)
+		unsigned int x, y, z;
+		for (int i = 0; i < vertexCount; ++i) {
 
-        for(int i = 0; i < vertexCount; ++i) {
             x = i * 3;
             y = x + 1;
             z = x + 2;
 
-            nv = m * Vector3D(vertices[x] - m.m41, vertices[y] - m.m42, vertices[z] - m.m43);
-            vertices[x] = nv.x + m.m41;
-            vertices[y] = nv.y + m.m42;
-            vertices[z] = nv.z + m.m43;
+			Vector nv = m * Vector(vertices[x], vertices[y], vertices[z]);
+			vertices[x] = nv.x;
+			vertices[y] = nv.y;
+			vertices[z] = nv.z;
 
-            nv = m * Vector3D(normals[x] - m.m41, normals[y] - m.m42, normals[z] - m.m43);
-            normals[x] = nv.x + m.m41;
-            normals[y] = nv.y + m.m42;
-            normals[z] = nv.z + m.m43;
-
-        }
-    }
+			nv = m * Vector(normals[x], normals[y], normals[z]);
+			normals[x] = nv.x;
+			normals[y] = nv.y;
+			normals[z] = nv.z;
+		}
+	}
 
 	/// Affiche le modèle.
     void draw() {
