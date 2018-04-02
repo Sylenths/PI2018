@@ -10,15 +10,16 @@
 
 class Menu {
 protected:
-  std::string activeMenu;
+  static std::string activeMenu;
 
 public:  
-  std::string getActiveMenu() {
+  static std::string getActiveMenu() {
     return activeMenu;
   }
 
   virtual void draw() = 0;
 };
 
+std::string Menu::activeMenu = "";
 
 #endif

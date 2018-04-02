@@ -6,10 +6,6 @@
 
 class InGameESC : public Menu{
 public:
-  InGameESC() {
-    activeMenu = "InGameESC";
-  }
-
     void draw (){
 
     }

@@ -32,13 +32,13 @@ public:
 
         settingsButton = new Button( ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0.2, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
-        settingsButton->onClick = [this]() { activeMenu = "Settings"; };
+        settingsButton->onClick = [this]() { Menu::activeMenu = "Settings"; };
 
         highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0.1, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
-        highscoreButton->onClick = [this]() { activeMenu = "Highscore"; };
+        highscoreButton->onClick = [this]() { Menu::activeMenu = "Highscore"; };
 
-        activeMenu = "MainMenu";
+        Menu::activeMenu = "MainMenu";
     }
 
     void onStartButtonClick() {

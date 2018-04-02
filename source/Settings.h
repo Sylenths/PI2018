@@ -31,8 +31,6 @@ public:
         backButton = new Button (  ResourceManager::getInstance()->getTexture("ButtonBack"), 640, 143, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonBack", backButton);
         //backButton->setOnClick(std::bind(&ProjetFinal::changeMenuMainMenu, backButton));
-
-        activeMenu = "Settings";
     }
 
     void draw (){
