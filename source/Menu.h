@@ -9,11 +9,15 @@
 #define SOURCE_MENU_H
 
 class Menu {
-private:
+protected:
+  std::string activeMenu;
 
-public:
+public:  
+  std::string getActiveMenu() {
+    return activeMenu;
+  }
 
-    virtual void draw() = 0;
+  virtual void draw() = 0;
 };
 
 

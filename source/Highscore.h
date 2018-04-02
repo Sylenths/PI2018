@@ -12,6 +12,9 @@
 
 class Highscore : public Menu{
 public:
+  Highscore() {
+    activeMenu = "Highscore";
+  }
 
     void draw(){
 

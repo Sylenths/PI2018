@@ -104,10 +104,10 @@ public:
         sdlEvent = new SDL_Event();
         loadTextures();
         menuMap["MainMenu"] = new MainMenu();
-        //menuMap["Settings"] = new Settings;
-        //menuMap["InGameOverlay"] = new InGameOverlay;
-        //menuMap["InGameESC"] = new InGameESC;
-        //menuMap["Highscore"] = new Highscore;
+        menuMap["Settings"] = new Settings();
+        menuMap["InGameOverlay"] = new InGameOverlay;
+        menuMap["InGameESC"] = new InGameESC;
+        menuMap["Highscore"] = new Highscore;
         menuDisplay = menuMap["MainMenu"];
         subscribeObservers();
     }
@@ -179,12 +179,12 @@ public:
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
-            glContext->clear();
 
+            glContext->clear();
             menuDisplay->draw();
+            menuDisplay = menuMap[menuDisplay->getActiveMenu()];
             // Le path n'est pas bon, Je N'ai pas fichier image
             //ResourceManager::getInstance()->getResource<Resource*>("start")->draw();
-
             glContext->refresh();
          }
 
@@ -197,18 +197,6 @@ public:
 
         return size;
     }
-
-    void test() {
-        //std::cout << "Hello World!";
-    }
-
 };
-
-void testFUNCTION() {
-    ProjetFinal::getInstance()->test();
-}
-
-
-#include "onClickFunctionsPart2.h"
 
 #endif

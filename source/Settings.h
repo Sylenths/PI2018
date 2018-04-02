@@ -32,8 +32,7 @@ public:
         ResourceManager::getInstance()->addResource("ButtonBack", backButton);
         //backButton->setOnClick(std::bind(&ProjetFinal::changeMenuMainMenu, backButton));
 
-
-
+        activeMenu = "Settings";
     }
 
     void draw (){

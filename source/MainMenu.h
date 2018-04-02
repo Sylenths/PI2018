@@ -32,23 +32,17 @@ public:
 
         settingsButton = new Button( ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0.2, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
-        settingsButton->onClick = [this]() { onSettingsButtonClick(); };
+        settingsButton->onClick = [this]() { activeMenu = "Settings"; };
 
         highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0.1, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
-        highscoreButton->onClick = [this]() { onHighScoreButtonClick(); };
+        highscoreButton->onClick = [this]() { activeMenu = "Highscore"; };
+
+        activeMenu = "MainMenu";
     }
 
     void onStartButtonClick() {
       // TODO : Code on start button click...
-    }
-
-    void onSettingsButtonClick() {
-      // TODO : Code on settings button click...
-    }
-
-    void onHighScoreButtonClick() {
-      // TODO : Code on settings button click...
     }
 
     void draw(){
@@ -57,8 +51,6 @@ public:
         settingsButton->draw();
         imageMenu->draw();
     }
-
-
 };
 
 

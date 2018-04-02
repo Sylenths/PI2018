@@ -12,6 +12,10 @@
 
 class InGameOverlay : public Menu {
 public:
+  InGameOverlay() {
+    activeMenu = "InGameOverlay";
+
+  }
 
     void draw(){
 
