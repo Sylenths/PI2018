@@ -12,11 +12,10 @@
 #include "Image2D.h"
 
 class Button : public Image2D {
-private:
-    std::function<void()> onClick;  ///< Le pointeur de méthode vers quoi on veut réagir avec nos événements
-
 public:
-	/// Constructeur.
+  std::function<void()> onClick;  ///< Le pointeur de méthode vers quoi on veut réagir avec nos événements
+
+  /// Constructeur.
 	/// \param onClick Fonction Activée par le bouton.
     /// \param textureID Identificateur de la texture.
 	/// \param x Position en x par rapport au coin gauche en haut.
@@ -24,7 +23,7 @@ public:
 	/// \param width Largeur du bouton.
 	/// \param height Hauteur du bouton.
     Button( unsigned int textureID, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Image2D(textureID,x,y,z,width,height){
-
+      onClick = nullptr;
     }
 	/// Réception de notifications d'événements SDL.
 	/// \param sdlEvent Événement SDL.
@@ -34,7 +33,7 @@ public:
                 if (sdlEvent->button.x <= (x + width)) {
                     if (sdlEvent->button.y >= y) {
                         if (sdlEvent->button.y <= (y + height)) {
-                            onClick();
+                            if (onClick) onClick();
                         }
                     }
                 }
@@ -42,13 +41,6 @@ public:
         }
 
     }
-
-    /// Bind une méthode d'une certaine classe
-    /// \param Pour binder une méthode d'une certaine classe utiliser : std::bind(&Class::function, object) PS: ne pas oublier &
-    void setOnClick(std::function<void()> onClick) {
-        this -> onClick = onClick;
-    }
-
 };
 
 

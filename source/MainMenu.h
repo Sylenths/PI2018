@@ -11,6 +11,7 @@
 #include "Button.h"
 #include "Image2D.h"
 #include "includes.h"
+#include <iostream>
 
 class MainMenu : public Menu {
 private:
@@ -19,41 +20,42 @@ private:
     Button* highscoreButton;
     Image2D* imageMenu;
 
-
-
-
 public:
-
-
     /// Constructeur
     MainMenu(){
-
-
         imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0.01, 1280, 720);
         ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
 
         startButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0.3, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonStart", startButton);
-        //startButton->setOnClick(std::bind(&ProjetFinal::changeMenuStart, startButton));
+        startButton->onClick = [this]() { onStartButtonClick(); };
 
         settingsButton = new Button( ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0.2, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
-        //settingsButton->setOnClick(std::bind(&ProjetFinal::changeMenuSettings, settingsButton));
+        settingsButton->onClick = [this]() { onSettingsButtonClick(); };
 
         highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0.1, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
-        //highscoreButton->setOnClick(std::bind(&ProjetFinal::changeMenuHighscore, highscoreButton));
+        highscoreButton->onClick = [this]() { onHighScoreButtonClick(); };
+    }
 
-        
+    void onStartButtonClick() {
+      // TODO : Code on start button click...
+    }
+
+    void onSettingsButtonClick() {
+      // TODO : Code on settings button click...
+    }
+
+    void onHighScoreButtonClick() {
+      // TODO : Code on settings button click...
     }
 
     void draw(){
-
         startButton->draw();
-        settingsButton->draw();
         highscoreButton->draw();
+        settingsButton->draw();
         imageMenu->draw();
-
     }
 
 

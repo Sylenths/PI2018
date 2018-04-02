@@ -67,12 +67,12 @@ public:
     /// Subscribe de tous les observateurs.
     void subscribeObservers(){
         if(!observables[SDL_MOUSEBUTTONDOWN])
-            observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event *>;
+            observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+        //observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
+        //observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
 
     }
 
@@ -103,11 +103,11 @@ public:
         glContext->setFrustum(90.0, 0.1, 1000.0, true);
         sdlEvent = new SDL_Event();
         loadTextures();
-        menuMap["MainMenu"] = new MainMenu;
-        menuMap["Settings"] = new Settings;
-        menuMap["InGameOverlay"] = new InGameOverlay;
-        menuMap["InGameESC"] = new InGameESC;
-        menuMap["Highscore"] = new Highscore;
+        menuMap["MainMenu"] = new MainMenu();
+        //menuMap["Settings"] = new Settings;
+        //menuMap["InGameOverlay"] = new InGameOverlay;
+        //menuMap["InGameESC"] = new InGameESC;
+        //menuMap["Highscore"] = new Highscore;
         menuDisplay = menuMap["MainMenu"];
         subscribeObservers();
     }

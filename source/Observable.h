@@ -31,14 +31,9 @@ public:
     /// \param arg Paramètre à passer lors de la notification.
     void notify(T arg){
         typename std::list<Observer<T>*>::iterator it = observers.begin();
-        for (int i = 0; i <observers.size() ; ++i) {
+        for (int i = 0; i < observers.size() ; ++i) {
             (*it++)->notify(arg);
         }
-
-        /*
-         * for(auto it : observers*)
-         * it->notification;
-         */
     }
 };
 
