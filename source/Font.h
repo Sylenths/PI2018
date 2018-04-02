@@ -19,7 +19,7 @@ public:
 	/// \param filename Nom du fichier contenant la police de caractères.
 	/// \param pixelSize La taille des caractères.
     Font(const char* filename, int pixelSize = 12) { //
-        if(font)
+        if(!font)
         font = TTF_OpenFont(filename, pixelSize);
     }
     
