@@ -28,7 +28,7 @@ public:
 
         startButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0.3, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonStart", startButton);
-        startButton->onClick = [this]() { onStartButtonClick(); };
+        startButton->onClick = [this]() { Menu::activeMenu = "inGame"; };
 
         settingsButton = new Button( ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0.2, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
@@ -41,8 +41,15 @@ public:
         Menu::activeMenu = "MainMenu";
     }
 
+    /*~MainMenu(){
+        delete startButton;
+        delete settingsButton;
+        delete highscoreButton;
+        delete imageMenu;
+    }*/
+
     void onStartButtonClick() {
-      // TODO : Code on start button click...
+
     }
 
     void draw(){

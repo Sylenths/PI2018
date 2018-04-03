@@ -17,7 +17,7 @@
 /// \return Angle en radians.
 double degtorad(double deg)
 {
-  return deg * M_PI / 180.0;
+ // return deg * M_PI / 180.0;
 }
 
 /*

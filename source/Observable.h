@@ -26,6 +26,9 @@ public:
     void unsubscribe(Observer<T>* observer) {
         observers.remove(observer);
     }
+    void unsuscribeAll(){
+        observers.clear();
+    }
 
     /// Permettre de se faire notifier par l'Observable.
     /// \param arg Paramètre à passer lors de la notification.
