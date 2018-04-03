@@ -9,15 +9,23 @@
 #define SOURCE_MENU_H
 #include "includes.h"
 #include "Scene.h"
+#include "Observable.h"
 
 class Menu : public Scene{
 protected:
 
 
-public:  
+public:
 
 
   virtual void draw() = 0;
+    virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> *observables){
+
+    }
+
+    virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables){
+
+    }
 };
 
 

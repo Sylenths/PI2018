@@ -39,6 +39,11 @@ public:
             }
         }
     }
+    virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> *observables) {
+
+    }
+
+    virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> * observables){}
 
 };
 #endif //SOURCE_WORLD_H

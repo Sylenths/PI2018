@@ -23,7 +23,7 @@ private:
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
 public:
-    
+
     /// Change la visibilité du nombre d'images par seconde
     void setShowFPS(){
 
@@ -48,16 +48,15 @@ public:
     }
 
     /// Subscribe de tous les observateurs.
-    void subscribeObservers(){
+   /* void subscribeObservers(){
         if(!observables[SDL_MOUSEBUTTONDOWN])
             observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
-        //observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
-        //observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+        menuMap["MainMenu"]->subscribeAll(observables);
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
 
     }
+    */
 
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
@@ -73,8 +72,10 @@ public:
         //Textures boutons settings
         /*getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
         getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
-        getTextureID("images/noButtonSettings_placeoholder.png", "ButtonFPS");
-        getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");*/
+         */
+        /*getTextureID("../../images/BoutonNO.png", "FPSButton");
+        getTextureID("../../images/BoutonBack.png", "backButton");
+        getTextureID("../../images/SettingsMenu.png", "FondSettings");*/
     }
 
 	/// Constructeur
@@ -94,7 +95,7 @@ public:
         sceneMap["InGameESC"] = new InGameESC;
         sceneMap["Highscore"] = new Highscore;
         sceneMap["World"] = new World();
-        subscribeObservers();
+
     }
 
     /// Destructeur
@@ -118,6 +119,7 @@ public:
 
     /// Représente la boucle de jeu.
     void run(std::string filePath){
+        sceneMap["MainMenu"]->subscribeAll(&observables);
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_LIGHTING);
@@ -185,5 +187,4 @@ public:
         return size;
     }
 };
-
 #endif

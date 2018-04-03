@@ -51,6 +51,34 @@ struct Vector {
 
 		return *this;
 	}
+	
+	/// Rend ce vecteur en un vecteur unitaire SANS LA MODIFIER (NON PERMANENT CHANGE (NPC))
+    	/// \return Vecteur unitaire de cette opération.
+
+    Vector normalizeNPC() {
+        Vector A;
+        double prevNorm = getNorm();
+
+        A.x = x / prevNorm;
+        A.y = y / prevNorm;
+        A.z = z / prevNorm;
+
+        return A;
+    }
+	
+	/// Rend ce vecteur en un vecteur unitaire avec les composantes XZ SANS LA MODIFIER (NON PERMANENT CHANGE (NPC))
+    	/// \return Vecteur unitaire de cette opération.
+	
+    Vector normalizeNPCXZ() {
+        Vector A;
+        double prevNorm = sqrt(x*x + z*z);
+
+        A.x = x / prevNorm;
+        A.y = 0.0;
+        A.z = z / prevNorm;
+
+     	return A;
+    }
 
     /// Sommation de deux vecteurs.
     /// \param v Deuxième terme de la sommation.
