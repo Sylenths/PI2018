@@ -48,7 +48,7 @@ public:
     }
 
     /// Subscribe de tous les observateurs.
-    void subscribeObservers(){
+   /* void subscribeObservers(){
         if(!observables[SDL_MOUSEBUTTONDOWN])
             observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
@@ -58,6 +58,7 @@ public:
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
 
     }
+    */
 
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {

@@ -43,12 +43,14 @@ public:
         fond->draw();
     }
 
-    void unsubscirbe(){
-
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> observables){
+        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
+        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
     }
 
-    void subscribe(){
-        
+    void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> observables){
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
     }
 };
 
