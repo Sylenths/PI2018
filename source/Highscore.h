@@ -13,11 +13,11 @@
 class Highscore : public Menu{
 public:
 
-    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> observables) {
+    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables) {
 
     }
 
-    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> observables) {
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables) {
 
     }
 

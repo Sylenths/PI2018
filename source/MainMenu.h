@@ -61,11 +61,11 @@ public:
     void subscribeAll(std::map <unsigned int, Observable<SDL_Event*>*>* observables){
         if(!(*observables)[SDL_MOUSEBUTTONDOWN])
             (*observables)[SDL_MOUSEBUTTONDOWN]= new Observable<SDL_Event*>;
-        (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(startButton);
+        (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
         (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
         (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
     }
-    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> * observables){
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables){
         (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
         (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
         (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));

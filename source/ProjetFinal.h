@@ -70,12 +70,9 @@ public:
 
 
         //Textures boutons settings
-        /*getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
-        getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
-         */
-        /*getTextureID("../../images/BoutonNO.png", "FPSButton");
+        getTextureID("../../images/BoutonNO.png", "FPSButton");
         getTextureID("../../images/BoutonBack.png", "backButton");
-        getTextureID("../../images/SettingsMenu.png", "FondSettings");*/
+        getTextureID("../../images/SettingsMenu.png", "FondSettings");
     }
 
 	/// Constructeur
@@ -167,6 +164,12 @@ public:
                 }
             }
             sceneDisplay = sceneMap[Scene::getActiveScene()];
+
+            if(sceneDisplay != sceneMap[Scene::getActiveScene()]){
+                sceneMap["MainMenu"]->unsubscribeAll(&observables);
+                sceneMap["Settings"]->unsubscribeAll(&observables);
+                sceneMap[Scene::getActiveScene()]->subscribeAll(&observables);
+            }
 
             glContext->clear();
             sceneDisplay->draw();

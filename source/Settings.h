@@ -32,7 +32,7 @@ public:
 
 
         backButton = new Button (  ResourceManager::getInstance()->getTexture("backButton"), 498, 550, 0.l, 284, 113);
-        ResourceManager::getInstance()->addResource("ButtonBack", backButton);
+        ResourceManager::getInstance()->addResource("backButton", backButton);
         backButton->onClick = [this]() {Scene::activeScene  = "MainMenu";};
 
         showFPS = new Label(font->getFont(), {128,128,128,0}, "Show FPS : ", 71, 300, 0.1, 466, 113);
@@ -45,14 +45,14 @@ public:
         fond->draw();
     }
 
-    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> observables){
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables){
+        (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
+        (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
     }
 
-    void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> observables){
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+    void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables){
+        (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
+        (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
     }
 };
 
