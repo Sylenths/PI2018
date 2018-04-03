@@ -24,9 +24,11 @@ public:
     /// \param height Hauteur de l'image.
     Image2D(unsigned int textureID, double x, double y, double z, double width, double height) : Model(textureID) {
 
-        this -> x = x;
-        this -> y = y;
-        this -> z = z;
+        this->x = x;
+        this->y = y;
+        this->z = z;
+        this->width = width;
+        this->height = height;
 
         vertexCount = normalCount = texCount = 6;
 
