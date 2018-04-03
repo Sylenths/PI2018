@@ -42,6 +42,14 @@ public:
         backButton->draw();
         fond->draw();
     }
+
+    void unsubscirbe(){
+
+    }
+
+    void subscribe(){
+        
+    }
 };
 
 
