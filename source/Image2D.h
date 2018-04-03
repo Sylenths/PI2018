@@ -22,7 +22,7 @@ public:
     /// \param y Position en y par rapport au coin gauche en haut.
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
-    Image2D(unsigned int textureID, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Model(textureID) {
+    Image2D(unsigned int textureID, double x, double y, double z, double width, double height) : Model(textureID) {
 
         this -> x = x;
         this -> y = y;

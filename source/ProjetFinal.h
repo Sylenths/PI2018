@@ -19,6 +19,7 @@ private:
     std::map<std::string, Menu*> menuMap; ///< Carte de menu
     SDL_Event* sdlEvent; ///< Gestionnaire d'évennements
     Menu* menuDisplay;
+    World* world;
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
 public:
@@ -83,6 +84,9 @@ public:
         getTextureID("../../images/settings.png", "ButtonSettings");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
         getTextureID("../../images/maisonApp.png", "FondMaison");
+       // getTextureID("../../images/grass.png", "grass");
+       // getTextureID("../../images/cielnuageu.png", "sky");
+
 
         //Textures boutons settings
         /*getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
@@ -109,6 +113,7 @@ public:
         menuMap["InGameESC"] = new InGameESC;
         menuMap["Highscore"] = new Highscore;
         menuDisplay = menuMap["MainMenu"];
+        world = nullptr;
         subscribeObservers();
     }
 
@@ -165,6 +170,7 @@ public:
 
         ResourceManager::getInstance()->addResource("start", testButton);
 */
+        std::string active = Menu::getActiveMenu();
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
@@ -181,8 +187,20 @@ public:
             }
 
             glContext->clear();
-            menuDisplay->draw();
-            menuDisplay = menuMap[menuDisplay->getActiveMenu()];
+
+            if(Menu::getActiveMenu() == "inGame"){
+                if(!world){
+                  //  getTextureID("../../images/grass.png", "grass");
+                 //   getTextureID("../../images/cielnuageu.png", "sky");
+                    world = new World();
+                }
+                world->draw();
+            } else
+                menuDisplay->draw();
+
+            menuDisplay = menuMap[Menu::getActiveMenu()];
+            active =  Menu::getActiveMenu();
+
             // Le path n'est pas bon, Je N'ai pas fichier image
             //ResourceManager::getInstance()->getResource<Resource*>("start")->draw();
             glContext->refresh();
