@@ -59,6 +59,16 @@ public:
         settingsButton->draw();
         imageMenu->draw();
     }
+    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> observables){
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
+    }
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> observables){
+        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
+        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
+        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
+    }
 };
 
 

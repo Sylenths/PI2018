@@ -51,9 +51,7 @@ public:
     void subscribeObservers(){
         if(!observables[SDL_MOUSEBUTTONDOWN])
             observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
+        menuMap["MainMenu"]->subscribeAll(observables);
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
 
