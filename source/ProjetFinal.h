@@ -23,7 +23,7 @@ private:
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
 public:
-    
+
     /// Change la visibilité du nombre d'images par seconde
     void setShowFPS(){
 
