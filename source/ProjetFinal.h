@@ -54,8 +54,8 @@ public:
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
-        //observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
-        //observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
 
     }
 
@@ -73,8 +73,10 @@ public:
         //Textures boutons settings
         /*getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
         getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
-        getTextureID("images/noButtonSettings_placeoholder.png", "ButtonFPS");
-        getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");*/
+         */
+        getTextureID("../../images/BoutonNO.png", "FPSButton");
+        getTextureID("../../images/BoutonBack.png", "backButton");
+        getTextureID("../../images/SettingsMenu.png", "FondSettings");
     }
 
 	/// Constructeur
