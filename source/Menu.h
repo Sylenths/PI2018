@@ -20,6 +20,6 @@ public:
   virtual void draw() = 0;
 };
 
-std::string Menu::activeMenu = "";
+std::string Menu::activeMenu = "MainMenu";
 
 #endif

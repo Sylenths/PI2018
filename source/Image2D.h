@@ -27,6 +27,8 @@ public:
         this -> x = x;
         this -> y = y;
         this -> z = z;
+        this->height = height;
+        this->width = width;
 
         vertexCount = normalCount = texCount = 6;
 
