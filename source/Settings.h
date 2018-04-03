@@ -29,7 +29,6 @@ public:
 
         FPSButton = new Button (  ResourceManager::getInstance()->getTexture("ButtonFPS"), 712, 439, 0.2, 510, 113);
         ResourceManager::getInstance()->addResource("ButtonFPS", FPSButton);
-        //FPSButton->setOnClick(std::bind(&ProjetFinal::setShowFPS, FPSButton));
 
         backButton = new Button (  ResourceManager::getInstance()->getTexture("ButtonBack"), 498, 704, 0.l, 284, 113);
         ResourceManager::getInstance()->addResource("ButtonBack", backButton);
