@@ -11,26 +11,31 @@
 
 #include "includes.h"
 #include "Label.h"
+#include "Font.h"
 
 class Settings : public Menu{
 private:
     Button* leftArrowButton, * rightArrowButton, * FPSButton, * backButton;
+    Label* resolution, * showFPS;
+    //Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
 
 public:
     Settings() {
-        leftArrowButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonLeftArrow"), 800, 543, 0, 100, 100);
+        leftArrowButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonLeftArrow"), 723, 299, 0.1, 51, 51);
         ResourceManager::getInstance()->addResource("ButtonLeftArrow", leftArrowButton);
 
-        rightArrowButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonRightArrow"), 950, 543, 0, 100, 100);
+        rightArrowButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonRightArrow"), 1160, 299, 0.1, 51, 51);
         ResourceManager::getInstance()->addResource("ButtonRightArrow", rightArrowButton);
 
-        FPSButton = new Button (  ResourceManager::getInstance()->getTexture("ButtonFPS"), 800, 343, 0, 298, 128);
+        FPSButton = new Button (  ResourceManager::getInstance()->getTexture("ButtonFPS"), 712, 439, 0.2, 510, 113);
         ResourceManager::getInstance()->addResource("ButtonFPS", FPSButton);
-        //FPSButton->setOnClick(std::bind(&ProjetFinal::setShowFPS, FPSButton));
 
-        backButton = new Button (  ResourceManager::getInstance()->getTexture("ButtonBack"), 640, 143, 0, 298, 128);
+        backButton = new Button (  ResourceManager::getInstance()->getTexture("ButtonBack"), 498, 704, 0.l, 284, 113);
         ResourceManager::getInstance()->addResource("ButtonBack", backButton);
-        //backButton->setOnClick(std::bind(&ProjetFinal::changeMenuMainMenu, backButton));
+        backButton->onClick = [this]() {Menu::activeMenu = "MainMenu";};
+
+        //resolution = new Label(font->getFont(), {128, 128, 128, 0}, "Resolution : ", 71, 330, 0.1,  466, 113);
+        //showFPS = new Label(font->getFont(), {128,128,128,0}, "Show FPS : ", 71, 443, 0.1, 466, 113);
     }
 
     void draw (){

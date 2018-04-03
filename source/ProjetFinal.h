@@ -23,25 +23,7 @@ private:
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
 public:
-
-    /// Change le menu  afficher pour le menu Settings
-    void changeMenuSettings() {
-        menuDisplay = menuMap["Settings"];
-    }
-
-    /// Change le menu  afficher pour le menu HighScore
-    void changeMenuHighscore(){
-        menuDisplay = menuMap["Highscore"];
-    }
-
-    /// Change le menu affiche pour le InGameOverlay
-    void changeMenuInGameOverlay(){
-        menuDisplay = menuMap["InGameOverlay"];
-    }
-    /// Change le menu affiche pour le MainMenu
-    void changeMenuMainMenu(){
-        menuDisplay = menuMap["MainMenu"];
-    }
+    
     /// Change la visibilité du nombre d'images par seconde
     void setShowFPS(){
 
