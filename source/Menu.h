@@ -17,6 +17,10 @@ public:
     return activeMenu;
   }
 
+  virtual void subscribeAll() = 0;
+
+  virtual void unsusbscribeAll() = 0;
+
   virtual void draw() = 0;
 
 };
