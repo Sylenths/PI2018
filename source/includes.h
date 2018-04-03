@@ -30,7 +30,6 @@
 #include "Vector.h"
 #include "Menu.h"
 #include "Model.h"
-#include "onClickFunctionsPart1.h"
 #include "Button.h"
 #include "Image2D.h"
 #include "ProjetFinal.h"
@@ -38,6 +37,7 @@
 #include "ResourceManager.h"
 #include "Label.h"
 #include "Font.h"
+#include "World.h"
 
 
 

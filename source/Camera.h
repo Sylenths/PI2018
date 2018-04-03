@@ -4,7 +4,7 @@
 /// \date 2 Avril 2018
 /// \version 0.1
 /// \warning Aucuns.
-/// \bugs Mouvement par déplacement sucessif fixes dépendant du taux de rafraichissement des touches du clavier, Aucune restrictions pour la rotation haut-bas.
+/// \bug Mouvement par déplacement sucessif fixes dépendant du taux de rafraichissement des touches du clavier, Aucune restrictions pour la rotation haut-bas.
 
 #ifndef CAMERA_H
 #define CAMERA_H

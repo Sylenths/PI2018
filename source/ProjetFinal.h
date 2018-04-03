@@ -19,28 +19,11 @@ private:
     std::map<std::string, Menu*> menuMap; ///< Carte de menu
     SDL_Event* sdlEvent; ///< Gestionnaire d'évennements
     Menu* menuDisplay;
+    World* world;
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
 public:
 
-    /// Change le menu  afficher pour le menu Settings
-    void changeMenuSettings() {
-        menuDisplay = menuMap["Settings"];
-    }
-
-    /// Change le menu  afficher pour le menu HighScore
-    void changeMenuHighscore(){
-        menuDisplay = menuMap["Highscore"];
-    }
-
-    /// Change le menu affiche pour le InGameOverlay
-    void changeMenuInGameOverlay(){
-        menuDisplay = menuMap["InGameOverlay"];
-    }
-    /// Change le menu affiche pour le MainMenu
-    void changeMenuMainMenu(){
-        menuDisplay = menuMap["MainMenu"];
-    }
     /// Change la visibilité du nombre d'images par seconde
     void setShowFPS(){
 
@@ -65,16 +48,15 @@ public:
     }
 
     /// Subscribe de tous les observateurs.
-    void subscribeObservers(){
+   /* void subscribeObservers(){
         if(!observables[SDL_MOUSEBUTTONDOWN])
             observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
-        //observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
-        //observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+        menuMap["MainMenu"]->subscribeAll(observables);
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
 
     }
+    */
 
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
@@ -83,12 +65,17 @@ public:
         getTextureID("../../images/settings.png", "ButtonSettings");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
         getTextureID("../../images/maisonApp.png", "FondMaison");
+       // getTextureID("../../images/grass.png", "grass");
+       // getTextureID("../../images/cielnuageu.png", "sky");
+
 
         //Textures boutons settings
         /*getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
         getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
-        getTextureID("images/noButtonSettings_placeoholder.png", "ButtonFPS");
-        getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");*/
+         */
+        getTextureID("../../images/BoutonNO.png", "FPSButton");
+        getTextureID("../../images/BoutonBack.png", "backButton");
+        getTextureID("../../images/SettingsMenu.png", "FondSettings");
     }
 
 	/// Constructeur
@@ -108,8 +95,7 @@ public:
         menuMap["InGameOverlay"] = new InGameOverlay;
         menuMap["InGameESC"] = new InGameESC;
         menuMap["Highscore"] = new Highscore;
-        menuDisplay = menuMap["MainMenu"];
-        subscribeObservers();
+        world = nullptr;
     }
 
     /// Destructeur
@@ -165,6 +151,7 @@ public:
 
         ResourceManager::getInstance()->addResource("start", testButton);
 */
+        std::string active = Menu::getActiveMenu();
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
@@ -179,10 +166,22 @@ public:
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
+            menuDisplay = menuMap[Menu::getActiveMenu()];
 
             glContext->clear();
-            menuDisplay->draw();
-            menuDisplay = menuMap[menuDisplay->getActiveMenu()];
+
+            if(Menu::getActiveMenu() == "inGame"){
+                if(!world){
+                    getTextureID("../../images/grass.png", "grass");
+                    getTextureID("../../images/cielnuageu.png", "sky");
+                    world = new World();
+                }
+                world->draw();
+            } else
+                menuDisplay->draw();
+
+            active =  Menu::getActiveMenu();
+
             // Le path n'est pas bon, Je N'ai pas fichier image
             //ResourceManager::getInstance()->getResource<Resource*>("start")->draw();
             glContext->refresh();

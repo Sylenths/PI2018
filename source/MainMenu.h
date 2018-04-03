@@ -23,26 +23,34 @@ private:
 public:
     /// Constructeur
     MainMenu(){
-        imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0.01, 1280, 720);
+        imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
         ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
 
-        startButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0.3, 298, 128);
+        startButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonStart", startButton);
-        startButton->onClick = [this]() { onStartButtonClick(); };
+        startButton->onClick = [this]() { Menu::activeMenu = "inGame"; };
 
-        settingsButton = new Button( ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0.2, 298, 128);
+        settingsButton = new Button( ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
         settingsButton->onClick = [this]() { Menu::activeMenu = "Settings"; };
 
-        highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0.1, 298, 128);
+        highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
         highscoreButton->onClick = [this]() { Menu::activeMenu = "Highscore"; };
 
         Menu::activeMenu = "MainMenu";
+
     }
 
+    /*~MainMenu(){
+        delete startButton;
+        delete settingsButton;
+        delete highscoreButton;
+        delete imageMenu;
+    }*/
+
     void onStartButtonClick() {
-      // TODO : Code on start button click...
+
     }
 
     void draw(){
@@ -50,6 +58,16 @@ public:
         highscoreButton->draw();
         settingsButton->draw();
         imageMenu->draw();
+    }
+    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> observables){
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
+    }
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> observables){
+        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
+        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
+        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
     }
 };
 
