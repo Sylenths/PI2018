@@ -112,7 +112,6 @@ public:
         menuMap["InGameOverlay"] = new InGameOverlay;
         menuMap["InGameESC"] = new InGameESC;
         menuMap["Highscore"] = new Highscore;
-        menuDisplay = menuMap["MainMenu"];
         world = nullptr;
         subscribeObservers();
     }
@@ -185,20 +184,20 @@ public:
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
+            menuDisplay = menuMap[Menu::getActiveMenu()];
 
             glContext->clear();
 
             if(Menu::getActiveMenu() == "inGame"){
                 if(!world){
-                  //  getTextureID("../../images/grass.png", "grass");
-                 //   getTextureID("../../images/cielnuageu.png", "sky");
+                    getTextureID("../../images/grass.png", "grass");
+                    getTextureID("../../images/cielnuageu.png", "sky");
                     world = new World();
                 }
                 world->draw();
             } else
                 menuDisplay->draw();
 
-            menuDisplay = menuMap[Menu::getActiveMenu()];
             active =  Menu::getActiveMenu();
 
             // Le path n'est pas bon, Je N'ai pas fichier image
