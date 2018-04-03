@@ -37,6 +37,7 @@
 #include "ResourceManager.h"
 #include "Label.h"
 #include "Font.h"
+#include "Scene.h"
 #include "World.h"
 
 

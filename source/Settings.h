@@ -12,6 +12,7 @@
 #include "includes.h"
 #include "Label.h"
 #include "Font.h"
+#include "Observable.h"
 
 class Settings : public Menu{
 private:
@@ -29,9 +30,10 @@ public:
         FPSButton = new Button (  ResourceManager::getInstance()->getTexture("FPSButton"), 712, 300, 0.2, 510, 113);
         ResourceManager::getInstance()->addResource("FPSButton", FPSButton);
 
+
         backButton = new Button (  ResourceManager::getInstance()->getTexture("backButton"), 498, 550, 0.l, 284, 113);
-        ResourceManager::getInstance()->addResource("backButton", backButton);
-        backButton->onClick = [this]() {Menu::activeMenu = "MainMenu";};
+        ResourceManager::getInstance()->addResource("ButtonBack", backButton);
+        backButton->onClick = [this]() {Scene::activeScene  = "MainMenu";};
 
         showFPS = new Label(font->getFont(), {128,128,128,0}, "Show FPS : ", 71, 300, 0.1, 466, 113);
     }

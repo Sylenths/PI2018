@@ -7,27 +7,26 @@
 /// \bug Problèmes connus
 #ifndef SOURCE_MENU_H
 #define SOURCE_MENU_H
-
+#include "includes.h"
+#include "Scene.h"
 #include "Observable.h"
 
-class Menu {
+class Menu : public Scene{
 protected:
-  static std::string activeMenu;
 
-public:  
-  static std::string getActiveMenu() {
-    return activeMenu;
-  }
 
-  virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> observables) = 0;
-
-  virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> observables) = 0;
+public:
 
 
   virtual void draw() = 0;
+    virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> *observables){
 
+    }
+
+    virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables){
+
+    }
 };
 
-std::string Menu::activeMenu = "MainMenu";
 
 #endif
