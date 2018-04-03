@@ -16,10 +16,10 @@
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
-    std::map<std::string, Menu*> menuMap; ///< Carte de menu
+    std::map<std::string, Scene*> sceneMap; ///< Carte de menu
     SDL_Event* sdlEvent; ///< Gestionnaire d'évennements
-    Menu* menuDisplay;
-    World* world;
+    Scene* sceneDisplay;
+
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
 public:
@@ -66,8 +66,8 @@ public:
         getTextureID("../../images/settings.png", "ButtonSettings");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
         getTextureID("../../images/maisonApp.png", "FondMaison");
-       // getTextureID("../../images/grass.png", "grass");
-       // getTextureID("../../images/cielnuageu.png", "sky");
+        getTextureID("../../images/grass.png", "grass");
+        getTextureID("../../images/cielnuageu.png", "sky");
 
 
         //Textures boutons settings
@@ -85,16 +85,15 @@ public:
     /// \param height Hauteur de la fenêtre, en pixels.
     /// \param windowflags Flags SDL.
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0) {
-        glContext = new GLContext(title, x, y, width, height, windowflags);
-        glContext->setFrustum(90.0, 0.1, 1000.0, true);
+        glContext = new GLContext(title, x, y, width, height,90.0, 0.1, 1000.0, windowflags);
+        GLContext::setFrustum( true);
         sdlEvent = new SDL_Event();
         loadTextures();
-        menuMap["MainMenu"] = new MainMenu();
-        menuMap["Settings"] = new Settings();
-        menuMap["InGameOverlay"] = new InGameOverlay;
-        menuMap["InGameESC"] = new InGameESC;
-        menuMap["Highscore"] = new Highscore;
-        world = nullptr;
+        sceneMap["MainMenu"] = new MainMenu();
+        sceneMap["Settings"] = new Settings();
+        sceneMap["InGameESC"] = new InGameESC;
+        sceneMap["Highscore"] = new Highscore;
+        sceneMap["World"] = new World();
         subscribeObservers();
     }
 
@@ -102,7 +101,7 @@ public:
     ~ProjetFinal () {
         delete (glContext);
         delete (sdlEvent);
-        for (auto it : menuMap) {
+        for (auto it : sceneMap) {
             delete (it.second);
         }
     }
@@ -113,9 +112,9 @@ public:
 
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
     /// \param is2D Booléen représentant si c'est en 2D (true), ou en 3D (false).
-    void setFrustum(bool is2D) {
-        glContext->setFrustum(90.0, 0.1, 1000.0, is2D);
-    }
+ //   void setFrustum(bool is2D) {
+   //     glContext->setFrustum(90.0, 0.1, 1000.0, is2D);
+  //  }
 
     /// Représente la boucle de jeu.
     void run(std::string filePath){
@@ -126,7 +125,6 @@ public:
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        setFrustum(IN2D);
 
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -151,7 +149,7 @@ public:
 
         ResourceManager::getInstance()->addResource("start", testButton);
 */
-        std::string active = Menu::getActiveMenu();
+
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
@@ -166,21 +164,11 @@ public:
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
-            menuDisplay = menuMap[Menu::getActiveMenu()];
+            sceneDisplay = sceneMap[Scene::getActiveScene()];
 
             glContext->clear();
+            sceneDisplay->draw();
 
-            if(Menu::getActiveMenu() == "inGame"){
-                if(!world){
-                    getTextureID("../../images/grass.png", "grass");
-                    getTextureID("../../images/cielnuageu.png", "sky");
-                    world = new World();
-                }
-                world->draw();
-            } else
-                menuDisplay->draw();
-
-            active =  Menu::getActiveMenu();
 
             // Le path n'est pas bon, Je N'ai pas fichier image
             //ResourceManager::getInstance()->getResource<Resource*>("start")->draw();

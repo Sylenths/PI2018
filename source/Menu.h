@@ -7,19 +7,18 @@
 /// \bug Problèmes connus
 #ifndef SOURCE_MENU_H
 #define SOURCE_MENU_H
+#include "includes.h"
+#include "Scene.h"
 
-class Menu {
+class Menu : public Scene{
 protected:
-  static std::string activeMenu;
+
 
 public:  
-  static std::string getActiveMenu() {
-    return activeMenu;
-  }
+
 
   virtual void draw() = 0;
 };
 
-std::string Menu::activeMenu = "MainMenu";
 
 #endif

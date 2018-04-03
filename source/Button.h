@@ -29,7 +29,6 @@ public:
 	/// \param sdlEvent Événement SDL.
     void notify(SDL_Event* sdlEvent) {
         if (sdlEvent->button.button == SDL_BUTTON_LEFT) {
-            
             if (sdlEvent->button.x >= x) {
                 if (sdlEvent->button.x <= (x + width)) {
                     if (sdlEvent->button.y >= y) {

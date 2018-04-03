@@ -32,7 +32,7 @@ public:
 
         backButton = new Button (  ResourceManager::getInstance()->getTexture("ButtonBack"), 498, 704, 0.l, 284, 113);
         ResourceManager::getInstance()->addResource("ButtonBack", backButton);
-        backButton->onClick = [this]() {Menu::activeMenu = "MainMenu";};
+        backButton->onClick = [this]() {Scene::activeScene  = "MainMenu";};
 
         //resolution = new Label(font->getFont(), {128, 128, 128, 0}, "Resolution : ", 71, 330, 0.1,  466, 113);
         //showFPS = new Label(font->getFont(), {128,128,128,0}, "Show FPS : ", 71, 443, 0.1, 466, 113);

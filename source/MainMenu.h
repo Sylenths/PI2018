@@ -28,17 +28,16 @@ public:
 
         startButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonStart", startButton);
-        startButton->onClick = [this]() { Menu::activeMenu = "inGame"; };
+        startButton->onClick = [this]() { Scene::activeScene = "World"; };
 
         settingsButton = new Button( ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
-        settingsButton->onClick = [this]() { Menu::activeMenu = "Settings"; };
+        settingsButton->onClick = [this]() { Scene::activeScene  = "Settings"; };
 
         highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
-        highscoreButton->onClick = [this]() { Menu::activeMenu = "Highscore"; };
+        highscoreButton->onClick = [this]() { Scene::activeScene  = "Highscore"; };
 
-        Menu::activeMenu = "MainMenu";
 
     }
 
