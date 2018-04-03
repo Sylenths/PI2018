@@ -96,7 +96,6 @@ public:
         menuMap["InGameESC"] = new InGameESC;
         menuMap["Highscore"] = new Highscore;
         world = nullptr;
-        subscribeObservers();
     }
 
     /// Destructeur
