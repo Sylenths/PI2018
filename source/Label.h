@@ -11,7 +11,7 @@
 #ifndef SOURCE_LABEL_H
 #define SOURCE_LABEL_H
 
-class Label : public Image2D{
+class Label : public Image {
 private:
     std::string text;
 
@@ -28,7 +28,7 @@ public:
 
 
 
-    Label(TTF_Font* font,SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int w, unsigned int h) : Image2D(0,x,y,z,w,h){
+    Label(TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int w, unsigned int h) : Image(0,x,y,z,w,h){
         this->text = text;
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
 

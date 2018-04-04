@@ -6,10 +6,10 @@
 /// \warning Aucuns.
 /// \bug Aucuns.
 
-#ifndef IMAGE2D_H
-#define IMAGE2D_H
+#ifndef IMAGE_H
+#define IMAGE_H
 
-class Image2D : public Model {
+class Image : public Model {
 private:
 public:
     /// Constructeur.
@@ -18,7 +18,7 @@ public:
     /// \param y Position en y par rapport au coin supérieur gauche.
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
-    Image2D(unsigned int textureID, double x, double y, double z, double width, double height) : Model(textureID) {
+    Image(unsigned int textureID, double x, double y, double z, double width, double height) : Model(textureID) {
         this->width = width;
         this->height = height;
 

@@ -9,21 +9,18 @@
 #define SOURCE_MAINMENU_H
 
 #include "Button.h"
-#include "Image2D.h"
-#include "includes.h"
-#include <iostream>
 
 class MainMenu : public Menu {
 private:
     Button* startButton;
     Button* settingsButton;
     Button* highscoreButton;
-    Image2D* imageMenu;
+    Image* imageMenu;
 
 public:
     /// Constructeur
     MainMenu(){
-        imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
+        imageMenu = new Image( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
         ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
 
         startButton = new Button (967, 75, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonStart"), ResourceManager::getInstance()->getTexture("ButtonStartOver"));

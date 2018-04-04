@@ -18,13 +18,13 @@ class Settings : public Menu{
 private:
     Button * FPSButton, * backButton;
     Label* resolution, * showFPS;
-    Image2D* fond;
+    Image* fond;
     Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
 
 public:
     Settings() {
 
-        fond = new Image2D (ResourceManager::getInstance()->getTexture("FondSettings"), 0, 0, 0, 1280, 720);
+        fond = new Image (ResourceManager::getInstance()->getTexture("FondSettings"), 0, 0, 0, 1280, 720);
         ResourceManager::getInstance()->addResource("FondSettings", fond);
 
         FPSButton = new Button (712, 300, 0.2, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"));

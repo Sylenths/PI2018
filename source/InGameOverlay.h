@@ -15,8 +15,8 @@ private:
 
     bool activeHud;///< Bool qui determine si le hud est affiché
 
-    std::list<Image2D*> alertsList;///< Liste alerte annoncant les intempéries a venir
-    std::list<Image2D*> logoList;///< Liste d'image contenant les logo a afficher
+    std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
+    std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
 
     std::map<std::string, Button*> buttonMap;///< Map de bouton pour la construction de structure et le skip turn.
     std::map<std::string, Label*> labelMap;///< Label à afficher (principalement les ressources)
@@ -88,7 +88,7 @@ public:
         //buttonMap["delete"]->onClick = [this]() { InsertMethod; };
 
         //Image2D
-        logoList.push_back(new Image2D( ResourceManager::getInstance()->getTexture("topBar"), 175, 0, 0.1, 540, 60));
+        logoList.push_back(new Image( ResourceManager::getInstance()->getTexture("topBar"), 175, 0, 0.1, 540, 60));
 
         //Label
         auto strSimCoin = std::to_string(simCoinCount); // transforme unsigned int en string
@@ -147,39 +147,39 @@ public:
             if(alertCount < 7) //Affiche les alertes dans la colonne de gauche
                 switch (it){
                     case 'p'://pluie/acide
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
                         break;
 
                     case 'n'://neige/acide
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
                         break;
 
                     case 'm'://meteorite/grele
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
                         break;
 
                     case 'v'://vent/tornade
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
                         break;
 
                     case 'f'://feu
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
                         break;
 
                     case 't'://temperature
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
                         break;
 
                     case 'e'://eclair
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
                         break;
 
                     case 's'://seisme
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
                         break;
 
                     case 'r'://radiation
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),0 ,150 + (alertCount * 60), 0.1, 60, 60));
                         break;
 
                     default:
@@ -189,46 +189,46 @@ public:
             else//affiche les alertes dans la colonne de droite
                 switch (it){
                     case 'p'://pluie/acide
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
                         break;
 
                     case 'n'://neige/acide
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
 
                         break;
 
                     case 'm'://meteorite/grele
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
 
                         break;
 
                     case 'v'://vent/tornade
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
 
                         break;
 
                     case 'f'://feu
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
 
                         break;
 
                     case 't'://temperature
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
 
                         break;
 
                     case 'e'://eclair
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
 
                         break;
 
                     case 's'://seisme
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
 
                         break;
 
                     case 'r'://radiation
-                        alertsList.push_back(new Image2D(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
+                        alertsList.push_back(new Image(ResourceManager::getInstance()->getTexture("alert"),60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60));
                         break;
 
                     default:
