@@ -19,9 +19,6 @@ public:
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
     Image2D(unsigned int textureID, double x, double y, double z, double width, double height) : Model(textureID) {
-        this->x = x;
-        this->y = y;
-        this->z = z;
         this->width = width;
         this->height = height;
 
@@ -57,8 +54,8 @@ public:
         };
     }
 
-    /// Réception de notifications d'événements SDL.
-    /// \param sdlEvent Événement SDL.
+  /// Réception de notifications d'événements SDL.
+  /// \param sdlEvent Événement SDL.
     void notify(SDL_Event* sdlEvent) {}
 };
 

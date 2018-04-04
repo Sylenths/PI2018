@@ -16,10 +16,6 @@ protected:
     unsigned int normalCount; ///< Nombre de normal
     double *vertices, *texCoords, *normals;
 
-    unsigned int x; ///< Position du model en x
-    unsigned int y; ///< Position du model en y
-    unsigned int z; ///< Position du model en z
-
     unsigned int width; ///< Largeur du model (pour image en 2D)
     unsigned int height; ///< Hauteur du model (pour image en 2D)
 
