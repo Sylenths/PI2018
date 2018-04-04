@@ -57,7 +57,16 @@ public:
         getTextureID("../../images/grass.png", "grass");
         getTextureID("../../images/cielnuageu.png", "sky");
 
-
+     //Texture pour le InGameOverlay
+        getTextureID("../../images/alert_ico.png", "alert");
+        getTextureID("../../images/delete_btn.png", "delete");
+        getTextureID("../../images/info_btn.png", "info");
+        getTextureID("../../images/Machines_btn.png", "machine");
+        getTextureID("../../images/skipturn_btn.png", "skipTurn");
+        getTextureID("../../images/struct_btn.png", "structure");
+        getTextureID("../../images/topbar_tex.png", "topBar");
+        getTextureID("../../images/wire_btn.png", "wire");
+        
         //Textures boutons settings
         getTextureID("../../images/BoutonNO.png", "FPSButtonNO");
         getTextureID("../../images/BoutonYES.png", "FPSButtonYES");
