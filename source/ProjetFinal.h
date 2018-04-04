@@ -59,7 +59,8 @@ public:
 
 
         //Textures boutons settings
-        getTextureID("../../images/BoutonNO.png", "FPSButton");
+        getTextureID("../../images/BoutonNO.png", "FPSButtonNO");
+        getTextureID("../../images/BoutonYES.png", "FPSButtonYES");
         getTextureID("../../images/BoutonBack.png", "backButton");
         getTextureID("../../images/SettingsMenu.png", "FondSettings");
     }
