@@ -10,7 +10,6 @@
 #define IMAGE_H
 
 class Image : public Model {
-private:
 public:
     /// Constructeur.
     /// \param textureID Identificateur de la texture.
@@ -18,45 +17,18 @@ public:
     /// \param y Position en y par rapport au coin supérieur gauche.
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
-    Image(unsigned int textureID, double x, double y, double z, double width, double height) : Model(textureID) {
-        this->width = width;
-        this->height = height;
+    Image(double x, double y, double z, double width, double height, unsigned int textureID) : Model(textureID) {
+      texCount = 12;
+      vertexCount = normalCount = 18;
 
-        vertexCount = normalCount = texCount = 6;
-
-        vertices = new double[vertexCount * 3] {
-            0.0 + x  , 0.0 + y   , z, //P1T1F1
-            width + x, height + y, z, //P2T1F1
-            0.0 + x  , height + y, z, //P3T1F1
-
-            0.0 + x  , 0.0 + y   , z, //P1T2F1
-            width + x, 0.0 + y   , z, //P2T2F1
-            width + x, height + y, z, //P3T2F1
-        };
-
-        normals = new double[normalCount * 3] {
-            0.0, 0.0, 1.0, //P1T1F1
-            0.0, 0.0, 1.0, //P2T1F1
-            0.0, 0.0, 1.0, //P3T1F1
-
-            0.0, 0.0, 1.0, //P1T2F1
-            0.0, 0.0, 1.0, //P2T2F1
-            0.0, 0.0, 1.0, //P3T2F1
-        };
-
-        texCoords = new double[texCount * 2] {
-                0.0,0.0,
-                1.0,1.0,
-                0.0,1.0,
-                0.0,0.0,
-                1.0,0.0,
-                1.0,1.0,
-        };
+      vertices = new double[18] { x, y, z, width + x, height + y, z, x, height + y, z, x, y, z, width + x, y, z, width + x, height + y, z };
+      normals = new double[18] { 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0 };
+      texCoords = new double[12] { 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0,1.0 };
     }
 
   /// Réception de notifications d'événements SDL.
   /// \param sdlEvent Événement SDL.
-    void notify(SDL_Event* sdlEvent) {}
+  virtual void notify(SDL_Event* sdlEvent) {}
 };
 
 

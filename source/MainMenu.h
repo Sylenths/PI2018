@@ -20,7 +20,7 @@ private:
 public:
     /// Constructeur
     MainMenu(){
-        imageMenu = new Image( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
+        imageMenu = new Image(0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondMaison"));
         ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
 
         startButton = new Button (967, 75, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonStart"), ResourceManager::getInstance()->getTexture("ButtonStartOver"));
