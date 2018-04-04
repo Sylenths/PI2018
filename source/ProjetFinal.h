@@ -51,8 +51,11 @@ public:
     void loadTextures() {
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
+        getTextureID("../../images/starto.png", "ButtonStartOver");
         getTextureID("../../images/settings.png", "ButtonSettings");
+        getTextureID("../../images/settingso.png", "ButtonSettingsOver");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
+        getTextureID("../../images/highscoreo.png", "ButtonHighScoreOver");
         getTextureID("../../images/maisonApp.png", "FondMaison");
         getTextureID("../../images/grass.png", "grass");
         getTextureID("../../images/cielnuageu.png", "sky");

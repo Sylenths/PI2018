@@ -26,15 +26,15 @@ public:
         imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
         ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
 
-        startButton = new Button (967, 75, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonStart"));
+        startButton = new Button (967, 75, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonStart"), ResourceManager::getInstance()->getTexture("ButtonStartOver"));
         ResourceManager::getInstance()->addResource("ButtonStart", startButton);
         startButton->onClick = [this]() { Scene::activeScene = "World"; };
 
-        settingsButton = new Button(967, 275, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonSettings"));
+        settingsButton = new Button(967, 275, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonSettings"), ResourceManager::getInstance()->getTexture("ButtonSettingsOver"));
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
         settingsButton->onClick = [this]() { Scene::activeScene  = "Settings"; };
 
-        highscoreButton = new Button(967, 475, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonHighScore"));
+        highscoreButton = new Button(967, 475, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonHighScore"), ResourceManager::getInstance()->getTexture("ButtonHighScoreOver"));
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
         highscoreButton->onClick = [this]() { Scene::activeScene  = "Highscore"; };
     }
