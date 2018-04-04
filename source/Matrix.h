@@ -9,8 +9,6 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include <iostream>
-#include "Vector.h"
 #include "MathUtils.h"
 
 #define m11 matrix[0]
@@ -196,15 +194,6 @@ struct Matrix{
                       v.x * m12 + v.y * m22 + v.z * m32 + m24,
                       v.x * m13 + v.y * m23 + v.z * m33 + m34);
     }
-
-    /// Envoie les composantes de la matrice à la sortie standard.
-    void printMatrix(){
-        std::cout << "|" << m11 << " " << m12 << " " << m13 << " " << m14 << "|" << "\n"
-                  << "|" << m21 << " " << m22 << " " << m23 << " " << m24 << "|" << "\n"
-                  << "|" << m31 << " " << m32 << " " << m33 << " " << m34 << "|" << "\n"
-                  << "|" << m41 << " " << m42 << " " << m43 << " " << m44 << "|" << "\n";
-    }
-
 };
 
 #endif //MATRIX_H

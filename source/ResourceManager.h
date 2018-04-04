@@ -9,8 +9,6 @@
 #ifndef SOURCE_RESOURCEMANAGER_H
 #define SOURCE_RESOURCEMANAGER_H
 
-#include "Resource.h"
-
 class ResourceManager : public Singleton<ResourceManager> {
 private:
     std::map<std::string, Resource*> resources;  ///< Map de ressources.
