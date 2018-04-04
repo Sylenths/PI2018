@@ -47,17 +47,6 @@ public:
             ResourceManager::getInstance()->addTexture(textureName, textureID);
     }
 
-    /// Subscribe de tous les observateurs.
-   /* void subscribeObservers(){
-        if(!observables[SDL_MOUSEBUTTONDOWN])
-            observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
-        menuMap["MainMenu"]->subscribeAll(observables);
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
-
-    }
-    */
-
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
         //Textures boutons menu principal
@@ -163,13 +152,26 @@ public:
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
+
+
+
+            if(Scene::getActiveScene() == "Settings"){
+                sceneMap["MainMenu"]->unsubscribeAll(&observables);
+                sceneMap["Settings"]->subscribeAll(&observables);
+            }
+            if(Scene::getActiveScene() == "MainMenu"){
+                sceneMap["Settings"]->unsubscribeAll(&observables);
+                sceneMap["MainMenu"]->subscribeAll(&observables);
+            }
+
             sceneDisplay = sceneMap[Scene::getActiveScene()];
 
-            if(sceneDisplay != sceneMap[Scene::getActiveScene()]){
-                sceneMap["MainMenu"]->unsubscribeAll(&observables);
-                sceneMap["Settings"]->unsubscribeAll(&observables);
-                sceneMap[Scene::getActiveScene()]->subscribeAll(&observables);
-            }
+            /*
+           if(sceneDisplay->getActiveScene() != Scene::getActiveScene()){
+               sceneMap["MainMenu"]->unsubscribeAll(&observables);
+               sceneMap["Settings"]->unsubscribeAll(&observables);
+               sceneMap[Scene::getActiveScene()]->subscribeAll(&observables);
+           }*/
 
             glContext->clear();
             sceneDisplay->draw();

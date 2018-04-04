@@ -51,6 +51,8 @@ public:
     }
 
     void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables){
+        if(!(*observables)[SDL_MOUSEBUTTONDOWN])
+            (*observables)[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
         (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
         (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
     }
