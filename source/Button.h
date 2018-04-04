@@ -28,17 +28,29 @@ public:
         normals = new double[18] { 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0 };
         texCoords = new double[12] { 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0,1.0 };
 
+        textureIDs["over"] = (mouseOverTextureID) ? mouseOverTextureID : defaultTextureID;
+
         onClick = nullptr;
     }
 
     /// Réception de notification d'événement SDL.
     /// \param sdlEvent Événement SDL.
     void notify(SDL_Event* sdlEvent) {
-        if (sdlEvent->button.button == SDL_BUTTON_LEFT)
-            if ((sdlEvent->button.x >= vertices[0]) && (sdlEvent->button.x <= vertices[3]) &&
-                (sdlEvent->button.y >= vertices[1]) && (sdlEvent->button.y <= vertices[4]))
-                if (onClick)
-                    onClick();
+        if ((sdlEvent->button.x >= vertices[0]) && (sdlEvent->button.x <= vertices[3]) &&
+            (sdlEvent->button.y >= vertices[1]) && (sdlEvent->button.y <= vertices[4])) {
+            switch (sdlEvent->type) {
+                case SDL_MOUSEBUTTONDOWN:
+                    if ((sdlEvent->button.button == SDL_BUTTON_LEFT) && onClick)
+                        onClick();
+                break;
+
+                case SDL_MOUSEMOTION:
+                    textureToDraw = textureIDs["over"];
+                break;
+            }
+        }
+        else
+            textureToDraw = textureIDs["default"];
     }
 };
 
