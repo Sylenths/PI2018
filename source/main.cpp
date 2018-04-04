@@ -16,7 +16,8 @@ int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
     ResourceManager::getInstance()->addResource("font - arial12",new Font("../Fonts/arial.ttf"));
-
+    // ResourceManager::getInstance()->addResource("font - arial12",new Font((filePath + "../Fonts/arial.ttf").c_str()));
+    
     ProjetFinal::getInstance()->run(filePath.c_str());
 
     ProjetFinal::deleteInstance();
