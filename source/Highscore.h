@@ -18,7 +18,7 @@ public:
 
 
     Highscore(){
-        backButton = new Button (  ResourceManager::getInstance()->getTexture("backButton"), 498, 550, 0.l, 284, 113);
+        backButton = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"));
         backButton->onClick = [this]() {Scene::activeScene  = "MainMenu";};
     }
 

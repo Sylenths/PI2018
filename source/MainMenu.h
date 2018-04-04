@@ -26,15 +26,15 @@ public:
         imageMenu = new Image2D( ResourceManager::getInstance()->getTexture("FondMaison"), 0, 0, 0, 1280, 720);
         ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
 
-        startButton = new Button ( ResourceManager::getInstance()->getTexture("ButtonStart"), 967, 75, 0, 298, 128);
+        startButton = new Button (967, 75, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonStart"));
         ResourceManager::getInstance()->addResource("ButtonStart", startButton);
         startButton->onClick = [this]() { Scene::activeScene = "World"; };
 
-        settingsButton = new Button( ResourceManager::getInstance()->getTexture("ButtonSettings"), 967, 275, 0, 298, 128);
+        settingsButton = new Button(967, 275, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonSettings"));
         ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
         settingsButton->onClick = [this]() { Scene::activeScene  = "Settings"; };
 
-        highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0, 298, 128);
+        highscoreButton = new Button(967, 475, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonHighScore"));
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
         highscoreButton->onClick = [this]() { Scene::activeScene  = "Highscore"; };
     }

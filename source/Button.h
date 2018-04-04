@@ -20,13 +20,13 @@ public:
     /// \param y Position en y par rapport au coin supérieur gauche de la fenêtre.
     /// \param width Largeur du bouton.
     /// \param height Hauteur du bouton.
-    Button(unsigned int textureID, double x, double y, double z, double width, double height) : Model(textureID) {
+    Button(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int mouseOverTextureID = 0) : Model(defaultTextureID) {
         texCount = 12;
         vertexCount = normalCount = 18;
 
         vertices = new double[18] { x, y, z, width + x, height + y, z, x, height + y, z, x, y, z, width + x, y, z, width + x, height + y, z };
         normals = new double[18] { 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0 };
-        texCoords = new double[12] { 0.0,0.0, 1.0,1.0, 0.0,1.0, 0.0,0.0, 1.0,0.0, 1.0,1.0 };
+        texCoords = new double[12] { 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0,1.0 };
 
         onClick = nullptr;
     }

@@ -27,11 +27,11 @@ public:
         fond = new Image2D (ResourceManager::getInstance()->getTexture("FondSettings"), 0, 0, 0, 1280, 720);
         ResourceManager::getInstance()->addResource("FondSettings", fond);
 
-        FPSButton = new Button (  ResourceManager::getInstance()->getTexture("FPSButtonNO"), 712, 300, 0.2, 510, 113);
+        FPSButton = new Button (712, 300, 0.2, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"));
         ResourceManager::getInstance()->addResource("FPSButtonNO", FPSButton);
         FPSButton->onClick = [this]() {FPSOnOff();};
 
-        backButton = new Button (  ResourceManager::getInstance()->getTexture("backButton"), 498, 550, 0.l, 284, 113);
+        backButton = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"));
         ResourceManager::getInstance()->addResource("backButton", backButton);
         backButton->onClick = [this]() {Scene::activeScene  = "MainMenu";};
 
