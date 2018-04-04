@@ -301,6 +301,9 @@ public:
         for (auto it : labelMap) {
             delete (it.second);
         }
+        for (auto it : buttonMap) {
+            delete(it.second);
+        }
     }
 };
 #endif

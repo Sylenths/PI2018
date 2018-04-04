@@ -26,7 +26,7 @@ public:
     }
     /// Constructeur, tout les models nécéssaires sont loadés ici.
     World() {
-        
+
         addModel(new Model(ResourceManager::getInstance()->getTexture("grass"),"../../images/grass.obj"));
         addModel(new Model(ResourceManager::getInstance()->getTexture("sky"),"../../images/sky.obj"));
     }
