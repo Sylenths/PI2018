@@ -37,8 +37,6 @@ public:
         highscoreButton = new Button(  ResourceManager::getInstance()->getTexture("ButtonHighScore"), 967, 475, 0, 298, 128);
         ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
         highscoreButton->onClick = [this]() { Scene::activeScene  = "Highscore"; };
-
-
     }
 
     /*~MainMenu(){

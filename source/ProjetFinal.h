@@ -76,12 +76,15 @@ public:
         GLContext::setFrustum( true);
         sdlEvent = new SDL_Event();
         loadTextures();
-        sceneMap["MainMenu"] = new MainMenu();
-        sceneMap["Settings"] = new Settings();
-        sceneMap["InGameESC"] = new InGameESC;
-        sceneMap["Highscore"] = new Highscore;
-        sceneMap["World"] = new World();
 
+        sceneMap["MainMenu"] = new MainMenu();
+        sceneMap["MainMenu"]->subscribeAll(&observables);
+        sceneDisplay = sceneMap[Scene::getActiveScene()];
+
+        sceneMap["Settings"] = new Settings();
+        sceneMap["InGameESC"] = new InGameESC();
+        sceneMap["Highscore"] = new Highscore();
+        sceneMap["World"] = new World();
     }
 
     /// Destructeur
@@ -93,10 +96,6 @@ public:
         }
     }
 
-
-
-
-
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
     /// \param is2D Booléen représentant si c'est en 2D (true), ou en 3D (false).
  //   void setFrustum(bool is2D) {
@@ -105,7 +104,6 @@ public:
 
     /// Représente la boucle de jeu.
     void run(std::string filePath){
-        sceneMap["MainMenu"]->subscribeAll(&observables);
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_LIGHTING);
@@ -153,32 +151,14 @@ public:
                 }
             }
 
-
-
-            if(Scene::getActiveScene() == "Settings"){
-                sceneMap["MainMenu"]->unsubscribeAll(&observables);
-                sceneMap["Settings"]->subscribeAll(&observables);
+            if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
+              sceneDisplay->unsubscribeAll(&observables);
+              sceneDisplay = sceneMap[Scene::getActiveScene()];
+              sceneDisplay->subscribeAll(&observables);
             }
-            if(Scene::getActiveScene() == "MainMenu"){
-                sceneMap["Settings"]->unsubscribeAll(&observables);
-                sceneMap["MainMenu"]->subscribeAll(&observables);
-            }
-
-            sceneDisplay = sceneMap[Scene::getActiveScene()];
-
-            /*
-           if(sceneDisplay->getActiveScene() != Scene::getActiveScene()){
-               sceneMap["MainMenu"]->unsubscribeAll(&observables);
-               sceneMap["Settings"]->unsubscribeAll(&observables);
-               sceneMap[Scene::getActiveScene()]->subscribeAll(&observables);
-           }*/
 
             glContext->clear();
             sceneDisplay->draw();
-
-
-            // Le path n'est pas bon, Je N'ai pas fichier image
-            //ResourceManager::getInstance()->getResource<Resource*>("start")->draw();
             glContext->refresh();
          }
 

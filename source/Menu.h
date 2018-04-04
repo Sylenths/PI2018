@@ -11,17 +11,11 @@
 #include "Scene.h"
 #include "Observable.h"
 
-class Menu : public Scene{
-protected:
-
-
+class Menu : public Scene {
 public:
-
-
   virtual void draw() = 0;
-    virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables) = 0 ;
-
-    virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables) = 0 ;
+  virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables) = 0 ;
+  virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables) = 0 ;
 };
 
 
