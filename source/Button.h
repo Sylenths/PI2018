@@ -22,7 +22,6 @@ public:
     /// \param height Hauteur du bouton.
     Button(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int mouseOverTextureID = 0) : Image(x, y, z, width, height, defaultTextureID) {
         textureIDs["over"] = (mouseOverTextureID) ? mouseOverTextureID : defaultTextureID;
-
         onClick = nullptr;
     }
 

@@ -1,8 +1,8 @@
 /// \brief Représentation d'une image.
 /// \details Crée un modèle 3D plat pour y recevoir une texture.
-/// \author Gabriel Bourdages, Samuel Labelle
+/// \author Gabriel Bourdages, Samuel Labelle, Patrick Singcaster
 /// \date 28 mars 2018
-/// \version 0.1
+/// \version 0.2
 /// \warning Aucuns.
 /// \bug Aucuns.
 
@@ -30,6 +30,5 @@ public:
   /// \param sdlEvent Événement SDL.
   virtual void notify(SDL_Event* sdlEvent) {}
 };
-
 
 #endif
