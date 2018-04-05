@@ -1,4 +1,12 @@
-# Mode
+# Environnement
+
+| Raccourci | Description |
+|--------|-------------|
+| Molette | Zoom |
+| Maintenir centre | Rotation |
+| Majuscule + Maintenir centre | Translation |
+
+## Mode
 
 | Raccourci | Description |
 |--------|-------------|
