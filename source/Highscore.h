@@ -17,8 +17,9 @@
 
 class Highscore : public Menu{
 private:
-    Button* backButton;
-    Scores* scores[12];
+    Button* backButtonHighscore;
+    Scores* scores[11];
+
     std::string fichierSauvegardeScores;
 
 
@@ -35,10 +36,11 @@ public:
     }
 
 
+
     Highscore(){
-        backButton = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"),ResourceManager::getInstance()->getTexture("BackButtonOver"));
-        ResourceManager::getInstance()->addResource("backButton", backButton);
-        backButton->onClick = [this]() {Scene::activeScene  = "MainMenu";};
+        backButtonHighscore = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"),ResourceManager::getInstance()->getTexture("BackButtonOver"));
+        ResourceManager::getInstance()->addResource("backButtonHighscore", backButtonHighscore);
+        backButtonHighscore->onClick = [this]() {Scene::activeScene  = "MainMenu";};
 
         for (int i = 0; i < 10 ; ++i) {
             scores[i] = new Scores();
@@ -74,17 +76,17 @@ public:
         if(!(*observables)[SDL_MOUSEMOTION])
             (*observables)[SDL_MOUSEMOTION]= new Observable<SDL_Event*>;
 
-        (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
-        (*observables)[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+        (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
+        (*observables)[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
     }
 
     void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables) {
-        (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
-        (*observables)[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+        (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
+        (*observables)[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
     }
 
     void draw(){
-        backButton->draw();
+        backButtonHighscore->draw();
     }
 };
 
