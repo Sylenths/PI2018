@@ -1,6 +1,11 @@
 #ifndef INCLUDES_H
 #define INCLUDES_H
 
+
+
+#define IS2D true
+#define IS3D false
+
 #include <list>
 #include <cmath>
 #include <string>
