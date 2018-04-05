@@ -31,7 +31,7 @@ public:
     /// \param sunPower Puissance du soleil en pourcentage
     /// \param windSpeed Force du vent en pourcentage
     /// \param timeLeft Temps restant à la phase de construction.
-    InGameOverlay(unsigned int powerCount, unsigned int simCoinCount, unsigned int temperatureC, unsigned int sunPower, unsigned int windSpeed, unsigned int timeLeft){
+    InGameOverlay(unsigned int powerCount = 10, unsigned int simCoinCount = 10, unsigned int temperatureC = 10, unsigned int sunPower = 10, unsigned int windSpeed = 10, unsigned int timeLeft = 10) {
         activeHud = true;
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed, timeLeft);
     }
@@ -76,7 +76,7 @@ public:
         ResourceManager::getInstance()->addResource("ButtonSkipTurn", buttonMap["skipturn"]);
         ResourceManager::getInstance()->addResource("ButtonStructure", buttonMap["structure"]);
         ResourceManager::getInstance()->addResource("ButtonMachine", buttonMap["machine"]);
-        ResourceManager::getInstance()->addResource("ButtonCablage", buttonMap["wire"]);
+        ResourceManager::getInstance()->addResource("ButtonCablage", buttonMap["cablage"]);
         ResourceManager::getInstance()->addResource("ButtonInfo", buttonMap["info"]);
         ResourceManager::getInstance()->addResource("ButtonDelete", buttonMap["delete"]);
 

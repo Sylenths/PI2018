@@ -20,11 +20,13 @@ protected:
 
     std::map<std::string, unsigned int> textureIDs;
 
+
 public:
 	/// Constructeur.
     /// \param textureID Identificateur de la texture.
 	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
     Model(unsigned int textureID, const char* objFile = nullptr) {
+
         textureIDs["default"] = textureID;
         textureToDraw = textureID;
 
