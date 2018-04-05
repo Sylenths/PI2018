@@ -36,3 +36,10 @@
 | Click droit | Sélection d'un élément |
 | a | Tout sélectionner / désélectionner |
 | b | Zone de sélection |
+
+## Action
+
+| Raccourci | Description |
+|--------|-------------|
+| x | Supprimer |
+
