@@ -16,7 +16,7 @@
 
 class Settings : public Menu{
 private:
-    Button * FPSButton, * backButton;
+    Button * FPSButtonNO, * backButton, * FPSButtonYES;
     Label * showFPS;
     Image* fond;
     Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
@@ -27,9 +27,11 @@ public:
         fond = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondSettings"));
         ResourceManager::getInstance()->addResource("FondSettings", fond);
 
-        FPSButton = new Button (712, 300, 0, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"), ResourceManager::getInstance()->getTexture("FPSButtonNOOVER"));
-        ResourceManager::getInstance()->addResource("FPSButtonNO", FPSButton);
-        FPSButton->onClick = [this]() {FPSOnOff();};
+        FPSButtonNO = new Button (712, 300, 0, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"), ResourceManager::getInstance()->getTexture("FPSButtonNOOVER"));
+        ResourceManager::getInstance()->addResource("FPSButtonNO", FPSButtonNO);
+        FPSButtonNO->onClick = [this]() {FPSOnOff();};
+
+        FPSButtonYES = new Button(712, 300, 0, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonYES"), ResourceManager::getInstance()->getTexture("FPSButtonYESOVER"));
 
         backButton = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"), ResourceManager::getInstance()->getTexture("BackButtonOver"));
         ResourceManager::getInstance()->addResource("backButton", backButton);
@@ -41,10 +43,11 @@ public:
 
     ~Settings(){
         delete fond;
-        delete FPSButton;
+        delete FPSButtonNO;
         delete backButton;
         delete showFPS;
         delete font;
+        delete FPSButtonYES;
     }
 
 
@@ -54,7 +57,7 @@ public:
 
     void draw (){
         showFPS->draw();
-        FPSButton->draw();
+        FPSButtonNO->draw();
         backButton->draw();
         fond->draw();
 
