@@ -24,6 +24,7 @@ public:
     /// Permet de se désinscrire de la liste de notification.
     /// \param observer Observateur
     void unsubscribe(Observer<T>* observer) {
+        int i = observers.size();
         observers.remove(observer);
     }
     void unsuscribeAll(){

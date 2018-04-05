@@ -10,10 +10,12 @@
 #ifndef SOURCE_WORLD_H
 #define SOURCE_WORLD_H
 #include "includes.h"
+#include "GLContext.h"
 
-class World{
+class World : public Scene{
 private:
     std::list<Model*> modelList; ///< La liste de models à afficher
+
 public:
 
 
@@ -23,18 +25,25 @@ public:
         modelList.push_back(model);
     }
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(){
-        addModel(new Model(ResourceManager::getInstance()->getTexture("grass"),"../images/grass.obj"));
-        addModel(new Model(ResourceManager::getInstance()->getTexture("sky"),"../images/sky.obj"));
+    World() {
+
+        addModel(new Model(ResourceManager::getInstance()->getTexture("grass"),"../../images/grass.obj"));
+        addModel(new Model(ResourceManager::getInstance()->getTexture("sky"),"../../images/sky.obj"));
     }
     /// Affichage des models
-    void draw(){
+    void draw() {
+        GLContext::setFrustum(false);
         if (modelList.size()) {
             for( auto it : modelList){
                 it->draw();
             }
         }
     }
+    virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> *observables) {
+
+    }
+
+    virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> * observables){}
 
 };
 #endif //SOURCE_WORLD_H

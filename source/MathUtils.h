@@ -19,7 +19,7 @@
 /// \return Angle en radians.
 double degtorad(double deg)
 {
-  return deg * MAT_PI / 180.0;
+    return deg * MAT_PI / 180.0;
 }
 
 /// Convertis un angle de radians à degrés.
@@ -27,7 +27,7 @@ double degtorad(double deg)
 /// \return Angle en degrés.
 double radtodeg(double rad)
 {
-  return rad * 180.0 / MAT_PI;
+    return rad * 180.0 / MAT_PI;
 }
 
 /*
@@ -42,7 +42,7 @@ double radtodeg(double rad)
 /// \param d Case [2, 2] de la matrice.
 /// \return Déterminant de la matrice 2 x 2.
 double det22(double& a, double& b, double& c, double& d) {
-	return a * d - b * c;
+    return a * d - b * c;
 }
 
 #endif //MATHUTILS_H

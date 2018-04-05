@@ -1,10 +1,10 @@
 /// \brief Représentation d'une caméra.
 /// \details Caméra dont le déplacement est contrôlable par l'utilisateur avec les touches WASD et la souris.
 /// \author Samuel Labelle
-/// \date 2 Avril 2018
-/// \version 0.1
-/// \warning Aucuns.
-/// \bug Mouvement par déplacement sucessif fixes dépendant du taux de rafraichissement des touches du clavier, Aucune restrictions pour la rotation haut-bas.
+/// \date 4 Avril 2018
+/// \version 0.2
+/// \warning position et target doivent être différents et non-colinéaires sur les y. Champ de vision de 90 degrés.
+/// \bug Mouvement par déplacement sucessif fixes dépendant du taux de rafraichissement des touches du clavier.
 
 #ifndef CAMERA_H
 #define CAMERA_H
@@ -23,6 +23,16 @@
 //Movement in coordinate system units per second
 #define MOVEMENT_SPEED 0.1
 
+#define WINDOW_HEIGHT_F 720.
+#define WINDOW_WIDTH_F 1280.
+#define WINDOW_HEIGHT_I 720
+#define WINDOW_WIDTH_I 1280
+#define CAMERA_VROTLIMIT 718
+#define CAMERA_FOV_F 90.
+#define CAMERA_2FOV_F 180.
+
+
+
 
 class Camera : public Observer<SDL_Event*> {
 private:
@@ -32,12 +42,34 @@ private:
 	Vector up;
 	char cameraMode;
 
+	int vMouseMotion;
+
 public:
+
+	/// Calcule l'angle du regard par rapport à la verticale (intervalle ]0, 180[ ; 0 est vers le haut / les y+.)
+	/// \return Angle.
+	double getVerticalRotationAngle(){
+		return radtodeg(std::acos(Vector(0, 1, 0) * ((target - position).normalize())));
+	}
+
+	/// Calcule l'angle du regard par rapport à l'horizontale (intervalle ]90, -90[ ; 0 est horizontal et les négatifs sont vers le bas / les y-.)
+	/// \return Angle.
+	double getHorizontalAngle(){
+		double angle = getVerticalRotationAngle();
+
+		if(angle <= CAMERA_FOV_F){
+			angle = CAMERA_FOV_F - angle;
+		}
+		else {
+			angle = -CAMERA_FOV_F + (CAMERA_2FOV_F - angle);
+		}
+		return angle;
+	}
 
 	/// Constructeur
 	/// \param position Position de la caméra.
 	/// \param target Cible de la caméra.
-	/// \param up Vecteur pointant vers le haut de la caméra.
+	/// \param up Vecteur pointant vers le haut du monde.
 	/// \param mode Mode de déplacement de la caméra.
 	Camera(const Vector& position, const Vector& target, const Vector& up, const char mode) {
 		this->position = position;
@@ -45,6 +77,10 @@ public:
 		this->up = up;
 
 		this->up.normalize();
+
+		double angle = getHorizontalAngle();
+
+		vMouseMotion = (int)(std::round(-angle / CAMERA_FOV_F * WINDOW_HEIGHT_I));
 
 		cameraMode = mode;
 	}
@@ -69,17 +105,32 @@ public:
 		if(arg->type == SDL_MOUSEMOTION) {
 			Matrix m;
 
-			m.loadArbitraryRotation(position, Vector(0., 1., 0.), -(arg->motion.xrel / 1000. * 90.));
-			target = m * target;
+			int yMove;
 
-			m.loadYRotation(arg->motion.xrel / 1000. * 90.);
-			up = m * up;
+			if((vMouseMotion + arg->motion.yrel) > CAMERA_VROTLIMIT) {
+				yMove = CAMERA_VROTLIMIT - vMouseMotion;
+			}
+			else if((vMouseMotion + arg->motion.yrel) < -CAMERA_VROTLIMIT) {
+				yMove = -CAMERA_VROTLIMIT - vMouseMotion;
+			}
+			else {
+				yMove = arg->motion.yrel;
+			}
 
-			m.loadArbitraryRotation(position, ((target - position) % up).normalize(),
-			                        -((double)arg->motion.yrel / 700. * 90.));
-			target = m * target;
+			vMouseMotion += yMove;
+
+			m.loadArbitraryRotation(position, Vector(0., 1., 0.), -(arg->motion.xrel / WINDOW_WIDTH_F * CAMERA_FOV_F));
+			target = m * target; // Horizontal camera rotation.
+
+			m.loadYRotation(arg->motion.xrel / WINDOW_WIDTH_F * CAMERA_FOV_F);
+			up = m * up; // Up vector rotation.
+
+			m.loadArbitraryRotation(position, ((target - position) % up).normalize(), -((double)yMove / WINDOW_HEIGHT_F * CAMERA_FOV_F));
+			target = m * target; // Vertical camera rotation.
 
 			loadViewMatrix();
+
+			std::cout << vMouseMotion << " -=- " << yMove << "-+-" << getVerticalRotationAngle()<< " /// " << getHorizontalAngle() << std::endl;
 		} else {
 			//Move position; arg has key pressed
 			//todo: Eventually, make movement smoother by using MOVEMENT_SPEED * deltaTime, flags and handling multiple keys pressed.
@@ -115,12 +166,13 @@ public:
 					break;
 				case CAMERAMODE_FIRSTPERSON: {
 					//Move camera and target in horizontal viewing direction.
-					Vector gndDir = (target - position).normalize();
+					Vector gndDir = (target - position);
+					gndDir.y = 0.;
+					gndDir.normalize();
 
 					switch(arg->key.keysym.sym) {
 						case SDLK_w: {
 							gndDir = gndDir * MOVEMENT_SPEED;
-							gndDir.y = 0.;
 
 							position = position + gndDir;
 							target = target + gndDir;
@@ -137,7 +189,6 @@ public:
 
 						case SDLK_s: {
 							gndDir = gndDir * MOVEMENT_SPEED;
-							gndDir.y = 0.;
 
 							position = position - gndDir;
 							target = target - gndDir;

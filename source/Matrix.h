@@ -9,8 +9,6 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include <iostream>
-#include "Vector.h"
 #include "MathUtils.h"
 
 #define m11 matrix[0]
@@ -33,21 +31,6 @@
 
 struct Matrix{
     double *matrix;
-
-    /*
-     2x2 Matrix cell name reference
-    	| a b |
-    	| c d |
-    */
-    /// Déterminant d'une matrice de dimensions 2 x 2.
-    /// \param a Case [1, 1] de la matrice.
-    /// \param b Case [1, 2] de la matrice.
-    /// \param c Case [2, 1] de la matrice.
-    /// \param d Case [2, 2] de la matrice.
-    /// \return Déterminant de la matrice 2 x 2.
-    double det22(double& a, double& b, double& c, double& d) {
-        return a * d - b * c;
-    }
 
     /// Constructeur.
     Matrix(){
@@ -196,15 +179,6 @@ struct Matrix{
                       v.x * m12 + v.y * m22 + v.z * m32 + m24,
                       v.x * m13 + v.y * m23 + v.z * m33 + m34);
     }
-
-    /// Envoie les composantes de la matrice à la sortie standard.
-    void printMatrix(){
-        std::cout << "|" << m11 << " " << m12 << " " << m13 << " " << m14 << "|" << "\n"
-                  << "|" << m21 << " " << m22 << " " << m23 << " " << m24 << "|" << "\n"
-                  << "|" << m31 << " " << m32 << " " << m33 << " " << m34 << "|" << "\n"
-                  << "|" << m41 << " " << m42 << " " << m43 << " " << m44 << "|" << "\n";
-    }
-
 };
 
 #endif //MATRIX_H

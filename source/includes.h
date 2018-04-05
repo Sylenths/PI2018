@@ -16,29 +16,25 @@
 #include <SDL2/SDL_opengl.h>
 
 #include "Singleton.h"
+#include "Observable.h"
+#include "Resource.h"
 #include "ResourceManager.h"
+#include "Vector.h"
 #include "Matrix.h"
 #include "GLContext.h"
 #include "Model.h"
+#include "Image.h"
 #include "Menu.h"
-#include "Observable.h"
 #include "MainMenu.h"
 #include "Settings.h"
 #include "InGameOverlay.h"
 #include "InGameESC.h"
 #include "Highscore.h"
-#include "Vector.h"
-#include "Menu.h"
-#include "Model.h"
 #include "Button.h"
-#include "Image2D.h"
-#include "ProjetFinal.h"
-#include "Resource.h"
-#include "ResourceManager.h"
 #include "Label.h"
 #include "Font.h"
+#include "Scene.h"
 #include "World.h"
+#include "ProjetFinal.h"
 
-
-
-#endif // INCLUDES_H
+#endif
