@@ -18,25 +18,53 @@
 class Highscore : public Menu{
 private:
     Button* backButton;
-    Scores* scores[11];
+    Scores* scores[12];
     std::string fichierSauvegardeScores;
 
 
 public:
+    void loadScores(){
+        FILE* fichier = fopen("../../SauvegardeScores.txt","r");
+        if(fichier){
+            //TODO Lire le fichier et loader les informations dans le tableau.
+
+            fclose(fichier);
+        }
+        //TODO Trier le tableau.
+
+    }
 
 
     Highscore(){
-       // FILE * fichier;
-        //fichierSauvegardeScores = "../../fichierScores.txt";
-
         backButton = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"),ResourceManager::getInstance()->getTexture("BackButtonOver"));
         ResourceManager::getInstance()->addResource("backButton", backButton);
         backButton->onClick = [this]() {Scene::activeScene  = "MainMenu";};
 
+        for (int i = 0; i < 10 ; ++i) {
+            scores[i] = new Scores();
+        }
+    }
 
+    ~Highscore() {
+        for (int i = 0; i <10 ; ++i) {
+            delete scores[i];
+        }
+    }
 
+    void updateScore(std::string name, unsigned int score){
+        Scores* toCompare = new Scores;
+        toCompare->setScore(name, score);
+        scores[11] = toCompare;
+
+        // TODO Trier le tableau
+
+        delete scores[11];
+    }
+
+    void save(){
 
     }
+
 
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables) {
