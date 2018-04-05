@@ -25,6 +25,14 @@ public:
         this->score = score;
     }
 
+    std::string getName(){
+        return name;
+    }
+
+    unsigned int getScore(){
+        return score;
+    }
+
 
 };
 #endif
