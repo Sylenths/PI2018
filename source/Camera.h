@@ -16,10 +16,6 @@
 #include "Matrix.h"
 #include "Vector.h"
 
-#define CAMERAMODE_RAIL 0
-#define CAMERAMODE_FIRSTPERSON 1
-#define CAMERAMODE_FLY 2
-
 //Movement in coordinate system units per second
 #define MOVEMENT_SPEED 0.1
 
@@ -40,7 +36,6 @@ private:
 	Vector position;
 	Vector target;
 	Vector up;
-	char cameraMode;
 
 	int vMouseMotion;
 
@@ -71,7 +66,7 @@ public:
 	/// \param target Cible de la caméra.
 	/// \param up Vecteur pointant vers le haut du monde.
 	/// \param mode Mode de déplacement de la caméra.
-	Camera(const Vector& position, const Vector& target, const Vector& up, const char mode) {
+	Camera(const Vector& position, const Vector& target, const Vector& up) {
 		this->position = position;
 		this->target = target;
 		this->up = up;
@@ -81,13 +76,6 @@ public:
 		double angle = getHorizontalAngle();
 
 		vMouseMotion = (int)(std::round(-angle / CAMERA_FOV_F * WINDOW_HEIGHT_I));
-
-		cameraMode = mode;
-	}
-
-	/// Sélection du mode de déplacement de la caméra.
-	void setMode(char cameraMode) {
-		this->cameraMode = cameraMode;
 	}
 
 	/// Charger la matrice de vue de la caméra.
@@ -99,30 +87,30 @@ public:
 	}
 
 	/// Notification de la caméra d'un événement d'appui de touche du clavier ou de déplacement de souris.
-	/// \param arg SDL_Event* contenant le déplacement de souris ou l'appui de la touche du clavier.
-	void notification(SDL_Event* arg) {
+	/// \param event SDL_Event* contenant le déplacement de souris ou l'appui de la touche du clavier.
+	void notification(SDL_Event* event) {
 
-		if(arg->type == SDL_MOUSEMOTION) {
+		if(event->type == SDL_MOUSEMOTION) {
 			Matrix m;
 
 			int yMove;
 
-			if((vMouseMotion + arg->motion.yrel) > CAMERA_VROTLIMIT) {
+			if((vMouseMotion + event->motion.yrel) > CAMERA_VROTLIMIT) {
 				yMove = CAMERA_VROTLIMIT - vMouseMotion;
 			}
-			else if((vMouseMotion + arg->motion.yrel) < -CAMERA_VROTLIMIT) {
+			else if((vMouseMotion + event->motion.yrel) < -CAMERA_VROTLIMIT) {
 				yMove = -CAMERA_VROTLIMIT - vMouseMotion;
 			}
 			else {
-				yMove = arg->motion.yrel;
+				yMove = event->motion.yrel;
 			}
 
 			vMouseMotion += yMove;
 
-			m.loadArbitraryRotation(position, Vector(0., 1., 0.), -(arg->motion.xrel / WINDOW_WIDTH_F * CAMERA_FOV_F));
+			m.loadArbitraryRotation(position, Vector(0., 1., 0.), -(event->motion.xrel / WINDOW_WIDTH_F * CAMERA_FOV_F));
 			target = m * target; // Horizontal camera rotation.
 
-			m.loadYRotation(arg->motion.xrel / WINDOW_WIDTH_F * CAMERA_FOV_F);
+			m.loadYRotation(event->motion.xrel / WINDOW_WIDTH_F * CAMERA_FOV_F);
 			up = m * up; // Up vector rotation.
 
 			m.loadArbitraryRotation(position, ((target - position) % up).normalize(), -((double)yMove / WINDOW_HEIGHT_F * CAMERA_FOV_F));
@@ -130,128 +118,51 @@ public:
 
 			loadViewMatrix();
 
-			std::cout << vMouseMotion << " -=- " << yMove << "-+-" << getVerticalRotationAngle()<< " /// " << getHorizontalAngle() << std::endl;
-		} else {
+			//std::cout << vMouseMotion << " -=- " << yMove << "-+-" << getVerticalRotationAngle()<< " /// " << getHorizontalAngle() << std::endl;
+		}
+		else {
 			//Move position; arg has key pressed
-			//todo: Eventually, make movement smoother by using MOVEMENT_SPEED * deltaTime, flags and handling multiple keys pressed.
-			switch(cameraMode) {
-				case CAMERAMODE_RAIL: {
-					switch(arg->key.keysym.sym) {
+			{
+				//move camera and target in viewing direction
+				Vector front = (target - position).normalize();
 
-						case SDLK_w:
-							position.z = position.z - MOVEMENT_SPEED;
-							target.z = target.z - MOVEMENT_SPEED;
-							break;
+				switch(event->key.keysym.sym) {
+					case SDLK_w: {
+						front = front * MOVEMENT_SPEED;
 
-						case SDLK_a:
-							position.x = position.x - MOVEMENT_SPEED;
-							target.x = target.x - MOVEMENT_SPEED;
-							break;
-
-						case SDLK_s:
-							position.z = position.z + MOVEMENT_SPEED;
-							target.z = target.z + MOVEMENT_SPEED;
-							break;
-
-						case SDLK_d:
-							position.x = position.x + MOVEMENT_SPEED;
-							target.x = target.x + MOVEMENT_SPEED;
-							break;
-
-						default:
-							break;
+						position = position + front;
+						target = target + front;
 					}
-				}
-					//Move camera and target in the same direction, relative to world coordinate system.
-					break;
-				case CAMERAMODE_FIRSTPERSON: {
-					//Move camera and target in horizontal viewing direction.
-					Vector gndDir = (target - position);
-					gndDir.y = 0.;
-					gndDir.normalize();
+						break;
 
-					switch(arg->key.keysym.sym) {
-						case SDLK_w: {
-							gndDir = gndDir * MOVEMENT_SPEED;
+					case SDLK_a: {
+						Vector side = (front % up) * MOVEMENT_SPEED;
 
-							position = position + gndDir;
-							target = target + gndDir;
-						}
-							break;
-
-						case SDLK_a: {
-							Vector side = (gndDir % Vector(0., 1., 0.)).normalize() * MOVEMENT_SPEED;
-
-							position = position - side;
-							target = target - side;
-						}
-							break;
-
-						case SDLK_s: {
-							gndDir = gndDir * MOVEMENT_SPEED;
-
-							position = position - gndDir;
-							target = target - gndDir;
-						}
-							break;
-
-						case SDLK_d: {
-							Vector side = (gndDir % Vector(0., 1., 0.)).normalize() * MOVEMENT_SPEED;
-
-							position = position + side;
-							target = target + side;
-						}
-							break;
-						default:
-							break;
+						position = position - side;
+						target = target - side;
 					}
-				}
-					break;
-				case CAMERAMODE_FLY: {
-					//move camera and target in viewing direction
-					Vector front = (target - position).normalize();
+						break;
 
-					switch(arg->key.keysym.sym) {
-						case SDLK_w: {
-							front = front * MOVEMENT_SPEED;
+					case SDLK_s: {
+						front = front * MOVEMENT_SPEED;
 
-							position = position + front;
-							target = target + front;
-						}
-							break;
-
-						case SDLK_a: {
-							Vector side = (front % up) * MOVEMENT_SPEED;
-
-							position = position - side;
-							target = target - side;
-						}
-							break;
-
-						case SDLK_s: {
-							front = front * MOVEMENT_SPEED;
-
-							position = position - front;
-							target = target - front;
-						}
-							break;
-
-						case SDLK_d: {
-							Vector side = (front % up) * MOVEMENT_SPEED;
-
-							position = position + side;
-							target = target + side;
-						}
-							break;
-						default:
-							break;
+						position = position - front;
+						target = target - front;
 					}
-				}
+						break;
 
-					break;
-				default:
-					break;
+					case SDLK_d: {
+						Vector side = (front % up) * MOVEMENT_SPEED;
+
+						position = position + side;
+						target = target + side;
+					}
+						break;
+					default:
+						break;
+				}
 			}
+			//todo: Eventually, make movement smoother by using MOVEMENT_SPEED * deltaTime, flags and handling multiple keys pressed.
 		}
 	}
 
