@@ -61,7 +61,7 @@ public:
 			angle = CAMERA_FOV_F - angle;
 		}
 		else {
-			angle = -CAMERA_FOV_F + (CAMERA_2FOV_F - angle);
+			angle = -CAMERA_FOV_F + (CAMERA_2FOV_F - angle); // plus grand que 90 degrés
 		}
 		return angle;
 	}

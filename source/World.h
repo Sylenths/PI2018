@@ -31,6 +31,13 @@ public:
         addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../images/grass.obj"));
         addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../images/sky.obj"));
 
+<<<<<<< HEAD
+=======
+        //changer model en sphere
+        addModel(new Model(ResourceManager::getInstance()->getTexture("grass"),"../../images/grass.obj"));
+        //addModel cycle
+        addModel(new Model(ResourceManager::getInstance()->getTexture("sky"),"../../images/sky.obj"));
+>>>>>>> 8a88f0ed220d5f3443d527b769e8dcc6dc959c2d
     }
     /// Affichage des models
     void draw() {
