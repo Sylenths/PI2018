@@ -13,6 +13,8 @@
 class GLContext : public Window {
 private:
     SDL_GLContext glContext; ///< Contexte OpenGL-SDL
+    static Matrix projectionMatrix;
+    static unsigned int width, height;
 public:
 	/// Constructeur
 	/// \param title Titre de la fenêtre.
@@ -21,8 +23,14 @@ public:
 	/// \param width Largeur de la fenêtre, en pixels.
 	/// \param height Hauteur de la fenêtre, en pixels.
 	/// \param flags Flags SDL.
-    GLContext(const char* title, int x, int y, int width, int height, unsigned int windowflags = 0) : Window(title, x,y,width, height, windowflags | SDL_WINDOW_OPENGL) {
+    GLContext(const char* title, int x, int y, int width, int height, double angle, double nearPlane, double farPlane, unsigned int windowflags = 0) : Window(title, x,y,width, height, windowflags | SDL_WINDOW_OPENGL) {
         glContext = SDL_GL_CreateContext(sdlwindow);
+        double right = std::tan(angle / 2.0) * nearPlane;
+        double top = ((double) height / (double) width) * right;
+
+        GLContext::width = width;
+        GLContext::height = height;
+        GLContext::projectionMatrix.loadProjection(right, top, nearPlane, farPlane);
     }
 	/// Destructeur.
     ~GLContext() {
@@ -55,9 +63,9 @@ public:
     /// \param nearPlane Distance de la zone de vue rapproché.
     /// \param farPlane Distance de la zone de vue éloignée.
     /// \param is2D Permet de savoir si l'objet est en 2D ou 3D.
-    void setFrustum(double angle, double nearPlane, double farPlane, bool is2D) {
-        int width, height;
-        SDL_GetWindowSize(sdlwindow, &width, &height);
+    static void setFrustum(bool is2D) {
+
+
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         if(is2D) {
@@ -65,11 +73,7 @@ public:
         }
 
         else {
-            double right = std::tan(angle / 2.0) * nearPlane;
-            double top = ((double) height / (double) width) * right;
 
-            Matrix projectionMatrix;
-            projectionMatrix.loadProjection(right, top, nearPlane, farPlane);
             glMultMatrixd(projectionMatrix.matrix);
 
         }
@@ -84,6 +88,10 @@ public:
     }
 
 };
+Matrix GLContext::projectionMatrix;
+unsigned int GLContext::width;
+unsigned int GLContext::height;
+
 
 
 #endif //SDLPROJECT_GLCONTEXT_H

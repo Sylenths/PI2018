@@ -2,7 +2,6 @@
 
 int main(int argc, char* argv[]) {
     std::string filePath = argv[0];
-
     #ifdef _WIN32
     while (filePath.back() != '\\') {
         filePath.pop_back();
@@ -15,13 +14,14 @@ int main(int argc, char* argv[]) {
 
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
+
     ResourceManager::getInstance()->addResource("font - arial12",new Font("../Fonts/arial.ttf"));
-
     ProjetFinal::getInstance()->run(filePath.c_str());
-
     ProjetFinal::deleteInstance();
     ResourceManager::deleteInstance();
+
     TTF_Quit();
     SDL_Quit();
+
     return 0;
 }

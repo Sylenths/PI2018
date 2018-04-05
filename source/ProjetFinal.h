@@ -16,32 +16,14 @@
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
-    std::map<std::string, Menu*> menuMap; ///< Carte de menu
+    std::map<std::string, Scene*> sceneMap; ///< Carte de menu
     SDL_Event* sdlEvent; ///< Gestionnaire d'évennements
-    Menu* menuDisplay;
-    World* world;
+    Scene* sceneDisplay;
+
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
 
 public:
 
-    /// Change le menu  afficher pour le menu Settings
-    void changeMenuSettings() {
-        menuDisplay = menuMap["Settings"];
-    }
-
-    /// Change le menu  afficher pour le menu HighScore
-    void changeMenuHighscore(){
-        menuDisplay = menuMap["Highscore"];
-    }
-
-    /// Change le menu affiche pour le InGameOverlay
-    void changeMenuInGameOverlay(){
-        menuDisplay = menuMap["InGameOverlay"];
-    }
-    /// Change le menu affiche pour le MainMenu
-    void changeMenuMainMenu(){
-        menuDisplay = menuMap["MainMenu"];
-    }
     /// Change la visibilité du nombre d'images par seconde
     void setShowFPS(){
 
@@ -65,34 +47,37 @@ public:
             ResourceManager::getInstance()->addTexture(textureName, textureID);
     }
 
-    /// Subscribe de tous les observateurs.
-    void subscribeObservers(){
-        if(!observables[SDL_MOUSEBUTTONDOWN])
-            observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
-        //observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
-        //observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
-
-    }
-
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
+        getTextureID("../../images/starto.png", "ButtonStartOver");
         getTextureID("../../images/settings.png", "ButtonSettings");
+        getTextureID("../../images/settingso.png", "ButtonSettingsOver");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
+        getTextureID("../../images/highscoreo.png", "ButtonHighScoreOver");
         getTextureID("../../images/maisonApp.png", "FondMaison");
-       // getTextureID("../../images/grass.png", "grass");
-       // getTextureID("../../images/cielnuageu.png", "sky");
+        getTextureID("../../images/grass.png", "grass");
+        getTextureID("../../images/cielnuageu.png", "sky");
 
-
+     //Texture pour le InGameOverlay
+        getTextureID("../../images/alert_ico.png", "alert");
+        getTextureID("../../images/delete_btn.png", "delete");
+        getTextureID("../../images/info_btn.png", "info");
+        getTextureID("../../images/Machines_btn.png", "machine");
+        getTextureID("../../images/skipturn_btn.png", "skipTurn");
+        getTextureID("../../images/struct_btn.png", "structure");
+        getTextureID("../../images/topbar_tex.png", "topBar");
+        getTextureID("../../images/wire_btn.png", "wire");
+        
         //Textures boutons settings
-        /*getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
-        getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
-        getTextureID("images/noButtonSettings_placeoholder.png", "ButtonFPS");
-        getTextureID("images/backButtonSettings_placeholder.png", "ButtonBack");*/
+        getTextureID("../../images/BoutonNO.png", "FPSButtonNO");
+        getTextureID("../../images/BoutonYES.png", "FPSButtonYES");
+        getTextureID("../../images/BoutonBack.png", "backButton");
+        getTextureID("../../images/SettingsMenu.png", "FondSettings");
+        getTextureID("../../images/backOver.png", "BackButtonOver");
+        getTextureID("../../images/BoutonYESOver.png", "FPSButtonYESOver");
+        getTextureID("../../images/BoutonNOOver.png", "FPSButtonNOOVER");
     }
 
 	/// Constructeur
@@ -103,37 +88,35 @@ public:
     /// \param height Hauteur de la fenêtre, en pixels.
     /// \param windowflags Flags SDL.
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0) {
-        glContext = new GLContext(title, x, y, width, height, windowflags);
-        glContext->setFrustum(90.0, 0.1, 1000.0, true);
+        glContext = new GLContext(title, x, y, width, height,90.0, 0.1, 1000.0, windowflags);
+        GLContext::setFrustum( true);
         sdlEvent = new SDL_Event();
         loadTextures();
-        menuMap["MainMenu"] = new MainMenu();
-        menuMap["Settings"] = new Settings();
-        menuMap["InGameOverlay"] = new InGameOverlay;
-        menuMap["InGameESC"] = new InGameESC;
-        menuMap["Highscore"] = new Highscore;
-        world = nullptr;
-        subscribeObservers();
+
+        sceneMap["MainMenu"] = new MainMenu();
+        sceneMap["MainMenu"]->subscribeAll(&observables);
+        sceneDisplay = sceneMap[Scene::getActiveScene()];
+
+        sceneMap["Settings"] = new Settings();
+        sceneMap["InGameESC"] = new InGameESC();
+        sceneMap["Highscore"] = new Highscore();
+        sceneMap["World"] = new World();
     }
 
     /// Destructeur
     ~ProjetFinal () {
         delete (glContext);
         delete (sdlEvent);
-        for (auto it : menuMap) {
+        for (auto it : sceneMap) {
             delete (it.second);
         }
     }
 
-
-
-
-
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
     /// \param is2D Booléen représentant si c'est en 2D (true), ou en 3D (false).
-    void setFrustum(bool is2D) {
-        glContext->setFrustum(90.0, 0.1, 1000.0, is2D);
-    }
+ //   void setFrustum(bool is2D) {
+   //     glContext->setFrustum(90.0, 0.1, 1000.0, is2D);
+  //  }
 
     /// Représente la boucle de jeu.
     void run(std::string filePath){
@@ -144,7 +127,6 @@ public:
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        setFrustum(IN2D);
 
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -169,7 +151,7 @@ public:
 
         ResourceManager::getInstance()->addResource("start", testButton);
 */
-        std::string active = Menu::getActiveMenu();
+
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
@@ -184,24 +166,15 @@ public:
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
-            menuDisplay = menuMap[Menu::getActiveMenu()];
+
+            if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
+              sceneDisplay->unsubscribeAll(&observables);
+              sceneDisplay = sceneMap[Scene::getActiveScene()];
+              sceneDisplay->subscribeAll(&observables);
+            }
 
             glContext->clear();
-
-            if(Menu::getActiveMenu() == "inGame"){
-                if(!world){
-                    getTextureID("../../images/grass.png", "grass");
-                    getTextureID("../../images/cielnuageu.png", "sky");
-                    world = new World();
-                }
-                world->draw();
-            } else
-                menuDisplay->draw();
-
-            active =  Menu::getActiveMenu();
-
-            // Le path n'est pas bon, Je N'ai pas fichier image
-            //ResourceManager::getInstance()->getResource<Resource*>("start")->draw();
+            sceneDisplay->draw();
             glContext->refresh();
          }
 
@@ -215,5 +188,4 @@ public:
         return size;
     }
 };
-
 #endif

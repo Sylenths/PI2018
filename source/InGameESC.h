@@ -4,11 +4,20 @@
 
 #include "Menu.h"
 
-class InGameESC : public Menu{
+class InGameESC : public Menu {
 public:
-    void draw (){
+
+    void draw() {
+    }
+
+    void subscribeAll(std::map<unsigned int, Observable<SDL_Event *> *> * observables) {
 
     }
+
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event *> *> * observables) {
+
+    }
+
 };
 
 
