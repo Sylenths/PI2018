@@ -31,7 +31,7 @@ public:
     /// \param sunPower Puissance du soleil en pourcentage
     /// \param windSpeed Force du vent en pourcentage
     /// \param timeLeft Temps restant à la phase de construction.
-    InGameOverlay(unsigned int powerCount = 10, unsigned int simCoinCount = 10, unsigned int temperatureC = 10, unsigned int sunPower = 10, unsigned int windSpeed = 10, unsigned int timeLeft = 10) {
+    InGameOverlay(unsigned int powerCount = 100, unsigned int simCoinCount = 100, unsigned int temperatureC = 10, unsigned int sunPower = 10, unsigned int windSpeed = 10, unsigned int timeLeft = 10) {
         activeHud = true;
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed, timeLeft);
     }
@@ -66,12 +66,12 @@ public:
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
         //Boutons
 
-        buttonMap["skipturn"] = new Button (ResourceManager::getInstance()->getTexture("skipTurn"), 0, 0, 0.1, 175, 60);
-        buttonMap["structure"] = new Button (ResourceManager::getInstance()->getTexture("structure"), 0, 630, 0.1, 90, 90);
-        buttonMap["machine"] = new Button (ResourceManager::getInstance()->getTexture("machine"), 90, 630, 0.1, 90, 90);
-        buttonMap["cablage"] = new Button (ResourceManager::getInstance()->getTexture("wire"), 180, 630, 0.1, 90, 90);
-        buttonMap["info"] = new Button (ResourceManager::getInstance()->getTexture("info"), 270, 630, 0.1, 90, 90);
-        buttonMap["delete"] = new Button (ResourceManager::getInstance()->getTexture("delete"), 360, 630, 0.1, 90, 90);
+        buttonMap["skipturn"] = new Button (0, 0, 0.1, 175, 60,ResourceManager::getInstance()->getTexture("skipTurn"));
+        buttonMap["structure"] = new Button (0, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("structure"));
+        buttonMap["machine"] = new Button (90, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("machine"));
+        buttonMap["cablage"] = new Button (180, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("wire"));
+        buttonMap["info"] = new Button (270, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("info"));
+        buttonMap["delete"] = new Button (360, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("delete"));
 
         ResourceManager::getInstance()->addResource("ButtonSkipTurn", buttonMap["skipturn"]);
         ResourceManager::getInstance()->addResource("ButtonStructure", buttonMap["structure"]);
@@ -88,7 +88,7 @@ public:
         //buttonMap["delete"]->onClick = [this]() { InsertMethod; };
 
         //Image2D
-        logoList.push_back(new Image( ResourceManager::getInstance()->getTexture("topBar"), 175, 0, 0.1, 540, 60));
+        logoList.push_back(new Image(175, 0, 0.1, 540, 60, ResourceManager::getInstance()->getTexture("topBar")));
 
         //Label
         auto strSimCoin = std::to_string(simCoinCount); // transforme unsigned int en string
@@ -105,7 +105,7 @@ public:
         labelMap["windSpeed"] = new Label(fontArial->getFont(), {255,255,255}, strWind, 555, 15, 0.1 , 80, 35);
 
         auto strTemperature = std::to_string(temperatureC);
-        strTemperature.push_back('C');
+        strTemperature.push_back('c');
         labelMap["temperature"] = new Label(fontArial->getFont(), {255,255,255}, strTemperature, 685, 5, 0.1 , 20, 20);
 
         auto strSunPower = std::to_string(sunPower);
@@ -258,7 +258,7 @@ public:
     /// \param temp La temperature actuelle.
     void updateTemperature(unsigned int temp){
         auto s = std::to_string(temp);
-        s.push_back('C');
+        s.push_back('c');
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
         labelMap["temperature"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
