@@ -12,7 +12,6 @@
 
 #define IN2D 1
 #define IN3D 0
-
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
@@ -32,7 +31,7 @@ public:
     /// Chargeur de texture (les mets automatiquement dans le ressource manager).
     /// \param filename Fichier de texture a charger.
     /// \param textureName Nom significatif a donner a la texture.
-    void getTextureID(const char* filename, std::string textureName){
+    static void getTextureID(const char* filename, std::string textureName){
             unsigned int textureID;
             glGenTextures(1, &textureID);
             glBindTexture(GL_TEXTURE_2D, textureID);
@@ -49,6 +48,21 @@ public:
 
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
+
+        //Texture pour le InGameOverlay
+           getTextureID("../../images/alert_ico.png", "alert");
+           getTextureID("../../images/delete_btn.png", "delete");
+           getTextureID("../../images/info_btn.png", "info");
+           getTextureID("../../images/Machines_btn.png", "machine");
+           getTextureID("../../images/skipturn_btn.png", "skipTurn");
+           getTextureID("../../images/struct_btn.png", "structure");
+           getTextureID("../../images/topbar_tex.png", "topBar");
+           getTextureID("../../images/wire_btn.png", "wire");
+
+        //Textures world
+        getTextureID("../../images/grass.png", "grass");
+        getTextureID("../../images/cielnuageu.png", "sky");
+
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
         getTextureID("../../images/starto.png", "ButtonStartOver");
@@ -57,18 +71,8 @@ public:
         getTextureID("../../images/highscore.png", "ButtonHighScore");
         getTextureID("../../images/highscoreo.png", "ButtonHighScoreOver");
         getTextureID("../../images/maisonApp.png", "FondMaison");
-        getTextureID("../../images/grass.png", "grass");
-        getTextureID("../../images/cielnuageu.png", "sky");
 
-     //Texture pour le InGameOverlay
-        getTextureID("../../images/alert_ico.png", "alert");
-        getTextureID("../../images/delete_btn.png", "delete");
-        getTextureID("../../images/info_btn.png", "info");
-        getTextureID("../../images/Machines_btn.png", "machine");
-        getTextureID("../../images/skipturn_btn.png", "skipTurn");
-        getTextureID("../../images/struct_btn.png", "structure");
-        getTextureID("../../images/topbar_tex.png", "topBar");
-        getTextureID("../../images/wire_btn.png", "wire");
+
         
         //Textures boutons settings
         getTextureID("../../images/BoutonNO.png", "FPSButton");
@@ -77,7 +81,7 @@ public:
         getTextureID("../../images/BoutonBack.png", "backButton");
         getTextureID("../../images/SettingsMenu.png", "FondSettings");
         getTextureID("../../images/backOver.png", "BackButtonOver");
-        getTextureID("../../images/BoutonYESOver.png", "FPSButtonYESOver");
+        getTextureID("../../images/BoutonYESOver.png", "FPSButtonYESOVER");
         getTextureID("../../images/BoutonNOOver.png", "FPSButtonNOOVER");
     }
 
