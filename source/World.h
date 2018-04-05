@@ -33,7 +33,6 @@ public:
 
         //changer model en sphere
         //addModel cycle
-
     }
     /// Affichage des models
     void draw() {
