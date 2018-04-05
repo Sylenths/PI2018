@@ -25,6 +25,7 @@ public:
         onClick = nullptr;
     }
 
+
     /// Réception de notification d'événement SDL.
     /// \param sdlEvent Événement SDL.
     void notify(SDL_Event* sdlEvent) {

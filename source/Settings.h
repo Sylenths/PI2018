@@ -17,7 +17,7 @@
 class Settings : public Menu{
 private:
     Button * FPSButton, * backButton;
-    Label* resolution, * showFPS;
+    Label * showFPS;
     Image* fond;
     Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
 
@@ -38,8 +38,16 @@ public:
         showFPS = new Label(font->getFont(), {128,128,128,0}, "Show FPS : ", 71, 300, 0.1, 466, 113);
     }
 
+    ~Settings(){
+        delete fond;
+        delete FPSButton;
+        delete backButton;
+        delete showFPS;
+        delete font;
+    }
+
     void FPSOnOff(){
-       
+
     }
 
     void draw (){
@@ -47,6 +55,8 @@ public:
         FPSButton->draw();
         backButton->draw();
         fond->draw();
+
+
     }
 
     void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables){
