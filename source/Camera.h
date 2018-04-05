@@ -62,6 +62,7 @@ public:
 		}
 		else {
 			angle = -CAMERA_FOV_F + (CAMERA_2FOV_F - angle);
+			// angle = - (CAMERA_FOV_F - angle);
 		}
 		return angle;
 	}

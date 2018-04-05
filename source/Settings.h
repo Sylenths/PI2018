@@ -24,10 +24,10 @@ private:
 public:
     Settings() {
 
-        fond = new Image (ResourceManager::getInstance()->getTexture("FondSettings"), 0, 0, 0.1, 1280, 720);
+        fond = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondSettings"));
         ResourceManager::getInstance()->addResource("FondSettings", fond);
 
-        FPSButton = new Button (712, 300, 0.2, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"), ResourceManager::getInstance()->getTexture("FPSButtonNOOVER"));
+        FPSButton = new Button (712, 300, 0, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"), ResourceManager::getInstance()->getTexture("FPSButtonNOOVER"));
         ResourceManager::getInstance()->addResource("FPSButtonNO", FPSButton);
         FPSButton->onClick = [this]() {FPSOnOff();};
 
@@ -57,6 +57,7 @@ public:
         FPSButton->draw();
         backButton->draw();
         fond->draw();
+
 
 
     }
