@@ -182,6 +182,8 @@ public:
             sceneDisplay->draw();
             glContext->refresh();
          }
+        Highscore* test = new Highscore;
+        test->loadScores();
 
     }
 

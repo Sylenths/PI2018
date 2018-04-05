@@ -15,10 +15,24 @@ private:
     std::string name;
     unsigned int score;
 public:
-    Scores(std::string name, unsigned int score){
+    Scores(){
+        name = "Empty";
+        score = 0;
+    }
+
+    void setScore(std::string name, unsigned  int score){
         this->name = name;
         this->score = score;
     }
+
+    std::string getName(){
+        return name;
+    }
+
+    unsigned int getScore(){
+        return score;
+    }
+
 
 };
 #endif
