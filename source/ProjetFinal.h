@@ -12,7 +12,6 @@
 
 #define IN2D 1
 #define IN3D 0
-
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
