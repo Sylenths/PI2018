@@ -36,12 +36,12 @@ public:
     }
     /// Affichage des models
     void draw() {
-        /*GLContext::setFrustum(IS3D);
+        GLContext::setFrustum(IS3D);
 
         //std::map<std::string, Model*>::iterator
         for(auto it = modelMap.begin(); it != modelMap.end(); it++)
             (*it).second->draw();
-        */
+
         GLContext::setFrustum(IS2D);
         hud->draw();
     }
