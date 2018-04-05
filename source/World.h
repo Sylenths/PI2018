@@ -27,7 +27,9 @@ public:
     /// Constructeur, tout les models nécéssaires sont loadés ici.
     World() {
 
+        //changer model en sphere
         addModel(new Model(ResourceManager::getInstance()->getTexture("grass"),"../../images/grass.obj"));
+        //addModel cycle
         addModel(new Model(ResourceManager::getInstance()->getTexture("sky"),"../../images/sky.obj"));
     }
     /// Affichage des models
