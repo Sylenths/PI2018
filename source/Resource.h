@@ -7,12 +7,13 @@
 /// \bug Aucuns.
 #ifndef RESOURCE_H
 #define RESOURCE_H
+ #include "includes.h"
 
 class Resource{
 private:
 
 public:
-    //virtual void nothing() = 0;
+
 
     /// Cette fonction permet de dessiner la ressource dans la fenêtre. ELLE POURRAIT ÊTRE REMPLACÉ PAR SON ENFANT. Sinon, draw() ne fait rien.
 
