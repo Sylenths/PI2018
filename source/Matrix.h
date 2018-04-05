@@ -97,6 +97,7 @@ struct Matrix{
     /// \param a Axe de rotation
     /// \param angle Angle de rotation.
     void loadArbitraryRotation(Vector p, Vector a, double angle){
+        a.normalize();
 
         double u2 = a.x*a.x;
         double v2 = a.y*a.y;
