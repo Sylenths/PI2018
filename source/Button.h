@@ -1,47 +1,49 @@
-/// \brief Représentation d'un bouton
-/// \details Pour réagir au clic de souris et autre si possible
-/// \author Tai Chen Li, Samuel Labelle
+/// \brief Représentation d'un bouton.
+/// \details Bouton réagissant au clic de souris.
+/// \author Tai Chen Li, Samuel Labelle, Patrick Singcaster
 /// \date 28 mars 2018
-/// \version 0.1
+/// \version 0.2
 /// \warning Aucuns.
 /// \bug Aucuns.
 
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include "Image2D.h"
-
-class Button : public Image2D {
+class Button : public Image {
 public:
-  std::function<void()> onClick;  ///< Le pointeur de méthode vers quoi on veut réagir avec nos événements
+    std::function<void()> onClick;  ///< Pointeur de méthode réagissant à un click de souris.
 
-  /// Constructeur.
-	/// \param onClick Fonction Activée par le bouton.
+    /// Constructeur.
+    /// \param onClick Fonction appelée par un click de souris.
     /// \param textureID Identificateur de la texture.
-	/// \param x Position en x par rapport au coin gauche en haut.
-	/// \param y Position en y par rapport au coin gauche en haut.
-	/// \param width Largeur du bouton.
-	/// \param height Hauteur du bouton.
-    Button( unsigned int textureID, unsigned int x, unsigned int y, unsigned int z, double width, double height) : Image2D(textureID,x,y,z,width,height){
-      onClick = nullptr;
+    /// \param x Position en x par rapport au coin supérieur gauche de la fenêtre.
+    /// \param y Position en y par rapport au coin supérieur gauche de la fenêtre.
+    /// \param width Largeur du bouton.
+    /// \param height Hauteur du bouton.
+    Button(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int mouseOverTextureID = 0) : Image(x, y, z, width, height, defaultTextureID) {
+        textureIDs["over"] = (mouseOverTextureID) ? mouseOverTextureID : defaultTextureID;
+        onClick = nullptr;
     }
-	/// Réception de notifications d'événements SDL.
-	/// \param sdlEvent Événement SDL.
+
+    /// Réception de notification d'événement SDL.
+    /// \param sdlEvent Événement SDL.
     void notify(SDL_Event* sdlEvent) {
-        if (sdlEvent->button.button == SDL_BUTTON_LEFT) {
-            if (sdlEvent->button.x >= x) {
-                if (sdlEvent->button.x <= (x + width)) {
-                    if (sdlEvent->button.y >= y) {
-                        if (sdlEvent->button.y <= (y + height)) {
-                            if (onClick) onClick();
-                        }
-                    }
-                }
+        if ((sdlEvent->button.x >= vertices[0]) && (sdlEvent->button.x <= vertices[3]) &&
+            (sdlEvent->button.y >= vertices[1]) && (sdlEvent->button.y <= vertices[4])) {
+            switch (sdlEvent->type) {
+                case SDL_MOUSEBUTTONDOWN:
+                    if ((sdlEvent->button.button == SDL_BUTTON_LEFT) && onClick)
+                        onClick();
+                break;
+
+                case SDL_MOUSEMOTION:
+                    textureToDraw = textureIDs["over"];
+                break;
             }
         }
+        else
+            textureToDraw = textureIDs["default"];
     }
-
 };
-
 
 #endif

@@ -47,35 +47,34 @@ public:
             ResourceManager::getInstance()->addTexture(textureName, textureID);
     }
 
-    /// Subscribe de tous les observateurs.
-   /* void subscribeObservers(){
-        if(!observables[SDL_MOUSEBUTTONDOWN])
-            observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
-        menuMap["MainMenu"]->subscribeAll(observables);
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButton"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
-
-    }
-    */
-
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
+        getTextureID("../../images/starto.png", "ButtonStartOver");
         getTextureID("../../images/settings.png", "ButtonSettings");
+        getTextureID("../../images/settingso.png", "ButtonSettingsOver");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
+        getTextureID("../../images/highscoreo.png", "ButtonHighScoreOver");
         getTextureID("../../images/maisonApp.png", "FondMaison");
         getTextureID("../../images/grass.png", "grass");
         getTextureID("../../images/cielnuageu.png", "sky");
 
-
+     //Texture pour le InGameOverlay
+        getTextureID("../../images/alert_ico.png", "alert");
+        getTextureID("../../images/delete_btn.png", "delete");
+        getTextureID("../../images/info_btn.png", "info");
+        getTextureID("../../images/Machines_btn.png", "machine");
+        getTextureID("../../images/skipturn_btn.png", "skipTurn");
+        getTextureID("../../images/struct_btn.png", "structure");
+        getTextureID("../../images/topbar_tex.png", "topBar");
+        getTextureID("../../images/wire_btn.png", "wire");
+        
         //Textures boutons settings
-        /*getTextureID("images/leftArrowSettings_placeholder.png", "ButtonLeftArrow");
-        getTextureID("images/rightArrowSettings_placeholder.png", "ButtonRightArrow");
-         */
-        /*getTextureID("../../images/BoutonNO.png", "FPSButton");
+        getTextureID("../../images/BoutonNO.png", "FPSButtonNO");
+        getTextureID("../../images/BoutonYES.png", "FPSButtonYES");
         getTextureID("../../images/BoutonBack.png", "backButton");
-        getTextureID("../../images/SettingsMenu.png", "FondSettings");*/
+        getTextureID("../../images/SettingsMenu.png", "FondSettings");
     }
 
 	/// Constructeur
@@ -90,12 +89,15 @@ public:
         GLContext::setFrustum( true);
         sdlEvent = new SDL_Event();
         loadTextures();
-        sceneMap["MainMenu"] = new MainMenu();
-        sceneMap["Settings"] = new Settings();
-        sceneMap["InGameESC"] = new InGameESC;
-        sceneMap["Highscore"] = new Highscore;
-        sceneMap["World"] = new World();
 
+        sceneMap["MainMenu"] = new MainMenu();
+        sceneMap["MainMenu"]->subscribeAll(&observables);
+        sceneDisplay = sceneMap[Scene::getActiveScene()];
+
+        sceneMap["Settings"] = new Settings();
+        sceneMap["InGameESC"] = new InGameESC();
+        sceneMap["Highscore"] = new Highscore();
+        sceneMap["World"] = new World();
     }
 
     /// Destructeur
@@ -107,10 +109,6 @@ public:
         }
     }
 
-
-
-
-
     /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
     /// \param is2D Booléen représentant si c'est en 2D (true), ou en 3D (false).
  //   void setFrustum(bool is2D) {
@@ -119,7 +117,6 @@ public:
 
     /// Représente la boucle de jeu.
     void run(std::string filePath){
-        sceneMap["MainMenu"]->subscribeAll(&observables);
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_LIGHTING);
@@ -166,14 +163,15 @@ public:
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
-            sceneDisplay = sceneMap[Scene::getActiveScene()];
+
+            if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
+              sceneDisplay->unsubscribeAll(&observables);
+              sceneDisplay = sceneMap[Scene::getActiveScene()];
+              sceneDisplay->subscribeAll(&observables);
+            }
 
             glContext->clear();
             sceneDisplay->draw();
-
-
-            // Le path n'est pas bon, Je N'ai pas fichier image
-            //ResourceManager::getInstance()->getResource<Resource*>("start")->draw();
             glContext->refresh();
          }
 

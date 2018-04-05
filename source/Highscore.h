@@ -9,20 +9,30 @@
 #define SOURCE_HIGHSCORE_H
 
 #include "Menu.h"
+#include "includes.h"
 
 class Highscore : public Menu{
+private:
+    Button* backButton;
 public:
 
-    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> observables) {
 
+    Highscore(){
+        backButton = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"));
+        backButton->onClick = [this]() {Scene::activeScene  = "MainMenu";};
     }
 
-    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*> observables) {
 
+    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables) {
+        (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+    }
+
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables) {
+        (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
     }
 
     void draw(){
-
+        backButton->draw();
     }
 };
 
