@@ -34,21 +34,6 @@
 struct Matrix{
     double *matrix;
 
-    /*
-     2x2 Matrix cell name reference
-    	| a b |
-    	| c d |
-    */
-    /// Déterminant d'une matrice de dimensions 2 x 2.
-    /// \param a Case [1, 1] de la matrice.
-    /// \param b Case [1, 2] de la matrice.
-    /// \param c Case [2, 1] de la matrice.
-    /// \param d Case [2, 2] de la matrice.
-    /// \return Déterminant de la matrice 2 x 2.
-    double det22(double& a, double& b, double& c, double& d) {
-        return a * d - b * c;
-    }
-
     /// Constructeur.
     Matrix(){
         matrix = new double[16];
