@@ -17,15 +17,12 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-#ifdef _WIN32
+#if defined(_WIN32) || defined(__linux__)
   #include <SDL2/SDL_ttf.h>
   #include <SDL2/SDL_image.h>
 #elif defined __APPLE__
   #include <SDL2_ttf/SDL_ttf.h>
   #include <SDL2_image/SDL_image.h>
-#elif defined __linux__
-  #include <SDL2/SDL_ttf.h>
-  #include <SDL2/SDL_image.h>
 #endif
 
 #include "Singleton.h"
