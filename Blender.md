@@ -6,6 +6,17 @@
 | Maintenir centre | Rotation |
 | Majuscule + Maintenir centre | Translation |
 
+## Vue
+
+| Raccourci | Description |
+|--------|-------------|
+| 1 | Devant |
+| Ctrl + 1 | Derrière |
+| 3 | Droite |
+| Ctrl + 3 | Gauche |
+| 7 | Dessus |
+| Ctrl + 7 | Dessous |
+
 ## Mode
 
 | Raccourci | Description |
