@@ -30,13 +30,15 @@ protected:
 
     std::map<std::string, unsigned int> textureIDs;
 
+    bool is2D;
+
 public:
 
 	/// Constructeur.
     /// \param textureID Identificateur de la texture.
 	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
     Model(unsigned int textureID, const char* objFile = nullptr) {
-
+        is2D = true;
         textureIDs["default"] = textureID;
         textureToDraw = textureID;
 
@@ -45,6 +47,7 @@ public:
         vertices = normals = texCoords = nullptr;
 
         if(objFile) {
+            is2D = false;
             std::vector<double> vVertices, vNormals, vTexCoords;
             std::vector<unsigned int> vVerticesIndex, vNormalsIndex, vTexCoordsIndex;
 
