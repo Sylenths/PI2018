@@ -75,6 +75,9 @@ public:
         getTextureID("../../images/BoutonYES.png", "FPSButtonYES");
         getTextureID("../../images/BoutonBack.png", "backButton");
         getTextureID("../../images/SettingsMenu.png", "FondSettings");
+        getTextureID("../../images/backOver.png", "BackButtonOver");
+        getTextureID("../../images/BoutonYESOver.png", "FPSButtonYESOver");
+        getTextureID("../../images/BoutonNOOver.png", "FPSButtonNOOVER");
     }
 
 	/// Constructeur
