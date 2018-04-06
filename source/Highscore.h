@@ -1,6 +1,6 @@
 /// \brief Menu moontrant les scores obtenus par différents joueurs
 /// \details Interface accessible depuis le menu principal. Les scores sont stockés dans un fichier et classés en ordre décroissant.
-/// \author Mathilde Harnois
+/// \author Mathilde Harnois, Jade St-Pierre Bouchard
 /// \date 27 mars 2018
 /// \version 0.1
 /// \warning Aucun.
@@ -21,6 +21,9 @@ class Highscore : public Menu{
 private:
     Button* backButtonHighscore;
     Scores* scores[12];
+    Label*  indicationsScores[11];
+    Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
+    Image* fond;
 
     std::string fichierSauvegardeScores;
 
@@ -69,9 +72,19 @@ public:
         ResourceManager::getInstance()->addResource("backButtonHighscore", backButtonHighscore);
         backButtonHighscore->onClick = [this]() {Scene::activeScene  = "MainMenu";};
 
+        fond = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondHighscore"));
+        ResourceManager::getInstance()->addResource("FondHighscore", fond);
+
+
         for (int i = 0; i < 10 ; ++i) {
             scores[i] = new Scores();
+           /* std::string buffer;
+            char intBuffer[10];
+            itoa(scores[i]->getScore(),intBuffer,10);
+            buffer = scores[i]->getName() + "          " + intBuffer;
+            indicationsScores[i] = new Label(font->getFont(), {128,128,128,0},buffer, 71, 300, 0.1, 466, 113);*/
         }
+
     }
 
     ~Highscore() {
@@ -131,6 +144,7 @@ public:
 
     void draw(){
         backButtonHighscore->draw();
+        fond->draw();
     }
 };
 

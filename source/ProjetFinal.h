@@ -87,6 +87,9 @@ public:
         getTextureID("../../images/backOver.png", "BackButtonOver");
         getTextureID("../../images/BoutonYESOver.png", "FPSButtonYESOVER");
         getTextureID("../../images/BoutonNOOver.png", "FPSButtonNOOVER");
+
+        //Textures menu Highscore
+        getTextureID("../../images/MenuHighScore.png","FondHighscore");
     }
 
 	/// Constructeur
