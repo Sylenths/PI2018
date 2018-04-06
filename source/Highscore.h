@@ -89,7 +89,8 @@ public:
         // Les lignes qui suivent servent à tester les labels de highscore.
         std::string buffer;
         char intBuffer[10];
-        itoa(scores[1]->getScore(),intBuffer,10);
+        sprintf(intBuffer, "%d", scores[1]->getScore());
+        //itoa(scores[1]->getScore(),intBuffer,10);
         buffer = scores[1]->getName() + "          " + intBuffer;
         indicationsScores[1] = new Label(font->getFont(), {128,128,128,0},buffer, 71, 300, 0.1, 466, 113);
 

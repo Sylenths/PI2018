@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PI2018:  Fichier source de source/World.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PI2018
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">World.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by Mic on 2018-04-02.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef SOURCE_WORLD_H</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define SOURCE_WORLD_H</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;includes.h&quot;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;GLContext.h&quot;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_world.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_world.html">World</a> : <span class="keyword">public</span> <a class="code" href="class_scene.html">Scene</a>{</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::map&lt;std::string, Model*&gt; modelMap; </div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_in_game_overlay.html">InGameOverlay</a>* hud;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_world.html#a8ca1bf30b515ffcadd9284dc9e3ee501">   25</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_world.html#a8ca1bf30b515ffcadd9284dc9e3ee501">addModel</a>(std::string modelKey, <a class="code" href="class_model.html">Model</a>* model){</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        modelMap[modelKey] = model;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div><div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8">   29</a></span>&#160;    <a class="code" href="class_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8">World</a>() {</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        hud = <span class="keyword">new</span> <a class="code" href="class_in_game_overlay.html">InGameOverlay</a>();</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="class_world.html#a8ca1bf30b515ffcadd9284dc9e3ee501">addModel</a>(<span class="stringliteral">&quot;grass&quot;</span>, <span class="keyword">new</span> <a class="code" href="class_model.html">Model</a>(<a class="code" href="class_singleton.html#ad6f103597095efda360db4a230308666">ResourceManager::getInstance</a>()-&gt;getTexture(<span class="stringliteral">&quot;grass&quot;</span>),<span class="stringliteral">&quot;../../images/grass.obj&quot;</span>));</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="class_world.html#a8ca1bf30b515ffcadd9284dc9e3ee501">addModel</a>(<span class="stringliteral">&quot;sky&quot;</span>, <span class="keyword">new</span> <a class="code" href="class_model.html">Model</a>(<a class="code" href="class_singleton.html#ad6f103597095efda360db4a230308666">ResourceManager::getInstance</a>()-&gt;getTexture(<span class="stringliteral">&quot;sky&quot;</span>),<span class="stringliteral">&quot;../../images/sky.obj&quot;</span>));</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="comment">//changer model en sphere</span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">//addModel cycle</span></div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div><div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_world.html#ab51a17ccbb108616daacd0c34973dc8d">   38</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_world.html#ab51a17ccbb108616daacd0c34973dc8d">draw</a>() {</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="class_g_l_context.html#a1c779af2bbacea78c93e0e44d1ab8151">GLContext::setFrustum</a>(IS3D);</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">//std::map&lt;std::string, Model*&gt;::iterator</span></div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = modelMap.begin(); it != modelMap.end(); it++)</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            (*it).second-&gt;draw();</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="class_g_l_context.html#a1c779af2bbacea78c93e0e44d1ab8151">GLContext::setFrustum</a>(IS2D);</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        hud-&gt;<a class="code" href="class_in_game_overlay.html#a1126ef34464f3f0007dd1f477c52816f">draw</a>();</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> subscribeAll( std::map&lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>, <a class="code" href="class_observable.html">Observable&lt;SDL_Event*&gt;</a>*&gt; *observables) {</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> unsubscribeAll( std::map&lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>, <a class="code" href="class_observable.html">Observable&lt;SDL_Event*&gt;</a>*&gt; * observables) {</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif //SOURCE_WORLD_H</span></div><div class="ttc" id="class_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdoc">La maille est la somme de tous les points pour former une forme géométrique dans OpenGL. </div><div class="ttdef"><b>Definition:</b> Model.h:12</div></div>
+<div class="ttc" id="class_world_html"><div class="ttname"><a href="class_world.html">World</a></div><div class="ttdoc">Contient les models a afficher. </div><div class="ttdef"><b>Definition:</b> World.h:15</div></div>
+<div class="ttc" id="class_singleton_html_ad6f103597095efda360db4a230308666"><div class="ttname"><a href="class_singleton.html#ad6f103597095efda360db4a230308666">Singleton&lt; ResourceManager &gt;::getInstance</a></div><div class="ttdeci">static ResourceManager * getInstance()</div><div class="ttdoc">Récupérer l&amp;#39;instance. </div><div class="ttdef"><b>Definition:</b> Singleton.h:18</div></div>
+<div class="ttc" id="class_in_game_overlay_html"><div class="ttname"><a href="class_in_game_overlay.html">InGameOverlay</a></div><div class="ttdoc">Représentation de l&amp;#39;interface en jeu. </div><div class="ttdef"><b>Definition:</b> InGameOverlay.h:13</div></div>
+<div class="ttc" id="class_world_html_afa39d4e6f714a7a3691ac0c656f5e8a8"><div class="ttname"><a href="class_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8">World::World</a></div><div class="ttdeci">World()</div><div class="ttdoc">Constructeur, tout les models nécéssaires sont loadés ici. </div><div class="ttdef"><b>Definition:</b> World.h:29</div></div>
+<div class="ttc" id="class_world_html_a8ca1bf30b515ffcadd9284dc9e3ee501"><div class="ttname"><a href="class_world.html#a8ca1bf30b515ffcadd9284dc9e3ee501">World::addModel</a></div><div class="ttdeci">void addModel(std::string modelKey, Model *model)</div><div class="ttdef"><b>Definition:</b> World.h:25</div></div>
+<div class="ttc" id="class_scene_html"><div class="ttname"><a href="class_scene.html">Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.h:9</div></div>
+<div class="ttc" id="class_world_html_ab51a17ccbb108616daacd0c34973dc8d"><div class="ttname"><a href="class_world.html#ab51a17ccbb108616daacd0c34973dc8d">World::draw</a></div><div class="ttdeci">void draw()</div><div class="ttdoc">Affichage des models. </div><div class="ttdef"><b>Definition:</b> World.h:38</div></div>
+<div class="ttc" id="class_in_game_overlay_html_a1126ef34464f3f0007dd1f477c52816f"><div class="ttname"><a href="class_in_game_overlay.html#a1126ef34464f3f0007dd1f477c52816f">InGameOverlay::draw</a></div><div class="ttdeci">void draw()</div><div class="ttdoc">Affiche le InGameOverlay. </div><div class="ttdef"><b>Definition:</b> InGameOverlay.h:40</div></div>
+<div class="ttc" id="class_observable_html"><div class="ttname"><a href="class_observable.html">Observable</a></div><div class="ttdoc">Représentation d&amp;#39;un observable. </div><div class="ttdef"><b>Definition:</b> Observable.h:14</div></div>
+<div class="ttc" id="class_g_l_context_html_a1c779af2bbacea78c93e0e44d1ab8151"><div class="ttname"><a href="class_g_l_context.html#a1c779af2bbacea78c93e0e44d1ab8151">GLContext::setFrustum</a></div><div class="ttdeci">static void setFrustum(bool is2D)</div><div class="ttdef"><b>Definition:</b> GLContext.h:66</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>
