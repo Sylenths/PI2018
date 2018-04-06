@@ -22,7 +22,7 @@ private:
     Button* backButtonHighscore;
     Scores* scores[12];
     Label*  indicationsScores[11];
-    Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
+    Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial28");
     Image* fond;
 
     std::string fichierSauvegardeScores;
@@ -76,6 +76,8 @@ public:
         ResourceManager::getInstance()->addResource("FondHighscore", fond);
 
 
+
+
         for (int i = 0; i < 10 ; ++i) {
             scores[i] = new Scores();
            /* std::string buffer;
@@ -84,6 +86,12 @@ public:
             buffer = scores[i]->getName() + "          " + intBuffer;
             indicationsScores[i] = new Label(font->getFont(), {128,128,128,0},buffer, 71, 300, 0.1, 466, 113);*/
         }
+        // Les lignes qui suivent servent à tester les labels de highscore.
+        std::string buffer;
+        char intBuffer[10];
+        itoa(scores[1]->getScore(),intBuffer,10);
+        buffer = scores[1]->getName() + "          " + intBuffer;
+        indicationsScores[1] = new Label(font->getFont(), {128,128,128,0},buffer, 71, 300, 0.1, 466, 113);
 
     }
 
@@ -144,6 +152,7 @@ public:
 
     void draw(){
         backButtonHighscore->draw();
+        indicationsScores[1]->draw();
         fond->draw();
     }
 };
