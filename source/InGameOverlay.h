@@ -284,10 +284,7 @@ public:
 
     /// Active/Desactive l'affichage du InGameOverlay
     void toggleHud(){
-        if (activeHud)
-            activeHud = false;
-        else
-            activeHud = true;
+        activeHud = !activeHud;
     }
 
     /// Destructeur.
