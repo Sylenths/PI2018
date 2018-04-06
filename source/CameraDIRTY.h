@@ -44,16 +44,16 @@ private:
         if(sdlEvent->type == SDL_KEYDOWN) {
             switch (sdlEvent->key.keysym.sym) {
                 case SDLK_w:
-                    position = position + direction.normalizeNPC();
+                    position = position + direction.getNormalized();
                     break;
                 case SDLK_s:
-                    position = position - direction.normalizeNPC();
+                    position = position - direction.getNormalized();
                     break;
                 case SDLK_a:
-                    position = position - (direction.normalizeNPCXZ() % Vector(0.0, 1.0, 0.0));
+                    position = position - (direction.getNormalizedHorizontalComponents() % Vector(0.0, 1.0, 0.0));
                     break;
                 case SDLK_d:
-                    position = position + (direction.normalizeNPCXZ() % Vector(0.0, 1.0, 0.0));
+                    position = position + (direction.getNormalizedHorizontalComponents() % Vector(0.0, 1.0, 0.0));
                     break;
                 default:
                     break;

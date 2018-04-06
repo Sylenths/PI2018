@@ -72,8 +72,6 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:a33b275daa24fb582c749434e4bba0a8c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_matrix.html#a33b275daa24fb582c749434e4bba0a8c">det22</a> (double &amp;a, double &amp;b, double &amp;c, double &amp;d)</td></tr>
-<tr class="separator:a33b275daa24fb582c749434e4bba0a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dba13c45127354c9f75ef576f49269b"><td class="memItemLeft" align="right" valign="top"><a id="a2dba13c45127354c9f75ef576f49269b"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_matrix.html#a2dba13c45127354c9f75ef576f49269b">Matrix</a> ()</td></tr>
 <tr class="memdesc:a2dba13c45127354c9f75ef576f49269b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur. <br /></td></tr>
@@ -88,8 +86,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stru
 <tr class="separator:a980ae445a0df5fab5b4e68ce83221853"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1b5d1f699da238eaf4b8cbc0c611bc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_matrix.html#ae1b5d1f699da238eaf4b8cbc0c611bc8">loadProjection</a> (const double &amp;t, const double &amp;r, const double &amp;n, const double &amp;f)</td></tr>
 <tr class="separator:ae1b5d1f699da238eaf4b8cbc0c611bc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae795f6158a886cce11e7fd270c3e446f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_matrix.html#ae795f6158a886cce11e7fd270c3e446f">loadView</a> (const <a class="el" href="struct_vector.html">Vector</a> &amp;f, const <a class="el" href="struct_vector.html">Vector</a> &amp;s, const <a class="el" href="struct_vector.html">Vector</a> &amp;u)</td></tr>
-<tr class="separator:ae795f6158a886cce11e7fd270c3e446f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6738549197c49cecb433e65b5027dfe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_matrix.html#ac6738549197c49cecb433e65b5027dfe">loadView</a> (<a class="el" href="struct_vector.html">Vector</a> f, <a class="el" href="struct_vector.html">Vector</a> s, <a class="el" href="struct_vector.html">Vector</a> u)</td></tr>
+<tr class="separator:ac6738549197c49cecb433e65b5027dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55ccbb920bbe3ec7b2532440a6077723"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_matrix.html#a55ccbb920bbe3ec7b2532440a6077723">loadArbitraryRotation</a> (<a class="el" href="struct_vector.html">Vector</a> p, <a class="el" href="struct_vector.html">Vector</a> a, double angle)</td></tr>
 <tr class="separator:a55ccbb920bbe3ec7b2532440a6077723"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18b23e449c99da890e29ef148cccb89a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_matrix.html#a18b23e449c99da890e29ef148cccb89a">loadTranslation</a> (<a class="el" href="struct_vector.html">Vector</a> v)</td></tr>
@@ -114,64 +112,6 @@ double *&#160;</td><td class="memItemRight" valign="bottom"><b>matrix</b></td></
 <tr class="separator:aec29b5641994179fae88ea2d464fc45a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
-<a id="a33b275daa24fb582c749434e4bba0a8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33b275daa24fb582c749434e4bba0a8c">&#9670;&nbsp;</a></span>det22()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Matrix::det22 </td>
-          <td>(</td>
-          <td class="paramtype">double &amp;&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&#160;</td>
-          <td class="paramname"><em>b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double &amp;&#160;</td>
-          <td class="paramname"><em>d</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Déterminant d'une matrice de dimensions 2 x 2. </p><dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">a</td><td>Case [1, 1] de la matrice. </td></tr>
-    <tr><td class="paramname">b</td><td>Case [1, 2] de la matrice. </td></tr>
-    <tr><td class="paramname">c</td><td>Case [2, 1] de la matrice. </td></tr>
-    <tr><td class="paramname">d</td><td>Case [2, 2] de la matrice. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Déterminant de la matrice 2 x 2. </dd></dl>
-
-</div>
-</div>
 <a id="a55ccbb920bbe3ec7b2532440a6077723"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a55ccbb920bbe3ec7b2532440a6077723">&#9670;&nbsp;</a></span>loadArbitraryRotation()</h2>
 
@@ -311,8 +251,8 @@ double *&#160;</td><td class="memItemRight" valign="bottom"><b>matrix</b></td></
 
 </div>
 </div>
-<a id="ae795f6158a886cce11e7fd270c3e446f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae795f6158a886cce11e7fd270c3e446f">&#9670;&nbsp;</a></span>loadView()</h2>
+<a id="ac6738549197c49cecb433e65b5027dfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6738549197c49cecb433e65b5027dfe">&#9670;&nbsp;</a></span>loadView()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -323,19 +263,19 @@ double *&#160;</td><td class="memItemRight" valign="bottom"><b>matrix</b></td></
         <tr>
           <td class="memname">void Matrix::loadView </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_vector.html">Vector</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
           <td class="paramname"><em>f</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="struct_vector.html">Vector</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
           <td class="paramname"><em>s</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="struct_vector.html">Vector</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
           <td class="paramname"><em>u</em>&#160;</td>
         </tr>
         <tr>

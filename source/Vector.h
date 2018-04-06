@@ -53,9 +53,8 @@ struct Vector {
 	}
 	
 	/// Rend ce vecteur en un vecteur unitaire SANS LA MODIFIER (NON PERMANENT CHANGE (NPC))
-    	/// \return Vecteur unitaire de cette opération.
-
-    Vector normalizeNPC() {
+	/// \return Vecteur unitaire de cette opération.
+    Vector getNormalized() {
         Vector A;
         double prevNorm = getNorm();
 
@@ -67,9 +66,8 @@ struct Vector {
     }
 	
 	/// Rend ce vecteur en un vecteur unitaire avec les composantes XZ SANS LA MODIFIER (NON PERMANENT CHANGE (NPC))
-    	/// \return Vecteur unitaire de cette opération.
-	
-    Vector normalizeNPCXZ() {
+	/// \return Vecteur unitaire de cette opération.
+    Vector getNormalizedHorizontalComponents() {
         Vector A;
         double prevNorm = sqrt(x*x + z*z);
 

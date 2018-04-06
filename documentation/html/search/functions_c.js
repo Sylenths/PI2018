@@ -5,5 +5,6 @@ var searchData=
   ['removeresource',['removeResource',['../class_resource_manager.html#ab643fdd28a7929892b5d5d1ae2686601',1,'ResourceManager']]],
   ['removetexture',['removeTexture',['../class_resource_manager.html#a0df01e70b147a488544728b4afbefca5',1,'ResourceManager']]],
   ['resetmouseposition',['resetMousePosition',['../class_g_l_context.html#a593755ff1b774418e2b47243f5c66790',1,'GLContext']]],
+  ['restart',['restart',['../class_chrono.html#aef3ff5d365311fd2f60a98416dbdab0f',1,'Chrono']]],
   ['run',['run',['../class_projet_final.html#a12616db72c2d19bfe4eba5cc3e9d6eb9',1,'ProjetFinal']]]
 ];

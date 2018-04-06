@@ -7,6 +7,7 @@ var searchData=
   ['resetmouseposition',['resetMousePosition',['../class_g_l_context.html#a593755ff1b774418e2b47243f5c66790',1,'GLContext']]],
   ['resource',['Resource',['../class_resource.html',1,'']]],
   ['resourcemanager',['ResourceManager',['../class_resource_manager.html',1,'']]],
+  ['restart',['restart',['../class_chrono.html#aef3ff5d365311fd2f60a98416dbdab0f',1,'Chrono']]],
   ['rotatingimage',['RotatingImage',['../class_rotating_image.html',1,'']]],
   ['run',['run',['../class_projet_final.html#a12616db72c2d19bfe4eba5cc3e9d6eb9',1,'ProjetFinal']]]
 ];

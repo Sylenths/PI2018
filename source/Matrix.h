@@ -66,7 +66,12 @@ struct Matrix{
     /// \param f Vecteur normalisé pointant vers l'avant.
     /// \param s Vecteur normalisé pointant vers le côté.
     /// \param u Vecteur normalisé pointant vers le haut.
-    void loadView(const Vector& f, const Vector& s, const Vector& u){
+    void loadView(Vector f, Vector s, Vector u){
+
+	    f.normalize();
+	    s.normalize();
+	    u.normalize();
+
         m11 = s.x  ; m12 = u.x  ; m13 = -f.x  ;m14 = 0. ;
         m21 = s.y  ; m22 = u.y  ; m23 = -f.y  ;m24 = 0. ;
         m31 = s.z  ; m32 = u.z  ; m33 = -f.z  ;m34 = 0. ;
@@ -179,7 +184,15 @@ struct Matrix{
         return Vector(v.x * m11 + v.y * m21 + v.z * m31 + m14,
                       v.x * m12 + v.y * m22 + v.z * m32 + m24,
                       v.x * m13 + v.y * m23 + v.z * m33 + m34);
-    }
+   }
+
+	/// Envoie les composantes de la matrice à la sortie standard.
+	void printMatrix(){
+		std::cout << "|" << m11 << " " << m12 << " " << m13 << " " << m14 << "|" << "\n"
+		          << "|" << m21 << " " << m22 << " " << m23 << " " << m24 << "|" << "\n"
+		          << "|" << m31 << " " << m32 << " " << m33 << " " << m34 << "|" << "\n"
+		          << "|" << m41 << " " << m42 << " " << m43 << " " << m44 << "|" << "\n" << std::endl;
+	}
 };
 
 #endif //MATRIX_H

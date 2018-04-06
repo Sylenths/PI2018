@@ -79,35 +79,403 @@ Graphe d'héritage de InGameOverlay:</div>
  <div class="center">
   <img src="class_in_game_overlay.png" usemap="#InGameOverlay_map" alt=""/>
   <map id="InGameOverlay_map" name="InGameOverlay_map">
-<area href="class_menu.html" title="Représentation de tous les menus du jeu. " alt="Menu" shape="rect" coords="0,0,100,24"/>
+<area href="class_menu.html" title="Représentation de tous les menus du jeu. " alt="Menu" shape="rect" coords="0,56,100,80"/>
+<area href="class_scene.html" alt="Scene" shape="rect" coords="0,0,100,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:ab60b327824531135a116038eed33266d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#ab60b327824531135a116038eed33266d">InGameOverlay</a> (unsigned int powerCount=100, unsigned int simCoinCount=100, unsigned int temperatureC=10, unsigned int sunPower=10, unsigned int windSpeed=10, unsigned int timeLeft=10)</td></tr>
+<tr class="separator:ab60b327824531135a116038eed33266d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1126ef34464f3f0007dd1f477c52816f"><td class="memItemLeft" align="right" valign="top"><a id="a1126ef34464f3f0007dd1f477c52816f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#a1126ef34464f3f0007dd1f477c52816f">draw</a> ()</td></tr>
+<tr class="memdesc:a1126ef34464f3f0007dd1f477c52816f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche le <a class="el" href="class_in_game_overlay.html" title="Représentation de l&#39;interface en jeu. ">InGameOverlay</a>. <br /></td></tr>
 <tr class="separator:a1126ef34464f3f0007dd1f477c52816f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac306897111d1611b6cf0ff343f68d6f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#ac306897111d1611b6cf0ff343f68d6f1">loadHUDTexture</a> (unsigned int powerCount, unsigned int simCoinCount, unsigned int temperatureC, unsigned int sunPower, unsigned int windSpeed, unsigned int timeLeft)</td></tr>
+<tr class="separator:ac306897111d1611b6cf0ff343f68d6f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc89ae041de8755e75f9806800c8f89"><td class="memItemLeft" align="right" valign="top"><a id="aefc89ae041de8755e75f9806800c8f89"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>subscribeAll</b> (std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; *observables)</td></tr>
+<tr class="separator:aefc89ae041de8755e75f9806800c8f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45ab533621d14c2edc4dd52fcbfcc0ef"><td class="memItemLeft" align="right" valign="top"><a id="a45ab533621d14c2edc4dd52fcbfcc0ef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> (std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; *observables)</td></tr>
+<tr class="separator:a45ab533621d14c2edc4dd52fcbfcc0ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60c8c0caa48db32989f929d696896f4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#a60c8c0caa48db32989f929d696896f4e">updateAlerts</a> (std::list&lt; char &gt; listeAlertes)</td></tr>
+<tr class="separator:a60c8c0caa48db32989f929d696896f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afacfe483482d140b62a4b36911f0c62a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#afacfe483482d140b62a4b36911f0c62a">updatePower</a> (unsigned int power)</td></tr>
+<tr class="separator:afacfe483482d140b62a4b36911f0c62a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0b42a64a5331ebec6b7d5ef27f0907e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#af0b42a64a5331ebec6b7d5ef27f0907e">updateSIMcoin</a> (unsigned int SIMcoin)</td></tr>
+<tr class="separator:af0b42a64a5331ebec6b7d5ef27f0907e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3462013b3027a5b0e4b6d4674a7bd09c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#a3462013b3027a5b0e4b6d4674a7bd09c">updateTemperature</a> (unsigned int temp)</td></tr>
+<tr class="separator:a3462013b3027a5b0e4b6d4674a7bd09c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc40f9f648c23a235c07cdb430588bcc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#afc40f9f648c23a235c07cdb430588bcc">updateSunPower</a> (unsigned int sunPower)</td></tr>
+<tr class="separator:afc40f9f648c23a235c07cdb430588bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1a6ad49c74d8c1f2c39b31e9b3e2e4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#ae1a6ad49c74d8c1f2c39b31e9b3e2e4f">updateWindSpeed</a> (unsigned int windSpeed)</td></tr>
+<tr class="separator:ae1a6ad49c74d8c1f2c39b31e9b3e2e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01985b975f4f56e6ac708da7ea300f86"><td class="memItemLeft" align="right" valign="top"><a id="a01985b975f4f56e6ac708da7ea300f86"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#a01985b975f4f56e6ac708da7ea300f86">toggleHud</a> ()</td></tr>
+<tr class="memdesc:a01985b975f4f56e6ac708da7ea300f86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active/Desactive l'affichage du <a class="el" href="class_in_game_overlay.html" title="Représentation de l&#39;interface en jeu. ">InGameOverlay</a>. <br /></td></tr>
+<tr class="separator:a01985b975f4f56e6ac708da7ea300f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5c637c22d86ff967f41816b40b2e6a6"><td class="memItemLeft" align="right" valign="top"><a id="aa5c637c22d86ff967f41816b40b2e6a6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_game_overlay.html#aa5c637c22d86ff967f41816b40b2e6a6">~InGameOverlay</a> ()</td></tr>
+<tr class="memdesc:aa5c637c22d86ff967f41816b40b2e6a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur. <br /></td></tr>
+<tr class="separator:aa5c637c22d86ff967f41816b40b2e6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Membres hérités additionnels</h2></td></tr>
-<tr class="inherit_header pub_static_methods_class_menu"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_menu')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques statiques hérités de <a class="el" href="class_menu.html">Menu</a></td></tr>
-<tr class="memitem:a3ace13c68bd449b9b7a2f582cccc96eb inherit pub_static_methods_class_menu"><td class="memItemLeft" align="right" valign="top"><a id="a3ace13c68bd449b9b7a2f582cccc96eb"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getActiveMenu</b> ()</td></tr>
-<tr class="separator:a3ace13c68bd449b9b7a2f582cccc96eb inherit pub_static_methods_class_menu"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_static_attribs_class_menu"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_class_menu')"><img src="closed.png" alt="-"/>&#160;Attributs protégés statiques hérités de <a class="el" href="class_menu.html">Menu</a></td></tr>
-<tr class="memitem:a71dbac08e283e94edf7187f45739c4ea inherit pro_static_attribs_class_menu"><td class="memItemLeft" align="right" valign="top"><a id="a71dbac08e283e94edf7187f45739c4ea"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>activeMenu</b> = &quot;&quot;</td></tr>
-<tr class="separator:a71dbac08e283e94edf7187f45739c4ea inherit pro_static_attribs_class_menu"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_class_scene"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_scene')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques statiques hérités de <a class="el" href="class_scene.html">Scene</a></td></tr>
+<tr class="memitem:af8dc7821ba766ff047d10325e9dad9af inherit pub_static_methods_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="af8dc7821ba766ff047d10325e9dad9af"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getActiveScene</b> ()</td></tr>
+<tr class="separator:af8dc7821ba766ff047d10325e9dad9af inherit pub_static_methods_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_static_attribs_class_scene"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_class_scene')"><img src="closed.png" alt="-"/>&#160;Attributs protégés statiques hérités de <a class="el" href="class_scene.html">Scene</a></td></tr>
+<tr class="memitem:a92287a5fab9d8dba7bb464c5f8a6bc8e inherit pro_static_attribs_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="a92287a5fab9d8dba7bb464c5f8a6bc8e"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>activeScene</b> = &quot;MainMenu&quot;</td></tr>
+<tr class="separator:a92287a5fab9d8dba7bb464c5f8a6bc8e inherit pro_static_attribs_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Représentation de l'interface en jeu. </p>
-<p>Interface pour construire et pour donner les informations sur la partie. </p><dl class="section author"><dt>Auteur</dt><dd>Antoine Legault </dd></dl>
+<p>Interface pour construire et pour donner les informations sur la partie. </p><dl class="section author"><dt>Auteur</dt><dd>Antoine Legault , Guillaume Julien - Desmarchais </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>24 mars 2018 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
-<dl class="section warning"><dt>Avertissement</dt><dd>Mettre les warning si nécessaire. </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000007">Bogue:</a></b></dt><dd>Problèmes connus </dd></dl>
-</div><hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<dl class="section version"><dt>Version</dt><dd>0.7 </dd></dl>
+<dl class="section warning"><dt>Avertissement</dt><dd>Manque la boussole (pour indiquer le sens du vent) et le compte a rebours. Les labels ne s'ajuste pas selon la grosseur du nombre. </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000008">Bogue:</a></b></dt><dd>Problemes non connus </dd></dl>
+</div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="ab60b327824531135a116038eed33266d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab60b327824531135a116038eed33266d">&#9670;&nbsp;</a></span>InGameOverlay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">InGameOverlay::InGameOverlay </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>powerCount</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>simCoinCount</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>temperatureC</em> = <code>10</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>sunPower</em> = <code>10</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>windSpeed</em> = <code>10</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>timeLeft</em> = <code>10</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constructeur. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">powerCount</td><td>Nombre d'électricité disponible. </td></tr>
+    <tr><td class="paramname">simCoinCount</td><td>Nombre de SIMcoins disponible </td></tr>
+    <tr><td class="paramname">temperatureC</td><td>La temperature en celsius </td></tr>
+    <tr><td class="paramname">sunPower</td><td>Puissance du soleil en pourcentage </td></tr>
+    <tr><td class="paramname">windSpeed</td><td>Force du vent en pourcentage </td></tr>
+    <tr><td class="paramname">timeLeft</td><td>Temps restant à la phase de construction. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="ac306897111d1611b6cf0ff343f68d6f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac306897111d1611b6cf0ff343f68d6f1">&#9670;&nbsp;</a></span>loadHUDTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InGameOverlay::loadHUDTexture </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>powerCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>simCoinCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>temperatureC</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>sunPower</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>windSpeed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>timeLeft</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Cree les models necessaires pour le <a class="el" href="class_in_game_overlay.html" title="Représentation de l&#39;interface en jeu. ">InGameOverlay</a>. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">powerCount</td><td>Nombre d'électricité disponible. </td></tr>
+    <tr><td class="paramname">simCoinCount</td><td>Nombre de SIMcoins disponible </td></tr>
+    <tr><td class="paramname">temperatureC</td><td>La température en celsius </td></tr>
+    <tr><td class="paramname">sunPower</td><td>Puissance du soleil en pourcentage </td></tr>
+    <tr><td class="paramname">windSpeed</td><td>Force du vent en pourcentage </td></tr>
+    <tr><td class="paramname">timeLeft</td><td>Temps restant a la phase de construction. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a60c8c0caa48db32989f929d696896f4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60c8c0caa48db32989f929d696896f4e">&#9670;&nbsp;</a></span>updateAlerts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InGameOverlay::updateAlerts </td>
+          <td>(</td>
+          <td class="paramtype">std::list&lt; char &gt;&#160;</td>
+          <td class="paramname"><em>listeAlertes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Affiche les intemperies a venir. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listeAlertes</td><td>Liste de caractere representant des intemperies </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afacfe483482d140b62a4b36911f0c62a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afacfe483482d140b62a4b36911f0c62a">&#9670;&nbsp;</a></span>updatePower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InGameOverlay::updatePower </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>power</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Met a jour le nombre d'electricite disponible. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">power</td><td>nombre d'electricite disponible </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af0b42a64a5331ebec6b7d5ef27f0907e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0b42a64a5331ebec6b7d5ef27f0907e">&#9670;&nbsp;</a></span>updateSIMcoin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InGameOverlay::updateSIMcoin </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>SIMcoin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Met a jour le nombre de SIMcoins disponibles. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SIMcoin</td><td>nombre de SIMcoins disponibles. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afc40f9f648c23a235c07cdb430588bcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc40f9f648c23a235c07cdb430588bcc">&#9670;&nbsp;</a></span>updateSunPower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InGameOverlay::updateSunPower </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>sunPower</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Met a jour la force du soleil </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sunPower</td><td>La force du soleil en pourcentage </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3462013b3027a5b0e4b6d4674a7bd09c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3462013b3027a5b0e4b6d4674a7bd09c">&#9670;&nbsp;</a></span>updateTemperature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InGameOverlay::updateTemperature </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>temp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Met a jour la temperature. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">temp</td><td>La temperature actuelle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae1a6ad49c74d8c1f2c39b31e9b3e2e4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1a6ad49c74d8c1f2c39b31e9b3e2e4f">&#9670;&nbsp;</a></span>updateWindSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InGameOverlay::updateWindSpeed </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>windSpeed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Met a jour la vitesse du vent </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">windSpeed</td><td>La vitesse du vent </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
 <li>source/<a class="el" href="_in_game_overlay_8h_source.html">InGameOverlay.h</a></li>
 </ul>
 </div><!-- contents -->

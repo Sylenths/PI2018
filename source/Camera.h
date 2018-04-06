@@ -17,7 +17,7 @@
 #include "Vector.h"
 
 //Movement in coordinate system units per second
-#define MOVEMENT_SPEED 0.1
+#define CAMERA_MOVEMENTSPEED 0.1
 
 #define WINDOW_HEIGHT_F 720.
 #define WINDOW_WIDTH_F 1280.
@@ -26,8 +26,6 @@
 #define CAMERA_VROTLIMIT 718
 #define CAMERA_FOV_F 90.
 #define CAMERA_2FOV_F 180.
-
-
 
 
 class Camera : public Observer<SDL_Event*> {
@@ -49,7 +47,7 @@ public:
 
 	/// Calcule l'angle du regard par rapport à l'horizontale (intervalle ]90, -90[ ; 0 est horizontal et les négatifs sont vers le bas / les y-.)
 	/// \return Angle.
-	double getHorizontalAngle(){
+	double getHorizontalRotationAngle(){
 		double angle = getVerticalRotationAngle();
 
 		if(angle <= CAMERA_FOV_F){
@@ -73,9 +71,7 @@ public:
 
 		this->up.normalize();
 
-		double angle = getHorizontalAngle();
-
-		vMouseMotion = (int)(std::round(-angle / CAMERA_FOV_F * WINDOW_HEIGHT_I));
+		vMouseMotion = (int)(std::round(-getHorizontalRotationAngle() / CAMERA_FOV_F * WINDOW_HEIGHT_I));
 	}
 
 	/// Charger la matrice de vue de la caméra.
@@ -88,7 +84,7 @@ public:
 
 	/// Notification de la caméra d'un événement d'appui de touche du clavier ou de déplacement de souris.
 	/// \param event SDL_Event* contenant le déplacement de souris ou l'appui de la touche du clavier.
-	void notification(SDL_Event* event) {
+	void notify(SDL_Event* event) {
 
 		if(event->type == SDL_MOUSEMOTION) {
 			Matrix m;
@@ -118,7 +114,7 @@ public:
 
 			loadViewMatrix();
 
-			//std::cout << vMouseMotion << " -=- " << yMove << "-+-" << getVerticalRotationAngle()<< " /// " << getHorizontalAngle() << std::endl;
+			//std::cout << vMouseMotion << " -=- " << yMove << "-+-" << getVerticalRotationAngle()<< " /// " << getHorizontalRotationAngle() << std::endl;
 		}
 		else {
 			//Move position; arg has key pressed
@@ -128,7 +124,7 @@ public:
 
 				switch(event->key.keysym.sym) {
 					case SDLK_w: {
-						front = front * MOVEMENT_SPEED;
+						front = front * CAMERA_MOVEMENTSPEED;
 
 						position = position + front;
 						target = target + front;
@@ -136,7 +132,7 @@ public:
 						break;
 
 					case SDLK_a: {
-						Vector side = (front % up) * MOVEMENT_SPEED;
+						Vector side = (front % up) * CAMERA_MOVEMENTSPEED;
 
 						position = position - side;
 						target = target - side;
@@ -144,7 +140,7 @@ public:
 						break;
 
 					case SDLK_s: {
-						front = front * MOVEMENT_SPEED;
+						front = front * CAMERA_MOVEMENTSPEED;
 
 						position = position - front;
 						target = target - front;
@@ -152,7 +148,7 @@ public:
 						break;
 
 					case SDLK_d: {
-						Vector side = (front % up) * MOVEMENT_SPEED;
+						Vector side = (front % up) * CAMERA_MOVEMENTSPEED;
 
 						position = position + side;
 						target = target + side;
@@ -162,7 +158,7 @@ public:
 						break;
 				}
 			}
-			//todo: Eventually, make movement smoother by using MOVEMENT_SPEED * deltaTime, flags and handling multiple keys pressed.
+			//todo: Eventually, make movement smoother by using CAMERA_MOVEMENTSPEED * deltaTime, flags and handling multiple keys pressed.
 		}
 	}
 
