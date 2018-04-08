@@ -34,6 +34,7 @@
 #include "GLContext.h"
 #include "Model.h"
 #include "Image.h"
+#include "Scene.h"
 #include "Menu.h"
 #include "MainMenu.h"
 #include "Settings.h"
@@ -43,7 +44,6 @@
 #include "Button.h"
 #include "Label.h"
 #include "Font.h"
-#include "Scene.h"
 #include "World.h"
 #include "ProjetFinal.h"
 

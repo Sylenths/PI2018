@@ -9,6 +9,7 @@
 
 #ifndef SOURCE_WORLD_H
 #define SOURCE_WORLD_H
+
 #include "includes.h"
 #include "GLContext.h"
 
@@ -18,13 +19,12 @@ private:
     InGameOverlay* hud;
 
 public:
-
-
     /// Ajoute un model a afficher
     /// \params model le model a ajouter
     void addModel(std::string modelKey, Model* model){
         modelMap[modelKey] = model;
     }
+
     /// Constructeur, tout les models nécéssaires sont loadés ici.
     World() {
         hud = new InGameOverlay();
@@ -34,6 +34,7 @@ public:
         //changer model en sphere
         //addModel cycle
     }
+
     /// Affichage des models
     void draw() {
         GLContext::setFrustum(IS3D);
@@ -46,13 +47,7 @@ public:
         hud->draw();
     }
 
-    virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> *observables) {
-
-    }
-
-    virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*> * observables) {
-
-    }
-
+    virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {}
+    virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {}
 };
 #endif //SOURCE_WORLD_H

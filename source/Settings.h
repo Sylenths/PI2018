@@ -24,7 +24,6 @@ private:
 
 public:
     Settings() {
-
         fond = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondSettings"));
         ResourceManager::getInstance()->addResource("FondSettings", fond);
 
@@ -78,37 +77,37 @@ public:
 
     }
 
-    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables){
-        if(FpsOnOff == true){
-            (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonYES"));
-            (*observables)[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonYES"));
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+        if(FpsOnOff == true) {
+            observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonYES"));
+            observables[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonYES"));
         }
-        if(FpsOnOff == false){
-            (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonNO"));
-            (*observables)[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonNO"));
+        else {
+            observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonNO"));
+            observables[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonNO"));
         }
 
-        (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
-        (*observables)[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+        observables[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
     }
 
-    void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables){
-        if(!(*observables)[SDL_MOUSEBUTTONDOWN])
-            (*observables)[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
-        if(!(*observables)[SDL_MOUSEMOTION])
-            (*observables)[SDL_MOUSEMOTION]= new Observable<SDL_Event*>;
+    void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+        if(!observables[SDL_MOUSEBUTTONDOWN])
+            observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
+        if(!observables[SDL_MOUSEMOTION])
+            observables[SDL_MOUSEMOTION]= new Observable<SDL_Event*>;
 
         if(FpsOnOff == true){
-            (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonYES"));
-            (*observables)[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonYES"));
+            observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonYES"));
+            observables[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonYES"));
         }
-        if(FpsOnOff == false){
-            (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonNO"));
-            (*observables)[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonNO"));
+        else {
+            observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonNO"));
+            observables[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("FPSButtonNO"));
         }
 
-        (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
-        (*observables)[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
+        observables[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButton"));
     }
 };
 

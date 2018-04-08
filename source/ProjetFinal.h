@@ -106,7 +106,7 @@ public:
         loadTextures();
 
         sceneMap["MainMenu"] = new MainMenu();
-        sceneMap["MainMenu"]->subscribeAll(&observables);
+        sceneMap["MainMenu"]->subscribeAll(observables);
         sceneDisplay = sceneMap[Scene::getActiveScene()];
 
         sceneMap["Settings"] = new Settings();
@@ -180,9 +180,9 @@ public:
             }
 
             if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
-              sceneDisplay->unsubscribeAll(&observables);
+              sceneDisplay->unsubscribeAll(observables);
               sceneDisplay = sceneMap[Scene::getActiveScene()];
-              sceneDisplay->subscribeAll(&observables);
+              sceneDisplay->subscribeAll(observables);
             }
 
             glContext->clear();

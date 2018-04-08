@@ -7,16 +7,14 @@
 /// \bug Problèmes connus
 #ifndef SOURCE_MENU_H
 #define SOURCE_MENU_H
+
 #include "includes.h"
-#include "Scene.h"
-#include "Observable.h"
 
 class Menu : public Scene {
 public:
   virtual void draw() = 0;
-  virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables) = 0 ;
-  virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>* observables) = 0 ;
+  virtual void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;
+  virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;
 };
-
 
 #endif

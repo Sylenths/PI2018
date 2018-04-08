@@ -17,7 +17,7 @@
 
 #define TAILLE_MAX 50
 
-class Highscore : public Menu{
+class Highscore : public Menu {
 private:
     Button* backButtonHighscore;
     Scores* scores[12];
@@ -135,20 +135,19 @@ public:
 
 
 
-    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables) {
+    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
+        if(!observables[SDL_MOUSEBUTTONDOWN])
+            observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
+        if(!observables[SDL_MOUSEMOTION])
+            observables[SDL_MOUSEMOTION]= new Observable<SDL_Event*>;
 
-        if(!(*observables)[SDL_MOUSEBUTTONDOWN])
-            (*observables)[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
-        if(!(*observables)[SDL_MOUSEMOTION])
-            (*observables)[SDL_MOUSEMOTION]= new Observable<SDL_Event*>;
-
-        (*observables)[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
-        (*observables)[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
+        observables[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
     }
 
-    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>* observables) {
-        (*observables)[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
-        (*observables)[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
+        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
+        observables[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
     }
 
     void draw(){
