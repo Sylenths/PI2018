@@ -104,15 +104,6 @@ public:
         GLContext::setFrustum( true);
         sdlEvent = new SDL_Event();
         loadTextures();
-
-        sceneMap["MainMenu"] = new MainMenu();
-        sceneMap["MainMenu"]->subscribeAll(observables);
-        sceneDisplay = sceneMap[Scene::getActiveScene()];
-
-        sceneMap["Settings"] = new Settings();
-        sceneMap["InGameESC"] = new InGameESC();
-        sceneMap["Highscore"] = new Highscore();
-        sceneMap["World"] = new World();
     }
 
     /// Destructeur
@@ -140,6 +131,14 @@ public:
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+        sceneMap["MainMenu"] = new MainMenu();
+        sceneMap["MainMenu"]->subscribeAll(observables);
+        sceneDisplay = sceneMap[Scene::getActiveScene()];
+
+        sceneMap["Settings"] = new Settings();
+        sceneMap["InGameESC"] = new InGameESC();
+        sceneMap["Highscore"] = new Highscore();
+        sceneMap["World"] = new World();
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         /*
@@ -174,7 +173,7 @@ public:
 
                     default:
                         if(!observables[sdlEvent->type])
-                            observables[sdlEvent->type] = new Observable<SDL_Event *>;
+                            observables[sdlEvent->type] = new Observable<SDL_Event*>();
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }

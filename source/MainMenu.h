@@ -5,78 +5,42 @@
 /// \version 0.1
 /// \warning Mettre les warning si nécessaire.
 /// \bug Problèmes connus
+
 #ifndef SOURCE_MAINMENU_H
 #define SOURCE_MAINMENU_H
 
-#include "Button.h"
-
 class MainMenu : public Menu {
-private:
-    Button* startButton;
-    Button* settingsButton;
-    Button* highscoreButton;
-    Image* imageMenu;
-
 public:
     /// Constructeur
     MainMenu(){
-        imageMenu = new Image(0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondMaison"));
-        ResourceManager::getInstance()->addResource("FondMaison", imageMenu);
+        models["FondMaison"] = new Image(0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondMaison"));
 
-        startButton = new Button (967, 75, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonStartOver"), ResourceManager::getInstance()->getTexture("ButtonStart"));
-        ResourceManager::getInstance()->addResource("ButtonStart", startButton);
-        startButton->onClick = [this]() { Scene::activeScene = "World"; };
+        models["ButtonStart"] = new Button (967, 75, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonStartOver"), ResourceManager::getInstance()->getTexture("ButtonStart"));
+        models["ButtonStart"]->onClick = [this]() { Scene::activeScene = "World"; };
 
-        settingsButton = new Button(967, 275, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonSettingsOver"), ResourceManager::getInstance()->getTexture("ButtonSettings"));
-        ResourceManager::getInstance()->addResource("ButtonSettings", settingsButton);
-        settingsButton->onClick = [this]() { Scene::activeScene  = "Settings"; };
+        models["ButtonSettings"] = new Button(967, 275, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonSettingsOver"), ResourceManager::getInstance()->getTexture("ButtonSettings"));
+        models["ButtonSettings"]->onClick = [this]() { Scene::activeScene  = "Settings"; };
 
-        highscoreButton = new Button(967, 475, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonHighScoreOver"), ResourceManager::getInstance()->getTexture("ButtonHighScore"));
-        ResourceManager::getInstance()->addResource("ButtonHighScore", highscoreButton);
-        highscoreButton->onClick = [this]() { Scene::activeScene  = "Highscore"; };
-    }
-
-    ~MainMenu(){
-        delete startButton;
-        delete settingsButton;
-        delete highscoreButton;
-        delete imageMenu;
-    }
-
-    void draw(){
-        startButton->draw();
-        highscoreButton->draw();
-        settingsButton->draw();
-        imageMenu->draw();
+        models["ButtonHighScore"] = new Button(967, 475, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonHighScoreOver"), ResourceManager::getInstance()->getTexture("ButtonHighScore"));
+        models["ButtonHighScore"]->onClick = [this]() { Scene::activeScene  = "Highscore"; };
     }
 
     void subscribeAll(std::map <unsigned int, Observable<SDL_Event*>*>& observables){
-        if(!observables[SDL_MOUSEBUTTONDOWN])
-            observables[SDL_MOUSEBUTTONDOWN]= new Observable<SDL_Event*>;
+        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
 
-        if(!observables[SDL_MOUSEMOTION])
-            observables[SDL_MOUSEMOTION]= new Observable<SDL_Event*>;
-
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
-        observables[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
-
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
-        observables[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
-
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
-        observables[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
+        for (auto it : models) {
+            observables[SDL_MOUSEBUTTONDOWN]->subscribe(it.second);
+            observables[SDL_MOUSEMOTION]->subscribe(it.second);
+        }
     }
+
     void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
-        observables[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStart"));
-
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
-        observables[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSettings"));
-
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
-        observables[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonHighScore"));
+        for (auto it : models) {
+            observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(it.second);
+            observables[SDL_MOUSEMOTION]->unsubscribe(it.second);
+        }
     }
 };
-
 
 #endif

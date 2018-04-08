@@ -11,8 +11,6 @@
 
 class Button : public Image {
 public:
-    std::function<void()> onClick;  ///< Pointeur de méthode réagissant à un click de souris.
-
     /// Constructeur.
     /// \param onClick Fonction appelée par un click de souris.
     /// \param textureID Identificateur de la texture.

@@ -5,14 +5,20 @@
 /// \version 0.1
 /// \warning Mettre les warning si nécessaire.
 /// \bug Problèmes connus
-#ifndef SOURCE_MENU_H
-#define SOURCE_MENU_H
 
-#include "includes.h"
+#ifndef MENU_H
+#define MENU_H
 
 class Menu : public Scene {
+protected:
+  std::map<std::string, Model*> models;
+
 public:
-  virtual void draw() = 0;
+  void draw() {
+    for (auto it : models)
+      it.second->draw();
+  }
+
   virtual void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;
   virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;
 };

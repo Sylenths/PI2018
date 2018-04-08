@@ -1,7 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-class Scene{
+class Scene {
 protected:
     static std::string activeScene;
 

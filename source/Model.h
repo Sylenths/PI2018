@@ -20,9 +20,10 @@ protected:
 
     std::map<std::string, unsigned int> textureIDs;
 
-
 public:
-	/// Constructeur.
+    std::function<void()> onClick;  ///< Pointeur de méthode réagissant à un click de souris.
+
+    /// Constructeur.
     /// \param textureID Identificateur de la texture.
 	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
     Model(unsigned int textureID, const char* objFile = nullptr) {
