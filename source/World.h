@@ -1,6 +1,6 @@
-/// \brief Contient les models a afficher
-/// \details Classe qui contient une liste de models 3d a afficher
-/// \author Mickaël Grisé-Roy
+/// \brief Reprsentation du monde et de la partie
+/// \details Contient les donnes de jeux, methodes et models pour la partie
+/// \author Mickaël Grisé-Roy, Gabriel Bourdages
 /// \date 2 Avril 2018
 /// \version 0.1
 
@@ -19,7 +19,8 @@ private:
 
 public:
     /// Ajoute un model a afficher
-    /// \params model le model a ajouter
+    /// \param model le model a ajouter
+    /// \param modelKey Nom donne au model
     void addModel(std::string modelKey, Model* model){
         modelMap[modelKey] = model;
     }
@@ -54,6 +55,8 @@ public:
         hud->draw();
     }
 
+    /// Mise a jour du temps
+    /// \param chrono Chrono qui calcul le temps restant
     void updateTimeLeft(Chrono* chrono) {
         hud->updateTime(buildingTime - chrono->getTime()/1000);
     }
