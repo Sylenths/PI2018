@@ -55,7 +55,7 @@ public:
     }
 
     void updateTimeLeft(Chrono* chrono) {
-        //hud->
+        hud->updateTime(buildingTime - chrono->getTime()/1000);
     }
 
     void buildingPhaseStart() {
