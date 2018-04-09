@@ -15,7 +15,7 @@ private:
     std::map<std::string, Model*> modelMap; ///< La liste de models à afficher
     InGameOverlay* hud;
     Vector wind;
-    unsigned int temperature, simCoin, totalPower, usedPower, sunPower, timeLeft;
+    unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
 
 public:
     /// Ajoute un model a afficher
@@ -25,15 +25,16 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, Vector wind) {
+    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) {
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
         this->simCoin = simCoin;
+        this->buildingTime = buildingTime;
         totalPower = 0;
         usedPower = 0;
-        timeLeft = 0;
-        hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, timeLeft);
+        elapsedTime = 0;
+        hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
         addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../images/grass.obj"));
         addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../images/sky.obj"));
 
@@ -51,6 +52,26 @@ public:
 
         GLContext::setFrustum(IS2D);
         hud->draw();
+    }
+
+    void updateTimeLeft(Chrono* chrono) {
+        //hud->
+    }
+
+    void buildingPhaseStart() {
+
+    }
+
+    void buildingPhaseStop() {
+
+    }
+
+    void catastrophePhaseStart() {
+
+    }
+
+    void catastrophePhaseStop() {
+
     }
 
     virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {}

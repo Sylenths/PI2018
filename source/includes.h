@@ -25,6 +25,7 @@
   #include <SDL2_image/SDL_image.h>
 #endif
 
+#include "Chrono.h"
 #include "Singleton.h"
 #include "Observable.h"
 #include "Resource.h"
@@ -46,5 +47,6 @@
 #include "Highscore.h"
 #include "World.h"
 #include "ProjetFinal.h"
+
 
 #endif
