@@ -14,6 +14,11 @@ protected:
   std::map<std::string, Model*> models;
 
 public:
+  virtual ~Menu() {
+    for (auto it : models)
+      delete it.second;
+  }
+
   void draw() {
     for (auto it : models)
       it.second->draw();

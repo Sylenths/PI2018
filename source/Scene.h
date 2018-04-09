@@ -6,6 +6,8 @@ protected:
     static std::string activeScene;
 
 public:
+    virtual ~Scene() {}
+
     static std::string getActiveScene() {
         return activeScene;
     }

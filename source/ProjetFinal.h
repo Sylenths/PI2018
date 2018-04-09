@@ -108,18 +108,12 @@ public:
 
     /// Destructeur
     ~ProjetFinal () {
+        for (auto it : sceneMap)
+            delete it.second;
+
         delete (glContext);
         delete (sdlEvent);
-        for (auto it : sceneMap) {
-            delete (it.second);
-        }
     }
-
-    /// Permet de changer le mode d'affichage du projet entre 2D et 3D.
-    /// \param is2D Booléen représentant si c'est en 2D (true), ou en 3D (false).
- //   void setFrustum(bool is2D) {
-   //     glContext->setFrustum(90.0, 0.1, 1000.0, is2D);
-  //  }
 
     /// Représente la boucle de jeu.
     void run(std::string filePath){
