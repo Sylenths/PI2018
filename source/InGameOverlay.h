@@ -97,6 +97,11 @@ public:
         auto strPwr = std::to_string(powerCount);
         labelMap["power"] = new Label(fontArial->getFont(), {255,191,0}, strPwr, 405, 30, 0.1 , 40, 35);
 
+        auto strTime = std::to_string(timeLeft);
+        strTime.push_back(' ');
+        strTime.push_back('s');
+        labelMap["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1 , 80, 60);
+
         auto strWind = std::to_string(windSpeed);
         strWind.push_back(' ');
         strWind.push_back('m');
@@ -275,11 +280,22 @@ public:
     /// \param windSpeed La vitesse du vent
     void updateWindSpeed(Vector windSpeed){
         auto s = std::to_string(windSpeed.getNorm());
+        s.push_back(' ');
         s.push_back('m');
         s.push_back('/');
         s.push_back('s');
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
         labelMap["windSpeed"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
+    }
+
+    /// Met a jour le temps
+    /// \param time Temps  afficher
+    void updateTime(unsigned int time){
+        auto s = std::to_string(time);
+        s.push_back(' ');
+        s.push_back('s');
+        Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
+        labelMap["time"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
     /// Active/Desactive l'affichage du InGameOverlay
