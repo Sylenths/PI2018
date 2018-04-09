@@ -31,9 +31,9 @@ public:
     /// \param sunPower Puissance du soleil en pourcentage
     /// \param windSpeed Force du vent en pourcentage
     /// \param timeLeft Temps restant à la phase de construction.
-    InGameOverlay(unsigned int powerCount = 100, unsigned int simCoinCount = 100, unsigned int temperatureC = 10, unsigned int sunPower = 10, unsigned int windSpeed = 10, unsigned int timeLeft = 10) {
+    InGameOverlay(unsigned int powerCount = 0, unsigned int simCoinCount = 0, unsigned int temperatureC = 0, unsigned int sunPower = 0, Vector windSpeed = {0, 0, 0}, unsigned int timeLeft = 0) {
         activeHud = true;
-        loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed, timeLeft);
+        loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
     }
 
     /// Affiche le InGameOverlay.
@@ -273,8 +273,8 @@ public:
 
     /// Met a jour la vitesse du vent
     /// \param windSpeed La vitesse du vent
-    void updateWindSpeed(unsigned int windSpeed){
-        auto s = std::to_string(windSpeed);
+    void updateWindSpeed(Vector windSpeed){
+        auto s = std::to_string(windSpeed.getNorm());
         s.push_back('m');
         s.push_back('/');
         s.push_back('s');

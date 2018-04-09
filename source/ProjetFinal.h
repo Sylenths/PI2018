@@ -132,7 +132,7 @@ public:
         sceneMap["Settings"] = new Settings();
         sceneMap["InGameESC"] = new InGameESC();
         sceneMap["Highscore"] = new Highscore();
-        sceneMap["World"] = new World();
+        sceneMap["World"] = new World(0, 0, 0, {0, 0, 0});
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         /*

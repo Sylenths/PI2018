@@ -1,6 +1,3 @@
-//
-// Created by Mic on 2018-04-02.
-//
 /// \brief Contient les models a afficher
 /// \details Classe qui contient une liste de models 3d a afficher
 /// \author Mickaël Grisé-Roy
@@ -17,6 +14,8 @@ class World : public Scene{
 private:
     std::map<std::string, Model*> modelMap; ///< La liste de models à afficher
     InGameOverlay* hud;
+    Vector wind;
+    unsigned int temperature, simCoin, totalPower, usedPower, sunPower, timeLeft;
 
 public:
     /// Ajoute un model a afficher
@@ -26,8 +25,15 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World() {
-        hud = new InGameOverlay();
+    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, Vector wind) {
+        this->wind = wind;
+        this->temperature = temperature;
+        this->sunPower = sunPower;
+        this->simCoin = simCoin;
+        totalPower = 0;
+        usedPower = 0;
+        timeLeft = 0;
+        hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, timeLeft);
         addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../images/grass.obj"));
         addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../images/sky.obj"));
 
