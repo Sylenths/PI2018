@@ -11,6 +11,8 @@
 
 class Settings : public Menu {
 public:
+
+    /// Constructeur
     Settings() {
         models["FondSettings"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondSettings"));
 
@@ -22,6 +24,8 @@ public:
         models["backButton"]->onClick = [this]() { Scene::activeScene  = "MainMenu"; };
     }
 
+    /// Permet d'inscrire tous les évènements comme observables.
+    /// \param observables une map contenant tous les observables nécessaires.
     void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
       if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
       if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
@@ -32,6 +36,9 @@ public:
       }
     }
 
+
+    /// Permet de désinscrire tous les observables.
+    /// \param observables une map contenant tous les observables nécessaires.
     void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
       for (auto it : models) {
           observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(it.second);

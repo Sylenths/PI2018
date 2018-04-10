@@ -11,20 +11,27 @@
 
 class Menu : public Scene {
 protected:
-  std::map<std::string, Model*> models;
+  std::map<std::string, Model*> models;      ///< models Une list de différents models pour l'affichages des menus et du H.U.D.
 
 public:
+    /// Destructeur
   virtual ~Menu() {
     for (auto it : models)
       delete it.second;
   }
 
+    /// Permet d'afficher tous les modèles utilisés dans les menus actifs.
   void draw() {
     for (auto it : models)
       it.second->draw();
   }
 
+    /// Permet d'inscrire tous les évènements comme observables.
+    /// \param observables une map contenant tous les observables nécessaires.
   virtual void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;
+
+    /// Permet de désinscrire tous les observables.
+    /// \param observables une map contenant tous les observables nécessaires.
   virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;
 };
 
