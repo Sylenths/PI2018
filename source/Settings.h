@@ -23,8 +23,8 @@ public:
         models["FPSButton"] = new CheckBox (712, 300, 0, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"), ResourceManager::getInstance()->getTexture("FPSButtonYES"));
         models["FPSButton"]->onClick = [this] () {Settings::showFPS();};
 
-        models["backButton"]  = new Button (498, 550, 0, 284, 113, ResourceManager::getInstance()->getTexture("backButton"), ResourceManager::getInstance()->getTexture("BackButtonOver"));
-        models["backButton"]->onClick = [this]() { Scene::activeScene  = "MainMenu"; };
+        models["1backButton"]  = new Button (498, 550, 0, 284, 113, ResourceManager::getInstance()->getTexture("backButton"), ResourceManager::getInstance()->getTexture("BackButtonOver"));
+        models["1backButton"]->onClick = [this]() { Scene::activeScene  = "MainMenu"; };
 
     }
 

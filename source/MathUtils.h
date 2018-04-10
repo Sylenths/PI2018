@@ -1,6 +1,6 @@
 /// \brief Collection de fonctions et algorithmes mathématiques.
 /// \details Contient: Degrés TO radians et déterminant de matrice 2x2
-/// \author Samuel Labelle
+/// \author Samuel Labelle, Tai Chen Li
 /// \date 3 Avril 2018
 /// \version 0.2
 /// \warnings Aucuns.
@@ -10,7 +10,7 @@
 #define MATHUTILS_H
 
 #define _USE_MATH_DEFINES
-#define MAT_PI 3.14159265358979323846
+#define MATH_PI 3.14159265358979323846
 
 #include <math.h>
 
@@ -19,7 +19,7 @@
 /// \return Angle en radians.
 double degtorad(double deg)
 {
-    return deg * MAT_PI / 180.0;
+    return deg * MATH_PI / 180.0;
 }
 
 /// Convertis un angle de radians à degrés.
@@ -27,7 +27,7 @@ double degtorad(double deg)
 /// \return Angle en degrés.
 double radtodeg(double rad)
 {
-    return rad * 180.0 / MAT_PI;
+    return rad * 180.0 / MATH_PI;
 }
 
 /*
