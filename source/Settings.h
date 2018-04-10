@@ -16,12 +16,13 @@ public:
     Settings() {
         models["FondSettings"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondSettings"));
 
-        models["FPSLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Show FPS : ", 71, 300, 0.1, 466, 113);
+        models["FPSLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Show FPS : ", 71, 300, 0, 466, 113);
 
         models["FPSButton"] = new Button (712, 300, 0, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"), ResourceManager::getInstance()->getTexture("FPSButtonNOOVER"));
 
-        models["backButton"]  = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"), ResourceManager::getInstance()->getTexture("BackButtonOver"));
+        models["backButton"]  = new Button (498, 550, 0, 284, 113, ResourceManager::getInstance()->getTexture("backButton"), ResourceManager::getInstance()->getTexture("BackButtonOver"));
         models["backButton"]->onClick = [this]() { Scene::activeScene  = "MainMenu"; };
+
     }
 
     /// Permet d'inscrire tous les évènements comme observables.
