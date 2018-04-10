@@ -81,7 +81,8 @@ public:
             std::string labelbuffer;
             std::string labelNameBuffer;
             char intCharBuffer[10];
-            itoa(scores[j]->getScore(),intCharBuffer,10);
+            //TODO : fixer itoa pour linux
+            //itoa(scores[j]->getScore(),intCharBuffer,10);
             labelbuffer = scores[j]->getName()+ "    " + intCharBuffer;
             // Créer mes labels.
             switch (j){
