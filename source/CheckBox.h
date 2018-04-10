@@ -20,7 +20,7 @@ public:
     /// \param y Position en y par rapport au coin supérieur gauche de la fenêtre.
     /// \param width Largeur du bouton.
     /// \param height Hauteur du bouton.
-    CheckBox(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int checkTextureID = 0) : Image(x, y, z, width, height, defaultTextureID) {
+    CheckBox(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int checkTextureID) : Image(x, y, z, width, height, defaultTextureID) {
         textureIDs["clic"] =  (checkTextureID) ? checkTextureID : defaultTextureID;
         onClick = nullptr;
     }
@@ -34,15 +34,16 @@ public:
             switch (sdlEvent->type) {
                 case SDL_MOUSEBUTTONDOWN:
                     if ((sdlEvent->button.button == SDL_BUTTON_LEFT) && onClick){
-                        textureToDraw = textureIDs["clic"];
+                        if(textureToDraw == textureIDs["default"])
+                            textureToDraw = textureIDs["clic"];
+                        else
+                            textureToDraw = textureIDs["default"];
                         onClick();
                     }
                     break;
 
             }
         }
-        else
-            textureToDraw = textureIDs["default"];
     }
 
 };
