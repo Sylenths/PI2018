@@ -12,12 +12,13 @@
 class Button : public Image {
 public:
     /// Constructeur.
-    /// \param onClick Fonction appelée par un click de souris.
-    /// \param textureID Identificateur de la texture.
     /// \param x Position en x par rapport au coin supérieur gauche de la fenêtre.
     /// \param y Position en y par rapport au coin supérieur gauche de la fenêtre.
+    /// \param z Position en z par rapport au coin supérieur gauche de la fenêtre.
     /// \param width Largeur du bouton.
     /// \param height Hauteur du bouton.
+    /// \param defaultTextureID La texture de base affichée sur le bouton.
+    /// \param mouseOverTextureID La texture affichée sur le bouton lorsqu'on le survole avec la souris.
     Button(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int mouseOverTextureID = 0) : Image(x, y, z, width, height, defaultTextureID) {
         textureIDs["over"] = (mouseOverTextureID) ? mouseOverTextureID : defaultTextureID;
         onClick = nullptr;

@@ -2,9 +2,9 @@
 /// \details Case à cocher réagissant au clic de souris.
 /// \author Antoine Legault
 /// \date 10 avril 2018
-/// \version 0.1
+/// \version 0.2
 /// \warning Aucuns.
-/// \bug Le changement de texture ne fonctionne pas.
+/// \bug Aucuns.
 
 #ifndef SOURCE_CHECKBOX_H
 #define SOURCE_CHECKBOX_H
@@ -14,12 +14,13 @@
 class CheckBox : public Image {
 public:
     /// Constructeur.
-    /// \param onClick Fonction appelée par un click de souris.
-    /// \param textureID Identificateur de la texture.
     /// \param x Position en x par rapport au coin supérieur gauche de la fenêtre.
     /// \param y Position en y par rapport au coin supérieur gauche de la fenêtre.
+    /// \param z Position en z par rapport au coin supérieur gauche de la fenêtre.
     /// \param width Largeur du bouton.
     /// \param height Hauteur du bouton.
+    /// \param defaultTextureID La texture de base affichée sur le bouton.
+    /// \param checkTextureID La seconde texture affichée qui sera changée lors d'un clic de souris.
     CheckBox(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int checkTextureID) : Image(x, y, z, width, height, defaultTextureID) {
         textureIDs["clic"] =  (checkTextureID) ? checkTextureID : defaultTextureID;
         onClick = nullptr;
