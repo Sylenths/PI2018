@@ -120,7 +120,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 file(GLOB SOURCE_FILES LIST_DIRECTORIES false "*.cpp" "*.h")
 
-add_executable(source ${SOURCE_FILES} Label.h World.h)
+add_executable(source ${SOURCE_FILES} Label.h World.h CheckBox.h)
 target_link_libraries(source ${OPENGL_LIBRARIES})
 target_link_libraries(source ${SDL2_LIBRARY_TEMP})
 target_link_libraries(source ${SDL2_TTF_LIBRARY})
