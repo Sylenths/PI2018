@@ -4,7 +4,7 @@
 /// \date 27 mars 2018
 /// \version 0.1
 /// \warning Aucun.
-/// \bug Aucun.
+/// \bug Affichage varie en fonction du nombre de caractères.
 #ifndef SOURCE_HIGHSCORE_H
 #define SOURCE_HIGHSCORE_H
 
@@ -85,40 +85,13 @@ public:
             sprintf(intCharBuffer, "%d", scores[j]->getScore());
             //itoa(scores[j]->getScore(),intCharBuffer,10);
             labelbuffer = scores[j]->getName()+ "    " + intCharBuffer;
+            sprintf(intCharBuffer, "%d", j);
+            labelNameBuffer = std::string("HighscoreLabel") + intCharBuffer;
+
             // Créer mes labels.
-            switch (j){
-                case 0:
-                    labelNameBuffer = "HighscoreLabel0";
-                    break;
-                case 1:
-                    labelNameBuffer = "HighscoreLabel1";
-                    break;
-                case 2:
-                    labelNameBuffer = "HighscoreLabel2";
-                    break;
-                case 3:
-                    labelNameBuffer = "HighscoreLabel3";
-                    break;
-                case 4:
-                    labelNameBuffer = "HighscoreLabel4";
-                    break;
-                case 5:
-                    labelNameBuffer = "HighscoreLabel5";
-                    x = 815;
-                    y = 185;
-                    break;
-                case 6:
-                    labelNameBuffer = "HighscoreLabel6";
-                    break;
-                case 7:
-                    labelNameBuffer = "HighscoreLabel7";
-                    break;
-                case 8:
-                    labelNameBuffer = "HighscoreLabel8";
-                    break;
-                case 9:
-                    labelNameBuffer = "HighscoreLabel9";
-                    break;
+            if(j == 5){
+                x = 815;
+                y = 185;
             }
             models[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1, 362, 38);
             y += 75;
