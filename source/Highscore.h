@@ -21,7 +21,6 @@ class Highscore : public Menu {
 private:
     Scores* scores[12];
     Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial28");
-
     std::string fichierSauvegardeScores;
 
 
@@ -74,20 +73,58 @@ public:
 
         for (int i = 0; i < 10 ; ++i) {
             scores[i] = new Scores();
-           /* std::string buffer;
-            char intBuffer[10];
-            itoa(scores[i]->getScore(),intBuffer,10);
-            buffer = scores[i]->getName() + "          " + intBuffer;
-            indicationsScores[i] = new Label(font->getFont(), {128,128,128,0},buffer, 71, 300, 0.1, 466, 113);*/
         }
-        // Les lignes qui suivent servent à tester les labels de highscore.
-        std::string buffer;
-        char intBuffer[10];
-        sprintf(intBuffer, "%d", scores[1]->getScore());
-        //itoa(scores[1]->getScore(),intBuffer,10);
-        buffer = scores[1]->getName() + "          " + intBuffer;
-        models["indicationsScores"] = new Label(font->getFont(), {128,128,128,0},buffer, 71, 300, 0.1, 466, 113);
-        //indicationsScores[1] = new Label(font->getFont(), {128,128,128,0},buffer, 71, 300, 0.1, 466, 113);
+        loadScores();
+        int x = 210;
+        int y = 185;
+        for (int j = 0; j < 10 ; ++j) {
+            std::string labelbuffer;
+            std::string labelNameBuffer;
+            char intCharBuffer[10];
+            itoa(scores[j]->getScore(),intCharBuffer,10);
+            labelbuffer = scores[j]->getName()+ "    " + intCharBuffer;
+            // Créer mes labels.
+            switch (j){
+                case 0:
+                    labelNameBuffer = "HighscoreLabel0";
+                    break;
+                case 1:
+                    labelNameBuffer = "HighscoreLabel1";
+                    break;
+                case 2:
+                    labelNameBuffer = "HighscoreLabel2";
+                    break;
+                case 3:
+                    labelNameBuffer = "HighscoreLabel3";
+                    break;
+                case 4:
+                    labelNameBuffer = "HighscoreLabel4";
+                    break;
+                case 5:
+                    labelNameBuffer = "HighscoreLabel5";
+                    x = 815;
+                    y = 185;
+                    break;
+                case 6:
+                    labelNameBuffer = "HighscoreLabel6";
+                    break;
+                case 7:
+                    labelNameBuffer = "HighscoreLabel7";
+                    break;
+                case 8:
+                    labelNameBuffer = "HighscoreLabel8";
+                    break;
+                case 9:
+                    labelNameBuffer = "HighscoreLabel9";
+                    break;
+            }
+            models[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1, 362, 38);
+            y += 75;
+
+
+        }
+
+
 
     }
 

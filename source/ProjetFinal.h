@@ -183,7 +183,6 @@ public:
             glContext->refresh();
          }
         Highscore* test = new Highscore;
-        test->loadScores();
 
     }
 
