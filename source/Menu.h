@@ -8,7 +8,7 @@
 
 #ifndef MENU_H
 #define MENU_H
-
+#include "includes.h"
 class Menu : public Scene {
 protected:
   std::map<std::string, Model*> models;      ///< models Une list de différents models pour l'affichages des menus et du H.U.D.

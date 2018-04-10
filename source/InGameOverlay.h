@@ -7,8 +7,10 @@
 /// \bug Problemes non connus
 #ifndef SOURCE_INGAMEOVERLAY_H
 #define SOURCE_INGAMEOVERLAY_H
-
+#include "includes.h"
+#include <queue>
 #include "Menu.h"
+#include "Action.h"
 
 class InGameOverlay : public Menu {
 private:
@@ -17,7 +19,7 @@ private:
 
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
-
+    std::queue<Action*> actionQueue;
     std::map<std::string, Button*> buttonMap;///< Map de bouton pour la construction de structure et le skip turn.
     std::map<std::string, Label*> labelMap;///< Label à afficher (principalement les ressources)
 
@@ -80,7 +82,7 @@ public:
         ResourceManager::getInstance()->addResource("ButtonInfo", buttonMap["info"]);
         ResourceManager::getInstance()->addResource("ButtonDelete", buttonMap["delete"]);
 
-        //buttonMap["skipturn"]->onClick = [this]() { InsertMethod; };
+        //buttonMap["skipturn"]->onClick = [this]() { actionQueue.push(); };
         //buttonMap["structure"]->onClick = [this]() { InsertMethod;};
         //buttonMap["machine"]->onClick = [this]() { InsertMethod; };
         //buttonMap["cablage"]->onClick = [this]() { InsertMethod; };

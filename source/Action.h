@@ -8,9 +8,20 @@
 /// \bug Aucun.
 #ifndef SOURCE_ACTION_H
 #define SOURCE_ACTION_H
+#define BUILD 0
+
+#include "SIMparameter.h"
 
 class Action {
+private:
+    unsigned int actionType;///< Le type d'action
 
+public:
+    unsigned int getActionType(){
+        return actionType;
+    }
+    /// Méthode virtuelle pure qui retourne les paramètres
+    //std::map<std::string , SIMParameter<double>*> getParameters() = 0;
 };
 
 #endif //SOURCE_ACTION_H
