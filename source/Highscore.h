@@ -19,11 +19,8 @@
 
 class Highscore : public Menu {
 private:
-    Button* backButtonHighscore;
     Scores* scores[12];
-    Label*  indicationsScores[11];
     Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial28");
-    Image* fond;
 
     std::string fichierSauvegardeScores;
 
@@ -68,13 +65,10 @@ public:
 
 
     Highscore(){
-        backButtonHighscore = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"),ResourceManager::getInstance()->getTexture("BackButtonOver"));
-        ResourceManager::getInstance()->addResource("backButtonHighscore", backButtonHighscore);
-        backButtonHighscore->onClick = [this]() {Scene::activeScene  = "MainMenu";};
+        models["backButtonHighscore"] = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"),ResourceManager::getInstance()->getTexture("BackButtonOver"));
+        models["backButtonHighscore"]->onClick = [this]() {Scene::activeScene  = "MainMenu";};
 
-        fond = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondHighscore"));
-        ResourceManager::getInstance()->addResource("FondHighscore", fond);
-
+        models["fond"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondHighscore"));
 
 
 
@@ -92,7 +86,8 @@ public:
         sprintf(intBuffer, "%d", scores[1]->getScore());
         //itoa(scores[1]->getScore(),intBuffer,10);
         buffer = scores[1]->getName() + "          " + intBuffer;
-        indicationsScores[1] = new Label(font->getFont(), {128,128,128,0},buffer, 71, 300, 0.1, 466, 113);
+        models["indicationsScores"] = new Label(font->getFont(), {128,128,128,0},buffer, 71, 300, 0.1, 466, 113);
+        //indicationsScores[1] = new Label(font->getFont(), {128,128,128,0},buffer, 71, 300, 0.1, 466, 113);
 
     }
 
@@ -136,24 +131,20 @@ public:
 
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
-        if(!observables[SDL_MOUSEBUTTONDOWN])
-            observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>;
-        if(!observables[SDL_MOUSEMOTION])
-            observables[SDL_MOUSEMOTION]= new Observable<SDL_Event*>;
+        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
 
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
-        observables[SDL_MOUSEMOTION]->subscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
+        for (auto it : models) {
+            observables[SDL_MOUSEBUTTONDOWN]->subscribe(it.second);
+            observables[SDL_MOUSEMOTION]->subscribe(it.second);
+        }
     }
 
     void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
-        observables[SDL_MOUSEMOTION]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("backButtonHighscore"));
-    }
-
-    void draw(){
-        backButtonHighscore->draw();
-        indicationsScores[1]->draw();
-        fond->draw();
+        for (auto it : models) {
+            observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(it.second);
+            observables[SDL_MOUSEMOTION]->unsubscribe(it.second);
+        }
     }
 };
 
