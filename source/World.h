@@ -9,6 +9,7 @@
 
 #include "includes.h"
 #include "GLContext.h"
+#include "Camera.h"
 
 class World : public Scene{
 private:
@@ -16,6 +17,7 @@ private:
     InGameOverlay* hud;
     Vector wind;
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
+    Camera* camera;
 
 public:
     /// Ajoute un model a afficher
@@ -39,6 +41,9 @@ public:
         addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../images/grass.obj"));
         addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../images/sky.obj"));
 
+
+        camera = new Camera({0.0, 0.5, 0.0}, {0.0, 0.0, -1.0}, {0.0, 1.0, 0.0});
+        camera->loadViewMatrix();
         //changer model en sphere
         //addModel cycle
     }
@@ -46,6 +51,8 @@ public:
     /// Affichage des models
     void draw() {
         GLContext::setFrustum(IS3D);
+
+        camera->applyViewMatrix();
 
         //std::map<std::string, Model*>::iterator
         for(auto it = modelMap.begin(); it != modelMap.end(); it++)
@@ -77,7 +84,14 @@ public:
 
     }
 
-    virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {}
+    virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
+        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
+        if (!observables[SDL_KEYDOWN]) observables[SDL_KEYDOWN] = new Observable<SDL_Event*>();
+
+        observables[SDL_MOUSEMOTION]->subscribe(camera);
+        observables[SDL_KEYDOWN]->subscribe(camera);
+    }
     virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {}
 };
 #endif //SOURCE_WORLD_H

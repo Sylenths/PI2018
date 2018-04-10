@@ -172,6 +172,8 @@ public:
                 }
             }
 
+            if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
+
             if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
               sceneDisplay->unsubscribeAll(observables);
               sceneDisplay = sceneMap[Scene::getActiveScene()];

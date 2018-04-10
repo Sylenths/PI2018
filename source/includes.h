@@ -49,6 +49,7 @@
 #include "Highscore.h"
 #include "World.h"
 #include "ProjetFinal.h"
+#include "Camera.h"
 
 
 #endif
