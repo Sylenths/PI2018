@@ -47,6 +47,7 @@
 #include "InGameOverlay.h"
 #include "InGameESC.h"
 #include "Highscore.h"
+#include "Light.h"
 #include "World.h"
 #include "ProjetFinal.h"
 #include "Camera.h"

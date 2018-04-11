@@ -18,6 +18,7 @@ private:
     Vector wind;
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
     Camera* camera;
+    Light* light;
 
 public:
     /// Ajoute un model a afficher
@@ -43,6 +44,8 @@ public:
 
         camera = new Camera({0.0, 0.5, 0.0}, {0.0, 0.5, -1.0}, {0.0, 1.0, 0.0});
         camera->loadViewMatrix();
+
+        light = new Light(0., 1., 0., 5.);
     }
 
     /// Affichage des models
@@ -50,8 +53,7 @@ public:
         GLContext::setFrustum(IS3D);
 
         camera->applyViewMatrix();
-
-        //std::map<std::string, Model*>::iterator
+        light->applyLightPosition();
         for(auto it = modelMap.begin(); it != modelMap.end(); it++)
             (*it).second->draw();
 
