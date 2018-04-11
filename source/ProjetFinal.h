@@ -88,6 +88,15 @@ public:
 
         //Textures menu Highscore
         getTextureID("../../images/MenuHighScore.png","FondHighscore");
+
+        //Textures Pause Menu
+        getTextureID("../../images/PauseQuitGame.png", "PauseQuitGame");
+        getTextureID("../../images/PauseQuitGameOver.png", "PauseQuitGameOver");
+        getTextureID("../../images/PauseResumeGame.png", "PauseResumeGame");
+        getTextureID("../../images/PauseResumeGameOver.png", "PauseResumeGameOver");
+        getTextureID("../../images/PauseSettings.png", "PauseSettings");
+        getTextureID("../../images/PauseSettingsOver.png", "PauseSettingsOver");
+        getTextureID("../../images/PauseMenuFond.png", "PauseMenuFond");
     }
 
 	/// Constructeur
@@ -130,6 +139,7 @@ public:
         sceneMap["Settings"] = new Settings();
         sceneMap["InGameESC"] = new InGameESC();
         sceneMap["Highscore"] = new Highscore();
+        sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World(0, 0, 0, 20, {0, 0, 0});
 
         bool isOpen = true;

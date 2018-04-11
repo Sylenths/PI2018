@@ -46,6 +46,7 @@
 #include "Settings.h"
 #include "InGameOverlay.h"
 #include "InGameESC.h"
+#include "PauseMenu.h"
 #include "Highscore.h"
 #include "Light.h"
 #include "World.h"
