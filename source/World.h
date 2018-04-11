@@ -18,7 +18,7 @@ private:
     Vector wind;
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
     Camera* camera;
-    Light* light;
+    Light* worldLight, * hudLight;
 
 public:
     /// Ajoute un model a afficher
@@ -42,10 +42,11 @@ public:
         addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
         addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../models/obj/sky.obj"));
 
-        camera = new Camera({0.0, 1.0, 0.0}, {0.0, 1.0, -1.0}, {0.0, 1.0, 0.0});
+        camera = new Camera({ 0.0, 1.0, 0.0 }, { 0.0, 1.0, -1.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
 
-        light = new Light(0., 25., 0., 25.);
+        worldLight = new Light(0.0, 25.0, 0.0, 4.0);
+        hudLight = new Light(0.0, 0.0, 1.0, 0.0);
     }
 
     /// Affichage des models
@@ -53,18 +54,19 @@ public:
         GLContext::setFrustum(IS3D);
 
         camera->applyViewMatrix();
-        light->applyLightPosition();
+        worldLight->applyLightPosition();
         for(auto it = modelMap.begin(); it != modelMap.end(); it++)
             (*it).second->draw();
 
         GLContext::setFrustum(IS2D);
+        hudLight->applyLightPosition();
         hud->draw();
     }
 
     /// Mise a jour du temps
     /// \param chrono Chrono qui calcul le temps restant
     void updateTimeLeft(Chrono* chrono) {
-        hud->updateTime(buildingTime - chrono->getTime()/1000);
+        hud->updateTime(buildingTime - chrono->getTime() / 1000);
     }
 
     void buildingPhaseStart() {

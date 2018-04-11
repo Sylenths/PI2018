@@ -16,6 +16,12 @@ public:
   void applyLightPosition() {
     glLightfv(GL_LIGHT0, GL_POSITION, position);
   }
+
+  void setPosition(const float& x, const float& y, const float& z) {
+    position[0] = x;
+    position[1] = y;
+    position[2] = z;
+  }
 };
 
 #endif
