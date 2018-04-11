@@ -52,20 +52,19 @@ public:
 
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
-
         //Texture pour le InGameOverlay
-           getTextureID("../../images/alert_ico.png", "alert");
-           getTextureID("../../images/delete_btn.png", "delete");
-           getTextureID("../../images/info_btn.png", "info");
-           getTextureID("../../images/Machines_btn.png", "machine");
-           getTextureID("../../images/skipturn_btn.png", "skipTurn");
-           getTextureID("../../images/struct_btn.png", "structure");
-           getTextureID("../../images/topbar_tex.png", "topBar");
-           getTextureID("../../images/wire_btn.png", "wire");
+        getTextureID("../../images/alert_ico.png", "alert");
+        getTextureID("../../images/delete_btn.png", "delete");
+        getTextureID("../../images/info_btn.png", "info");
+        getTextureID("../../images/Machines_btn.png", "machine");
+        getTextureID("../../images/skipturn_btn.png", "skipTurn");
+        getTextureID("../../images/struct_btn.png", "structure");
+        getTextureID("../../images/topbar_tex.png", "topBar");
+        getTextureID("../../images/wire_btn.png", "wire");
 
         //Textures world
         getTextureID("../../images/grass.png", "grass");
-        getTextureID("../../images/cielnuageu.png", "sky");
+        getTextureID("../../images/daysky.png", "sky");
 
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
@@ -76,8 +75,6 @@ public:
         getTextureID("../../images/highscoreo.png", "ButtonHighScoreOver");
         getTextureID("../../images/maisonApp.png", "FondMaison");
 
-
-        
         //Textures boutons settings
         getTextureID("../../images/BoutonNO.png", "FPSButton");
         getTextureID("../../images/BoutonNO.png", "FPSButtonNO");
@@ -134,29 +131,6 @@ public:
         sceneMap["Highscore"] = new Highscore();
         sceneMap["World"] = new World(0, 0, 0, 20, {0, 0, 0});
 
-        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        /*
-         * déplacement de la souris
-        sdlEvent.motion.xrel;
-
-         */
-
-        //TODO ajout d'objet à afficher
-
-        //resourceManager->addResource("bouton", new );
-
-      /*  getTextureID((filePath + "start.png").c_str(), "start");
-
-        Vector3D dimension = get2DTextureSize((filePath + "start.png").c_str());
-
-        Button* testButton = new Button(testFUNCTION, "start", 100, 100, 1, dimension.x, dimension.y);
-        if(!observables[SDL_MOUSEBUTTONDOWN])
-            observables[SDL_MOUSEBUTTONDOWN]= new Observable<SDL_Event*>;
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(testButton);
-
-        ResourceManager::getInstance()->addResource("start", testButton);
-*/
-
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
@@ -184,8 +158,8 @@ public:
             sceneDisplay->draw();
             glContext->refresh();
          }
-        Highscore* test = new Highscore;
 
+         Highscore* test = new Highscore;
     }
 
     Vector get2DTextureSize(const char* filePath) {
