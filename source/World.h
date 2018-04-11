@@ -42,10 +42,10 @@ public:
         addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
         addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../models/obj/sky.obj"));
 
-        camera = new Camera({0.0, 0.5, 0.0}, {0.0, 0.5, -1.0}, {0.0, 1.0, 0.0});
+        camera = new Camera({0.0, 1.0, 0.0}, {0.0, 1.0, -1.0}, {0.0, 1.0, 0.0});
         camera->loadViewMatrix();
 
-        light = new Light(0., 1., 0., 5.);
+        light = new Light(0., 25., 0., 25.);
     }
 
     /// Affichage des models
