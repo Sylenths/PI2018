@@ -65,6 +65,7 @@ public:
         //Textures world
         getTextureID("../../images/grass.png", "grass");
         getTextureID("../../images/daysky.png", "sky");
+        getTextureID("../../images/fan.png", "fan");
 
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");

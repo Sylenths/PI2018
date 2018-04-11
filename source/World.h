@@ -19,6 +19,7 @@ private:
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
     Camera* camera;
     Light* worldLight, * hudLight;
+    Matrix fanRotationMatrix;
 
 public:
     /// Ajoute un model a afficher
@@ -41,17 +42,24 @@ public:
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
         addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
         addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../models/obj/sky.obj"));
+        addModel("fan", new Model(ResourceManager::getInstance()->getTexture("fan"),"../../models/obj/fan.obj"));
 
         camera = new Camera({ 0.0, 1.0, 0.0 }, { 0.0, 1.0, -1.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
 
         worldLight = new Light(0.0, 25.0, 0.0, 4.0);
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
+
+        fanRotationMatrix.loadTranslation(Vector(0.0, 0.5, 0.0));
+        modelMap["fan"]->transform(fanRotationMatrix);
+        fanRotationMatrix.loadArbitraryRotation(Vector(0.0, 0.5, 0.0), Vector(0.0, 1.0, 0.0), 3.6);
     }
 
     /// Affichage des models
     void draw() {
         GLContext::setFrustum(IS3D);
+
+        modelMap["fan"]->transform(fanRotationMatrix);
 
         camera->applyViewMatrix();
         worldLight->applyLightPosition();
