@@ -158,12 +158,14 @@ public:
                 }
             }
 
+
+
+
             // Test Highscore
             Highscore* test= new Highscore;
             test->updateScore("Jade",8);
 
             //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
-
 
 
             if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
@@ -184,6 +186,9 @@ public:
         SDL_FreeSurface(surface);
 
         return size;
+    }
+    GLContext* getGlContext(){
+        return glContext;
     }
 };
 #endif
