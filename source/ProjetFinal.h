@@ -76,6 +76,8 @@ public:
         getTextureID("../../images/settingso.png", "ButtonSettingsOver");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
         getTextureID("../../images/highscoreo.png", "ButtonHighScoreOver");
+        getTextureID("../../images/QuitGame.png", "ButtonQuitGame");
+        getTextureID("../../images/QuitGameOver.png", "ButtonQuitGameOver");
         getTextureID("../../images/maisonApp.png", "FondMaison");
 
         //Textures boutons settings
@@ -149,13 +151,14 @@ public:
         sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World(0, 0, 0, 20, {0, 0, 0});
 
+
+        ((Highscore*)sceneMap["Highscore"])->updateScore("Jade",8);
         bool isOpen = true;
         while (isOpen){
+            if(Scene::getActiveScene() == "Quit")
+                isOpen = false;
             while(SDL_PollEvent(sdlEvent)) {
                 switch (sdlEvent->type) {
-                    case SDL_QUIT:
-                        isOpen = false;
-                        break;
 
                     default:
                         if(!observables[sdlEvent->type])
@@ -163,6 +166,7 @@ public:
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
+<<<<<<< HEAD
 
 
 
@@ -235,12 +239,23 @@ public:
             ///controle de la rotation de la camera
             if(activeCamera){
                 sceneDisplay->getCamera()->rotateView(controller->getMouseMotion()[0], controller->getMouseMotion()[1]);
+=======
+            //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
+
+
+            if (sceneDisplay != sceneMap[Scene::getActiveScene()] && Scene::getActiveScene() != "Quit") {
+              sceneDisplay->unsubscribeAll(observables);
+              sceneDisplay = sceneMap[Scene::getActiveScene()];
+              sceneDisplay->subscribeAll(observables);
+>>>>>>> 76dc9c2fca6924ff11027917eed8cf9b0c951c49
             }
 
             glContext->clear();
             sceneDisplay->draw();
             glContext->refresh();
-         }
+        }
+
+
     }
 
     Vector get2DTextureSize(const char* filePath) {

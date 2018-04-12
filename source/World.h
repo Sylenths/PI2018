@@ -74,9 +74,11 @@ public:
 
     /// Mise a jour du temps dans l'H.U.D.
     /// \param chrono Chrono qui calcul le temps restant
-    void updateTimeLeft(Chrono<std::chrono::seconds>* chrono) {
+
+    /*void updateTimeLeft(Chrono<std::chrono::seconds>* chrono) {
        // hud->updateTime(buildingTime - chrono->getTime());
     }
+    */
 
     void buildingPhaseStart() {
 
