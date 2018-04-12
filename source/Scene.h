@@ -1,6 +1,8 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include "Camera.h"
+
 class Scene {
 protected:
     static std::string activeScene;
@@ -24,6 +26,7 @@ public:
     virtual void draw () = 0;
     virtual void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0;
     virtual void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0;
+    virtual Camera* getCamera(){}
 };
 
 std::string Scene::activeScene = "MainMenu";

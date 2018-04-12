@@ -9,6 +9,7 @@
 #define PROJETFINAL_H
 
 #include "includes.h"
+#include "Controler.h"
 
 #define IN2D 1
 #define IN3D 0
@@ -20,7 +21,8 @@ private:
     Scene* sceneDisplay;
 
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
-
+    Controler* controller;
+    bool activeCamera;
 public:
 
     /// Change la visibilité du nombre d'images par seconde
@@ -111,6 +113,10 @@ public:
         GLContext::setFrustum( true);
         sdlEvent = new SDL_Event();
         loadTextures();
+        controller = new Controler;
+
+        controller->subscribeAll(observables, controller);
+        activeCamera = false;
     }
 
     /// Destructeur
@@ -120,6 +126,7 @@ public:
 
         delete (glContext);
         delete (sdlEvent);
+        delete (controller);
     }
 
     /// Représente la boucle de jeu.
@@ -164,13 +171,70 @@ public:
             Highscore* test= new Highscore;
             test->updateScore("Jade",8);
 
-            //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
-
 
             if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
-              sceneDisplay->unsubscribeAll(observables);
-              sceneDisplay = sceneMap[Scene::getActiveScene()];
-              sceneDisplay->subscribeAll(observables);
+                sceneDisplay->unsubscribeAll(observables);
+                sceneDisplay = sceneMap[Scene::getActiveScene()];
+                sceneDisplay->subscribeAll(observables);
+                controller->subscribeAll(observables, controller);
+            }
+
+            ///controle des touches
+            switch(controller->getKeyDown()){
+                case SDLK_f:
+                    activeCamera = false;
+                    glContext->releaseInput();
+                    break;
+                case SDLK_g:
+                    activeCamera = true;
+                    glContext->grabInput();
+                    break;
+                case SDLK_w:
+                    if(sceneDisplay == sceneMap["World"]){
+                        sceneDisplay->getCamera()->startMove(CAMERA_MOVE_FRONT);
+                    }
+                    break;
+                case SDLK_s:
+                    if(sceneDisplay == sceneMap["World"]){
+                        sceneDisplay->getCamera()->startMove(CAMERA_MOVE_LEFT);
+                    }
+                    break;
+                case SDLK_a:
+                    if(sceneDisplay == sceneMap["World"]){
+                        sceneDisplay->getCamera()->startMove(CAMERA_MOVE_LEFT);
+                    }
+                    break;
+                case SDLK_d:
+                    if(sceneDisplay == sceneMap["World"]){
+                        sceneDisplay->getCamera()->startMove(CAMERA_MOVE_RIGHT);
+                    }
+                    break;
+            }
+            switch(controller->getKeyDown()){
+                case SDLK_w:
+                    if(sceneDisplay == sceneMap["World"]){
+                        sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_FRONT);
+                    }
+                    break;
+                case SDLK_s:
+                    if(sceneDisplay == sceneMap["World"]){
+                        sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_LEFT);
+                    }
+                    break;
+                case SDLK_a:
+                    if(sceneDisplay == sceneMap["World"]){
+                        sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_LEFT);
+                    }
+                    break;
+                case SDLK_d:
+                    if(sceneDisplay == sceneMap["World"]){
+                        sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_RIGHT);
+                    }
+                    break;
+            }
+            ///controle de la rotation de la camera
+            if(activeCamera){
+                sceneDisplay->getCamera()->rotateView(controller->getMouseMotion()[0], controller->getMouseMotion()[1]);
             }
 
             glContext->clear();

@@ -31,6 +31,7 @@ public:
         }
         if(event->type == SDL_KEYUP){
             keyUp = event->key.keysym.sym;
+            keyDown = NULL;
         }
         if(event->type == SDL_MOUSEMOTION){
             mouseMotion[0] = event->motion.xrel;
@@ -58,6 +59,21 @@ public:
     }
     int* getClickMousePosition(){
         return mouseClickPosition;
+    }
+
+    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables, Controler* controler){
+        ///Souris
+        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(controler);
+        if (!observables[SDL_MOUSEBUTTONUP]) observables[SDL_MOUSEBUTTONUP] = new Observable<SDL_Event*>();
+        observables[SDL_MOUSEBUTTONUP]->subscribe(controler);
+        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
+        observables[SDL_MOUSEMOTION]->subscribe(controler);
+        ///Clavier
+        if (!observables[SDL_KEYDOWN]) observables[SDL_KEYDOWN] = new Observable<SDL_Event*>();
+        observables[SDL_KEYDOWN]->subscribe(controler);
+        if (!observables[SDL_KEYUP]) observables[SDL_KEYUP] = new Observable<SDL_Event*>();
+        observables[SDL_KEYUP]->subscribe(controler);
     }
 };
 

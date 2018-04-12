@@ -93,6 +93,9 @@ public:
     void catastrophePhaseStop() {
 
     }
+    Camera* getCamera(){
+        return camera;
+    }
 
     virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
         if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
