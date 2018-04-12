@@ -82,7 +82,7 @@ public:
         ResourceManager::getInstance()->addResource("ButtonInfo", buttonMap["info"]);
         ResourceManager::getInstance()->addResource("ButtonDelete", buttonMap["delete"]);
 
-      //  buttonMap["skipturn"]->onClick = [this]() { actionQueue.push(new Build(5,5,5)); };
+        //buttonMap["skipturn"]->onClick = [this]() { actionQueue.push(new Build(5,5,5)); };
         //buttonMap["structure"]->onClick = [this]() { InsertMethod;};
         //buttonMap["machine"]->onClick = [this]() { InsertMethod; };
         //buttonMap["cablage"]->onClick = [this]() { InsertMethod; };
