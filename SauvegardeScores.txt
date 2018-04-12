@@ -1,8 +1,8 @@
 Joani  10 
 Jo  8 
 Empty  9 
-Empty  7 
-Empty  6 
+Empty  9 
+Empty  9 
 Empty  5 
 Empty  2 
 Empty  4  
