@@ -7,6 +7,10 @@
 #ifndef SOURCE_CHRONO_H
 #define SOURCE_CHRONO_H
 
+#define SECONDS 1
+#define MILISECONDS 1000
+#define MICROSECONDS 1000000
+
 #include <chrono>
 
 class Chrono {
@@ -22,9 +26,9 @@ public:
         lastTime = std::chrono::high_resolution_clock::now();
     }
 
-    double getElapsed(){
+    double getElapsed(int ratio){
         std::chrono::duration<double> span = std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - lastTime);
-        return span.count() * 10000;
+        return span.count() * ratio;
     }
 };
 

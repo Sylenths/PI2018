@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
     ResourceManager::deleteInstance();
 
     Chrono tst;
-    std::cout << tst.getElapsed() << std::endl;
+    std::cout << tst.getElapsed(SECONDS) << std::endl;
 
     TTF_Quit();
     SDL_Quit();
