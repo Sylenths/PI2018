@@ -7,26 +7,28 @@
 #ifndef SOURCE_CHRONO_H
 #define SOURCE_CHRONO_H
 
-#include <SDL2/SDL.h>
+#define SECONDS 1
+#define MILISECONDS 1000
+#define MICROSECONDS 1000000
 
-class Chrono{
+#include <chrono>
+
+class Chrono {
 private:
-    unsigned int ticks; ///<< Contient le nombre de ticks
+    std::chrono::high_resolution_clock::time_point lastTime;
 
 public:
     Chrono(){
-        ticks = SDL_GetTicks();
+        lastTime = std::chrono::high_resolution_clock::now();
     }
 
-    /// Donne le temps ecoulé depuis le dernier restart.
-    /// \return le temps ecoulé depuis le dernier restart
-    unsigned int getTime(){
-        return SDL_GetTicks()-ticks;
+    double restart() {
+        lastTime = std::chrono::high_resolution_clock::now();
     }
 
-    /// Redémmare le chronos.
-    void restart(){
-        ticks = SDL_GetTicks();
+    double getElapsed(int ratio){
+        std::chrono::duration<double> span = std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - lastTime);
+        return span.count() * ratio;
     }
 };
 

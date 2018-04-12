@@ -52,20 +52,20 @@ public:
 
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
-
         //Texture pour le InGameOverlay
-           getTextureID("../../images/alert_ico.png", "alert");
-           getTextureID("../../images/delete_btn.png", "delete");
-           getTextureID("../../images/info_btn.png", "info");
-           getTextureID("../../images/Machines_btn.png", "machine");
-           getTextureID("../../images/skipturn_btn.png", "skipTurn");
-           getTextureID("../../images/struct_btn.png", "structure");
-           getTextureID("../../images/topbar_tex.png", "topBar");
-           getTextureID("../../images/wire_btn.png", "wire");
+        getTextureID("../../images/alert_ico.png", "alert");
+        getTextureID("../../images/delete_btn.png", "delete");
+        getTextureID("../../images/info_btn.png", "info");
+        getTextureID("../../images/Machines_btn.png", "machine");
+        getTextureID("../../images/skipturn_btn.png", "skipTurn");
+        getTextureID("../../images/struct_btn.png", "structure");
+        getTextureID("../../images/topbar_tex.png", "topBar");
+        getTextureID("../../images/wire_btn.png", "wire");
 
         //Textures world
         getTextureID("../../images/grass.png", "grass");
-        getTextureID("../../images/cielnuageu.png", "sky");
+        getTextureID("../../images/daysky.png", "sky");
+        getTextureID("../../images/fan.png", "fan");
 
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
@@ -74,10 +74,10 @@ public:
         getTextureID("../../images/settingso.png", "ButtonSettingsOver");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
         getTextureID("../../images/highscoreo.png", "ButtonHighScoreOver");
+        getTextureID("../../images/QuitGame.png", "ButtonQuitGame");
+        getTextureID("../../images/QuitGameOver.png", "ButtonQuitGameOver");
         getTextureID("../../images/maisonApp.png", "FondMaison");
 
-
-        
         //Textures boutons settings
         getTextureID("../../images/BoutonNO.png", "FPSButton");
         getTextureID("../../images/BoutonNO.png", "FPSButtonNO");
@@ -90,6 +90,15 @@ public:
 
         //Textures menu Highscore
         getTextureID("../../images/MenuHighScore.png","FondHighscore");
+
+        //Textures Pause Menu
+        getTextureID("../../images/PauseQuitGame.png", "PauseQuitGame");
+        getTextureID("../../images/PauseQuitGameOver.png", "PauseQuitGameOver");
+        getTextureID("../../images/PauseResumeGame.png", "PauseResumeGame");
+        getTextureID("../../images/PauseResumeGameOver.png", "PauseResumeGameOver");
+        getTextureID("../../images/PauseSettings.png", "PauseSettings");
+        getTextureID("../../images/PauseSettingsOver.png", "PauseSettingsOver");
+        getTextureID("../../images/PauseMenuFond.png", "PauseMenuFond");
     }
 
 	/// Constructeur
@@ -132,38 +141,17 @@ public:
         sceneMap["Settings"] = new Settings();
         sceneMap["InGameESC"] = new InGameESC();
         sceneMap["Highscore"] = new Highscore();
+        sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World(0, 0, 0, 20, {0, 0, 0});
 
-        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        /*
-         * déplacement de la souris
-        sdlEvent.motion.xrel;
 
-         */
-
-        //TODO ajout d'objet à afficher
-
-        //resourceManager->addResource("bouton", new );
-
-      /*  getTextureID((filePath + "start.png").c_str(), "start");
-
-        Vector3D dimension = get2DTextureSize((filePath + "start.png").c_str());
-
-        Button* testButton = new Button(testFUNCTION, "start", 100, 100, 1, dimension.x, dimension.y);
-        if(!observables[SDL_MOUSEBUTTONDOWN])
-            observables[SDL_MOUSEBUTTONDOWN]= new Observable<SDL_Event*>;
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(testButton);
-
-        ResourceManager::getInstance()->addResource("start", testButton);
-*/
-
+        ((Highscore*)sceneMap["Highscore"])->updateScore("Jade",8);
         bool isOpen = true;
         while (isOpen){
+            if(Scene::getActiveScene() == "Quit")
+                isOpen = false;
             while(SDL_PollEvent(sdlEvent)) {
                 switch (sdlEvent->type) {
-                    case SDL_QUIT:
-                        isOpen = false;
-                        break;
 
                     default:
                         if(!observables[sdlEvent->type])
@@ -171,10 +159,10 @@ public:
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
-
             //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
 
-            if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
+
+            if (sceneDisplay != sceneMap[Scene::getActiveScene()] && Scene::getActiveScene() != "Quit") {
               sceneDisplay->unsubscribeAll(observables);
               sceneDisplay = sceneMap[Scene::getActiveScene()];
               sceneDisplay->subscribeAll(observables);
@@ -183,8 +171,8 @@ public:
             glContext->clear();
             sceneDisplay->draw();
             glContext->refresh();
-         }
-        Highscore* test = new Highscore;
+        }
+
 
     }
 
@@ -194,6 +182,9 @@ public:
         SDL_FreeSurface(surface);
 
         return size;
+    }
+    GLContext* getGlContext(){
+        return glContext;
     }
 };
 #endif

@@ -8,9 +8,21 @@
 /// \bug Aucun.
 #ifndef SOURCE_ACTION_H
 #define SOURCE_ACTION_H
+#define BUILD 0
+
+#include "ActionParameter.h"
 
 class Action {
+private:
+    unsigned int actionType;///< Le type d'action
 
+public:
+    /// retourn le type d'action
+    unsigned int getActionType(){
+        return actionType;
+    }
+    /// Méthode virtuelle pure qui retourne les paramètres
+    virtual std::map<std::string , ActionParameter*> getParameters() = 0;
 };
 
 #endif //SOURCE_ACTION_H

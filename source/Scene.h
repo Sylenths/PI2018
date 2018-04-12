@@ -4,9 +4,18 @@
 class Scene {
 protected:
     static std::string activeScene;
+    static std::string previous;
+
 
 public:
+
     virtual ~Scene() {}
+
+    static std::string changeActiveScene(std::string scene){
+        previous = activeScene;
+        activeScene = scene;
+        return activeScene;
+    }
 
     static std::string getActiveScene() {
         return activeScene;
@@ -18,5 +27,6 @@ public:
 };
 
 std::string Scene::activeScene = "MainMenu";
+std::string Scene::previous = " ";
 
 #endif

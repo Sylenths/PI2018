@@ -3,8 +3,8 @@
 /// \author Mathilde Harnois, Jade St-Pierre Bouchard
 /// \date 27 mars 2018
 /// \version 0.1
-/// \warning Aucun.
-/// \bug Affichage varie en fonction du nombre de caractères.
+/// \warning
+/// \bug Affichage varie en fonction du nombre de caractères, Si les scores sont identiques pour 2 personnes, ça plante.
 #ifndef SOURCE_HIGHSCORE_H
 #define SOURCE_HIGHSCORE_H
 
@@ -19,9 +19,21 @@
 
 class Highscore : public Menu {
 private:
-    Scores* scores[12];
+    Scores* scores[11];
     Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial28");
     std::string fichierSauvegardeScores;
+
+    void sort(int numberOfScores){
+          for (int i = 0; i <numberOfScores ; ++i) {
+            for (int j = 0; j <numberOfScores-1 ; ++j) {
+                if(scores[j]->getScore()<scores[i]->getScore()){
+                    Scores* temp = scores[i];
+                    scores[i] = scores[j];
+                    scores[j]=temp;
+                }
+            }
+        }
+    }
 
 
 public:
@@ -57,7 +69,7 @@ public:
 
             fclose(fichier);
         }
-        //TODO Trier le tableau.
+
 
     }
 
@@ -65,7 +77,7 @@ public:
 
     Highscore(){
         models["backButtonHighscore"] = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"),ResourceManager::getInstance()->getTexture("BackButtonOver"));
-        models["backButtonHighscore"]->onClick = [this]() {Scene::activeScene  = "MainMenu";};
+        models["backButtonHighscore"]->onClick = [this]() { Scene::changeActiveScene(previous); };
 
         models["fond"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondHighscore"));
 
@@ -95,28 +107,43 @@ public:
             }
             models[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1, 362, 38);
             y += 75;
+            sort(10);
 
 
         }
-
-
-
     }
 
     ~Highscore() {
-        for (int i = 0; i <10 ; ++i) {
+        for (int i = 0; i < 10; ++i)
             delete scores[i];
-        }
     }
 
     void updateScore(std::string name, unsigned int score){
-        Scores* toCompare = new Scores;
-        toCompare->setScore(name, score);
-        scores[11] = toCompare;
+        Scores* scoreBuffer = new Scores;
+        scoreBuffer->setScore(name,score);
+        Scores* toDelete;
+        int position = 0;
 
-        // TODO Trier le tableau
+        for (int i = 0; i < 10; ++i) {
+            if(scoreBuffer->getScore() <= scores[i]->getScore()){
+                position++;
+            }
+        }
 
-        delete scores[11];
+        
+
+        // Mettre à jour le label
+        char intCharBuffer[10];
+        std::string labelNameBuffer;
+        std::string labelbuffer;
+        sprintf(intCharBuffer, "%d", scores[position]->getScore());
+        labelbuffer = scores[position]->getName()+ "    " + intCharBuffer;
+        labelNameBuffer = std::string("HighscoreLabel") + intCharBuffer;
+        ((Label*)models[labelNameBuffer])->updateTextTexture(labelbuffer,ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(),{128,128,128,0});
+
+
+
+
     }
 
     void save(){

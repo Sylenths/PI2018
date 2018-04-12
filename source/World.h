@@ -18,6 +18,8 @@ private:
     Vector wind;
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
     Camera* camera;
+    Light* worldLight, * hudLight;
+    Matrix fanRotationMatrix;
 
 public:
     /// Ajoute un model a afficher
@@ -38,35 +40,45 @@ public:
         usedPower = 0;
         elapsedTime = 0;
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
-        addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../images/grass.obj"));
-        addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../images/sky.obj"));
+        addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
+        addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../models/obj/sky.obj"));
+        addModel("fan", new Model(ResourceManager::getInstance()->getTexture("fan"),"../../models/obj/fan.obj"));
 
-
-        camera = new Camera({0.0, 0.5, 0.0}, {0.0, 0.0, -1.0}, {0.0, 1.0, 0.0});
+        camera = new Camera({ 0.0, 1.0, 0.0 }, { 0.0, 1.0, -1.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
-        //changer model en sphere
-        //addModel cycle
+
+        worldLight = new Light(0.0, 25.0, 0.0, 4.0);
+        hudLight = new Light(0.0, 0.0, 1.0, 0.0);
+
+        fanRotationMatrix.loadTranslation(Vector(0.0, 0.5, 0.0));
+        modelMap["fan"]->transform(fanRotationMatrix);
+        fanRotationMatrix.loadArbitraryRotation(Vector(0.0, 0.5, 0.0), Vector(0.0, 1.0, 0.0), 3.6);
+
     }
 
     /// Affichage des models
     void draw() {
         GLContext::setFrustum(IS3D);
 
-        camera->applyViewMatrix();
+        modelMap["fan"]->transform(fanRotationMatrix);
 
-        //std::map<std::string, Model*>::iterator
+        camera->applyViewMatrix();
+        worldLight->applyLightPosition();
         for(auto it = modelMap.begin(); it != modelMap.end(); it++)
             (*it).second->draw();
 
         GLContext::setFrustum(IS2D);
+        hudLight->applyLightPosition();
         hud->draw();
     }
 
-    /// Mise a jour du temps
+    /// Mise a jour du temps dans l'H.U.D.
     /// \param chrono Chrono qui calcul le temps restant
-    void updateTimeLeft(Chrono* chrono) {
-        hud->updateTime(buildingTime - chrono->getTime()/1000);
+
+    /*void updateTimeLeft(Chrono<std::chrono::seconds>* chrono) {
+       // hud->updateTime(buildingTime - chrono->getTime());
     }
+    */
 
     void buildingPhaseStart() {
 

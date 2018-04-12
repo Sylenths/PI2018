@@ -162,20 +162,19 @@ public:
 	void transform(Matrix& m){//matrix not being a reference causes crashes (because no copy constructor is defined)
 		unsigned int x, y, z;
 		for (int i = 0; i < vertexCount; ++i) {
+        x = i * 3;
+        y = x + 1;
+        z = x + 2;
 
-            x = i * 3;
-            y = x + 1;
-            z = x + 2;
+        Vector nv = m * Vector(vertices[x], vertices[y], vertices[z]);
+        vertices[x] = nv.x;
+        vertices[y] = nv.y;
+        vertices[z] = nv.z;
 
-			Vector nv = m * Vector(vertices[x], vertices[y], vertices[z]);
-			vertices[x] = nv.x;
-			vertices[y] = nv.y;
-			vertices[z] = nv.z;
-
-			nv = m * Vector(normals[x], normals[y], normals[z]);
-			normals[x] = nv.x;
-			normals[y] = nv.y;
-			normals[z] = nv.z;
+        nv = m * Vector(normals[x], normals[y], normals[z]);
+        normals[x] = nv.x;
+        normals[y] = nv.y;
+        normals[z] = nv.z;
 		}
 	}
 
