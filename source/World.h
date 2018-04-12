@@ -40,9 +40,9 @@ public:
         usedPower = 0;
         elapsedTime = 0;
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
-        addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
-        addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../models/obj/sky.obj"));
-        addModel("fan", new Model(ResourceManager::getInstance()->getTexture("fan"),"../../models/obj/fan.obj"));
+        addModel("grass", new Model(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
+        addModel("sky", new Model(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("sky"),"../../models/obj/sky.obj"));
+        addModel("fan", new Model(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("fan"),"../../models/obj/fan.obj"));
 
         camera = new Camera({ 0.0, 1.0, 0.0 }, { 0.0, 1.0, -1.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
@@ -74,11 +74,9 @@ public:
 
     /// Mise a jour du temps dans l'H.U.D.
     /// \param chrono Chrono qui calcul le temps restant
-
-    /*void updateTimeLeft(Chrono<std::chrono::seconds>* chrono) {
-       // hud->updateTime(buildingTime - chrono->getTime());
+    void updateTimeLeft(Chrono* chrono) {
+       hud->updateTime(buildingTime - chrono->getElapsed(SECONDS));
     }
-    */
 
     void buildingPhaseStart() {
 

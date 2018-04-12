@@ -18,7 +18,7 @@ private:
     std::chrono::high_resolution_clock::time_point lastTime;
 
 public:
-    Chrono(){
+    Chrono() {
         lastTime = std::chrono::high_resolution_clock::now();
     }
 
@@ -26,7 +26,7 @@ public:
         lastTime = std::chrono::high_resolution_clock::now();
     }
 
-    double getElapsed(int ratio){
+    double getElapsed(int ratio) {
         std::chrono::duration<double> span = std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - lastTime);
         return span.count() * ratio;
     }
