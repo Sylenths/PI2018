@@ -3,8 +3,8 @@
 /// \author Mathilde Harnois, Jade St-Pierre Bouchard
 /// \date 27 mars 2018
 /// \version 0.1
-/// \warning Aucun.
-/// \bug Affichage varie en fonction du nombre de caractères.
+/// \warning
+/// \bug Affichage varie en fonction du nombre de caractères, Si les scores sont identiques pour 2 personnes, ça plante.
 #ifndef SOURCE_HIGHSCORE_H
 #define SOURCE_HIGHSCORE_H
 
@@ -22,6 +22,24 @@ private:
     Scores* scores[12];
     Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial28");
     std::string fichierSauvegardeScores;
+
+    void sort(int numberOfScores){
+        Scores* bufferScores[12];
+        Scores* toCompare;
+        for (int i = 0; i < numberOfScores ; ++i) {
+            toCompare = scores[i];
+            int k = 0;
+            for (int j = 0; j < numberOfScores ; ++j) {
+                if(toCompare->getScore() < scores[j]->getScore()){
+                    k++;
+                }
+            }
+            bufferScores[k] = toCompare;
+        }
+        for (int l = 0; l <numberOfScores ; ++l) {
+            scores[l] = bufferScores[l];
+        }
+    }
 
 
 public:
@@ -57,7 +75,7 @@ public:
 
             fclose(fichier);
         }
-        //TODO Trier le tableau.
+
 
     }
 
@@ -65,7 +83,7 @@ public:
 
     Highscore(){
         models["backButtonHighscore"] = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"),ResourceManager::getInstance()->getTexture("BackButtonOver"));
-        models["backButtonHighscore"]->onClick = [this]() {Scene::activeScene  = "MainMenu";};
+        models["backButtonHighscore"]->onClick = [this]() { Scene::changeActiveScene(previous); };
 
         models["fond"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondHighscore"));
 
@@ -95,12 +113,10 @@ public:
             }
             models[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1, 362, 38);
             y += 75;
+            sort(10);
 
 
         }
-
-
-
     }
 
     ~Highscore() {
@@ -113,8 +129,7 @@ public:
         Scores* toCompare = new Scores;
         toCompare->setScore(name, score);
         scores[11] = toCompare;
-
-        // TODO Trier le tableau
+        sort(11);
 
         delete scores[11];
     }
