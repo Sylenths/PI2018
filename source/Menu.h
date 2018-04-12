@@ -21,7 +21,7 @@ public:
   }
 
     /// Permet d'afficher tous les modèles utilisés dans les menus actifs.
-  void draw() {
+    virtual void draw() {
     for (auto it : models)
       it.second->draw();
   }
