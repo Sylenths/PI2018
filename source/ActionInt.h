@@ -14,9 +14,7 @@ public:
         return SIMINT;
     }
 
-    ActionInt(int data, std::string name) : ActionParameter(name){
 
-    }
     int getData(){
         return data;
     }

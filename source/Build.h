@@ -22,15 +22,17 @@ public:
     /// \param x position en x
     /// \param y position en y
     /// \param z position en z
-    Build(double x, double y, double z){
+    Build(double x, double y, double z, int buildType){
         this->x = x;
         this->y = y;
         this->z = z;
     }
     /// Retourne map de pointeurs de SIMParameters
-    std::map<std::string key, SIMparameter*> getParameters(){
-      //  std::map<std::string, SIMParameter<double> *> = new std::map<std::string, SIMParameter<double>*>;
-
+    std::map<std::string, Actionparameter*> getParameters(){
+        std::map<std::string, ActionParameter*> paramMap;
+        paramMap["buildx"] = x;
+        paramMap["build-y"] = y;
+        paramMap["build-z"] = z;
     }
 
 };

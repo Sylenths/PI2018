@@ -21,7 +21,7 @@ public:
         return actionType;
     }
     /// Méthode virtuelle pure qui retourne les paramètres
-    //std::map<std::string , SIMParameter<double>*> getParameters() = 0;
+    std::map<std::string , ActionParameter*> getParameters() = 0;
 };
 
 #endif //SOURCE_ACTION_H

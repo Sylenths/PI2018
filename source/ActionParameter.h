@@ -3,6 +3,7 @@
 
 
 #define SIMINT 1
+#define SIMDOUBLE 2
 
 class ActionParameter{
 private:
