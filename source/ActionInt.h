@@ -5,7 +5,15 @@
 #ifndef SOURCE_ACTIONINT_H
 #define SOURCE_ACTIONINT_H
 
-class actionInt : public SIMparameter{
+class ActionInt : public ActionParameter{
+private:
+    int data;
+public:
+
+    ActionInt(int data, std::string name) :
+    int getData(){
+        return data;
+    }
 
 };
 #endif //SOURCE_ACTIONINT_H

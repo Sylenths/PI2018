@@ -4,6 +4,7 @@
 
 #ifndef SOURCE_SIMPARAMETER_H
 #define SOURCE_SIMPARAMETER_H
+
 class Actionparameter{
 private:
     std::string name;
@@ -11,8 +12,7 @@ public:
     Actionparameter(std::string name){
         this->name = name;
     }
-    template <typename T>
-    virtual T getData() = 0;
+
 };
 
 
