@@ -8,25 +8,52 @@
 
 #ifndef SOURCE_MODEL_H
 #define SOURCE_MODEL_H
+#include "Matrix.h"
 
 class Model : public Resource, public Observer<SDL_Event*> {
 protected:
     unsigned int vertexCount; ///< Nombre de vertice
     unsigned int texCount; ///< Nombre de coordonné de texture
     unsigned int normalCount; ///< Nombre de normal
-    double *vertices, *texCoords, *normals;
+    double *vertices, *texCoords, *normals, *verticesHitBox, *normalsHitBox;
 
     unsigned int textureToDraw; ///< Identificateur de la texture
+
+    double posx, posy, posz;
 
     std::map<std::string, unsigned int> textureIDs;
 
 public:
     std::function<void()> onClick;  ///< Pointeur de méthode réagissant à un click de souris.
 
+    /// Applique une matrice de transformation au modèle.
+    /// \param m Matrice de transformation.
+    void transform(Matrix& m){//matrix not being a reference causes crashes (because no copy constructor is defined)
+        unsigned int x, y, z;
+        for (int i = 0; i < vertexCount; ++i) {
+        x = i * 3;
+        y = x + 1;
+        z = x + 2;
+
+        Vector nv = m * Vector(vertices[x], vertices[y], vertices[z]);
+        vertices[x] = nv.x;
+        vertices[y] = nv.y;
+        vertices[z] = nv.z;
+
+        nv = m * Vector(normals[x], normals[y], normals[z]);
+        normals[x] = nv.x;
+        normals[y] = nv.y;
+        normals[z] = nv.z;
+        }
+    }
+
     /// Constructeur.
     /// \param textureID Identificateur de la texture.
 	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
-    Model(unsigned int textureID, const char* objFile = nullptr) {
+    Model(double posx, double posy, double posz, unsigned int textureID, const char* objFile = nullptr) {
+        this->posx = posx;
+        this->posy = posy;
+        this->posz = posz;
 
         textureIDs["default"] = textureID;
         textureToDraw = textureID;
@@ -137,6 +164,10 @@ public:
 
             fichier.close();
         }
+
+       Matrix m;
+       m.loadTranslation(Vector(posx, posy, posz));
+       transform(m);
     }
 
 	/// Destructeur.
@@ -157,26 +188,7 @@ public:
                     textureIDs[name] = textureToDraw = ID;
     }
 
-	/// Applique une matrice de transformation au modèle.
-	/// \param m Matrice de transformation.
-	void transform(Matrix& m){//matrix not being a reference causes crashes (because no copy constructor is defined)
-		unsigned int x, y, z;
-		for (int i = 0; i < vertexCount; ++i) {
-        x = i * 3;
-        y = x + 1;
-        z = x + 2;
 
-        Vector nv = m * Vector(vertices[x], vertices[y], vertices[z]);
-        vertices[x] = nv.x;
-        vertices[y] = nv.y;
-        vertices[z] = nv.z;
-
-        nv = m * Vector(normals[x], normals[y], normals[z]);
-        normals[x] = nv.x;
-        normals[y] = nv.y;
-        normals[z] = nv.z;
-		}
-	}
 
 	/// Affiche le modèle.
     void draw() {
