@@ -12,7 +12,7 @@
 #include <map>
 
 #include "Action.h"
-#include "SIMparameter.h"
+#include "ActionParameter.h"
 
 class Build : public Action{
 private:

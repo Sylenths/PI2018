@@ -4,15 +4,15 @@
 
 #ifndef SOURCE_SIMPARAMETER_H
 #define SOURCE_SIMPARAMETER_H
-template <typename T>
-class SIMparameter{
+class Actionparameter{
 private:
     std::string name;
-    T data;
 public:
-    T getData(){
-        return data;
+    Actionparameter(std::string name){
+        this->name = name;
     }
+    template <typename T>
+    virtual T getData() = 0;
 };
 
 
