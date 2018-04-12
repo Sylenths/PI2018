@@ -74,6 +74,8 @@ public:
         getTextureID("../../images/settingso.png", "ButtonSettingsOver");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
         getTextureID("../../images/highscoreo.png", "ButtonHighScoreOver");
+        getTextureID("../../images/QuitGame.png", "ButtonQuitGame");
+        getTextureID("../../images/QuitGameOver.png", "ButtonQuitGameOver");
         getTextureID("../../images/maisonApp.png", "FondMaison");
 
         //Textures boutons settings
@@ -146,11 +148,10 @@ public:
 
         bool isOpen = true;
         while (isOpen){
+            if(Scene::getActiveScene() == "Quit")
+                isOpen = false;
             while(SDL_PollEvent(sdlEvent)) {
                 switch (sdlEvent->type) {
-                    case SDL_QUIT:
-                        isOpen = false;
-                        break;
 
                     default:
                         if(!observables[sdlEvent->type])
@@ -158,12 +159,10 @@ public:
                          observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
-
-
-
             //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
 
-            if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
+
+            if (sceneDisplay != sceneMap[Scene::getActiveScene()] && Scene::getActiveScene() != "Quit") {
               sceneDisplay->unsubscribeAll(observables);
               sceneDisplay = sceneMap[Scene::getActiveScene()];
               sceneDisplay->subscribeAll(observables);
@@ -182,6 +181,9 @@ public:
         SDL_FreeSurface(surface);
 
         return size;
+    }
+    GLContext* getGlContext(){
+        return glContext;
     }
 };
 #endif

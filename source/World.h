@@ -53,6 +53,7 @@ public:
         fanRotationMatrix.loadTranslation(Vector(0.0, 0.5, 0.0));
         modelMap["fan"]->transform(fanRotationMatrix);
         fanRotationMatrix.loadArbitraryRotation(Vector(0.0, 0.5, 0.0), Vector(0.0, 1.0, 0.0), 3.6);
+
     }
 
     /// Affichage des models
@@ -71,11 +72,13 @@ public:
         hud->draw();
     }
 
-    /// Mise a jour du temps
+    /// Mise a jour du temps dans l'H.U.D.
     /// \param chrono Chrono qui calcul le temps restant
-    void updateTimeLeft(Chrono<std::chrono::seconds>* chrono) {
+
+    /*void updateTimeLeft(Chrono<std::chrono::seconds>* chrono) {
        // hud->updateTime(buildingTime - chrono->getTime());
     }
+    */
 
     void buildingPhaseStart() {
 
