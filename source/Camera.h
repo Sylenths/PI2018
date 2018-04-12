@@ -154,6 +154,8 @@ public:
 						target = target + side;
 					}
 						break;
+					case SDLK_ESCAPE:
+					Scene::changeActiveScene("PauseMenu");
 					default:
 						break;
 				}
