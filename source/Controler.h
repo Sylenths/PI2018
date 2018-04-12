@@ -1,5 +1,4 @@
-/// \brief
-/// \details
+/// \brief Gère les entrées utilisateur
 /// \author Shelby Versailles
 /// \date 12 Avril 2018
 /// \version 0.1
@@ -28,6 +27,7 @@ public:
     void notify(SDL_Event* event){
         if(event->type == SDL_KEYDOWN){
             keyDown = event->key.keysym.sym;
+            keyUp = NULL;
         }
         if(event->type == SDL_KEYUP){
             keyUp = event->key.keysym.sym;
@@ -38,28 +38,37 @@ public:
             mouseMotion[1] = event->motion.yrel;
         }
         if(event->type == SDL_MOUSEBUTTONDOWN){
-            mouseMotion[0] = event->motion.xrel;
-            mouseMotion[1] = event->motion.yrel;
+            mouseClickPosition[0] = event->button.x;
+            mouseClickPosition[1] = event->button.y;
+            mouseClickPosition[2] = event->button.button;
         }
-        if(event->type == SDL_MOUSEBUTTONDOWN){
+        if(event->type == SDL_MOUSEBUTTONUP){
             mouseClickPosition[0] = event->button.x;
             mouseClickPosition[1] = event->button.y;
             mouseClickPosition[2] = event->button.button;
         }
     }
-
+/// retourne la touche qui a été appuillée
+/// \return touche apuillée
     int getKeyDown(){
         return keyDown;
     }
+/// retourne la touche qui a été relachée
+/// \return touche relacher
     int getKeyUp(){
         return keyUp;
     }
+/// retourne le deplacement relatif de la souris
+/// \return deplacement xrel, deplacement yrel
     int* getMouseMotion(){
         return mouseMotion;
     }
+/// retourne Ou la souris etait quand il y a eu un clic
+/// \return positionX, positionY, Click
     int* getClickMousePosition(){
         return mouseClickPosition;
     }
+/// Remets mouseMotion a 0,0
     void resetMouseMotion(){
         mouseMotion[0] = 0;
         mouseMotion[1] = 0;

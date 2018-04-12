@@ -17,7 +17,7 @@
 #include "Vector.h"
 
 //Movement in coordinate system units per second
-#define CAMERA_MOVEMENTSPEED 0.1
+#define CAMERA_MOVEMENTSPEED 2
 #define CAMERA_MOVE_FRONT 1
 #define CAMERA_MOVE_BACK 2
 #define CAMERA_MOVE_LEFT 3

@@ -23,6 +23,8 @@ private:
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
     Controler* controller;
     bool activeCamera;
+
+    Chrono chrono;
 public:
 
     /// Change la visibilité du nombre d'images par seconde
@@ -156,7 +158,9 @@ public:
         ((Highscore *) sceneMap["Highscore"])->updateScore("Jade", 8);
 
         bool isOpen = true;
+        chrono.restart();
         while (isOpen) {
+
             if (Scene::getActiveScene() == "Quit")
                 isOpen = false;
             while (SDL_PollEvent(sdlEvent)) {
@@ -208,6 +212,13 @@ public:
                         sceneDisplay->getCamera()->startMove(CAMERA_MOVE_RIGHT);
                     }
                     break;
+                case SDLK_ESCAPE:
+                    if (sceneDisplay == sceneMap["World"]) {
+                        glContext->releaseInput();
+                        activeCamera = false;
+                        sceneDisplay->changeActiveScene("PauseMenu");
+                    }
+                    break;
             }
             switch (controller->getKeyUp()) {
                 case SDLK_w:
@@ -244,14 +255,14 @@ public:
 
                 }
             if (sceneDisplay == sceneMap["World"] && activeCamera) {
-                sceneDisplay->getCamera()->update(0.0025);
+                sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS) + 0.0000001);
             }
 
 
             glContext->clear();
             sceneDisplay->draw();
             glContext->refresh();
-
+            chrono.restart();
 
         }
     }
