@@ -19,25 +19,19 @@
 
 class Highscore : public Menu {
 private:
-    Scores* scores[12];
+    Scores* scores[11];
     Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial28");
     std::string fichierSauvegardeScores;
 
     void sort(int numberOfScores){
-        Scores* bufferScores[12];
-        Scores* toCompare;
-        for (int i = 0; i < numberOfScores ; ++i) {
-            toCompare = scores[i];
-            int k = 0;
-            for (int j = 0; j < numberOfScores ; ++j) {
-                if(toCompare->getScore() < scores[j]->getScore()){
-                    k++;
+          for (int i = 0; i <numberOfScores ; ++i) {
+            for (int j = 0; j <numberOfScores-1 ; ++j) {
+                if(scores[j]->getScore()<scores[i]->getScore()){
+                    Scores* temp = scores[i];
+                    scores[i] = scores[j];
+                    scores[j]=temp;
                 }
             }
-            bufferScores[k] = toCompare;
-        }
-        for (int l = 0; l <numberOfScores ; ++l) {
-            scores[l] = bufferScores[l];
         }
     }
 
@@ -120,17 +114,20 @@ public:
     }
 
     ~Highscore() {
-        for (int i = 0; i < 12; ++i)
+        for (int i = 0; i < 10; ++i)
             delete scores[i];
     }
 
     void updateScore(std::string name, unsigned int score){
-        Scores* toCompare = new Scores;
-        toCompare->setScore(name, score);
-        scores[11] = toCompare;
-        sort(11);
+      scores[10] = new Scores();
+      scores[10]->setScore(name,score);
+      sort(11);
 
-        delete scores[11];
+      //delete(10);
+
+
+
+
     }
 
     void save(){
