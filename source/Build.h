@@ -9,7 +9,11 @@
 #ifndef SOURCE_BUILD_H
 #define SOURCE_BUILD_H
 
+#include <map>
+
 #include "Action.h"
+#include "SIMparameter.h"
+
 class Build : public Action{
 private:
     double x,y,z;
@@ -24,7 +28,7 @@ public:
         this->z = z;
     }
     /// Retourne map de pointeurs de SIMParameters
-    std::map<SIMParameter*> getParameters(){
+    std::map<std::string key, SIMparameter*> getParameters(){
       //  std::map<std::string, SIMParameter<double> *> = new std::map<std::string, SIMParameter<double>*>;
 
     }
