@@ -169,8 +169,6 @@ public:
             sceneDisplay->draw();
             glContext->refresh();
          }
-
-         Highscore* test = new Highscore;
     }
 
     Vector get2DTextureSize(const char* filePath) {

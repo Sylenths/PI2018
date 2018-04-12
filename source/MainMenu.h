@@ -20,10 +20,10 @@ public:
         models["ButtonStart"]->onClick = [this]() { Scene::activeScene = "World"; };
 
         models["ButtonSettings"] = new Button(967, 275, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonSettingsOver"), ResourceManager::getInstance()->getTexture("ButtonSettings"));
-        models["ButtonSettings"]->onClick = [this]() { Scene::activeScene  = "Settings"; };
+        models["ButtonSettings"]->onClick = [this]() { Scene::changeActiveScene("Settings"); };
 
         models["ButtonHighScore"] = new Button(967, 475, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonHighScoreOver"), ResourceManager::getInstance()->getTexture("ButtonHighScore"));
-        models["ButtonHighScore"]->onClick = [this]() { Scene::activeScene  = "Highscore"; };
+        models["ButtonHighScore"]->onClick = [this]() { Scene::changeActiveScene("Highscore"); };
     }
 
 
