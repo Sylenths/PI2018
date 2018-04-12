@@ -79,6 +79,8 @@ public:
         this->up.normalize();
 
         vMouseMotion = (int)(std::round(-getHorizontalRotationAngle() / CAMERA_FOV_F * WINDOW_HEIGHT_I));
+
+        mLeft = mRight = mFront = mBack = false;
     }
 
     /// Charger la matrice de vue de la caméra.
@@ -91,7 +93,7 @@ public:
 
     /// Mettre à jour la position de la caméra.
     /// \param deltaTime Temps écoulé.
-    void update(unsigned int deltaTime){
+    void update(double deltaTime){
         //move camera and target in viewing direction
         if(mFront || mBack || mLeft || mRight) {
             front = (target - position).normalize();

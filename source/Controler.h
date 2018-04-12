@@ -60,6 +60,10 @@ public:
     int* getClickMousePosition(){
         return mouseClickPosition;
     }
+    void resetMouseMotion(){
+        mouseMotion[0] = 0;
+        mouseMotion[1] = 0;
+    }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables, Controler* controler){
         ///Souris

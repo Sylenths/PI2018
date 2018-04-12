@@ -132,7 +132,7 @@ public:
     }
 
     /// Représente la boucle de jeu.
-    void run(std::string filePath){
+    void run(std::string filePath) {
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_LIGHTING);
@@ -152,28 +152,21 @@ public:
         sceneMap["World"] = new World(0, 0, 0, 20, {0, 0, 0});
 
 
-        ((Highscore*)sceneMap["Highscore"])->updateScore("Jade",8);
+        ((Highscore *) sceneMap["Highscore"])->updateScore("Jade", 8);
         bool isOpen = true;
-        while (isOpen){
-            if(Scene::getActiveScene() == "Quit")
+        while (isOpen) {
+            if (Scene::getActiveScene() == "Quit")
                 isOpen = false;
-            while(SDL_PollEvent(sdlEvent)) {
+            while (SDL_PollEvent(sdlEvent)) {
                 switch (sdlEvent->type) {
 
                     default:
-                        if(!observables[sdlEvent->type])
-                            observables[sdlEvent->type] = new Observable<SDL_Event*>();
-                         observables[sdlEvent->type]->notify(sdlEvent);
+                        if (!observables[sdlEvent->type])
+                            observables[sdlEvent->type] = new Observable<SDL_Event *>();
+                        observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
-<<<<<<< HEAD
 
-
-
-
-            // Test Highscore
-            Highscore* test= new Highscore;
-            test->updateScore("Jade",8);
 
 
             if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
@@ -184,7 +177,7 @@ public:
             }
 
             ///controle des touches
-            switch(controller->getKeyDown()){
+            switch (controller->getKeyDown()) {
                 case SDLK_f:
                     activeCamera = false;
                     glContext->releaseInput();
@@ -194,68 +187,71 @@ public:
                     glContext->grabInput();
                     break;
                 case SDLK_w:
-                    if(sceneDisplay == sceneMap["World"]){
+                    if (sceneDisplay == sceneMap["World"]) {
                         sceneDisplay->getCamera()->startMove(CAMERA_MOVE_FRONT);
                     }
                     break;
                 case SDLK_s:
-                    if(sceneDisplay == sceneMap["World"]){
-                        sceneDisplay->getCamera()->startMove(CAMERA_MOVE_LEFT);
+                    if (sceneDisplay == sceneMap["World"]) {
+                        sceneDisplay->getCamera()->startMove(CAMERA_MOVE_BACK);
                     }
                     break;
                 case SDLK_a:
-                    if(sceneDisplay == sceneMap["World"]){
+                    if (sceneDisplay == sceneMap["World"]) {
                         sceneDisplay->getCamera()->startMove(CAMERA_MOVE_LEFT);
                     }
                     break;
                 case SDLK_d:
-                    if(sceneDisplay == sceneMap["World"]){
+                    if (sceneDisplay == sceneMap["World"]) {
                         sceneDisplay->getCamera()->startMove(CAMERA_MOVE_RIGHT);
                     }
                     break;
             }
-            switch(controller->getKeyDown()){
+            switch (controller->getKeyUp()) {
                 case SDLK_w:
-                    if(sceneDisplay == sceneMap["World"]){
+                    if (sceneDisplay == sceneMap["World"]) {
                         sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_FRONT);
                     }
                     break;
                 case SDLK_s:
-                    if(sceneDisplay == sceneMap["World"]){
-                        sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_LEFT);
+                    if (sceneDisplay == sceneMap["World"]) {
+                        sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_BACK);
                     }
                     break;
                 case SDLK_a:
-                    if(sceneDisplay == sceneMap["World"]){
+                    if (sceneDisplay == sceneMap["World"]) {
                         sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_LEFT);
                     }
                     break;
                 case SDLK_d:
-                    if(sceneDisplay == sceneMap["World"]){
+                    if (sceneDisplay == sceneMap["World"]) {
                         sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_RIGHT);
                     }
                     break;
             }
             ///controle de la rotation de la camera
-            if(activeCamera){
+            if (activeCamera) {
                 sceneDisplay->getCamera()->rotateView(controller->getMouseMotion()[0], controller->getMouseMotion()[1]);
-=======
-            //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
-
-
-            if (sceneDisplay != sceneMap[Scene::getActiveScene()] && Scene::getActiveScene() != "Quit") {
-              sceneDisplay->unsubscribeAll(observables);
-              sceneDisplay = sceneMap[Scene::getActiveScene()];
-              sceneDisplay->subscribeAll(observables);
->>>>>>> 76dc9c2fca6924ff11027917eed8cf9b0c951c49
+                controller->resetMouseMotion();
             }
+
+                if (sceneDisplay != sceneMap[Scene::getActiveScene()] && Scene::getActiveScene() != "Quit") {
+                    sceneDisplay->unsubscribeAll(observables);
+                    sceneDisplay = sceneMap[Scene::getActiveScene()];
+                    sceneDisplay->subscribeAll(observables);
+
+                }
+            if (sceneDisplay == sceneMap["World"] && activeCamera) {
+                sceneDisplay->getCamera()->update(0.0025);
+            }
+
 
             glContext->clear();
             sceneDisplay->draw();
             glContext->refresh();
+
+
         }
-
-
     }
 
     Vector get2DTextureSize(const char* filePath) {

@@ -102,8 +102,6 @@ public:
         if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
         if (!observables[SDL_KEYDOWN]) observables[SDL_KEYDOWN] = new Observable<SDL_Event*>();
 
-        observables[SDL_MOUSEMOTION]->subscribe(camera);
-        observables[SDL_KEYDOWN]->subscribe(camera);
     }
     virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {}
 };
