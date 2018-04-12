@@ -14,6 +14,7 @@ public:
         return SIMINT;
     }
 
+
     int getData(){
         return data;
     }
