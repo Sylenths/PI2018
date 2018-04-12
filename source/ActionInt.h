@@ -1,14 +1,18 @@
-//
-// Created by etudiant on 18-04-12.
-//
-
 #ifndef SOURCE_ACTIONINT_H
 #define SOURCE_ACTIONINT_H
 
 class ActionInt : public ActionParameter{
 private:
     int data;
+
 public:
+    ActionInt(std::string name, int data) : ActionParameter(name) {
+        this->data = data;
+    }
+
+    int getType() {
+        return SIMINT;
+    }
 
     ActionInt(int data, std::string name) : ActionParameter(name){
 
@@ -18,4 +22,5 @@ public:
     }
 
 };
-#endif //SOURCE_ACTIONINT_H
+
+#endif

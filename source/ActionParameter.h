@@ -2,8 +2,9 @@
 #define SOURCE_SIMPARAMETER_H
 
 
-class ActionParameter{
+#define SIMINT 1
 
+class ActionParameter{
 private:
     std::string name;
 
@@ -13,7 +14,7 @@ public:
     }
 
 
-    virtual std::string getType() = 0;
+    virtual int getType() = 0;
 };
 
 #endif
