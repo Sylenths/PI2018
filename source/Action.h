@@ -10,7 +10,7 @@
 #define SOURCE_ACTION_H
 #define BUILD 0
 
-#include "SIMparameter.h"
+#include "ActionParameter.h"
 
 class Action {
 private:
