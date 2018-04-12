@@ -168,7 +168,7 @@ public:
             //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
 
 
-            if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
+            if (sceneDisplay != sceneMap[Scene::getActiveScene()] && Scene::getActiveScene() != "Quit") {
               sceneDisplay->unsubscribeAll(observables);
               sceneDisplay = sceneMap[Scene::getActiveScene()];
               sceneDisplay->subscribeAll(observables);

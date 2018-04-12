@@ -26,7 +26,7 @@ public:
         models["ButtonHighScore"]->onClick = [this]() { Scene::changeActiveScene("Highscore"); };
 
         models["ButtonQuitGame"] = new Button(967, 575, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonQuitGame"), ResourceManager::getInstance()->getTexture("ButtonQuitGameOver"));
-        models["ButtonQuitGame"]->onClick = [this]() { Scene::activeScene == "Quit"; };
+        models["ButtonQuitGame"]->onClick = [this]() { Scene::changeActiveScene("Quit"); };
     }
 
 
