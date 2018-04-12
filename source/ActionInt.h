@@ -11,7 +11,7 @@ private:
 public:
 
     ActionInt(int data, std::string name) : ActionParameter(name){
-        
+
     }
     int getData(){
         return data;

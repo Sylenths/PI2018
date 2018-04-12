@@ -5,7 +5,7 @@
 #ifndef SOURCE_SIMPARAMETER_H
 #define SOURCE_SIMPARAMETER_H
 
-class Actionparameter{
+class ActionParameter{
 private:
     std::string name;
 public:
