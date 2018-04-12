@@ -17,6 +17,7 @@
 class Build : public Action{
 private:
     double x,y,z;
+    int buildType;
 public:
     /// Constructeur
     /// \param x position en x
@@ -26,13 +27,15 @@ public:
         this->x = x;
         this->y = y;
         this->z = z;
+        this->buildType = buildType;
     }
     /// Retourne map de pointeurs de SIMParameters
     std::map<std::string, Actionparameter*> getParameters(){
         std::map<std::string, ActionParameter*> paramMap;
-        paramMap["buildx"] = x;
-        paramMap["build-y"] = y;
-        paramMap["build-z"] = z;
+        paramMap["buildx"] = new ActionDouble(x);
+        paramMap["build-y"] = new ActionDouble(y);
+        paramMap["build-z"] = new ActionDouble(z);
+        paramMap["build-type"] = new ActionInt(buildType);
     }
 
 };
