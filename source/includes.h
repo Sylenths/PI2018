@@ -48,7 +48,7 @@
 #include "InGameESC.h"
 #include "PauseMenu.h"
 #include "Highscore.h"
-#include "Light.h"
+#include "light.h"
 #include "World.h"
 #include "ProjetFinal.h"
 #include "Camera.h"
