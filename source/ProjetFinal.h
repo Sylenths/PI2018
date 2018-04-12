@@ -142,6 +142,8 @@ public:
         sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World(0, 0, 0, 20, {0, 0, 0});
 
+       ((Highscore*)sceneMap["Highscore"])->updateScore("Jade",8);
+
         bool isOpen = true;
         while (isOpen){
             while(SDL_PollEvent(sdlEvent)) {
@@ -157,9 +159,7 @@ public:
                 }
             }
 
-            // Test Highscore
-            Highscore* test= new Highscore;
-            test->updateScore("Jade",8);
+
 
             //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
 
@@ -173,6 +173,7 @@ public:
             sceneDisplay->draw();
             glContext->refresh();
          }
+
     }
 
     Vector get2DTextureSize(const char* filePath) {

@@ -119,11 +119,30 @@ public:
     }
 
     void updateScore(std::string name, unsigned int score){
-      scores[10] = new Scores();
-      scores[10]->setScore(name,score);
-      sort(11);
+        Scores* scoreBuffer = new Scores;
+        scoreBuffer->setScore(name,score);
+        Scores* toDelete;
+        int position = 0;
 
-      //delete(10);
+        for (int i = 0; i < 10; ++i) {
+            if(scoreBuffer->getScore() <= scores[i]->getScore()){
+                position++;
+            }
+        }
+
+        toDelete = scores[position];
+        scores[position] = scoreBuffer;
+        delete(toDelete);
+        save();
+
+        // Mettre à jour le label
+        char intCharBuffer[10];
+        std::string labelNameBuffer;
+        std::string labelbuffer;
+        sprintf(intCharBuffer, "%d", scores[position]->getScore());
+        labelbuffer = scores[position]->getName()+ "    " + intCharBuffer;
+        labelNameBuffer = std::string("HighscoreLabel") + intCharBuffer;
+        ((Label*)models[labelNameBuffer])->updateTextTexture(labelbuffer,ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(),{128,128,128,0});
 
 
 
