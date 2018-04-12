@@ -130,10 +130,7 @@ public:
             }
         }
 
-        toDelete = scores[position];
-        scores[position] = scoreBuffer;
-        delete(toDelete);
-        save();
+        
 
         // Mettre à jour le label
         char intCharBuffer[10];

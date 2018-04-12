@@ -144,8 +144,8 @@ public:
         sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World(0, 0, 0, 20, {0, 0, 0});
 
-       ((Highscore*)sceneMap["Highscore"])->updateScore("Jade",8);
 
+        ((Highscore*)sceneMap["Highscore"])->updateScore("Jade",8);
         bool isOpen = true;
         while (isOpen){
             if(Scene::getActiveScene() == "Quit")
@@ -171,7 +171,8 @@ public:
             glContext->clear();
             sceneDisplay->draw();
             glContext->refresh();
-         }
+        }
+
 
     }
 
