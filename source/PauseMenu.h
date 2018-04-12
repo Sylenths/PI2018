@@ -1,3 +1,10 @@
+/// \brief Représentation du menu echap en jeu.
+/// \details Interface permettant d'accéder au menu des options en jeu et de quitter le jeu.
+/// \author Antoine Legault
+/// \date 27 mars 2018
+/// \version 0.1
+/// \warning .
+/// \bug Aucun.
 
 #ifndef SOURCE_PAUSEMENU_H
 #define SOURCE_PAUSEMENU_H

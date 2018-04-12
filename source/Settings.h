@@ -3,7 +3,7 @@
 /// \author Antoine Legault, Samuel Labelle
 /// \date 27 mars 2018
 /// \version 0.1
-/// \warning Le bouton FPS devrait être une case à cocher.
+/// \warning Le bouton back ne marche pas à 100%, desfois on est coincé dans un menu.
 /// \bug Aucun.
 
 #ifndef SETTINGS_H
