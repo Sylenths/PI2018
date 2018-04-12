@@ -157,7 +157,7 @@ public:
                 }
             }
 
-            //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
+
 
             if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
               sceneDisplay->unsubscribeAll(observables);
@@ -177,6 +177,9 @@ public:
         SDL_FreeSurface(surface);
 
         return size;
+    }
+    GLContext* getGlContext(){
+        return glContext;
     }
 };
 #endif
