@@ -158,6 +158,10 @@ public:
                 }
             }
 
+            // Test Highscore
+            Highscore* test= new Highscore;
+            test->updateScore("Jade",8);
+
             //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
 
 
