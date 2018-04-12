@@ -21,6 +21,7 @@ class Highscore : public Menu {
 private:
     Scores* scores[11];
     Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial28");
+    std::map<std::string, Model*> labelModels;
     std::string fichierSauvegardeScores;
 
     void sort(int numberOfScores){
@@ -76,6 +77,7 @@ public:
 
 
     Highscore(){
+
         models["backButtonHighscore"] = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"),ResourceManager::getInstance()->getTexture("BackButtonOver"));
         models["backButtonHighscore"]->onClick = [this]() { Scene::changeActiveScene(previous); };
 
@@ -105,7 +107,7 @@ public:
                 x = 815;
                 y = 185;
             }
-            models[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1, 362, 38);
+            labelModels[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1, 362, 38);
             y += 75;
             sort(10);
 
@@ -116,21 +118,26 @@ public:
     ~Highscore() {
         for (int i = 0; i < 10; ++i)
             delete scores[i];
+
+        for (auto it : labelModels)
+            delete it.second;
     }
 
     void updateScore(std::string name, unsigned int score){
         Scores* scoreBuffer = new Scores;
         scoreBuffer->setScore(name,score);
-        Scores* toDelete;
-        int position = 0;
+       scores[10] = scoreBuffer;
 
+        int position = 0;
         for (int i = 0; i < 10; ++i) {
             if(scoreBuffer->getScore() <= scores[i]->getScore()){
                 position++;
             }
         }
 
-        
+        sort(11);
+        delete(scores[10]);
+        save();
 
         // Mettre à jour le label
         char intCharBuffer[10];
@@ -139,7 +146,7 @@ public:
         sprintf(intCharBuffer, "%d", scores[position]->getScore());
         labelbuffer = scores[position]->getName()+ "    " + intCharBuffer;
         labelNameBuffer = std::string("HighscoreLabel") + intCharBuffer;
-        ((Label*)models[labelNameBuffer])->updateTextTexture(labelbuffer,ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(),{128,128,128,0});
+        ((Label*)labelModels[labelNameBuffer])->updateTextTexture(labelbuffer,ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(),{128,128,128,0});
 
 
 
@@ -184,6 +191,21 @@ public:
             observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(it.second);
             observables[SDL_MOUSEMOTION]->unsubscribe(it.second);
         }
+    }
+
+    void draw(){
+        std::string labelNameBuffer;
+        char intCharBuffer[10];
+
+        for (int i = 0; i <10 ; ++i) {
+            sprintf(intCharBuffer, "%d", i);
+            labelNameBuffer = std::string("HighscoreLabel") + intCharBuffer;
+            ((Label*)labelModels[labelNameBuffer])->draw();
+        }
+        ((Button*)models["backButtonHighscore"])->draw();
+        ((Image*)models["fond"])->draw();
+
+
     }
 };
 
