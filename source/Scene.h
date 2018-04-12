@@ -11,7 +11,7 @@ public:
 
     virtual ~Scene() {}
 
-    static  std::string changeActiveScene(std::string scene){
+    static std::string changeActiveScene(std::string scene){
         previous = activeScene;
         activeScene = scene;
         return activeScene;

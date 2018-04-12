@@ -21,6 +21,9 @@ int main(int argc, char* argv[]) {
     ProjetFinal::deleteInstance();
     ResourceManager::deleteInstance();
 
+    Chrono tst;
+    std::cout << tst.getElapsed(SECONDS) << std::endl;
+
     TTF_Quit();
     SDL_Quit();
 
