@@ -5,6 +5,7 @@
 /// \version 0.1
 /// \warning
 /// \bug Affichage varie en fonction du nombre de caractères, Si les scores sont identiques pour 2 personnes, ça plante.
+
 #ifndef SOURCE_HIGHSCORE_H
 #define SOURCE_HIGHSCORE_H
 
@@ -110,8 +111,6 @@ public:
             labelModels[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1, 362, 38);
             y += 75;
             sort(10);
-
-
         }
     }
 

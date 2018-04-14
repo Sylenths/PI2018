@@ -5,17 +5,17 @@
 /// \version 0.1
 /// \warning Aucun.
 /// \bug Aucun.
+
 #ifndef SOURCE_SCORES_H
 #define SOURCE_SCORES_H
-
-#include <string>
 
 class Scores{
 private:
     std::string name;
     unsigned int score;
+
 public:
-    Scores(){
+    Scores() {
         name = "Empty";
         score = 0;
     }
@@ -32,7 +32,6 @@ public:
     unsigned int getScore(){
         return score;
     }
-
-
 };
+
 #endif

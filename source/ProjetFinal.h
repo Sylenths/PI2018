@@ -153,16 +153,12 @@ public:
         sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World(0, 0, 0, 20, {0, 0, 0});
 
-
-
-        ((Highscore *) sceneMap["Highscore"])->updateScore("Jade", 8);
-
         bool isOpen = true;
         chrono.restart();
         while (isOpen) {
-
             if (Scene::getActiveScene() == "Quit")
                 isOpen = false;
+
             while (SDL_PollEvent(sdlEvent)) {
                 switch (sdlEvent->type) {
 
@@ -173,9 +169,7 @@ public:
                 }
             }
 
-
-
-            if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
+            if ((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()])) {
                 sceneDisplay->unsubscribeAll(observables);
                 sceneDisplay = sceneMap[Scene::getActiveScene()];
                 sceneDisplay->subscribeAll(observables);
@@ -263,8 +257,8 @@ public:
             sceneDisplay->draw();
             glContext->refresh();
             chrono.restart();
-
         }
+
     }
 
     Vector get2DTextureSize(const char* filePath) {

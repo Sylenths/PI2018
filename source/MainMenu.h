@@ -1,17 +1,14 @@
-/// \brief Représentation du menu principal en jeu.
-/// \details Interface qui apparait lorsqu'on ouvre le jeu.
+/// \brief Menu principal.
+/// \details Interface graphique utilisateur du menu principal.
 /// \author Antoine Legault
 /// \date 24 mars 2018
 /// \version 0.1
-/// \warning Mettre les warning si nécessaire.
-/// \bug Problèmes connus
 
 #ifndef SOURCE_MAINMENU_H
 #define SOURCE_MAINMENU_H
 
 class MainMenu : public Menu {
 public:
-
     /// Constructeur
     MainMenu(){
         models["FondMaison"] = new Image(0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondMaison"));
@@ -28,7 +25,6 @@ public:
         models["ButtonQuitGame"] = new Button(967, 575, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonQuitGame"), ResourceManager::getInstance()->getTexture("ButtonQuitGameOver"));
         models["ButtonQuitGame"]->onClick = [this]() { Scene::changeActiveScene("Quit"); };
     }
-
 
     /// Permet d'inscrire tous les évènements comme observables.
     /// \param observables une map contenant tous les observables nécessaires.

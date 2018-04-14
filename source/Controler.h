@@ -20,18 +20,18 @@ private:
 public:
     ///Constructeur
     Controler(){
-        keyDown = NULL;
-        keyUp = NULL;
+        keyDown = 0;
+        keyUp = 0;
     }
 
     void notify(SDL_Event* event){
         if(event->type == SDL_KEYDOWN){
             keyDown = event->key.keysym.sym;
-            keyUp = NULL;
+            keyUp = 0;
         }
         if(event->type == SDL_KEYUP){
             keyUp = event->key.keysym.sym;
-            keyDown = NULL;
+            keyDown = 0;
         }
         if(event->type == SDL_MOUSEMOTION){
             mouseMotion[0] = event->motion.xrel;
