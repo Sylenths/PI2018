@@ -25,6 +25,7 @@ private:
     bool activeCamera;
 
     Chrono chrono;
+
 public:
 
     /// Change la visibilité du nombre d'images par seconde
@@ -147,21 +148,15 @@ public:
         sceneMap["MainMenu"]->subscribeAll(observables);
         sceneDisplay = sceneMap[Scene::getActiveScene()];
 
-        sceneMap["Settings"] = new Settings();
-        sceneMap["InGameESC"] = new InGameESC();
-        sceneMap["Highscore"] = new Highscore();
+        sceneMap["SettingsMenu"] = new SettingsMenu();
+        sceneMap["HighScoresMenu"] = new HighScoresMenu();
         sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World(0, 0, 0, 20, {0, 0, 0});
 
-        bool isOpen = true;
         chrono.restart();
-        while (isOpen) {
-            if (Scene::getActiveScene() == "Quit")
-                isOpen = false;
-
+        while (Scene::getActiveScene() != "Quit") {
             while (SDL_PollEvent(sdlEvent)) {
                 switch (sdlEvent->type) {
-
                     default:
                         if (!observables[sdlEvent->type])
                             observables[sdlEvent->type] = new Observable<SDL_Event *>();

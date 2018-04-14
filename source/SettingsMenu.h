@@ -6,33 +6,25 @@
 /// \warning Le bouton back ne marche pas à 100%, desfois on est coincé dans un menu.
 /// \bug Aucun.
 
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef SETTINGSMENU_H
+#define SETTINGSMENU_H
 
 #include "CheckBox.h"
 
-class Settings : public Menu {
+class SettingsMenu : public Menu {
 public:
-
     /// Constructeur
-    Settings() {
+    SettingsMenu() {
         models["FondSettings"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondSettings"));
 
         models["FPSLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Show FPS : ", 71, 300, 0, 466, 113);
 
         models["FPSButton"] = new CheckBox (712, 300, 0, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"), ResourceManager::getInstance()->getTexture("FPSButtonYES"));
-        models["FPSButton"]->onClick = [this] () {Settings::showFPS();};
+        //models["FPSButton"]->onClick = [this] () {SettingsMenu::showFPS();};
 
         models["1backButton"]  = new Button (498, 550, 0, 284, 113, ResourceManager::getInstance()->getTexture("backButton"), ResourceManager::getInstance()->getTexture("BackButtonOver"));
         models["1backButton"]->onClick = [this]() { Scene::changeActiveScene(previous); };
-
     }
-
-
-    void showFPS(){
-
-    }
-
 
     /// Permet d'inscrire tous les évènements comme observables.
     /// \param observables une map contenant tous les observables nécessaires.
@@ -45,7 +37,6 @@ public:
           observables[SDL_MOUSEMOTION]->subscribe(it.second);
       }
     }
-
 
     /// Permet de désinscrire tous les observables.
     /// \param observables une map contenant tous les observables nécessaires.

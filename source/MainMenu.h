@@ -17,10 +17,10 @@ public:
         models["ButtonStart"]->onClick = [this]() { Scene::changeActiveScene("World"); };
 
         models["ButtonSettings"] = new Button(967, 225, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonSettingsOver"), ResourceManager::getInstance()->getTexture("ButtonSettings"));
-        models["ButtonSettings"]->onClick = [this]() { Scene::changeActiveScene("Settings"); };
+        models["ButtonSettings"]->onClick = [this]() { Scene::changeActiveScene("SettingsMenu"); };
 
         models["ButtonHighScore"] = new Button(967, 400, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonHighScoreOver"), ResourceManager::getInstance()->getTexture("ButtonHighScore"));
-        models["ButtonHighScore"]->onClick = [this]() { Scene::changeActiveScene("Highscore"); };
+        models["ButtonHighScore"]->onClick = [this]() { Scene::changeActiveScene("HighScoresMenu"); };
 
         models["ButtonQuitGame"] = new Button(967, 575, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonQuitGame"), ResourceManager::getInstance()->getTexture("ButtonQuitGameOver"));
         models["ButtonQuitGame"]->onClick = [this]() { Scene::changeActiveScene("Quit"); };
