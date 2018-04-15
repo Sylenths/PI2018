@@ -1,9 +1,9 @@
 /// \brief Gère les entrées utilisateur
-/// \author Shelby Versailles
+/// \author Shelby Versailles, Tai Chen Li
 /// \date 12 Avril 2018
 /// \version 0.1
-#ifndef CONTROLER_H
-#define CONTROLER_H
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
 
 
 #include <SDL2/SDL_events.h>
@@ -11,7 +11,7 @@
 
 
 
-class Controler : public Observer<SDL_Event*>{
+class Controller : public Observer<SDL_Event*>{
 private:
     int keyDown;
     int keyUp;
@@ -19,7 +19,7 @@ private:
     int mouseClickPosition[3];
 public:
     ///Constructeur
-    Controler(){
+    Controller(){
         keyDown = 0;
         keyUp = 0;
     }
@@ -78,19 +78,19 @@ public:
         mouseMotion[1] = 0;
     }
 
-    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables, Controler* controler){
+    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables, Controller* controller){
         ///Souris
         if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(controler);
+        observables[SDL_MOUSEBUTTONDOWN]->subscribe(controller);
         if (!observables[SDL_MOUSEBUTTONUP]) observables[SDL_MOUSEBUTTONUP] = new Observable<SDL_Event*>();
-        observables[SDL_MOUSEBUTTONUP]->subscribe(controler);
+        observables[SDL_MOUSEBUTTONUP]->subscribe(controller);
         if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
-        observables[SDL_MOUSEMOTION]->subscribe(controler);
+        observables[SDL_MOUSEMOTION]->subscribe(controller);
         ///Clavier
         if (!observables[SDL_KEYDOWN]) observables[SDL_KEYDOWN] = new Observable<SDL_Event*>();
-        observables[SDL_KEYDOWN]->subscribe(controler);
+        observables[SDL_KEYDOWN]->subscribe(controller);
         if (!observables[SDL_KEYUP]) observables[SDL_KEYUP] = new Observable<SDL_Event*>();
-        observables[SDL_KEYUP]->subscribe(controler);
+        observables[SDL_KEYUP]->subscribe(controller);
     }
 };
 

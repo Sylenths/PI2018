@@ -9,7 +9,7 @@
 #define PROJETFINAL_H
 
 #include "includes.h"
-#include "Controler.h"
+#include "Controller.h"
 
 #define IN2D 1
 #define IN3D 0
@@ -21,7 +21,7 @@ private:
     Scene* sceneDisplay;
 
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
-    Controler* controller;
+    Controller* controller;
     bool activeCamera;
 
     Chrono chrono;
@@ -118,7 +118,7 @@ public:
         GLContext::setFrustum( true);
         sdlEvent = new SDL_Event();
         loadTextures();
-        controller = new Controler;
+        controller = new Controller;
 
         controller->subscribeAll(observables, controller);
         activeCamera = false;
