@@ -25,28 +25,32 @@ public:
     }
 
     void notify(SDL_Event* event){
-        if(event->type == SDL_KEYDOWN){
-            keyDown = event->key.keysym.sym;
-            keyUp = 0;
-        }
-        if(event->type == SDL_KEYUP){
-            keyUp = event->key.keysym.sym;
-            keyDown = 0;
-        }
-        if(event->type == SDL_MOUSEMOTION){
-            mouseMotion[0] = event->motion.xrel;
-            mouseMotion[1] = event->motion.yrel;
-        }
-        if(event->type == SDL_MOUSEBUTTONDOWN){
-            mouseClickPosition[0] = event->button.x;
-            mouseClickPosition[1] = event->button.y;
-            mouseClickPosition[2] = event->button.button;
-        }
-        if(event->type == SDL_MOUSEBUTTONUP){
-            mouseClickPosition[0] = event->button.x;
-            mouseClickPosition[1] = event->button.y;
-            mouseClickPosition[2] = event->button.button;
-        }
+	    switch(event->type){
+		    case SDL_KEYDOWN:
+			    keyDown = event->key.keysym.sym;
+			    keyUp = 0;
+			    break;
+		    case SDL_KEYUP:
+			    keyUp = event->key.keysym.sym;
+			    keyDown = 0;
+			    break;
+		    case SDL_MOUSEMOTION:
+			    mouseMotion[0] = event->motion.xrel;
+			    mouseMotion[1] = event->motion.yrel;
+			    break;
+		    case SDL_MOUSEBUTTONDOWN:
+			    mouseClickPosition[0] = event->button.x;
+			    mouseClickPosition[1] = event->button.y;
+			    mouseClickPosition[2] = event->button.button;
+			    break;
+		    case SDL_MOUSEBUTTONUP:
+			    mouseClickPosition[0] = event->button.x;
+			    mouseClickPosition[1] = event->button.y;
+			    mouseClickPosition[2] = event->button.button;
+			    break;
+		    default:
+			    break;
+	    }
     }
 /// retourne la touche qui a été appuillée
 /// \return touche apuillée

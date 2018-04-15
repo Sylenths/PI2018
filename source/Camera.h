@@ -16,20 +16,23 @@
 #include "Matrix.h"
 #include "Vector.h"
 
-//Movement in coordinate system units per second
-#define CAMERA_MOVEMENTSPEED 2
+#define CAMERA_MOVEMENTSPEED 50
+#define CAMERA_ROTATIONSPEED 3
+
+#define CAMERA_VERTICAL_LIMIT 0.1
+
 #define CAMERA_MOVE_FRONT 1
 #define CAMERA_MOVE_BACK 2
 #define CAMERA_MOVE_LEFT 3
 #define CAMERA_MOVE_RIGHT 4
 
-#define WINDOW_HEIGHT_F 720.0
-#define WINDOW_WIDTH_F 1280.0
+#define WINDOW_HEIGHT_F 720.
+#define WINDOW_WIDTH_F 1280.
 #define WINDOW_HEIGHT_I 720
 #define WINDOW_WIDTH_I 1280
 #define CAMERA_VROTLIMIT 718
-#define CAMERA_FOV_F 90.0
-#define CAMERA_2FOV_F 180.0
+#define CAMERA_FOV_F 90.
+#define CAMERA_2FOV_F 180.
 
 
 class Camera{
@@ -38,7 +41,7 @@ private:
     Vector position;
     Vector target;
     Vector up;
-    Vector front;
+	Vector front;
     bool mLeft, mRight, mFront, mBack;
 
     int vMouseMotion;
@@ -47,8 +50,8 @@ public:
 
     /// Calcule l'angle du regard par rapport à l'horizontale (intervalle ]90, -90[ ; 0 est horizontal et les négatifs sont vers le bas / les y-.)
     /// \return Angle.
-    double getHorizontalRotationAngle(){
-        double angle = radtodeg(std::acos(Vector(0, 1, 0) * ((target -  position).normalize())));
+    double getHorizontalAngle(){
+        double angle = radtodeg(std::acos(up * ((target - position).normalize())));
 
         if(angle <= CAMERA_FOV_F){
             angle = CAMERA_FOV_F - angle;
@@ -69,16 +72,14 @@ public:
     /// \param position Position de la caméra.
     /// \param target Cible de la caméra.
     /// \param up Vecteur pointant vers le haut du monde.
-    Camera(const Vector& position, const Vector& target, const Vector& up) {
+    Camera(const Vector& position, const Vector& target, Vector up = Vector(0., 1., 0.)) {
         this->position = position;
         this->target = target;
         front = (target - position).normalize();
 
-        this->up = up;
+        this->up = up.normalize();
 
-        this->up.normalize();
-
-        vMouseMotion = (int)(std::round(-getHorizontalRotationAngle() / CAMERA_FOV_F * WINDOW_HEIGHT_I));
+        vMouseMotion = (int)(std::round(-getHorizontalAngle() / CAMERA_FOV_F * WINDOW_HEIGHT_I));
 
         mLeft = mRight = mFront = mBack = false;
     }
@@ -87,8 +88,7 @@ public:
     void loadViewMatrix() {
         front = (target - position).normalize();
         Vector side = (front % up).normalize();
-        up = (side % front).normalize();//correct the up vector
-        view.loadView(front, side, up);
+        view.loadView(front, side, (side % front).normalize()/*This is camera local up vector*/);
     }
 
     /// Mettre à jour la position de la caméra.
@@ -112,6 +112,13 @@ public:
                     position = position - movement;
                     target = target - movement;
                 }
+
+	            // See if we are through the ground / height limit...
+	            if(position.y < CAMERA_VERTICAL_LIMIT ) {
+		            Vector push = Vector(0.0, CAMERA_VERTICAL_LIMIT - position.y, 0.0);
+		            position = position + push;
+		            target = target + push;
+	            }
             }
             if(mLeft || mRight) {
                 movement = (front % up) * moveAmplitude;
@@ -148,11 +155,8 @@ public:
 
         vMouseMotion += yMove;
 
-        m.loadArbitraryRotation(position, Vector(0., 1., 0.),  -(relativeXMotion / WINDOW_WIDTH_F * CAMERA_FOV_F));
+        m.loadArbitraryRotation(position, up,  -(relativeXMotion / WINDOW_WIDTH_F * CAMERA_FOV_F) * CAMERA_ROTATIONSPEED);
         target = m * target; // Horizontal camera rotation.
-
-        m.loadYRotation(relativeXMotion / WINDOW_WIDTH_F * CAMERA_FOV_F);
-        up = m * up; // Up vector rotation.
 
         m.loadArbitraryRotation(position, ((target - position) %  up).normalize(), -((double)yMove / WINDOW_HEIGHT_F * CAMERA_FOV_F));
         target = m * target; // Vertical camera rotation.

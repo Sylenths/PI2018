@@ -114,7 +114,7 @@ public:
     /// \param height Hauteur de la fenêtre, en pixels.
     /// \param windowflags Flags SDL.
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0) {
-        glContext = new GLContext(title, x, y, width, height,90.0, 0.1, 1000.0, windowflags);
+        glContext = new GLContext(title, x, y, width, height,90.0, 0.0001, 1000.0, windowflags);
         GLContext::setFrustum( true);
         sdlEvent = new SDL_Event();
         loadTextures();
@@ -244,7 +244,10 @@ public:
 
                 }
             if (sceneDisplay == sceneMap["World"] && activeCamera) {
-                sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS) + 0.0000001);
+                if(chrono.getElapsed(SECONDS) > 0.000001) {
+                    sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS));
+
+                }
             }
 
 
