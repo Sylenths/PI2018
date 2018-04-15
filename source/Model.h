@@ -188,8 +188,6 @@ public:
                     textureIDs[name] = textureToDraw = ID;
     }
 
-
-
 	/// Affiche le modèle.
     void draw() {
         glBindTexture(GL_TEXTURE_2D, textureToDraw);

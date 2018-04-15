@@ -3,7 +3,7 @@
 /// \author Antoine Legault, Jade St-Pierre Bouchard, Tai Chen Li, Samuel Labelle
 /// \date 28 mars 2018
 /// \version 0.1
-/// \warning Aucuns.
+/// \warning Le premier compte de FPS sera faussé, car on doit laisser au moins faire un tour de boucle pour savoir sa vraie vitesse de bouclage.
 /// \bug Aucuns.
 #ifndef PROJETFINAL_H
 #define PROJETFINAL_H
@@ -25,18 +25,15 @@ private:
     bool activeCamera;
 
     Chrono chrono;
+    unsigned int fps;
+    Label* labelFps;
 
 public:
-
-    /// Change la visibilité du nombre d'images par seconde
-    void setShowFPS(){
-
-    }
 
     /// Chargeur de texture (les mets automatiquement dans le ressource manager).
     /// \param filename Fichier de texture a charger.
     /// \param textureName Nom significatif a donner a la texture.
-    static void getTextureID(const char* filename, std::string textureName){
+    static void getTextureID(const char* filename, std::string textureName) {
             unsigned int textureID;
             glGenTextures(1, &textureID);
             glBindTexture(GL_TEXTURE_2D, textureID);
@@ -115,23 +112,35 @@ public:
     /// \param windowflags Flags SDL.
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0) {
         glContext = new GLContext(title, x, y, width, height,90.0, 0.0001, 1000.0, windowflags);
-        GLContext::setFrustum( true);
+        GLContext::setFrustum(true);
         sdlEvent = new SDL_Event();
         loadTextures();
         controller = new Controller;
-
         controller->subscribeAll(observables, controller);
         activeCamera = false;
+        fps = 0;
+        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {255, 255, 255,255}, "0", 500, 500, 5, 100, 100);
     }
 
     /// Destructeur
-    ~ProjetFinal () {
+    ~ProjetFinal() {
         for (auto it : sceneMap)
             delete it.second;
 
         delete (glContext);
         delete (sdlEvent);
         delete (controller);
+    }
+
+    /// Change la visibilité du nombre d'images par seconde
+    void showFPS() {
+        ++fps;
+        double temp = chrono.getElapsed(MICROSECONDS);
+        if (chrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la bouche run()
+            labelFps->updateTextTexture(std::to_string(fps), ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {255, 255, 255, 255});
+            labelFps->draw();
+            fps = 0;
+        }
     }
 
     /// Représente la boucle de jeu.
@@ -253,10 +262,10 @@ public:
 
             glContext->clear();
             sceneDisplay->draw();
+            showFPS();
             glContext->refresh();
             chrono.restart();
         }
-
     }
 
     Vector get2DTextureSize(const char* filePath) {
