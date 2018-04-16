@@ -9,7 +9,7 @@
 #ifndef SOURCE_ACTIONDOUBLE_H
 #define SOURCE_ACTIONDOUBLE_H
 
-
+#include "ActionParameter.h"
 
 class ActionDouble : public ActionParameter{
 private:

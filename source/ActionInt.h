@@ -9,6 +9,8 @@
 #ifndef SOURCE_ACTIONINT_H
 #define SOURCE_ACTIONINT_H
 
+#include "ActionParameter.h"
+
 class ActionInt : public ActionParameter{
 private:
     int data;///< La donnée du parametre
