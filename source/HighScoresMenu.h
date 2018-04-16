@@ -17,7 +17,8 @@ private:
     Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial28");
     std::map<std::string, Model*> labelModels;
     std::string fichierSauvegardeScores;
-
+/// Permet de trier les scores en ordre décroissant.
+/// \param numberOfScores permet de savoir combien de fois boucler ( dépends de pourquoi il faut trier).
     void sort(int numberOfScores){
           for (int i = 0; i <numberOfScores ; ++i) {
             for (int j = 0; j <numberOfScores-1 ; ++j) {
@@ -31,16 +32,20 @@ private:
     }
 
 public:
+
+    /// Constructeur
     HighScoresMenu(){
         models["backButtonHighscore"] = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"),ResourceManager::getInstance()->getTexture("BackButtonOver"));
         models["backButtonHighscore"]->onClick = [this]() { Scene::changeActiveScene(previous); };
         models["fond"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondHighscore"));
 
-        for (int i = 0; i < 10 ; ++i) scores[i] = new Scores();
+        for (int i = 0; i < 10 ; ++i)
+            scores[i] = new Scores();
         loadScores();
 
         int x = 210;
         int y = 185;
+        sort(10);
         for (int j = 0; j < 10 ; ++j) {
             std::string labelbuffer;
             std::string labelNameBuffer;
@@ -61,7 +66,7 @@ public:
             labelModels[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1, 362, 38);
             y += 75;
 
-            sort(10);
+
         }
     }
 
