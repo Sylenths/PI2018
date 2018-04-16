@@ -119,7 +119,7 @@ public:
         controller->subscribeAll(observables, controller);
         activeCamera = false;
         fps = 0;
-        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {255, 255, 255,255}, "0", 500, 500, 5, 100, 100);
+        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100,100}, "0", 500, 500, 1, 100, 100);
     }
 
     /// Destructeur
@@ -130,6 +130,7 @@ public:
         delete (glContext);
         delete (sdlEvent);
         delete (controller);
+        delete labelFps;
     }
 
     /// Change la visibilité du nombre d'images par seconde
@@ -137,9 +138,11 @@ public:
         ++fps;
         double temp = chrono.getElapsed(MICROSECONDS);
         if (chrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la bouche run()
-            labelFps->updateTextTexture(std::to_string(fps), ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {255, 255, 255, 255});
+            glContext->setFrustum(IS2D);
+            labelFps->updateTextTexture(std::to_string(fps), ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100, 100});
             labelFps->draw();
             fps = 0;
+            chrono.restart();
         }
     }
 
@@ -259,12 +262,10 @@ public:
                 }
             }
 
-
             glContext->clear();
             sceneDisplay->draw();
             showFPS();
             glContext->refresh();
-            chrono.restart();
         }
     }
 
