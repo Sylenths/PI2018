@@ -37,9 +37,9 @@ public:
         z = x + 2;
 
         Vector nv = m * Vector(vertices[x], vertices[y], vertices[z]);
-        vertices[x] = nv.x; // + m.m14;
-        vertices[y] = nv.y; //+ m.m24;
-        vertices[z] = nv.z; //+ m.m34;
+        vertices[x] = nv.x;
+        vertices[y] = nv.y;
+        vertices[z] = nv.z;
 
         nv = m * Vector(normals[x], normals[y], normals[z]);
         normals[x] = nv.x;
@@ -55,12 +55,12 @@ public:
             z = x + 2;
 
             if(rotHitBox) {
-                Vector nv = m * Vector(verticesHitBox[x], verticesHitBox[y], verticesHitBox[z]);
+                Vector nv = m * Vector(verticesHitBox[x] - m.m14, verticesHitBox[y] - m.m24, verticesHitBox[z] - m.m34);
                 verticesHitBox[x] = nv.x;
                 verticesHitBox[y] = nv.y;
                 verticesHitBox[z] = nv.z;
 
-                nv = m * Vector(normalsHitBox[x], normalsHitBox[y], normalsHitBox[z]);
+                nv = m * Vector(normalsHitBox[x] - m.m14, normalsHitBox[y] - m.m24, normalsHitBox[z] - m.m34);
                 normalsHitBox[x] = nv.x;
                 normalsHitBox[y] = nv.y;
                 normalsHitBox[z] = nv.z;
@@ -69,6 +69,9 @@ public:
             verticesHitBox[y] += m.m24;
             verticesHitBox[z] += m.m34;
 
+            normalsHitBox[x] += m.m14;
+            normalsHitBox[y] += m.m24;
+            normalsHitBox[z] += m.m34;
             }
         }
 
