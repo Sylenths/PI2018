@@ -264,7 +264,8 @@ public:
 
             glContext->clear();
             sceneDisplay->draw();
-            showFPS();
+            //if(Scene::getActiveFPS() == true)
+                showFPS();
             glContext->refresh();
         }
     }

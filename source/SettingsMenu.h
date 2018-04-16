@@ -20,11 +20,19 @@ public:
         models["FPSLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Show FPS : ", 71, 300, 0, 466, 113);
 
         models["FPSButton"] = new CheckBox (712, 300, 0, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"), ResourceManager::getInstance()->getTexture("FPSButtonYES"));
-        //models["FPSButton"]->onClick = [this] () {SettingsMenu::showFPS();};
-
+        models["FPSButton"]->onClick = [this] () {showFPS();};
         models["1backButton"]  = new Button (498, 550, 0, 284, 113, ResourceManager::getInstance()->getTexture("backButton"), ResourceManager::getInstance()->getTexture("BackButtonOver"));
         models["1backButton"]->onClick = [this]() { Scene::changeActiveScene(previous); };
     }
+
+
+    void showFPS(){
+        if(FPS == false)
+            FPS == true;
+        else
+            FPS == false;
+    }
+
 
     /// Permet d'inscrire tous les évènements comme observables.
     /// \param observables une map contenant tous les observables nécessaires.
