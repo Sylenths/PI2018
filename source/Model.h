@@ -20,6 +20,7 @@ protected:
     unsigned int textureToDraw; ///< Identificateur de la texture
 
     double posx, posy, posz;
+    bool rotHitBox;
 
     std::map<std::string, unsigned int> textureIDs;
 
@@ -45,15 +46,35 @@ public:
         normals[y] = nv.y;
         normals[z] = nv.z;
         }
+
+        if(vertexCount) {
+            for (int i = 0; i < 36; ++i) {
+            x = i * 3;
+            y = x + 1;
+            z = x + 2;
+
+            Vector nv = m * Vector(verticesHitBox[x], verticesHitBox[y], verticesHitBox[z]);
+            verticesHitBox[x] = nv.x;
+            verticesHitBox[y] = nv.y;
+            verticesHitBox[z] = nv.z;
+
+            nv = m * Vector(normalsHitBox[x], normalsHitBox[y], normalsHitBox[z]);
+            normalsHitBox[x] = nv.x;
+            normalsHitBox[y] = nv.y;
+            normalsHitBox[z] = nv.z;
+            }
+        }
+
     }
 
     /// Constructeur.
     /// \param textureID Identificateur de la texture.
 	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
-    Model(double posx, double posy, double posz, unsigned int textureID, const char* objFile = nullptr) {
+    Model(double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) {
         this->posx = posx;
         this->posy = posy;
         this->posz = posz;
+        this->rotHitBox = rotHitBox;
 
         textureIDs["default"] = textureID;
         textureToDraw = textureID;
@@ -160,11 +181,126 @@ public:
                 normals[y] = vNormals[yi];
                 normals[z] = vNormals[zi];
             }
-
-
             fichier.close();
-        }
+            double xmin = 0.0, xmax = 0.0, ymin = 0.0, ymax = 0.0, zmin = 0.0, zmax = 0.0;
+            for(int i = 0; i < vertexCount; i++) {
+                int x, y, z;
+                 x = i * 3;
+                 y = x + 1;
+                 z = x + 2;
+                 if(vertices[x] < xmin)
+                     xmin = vertices[x];
+                 if(vertices[x] > xmax)
+                     xmax = vertices[x];
+                 if(vertices[y] < ymin)
+                     ymin = vertices[y];
+                 if(vertices[y] > ymax)
+                     ymax = vertices[y];
+                 if(vertices[z] < zmin)
+                     zmin = vertices[z];
+                 if(vertices[z] > zmax)
+                     zmax = vertices[z];
+            }
+                 verticesHitBox = new double[108] {
+                         xmax, ymax, zmax, //P1T1F1
+                         xmax, ymin, zmax, //P2T1F1
+                         xmin, ymin, zmax, //P3T1F1
 
+                         xmax, ymax, zmax, //P1T2F1
+                         xmin, ymax, zmax, //P2T2F1
+                         xmin, ymin, zmax, //P3T2F1
+
+                         xmax, ymax, zmin, //P1T1F2
+                         xmax, ymin, zmin, //P2T1F2
+                         xmin, ymin, zmin, //P3T1F2
+
+                         xmax, ymax, zmin, //P1T2F2
+                         xmin, ymax, zmin, //P2T2F2
+                         xmin, ymin, zmin, //P3T2F2
+
+                         xmax, ymax, zmax, //P1T1F3
+                         xmax, ymax, zmin, //P2T1F3
+                         xmax, ymin, zmax, //P3T1F3
+
+                         xmax, ymin, zmax, //P1T2F3
+                         xmax, ymin, zmin, //P2T2F3
+                         xmax, ymax, zmin, //P3T2F3
+
+                         xmin, ymax, zmax, //P1T1F4
+                         xmin, ymax, zmin, //P2T1F4
+                         xmin, ymin, zmax, //P3T1F4
+
+                         xmin, ymin, zmax, //P1T2F4
+                         xmin, ymin, zmin, //P2T2F4
+                         xmin, ymax, zmin, //P3T2F4
+
+                         xmax, ymax, zmax, //P1T1F5
+                         xmin, ymax, zmax, //P2T1F5
+                         xmax, ymax, zmin, //P3T1F5
+
+                         xmin, ymax, zmax, //P1T2F5
+                         xmin, ymax, zmin, //P2T2F5
+                         xmax, ymax, zmin, //P3T2F5
+
+                         xmax, ymin, zmax, //P1T1F6
+                         xmin, ymin, zmax, //P2T1F6
+                         xmax, ymin, zmin, //P3T1F6
+
+                         xmin, ymin, zmax, //P1T2F6
+                         xmin, ymin, zmin, //P2T2F6
+                         xmax, ymin, zmin, //P3T2F6
+                 };
+
+                 normalsHitBox = new double[108] {
+                         0.0, 0.0, 1.0, //P1T1F1
+                         0.0, 0.0, 1.0, //P2T1F1
+                         0.0, 0.0, 1.0, //P3T1F1
+
+                         0.0, 0.0, 1.0, //P1T2F1
+                         0.0, 0.0, 1.0, //P2T2F1
+                         0.0, 0.0, 1.0, //P3T2F1
+
+                         0.0, 0.0, -1.0, //P1T1F2
+                         0.0, 0.0, -1.0, //P2T1F2
+                         0.0, 0.0, -1.0, //P3T1F2
+
+                         0.0, 0.0, -1.0, //P1T2F2
+                         0.0, 0.0, -1.0, //P2T2F2
+                         0.0, 0.0, -1.0, //P3T2F2
+
+                         1.0, 0.0, 0.0, //P1T1F3
+                         1.0, 0.0, 0.0, //P2T1F3
+                         1.0, 0.0, 0.0, //P3T1F3
+
+                         1.0, 0.0, 0.0, //P1T2F3
+                         1.0, 0.0, 0.0, //P2T2F3
+                         1.0, 0.0, 0.0, //P3T2F3
+
+                         -1.0, 0.0, 0.0, //P1T1F4
+                         -1.0, 0.0, 0.0, //P2T1F4
+                         -1.0, 0.0, 0.0, //P3T1F4
+
+                         -1.0, 0.0, 0.0, //P1T2F4
+                         -1.0, 0.0, 0.0, //P2T2F4
+                         -1.0, 0.0, 0.0, //P3T2F4
+
+                         0.0, 1.0, 0.0, //P1T1F5
+                         0.0, 1.0, 0.0, //P2T1F5
+                         0.0, 1.0, 0.0, //P3T1F5
+
+                         0.0, 1.0, 0.0, //P1T2F5
+                         0.0, 1.0, 0.0, //P2T2F5
+                         0.0, 1.0, 0.0, //P3T2F5
+
+                         0.0, -1.0, 0.0, //P1T1F6
+                         0.0, -1.0, 0.0, //P2T1F6
+                         0.0, -1.0, 0.0, //P3T1F6
+
+                         0.0, -1.0, 0.0, //P1T2F6
+                         0.0, -1.0, 0.0, //P2T2F6
+                         0.0, -1.0, 0.0, //P3T2F6
+                 };
+       }
        Matrix m;
        m.loadTranslation(Vector(posx, posy, posz));
        transform(m);
