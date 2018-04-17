@@ -11,11 +11,13 @@
 #include "GLContext.h"
 #include "Camera.h"
 #include "Sky.h"
+#include "Atmosphere.h"
 #include "Build.h"
 
 class World : public Scene{
 private:
     Sky sky;
+    Atmosphere atmosphere;
     std::map<std::string, Model*> modelMap; ///< La liste de models à afficher
     InGameOverlay* hud;
     Vector wind;
@@ -23,6 +25,7 @@ private:
     Camera* camera;
     Light* worldLight, * hudLight;
     Matrix fanRotationMatrix;
+    Chrono chrono;
 
 public:
     /// Ajoute un model a afficher
@@ -33,7 +36,7 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky")) {
+    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky")), atmosphere(0.0, 0.0, 0.0, false, 0) {
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
@@ -45,6 +48,7 @@ public:
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
         addModel("grass", new Model(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
         addModel("sky", new Sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky"),"../../models/obj/sky.obj"));
+        addModel("atmosphere", new Atmosphere(0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj"));
         addModel("fan", new Model(0.0, 0.0, 0.0, true, ResourceManager::getInstance()->getTexture("fan"),"../../models/obj/fan.obj"));
 
         camera = new Camera({ 0.0, 1.0, 0.0 }, { 0.0, 1.0, -1.0 }, { 0.0, 1.0, 0.0 });
@@ -56,7 +60,10 @@ public:
         fanRotationMatrix.loadTranslation(Vector(0.0, 0.5, 0.0));
         modelMap["fan"]->transform(fanRotationMatrix);
         fanRotationMatrix.loadArbitraryRotation(Vector(0.0, 0.5, 0.0), Vector(0.0, 1.0, 0.0), 3.6);
+
+        chrono.restart();
     }
+
     void checkForActions(){
         std::queue<Action*> actionQueue = hud->getActions();
         while(!actionQueue.empty()){
@@ -80,6 +87,12 @@ public:
         GLContext::setFrustum(IS3D);
 
         modelMap["fan"]->transform(fanRotationMatrix);
+
+        sky.update(chrono);
+        if(sky.getTime())
+            atmosphere.darken(chrono);
+        else
+            atmosphere.lighten(chrono);
 
         camera->applyViewMatrix();
         worldLight->applyLightPosition();
@@ -113,6 +126,7 @@ public:
     void catastrophePhaseStop() {
 
     }
+
     Camera* getCamera(){
         return camera;
     }

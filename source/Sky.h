@@ -6,10 +6,11 @@
 /// \warning Aucuns.
 /// \bug Aucuns.
 
-#ifndef SOURCE_ATMOSPHERE_H
-#define SOURCE_ATMOSPHERE_H
+#ifndef SOURCE_SKY_H
+#define SOURCE_SKY_H
 
 #include "includes.h"
+
 class Sky : public Model {
 private:
     bool isDayTime; ///< Booléen qui indique si c'est le jour ou la nuit
@@ -29,9 +30,13 @@ public:
         textureIDs["night"] =  ResourceManager::getInstance()->getTexture("nightsky");
     }
 
+    bool getTime() {
+        return isDayTime;
+    }
+
     /// Change la position de la sphère selon le temps écoulé dans une phase de jeu avec une rotation
     /// \param deltaTime Temps écoulé depuis le dernier calcul d'angle
-    void update(float deltaTime) {
+    void update(Chrono deltaTime) {
         //on considère qu'une phase dure 15 minutes, donc rotationne de 6 degrés par minutes (qu'on converti en microsecondes)
         if(sphereAngle >= 180) {
             isDayTime = false;
@@ -45,7 +50,7 @@ public:
 
             }
             else {
-                sphereAngle += deltaTime * (1.00 * pow(10, -7));
+                sphereAngle += deltaTime.getElapsed(MICROSECONDS) * (1.00 * pow(10, -7));
                 rotation.loadZRotation(sphereAngle);
                 transform(rotation);
             }
