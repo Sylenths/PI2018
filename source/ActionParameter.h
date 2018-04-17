@@ -27,6 +27,9 @@ public:
 
     /// retourne le type de Param
     virtual int getType() = 0;
+
+
+
 };
 
 #endif

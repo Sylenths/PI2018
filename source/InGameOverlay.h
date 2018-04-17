@@ -11,6 +11,7 @@
 #include <queue>
 #include "Menu.h"
 #include "Action.h"
+#include "Build.h"
 
 class InGameOverlay : public Menu {
 private:
@@ -36,6 +37,9 @@ public:
     InGameOverlay(unsigned int powerCount = 0, unsigned int simCoinCount = 0, unsigned int temperatureC = 0, unsigned int sunPower = 0, Vector windSpeed = {0, 0, 0}, unsigned int timeLeft = 0) {
         activeHud = true;
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
+    }
+    std::queue<Action*> getActions(){
+            return actionQueue;
     }
 
     /// Affiche le InGameOverlay.
@@ -82,12 +86,14 @@ public:
         ResourceManager::getInstance()->addResource("ButtonInfo", buttonMap["info"]);
         ResourceManager::getInstance()->addResource("ButtonDelete", buttonMap["delete"]);
 
-        //buttonMap["skipturn"]->onClick = [this]() { actionQueue.push(new Build(5,5,5)); };
+
+        //buttonMap["skipturn"]->onClick = [this]() { };
         //buttonMap["structure"]->onClick = [this]() { InsertMethod;};
         //buttonMap["machine"]->onClick = [this]() { InsertMethod; };
         //buttonMap["cablage"]->onClick = [this]() { InsertMethod; };
         //buttonMap["info"]->onClick = [this]() { InsertMethod; };
         //buttonMap["delete"]->onClick = [this]() { InsertMethod; };
+
 
         //Image2D
         logoList.push_back(new Image(175, 0, 0.1, 540, 60, ResourceManager::getInstance()->getTexture("topBar")));
@@ -120,6 +126,7 @@ public:
         labelMap["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1 , 25, 20);
     }
 
+
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
         if(!observables[SDL_MOUSEBUTTONDOWN])
             observables[SDL_MOUSEBUTTONDOWN]= new Observable<SDL_Event*>;
@@ -129,6 +136,7 @@ public:
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonCablage"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonInfo"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonDelete"));
+
     }
 
     void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
@@ -138,6 +146,7 @@ public:
         observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonCablage"));
         observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonInfo"));
         observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonDelete"));
+
     }
 
     /// Affiche les intemperies a venir.
