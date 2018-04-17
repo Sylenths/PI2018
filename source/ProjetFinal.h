@@ -123,7 +123,7 @@ public:
         controller->subscribeAll(observables, controller);
         activeCamera = false;
         fps = 0;
-        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100,100}, "0", 730, 0, 0.1, 30, 30);
+        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100,100}, "0", 1200, 690, 0.1, 20, 15);
     }
 
     /// Destructeur
