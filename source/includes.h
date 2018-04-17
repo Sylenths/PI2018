@@ -53,6 +53,8 @@
 #include "ProjetFinal.h"
 #include "Camera.h"
 #include "Action.h"
+#include "Materiel.h"
+#include "Structure.h"
 
 
 
