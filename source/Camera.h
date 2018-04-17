@@ -16,7 +16,7 @@
 #include "Matrix.h"
 #include "Vector.h"
 
-#define CAMERA_MOVEMENTSPEED 50
+#define CAMERA_MOVEMENTSPEED 1
 #define CAMERA_ROTATIONSPEED 3
 
 #define CAMERA_VERTICAL_LIMIT 0.1

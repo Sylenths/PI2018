@@ -20,7 +20,7 @@ private:
 
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
-    std::queue<Action*> actionQueue;
+    std::queue<Action*>* actionQueue;
     std::map<std::string, Button*> buttonMap;///< Map de bouton pour la construction de structure et le skip turn.
     std::map<std::string, Label*> labelMap;///< Label à afficher (principalement les ressources)
 
@@ -37,8 +37,9 @@ public:
     InGameOverlay(unsigned int powerCount = 0, unsigned int simCoinCount = 0, unsigned int temperatureC = 0, unsigned int sunPower = 0, Vector windSpeed = {0, 0, 0}, unsigned int timeLeft = 0) {
         activeHud = true;
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
+        actionQueue = new std::queue<Action*>;
     }
-    std::queue<Action*> getActions(){
+    std::queue<Action*>* getActions(){
             return actionQueue;
     }
 
@@ -87,7 +88,7 @@ public:
         ResourceManager::getInstance()->addResource("ButtonDelete", buttonMap["delete"]);
 
 
-        //buttonMap["skipturn"]->onClick = [this]() { };
+        //buttonMap["skipturn"]->onClick = [this]() {actionQueue->push(new Build(0.0,std::rand() % 50,-5.0)); };
         //buttonMap["structure"]->onClick = [this]() { InsertMethod;};
         //buttonMap["machine"]->onClick = [this]() { InsertMethod; };
         //buttonMap["cablage"]->onClick = [this]() { InsertMethod; };
@@ -328,6 +329,7 @@ public:
         for (auto it : buttonMap) {
             delete(it.second);
         }
+        delete actionQueue;
     }
 };
 #endif

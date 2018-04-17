@@ -15,10 +15,9 @@
 #include "ActionParameter.h"
 
 class Build : public Action{
-private:
+public:
     double x,y,z;
     int buildType;
-public:
     /// Constructeur
     /// \param x position en x
     /// \param y position en y
@@ -30,15 +29,7 @@ public:
         this->buildType = buildType;
         actionType = BUILD;
     }
-    double getX(){
-        return x;
-    }
-    double getY(){
-        return y;
-    }
-    double getZ(){
-        return z;
-    }
+
 
 
 
