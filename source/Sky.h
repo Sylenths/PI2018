@@ -22,7 +22,7 @@ public:
     /// Contructeur
     /// \param textureID Identificateur de la texture.
     /// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
-    Sky(unsigned int textureID, const char* objFile = nullptr) : Model(textureID, objFile) {
+    Sky(double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Model(posx, posy, posz, textureID, rotHitBox, objFile) {
         isDayTime = true;
         sphereAngle = .0;
 

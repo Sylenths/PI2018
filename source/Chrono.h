@@ -1,46 +1,38 @@
 /// \brief Chronometre
 /// \details Chronometre en ticks dont en ms.
-/// \author Shelby Versailles
+/// \author Shelby Versailles, Tai Chen Li
 /// \date 5 Avril 2018
 /// \version 0.1
 
 #ifndef SOURCE_CHRONO_H
 #define SOURCE_CHRONO_H
 
-#include <SDL2/SDL.h>
+#define SECONDS 1.0
+#define MILISECONDS 1000.0
+#define MICROSECONDS 1000000.0
+
 #include <chrono>
-
-// heures, T = std::chrono::hours
-// minutes, T = std::chrono::minutes
-// secondes, T = std::chrono::seconds
-// millisecondes, T = std::chrono::milliseconds
-// microsecondes, T = std::chrono::microseconds
-// nanosecondes, T = std::chrono::nanoseconds
-
-template <typename T>
 
 class Chrono {
 private:
-    std::chrono::duration<int, std::ratio<1, 100000000>> startTime;
-    std::chrono::duration<int, std::ratio<1, 100000000>> endTime;
-    ///<< Contient le nombre de ticks
+    std::chrono::high_resolution_clock::time_point lastTime; ///< Le temps de référence qu'on utilisera pour la soustraction entre le temps qu'on fera.
 
 public:
+    /// Constructeur
     Chrono() {
-        startTime = std::chrono::system_clock::now();
+        lastTime = std::chrono::high_resolution_clock::now();
     }
 
-    /// Donne le temps ecoulé depuis le dernier restart.
-    /// \return le temps ecoulé depuis le dernier restart
-    unsigned int getTime() {
-        endTime = std::chrono::system_clock::now();
-        std::chrono::duration<T> elapsedTime = endTime - startTime;
-        return elapsedTime;
+    /// Repartir le chronométrage à zéro
+    double restart() {
+        lastTime = std::chrono::high_resolution_clock::now();
     }
 
-    /// Redémmare le chronos.
-    void restart(){
-        startTime = std::chrono::system_clock::now();
+    /// Obtenir le chronométrage
+    /// \param ratio L'unité de mesure voulue au retour du chronométrage
+    double getElapsed(int ratio) {
+        std::chrono::duration<double> span = std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - lastTime);
+        return span.count() * ratio;
     }
 };
 

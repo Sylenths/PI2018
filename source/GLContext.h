@@ -30,7 +30,7 @@ public:
 
         GLContext::width = width;
         GLContext::height = height;
-        GLContext::projectionMatrix.loadProjection(right, top, nearPlane, farPlane);
+        GLContext::projectionMatrix.loadProjection(top, right, nearPlane, farPlane);
     }
 	/// Destructeur.
     ~GLContext() {

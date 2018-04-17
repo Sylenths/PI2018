@@ -17,7 +17,7 @@ public:
     /// \param y Position en y par rapport au coin supérieur gauche.
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
-    Image(double x, double y, double z, double width, double height, unsigned int textureID) : Model(textureID) {
+    Image(double x, double y, double z, double width, double height, unsigned int textureID) : Model(x, y, z, textureID, false) {
       texCount = 12;
       vertexCount = normalCount = 18;
 

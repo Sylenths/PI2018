@@ -3,12 +3,13 @@
 /// \author Antoine Legault, Jade St-Pierre Bouchard, Tai Chen Li, Samuel Labelle
 /// \date 28 mars 2018
 /// \version 0.1
-/// \warning Aucuns.
+/// \warning Le premier compte de FPS sera faussé, car on doit laisser au moins faire un tour de boucle pour savoir sa vraie vitesse de bouclage.
 /// \bug Aucuns.
 #ifndef PROJETFINAL_H
 #define PROJETFINAL_H
 
 #include "includes.h"
+#include "Controller.h"
 
 #define IN2D 1
 #define IN3D 0
@@ -20,18 +21,22 @@ private:
     Scene* sceneDisplay;
 
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
+    Controller* controller;
+    bool activeCamera;
+
+    Chrono chrono;
+
+    unsigned int fps;
+    unsigned int timeElapsed;
+
+    Label* labelFps;
 
 public:
-
-    /// Change la visibilité du nombre d'images par seconde
-    void setShowFPS(){
-
-    }
 
     /// Chargeur de texture (les mets automatiquement dans le ressource manager).
     /// \param filename Fichier de texture a charger.
     /// \param textureName Nom significatif a donner a la texture.
-    static void getTextureID(const char* filename, std::string textureName){
+    static void getTextureID(const char* filename, std::string textureName) {
             unsigned int textureID;
             glGenTextures(1, &textureID);
             glBindTexture(GL_TEXTURE_2D, textureID);
@@ -65,8 +70,9 @@ public:
         //Textures world
         getTextureID("../../images/grass.png", "grass");
         getTextureID("../../images/daysky.png", "daysky");
-        getTextureID("../../images/nightsky2.png", "nightsky");
+        getTextureID("../../images/nightsky.png", "nightsky");
         getTextureID("../../images/fan.png", "fan");
+        getTextureID("../../images/human.png","human");
 
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
@@ -75,6 +81,8 @@ public:
         getTextureID("../../images/settingso.png", "ButtonSettingsOver");
         getTextureID("../../images/highscore.png", "ButtonHighScore");
         getTextureID("../../images/highscoreo.png", "ButtonHighScoreOver");
+        getTextureID("../../images/QuitGame.png", "ButtonQuitGame");
+        getTextureID("../../images/QuitGameOver.png", "ButtonQuitGameOver");
         getTextureID("../../images/maisonApp.png", "FondMaison");
 
         //Textures boutons settings
@@ -108,23 +116,43 @@ public:
     /// \param height Hauteur de la fenêtre, en pixels.
     /// \param windowflags Flags SDL.
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0) {
-        glContext = new GLContext(title, x, y, width, height,90.0, 0.1, 1000.0, windowflags);
-        GLContext::setFrustum( true);
+        glContext = new GLContext(title, x, y, width, height,90.0, 0.0001, 1000.0, windowflags);
+        GLContext::setFrustum(true);
         sdlEvent = new SDL_Event();
         loadTextures();
+        controller = new Controller;
+        controller->subscribeAll(observables, controller);
+        activeCamera = false;
+        fps = 0;
+        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100,100}, "0", 1200, 690, 0.1, 20, 15);
     }
 
     /// Destructeur
-    ~ProjetFinal () {
+    ~ProjetFinal() {
         for (auto it : sceneMap)
             delete it.second;
 
         delete (glContext);
         delete (sdlEvent);
+        delete (controller);
+        delete labelFps;
+    }
+
+    /// Change la visibilité du nombre d'images par seconde
+    void showFPS() {
+        ++fps;
+        labelFps->draw();
+        double temp = chrono.getElapsed(MICROSECONDS);
+        if (chrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la bouche run()
+            glContext->setFrustum(IS2D);
+            labelFps->updateTextTexture(std::to_string(fps), ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100, 100});
+            fps = 0;
+            chrono.restart();
+        }
     }
 
     /// Représente la boucle de jeu.
-    void run(std::string filePath){
+    void run(std::string filePath) {
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_LIGHTING);
@@ -137,43 +165,114 @@ public:
         sceneMap["MainMenu"]->subscribeAll(observables);
         sceneDisplay = sceneMap[Scene::getActiveScene()];
 
-        sceneMap["Settings"] = new Settings();
-        sceneMap["InGameESC"] = new InGameESC();
-        sceneMap["Highscore"] = new Highscore();
+        sceneMap["SettingsMenu"] = new SettingsMenu();
+        sceneMap["HighScoresMenu"] = new HighScoresMenu();
         sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World(0, 0, 0, 20, {0, 0, 0});
 
-        bool isOpen = true;
-        while (isOpen){
-            while(SDL_PollEvent(sdlEvent)) {
+        chrono.restart();
+        while (Scene::getActiveScene() != "Quit") {
+            while (SDL_PollEvent(sdlEvent)) {
                 switch (sdlEvent->type) {
-                    case SDL_QUIT:
-                        isOpen = false;
-                        break;
-
                     default:
-                        if(!observables[sdlEvent->type])
-                            observables[sdlEvent->type] = new Observable<SDL_Event*>();
-                         observables[sdlEvent->type]->notify(sdlEvent);
+                        if (!observables[sdlEvent->type])
+                            observables[sdlEvent->type] = new Observable<SDL_Event *>();
+                        observables[sdlEvent->type]->notify(sdlEvent);
                 }
             }
 
-            // Test Highscore
-            Highscore* test= new Highscore;
-            test->updateScore("Jade",8);
+            if ((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()])) {
+                sceneDisplay->unsubscribeAll(observables);
+                sceneDisplay = sceneMap[Scene::getActiveScene()];
+                sceneDisplay->subscribeAll(observables);
+                controller->subscribeAll(observables, controller);
+            }
 
-            //if(sceneDisplay == sceneMap["World"]) glContext->resetMousePosition();
+            ///controle des touches
+            switch (controller->getKeyDown()) {
+                case SDLK_f:
+                    activeCamera = false;
+                    glContext->releaseInput();
+                    break;
+                case SDLK_g:
+                    activeCamera = true;
+                    glContext->grabInput();
+                    break;
+                case SDLK_w:
+                    if (sceneDisplay == sceneMap["World"]) {
+                        sceneDisplay->getCamera()->startMove(CAMERA_MOVE_FRONT);
+                    }
+                    break;
+                case SDLK_s:
+                    if (sceneDisplay == sceneMap["World"]) {
+                        sceneDisplay->getCamera()->startMove(CAMERA_MOVE_BACK);
+                    }
+                    break;
+                case SDLK_a:
+                    if (sceneDisplay == sceneMap["World"]) {
+                        sceneDisplay->getCamera()->startMove(CAMERA_MOVE_LEFT);
+                    }
+                    break;
+                case SDLK_d:
+                    if (sceneDisplay == sceneMap["World"]) {
+                        sceneDisplay->getCamera()->startMove(CAMERA_MOVE_RIGHT);
+                    }
+                    break;
+                case SDLK_ESCAPE:
+                    if (sceneDisplay == sceneMap["World"]) {
+                        glContext->releaseInput();
+                        activeCamera = false;
+                        sceneDisplay->changeActiveScene("PauseMenu");
+                    }
+                    break;
+            }
+            switch (controller->getKeyUp()) {
+                case SDLK_w:
+                    if (sceneDisplay == sceneMap["World"]) {
+                        sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_FRONT);
+                    }
+                    break;
+                case SDLK_s:
+                    if (sceneDisplay == sceneMap["World"]) {
+                        sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_BACK);
+                    }
+                    break;
+                case SDLK_a:
+                    if (sceneDisplay == sceneMap["World"]) {
+                        sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_LEFT);
+                    }
+                    break;
+                case SDLK_d:
+                    if (sceneDisplay == sceneMap["World"]) {
+                        sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_RIGHT);
+                    }
+                    break;
+            }
+            ///controle de la rotation de la camera
+            if (activeCamera) {
+                sceneDisplay->getCamera()->rotateView(controller->getMouseMotion()[0], controller->getMouseMotion()[1]);
+                controller->resetMouseMotion();
+            }
 
-            if (sceneDisplay != sceneMap[Scene::getActiveScene()]) {
-              sceneDisplay->unsubscribeAll(observables);
-              sceneDisplay = sceneMap[Scene::getActiveScene()];
-              sceneDisplay->subscribeAll(observables);
+                if (sceneDisplay != sceneMap[Scene::getActiveScene()] && Scene::getActiveScene() != "Quit") {
+                    sceneDisplay->unsubscribeAll(observables);
+                    sceneDisplay = sceneMap[Scene::getActiveScene()];
+                    sceneDisplay->subscribeAll(observables);
+
+                }
+            if (sceneDisplay == sceneMap["World"] && activeCamera) {
+                if(chrono.getElapsed(SECONDS) > 0.000001) {
+                    sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS));
+
+                }
             }
 
             glContext->clear();
             sceneDisplay->draw();
+            if(Scene::getActiveFPS() == true)
+                showFPS();
             glContext->refresh();
-         }
+        }
     }
 
     Vector get2DTextureSize(const char* filePath) {
@@ -182,6 +281,9 @@ public:
         SDL_FreeSurface(surface);
 
         return size;
+    }
+    GLContext* getGlContext(){
+        return glContext;
     }
 };
 #endif

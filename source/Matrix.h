@@ -10,6 +10,7 @@
 #define MATRIX_H
 
 #include "MathUtils.h"
+#include "Vector.h"
 
 #define m11 matrix[0]
 #define m12 matrix[1]

@@ -11,6 +11,7 @@
 #include "GLContext.h"
 #include "Camera.h"
 #include "Sky.h"
+#include "Build.h"
 
 class World : public Scene{
 private:
@@ -32,7 +33,7 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(ResourceManager::getInstance()->getTexture("daysky")) {
+    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky")) {
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
@@ -42,9 +43,9 @@ public:
         usedPower = 0;
         elapsedTime = 0;
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
-        addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
-        addModel("sky", new Sky(ResourceManager::getInstance()->getTexture("daysky"),"../../models/obj/sky.obj"));
-        addModel("fan", new Model(ResourceManager::getInstance()->getTexture("fan"),"../../models/obj/fan.obj"));
+        addModel("grass", new Model(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
+        addModel("sky", new Sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky"),"../../models/obj/sky.obj"));
+        addModel("fan", new Model(0.0, 0.0, 0.0, true, ResourceManager::getInstance()->getTexture("fan"),"../../models/obj/fan.obj"));
 
         camera = new Camera({ 0.0, 1.0, 0.0 }, { 0.0, 1.0, -1.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
@@ -56,9 +57,26 @@ public:
         modelMap["fan"]->transform(fanRotationMatrix);
         fanRotationMatrix.loadArbitraryRotation(Vector(0.0, 0.5, 0.0), Vector(0.0, 1.0, 0.0), 3.6);
     }
+    void checkForActions(){
+        std::queue<Action*> actionQueue = hud->getActions();
+        while(!actionQueue.empty()){
+            switch (actionQueue.front()->getActionType()){
+                case BUILD: double x = ((Build*)actionQueue.front())->getX();
+                            double y = ((Build*)actionQueue.front())->getY();
+                            double z = ((Build*)actionQueue.front())->getZ();
+                            addModel("human0",new Model(x,y,z,false,ResourceManager::getInstance()->getTexture("human"),"../../models/obj/human.obj"));
+                            delete actionQueue.front();
+                            actionQueue.pop();
+
+
+                    break;
+            }
+        }
+    }
 
     /// Affichage des models
     void draw() {
+        checkForActions();
         GLContext::setFrustum(IS3D);
 
         modelMap["fan"]->transform(fanRotationMatrix);
@@ -71,12 +89,13 @@ public:
         GLContext::setFrustum(IS2D);
         hudLight->applyLightPosition();
         hud->draw();
+
     }
 
     /// Mise a jour du temps dans l'H.U.D.
     /// \param chrono Chrono qui calcul le temps restant
-    void updateTimeLeft(Chrono<std::chrono::seconds>* chrono) {
-       // hud->updateTime(buildingTime - chrono->getTime());
+    void updateTimeLeft(Chrono* chrono) {
+       hud->updateTime(buildingTime - chrono->getElapsed(SECONDS));
     }
 
     void buildingPhaseStart() {
@@ -94,15 +113,20 @@ public:
     void catastrophePhaseStop() {
 
     }
+    Camera* getCamera(){
+        return camera;
+    }
 
     virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
         if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
         if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
         if (!observables[SDL_KEYDOWN]) observables[SDL_KEYDOWN] = new Observable<SDL_Event*>();
+        hud->subscribeAll(observables);
 
-        observables[SDL_MOUSEMOTION]->subscribe(camera);
-        observables[SDL_KEYDOWN]->subscribe(camera);
     }
-    virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {}
+    virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
+        hud->unsubscribeAll(observables);
+
+    }
 };
 #endif //SOURCE_WORLD_H

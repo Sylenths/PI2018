@@ -13,15 +13,17 @@
 #include "ActionParameter.h"
 
 class Action {
-private:
+protected:
     unsigned int actionType;///< Le type d'action
 
 public:
+    /// retourn le type d'action
     unsigned int getActionType(){
         return actionType;
     }
-    /// Méthode virtuelle pure qui retourne les paramètres
-  //  std::map<std::string , ActionParameter*> getParameters() = 0;
+    virtual double getX(){}
+    virtual double getY(){}
+    virtual double getZj(){}
 };
 
 #endif //SOURCE_ACTION_H
