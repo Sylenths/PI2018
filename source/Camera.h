@@ -16,10 +16,12 @@
 #include "Matrix.h"
 #include "Vector.h"
 
-#define CAMERA_MOVEMENTSPEED 50
-#define CAMERA_ROTATIONSPEED 3
+#define CAMERA_MOVEMENTSPEED 200
+#define CAMERA_HROTATIONSPEED 3.
+#define CAMERA_VROTATIONSPEED 2.75
 
 #define CAMERA_VERTICAL_LIMIT 0.1
+#define CAMERA_CENTERDISTANCELIMIT 180
 
 #define CAMERA_MOVE_FRONT 1
 #define CAMERA_MOVE_BACK 2
@@ -30,7 +32,7 @@
 #define WINDOW_WIDTH_F 1280.
 #define WINDOW_HEIGHT_I 720
 #define WINDOW_WIDTH_I 1280
-#define CAMERA_VROTLIMIT 718
+#define CAMERA_VROTLIMIT 89.75
 #define CAMERA_FOV_F 90.
 #define CAMERA_2FOV_F 180.
 
@@ -44,13 +46,11 @@ private:
 	Vector front;
     bool mLeft, mRight, mFront, mBack;
 
-    int vMouseMotion;
-
 public:
 
     /// Calcule l'angle du regard par rapport à l'horizontale (intervalle ]90, -90[ ; 0 est horizontal et les négatifs sont vers le bas / les y-.)
     /// \return Angle.
-    double getHorizontalAngle(){
+    double getAngleFromHorizon(){
         double angle = radtodeg(std::acos(up * ((target - position).normalize())));
 
         if(angle <= CAMERA_FOV_F){
@@ -78,8 +78,6 @@ public:
         front = (target - position).normalize();
 
         this->up = up.normalize();
-
-        vMouseMotion = (int)(std::round(-getHorizontalAngle() / CAMERA_FOV_F * WINDOW_HEIGHT_I));
 
         mLeft = mRight = mFront = mBack = false;
     }
@@ -133,32 +131,37 @@ public:
                 }
             }
         }
+
+	    if(position.getNorm() > CAMERA_CENTERDISTANCELIMIT){ // outside limit range
+		    //move back inside range.
+		    Vector pull = position - (position.getNormalized() * (CAMERA_CENTERDISTANCELIMIT - 1));
+		    position = position - pull;
+		    target = target - pull;
+	    }
     }
 
 	/// Tourner la caméra.
 	/// \param relativeYMotion Mouvement relatif de la souris en Y (pixels).
 	/// \param relativeXMotion Mouvement relatif de la souris en X (pixels).
     void rotateView(int relativeXMotion, int relativeYMotion) {
-        Matrix m;
 
-        int yMove;
+		Matrix m;
 
-        if((vMouseMotion + relativeYMotion) > CAMERA_VROTLIMIT) {
-            yMove = CAMERA_VROTLIMIT - vMouseMotion;
-        }
-        else if((vMouseMotion + relativeYMotion) < -CAMERA_VROTLIMIT) {
-            yMove = -CAMERA_VROTLIMIT - vMouseMotion;
-        }
-        else {
-            yMove = relativeYMotion;
-        }
+		double currentAngle = getAngleFromHorizon();
+		double addedAngle = -(((double)relativeYMotion / WINDOW_HEIGHT_F) * CAMERA_FOV_F) * CAMERA_VROTATIONSPEED;
 
-        vMouseMotion += yMove;
+		if((currentAngle + addedAngle) > CAMERA_VROTLIMIT){
+			addedAngle = CAMERA_VROTLIMIT - currentAngle;
+		}
+		else if((currentAngle + addedAngle) < -CAMERA_VROTLIMIT){
+			addedAngle = -CAMERA_VROTLIMIT - currentAngle;
+		}
 
-        m.loadArbitraryRotation(position, up,  -(relativeXMotion / WINDOW_WIDTH_F * CAMERA_FOV_F) * CAMERA_ROTATIONSPEED);
+
+        m.loadArbitraryRotation(position, up,  -((double)relativeXMotion / WINDOW_WIDTH_F * CAMERA_FOV_F) * CAMERA_HROTATIONSPEED);
         target = m * target; // Horizontal camera rotation.
 
-        m.loadArbitraryRotation(position, ((target - position) %  up).normalize(), -((double)yMove / WINDOW_HEIGHT_F * CAMERA_FOV_F));
+        m.loadArbitraryRotation(position, ((target - position) %  up).normalize(), addedAngle);
         target = m * target; // Vertical camera rotation.
 
         loadViewMatrix();
