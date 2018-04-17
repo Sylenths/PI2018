@@ -43,6 +43,7 @@ public:
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
         addModel("grass", new Model(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
         addModel("sky", new Model(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("sky"),"../../models/obj/sky.obj"));
+
         addModel("fan", new Model(0.0, 0.0, 0.0, true, ResourceManager::getInstance()->getTexture("fan"),"../../models/obj/fan.obj"));
 
         camera = new Camera({ 0.0, 1.0, 0.0 }, { 0.0, 1.0, -1.0 }, { 0.0, 1.0, 0.0 });
