@@ -144,10 +144,10 @@ public:
     /// Change la visibilité du nombre d'images par seconde
     void showFPS() {
         ++fps;
+        glContext->setFrustum(IS2D);
         labelFps->draw();
         double temp = FPSchrono.getElapsed(MICROSECONDS);
         if (FPSchrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la bouche run()
-            glContext->setFrustum(IS2D);
             labelFps->updateTextTexture(std::to_string(fps), ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100, 100});
             fps = 0;
             FPSchrono.restart();
