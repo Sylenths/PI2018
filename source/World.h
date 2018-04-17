@@ -10,9 +10,11 @@
 #include "includes.h"
 #include "GLContext.h"
 #include "Camera.h"
+#include "Sky.h"
 
 class World : public Scene{
 private:
+    Sky sky;
     std::map<std::string, Model*> modelMap; ///< La liste de models à afficher
     InGameOverlay* hud;
     Vector wind;
@@ -30,7 +32,7 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) {
+    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(ResourceManager::getInstance()->getTexture("daysky")) {
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
@@ -41,7 +43,7 @@ public:
         elapsedTime = 0;
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
         addModel("grass", new Model(ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
-        addModel("sky", new Model(ResourceManager::getInstance()->getTexture("sky"),"../../models/obj/sky.obj"));
+        addModel("sky", new Sky(ResourceManager::getInstance()->getTexture("daysky"),"../../models/obj/sky.obj"));
         addModel("fan", new Model(ResourceManager::getInstance()->getTexture("fan"),"../../models/obj/fan.obj"));
 
         camera = new Camera({ 0.0, 1.0, 0.0 }, { 0.0, 1.0, -1.0 }, { 0.0, 1.0, 0.0 });
@@ -53,7 +55,6 @@ public:
         fanRotationMatrix.loadTranslation(Vector(0.0, 0.5, 0.0));
         modelMap["fan"]->transform(fanRotationMatrix);
         fanRotationMatrix.loadArbitraryRotation(Vector(0.0, 0.5, 0.0), Vector(0.0, 1.0, 0.0), 3.6);
-
     }
 
     /// Affichage des models
