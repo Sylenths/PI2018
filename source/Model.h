@@ -191,6 +191,7 @@ public:
                 normals[y] = vNormals[yi];
                 normals[z] = vNormals[zi];
             }
+
             fichier.close();
             double xmin = 0.0, xmax = 0.0, ymin = 0.0, ymax = 0.0, zmin = 0.0, zmax = 0.0;
             for(int i = 0; i < vertexCount; i++) {
@@ -335,7 +336,7 @@ public:
     }
 
 	/// Affiche le modèle.
-    void draw() {
+    virtual void draw() {
         glBindTexture(GL_TEXTURE_2D, textureToDraw);
 
         glEnableClientState(GL_VERTEX_ARRAY);

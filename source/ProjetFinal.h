@@ -69,7 +69,8 @@ public:
 
         //Textures world
         getTextureID("../../images/grass.png", "grass");
-        getTextureID("../../images/daysky.png", "sky");
+        getTextureID("../../images/daysky.png", "daysky");
+        getTextureID("../../images/nightsky.png", "nightsky");
         getTextureID("../../images/fan.png", "fan");
         getTextureID("../../images/human.png","human");
 
@@ -123,7 +124,7 @@ public:
         controller->subscribeAll(observables, controller);
         activeCamera = false;
         fps = 0;
-        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100,100}, "0", 730, 0, 0.1, 30, 30);
+        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100,100}, "0", 1200, 690, 0.1, 20, 15);
     }
 
     /// Destructeur
@@ -159,6 +160,8 @@ public:
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        SDL_GL_SetSwapInterval(0);
 
         sceneMap["MainMenu"] = new MainMenu();
         sceneMap["MainMenu"]->subscribeAll(observables);
@@ -268,7 +271,7 @@ public:
 
             glContext->clear();
             sceneDisplay->draw();
-            //if(Scene::getActiveFPS() == true)
+            if(Scene::getActiveFPS() == true)
                 showFPS();
             glContext->refresh();
         }

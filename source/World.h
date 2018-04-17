@@ -10,17 +10,22 @@
 #include "includes.h"
 #include "GLContext.h"
 #include "Camera.h"
+#include "Sky.h"
+#include "Atmosphere.h"
 #include "Build.h"
 
 class World : public Scene{
 private:
     std::list<Model*> modelList; ///< La liste de models à afficher
+    Sky sky;
+    Atmosphere atmosphere;
     InGameOverlay* hud;
     Vector wind;
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
     Camera* camera;
     Light* worldLight, * hudLight;
     Matrix fanRotationMatrix;
+    Chrono chrono;
 
 public:
     /// Ajoute un model a afficher
@@ -31,7 +36,7 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) {
+    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky")), atmosphere(0.0, 0.0, 0.0, false, 0) {
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
@@ -41,8 +46,10 @@ public:
         usedPower = 0;
         elapsedTime = 0;
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
-        addModel(new Model(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
-        addModel(new Model(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("sky"),"../../models/obj/skysphere.obj"));
+
+        addModel( new Model(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("grass"),"../../models/obj/grass.obj"));
+        addModel(new Sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky"),"../../models/obj/sky.obj"));
+        addModel( new Atmosphere(0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj"));
         addModel(new Model(0.0, 0.0, 0.0, true, ResourceManager::getInstance()->getTexture("fan"),"../../models/obj/fan.obj"));
 
         camera = new Camera({ 0.0, 1.0, 0.0 }, { 0.0, 1.0, -1.0 }, { 0.0, 1.0, 0.0 });
@@ -53,7 +60,9 @@ public:
 
 
 
+        chrono.restart();
     }
+
     void checkForActions(){
 
         while(!hud->getActions()->empty()){
@@ -76,6 +85,12 @@ public:
         checkForActions();
         GLContext::setFrustum(IS3D);
 
+
+        sky.update(chrono);
+        if(sky.getTime())
+            atmosphere.darken(chrono);
+        else
+            atmosphere.lighten(chrono);
 
         camera->applyViewMatrix();
         worldLight->applyLightPosition();
@@ -109,6 +124,7 @@ public:
     void catastrophePhaseStop() {
 
     }
+
     Camera* getCamera(){
         return camera;
     }
