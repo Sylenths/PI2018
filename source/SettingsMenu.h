@@ -36,9 +36,9 @@ public:
 
     void showFPS(){
         if(FPS == false)
-            FPS == true;
+            FPS = true;
         else
-            FPS == false;
+            FPS = false;
     }
 
 
