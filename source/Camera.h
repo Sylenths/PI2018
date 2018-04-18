@@ -16,7 +16,7 @@
 #include "Matrix.h"
 #include "Vector.h"
 
-#define CAMERA_MOVEMENTSPEED 200
+#define CAMERA_MOVEMENTSPEED 30
 #define CAMERA_HROTATIONSPEED 3.
 #define CAMERA_VROTATIONSPEED 2.75
 
@@ -93,6 +93,7 @@ public:
     /// \param deltaTime Temps écoulé.
     void update(double deltaTime){
         //move camera and target in viewing direction
+
         if(mFront || mBack || mLeft || mRight) {
             front = (target - position).normalize();
             double moveAmplitude = CAMERA_MOVEMENTSPEED * deltaTime;
@@ -138,6 +139,7 @@ public:
 		    position = position - pull;
 		    target = target - pull;
 	    }
+
     }
 
 	/// Tourner la caméra.

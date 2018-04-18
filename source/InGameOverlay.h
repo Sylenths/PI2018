@@ -11,6 +11,7 @@
 #include <queue>
 #include "Menu.h"
 #include "Action.h"
+#include "Build.h"
 
 class InGameOverlay : public Menu {
 private:
@@ -19,7 +20,7 @@ private:
 
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
-    std::queue<Action*> actionQueue;
+    std::queue<Action*>* actionQueue;
     std::map<std::string, Button*> buttonMap;///< Map de bouton pour la construction de structure et le skip turn.
     std::map<std::string, Label*> labelMap;///< Label à afficher (principalement les ressources)
 
@@ -36,6 +37,10 @@ public:
     InGameOverlay(unsigned int powerCount = 0, unsigned int simCoinCount = 0, unsigned int temperatureC = 0, unsigned int sunPower = 0, Vector windSpeed = {0, 0, 0}, unsigned int timeLeft = 0) {
         activeHud = true;
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
+        actionQueue = new std::queue<Action*>;
+    }
+    std::queue<Action*>* getActions(){
+            return actionQueue;
     }
 
     /// Affiche le InGameOverlay.
@@ -82,12 +87,14 @@ public:
         ResourceManager::getInstance()->addResource("ButtonInfo", buttonMap["info"]);
         ResourceManager::getInstance()->addResource("ButtonDelete", buttonMap["delete"]);
 
-        //buttonMap["skipturn"]->onClick = [this]() { actionQueue.push(new Build(5,5,5)); };
+
+        //buttonMap["skipturn"]->onClick = [this]() {actionQueue->push(new Build(0.0,std::rand() % 50,-5.0)); };
         //buttonMap["structure"]->onClick = [this]() { InsertMethod;};
         //buttonMap["machine"]->onClick = [this]() { InsertMethod; };
         //buttonMap["cablage"]->onClick = [this]() { InsertMethod; };
         //buttonMap["info"]->onClick = [this]() { InsertMethod; };
         //buttonMap["delete"]->onClick = [this]() { InsertMethod; };
+
 
         //Image2D
         logoList.push_back(new Image(175, 0, 0.1, 540, 60, ResourceManager::getInstance()->getTexture("topBar")));
@@ -102,7 +109,7 @@ public:
         auto strTime = std::to_string(timeLeft);
         strTime.push_back(' ');
         strTime.push_back('s');
-        labelMap["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1 , 80, 60);
+        labelMap["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1 , 40, 60);
 
         auto strWind = std::to_string(windSpeed);
         strWind.push_back(' ');
@@ -120,6 +127,7 @@ public:
         labelMap["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1 , 25, 20);
     }
 
+
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
         if(!observables[SDL_MOUSEBUTTONDOWN])
             observables[SDL_MOUSEBUTTONDOWN]= new Observable<SDL_Event*>;
@@ -129,6 +137,7 @@ public:
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonCablage"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonInfo"));
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonDelete"));
+
     }
 
     void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
@@ -138,6 +147,7 @@ public:
         observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonCablage"));
         observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonInfo"));
         observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonDelete"));
+
     }
 
     /// Affiche les intemperies a venir.
@@ -319,6 +329,7 @@ public:
         for (auto it : buttonMap) {
             delete(it.second);
         }
+        delete actionQueue;
     }
 };
 #endif

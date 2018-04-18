@@ -1,7 +1,7 @@
-/// \brief Gestion des éléments de l'atmosphère.
-/// \details Permet de modifier l'atmosphère du jeu
+/// \brief Gestion de l'atmosphère
+/// \details Permet de changer l'opacité du filtre et sa couleur
 /// \author Mathilde Harnois
-/// \date 12 avril 2018
+/// \date 17 avril 2018
 /// \version 0.1
 /// \warning Aucuns.
 /// \bug Aucuns.
@@ -11,33 +11,93 @@
 
 #include "includes.h"
 
-class Atmosphere : public World {
+class Atmosphere : public Model {
 private:
-
-
-    bool isDayTime; ///< Booléen qui indique si c'est le jour ou la nuit
-    unsigned float sphereAngle; ///< Angle de la sphère en fonction des axes x et y
-    Matrix rotation;
+    double *colors;
 
 public:
-    Atmosphere(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : World(temperature, sunPower, simCoin, buildingTime, wind) {
-        isDayTime = true;
-        sphereAngle = .0;
+
+    Atmosphere(double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Model(posx, posy, posz, textureID, rotHitBox, objFile) {
+        colors = nullptr;
+
+        if(objFile) {
+            colors = new double[4 * vertexCount];
+            for(int i = 0; i < vertexCount; i+= 4) {
+                colors[i] = 0;
+                colors[i + 1] = 0;
+                colors[i + 2] = 255;
+                colors[i + 3] = 0;
+            }
+        }
     }
 
-    /// Change la texture de la sphère selon le jour ou la nuit
-    void changeTime() {
-
+    void lighten (Chrono deltaTime) {
+        for(int i = 3; i < vertexCount; i+= 4) {
+            colors[i] -= 2.83 * pow(10, -6);
+        }
     }
 
-    /// Change la position de la sphère selon le temps écoulé dans une phase de jeu avec une rotation
-    /// \param phaseTime Temps écoulé depuis le début de la phase de jeu
-    void rotateSphere(unsigned float phaseTime) {
-        //on considère qu'une phase dure 15 minutes, donc rotationne de 6 degrés par minutes (qu'on converti en microsecondes)
-        rotation.loadZRotation(phaseTime * (1.00 * pow(10, -7)));
-        modelMap
+    void darken (Chrono deltaTime) {
+        for(int i = 3; i < vertexCount; i+= 4) {
+            colors[i] += 2.83 * pow(10, -6);
+        }
     }
 
+    void changeToRed() {
+        for(int i = 0; i < vertexCount; i+= 4) {
+            colors[i] = 255;
+            colors[i + 1] = 0;
+            colors[i + 2] = 0;
+        }
+    }
+
+    void changeToGreen() {
+        for(int i = 0; i < vertexCount; i+= 4) {
+            colors[i] = 0;
+            colors[i + 1] = 255;
+            colors[i + 2] = 0;
+        }
+    }
+
+    void changeToBlue() {
+        for(int i = 0; i < vertexCount; i+= 4) {
+            colors[i] = 0;
+            colors[i + 1] = 255;
+            colors[i + 2] = 0;
+        }
+    }
+
+    void changeToWhite() {
+        for(int i = 0; i < vertexCount; i+= 4) {
+            colors[i] = 255;
+            colors[i + 1] = 255;
+            colors[i + 2] = 255;
+        }
+    }
+
+    void changeToBlack() {
+        for(int i = 0; i < vertexCount; i+= 4) {
+            colors[i] = 0;
+            colors[i + 1] = 0;
+            colors[i + 2] = 0;
+        }
+    }
+
+    void draw() {
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_NORMAL_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+
+        glVertexPointer(3, GL_DOUBLE, 0, vertices);
+        glNormalPointer(GL_DOUBLE, 0, normals);
+        glColorPointer(4, GL_DOUBLE, 0, colors);
+
+        glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_NORMAL_ARRAY);
+        glDisableClientState(GL_COLOR_ARRAY);
+    }
 
 };
 

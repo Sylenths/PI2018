@@ -25,7 +25,11 @@ private:
     bool activeCamera;
 
     Chrono chrono;
+	Chrono FPSchrono;
+
     unsigned int fps;
+    unsigned int timeElapsed;
+
     Label* labelFps;
 
 public:
@@ -66,9 +70,12 @@ public:
 
         //Textures world
         getTextureID("../../images/grass.png", "grass");
-        getTextureID("../../images/skysphere_night.png", "sky");
+        getTextureID("../../images/skysphere_day.png", "daysky");
+        getTextureID("../../images/skysphere_night.png", "nightsky");
         getTextureID("../../images/fan.png", "fan");
-	    getTextureID("../../images/clouds.png", "clouds");
+        getTextureID("../../images/human.png","human");
+				getTextureID("../../images/clouds.png", "clouds");
+
 
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
@@ -120,7 +127,7 @@ public:
         controller->subscribeAll(observables, controller);
         activeCamera = false;
         fps = 0;
-        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {255, 255, 255,255}, "0", 500, 500, 5, 100, 100);
+        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100,100}, "0", 1200, 690, 0.1, 20, 15);
     }
 
     /// Destructeur
@@ -131,16 +138,19 @@ public:
         delete (glContext);
         delete (sdlEvent);
         delete (controller);
+        delete labelFps;
     }
 
     /// Change la visibilité du nombre d'images par seconde
     void showFPS() {
         ++fps;
-        double temp = chrono.getElapsed(MICROSECONDS);
-        if (chrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la bouche run()
-            labelFps->updateTextTexture(std::to_string(fps), ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {255, 255, 255, 255});
-            labelFps->draw();
+        labelFps->draw();
+        double temp = FPSchrono.getElapsed(MICROSECONDS);
+        if (FPSchrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la bouche run()
+            glContext->setFrustum(IS2D);
+            labelFps->updateTextTexture(std::to_string(fps), ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100, 100});
             fps = 0;
+            FPSchrono.restart();
         }
     }
 
@@ -153,6 +163,8 @@ public:
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        SDL_GL_SetSwapInterval(0);
 
         sceneMap["MainMenu"] = new MainMenu();
         sceneMap["MainMenu"]->subscribeAll(observables);
@@ -260,12 +272,12 @@ public:
                 }
             }
 
-
             glContext->clear();
             sceneDisplay->draw();
-            showFPS();
+            if(Scene::getActiveFPS() == true)
+                showFPS();
             glContext->refresh();
-            chrono.restart();
+	        chrono.restart();
         }
     }
 

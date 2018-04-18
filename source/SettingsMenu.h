@@ -3,7 +3,7 @@
 /// \author Antoine Legault, Samuel Labelle
 /// \date 27 mars 2018
 /// \version 0.1
-/// \warning Le bouton back ne marche pas à 100%, desfois on est coincé dans un menu.
+/// \warning Aucun.
 /// \bug Aucun.
 
 #ifndef SETTINGSMENU_H
@@ -17,14 +17,30 @@ public:
     SettingsMenu() {
         models["FondSettings"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondSettings"));
 
-        models["FPSLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Show FPS : ", 71, 300, 0, 466, 113);
+        models["1labelActiveCamera"]       = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Camera on     :    G   ", 71, 200, 0, 300, 50);
+        models["1labelDesactiveCamera"]    = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Camera off    :    F   ", 71, 260, 0, 300, 50);
+        models["1labelPauseMenu"]          = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Pause menu    :    ESC   ", 71, 310, 0, 300, 50);
+        models["FPSLabel"]                 = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Active FPS visibility  :", 71, 360, 0, 300, 50);
 
-        models["FPSButton"] = new CheckBox (712, 300, 0, 510, 113, ResourceManager::getInstance()->getTexture("FPSButtonNO"), ResourceManager::getInstance()->getTexture("FPSButtonYES"));
-        //models["FPSButton"]->onClick = [this] () {SettingsMenu::showFPS();};
+        models["1labelMoveForward"]        = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Move forward  :    W   ", 650, 200, 0, 300, 50);
+        models["1labelMoveBackward"]       = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Move backward :    S   ", 650, 260, 0, 300, 50);
+        models["1labelMoveLeft"]           = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Move left     :    A   ", 650, 310, 0, 300, 50);
+        models["1labelMoveRight"]          = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Move right    :    D   ", 650, 360, 0, 300, 50);
 
+        models["FPSButton"] = new CheckBox (380, 360, 0, 250, 50, ResourceManager::getInstance()->getTexture("FPSButtonNO"), ResourceManager::getInstance()->getTexture("FPSButtonYES"));
+        models["FPSButton"]->onClick = [this] () {showFPS();};
         models["1backButton"]  = new Button (498, 550, 0, 284, 113, ResourceManager::getInstance()->getTexture("backButton"), ResourceManager::getInstance()->getTexture("BackButtonOver"));
         models["1backButton"]->onClick = [this]() { Scene::changeActiveScene(previous); };
     }
+
+
+    void showFPS(){
+        if(FPS == false)
+            FPS = true;
+        else
+            FPS = false;
+    }
+
 
     /// Permet d'inscrire tous les évènements comme observables.
     /// \param observables une map contenant tous les observables nécessaires.
