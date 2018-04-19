@@ -74,8 +74,6 @@ public:
                             addModel(new Model(x,y,z,false,ResourceManager::getInstance()->getTexture("human"),"../../models/obj/human.obj"));
                             delete hud->getActions()->front();
                             hud->getActions()->pop();
-
-
                     break;
             }
         }
