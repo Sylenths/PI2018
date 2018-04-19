@@ -21,9 +21,6 @@ private:
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
     std::queue<Action*>* actionQueue;
-    std::map<std::string, Button*> buttonMap;///< Map de bouton pour la construction de structure et le skip turn.
-    std::map<std::string, Label*> labelMap;///< Label à afficher (principalement les ressources)
-
     //RotatingImage* windIndicator;
 
 public:
@@ -59,7 +56,6 @@ public:
     };
 
 
-
     /// Affiche le InGameOverlay.
     void draw(){
         if(activeHud) {
@@ -70,10 +66,7 @@ public:
             for (auto it : alertsList) {
                 it->draw();
             }
-            for (auto it : labelMap) {
-                it.second->draw();
-            }
-            for (auto it : buttonMap) {
+            for (auto it : models) {
                 it.second->draw();
             }
         }
@@ -88,29 +81,24 @@ public:
     /// \param timeLeft Temps restant a la phase de construction.
     void loadHUDTexture(unsigned int powerCount, unsigned int simCoinCount, unsigned int temperatureC, unsigned int sunPower, unsigned int windSpeed, unsigned int timeLeft){
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        //Boutons
 
-        buttonMap["skipturn"] = new Button (0, 0, 0.1, 175, 60,ResourceManager::getInstance()->getTexture("skipTurn"));
-        buttonMap["structure"] = new Button (0, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("structure"));
-        buttonMap["machine"] = new Button (90, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("machine"));
-        buttonMap["cablage"] = new Button (180, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("wire"));
-        buttonMap["info"] = new Button (270, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("info"));
-        buttonMap["delete"] = new Button (360, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("delete"));
+        models["skipturn"] = new Button (0, 0, 0.1, 175, 60,ResourceManager::getInstance()->getTexture("skipTurn"));
+        models["skipturn"]->onClick = [this]() {actionQueue->push(new Build(0.0,std::rand() % 50,-5.0)); };
 
-        ResourceManager::getInstance()->addResource("ButtonSkipTurn", buttonMap["skipturn"]);
-        ResourceManager::getInstance()->addResource("ButtonStructure", buttonMap["structure"]);
-        ResourceManager::getInstance()->addResource("ButtonMachine", buttonMap["machine"]);
-        ResourceManager::getInstance()->addResource("ButtonCablage", buttonMap["cablage"]);
-        ResourceManager::getInstance()->addResource("ButtonInfo", buttonMap["info"]);
-        ResourceManager::getInstance()->addResource("ButtonDelete", buttonMap["delete"]);
+        models["structure"] = new Button (0, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("structure"));
+        models["structure"]->onClick = [this]() { isConstructingFondation = !isConstructingFondation; };
 
+        models["machine"] = new Button (90, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("machine"));
+        models["machine"]->onClick = [this]() {};
 
-        //buttonMap["skipturn"]->onClick = [this]() {actionQueue->push(new Build(0.0,std::rand() % 50,-5.0)); };
-        buttonMap["structure"]->onClick = [this]() { isConstructingFondation = !isConstructingFondation; };
-        //buttonMap["machine"]->onClick = [this]() { InsertMethod; };
-        //buttonMap["cablage"]->onClick = [this]() { InsertMethod; };
-        //buttonMap["info"]->onClick = [this]() { InsertMethod; };
-        //buttonMap["delete"]->onClick = [this]() { InsertMethod; };
+        models["cablage"] = new Button (180, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("wire"));
+        models["cablage"]->onClick = [this]() {};
+
+        models["info"] = new Button (270, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("info"));
+        models["info"]->onClick = [this]() {};
+
+        models["delete"] = new Button (360, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("delete"));
+        models["delete"]->onClick = [this]() {};
 
 
         //Image2D
@@ -118,52 +106,48 @@ public:
 
         //Label
         auto strSimCoin = std::to_string(simCoinCount); // transforme unsigned int en string
-        labelMap["simCoins"] = new Label(fontArial->getFont(),{0,165,255}, strSimCoin, 405, 0, 0.1, 40, 35);
+        models["simCoins"] = new Label(fontArial->getFont(),{0,165,255}, strSimCoin, 405, 0, 0.1, 40, 35);
 
         auto strPwr = std::to_string(powerCount);
-        labelMap["power"] = new Label(fontArial->getFont(), {255,191,0}, strPwr, 405, 30, 0.1 , 40, 35);
+        models["power"] = new Label(fontArial->getFont(), {255,191,0}, strPwr, 405, 30, 0.1 , 40, 35);
 
         auto strTime = std::to_string(timeLeft);
         strTime.push_back(' ');
         strTime.push_back('s');
-        labelMap["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1 , 40, 60);
+        models["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1 , 40, 60);
 
         auto strWind = std::to_string(windSpeed);
         strWind.push_back(' ');
         strWind.push_back('m');
         strWind.push_back('/');
         strWind.push_back('s');
-        labelMap["windSpeed"] = new Label(fontArial->getFont(), {255,255,255}, strWind, 555, 15, 0.1 , 80, 35);
+        models["windSpeed"] = new Label(fontArial->getFont(), {255,255,255}, strWind, 555, 15, 0.1 , 80, 35);
 
         auto strTemperature = std::to_string(temperatureC);
         strTemperature.push_back('c');
-        labelMap["temperature"] = new Label(fontArial->getFont(), {255,255,255}, strTemperature, 685, 5, 0.1 , 20, 20);
+        models["temperature"] = new Label(fontArial->getFont(), {255,255,255}, strTemperature, 685, 5, 0.1 , 20, 20);
 
         auto strSunPower = std::to_string(sunPower);
         strSunPower.push_back('%');
-        labelMap["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1 , 25, 20);
+        models["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1 , 25, 20);
     }
 
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
-        if(!observables[SDL_MOUSEBUTTONDOWN])
-            observables[SDL_MOUSEBUTTONDOWN]= new Observable<SDL_Event*>;
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSkipTurn"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStructure"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonMachine"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonCablage"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonInfo"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonDelete"));
+        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
 
+        for (auto it : models) {
+            observables[SDL_MOUSEBUTTONDOWN]->subscribe(it.second);
+            observables[SDL_MOUSEMOTION]->subscribe(it.second);
+        }
     }
 
     void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSkipTurn"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStructure"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonMachine"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonCablage"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonInfo"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonDelete"));
+        for (auto it : models) {
+            observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(it.second);
+            observables[SDL_MOUSEMOTION]->unsubscribe(it.second);
+        }
 
     }
 
@@ -277,7 +261,7 @@ public:
     void updatePower(unsigned int power){
         auto s = std::to_string(power);
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["power"]->updateTextTexture(s, fontArial->getFont(),{255,191,0});
+        ((Label*)models["power"])->updateTextTexture(s, fontArial->getFont(),{255,191,0});
     }
 
     /// Met a jour le nombre de SIMcoins disponibles.
@@ -285,7 +269,7 @@ public:
     void updateSIMcoin(unsigned int SIMcoin){
         auto s = std::to_string(SIMcoin);
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["simCoins"]->updateTextTexture(s, fontArial->getFont(),{0,165,255});
+        ((Label*)models["simCoins"])->updateTextTexture(s, fontArial->getFont(),{0,165,255});
     }
 
     /// Met a jour la temperature.
@@ -294,7 +278,7 @@ public:
         auto s = std::to_string(temp);
         s.push_back('c');
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["temperature"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
+        ((Label*)models["temperature"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
     /// Met a jour la force du soleil
@@ -302,7 +286,7 @@ public:
     void updateSunPower(unsigned int sunPower){
         auto s = std::to_string(sunPower);
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["sun"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
+        ((Label*)models["sun"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
     /// Met a jour la vitesse du vent
@@ -314,7 +298,7 @@ public:
         s.push_back('/');
         s.push_back('s');
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["windSpeed"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
+        ((Label*)models["windSpeed"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
     /// Met a jour le temps
@@ -324,7 +308,7 @@ public:
         s.push_back(' ');
         s.push_back('s');
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["time"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
+        ((Label*)models["time"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
     /// Active/Desactive l'affichage du InGameOverlay
@@ -340,12 +324,7 @@ public:
         for (auto it : logoList) {
             delete (it);
         }
-        for (auto it : labelMap) {
-            delete (it.second);
-        }
-        for (auto it : buttonMap) {
-            delete(it.second);
-        }
+
         delete actionQueue;
         delete camera;
 

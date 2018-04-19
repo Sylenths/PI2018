@@ -337,6 +337,7 @@ public:
                     textureIDs[name] = textureToDraw = ID;
     }
 
+
 	/// Affiche le modèle.
     virtual void draw() {
         glBindTexture(GL_TEXTURE_2D, textureToDraw);
