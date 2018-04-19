@@ -22,7 +22,6 @@ private:
     InGameOverlay* hud;
     Vector wind;
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
-    Camera* camera;
     Light* worldLight, * hudLight;
     Matrix fanRotationMatrix;
     Chrono chrono;
@@ -53,8 +52,6 @@ public:
 	    addModel(new Model(0.0, 0.0, 2.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj"));
 	    addModel(new Model(0.0, 0.0, -2.0, ResourceManager::getInstance()->getTexture("human"), true, "../../models/obj/human.obj"));
 
-        camera = new Camera({ 0.0, 3.5, 0.0 }, { 0.0, 3.5, -1.0 }, { 0.0, 1.0, 0.0 });
-        camera->loadViewMatrix();
 
         worldLight = new Light(0.0, 25.0, 0.0, 4.0);
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
@@ -62,6 +59,11 @@ public:
 
 
         chrono.restart();
+    }
+    ~World(){
+        delete hud;
+        delete worldLight;
+        delete hudLight;
     }
 
     void checkForActions(){
@@ -91,7 +93,7 @@ public:
         else
             atmosphere.lighten(chrono);
 
-        camera->applyViewMatrix();
+        hud->getCamera()->applyViewMatrix();
         worldLight->applyLightPosition();
         for(auto it = modelList.begin(); it != modelList.end(); it++)
             (*it)->draw();
@@ -123,9 +125,8 @@ public:
     void catastrophePhaseStop() {
 
     }
-
     Camera* getCamera(){
-        return camera;
+        return hud->getCamera();
     }
 
     virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {

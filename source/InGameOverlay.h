@@ -13,10 +13,11 @@
 #include "Action.h"
 #include "Build.h"
 
-class InGameOverlay : public Menu {
+class InGameOverlay : public Menu, public Observer <SDL_Event*>{
 private:
-
+    bool isConstructingFondation;
     bool activeHud;///< Bool qui determine si le hud est affiché
+    Camera* camera;
 
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
@@ -38,10 +39,19 @@ public:
         activeHud = true;
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
         actionQueue = new std::queue<Action*>;
+        isConstructingFondation = false;
+        camera = new Camera({ 0.0, 3.5, 0.0 }, { 0.0, 3.5, -1.0 }, { 0.0, 1.0, 0.0 });
+        camera->loadViewMatrix();
+
     }
+
     std::queue<Action*>* getActions(){
             return actionQueue;
     }
+    Camera* getCamera(){
+        return camera;
+    }
+
 
     /// Affiche le InGameOverlay.
     void draw(){
@@ -89,7 +99,7 @@ public:
 
 
         //buttonMap["skipturn"]->onClick = [this]() {actionQueue->push(new Build(0.0,std::rand() % 50,-5.0)); };
-        //buttonMap["structure"]->onClick = [this]() { InsertMethod;};
+        buttonMap["structure"]->onClick = [this]() { isConstructingFondation = !isConstructingFondation; };
         //buttonMap["machine"]->onClick = [this]() { InsertMethod; };
         //buttonMap["cablage"]->onClick = [this]() { InsertMethod; };
         //buttonMap["info"]->onClick = [this]() { InsertMethod; };
@@ -330,6 +340,19 @@ public:
             delete(it.second);
         }
         delete actionQueue;
+        delete camera;
+
+    }
+    void notify(SDL_Event* sdlEvent) {
+        if (isConstructingFondation){
+            switch (sdlEvent->type) {
+                case SDL_MOUSEBUTTONDOWN:
+                    if ((sdlEvent->button.button == SDL_BUTTON_LEFT))
+
+                    break;
+
+            }
+        }
     }
 };
 #endif
