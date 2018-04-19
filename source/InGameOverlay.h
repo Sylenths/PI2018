@@ -22,7 +22,7 @@ private:
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
     std::queue<Action*>* actionQueue;
-    std::map<std::string, Button*> buttonMap;///< Map de bouton pour la construction de structure et le skip turn.
+    //std::map<std::string, Button*> buttonMap;///< Map de bouton pour la construction de structure et le skip turn.
     std::map<std::string, Label*> labelMap;///< Label à afficher (principalement les ressources)
 
     //RotatingImage* windIndicator;
@@ -66,7 +66,7 @@ public:
             for (auto it : labelMap) {
                 it.second->draw();
             }
-            for (auto it : buttonMap) {
+            for (auto it : models) {
                 it.second->draw();
             }
         }
@@ -81,29 +81,24 @@ public:
     /// \param timeLeft Temps restant a la phase de construction.
     void loadHUDTexture(unsigned int powerCount, unsigned int simCoinCount, unsigned int temperatureC, unsigned int sunPower, unsigned int windSpeed, unsigned int timeLeft){
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        //Boutons
 
-        buttonMap["skipturn"] = new Button (0, 0, 0.1, 175, 60,ResourceManager::getInstance()->getTexture("skipTurn"));
-        buttonMap["structure"] = new Button (0, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("structure"));
-        buttonMap["machine"] = new Button (90, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("machine"));
-        buttonMap["cablage"] = new Button (180, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("wire"));
-        buttonMap["info"] = new Button (270, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("info"));
-        buttonMap["delete"] = new Button (360, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("delete"));
+        models["skipturn"] = new Button (0, 0, 0.1, 175, 60,ResourceManager::getInstance()->getTexture("skipTurn"));
+        models["skipturn"]->onClick = [this]() {actionQueue->push(new Build(0.0,std::rand() % 50,-5.0)); };
 
-        ResourceManager::getInstance()->addResource("ButtonSkipTurn", buttonMap["skipturn"]);
-        ResourceManager::getInstance()->addResource("ButtonStructure", buttonMap["structure"]);
-        ResourceManager::getInstance()->addResource("ButtonMachine", buttonMap["machine"]);
-        ResourceManager::getInstance()->addResource("ButtonCablage", buttonMap["cablage"]);
-        ResourceManager::getInstance()->addResource("ButtonInfo", buttonMap["info"]);
-        ResourceManager::getInstance()->addResource("ButtonDelete", buttonMap["delete"]);
+        models["structure"] = new Button (0, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("structure"));
+        models["structure"]->onClick = [this]() { isConstructingFondation = !isConstructingFondation; };
 
+        models["machine"] = new Button (90, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("machine"));
+        models["machine"]->onClick = [this]() {};
 
-        //buttonMap["skipturn"]->onClick = [this]() {actionQueue->push(new Build(0.0,std::rand() % 50,-5.0)); };
-        buttonMap["structure"]->onClick = [this]() { isConstructingFondation = !isConstructingFondation; };
-        //buttonMap["machine"]->onClick = [this]() { InsertMethod; };
-        //buttonMap["cablage"]->onClick = [this]() { InsertMethod; };
-        //buttonMap["info"]->onClick = [this]() { InsertMethod; };
-        //buttonMap["delete"]->onClick = [this]() { InsertMethod; };
+        models["cablage"] = new Button (180, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("wire"));
+        models["cablage"]->onClick = [this]() {};
+
+        models["info"] = new Button (270, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("info"));
+        models["info"]->onClick = [this]() {};
+
+        models["delete"] = new Button (360, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("delete"));
+        models["delete"]->onClick = [this]() {};
 
 
         //Image2D
@@ -137,26 +132,26 @@ public:
         labelMap["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1 , 25, 20);
     }
 
-
-    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
-        if(!observables[SDL_MOUSEBUTTONDOWN])
-            observables[SDL_MOUSEBUTTONDOWN]= new Observable<SDL_Event*>;
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSkipTurn"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStructure"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonMachine"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonCablage"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonInfo"));
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonDelete"));
+    void loadStructureMenu(){
 
     }
 
+
+    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
+
+        for (auto it : models) {
+            observables[SDL_MOUSEBUTTONDOWN]->subscribe(it.second);
+            observables[SDL_MOUSEMOTION]->subscribe(it.second);
+        }
+    }
+
     void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonSkipTurn"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonStructure"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonMachine"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonCablage"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonInfo"));
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(ResourceManager::getInstance()->getResource<Button*>("ButtonDelete"));
+        for (auto it : models) {
+            observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(it.second);
+            observables[SDL_MOUSEMOTION]->unsubscribe(it.second);
+        }
 
     }
 
@@ -336,9 +331,7 @@ public:
         for (auto it : labelMap) {
             delete (it.second);
         }
-        for (auto it : buttonMap) {
-            delete(it.second);
-        }
+
         delete actionQueue;
         delete camera;
 
