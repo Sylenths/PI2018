@@ -319,7 +319,196 @@ public:
        transform(m);
     }
 
-	/// Destructeur.
+    Model(unsigned int height, unsigned int textureID, Vector* firstCorner, Vector* secondCorner) {
+        textureIDs["default"] = textureID;
+        textureToDraw = textureID;
+
+        Vector up = {0.0, 1.0, 0.0};
+        Vector temp;
+///sommet
+        vertices[0] = firstCorner->x;
+        vertices[1] = firstCorner->y;
+        vertices[2] = firstCorner->z;
+        vertices[15] = vertices[3] = firstCorner->x;
+        vertices[16] = vertices[4] = firstCorner->y + height;
+        vertices[17] = vertices[5] = firstCorner->z;
+
+
+        vertices[9] = vertices[6] = secondCorner->x;
+        vertices[10] = vertices[7] = secondCorner->y;
+        vertices[11] = vertices[8] = secondCorner->z;
+
+        vertices[12] = secondCorner->x;
+        vertices[13] = secondCorner->y + height;
+        vertices[14] = secondCorner->z;
+///normal
+        temp = ((Vector)(vertices[0], 0.0, vertices[2]) % up).normalize();
+        normals[0] = temp.x;
+        normals[1] = temp.y;
+        normals[2] = temp.z;
+
+        temp = ((Vector)(vertices[3], 0.0, vertices[5]) % up).normalize();
+        normals[3] = temp.x;
+        normals[4] = temp.y;
+        normals[5] = temp.z;
+
+        temp = ((Vector)(vertices[6], 0.0, vertices[8]) % up).normalize();
+        normals[6] = temp.x;
+        normals[7] = temp.y;
+        normals[8] = temp.z;
+
+        temp = ((Vector)(vertices[9], 0.0, vertices[11]) % up).normalize();
+        normals[9] = temp.x;
+        normals[10] = temp.y;
+        normals[11] = temp.z;
+
+        temp = ((Vector)(vertices[12], 0.0, vertices[14]) % up).normalize();
+        normals[12] = temp.x;
+        normals[13] = temp.y;
+        normals[14] = temp.z;
+
+        temp = ((Vector)(vertices[15], 0.0, vertices[17]) % up).normalize();
+        normals[15] = temp.x;
+        normals[16] = temp.y;
+        normals[17] = temp.z;
+///coordoné de texture
+        texCoords[0] = 1.0;
+        texCoords[1] = 1.0;
+        texCoords[2] = 1.0;
+        texCoords[3] = 0.0;
+        texCoords[4] = 0.0;
+        texCoords[5] = 1.0;
+
+        texCoords[6] = 0.0;
+        texCoords[7] = 1.0;
+        texCoords[8] = 0.0;
+        texCoords[9] = 0.0;
+        texCoords[10] = 1.0;
+        texCoords[11] = 0.0;
+///hitbox
+        double xmin = 0.0, xmax = 0.0, ymin = 0.0, ymax = 0.0, zmin = 0.0, zmax = 0.0;
+        for(int i = 0; i < vertexCount; i++) {
+            int x, y, z;
+            x = i * 3;
+            y = x + 1;
+            z = x + 2;
+            if(vertices[x] < xmin)
+                xmin = vertices[x];
+            if(vertices[x] > xmax)
+                xmax = vertices[x];
+            if(vertices[y] < ymin)
+                ymin = vertices[y];
+            if(vertices[y] > ymax)
+                ymax = vertices[y];
+            if(vertices[z] < zmin)
+                zmin = vertices[z];
+            if(vertices[z] > zmax)
+                zmax = vertices[z];
+        }
+        verticesHitBox = new double[108] {
+                xmax, ymax, zmax, //P1T1F1
+                xmax, ymin, zmax, //P2T1F1
+                xmin, ymin, zmax, //P3T1F1
+
+                xmax, ymax, zmax, //P1T2F1
+                xmin, ymax, zmax, //P2T2F1
+                xmin, ymin, zmax, //P3T2F1
+
+                xmax, ymax, zmin, //P1T1F2
+                xmax, ymin, zmin, //P2T1F2
+                xmin, ymin, zmin, //P3T1F2
+
+                xmax, ymax, zmin, //P1T2F2
+                xmin, ymax, zmin, //P2T2F2
+                xmin, ymin, zmin, //P3T2F2
+
+                xmax, ymax, zmax, //P1T1F3
+                xmax, ymax, zmin, //P2T1F3
+                xmax, ymin, zmax, //P3T1F3
+
+                xmax, ymin, zmax, //P1T2F3
+                xmax, ymin, zmin, //P2T2F3
+                xmax, ymax, zmin, //P3T2F3
+
+                xmin, ymax, zmax, //P1T1F4
+                xmin, ymax, zmin, //P2T1F4
+                xmin, ymin, zmax, //P3T1F4
+
+                xmin, ymin, zmax, //P1T2F4
+                xmin, ymin, zmin, //P2T2F4
+                xmin, ymax, zmin, //P3T2F4
+
+                xmax, ymax, zmax, //P1T1F5
+                xmin, ymax, zmax, //P2T1F5
+                xmax, ymax, zmin, //P3T1F5
+
+                xmin, ymax, zmax, //P1T2F5
+                xmin, ymax, zmin, //P2T2F5
+                xmax, ymax, zmin, //P3T2F5
+
+                xmax, ymin, zmax, //P1T1F6
+                xmin, ymin, zmax, //P2T1F6
+                xmax, ymin, zmin, //P3T1F6
+
+                xmin, ymin, zmax, //P1T2F6
+                xmin, ymin, zmin, //P2T2F6
+                xmax, ymin, zmin, //P3T2F6
+        };
+
+        normalsHitBox = new double[108]{
+                0.0, 0.0, 1.0, //P1T1F1
+                0.0, 0.0, 1.0, //P2T1F1
+                0.0, 0.0, 1.0, //P3T1F1
+
+                0.0, 0.0, 1.0, //P1T2F1
+                0.0, 0.0, 1.0, //P2T2F1
+                0.0, 0.0, 1.0, //P3T2F1
+
+                0.0, 0.0, -1.0, //P1T1F2
+                0.0, 0.0, -1.0, //P2T1F2
+                0.0, 0.0, -1.0, //P3T1F2
+
+                0.0, 0.0, -1.0, //P1T2F2
+                0.0, 0.0, -1.0, //P2T2F2
+                0.0, 0.0, -1.0, //P3T2F2
+
+                1.0, 0.0, 0.0, //P1T1F3
+                1.0, 0.0, 0.0, //P2T1F3
+                1.0, 0.0, 0.0, //P3T1F3
+
+                1.0, 0.0, 0.0, //P1T2F3
+                1.0, 0.0, 0.0, //P2T2F3
+                1.0, 0.0, 0.0, //P3T2F3
+
+                -1.0, 0.0, 0.0, //P1T1F4
+                -1.0, 0.0, 0.0, //P2T1F4
+                -1.0, 0.0, 0.0, //P3T1F4
+
+                -1.0, 0.0, 0.0, //P1T2F4
+                -1.0, 0.0, 0.0, //P2T2F4
+                -1.0, 0.0, 0.0, //P3T2F4
+
+                0.0, 1.0, 0.0, //P1T1F5
+                0.0, 1.0, 0.0, //P2T1F5
+                0.0, 1.0, 0.0, //P3T1F5
+
+                0.0, 1.0, 0.0, //P1T2F5
+                0.0, 1.0, 0.0, //P2T2F5
+                0.0, 1.0, 0.0, //P3T2F5
+
+                0.0, -1.0, 0.0, //P1T1F6
+                0.0, -1.0, 0.0, //P2T1F6
+                0.0, -1.0, 0.0, //P3T1F6
+
+                0.0, -1.0, 0.0, //P1T2F6
+                0.0, -1.0, 0.0, //P2T2F6
+                0.0, -1.0, 0.0, //P3T2F6
+
+        };
+    }
+
+
+    /// Destructeur.
     ~Model() {
         delete[] vertices;
         delete[] normals;

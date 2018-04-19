@@ -28,7 +28,7 @@ public:
     unsigned int getHeight(){
         return height;
     }
-    Fondationl* getFondation(){
+    Fondation* getFondation(){
         return start;
     }
 

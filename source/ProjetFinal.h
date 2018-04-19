@@ -285,6 +285,9 @@ public:
                         sceneDisplay->getCamera()->startMove(CAMERA_MOVE_RIGHT);
                     }
                     break;
+                case SDLK_9:
+                    ((World*)sceneDisplay)->test = 2;
+                    break;
                 case SDLK_ESCAPE:
                     if (sceneDisplay == sceneMap["World"]) {
                         glContext->releaseInput();
