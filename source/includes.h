@@ -54,9 +54,9 @@
 #include "Camera.h"
 #include "Action.h"
 #include "Materiel.h"
-#include "Fondation.h"
-#include "Structure.h"
 
+#include "Structure.h"
+#include "Fondation.h"
 
 
 #endif
