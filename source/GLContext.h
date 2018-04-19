@@ -58,6 +58,10 @@ public:
     void refresh() {
         SDL_GL_SwapWindow(sdlwindow);
     }
+
+    SDL_Window* getWindow(){
+        return sdlwindow;
+    }
     /// Affichage de l'environnement graphique.
     /// \param angle Angle du champ de vision.
     /// \param nearPlane Distance de la zone de vue rapproché.

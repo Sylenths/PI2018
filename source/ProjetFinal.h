@@ -30,8 +30,6 @@ private:
     unsigned int fps;
     unsigned int timeElapsed;
 
-    Label* labelFps;
-
 public:
 
     /// Chargeur de texture (les mets automatiquement dans le ressource manager).
@@ -128,7 +126,6 @@ public:
         controller->subscribeAll(observables, controller);
         activeCamera = false;
         fps = 0;
-        labelFps = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100,100}, "0", 1200, 690, 0.1, 20, 15);
     }
 
     /// Destructeur
@@ -139,17 +136,17 @@ public:
         delete (glContext);
         delete (sdlEvent);
         delete (controller);
-        delete labelFps;
     }
 
     /// Change la visibilité du nombre d'images par seconde
     void showFPS() {
         ++fps;
         glContext->setFrustum(IS2D);
-        labelFps->draw();
         double temp = FPSchrono.getElapsed(MICROSECONDS);
         if (FPSchrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la bouche run()
-            labelFps->updateTextTexture(std::to_string(fps), ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {100, 100, 100, 100});
+            char buffer[10];
+            SDL_itoa(fps, buffer, 10);
+            SDL_SetWindowTitle(glContext->getWindow(), buffer);
             fps = 0;
             FPSchrono.restart();
         }
@@ -273,6 +270,8 @@ public:
             sceneDisplay->draw();
             if(Scene::getActiveFPS() == true)
                 showFPS();
+            else
+                SDL_SetWindowTitle(glContext->getWindow(), "P.I. 2018");
             glContext->refresh();
 	        chrono.restart();
         }
