@@ -27,6 +27,10 @@
   #include <SDL2_image/SDL_image.h>
 #endif
 
+
+#include <iostream>
+#include <utility>
+#include <functional>
 #include "Chrono.h"
 #include "Singleton.h"
 #include "Observable.h"
@@ -36,6 +40,9 @@
 #include "Matrix.h"
 #include "GLContext.h"
 #include "Model.h"
+#include "Materiel.h"
+#include "Structure.h"
+#include "Fondation.h"
 #include "Font.h"
 #include "Image.h"
 #include "Scene.h"
@@ -53,9 +60,7 @@
 #include "ProjetFinal.h"
 #include "Camera.h"
 #include "Action.h"
-#include "Materiel.h"
-#include "Structure.h"
-#include "Fondation.h"
+
 #include "Shading.h"
 
 #endif

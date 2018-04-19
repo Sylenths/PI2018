@@ -11,29 +11,18 @@
 
 
 class Fondation : public Structure{
-private:
+public:
     Vector* centerPoint;
     Fondation* north;
     Fondation* south;
     Fondation* east;
     Fondation* west;
-public:
-    Fondation(Materiel* materiel, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Structure(materiel, posx, posy, posz, textureID, rotHitBox, objFile){
+
+    Fondation(double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = "../../models/obj/fondation.obj") : Structure( posx, posy, posz, textureID, rotHitBox, objFile){
         north = south = east = west = nullptr;
+        centerPoint = new Vector(posx,posy,posz);
     }
 
-    Fondation* getNorth(){
-        return north;
-    }
-    Fondation* getSouth(){
-        return south;
-    }
-    Fondation* getEast(){
-        return east;
-    }
-    Fondation* getWest(){
-        return west;
-    }
 
 
 

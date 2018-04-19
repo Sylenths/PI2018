@@ -19,7 +19,6 @@ private:
     std::list<Model*> modelList; ///< La liste de models à afficher
     Sky sky;
     Atmosphere atmosphere;
-    InGameOverlay* hud;
     Vector wind;
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
     Light* worldLight, * hudLight;
@@ -27,6 +26,9 @@ private:
     Chrono chrono;
 
 public:
+    Model* floor;
+    InGameOverlay* hud;
+
     /// Ajoute un model a afficher
     /// \param model le model a ajouter
     /// \param modelKey Nom donne au model
@@ -45,8 +47,9 @@ public:
         usedPower = 0;
         elapsedTime = 0;
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
-
-        addModel( new Model(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("grass"), false, "../../models/obj/grass.obj"));
+        addModel((*hud->getFondations())[std::make_pair(0,0)]);
+        floor =  new Model(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("grass"), false, "../../models/obj/grass.obj");
+        addModel(floor);
         addModel(new Sky(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("daysky"),false, "../../models/obj/skysphere.obj"));
         addModel(new Model(0.0, 1.0, -1.0, ResourceManager::getInstance()->getTexture("fan"), true, "../../models/obj/fan.obj"));
 	    addModel(new Model(0.0, 0.0, 2.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj"));
@@ -97,7 +100,8 @@ public:
         worldLight->applyLightPosition();
         for(auto it = modelList.begin(); it != modelList.end(); it++)
             (*it)->draw();
-
+       // for(auto it = hud->getFondations()->begin(); it != hud->getFondations()->end(); it++)
+            //(*it).second->draw();
         GLContext::setFrustum(IS2D);
         hudLight->applyLightPosition();
         hud->draw();
@@ -140,5 +144,11 @@ public:
         hud->unsubscribeAll(observables);
 
     }
+
+    InGameOverlay* getHud(){
+        return hud;
+    }
+
+
 };
 #endif //SOURCE_WORLD_H

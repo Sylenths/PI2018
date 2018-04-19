@@ -1,6 +1,6 @@
 /// \brief Représentation de l'interface en jeu.
 /// \details Interface pour construire et pour donner les informations sur la partie.
-/// \author Antoine Legault , Guillaume Julien - Desmarchais
+/// \author Antoine Legault , Guillaume Julien - Desmarchais, Mickaël Grisé-Roy
 /// \date 24 mars 2018
 /// \version 0.7
 /// \warning Manque la boussole (pour indiquer le sens du vent) et le compte a rebours. Les labels ne s'ajuste pas selon la grosseur du nombre.
@@ -13,12 +13,11 @@
 #include "Action.h"
 #include "Build.h"
 
-class InGameOverlay : public Menu, public Observer <SDL_Event*>{
+class InGameOverlay : public Menu{
 private:
-    bool isConstructingFondation;
     bool activeHud;///< Bool qui determine si le hud est affiché
     Camera* camera;
-
+    std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
     std::queue<Action*>* actionQueue;
@@ -28,6 +27,8 @@ private:
     //RotatingImage* windIndicator;
 
 public:
+    bool isConstructingFondation;
+
     /// Constructeur.
     /// \param powerCount Nombre d'électricité disponible.
     /// \param simCoinCount Nombre de SIMcoins disponible
@@ -37,6 +38,8 @@ public:
     /// \param timeLeft Temps restant à la phase de construction.
     InGameOverlay(unsigned int powerCount = 0, unsigned int simCoinCount = 0, unsigned int temperatureC = 0, unsigned int sunPower = 0, Vector windSpeed = {0, 0, 0}, unsigned int timeLeft = 0) {
         activeHud = true;
+        fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,ResourceManager::getInstance()->getTexture("grass"),false);
+
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
         actionQueue = new std::queue<Action*>;
         isConstructingFondation = false;
@@ -51,6 +54,10 @@ public:
     Camera* getCamera(){
         return camera;
     }
+    std::map<std::pair<int,int>, Fondation*>* getFondations (){
+        return &fondationGrid;
+    };
+
 
 
     /// Affiche le InGameOverlay.
@@ -343,16 +350,6 @@ public:
         delete camera;
 
     }
-    void notify(SDL_Event* sdlEvent) {
-        if (isConstructingFondation){
-            switch (sdlEvent->type) {
-                case SDL_MOUSEBUTTONDOWN:
-                    if ((sdlEvent->button.button == SDL_BUTTON_LEFT))
 
-                    break;
-
-            }
-        }
-    }
 };
 #endif

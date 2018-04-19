@@ -191,6 +191,70 @@ public:
                 controller->subscribeAll(observables, controller);
             }
 
+            if(activeCamera && Scene::getActiveScene() == "World" && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT){
+                World* world = ((World*)sceneDisplay);
+
+
+
+
+                if(world->hud->isConstructingFondation) {
+                  //  glContext->releaseInput();
+
+                    Vector front = world->getCamera()->getFront();
+                    Vector pos = world->getCamera()->getPos();
+                    Vector nFloor = {0, 1, 0};
+                    if (front * nFloor) {
+                        double ratio = -(pos.y / front.y);
+                        if (ratio > 0) {
+                            Vector intersection = (front * ratio) + pos;
+                            int x = round(intersection.x / 2.0);
+                            int z = round(intersection.z / 2.0);
+                            std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->hud->getFondations();
+                            if(!(*fondationGrid)[std::make_pair(x,z)]) {
+
+                                if ((*fondationGrid)[std::make_pair(x - 1, z)]){
+                                    (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x,0.0,(double)z,3,false);
+                                    (*fondationGrid)[std::make_pair(x,z)]->west = (*fondationGrid)[std::make_pair(x - 1, z)];
+                                    (*fondationGrid)[std::make_pair(x - 1, z)]->east = (*fondationGrid)[std::make_pair(x,z)];
+                                }
+
+                                if((*fondationGrid)[std::make_pair(x + 1, z)]){
+                                    if(!(*fondationGrid)[std::make_pair(x,z)])
+                                        (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x,0.0,(double)z,3,false);
+                                    (*fondationGrid)[std::make_pair(x,z)]->east = (*fondationGrid)[std::make_pair(x + 1, z)];
+                                    (*fondationGrid)[std::make_pair(x + 1, z)]->west = (*fondationGrid)[std::make_pair(x,z)];
+
+                                }
+
+                                if((*fondationGrid)[std::make_pair(x, z - 1)]){
+                                    if(!(*fondationGrid)[std::make_pair(x,z)])
+                                        (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x,0.0,(double)z,3,false);
+                                    (*fondationGrid)[std::make_pair(x,z)]->north = (*fondationGrid)[std::make_pair(x , z - 1)];
+                                    (*fondationGrid)[std::make_pair(x , z - 1)]->south = (*fondationGrid)[std::make_pair(x,z)];
+
+                                }
+
+                                if((*fondationGrid)[std::make_pair(x, z + 1)]){
+                                    if(!(*fondationGrid)[std::make_pair(x,z)])
+                                        (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x,0.0,(double)z,3,false);
+                                    (*fondationGrid)[std::make_pair(x,z)]->south = (*fondationGrid)[std::make_pair(x , z + 1)];
+                                    (*fondationGrid)[std::make_pair(x , z + 1)]->north = (*fondationGrid)[std::make_pair(x,z)];
+
+                                }
+
+                                if((*fondationGrid)[std::make_pair(x,z)])
+                                    world->addModel((*fondationGrid)[std::make_pair(x,z)]);
+                            }
+                        }
+                    }
+
+
+
+
+                }
+
+            }
+
             ///controle des touches
             switch (controller->getKeyDown()) {
                 case SDLK_f:
@@ -267,6 +331,7 @@ public:
                     sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS));
 
             glContext->clear();
+
             sceneDisplay->draw();
             if(Scene::getActiveFPS() == true)
                 showFPS();
@@ -274,6 +339,9 @@ public:
                 SDL_SetWindowTitle(glContext->getWindow(), "P.I. 2018");
             glContext->refresh();
 	        chrono.restart();
+
+            controller->resetClicMousePosition();
+
         }
     }
 

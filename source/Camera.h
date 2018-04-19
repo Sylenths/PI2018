@@ -59,6 +59,11 @@ public:
         }
         return angle;
     }
+    /// Accéder au vecteur pointant la position de la caméra.
+    /// \return Vecteur position
+    Vector getPos(){
+        return position;
+    }
 
     /// Accéder au vecteur unitaire pointant dans la direction où regarde la caméra.
     /// \return Vecteur unitaire.

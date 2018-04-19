@@ -22,6 +22,7 @@ public:
     Controller(){
         keyDown = 0;
         keyUp = 0;
+        mouseClickPosition[2] = -1;
     }
 
     void notify(SDL_Event* event){
@@ -76,6 +77,11 @@ public:
     void resetMouseMotion(){
         mouseMotion[0] = 0;
         mouseMotion[1] = 0;
+    }
+    void resetClicMousePosition(){
+        mouseClickPosition[0] = 0;
+        mouseClickPosition[1] = 0;
+        mouseClickPosition[2] = -1;
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables, Controller* controller){

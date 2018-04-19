@@ -11,10 +11,8 @@
 
 class Structure : public Model{
 private:
-    Materiel* materiel;
 public:
-    Structure(Materiel* materiel, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Model(posx, posy, posz, textureID, rotHitBox, objFile){
-        this->materiel = materiel;
+    Structure( double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Model(posx, posy, posz, textureID, rotHitBox, objFile){
     }
 };
 
