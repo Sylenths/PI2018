@@ -12,6 +12,7 @@
 
 class Fondation : public Structure{
 private:
+    Vector* centerPoint;
     Fondation* north;
     Fondation* south;
     Fondation* east;
