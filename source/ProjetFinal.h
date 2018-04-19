@@ -74,7 +74,8 @@ public:
         getTextureID("../../images/skysphere_night.png", "nightsky");
         getTextureID("../../images/fan.png", "fan");
         getTextureID("../../images/human.png","human");
-				getTextureID("../../images/clouds.png", "clouds");
+	    getTextureID("../../images/clouds.png", "clouds");
+	    getTextureID("../../images/simcoinminer.png", "simcoinminer");
 
 
         //Textures boutons menu principal
