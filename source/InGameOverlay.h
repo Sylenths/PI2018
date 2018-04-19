@@ -13,7 +13,7 @@
 #include "Action.h"
 #include "Build.h"
 
-class InGameOverlay : public Menu, public Observer <SDL_Event*>{
+class InGameOverlay : public Menu{
 private:
     bool isConstructingFondation;
     bool activeHud;///< Bool qui determine si le hud est affiché
@@ -22,9 +22,6 @@ private:
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
     std::queue<Action*>* actionQueue;
-    //std::map<std::string, Button*> buttonMap;///< Map de bouton pour la construction de structure et le skip turn.
-    std::map<std::string, Label*> labelMap;///< Label à afficher (principalement les ressources)
-
     //RotatingImage* windIndicator;
 
 public:
@@ -52,7 +49,6 @@ public:
         return camera;
     }
 
-
     /// Affiche le InGameOverlay.
     void draw(){
         if(activeHud) {
@@ -62,9 +58,6 @@ public:
             }
             for (auto it : alertsList) {
                 it->draw();
-            }
-            for (auto it : labelMap) {
-                it.second->draw();
             }
             for (auto it : models) {
                 it.second->draw();
@@ -106,34 +99,30 @@ public:
 
         //Label
         auto strSimCoin = std::to_string(simCoinCount); // transforme unsigned int en string
-        labelMap["simCoins"] = new Label(fontArial->getFont(),{0,165,255}, strSimCoin, 405, 0, 0.1, 40, 35);
+        models["simCoins"] = new Label(fontArial->getFont(),{0,165,255}, strSimCoin, 405, 0, 0.1, 40, 35);
 
         auto strPwr = std::to_string(powerCount);
-        labelMap["power"] = new Label(fontArial->getFont(), {255,191,0}, strPwr, 405, 30, 0.1 , 40, 35);
+        models["power"] = new Label(fontArial->getFont(), {255,191,0}, strPwr, 405, 30, 0.1 , 40, 35);
 
         auto strTime = std::to_string(timeLeft);
         strTime.push_back(' ');
         strTime.push_back('s');
-        labelMap["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1 , 40, 60);
+        models["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1 , 40, 60);
 
         auto strWind = std::to_string(windSpeed);
         strWind.push_back(' ');
         strWind.push_back('m');
         strWind.push_back('/');
         strWind.push_back('s');
-        labelMap["windSpeed"] = new Label(fontArial->getFont(), {255,255,255}, strWind, 555, 15, 0.1 , 80, 35);
+        models["windSpeed"] = new Label(fontArial->getFont(), {255,255,255}, strWind, 555, 15, 0.1 , 80, 35);
 
         auto strTemperature = std::to_string(temperatureC);
         strTemperature.push_back('c');
-        labelMap["temperature"] = new Label(fontArial->getFont(), {255,255,255}, strTemperature, 685, 5, 0.1 , 20, 20);
+        models["temperature"] = new Label(fontArial->getFont(), {255,255,255}, strTemperature, 685, 5, 0.1 , 20, 20);
 
         auto strSunPower = std::to_string(sunPower);
         strSunPower.push_back('%');
-        labelMap["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1 , 25, 20);
-    }
-
-    void loadStructureMenu(){
-
+        models["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1 , 25, 20);
     }
 
 
@@ -265,7 +254,7 @@ public:
     void updatePower(unsigned int power){
         auto s = std::to_string(power);
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["power"]->updateTextTexture(s, fontArial->getFont(),{255,191,0});
+        ((Label*)models["power"])->updateTextTexture(s, fontArial->getFont(),{255,191,0});
     }
 
     /// Met a jour le nombre de SIMcoins disponibles.
@@ -273,7 +262,7 @@ public:
     void updateSIMcoin(unsigned int SIMcoin){
         auto s = std::to_string(SIMcoin);
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["simCoins"]->updateTextTexture(s, fontArial->getFont(),{0,165,255});
+        ((Label*)models["simCoins"])->updateTextTexture(s, fontArial->getFont(),{0,165,255});
     }
 
     /// Met a jour la temperature.
@@ -282,7 +271,7 @@ public:
         auto s = std::to_string(temp);
         s.push_back('c');
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["temperature"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
+        ((Label*)models["temperature"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
     /// Met a jour la force du soleil
@@ -290,7 +279,7 @@ public:
     void updateSunPower(unsigned int sunPower){
         auto s = std::to_string(sunPower);
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["sun"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
+        ((Label*)models["sun"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
     /// Met a jour la vitesse du vent
@@ -302,7 +291,7 @@ public:
         s.push_back('/');
         s.push_back('s');
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["windSpeed"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
+        ((Label*)models["windSpeed"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
     /// Met a jour le temps
@@ -312,7 +301,7 @@ public:
         s.push_back(' ');
         s.push_back('s');
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
-        labelMap["time"]->updateTextTexture(s, fontArial->getFont(),{255,255,255});
+        ((Label*)models["time"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
     /// Active/Desactive l'affichage du InGameOverlay
@@ -328,24 +317,10 @@ public:
         for (auto it : logoList) {
             delete (it);
         }
-        for (auto it : labelMap) {
-            delete (it.second);
-        }
 
         delete actionQueue;
         delete camera;
 
-    }
-    void notify(SDL_Event* sdlEvent) {
-        if (isConstructingFondation){
-            switch (sdlEvent->type) {
-                case SDL_MOUSEBUTTONDOWN:
-                    if ((sdlEvent->button.button == SDL_BUTTON_LEFT))
-
-                    break;
-
-            }
-        }
     }
 };
 #endif
