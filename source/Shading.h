@@ -9,13 +9,15 @@
 #ifndef SHADING_H
 #define SHADING_H
 
-#include "includes.h"
+#include "Model.h"
 
 class Shading : public Model {
 private:
     double *colors;
 
-    void updateNormalColor() {
+    void updateNormalColor(unsigned int coordsCount1) {
+        unsigned int coordsCount = coordsCount1 / 3;
+
         for (int i = 0; i < coordsCount; ++i) {
             normals[i] = 0.0;
             normals[i * 3 + 1] = 1.0;
@@ -28,26 +30,28 @@ private:
     }
 
 public:
-    Shading(Model* obstruction, Vector sun) : Model(NULL, NULL, NULL, NULL, NULL, nullptr) {
+    Shading(double* obstruction, unsigned int vertexCount, Vector sun) : Model(0.0, 0.0, 0.0, -1, false, nullptr) {
         colors = nullptr;
-        this-> vertexCount = obstruction->vertexCount;
-        this-> normalCount = obstruction->normalCount;
+        this-> vertexCount = vertexCount;
+        this-> normalCount = vertexCount;
+        vertices = new double[vertexCount];
+        normals = new double[vertexCount];
         colors = new double[vertexCount * 4];
-        updateNormalColor();
-        updateShadingVertex(obstruction, sun);
+        updateNormalColor(vertexCount);
+        updateShadingVertex(obstruction, vertexCount, sun);
     }
 
     ~Shading() {
         delete[] colors;
     }
 
-    void updateShadingVertex(Model* obstruction, Vector sun) {
+    void updateShadingVertex(double* obstruction, unsigned int vertexCount, Vector sun) {
         Vector AB, B;
         double k = 0.0;
-        unsigned int coordsCount = obstruction->vertexCount / 3;
+        unsigned int coordsCount = vertexCount / 3;
 
         for (int i = 0; i < coordsCount; ++i) {
-            B = Vector(obstruction->vertices[i * 3], obstruction->vertices[i * 3 + 1], obstruction->vertices[i * 3 + 2]);
+            B = Vector(obstruction[i * 3], obstruction[i * 3 + 1], obstruction[i * 3 + 2]);
             AB = B - sun; // OB - OA = AB
             k = -(B.y)/(AB.y); // la quantité à multiplier à chacune des composantes pour atteindre notre plan y = 0
             vertices[i] = k * AB.x + B.x;

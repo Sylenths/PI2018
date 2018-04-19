@@ -56,6 +56,6 @@
 #include "Materiel.h"
 #include "Structure.h"
 #include "Fondation.h"
-
+#include "Shading.h"
 
 #endif
