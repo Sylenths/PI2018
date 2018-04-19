@@ -266,12 +266,8 @@ public:
                     sceneDisplay->subscribeAll(observables);
 
                 }
-            if (sceneDisplay == sceneMap["World"] && activeCamera) {
-                if(chrono.getElapsed(SECONDS) > 0.000001) {
+            if (sceneDisplay == sceneMap["World"] && activeCamera)
                     sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS));
-
-                }
-            }
 
             glContext->clear();
             sceneDisplay->draw();

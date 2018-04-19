@@ -17,7 +17,7 @@
 #include "Vector.h"
 
 #define CAMERA_MOVEMENTSPEED 300
-#define CAMERA_HROTATIONSPEED 3.
+#define CAMERA_HROTATIONSPEED 3.0
 #define CAMERA_VROTATIONSPEED 2.75
 
 #define CAMERA_VERTICAL_LIMIT 0.1
@@ -28,14 +28,13 @@
 #define CAMERA_MOVE_LEFT 3
 #define CAMERA_MOVE_RIGHT 4
 
-#define WINDOW_HEIGHT_F 720.
-#define WINDOW_WIDTH_F 1280.
+#define WINDOW_HEIGHT_F 720.0
+#define WINDOW_WIDTH_F 1280.0
 #define WINDOW_HEIGHT_I 720
 #define WINDOW_WIDTH_I 1280
 #define CAMERA_VROTLIMIT 89.75
-#define CAMERA_FOV_F 90.
-#define CAMERA_2FOV_F 180.
-
+#define CAMERA_FOV_F 90.0
+#define CAMERA_2FOV_F 180.0
 
 class Camera{
 private:
@@ -43,11 +42,10 @@ private:
     Vector position;
     Vector target;
     Vector up;
-	Vector front;
+    Vector front;
     bool mLeft, mRight, mFront, mBack;
 
 public:
-
     /// Calcule l'angle du regard par rapport à l'horizontale (intervalle ]90, -90[ ; 0 est horizontal et les négatifs sont vers le bas / les y-.)
     /// \return Angle.
     double getAngleFromHorizon(){
@@ -91,18 +89,14 @@ public:
 
     /// Mettre à jour la position de la caméra.
     /// \param deltaTime Temps écoulé.
-    void update(double deltaTime){
-        //move camera and target in viewing direction
-
+    void update(double deltaTime) {
+      //move camera and target in viewing direction
         if(mFront || mBack || mLeft || mRight) {
-            front = (target - position).normalize();
-            double moveAmplitude = CAMERA_MOVEMENTSPEED * deltaTime;
             Vector movement;
-
+            front = (target - position).normalize();
+            if (deltaTime < 0.000007) deltaTime = 0.000007;
+            movement = front * (CAMERA_MOVEMENTSPEED * deltaTime);
             if(mFront || mBack) {
-
-                movement = front * moveAmplitude;
-
                 if(mFront) {
                     position = position + movement;
                     target = target + movement;
@@ -120,7 +114,7 @@ public:
 	            }
             }
             if(mLeft || mRight) {
-                movement = (front % up) * moveAmplitude;
+                movement = (front % up) * (CAMERA_MOVEMENTSPEED * deltaTime);
 
                 if(mLeft) {
                     position = position - movement;
@@ -139,7 +133,6 @@ public:
 		    position = position - pull;
 		    target = target - pull;
 	    }
-
     }
 
 	/// Tourner la caméra.
