@@ -8,7 +8,9 @@
 
 #ifndef SOURCE_MODEL_H
 #define SOURCE_MODEL_H
+
 #include "Matrix.h"
+#include "ResourceManager.h"
 
 class Model : public Resource, public Observer<SDL_Event*> {
 protected:
