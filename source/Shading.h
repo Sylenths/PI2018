@@ -15,17 +15,35 @@ class Shading : public Model {
 private:
     double *colors;
 
+    void updateNormalColor() {
+        for (int i = 0; i < coordsCount; ++i) {
+            normals[i] = 0.0;
+            normals[i * 3 + 1] = 1.0;
+            normals[i * 3 + 2] = 0.0;
+            colors[i * 4] = 0; // red
+            colors[i * 4 + 1] = 0; // green
+            colors[i * 4 + 2] = 0; // blue
+            colors[i * 4 + 3] = 127; // alpha
+        }
+    }
+
 public:
     Shading(Model* obstruction, Vector sun) : Model(NULL, NULL, NULL, NULL, NULL, nullptr) {
         colors = nullptr;
-        updateShading(obstruction, sun);
+        this-> vertexCount = obstruction->vertexCount;
+        this-> normalCount = obstruction->normalCount;
+        colors = new double[vertexCount * 4];
+        updateNormalColor();
+        updateShadingVertex(obstruction, sun);
     }
 
-    void updateShading(Model* obstruction, Vector sun) {
+    ~Shading() {
+        delete[] colors;
+    }
+
+    void updateShadingVertex(Model* obstruction, Vector sun) {
         Vector AB, B;
         double k = 0.0;
-        this-> vertexCount = obstruction->vertexCount;
-        this ->normalCount = obstruction->normalCount;
         unsigned int coordsCount = obstruction->vertexCount / 3;
 
         for (int i = 0; i < coordsCount; ++i) {
@@ -35,10 +53,6 @@ public:
             vertices[i] = k * AB.x + B.x;
             vertices[i * 3 + 1] = 0.0;
             vertices[i * 3 + 2] = k * AB.z + B.z;
-            normals[i] = 0.0;
-            normals[i * 3 + 1] = 1.0;
-            normals[i * 3 + 2] = 0.0;
-
         }
     }
 

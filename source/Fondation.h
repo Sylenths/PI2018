@@ -21,7 +21,6 @@ public:
         north = south = east = west = nullptr;
     }
 
-
     Fondation* getNorth(){
         return north;
     }

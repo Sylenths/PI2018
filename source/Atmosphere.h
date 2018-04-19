@@ -31,6 +31,10 @@ public:
         }
     }
 
+    ~Atmosphere() {
+        delete[] colors;
+    }
+
     void lighten (Chrono deltaTime) {
         for(int i = 3; i < vertexCount; i+= 4) {
             colors[i] -= 2.83 * pow(10, -6);
