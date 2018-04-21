@@ -7,12 +7,20 @@
 /// \bug Problemes non connus
 #ifndef SOURCE_INGAMEOVERLAY_H
 #define SOURCE_INGAMEOVERLAY_H
+#define STRUCTURE 1
+#define MACHINE 2
+#define WIRE 3
+#define INFO 4
+#define DELETEE 5
+
 #include "includes.h"
 #include <queue>
 #include "Menu.h"
 #include "Action.h"
 #include "Build.h"
 
+#include "SideWindow.h"
+#include "DeleteWindow.h"
 class InGameOverlay : public Menu{
 private:
     bool activeHud;///< Bool qui determine si le hud est affiché
@@ -21,6 +29,8 @@ private:
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
     std::queue<Action*>* actionQueue;
+
+    SideWindow* activeSideWindow;
     //RotatingImage* windIndicator;
 
 public:
@@ -35,6 +45,7 @@ public:
     /// \param timeLeft Temps restant à la phase de construction.
     InGameOverlay(unsigned int powerCount = 0, unsigned int simCoinCount = 0, unsigned int temperatureC = 0, unsigned int sunPower = 0, Vector windSpeed = {0, 0, 0}, unsigned int timeLeft = 0) {
         activeHud = true;
+        activeSideWindow = nullptr;
         fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,ResourceManager::getInstance()->getTexture("grass"),false);
 
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
@@ -55,7 +66,6 @@ public:
         return &fondationGrid;
     };
 
-
     /// Affiche le InGameOverlay.
     void draw(){
         if(activeHud) {
@@ -70,6 +80,8 @@ public:
                 it.second->draw();
             }
         }
+        if (activeSideWindow)
+            activeSideWindow->draw();
     }
 
     /// Cree les models necessaires pour le InGameOverlay.
@@ -86,19 +98,19 @@ public:
         models["skipturn"]->onClick = [this]() {actionQueue->push(new Build(0.0,std::rand() % 50,-5.0)); };
 
         models["structure"] = new Button (0, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("structure"));
-        models["structure"]->onClick = [this]() { isConstructingFondation = !isConstructingFondation; };
+        models["structure"]->onClick = [this]() { activeStructureSideWindow(); };
 
         models["machine"] = new Button (90, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("machine"));
-        models["machine"]->onClick = [this]() {};
+        models["machine"]->onClick = [this]() { activeMachineSideWindow(); };
 
         models["cablage"] = new Button (180, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("wire"));
-        models["cablage"]->onClick = [this]() {};
+        models["cablage"]->onClick = [this]() { activeWireSideWindow(); };
 
         models["info"] = new Button (270, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("info"));
-        models["info"]->onClick = [this]() {};
+        models["info"]->onClick = [this]() { activeInfoSideWindow(); };
 
         models["delete"] = new Button (360, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("delete"));
-        models["delete"]->onClick = [this]() {};
+        models["delete"]->onClick = [this]() { activeDeleteSideWindow(); };
 
 
         //Image2D
@@ -316,6 +328,69 @@ public:
         activeHud = !activeHud;
     }
 
+
+
+    void activeStructureSideWindow(){
+        if (activeSideWindow){
+            activeSideWindow->deleteTexture();
+            unsigned  int windowType = activeSideWindow->getWindowType();
+            activeSideWindow = nullptr;
+
+            if (windowType == STRUCTURE)
+                return;
+        }
+        // TODO: Code Structure mode
+
+    }
+    void activeMachineSideWindow(){
+        if (activeSideWindow){
+            activeSideWindow->deleteTexture();
+            unsigned  int windowType = activeSideWindow->getWindowType();
+            activeSideWindow = nullptr;
+
+            if (windowType == MACHINE)
+                return;
+        }
+        // TODO: Code delete mode
+    }
+    void activeWireSideWindow(){
+        if (activeSideWindow){
+            activeSideWindow->deleteTexture();
+            unsigned  int windowType = activeSideWindow->getWindowType();
+            activeSideWindow = nullptr;
+
+            if (windowType == WIRE)
+                return;
+
+        }
+        // TODO: Code Wire mode
+    }
+    void activeInfoSideWindow(){
+        if (activeSideWindow){
+            activeSideWindow->deleteTexture();
+            unsigned  int windowType = activeSideWindow->getWindowType();
+            activeSideWindow = nullptr;
+
+            if (windowType == INFO)
+                return;
+        }
+        // TODO: Code Info mode
+
+    }
+    void activeDeleteSideWindow(){
+        if (activeSideWindow){
+            activeSideWindow->deleteTexture();
+            unsigned  int windowType = activeSideWindow->getWindowType();
+            activeSideWindow = nullptr;
+
+            if (windowType == DELETEE)
+                return;
+        }
+
+        activeSideWindow = new DeleteWindow();
+        // TODO: Code delete mode
+    }
+
     /// Destructeur.
     ~InGameOverlay(){
         for (auto it : alertsList) {
@@ -324,6 +399,8 @@ public:
         for (auto it : logoList) {
             delete (it);
         }
+        if (activeSideWindow)
+            activeSideWindow->deleteTexture();
 
         delete actionQueue;
         delete camera;
