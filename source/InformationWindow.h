@@ -7,7 +7,7 @@
 /// \bug Aucun
 #ifndef INFORMATIONWINDOW_H
 #define INFORMATIONWINDOW_H
-class InformationWindow{
+class InformationWindow : public SideWindow{
 
 private:
 

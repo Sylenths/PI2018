@@ -10,7 +10,7 @@
 
 #include "includes.h"
 
-class StructureWindow{
+class StructureWindow : public SideWindow{
 
 private:
 
