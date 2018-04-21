@@ -65,7 +65,7 @@ public:
         getTextureID("../../images/struct_btn.png", "structure");
         getTextureID("../../images/topbar_tex.png", "topBar");
         getTextureID("../../images/wire_btn.png", "wire");
-        getTextureID("../../images/wire_btn.png", "wire")
+        getTextureID("../../images/Delete.png", "deletewindow");
 
         //Textures world
         getTextureID("../../images/grass.png", "grass");
