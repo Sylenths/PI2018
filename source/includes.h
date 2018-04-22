@@ -60,6 +60,7 @@
 #include "ProjetFinal.h"
 #include "Camera.h"
 #include "Action.h"
+#include "PowerManager.h"
 
 #include "Shading.h"
 
