@@ -1,11 +1,9 @@
 #ifndef POWERNODE_H
 #define POWERNODE_H
 
-
-class PowerNode
-{
+class PowerNode {
 public:
     PowerNode();
 };
 
-#endif // POWERNODE_H
+#endif

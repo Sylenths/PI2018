@@ -1,11 +1,10 @@
 #ifndef POWERWIRE_H
 #define POWERWIRE_H
+#include "PowerNode.h"
 
-
-class PowerWire
-{
+class PowerWire {
 public:
     PowerWire();
 };
 
-#endif // POWERWIRE_H
+#endif

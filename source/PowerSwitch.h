@@ -1,11 +1,10 @@
 #ifndef POWERSWITCH_H
 #define POWERSWITCH_H
+#include "PowerNode.h"
 
-
-class PowerSwitch
-{
+class PowerSwitch : public PowerNode {
 public:
     PowerSwitch();
 };
 
-#endif // POWERSWITCH_H
+#endif

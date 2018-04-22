@@ -1,11 +1,10 @@
 #ifndef POWERAPPAREIL_H
 #define POWERAPPAREIL_H
+#include "PowerNode.h"
 
-
-class PowerAppareil
-{
+class PowerAppareil : public PowerNode {
 public:
     PowerAppareil();
 };
 
-#endif // POWERAPPAREIL_H
+#endif

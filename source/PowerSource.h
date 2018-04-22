@@ -1,11 +1,10 @@
 #ifndef POWERSOURCE_H
 #define POWERSOURCE_H
+#include "PowerNode.h"
 
-
-class PowerSource
-{
+class PowerSource : public PowerNode {
 public:
     PowerSource();
 };
 
-#endif // POWERSOURCE_H
+#endif
