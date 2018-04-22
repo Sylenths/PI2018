@@ -340,8 +340,9 @@ public:
                 return;
         }
         // TODO: Code Structure mode
-
+        isConstructingFondation = !isConstructingFondation;
     }
+
     void activeMachineSideWindow(){
         if (activeSideWindow){
             activeSideWindow->deleteTexture();
