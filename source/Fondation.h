@@ -18,7 +18,7 @@ public:
     Fondation* east;
     Fondation* west;
 
-    Fondation(double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = "../../models/obj/fondation.obj") : Structure( posx, posy, posz, textureID, rotHitBox, objFile){
+    Fondation(double posx, double posy, double posz, bool rotHitBox,  unsigned int textureID = ResourceManager::getInstance()->getTexture("FondMaison"), const char* objFile = "../../models/obj/fondation.obj") : Structure( posx, posy, posz, textureID, rotHitBox, objFile){
         north = south = east = west = nullptr;
         centerPoint = new Vector(posx,posy,posz);
     }

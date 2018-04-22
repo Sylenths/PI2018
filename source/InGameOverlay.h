@@ -46,7 +46,7 @@ public:
     InGameOverlay(unsigned int powerCount = 0, unsigned int simCoinCount = 0, unsigned int temperatureC = 0, unsigned int sunPower = 0, Vector windSpeed = {0, 0, 0}, unsigned int timeLeft = 0) {
         activeHud = true;
         activeSideWindow = nullptr;
-        fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,ResourceManager::getInstance()->getTexture("grass"),false);
+        fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,false);
 
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
         actionQueue = new std::queue<Action*>;
@@ -95,7 +95,7 @@ public:
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
 
         models["skipturn"] = new Button (0, 0, 0.1, 175, 60,ResourceManager::getInstance()->getTexture("skipTurn"));
-        models["skipturn"]->onClick = [this]() {actionQueue->push(new Build(0.0,std::rand() % 50,-5.0)); };
+        models["skipturn"]->onClick = [this]() {isConstructingFondation = !isConstructingFondation; };
 
         models["structure"] = new Button (0, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("structure"));
         models["structure"]->onClick = [this]() { activeStructureSideWindow(); };
