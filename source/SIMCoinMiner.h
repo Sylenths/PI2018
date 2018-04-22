@@ -1,11 +1,10 @@
 #ifndef SIMCOINMINER_H
 #define SIMCOINMINER_H
+#include "PowerAppareil.h"
 
-
-class SIMCoinMiner
-{
+class SIMCoinMiner : public PowerAppareil {
 public:
     SIMCoinMiner();
 };
 
-#endif // SIMCOINMINER_H
+#endif

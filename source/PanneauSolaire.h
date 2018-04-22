@@ -1,11 +1,10 @@
 #ifndef PANNEAUSOLAIRE_H
 #define PANNEAUSOLAIRE_H
+#include "PowerSource.h"
 
-
-class PanneauSolaire
-{
+class PanneauSolaire : public PowerSource {
 public:
     PanneauSolaire();
 };
 
-#endif // PANNEAUSOLAIRE_H
+#endif

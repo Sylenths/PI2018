@@ -3,10 +3,8 @@
 #include "PowerSource.h"
 #include "PowerAppareil.h"
 
-class Batterie : public PowerSource public PowerAppareil {
+class Batterie : public PowerSource, public PowerAppareil {
 public:
-
-    sdafdsa
     Batterie();
 };
 
