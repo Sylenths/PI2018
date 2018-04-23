@@ -52,12 +52,12 @@ public:
         floor =  new Model(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("grass"), false, "../../models/obj/grass.obj");
         addModel(floor);
 
-        // Génération d'une forêt de 250 arbres...
-        for (int i = 0; i < 250; i++) {
-          double x = rand() % 400 - 200, z = rand() % 400 - 200;
+        // Génération d'une forêt de 300 arbres...
+        for (int i = 0; i < 300; i++) {
+          double x = rand() % 800 - 400, z = rand() % 800 - 400;
           while (std::sqrt(x * x + z * z) < 50) {
-            x = rand() % 400 - 200;
-            z = rand() % 400 - 200;
+            x = rand() % 800 - 400;
+            z = rand() % 800 - 400;
           }
 
           switch(rand() % 8) {
