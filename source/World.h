@@ -55,7 +55,7 @@ public:
         addModel(new Model(0.0, 0.0, 2.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj"));
         addModel(new Model(0.0, 0.0, -2.0, ResourceManager::getInstance()->getTexture("human"), true, "../../models/obj/human.obj"));
 
-        worldLight = new Light(0.0, 25.0, 0.0, 0.0);
+        worldLight = new Light(50.0, 225.0, 50.0, 1.0);
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
 
         chrono.restart();
@@ -89,19 +89,16 @@ public:
         GLContext::setFrustum(IS3D);
         glDepthFunc(GL_LEQUAL);
 
-
-        //sky.update(chrono);
-        //if(sky.getTime())
+        sky.update(chrono);
+        if(sky.getTime())
             atmosphere.darken(chrono);
-        //else
-            //atmosphere.lighten(chrono);
+        else
+            atmosphere.lighten(chrono);
 
         hud->getCamera()->applyViewMatrix();
         worldLight->applyLightPosition();
         for(auto it = modelList.begin(); it != modelList.end(); it++)
             (*it)->draw();
-       // for(auto it = hud->getFondations()->begin(); it != hud->getFondations()->end(); it++)
-            //(*it).second->draw();
         GLContext::setFrustum(IS2D);
         glDepthFunc(GL_LESS);
         hudLight->applyLightPosition();
