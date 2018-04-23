@@ -66,6 +66,13 @@ public:
         getTextureID("../../images/topbar_tex.png", "topBar");
         getTextureID("../../images/wire_btn.png", "wire");
         getTextureID("../../images/Delete.png", "deletewindow");
+        getTextureID("../../images/SideMenuStructure.png", "StructureWindow");
+        getTextureID("../../images/ChoixNonAppuyer.png", "ChoixNonAppuyer");
+        getTextureID("../../images/ChoixAppuyer.png", "ChoixAppuyer");
+        getTextureID("../../images/SideMenuMachine.png","MachineWindow");
+        getTextureID("../../images/SideMenuInformation.png","InformationWindow");
+        getTextureID("../../images/SideMenuCable.png","CableWindow");
+
 
 
         //Textures world
