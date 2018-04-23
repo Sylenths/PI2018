@@ -408,10 +408,7 @@ public:
         if ((name == "") && (ID == 0))
             textureToDraw = textureIDs["default"];
         else
-            if (name != "")
-                if (ID)
-                    textureToDraw = textureIDs[name];
-                else
+            if ((name != "") && (ID != 0))
                     textureIDs[name] = textureToDraw = ID;
     }
 

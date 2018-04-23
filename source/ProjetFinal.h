@@ -77,6 +77,7 @@ public:
         getTextureID("../../images/skysphere_day.png", "daysky");
         getTextureID("../../images/skysphere_night.png", "nightsky");
         getTextureID("../../images/grass.png", "grass");
+        getTextureID("../../images/fondation.png", "fondation");
         getTextureID("../../images/human.png","human");
         getTextureID("../../images/clouds.png", "clouds");
         getTextureID("../../images/simcoinminer.png", "simcoinminer");
@@ -314,35 +315,33 @@ public:
                         int z = round(intersection.z / 2.0);
                         std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->hud->getFondations();
                         if(!(*fondationGrid)[std::make_pair(x,z)]) {
-
+                            Fondation* fondation = new Fondation((double)x * 2.0, 0.0, (double)z * 2.0, false);
                             if ((*fondationGrid)[std::make_pair(x - 1, z)]){
-                                (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x *2.0,0.0,(double)z * 2.0,false);
+                                if(!(*fondationGrid)[std::make_pair(x,z)])
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
                                 (*fondationGrid)[std::make_pair(x,z)]->west = (*fondationGrid)[std::make_pair(x - 1, z)];
                                 (*fondationGrid)[std::make_pair(x - 1, z)]->east = (*fondationGrid)[std::make_pair(x,z)];
                             }
 
                             if((*fondationGrid)[std::make_pair(x + 1, z)]){
                                 if(!(*fondationGrid)[std::make_pair(x,z)])
-                                    (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x * 2.0,0.0,(double)z * 2.0,false);
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
                                 (*fondationGrid)[std::make_pair(x,z)]->east = (*fondationGrid)[std::make_pair(x + 1, z)];
                                 (*fondationGrid)[std::make_pair(x + 1, z)]->west = (*fondationGrid)[std::make_pair(x,z)];
-
                             }
 
                             if((*fondationGrid)[std::make_pair(x, z - 1)]){
                                 if(!(*fondationGrid)[std::make_pair(x,z)])
-                                    (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x * 2.0,0.0,(double)z * 2.0,false);
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
                                 (*fondationGrid)[std::make_pair(x,z)]->north = (*fondationGrid)[std::make_pair(x , z - 1)];
                                 (*fondationGrid)[std::make_pair(x , z - 1)]->south = (*fondationGrid)[std::make_pair(x,z)];
-
                             }
 
                             if((*fondationGrid)[std::make_pair(x, z + 1)]){
                                 if(!(*fondationGrid)[std::make_pair(x,z)])
-                                    (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x * 2.0,0.0,(double)z * 2.0,false);
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
                                 (*fondationGrid)[std::make_pair(x,z)]->south = (*fondationGrid)[std::make_pair(x , z + 1)];
                                 (*fondationGrid)[std::make_pair(x , z + 1)]->north = (*fondationGrid)[std::make_pair(x,z)];
-
                             }
 
                             if((*fondationGrid)[std::make_pair(x,z)])

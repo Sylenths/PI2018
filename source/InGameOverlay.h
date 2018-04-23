@@ -61,7 +61,7 @@ public:
         sideWindowMap["Machine"] = new MachineWindow();
         sideWindowMap["Information"] = new InformationWindow();
         sideWindow = sideWindowMap["Nothing"];
-        camera = new Camera({ 0.0, 3.5, 0.0 }, { 0.0, 3.5, -1.0 }, { 0.0, 1.0, 0.0 });
+        camera = new Camera({ 10.0, 3.5, 10.0 }, { 0.0, 3.5, 0.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
     }
 
