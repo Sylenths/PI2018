@@ -63,7 +63,6 @@ public:
         sideWindow = sideWindowMap["Nothing"];
         camera = new Camera({ 0.0, 3.5, 0.0 }, { 0.0, 3.5, -1.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
-
     }
 
     std::queue<Action*>* getActions(){
