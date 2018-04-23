@@ -48,6 +48,8 @@ public:
 	    #endif
             SDL_FreeSurface(surface);
 
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+              glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
@@ -77,6 +79,16 @@ public:
         getTextureID("../../images/skysphere_day.png", "daysky");
         getTextureID("../../images/skysphere_night.png", "nightsky");
         getTextureID("../../images/grass.png", "grass");
+
+        getTextureID("../../images/trees/bambou.png", "bambou");
+        getTextureID("../../images/trees/cerisier.png", "cerisier");
+        getTextureID("../../images/trees/fraksinus.png", "fraksinus");
+        getTextureID("../../images/trees/gongko.png", "gongko");
+        getTextureID("../../images/trees/mapple.png", "mapple");
+        getTextureID("../../images/trees/oak.png", "oak");
+        getTextureID("../../images/trees/pin.png", "pin");
+        getTextureID("../../images/trees/sequoia.png", "sequoia");
+
         getTextureID("../../images/fondation.png", "fondation");
         getTextureID("../../images/wall.png", "wall");
         getTextureID("../../images/human.png","human");
@@ -162,10 +174,16 @@ public:
     /// Représente la boucle de jeu.
     void run(std::string filePath) {
         glEnable(GL_DEPTH_TEST);
+        glDepthMask(GL_TRUE);
 
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_BLEND);
+        glEnable(GL_ALPHA_TEST);
+        glAlphaFunc(GL_GREATER, 0.4);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glTexEnvf(GL_TEXTURE_2D, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+        glCullFace(GL_FRONT_AND_BACK);
+
         glEnable(GL_POINT_SMOOTH);
 
         glEnable(GL_LIGHTING);
