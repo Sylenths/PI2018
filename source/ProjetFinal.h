@@ -73,17 +73,13 @@ public:
         getTextureID("../../images/SideMenuInformation.png","InformationWindow");
         getTextureID("../../images/SideMenuCable.png","CableWindow");
 
-
-
         //Textures world
         getTextureID("../../images/grass.png", "grass");
         getTextureID("../../images/skysphere_day.png", "daysky");
         getTextureID("../../images/skysphere_night.png", "nightsky");
-        getTextureID("../../images/fan.png", "fan");
         getTextureID("../../images/human.png","human");
-	    getTextureID("../../images/clouds.png", "clouds");
-	    getTextureID("../../images/simcoinminer.png", "simcoinminer");
-
+        getTextureID("../../images/clouds.png", "clouds");
+        getTextureID("../../images/simcoinminer.png", "simcoinminer");
 
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
@@ -308,7 +304,7 @@ public:
 
                 Vector front = world->getCamera()->getFront();
                 Vector pos = world->getCamera()->getPos();
-                Vector nFloor = {0, 1, 0};
+                Vector nFloor = {0.0, 2.5, 0.0};
                 if (front * nFloor) {
                     double ratio = -(pos.y / front.y);
                     if (ratio > 0) {

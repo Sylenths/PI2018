@@ -52,15 +52,11 @@ public:
         floor =  new Model(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("grass"), false, "../../models/obj/grass.obj");
         addModel(floor);
         addModel(new Sky(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("daysky"),false, "../../models/obj/skysphere.obj"));
-        addModel(new Model(0.0, 1.0, -1.0, ResourceManager::getInstance()->getTexture("fan"), true, "../../models/obj/fan.obj"));
-	    addModel(new Model(0.0, 0.0, 2.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj"));
-	    addModel(new Model(0.0, 0.0, -2.0, ResourceManager::getInstance()->getTexture("human"), true, "../../models/obj/human.obj"));
-
+        addModel(new Model(0.0, 0.0, 2.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj"));
+        addModel(new Model(0.0, 0.0, -2.0, ResourceManager::getInstance()->getTexture("human"), true, "../../models/obj/human.obj"));
 
         worldLight = new Light(0.0, 25.0, 0.0, 0.0);
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
-
-
 
         chrono.restart();
     }
@@ -94,11 +90,11 @@ public:
         glDepthFunc(GL_LEQUAL);
 
 
-        sky.update(chrono);
-        if(sky.getTime())
+        //sky.update(chrono);
+        //if(sky.getTime())
             atmosphere.darken(chrono);
-        else
-            atmosphere.lighten(chrono);
+        //else
+            //atmosphere.lighten(chrono);
 
         hud->getCamera()->applyViewMatrix();
         worldLight->applyLightPosition();
