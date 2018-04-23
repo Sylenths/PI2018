@@ -78,6 +78,7 @@ public:
         getTextureID("../../images/skysphere_night.png", "nightsky");
         getTextureID("../../images/grass.png", "grass");
         getTextureID("../../images/fondation.png", "fondation");
+        getTextureID("../../images/wall.png", "wall");
         getTextureID("../../images/human.png","human");
         getTextureID("../../images/clouds.png", "clouds");
         getTextureID("../../images/simcoinminer.png", "simcoinminer");
@@ -169,6 +170,8 @@ public:
 
         glEnable(GL_LIGHTING);
         glEnable(GL_LIGHT0);
+        float ambiantLight[] = { 0.9, 0.9, 0.9 };
+        glLightfv(GL_LIGHT0, GL_AMBIENT, ambiantLight);
 
         SDL_GL_SetSwapInterval(0);
 
@@ -526,11 +529,11 @@ public:
                 ((World *) sceneDisplay)->addModel(
                         new Model(/*((BuildWall *) hud->getActions()->front())->getHeight()*/
                                 3.0, /*((BuildWall *) hud->getActions()->front())->getMateriel()->getTextureID()*/
-                                ResourceManager::getInstance()->getTexture("FondMaison"), &temp, &corner.front()));
+                                ResourceManager::getInstance()->getTexture("wall"), &temp, &corner.front()));
             }
             ((World *) sceneDisplay)->addModel(new Model(/*((BuildWall *) hud->getActions()->front())->getHeight()*/
                     3.0, /*((BuildWall *) hud->getActions()->front())->getMateriel()->getTextureID()*/
-                    ResourceManager::getInstance()->getTexture("FondMaison"), &corner.front(), &first));
+                    ResourceManager::getInstance()->getTexture("wall"), &corner.front(), &first));
 
         }
     }
