@@ -57,7 +57,7 @@ public:
 	    addModel(new Model(0.0, 0.0, -2.0, ResourceManager::getInstance()->getTexture("human"), true, "../../models/obj/human.obj"));
 
 
-        worldLight = new Light(0.0, 25.0, 0.0, 4.0);
+        worldLight = new Light(0.0, 25.0, 0.0, 0.0);
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
 
 
@@ -79,151 +79,6 @@ public:
                             double z = ((Build*)hud->getActions()->front())->z;
                             addModel(new Model(x,y,z,false,ResourceManager::getInstance()->getTexture("human"),"../../models/obj/human.obj"));
                             delete hud->getActions()->front();*/
-                    switch(/*((Build*)hud->getActions()->front())->buildType*/ test) {
-                        case 2:
-                            test = 0;
-                            Fondation *start = ((BuildWall *) hud->getActions()->front())->getFondation();
-                            while (start->north) {
-                                start = start->north;
-                            }
-                            Fondation *previousPosition = start;
-                            Fondation *currentPosition;
-                            Fondation *switchVariable;
-                            std::list<Vector> corner;
-
-                            if (previousPosition->east) {
-                                currentPosition = previousPosition->east;
-                            } else {
-                                corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, -1.0});
-                                if (previousPosition->west) {
-                                    currentPosition = previousPosition->west;
-                                } else {
-                                    corner.push_back((*previousPosition->centerPoint) + (Vector){-1.0, 0.0, -1.0});
-                                    if (previousPosition->south) {
-                                        currentPosition = previousPosition->south;
-                                    } else {
-                                        currentPosition = previousPosition;
-                                        corner.push_back((*previousPosition->centerPoint) + (Vector){-1.0, 0.0, 1.0});
-                                        corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, 1.0});
-                                    }
-                                }
-                            }
-
-                            while (start != currentPosition) {
-
-                                ///deplace vers le nord et regarde a l'oest
-                                if (currentPosition == previousPosition->north) {
-                                    if (!currentPosition->west) {
-                                        if (currentPosition->north) {
-                                            previousPosition = currentPosition;
-                                            currentPosition = currentPosition->north;
-                                        } else {
-                                            if (currentPosition->east) {
-                                                previousPosition = currentPosition;
-                                                currentPosition = currentPosition->east;
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, 1.0});
-                                            } else {
-                                                previousPosition = currentPosition;
-                                                currentPosition = currentPosition->south;
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){-1.0, 0.0, -1.0});
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, -1.0});
-                                            }
-                                        }
-                                    } else {
-                                        previousPosition = currentPosition;
-                                        currentPosition = currentPosition->west;
-                                        corner.push_back((*previousPosition->centerPoint) + (Vector){-1.0, 0.0, 1.0});
-                                    }
-                                }
-
-                                ///deplace vers l'est et regarde a le nord
-                                if (currentPosition == previousPosition->east) {
-                                    if (!currentPosition->north) {
-                                        if (currentPosition->east) {
-                                            previousPosition = currentPosition;
-                                            currentPosition = currentPosition->east;
-                                        } else {
-                                            if (currentPosition->south) {
-                                                previousPosition = currentPosition;
-                                                currentPosition = currentPosition->south;
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){-1.0, 0.0, 1.0});
-                                            } else {
-                                                previousPosition = currentPosition;
-                                                currentPosition = currentPosition->west;
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, -1.0});
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, 1.0});
-                                            }
-                                        }
-                                    } else {
-                                        previousPosition = currentPosition;
-                                        currentPosition = currentPosition->north;
-                                        corner.push_back((*previousPosition->centerPoint) + (Vector){-1.0, 0.0, 1.0});
-                                    }
-
-                                }
-
-                                ///deplace vers le sud et regarde a l'est
-                                if (currentPosition == previousPosition->south) {
-                                    if (!currentPosition->east) {
-                                        if (currentPosition->south) {
-                                            previousPosition = currentPosition;
-                                            currentPosition = currentPosition->south;
-                                        } else {
-                                            if (currentPosition->west) {
-                                                previousPosition = currentPosition;
-                                                currentPosition = currentPosition->west;
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){-1.0, 0.0, -1.0});
-                                            } else {
-                                                previousPosition = currentPosition;
-                                                currentPosition = currentPosition->north;
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, 1.0});
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){-1.0, 0.0, 1.0});
-                                            }
-                                        }
-                                    } else {
-                                        previousPosition = currentPosition;
-                                        currentPosition = currentPosition->east;
-                                        corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, -1.0});
-                                    }
-
-                                }
-
-                                ///deplace vers l'oest et regarde a le sud
-                                if (currentPosition == previousPosition->west) {
-
-                                    if (!currentPosition->south) {
-                                        if (currentPosition->west) {
-                                            previousPosition = currentPosition;
-                                            currentPosition = currentPosition->west;
-                                        } else {
-                                            if (currentPosition->north) {
-                                                previousPosition = currentPosition;
-                                                currentPosition = currentPosition->north;
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, -1.0});
-                                            } else {
-                                                previousPosition = currentPosition;
-                                                currentPosition = currentPosition->east;
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, -1.0});
-                                                corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, 1.0});
-                                            }
-                                        }
-                                    } else {
-                                        previousPosition = currentPosition;
-                                        currentPosition = currentPosition->south;
-                                        corner.push_back((*previousPosition->centerPoint) + (Vector){1.0, 0.0, 1.0});
-                                    }
-
-                                }
-
-                            }
-                            for (int i = 0; i < corner.size(); ++i) {
-                                Vector temp = corner.front();
-                                corner.pop_front();
-                                addModel(new Model(/*((BuildWall *) hud->getActions()->front())->getHeight()*/ 1., /*((BuildWall *) hud->getActions()->front())->getMateriel()->getTextureID()*/ 5, &temp, &corner.front()));
-                            }
-
-                            break;
-                    }
 
 
                     hud->getActions()->pop();
@@ -236,6 +91,7 @@ public:
     void draw() {
         checkForActions();
         GLContext::setFrustum(IS3D);
+        glDepthFunc(GL_LEQUAL);
 
 
         sky.update(chrono);
@@ -251,6 +107,7 @@ public:
        // for(auto it = hud->getFondations()->begin(); it != hud->getFondations()->end(); it++)
             //(*it).second->draw();
         GLContext::setFrustum(IS2D);
+        glDepthFunc(GL_LESS);
         hudLight->applyLightPosition();
         hud->draw();
 
