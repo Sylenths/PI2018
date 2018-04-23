@@ -41,7 +41,7 @@ double radtodeg(double rad)
 /// \param c Case [2, 1] de la matrice.
 /// \param d Case [2, 2] de la matrice.
 /// \return Déterminant de la matrice 2 x 2.
-double det22(double& a, double& b, double& c, double& d) {
+double det22(double& a, double& c, double& b, double& d) {
     return a * d - b * c;
 }
 
