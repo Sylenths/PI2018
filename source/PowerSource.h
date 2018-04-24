@@ -3,8 +3,12 @@
 #include "PowerNode.h"
 
 class PowerSource : public PowerNode {
+private:
+    double producedCurrent;
 public:
-    PowerSource();
+    PowerSource() {
+
+    }
 };
 
 #endif
