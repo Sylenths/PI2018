@@ -296,7 +296,7 @@ public:
                 controller->resetMouseMotion();
             }
 
-                if (sceneDisplay != sceneMap[Scene::getActiveScene()] && Scene::getActiveScene() != "Quit") {
+                if ((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()])) {
                     sceneDisplay->unsubscribeAll(observables);
                     sceneDisplay = sceneMap[Scene::getActiveScene()];
                     sceneDisplay->subscribeAll(observables);
@@ -573,4 +573,5 @@ public:
         return glContext;
     }
 };
+
 #endif

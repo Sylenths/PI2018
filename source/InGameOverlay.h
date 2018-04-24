@@ -382,7 +382,7 @@ public:
     }
 
 
-    /*void sideWndowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+    void sideWndowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
         if(sideWindow != sideWindowMap["Nothing"])
             sideWindow->subscribeAll(observables);
     }
@@ -391,7 +391,7 @@ public:
         if(sideWindow != sideWindowMap["Nothing"])
             sideWindow->unsubscribeAll(observables);
     }
-     */
+
     /// Destructeur.
     ~InGameOverlay(){
         for (auto it : alertsList) {
