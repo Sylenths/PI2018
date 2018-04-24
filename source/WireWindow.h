@@ -12,6 +12,15 @@ public:
 
     WireWindow(){
         modelsSideWindow["SideMenuWire"] = new Image(920, 0, 0, 360, 720, ResourceManager::getInstance()->getTexture("CableWindow"));
+
+        //type matériaux
+        modelsSideWindow["1CuivreIcon"] = new CheckBox (1000, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1CuivreIcon"]->onClick = [this] () {};
+        modelsSideWindow["1CuivreLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Cuivre", 1000, 150, 0, 50, 20);
+
+        modelsSideWindow["1ArgentIcon"] = new CheckBox (1160, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1ArgentIcon"]->onClick = [this] () {};
+        modelsSideWindow["1ArgentLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Argent", 1160, 150, 0, 50, 20);
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){

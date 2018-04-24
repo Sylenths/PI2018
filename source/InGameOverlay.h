@@ -107,19 +107,19 @@ public:
         models["skipturn"]->onClick = [this]() {isConstructingFondation = !isConstructingFondation; };
 
         models["structure"] = new Button (0, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("structure"));
-        //models["structure"]->onClick = [this]() { activeStructureSideWindow(); };
+        models["structure"]->onClick = [this]() { activeStructureSideWindow(); };
 
         models["machine"] = new Button (90, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("machine"));
-        //models["machine"]->onClick = [this]() { activeMachineSideWindow(); };
+        models["machine"]->onClick = [this]() { activeMachineSideWindow(); };
 
         models["cablage"] = new Button (180, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("wire"));
-        //models["cablage"]->onClick = [this]() { activeWireSideWindow(); };
+        models["cablage"]->onClick = [this]() { activeWireSideWindow(); };
 
         models["info"] = new Button (270, 630, 0.1, 90, 90,ResourceManager::getInstance()->getTexture("info"));
-        //models["info"]->onClick = [this]() { activeInfoSideWindow(); };
+        models["info"]->onClick = [this]() { activeInfoSideWindow(); };
 
         models["delete"] = new Button (360, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("delete"));
-        //models["delete"]->onClick = [this]() { activeDeleteSideWindow(); };
+        models["delete"]->onClick = [this]() { activeDeleteSideWindow(); };
 
 
         //Image2D
@@ -336,7 +336,7 @@ public:
     void toggleHud(){
         activeHud = !activeHud;
     }
-/*
+
     void activeStructureSideWindow(){
         if(sideWindow != sideWindowMap["Structure"]){
             sideWindow = sideWindowMap["Structure"];
