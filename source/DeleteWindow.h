@@ -11,23 +11,29 @@
 #include "SideWindow.h"
 #include "includes.h"
 class DeleteWindow : public SideWindow{
-
-private:
-    Image* logoDestruction;
-
 public:
 
     DeleteWindow(){
-        logoDestruction = new Image(700, 0, 0.1, 260, 60, ResourceManager::getInstance()->getTexture("deletewindow"));
-        windowType = 5;
+        modelsSideWindow["logoDestruction"] = new Image(700, 0, 0.1, 260, 60, ResourceManager::getInstance()->getTexture("deletewindow"));
     }
 
-    void draw(){
-        logoDestruction->draw();
+    void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
+
+        for (auto it : modelsSideWindow) {
+            observables[SDL_MOUSEBUTTONDOWN]->subscribe(it.second);
+            observables[SDL_MOUSEMOTION]->subscribe(it.second);
+        }
     }
 
-    void deleteTexture(){
-        delete(logoDestruction);
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+        for (auto it : modelsSideWindow) {
+            observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(it.second);
+            observables[SDL_MOUSEMOTION]->unsubscribe(it.second);
+        }
+
     }
+
 };
 #endif //DELETEWINDOW_H

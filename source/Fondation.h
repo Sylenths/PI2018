@@ -7,9 +7,6 @@
 #ifndef SOURCE_FONDATION_H
 #define SOURCE_FONDATION_H
 
-#include "includes.h"
-
-
 class Fondation : public Structure{
 public:
     Vector* centerPoint;
@@ -18,13 +15,9 @@ public:
     Fondation* east;
     Fondation* west;
 
-    Fondation(double posx, double posy, double posz, bool rotHitBox,  unsigned int textureID = ResourceManager::getInstance()->getTexture("FondMaison"), const char* objFile = "../../models/obj/fondation.obj") : Structure( posx, posy, posz, textureID, rotHitBox, objFile){
+    Fondation(double posx, double posy, double posz, bool rotHitBox,  unsigned int textureID = ResourceManager::getInstance()->getTexture("fondation"), const char* objFile = "../../models/obj/fondation.obj") : Structure( posx, posy, posz, textureID, rotHitBox, objFile){
         north = south = east = west = nullptr;
         centerPoint = new Vector(posx,posy,posz);
     }
-
-
-
-
 };
 #endif //SOURCE_FONDATION_H

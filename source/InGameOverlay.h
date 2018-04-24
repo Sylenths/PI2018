@@ -4,14 +4,10 @@
 /// \date 24 mars 2018
 /// \version 0.7
 /// \warning Manque la boussole (pour indiquer le sens du vent) et le compte a rebours. Les labels ne s'ajuste pas selon la grosseur du nombre.
-/// \bug Problemes non connus
+/// \bug Problemes avec le sideWindow , fonctionne à 90%
 #ifndef SOURCE_INGAMEOVERLAY_H
 #define SOURCE_INGAMEOVERLAY_H
-#define STRUCTURE 1
-#define MACHINE 2
-#define WIRE 3
-#define INFO 4
-#define DELETEE 5
+
 
 #include "includes.h"
 #include <queue>
@@ -21,6 +17,12 @@
 
 #include "SideWindow.h"
 #include "DeleteWindow.h"
+#include "StructureWindow.h"
+#include "ProjetFinal.h"
+#include "WireWindow.h"
+#include "MachineWindow.h"
+#include "InformationWindow.h"
+
 class InGameOverlay : public Menu{
 private:
     bool activeHud;///< Bool qui determine si le hud est affiché
@@ -28,9 +30,9 @@ private:
     std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
-    std::queue<Action*>* actionQueue;
-
-    SideWindow* activeSideWindow;
+    std::queue<Action*>* actionQueue;///< File contenant les actions a faire (Build, Delete, etc)
+    SideWindow* sideWindow; ///< Pointe la fenêtre de coté active
+    std::map<std::string, SideWindow*> sideWindowMap; ///< Carte de sideWindow
     //RotatingImage* windIndicator;
 
 public:
@@ -39,21 +41,24 @@ public:
     /// Constructeur.
     /// \param powerCount Nombre d'électricité disponible.
     /// \param simCoinCount Nombre de SIMcoins disponible
-    /// \param temperatureC La temperature en celsius
+    /// \param temperatureC La température en celsius
     /// \param sunPower Puissance du soleil en pourcentage
     /// \param windSpeed Force du vent en pourcentage
     /// \param timeLeft Temps restant à la phase de construction.
     InGameOverlay(unsigned int powerCount = 0, unsigned int simCoinCount = 0, unsigned int temperatureC = 0, unsigned int sunPower = 0, Vector windSpeed = {0, 0, 0}, unsigned int timeLeft = 0) {
         activeHud = true;
-        activeSideWindow = nullptr;
         fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,false);
-
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
         actionQueue = new std::queue<Action*>;
         isConstructingFondation = false;
-        camera = new Camera({ 0.0, 3.5, 0.0 }, { 0.0, 3.5, -1.0 }, { 0.0, 1.0, 0.0 });
+        sideWindowMap["Delete"] = new DeleteWindow();
+        sideWindowMap["Structure"] = new StructureWindow();
+        sideWindowMap["Wire"] = new WireWindow();
+        sideWindowMap["Machine"] = new MachineWindow();
+        sideWindowMap["Information"] = new InformationWindow();
+        sideWindow = sideWindowMap["Nothing"];
+        camera = new Camera({ 10.0, 3.5, 10.0 }, { 0.0, 3.5, 0.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
-
     }
 
     std::queue<Action*>* getActions(){
@@ -79,9 +84,9 @@ public:
             for (auto it : models) {
                 it.second->draw();
             }
+            if(sideWindow != sideWindowMap["Nothing"])
+                sideWindow->draw();
         }
-        if (activeSideWindow)
-            activeSideWindow->draw();
     }
 
     /// Cree les models necessaires pour le InGameOverlay.
@@ -328,70 +333,65 @@ public:
         activeHud = !activeHud;
     }
 
-
-
+    /// Active la fenêtre de construction de structure
     void activeStructureSideWindow(){
-        if (activeSideWindow){
-            activeSideWindow->deleteTexture();
-            unsigned  int windowType = activeSideWindow->getWindowType();
-            activeSideWindow = nullptr;
-
-            if (windowType == STRUCTURE)
-                return;
+        if(sideWindow != sideWindowMap["Structure"]){
+            sideWindow = sideWindowMap["Structure"];
         }
+        else
+            sideWindow = sideWindowMap["Nothing"];
         // TODO: Code Structure mode
         isConstructingFondation = !isConstructingFondation;
+
     }
 
+    /// Active la fenêtre de construction de machine
     void activeMachineSideWindow(){
-        if (activeSideWindow){
-            activeSideWindow->deleteTexture();
-            unsigned  int windowType = activeSideWindow->getWindowType();
-            activeSideWindow = nullptr;
-
-            if (windowType == MACHINE)
-                return;
-        }
+        if(sideWindow != sideWindowMap["Machine"])
+            sideWindow = sideWindowMap["Machine"];
+        else
+            sideWindow = sideWindowMap["Nothing"];
         // TODO: Code delete mode
     }
+
+    /// Active la fenêtre de construction de cable
     void activeWireSideWindow(){
-        if (activeSideWindow){
-            activeSideWindow->deleteTexture();
-            unsigned  int windowType = activeSideWindow->getWindowType();
-            activeSideWindow = nullptr;
+        if(sideWindow != sideWindowMap["Wire"])
+            sideWindow = sideWindowMap["Wire"];
+        else
+            sideWindow = sideWindowMap["Nothing"];
 
-            if (windowType == WIRE)
-                return;
-
-        }
         // TODO: Code Wire mode
     }
+    /// Active la fenêtre d'information
     void activeInfoSideWindow(){
-        if (activeSideWindow){
-            activeSideWindow->deleteTexture();
-            unsigned  int windowType = activeSideWindow->getWindowType();
-            activeSideWindow = nullptr;
-
-            if (windowType == INFO)
-                return;
-        }
+        if(sideWindow != sideWindowMap["Information"])
+            sideWindow = sideWindowMap["Information"];
+        else
+            sideWindow = sideWindowMap["Nothing"];
         // TODO: Code Info mode
 
     }
+    /// Active la fenêtre de destruction
     void activeDeleteSideWindow(){
-        if (activeSideWindow){
-            activeSideWindow->deleteTexture();
-            unsigned  int windowType = activeSideWindow->getWindowType();
-            activeSideWindow = nullptr;
-
-            if (windowType == DELETEE)
-                return;
-        }
-
-        activeSideWindow = new DeleteWindow();
+        if(sideWindow != sideWindowMap["Delete"])
+            sideWindow = sideWindowMap["Delete"];
+        else
+            sideWindow = sideWindowMap["Nothing"];
         // TODO: Code delete mode
     }
 
+
+    /*void sideWndowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+        if(sideWindow != sideWindowMap["Nothing"])
+            sideWindow->subscribeAll(observables);
+    }
+
+    void sideWindowUnsubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+        if(sideWindow != sideWindowMap["Nothing"])
+            sideWindow->unsubscribeAll(observables);
+    }
+     */
     /// Destructeur.
     ~InGameOverlay(){
         for (auto it : alertsList) {
@@ -400,9 +400,10 @@ public:
         for (auto it : logoList) {
             delete (it);
         }
-        if (activeSideWindow)
-            activeSideWindow->deleteTexture();
+        for (auto it : sideWindowMap)
+            delete it.second;
 
+        //delete sideWindow;
         delete actionQueue;
         delete camera;
 

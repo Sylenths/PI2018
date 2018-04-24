@@ -18,17 +18,16 @@ private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
     std::map<std::string, Scene*> sceneMap; ///< Carte de menu
     SDL_Event* sdlEvent; ///< Gestionnaire d'évennements
-    Scene* sceneDisplay;
+    Scene* sceneDisplay; ///<La scène qui s'affiche présentement
 
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
-    Controller* controller;
-    bool activeCamera;
+    Controller* controller; ///<Gère les entrés utilisateurs
+    bool activeCamera; ///<Indique si la caméra est controllée par l'utilisateur
 
-    Chrono chrono;
-	Chrono FPSchrono;
+    Chrono chrono; ///<Chrono principale de la boucle de jeu
+	Chrono FPSchrono;///<Chrono pour les FPS
 
-    unsigned int fps;
-    unsigned int timeElapsed;
+    unsigned int fps;///<Les Fps de l'application
 
 public:
 
@@ -48,6 +47,8 @@ public:
 	    #endif
             SDL_FreeSurface(surface);
 
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+              glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
@@ -66,17 +67,37 @@ public:
         getTextureID("../../images/topbar_tex.png", "topBar");
         getTextureID("../../images/wire_btn.png", "wire");
         getTextureID("../../images/Delete.png", "deletewindow");
+        getTextureID("../../images/SideMenuStructure.png", "StructureWindow");
+        getTextureID("../../images/ChoixNonAppuyer.png", "ChoixNonAppuyer");
+        getTextureID("../../images/ChoixAppuyer.png", "ChoixAppuyer");
+        getTextureID("../../images/SideMenuMachine.png","MachineWindow");
+        getTextureID("../../images/SideMenuInformation.png","InformationWindow");
+        getTextureID("../../images/SideMenuCable.png","CableWindow");
+        getTextureID("../../images/BuildButton.png","BuildButton");
+        getTextureID("../../images/BuildButtonOver.png","BuildButtonOver");
+        getTextureID("../../images/CancelButton.png","CancelButton");
+        getTextureID("../../images/CancelButtonOver.png","CancelButtonOver");
 
 
         //Textures world
-        getTextureID("../../images/grass.png", "grass");
         getTextureID("../../images/skysphere_day.png", "daysky");
         getTextureID("../../images/skysphere_night.png", "nightsky");
-        getTextureID("../../images/fan.png", "fan");
-        getTextureID("../../images/human.png","human");
-	    getTextureID("../../images/clouds.png", "clouds");
-	    getTextureID("../../images/simcoinminer.png", "simcoinminer");
+        getTextureID("../../images/grass.png", "grass");
 
+        getTextureID("../../images/trees/bambou.png", "bambou");
+        getTextureID("../../images/trees/cerisier.png", "cerisier");
+        getTextureID("../../images/trees/fraksinus.png", "fraksinus");
+        getTextureID("../../images/trees/gongko.png", "gongko");
+        getTextureID("../../images/trees/mapple.png", "mapple");
+        getTextureID("../../images/trees/oak.png", "oak");
+        getTextureID("../../images/trees/pin.png", "pin");
+        getTextureID("../../images/trees/sequoia.png", "sequoia");
+
+        getTextureID("../../images/fondation.png", "fondation");
+        getTextureID("../../images/wall.png", "wall");
+        getTextureID("../../images/human.png","human");
+        getTextureID("../../images/clouds.png", "clouds");
+        getTextureID("../../images/simcoinminer.png", "simcoinminer");
 
         //Textures boutons menu principal
         getTextureID("../../images/start.png", "ButtonStart");
@@ -120,7 +141,7 @@ public:
     /// \param height Hauteur de la fenêtre, en pixels.
     /// \param windowflags Flags SDL.
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0) {
-        glContext = new GLContext(title, x, y, width, height,90.0, 0.0001, 1000.0, windowflags);
+        glContext = new GLContext(title, x, y, width, height, 89.0, 0.1, 1000.0, windowflags);
         GLContext::setFrustum(true);
         sdlEvent = new SDL_Event();
         loadTextures();
@@ -145,7 +166,7 @@ public:
         ++fps;
         glContext->setFrustum(IS2D);
         double temp = FPSchrono.getElapsed(MICROSECONDS);
-        if (FPSchrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la bouche run()
+        if (FPSchrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la boucle run()
             char buffer[10];
             SDL_itoa(fps, buffer, 10);
             SDL_SetWindowTitle(glContext->getWindow(), buffer);
@@ -157,12 +178,22 @@ public:
     /// Représente la boucle de jeu.
     void run(std::string filePath) {
         glEnable(GL_DEPTH_TEST);
+        glDepthMask(GL_TRUE);
+
         glEnable(GL_TEXTURE_2D);
+        glEnable(GL_BLEND);
+        glEnable(GL_ALPHA_TEST);
+        glAlphaFunc(GL_GREATER, 0.4);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glTexEnvf(GL_TEXTURE_2D, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+        glCullFace(GL_FRONT_AND_BACK);
+
+        glEnable(GL_POINT_SMOOTH);
+
         glEnable(GL_LIGHTING);
         glEnable(GL_LIGHT0);
-
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        float ambiantLight[] = { 0.9, 0.9, 0.9 };
+        glLightfv(GL_LIGHT0, GL_AMBIENT, ambiantLight);
 
         SDL_GL_SetSwapInterval(0);
 
@@ -193,7 +224,7 @@ public:
                 controller->subscribeAll(observables, controller);
             }
             addFondation();
-
+            createWall();
 
 
             ///controle des touches
@@ -300,7 +331,7 @@ public:
 
                 Vector front = world->getCamera()->getFront();
                 Vector pos = world->getCamera()->getPos();
-                Vector nFloor = {0, 1, 0};
+                Vector nFloor = {0.0, 2.5, 0.0};
                 if (front * nFloor) {
                     double ratio = -(pos.y / front.y);
                     if (ratio > 0) {
@@ -309,35 +340,33 @@ public:
                         int z = round(intersection.z / 2.0);
                         std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->hud->getFondations();
                         if(!(*fondationGrid)[std::make_pair(x,z)]) {
-
+                            Fondation* fondation = new Fondation((double)x * 2.0, 0.0, (double)z * 2.0, false);
                             if ((*fondationGrid)[std::make_pair(x - 1, z)]){
-                                (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x *2.0,0.0,(double)z * 2.0,false);
+                                if(!(*fondationGrid)[std::make_pair(x,z)])
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
                                 (*fondationGrid)[std::make_pair(x,z)]->west = (*fondationGrid)[std::make_pair(x - 1, z)];
                                 (*fondationGrid)[std::make_pair(x - 1, z)]->east = (*fondationGrid)[std::make_pair(x,z)];
                             }
 
                             if((*fondationGrid)[std::make_pair(x + 1, z)]){
                                 if(!(*fondationGrid)[std::make_pair(x,z)])
-                                    (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x * 2.0,0.0,(double)z * 2.0,false);
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
                                 (*fondationGrid)[std::make_pair(x,z)]->east = (*fondationGrid)[std::make_pair(x + 1, z)];
                                 (*fondationGrid)[std::make_pair(x + 1, z)]->west = (*fondationGrid)[std::make_pair(x,z)];
-
                             }
 
                             if((*fondationGrid)[std::make_pair(x, z - 1)]){
                                 if(!(*fondationGrid)[std::make_pair(x,z)])
-                                    (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x * 2.0,0.0,(double)z * 2.0,false);
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
                                 (*fondationGrid)[std::make_pair(x,z)]->north = (*fondationGrid)[std::make_pair(x , z - 1)];
                                 (*fondationGrid)[std::make_pair(x , z - 1)]->south = (*fondationGrid)[std::make_pair(x,z)];
-
                             }
 
                             if((*fondationGrid)[std::make_pair(x, z + 1)]){
                                 if(!(*fondationGrid)[std::make_pair(x,z)])
-                                    (*fondationGrid)[std::make_pair(x,z)] = new Fondation((double)x * 2.0,0.0,(double)z * 2.0,false);
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
                                 (*fondationGrid)[std::make_pair(x,z)]->south = (*fondationGrid)[std::make_pair(x , z + 1)];
                                 (*fondationGrid)[std::make_pair(x , z + 1)]->north = (*fondationGrid)[std::make_pair(x,z)];
-
                             }
 
                             if((*fondationGrid)[std::make_pair(x,z)])
@@ -354,6 +383,184 @@ public:
         }
     }
 
+    void createWall(){
+        if (((World *) sceneDisplay)->test == 2) {
+            ((World *) sceneDisplay)->test = 0;
+            std::map<std::pair<int, int>, Fondation *> *fondationGrid = ((World *) sceneDisplay)->hud->getFondations();
+            Fondation *start = /*((BuildWall *) ((World*)sceneDisplay)->hud->getActions()->front())->getFondation()*/ (*fondationGrid)[std::make_pair(
+                    0, 0)];
+            while (start->north) {
+                start = start->north;
+            }
+            Fondation *previousPosition = start;
+            Fondation *currentPosition;
+            Fondation *switchVariable;
+            std::list<Vector> corner;
+
+            if (previousPosition->east) {
+                currentPosition = previousPosition->east;
+                if(previousPosition->west){
+                    corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                }
+                if(previousPosition->south){
+                    corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
+                }
+            } else {
+                corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, -1.0});
+                if (previousPosition->south) {
+                    currentPosition = previousPosition->south;
+                } else {
+                    corner.push_front((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
+                    if (previousPosition->west) {
+                        currentPosition = previousPosition->west;
+                    } else {
+                        currentPosition = previousPosition;
+                        corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
+                        corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                    }
+                }
+            }
+
+            while (!((start->centerPoint->x == currentPosition->centerPoint->x) &&
+                     (start->centerPoint->z == currentPosition->centerPoint->z))) {
+
+
+                ///deplace vers l'est et regarde a le nord
+                if (currentPosition == previousPosition->east) {
+                    if (!currentPosition->north) {
+                        if (currentPosition->east) {
+                            previousPosition = currentPosition;
+                            currentPosition = currentPosition->east;
+                        } else {
+                            if (currentPosition->south) {
+                                previousPosition = currentPosition;
+                                currentPosition = currentPosition->south;
+                                corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, -1.0});
+                            } else {
+                                previousPosition = currentPosition;
+                                currentPosition = currentPosition->west;
+                                corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, -1.0});
+                                corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
+                            }
+                        }
+                    } else {
+                        previousPosition = currentPosition;
+                        currentPosition = currentPosition->north;
+                        corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
+                    }
+
+                }
+                else {
+                    ///deplace vers le sud et regarde a l'est
+                    if (currentPosition == previousPosition->south) {
+                        if (!currentPosition->east) {
+                            if (currentPosition->south) {
+                                previousPosition = currentPosition;
+                                currentPosition = currentPosition->south;
+                            } else {
+                                if (currentPosition->west) {
+                                    previousPosition = currentPosition;
+                                    currentPosition = currentPosition->west;
+                                    /* +1,+1*/                            corner.push_back(
+                                            (*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
+                                } else {
+                                    previousPosition = currentPosition;
+                                    currentPosition = currentPosition->north;
+                                    corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
+                                    corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                                }
+                            }
+                        } else {
+                            previousPosition = currentPosition;
+                            currentPosition = currentPosition->east;
+                            corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, -1.0});
+                        }
+
+                    } else {
+                        ///deplace vers l'oest et regarde a le sud
+                        if (currentPosition == previousPosition->west) {
+
+                            if (!currentPosition->south) {
+                                if (currentPosition->west) {
+                                    previousPosition = currentPosition;
+                                    currentPosition = currentPosition->west;
+                                } else {
+                                    if (currentPosition->north) {
+                                        previousPosition = currentPosition;
+                                        currentPosition = currentPosition->north;
+                                        /*-1+1*/                                   corner.push_back(
+                                                (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                                    } else {
+                                        previousPosition = currentPosition;
+                                        currentPosition = currentPosition->east;
+                                        corner.push_back(
+                                                (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                                        corner.push_back(
+                                                (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
+                                    }
+                                }
+                            } else {
+                                previousPosition = currentPosition;
+                                currentPosition = currentPosition->south;
+                                corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
+                            }
+
+                        } else {
+                            ///deplace vers le nord et regarde a l'oest
+                            if (currentPosition == previousPosition->north) {
+                                if (!currentPosition->west) {
+                                    if (currentPosition->north) {
+                                        previousPosition = currentPosition;
+                                        currentPosition = currentPosition->north;
+                                    } else {
+                                        if (currentPosition->east) {
+                                            previousPosition = currentPosition;
+                                            currentPosition = currentPosition->east;
+                                            /*-1-1*/                              corner.push_back(
+                                                    (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
+                                        } else {
+                                            previousPosition = currentPosition;
+                                            currentPosition = currentPosition->south;
+                                            corner.push_back(
+                                                    (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
+                                            corner.push_back(
+                                                    (*previousPosition->centerPoint) + (Vector) {1.0, 0.0, -1.0});
+                                        }
+                                    }
+                                } else {
+                                    previousPosition = currentPosition;
+                                    currentPosition = currentPosition->west;
+                                    corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+
+
+
+
+            }
+            int size = corner.size() - 1;
+            Vector first = corner.front();
+            for (int i = 0; i < size; ++i) {
+                Vector temp = corner.front();
+                corner.pop_front();
+                ((World *) sceneDisplay)->addModel(
+                        new Model(/*((BuildWall *) hud->getActions()->front())->getHeight()*/
+                                3.0, /*((BuildWall *) hud->getActions()->front())->getMateriel()->getTextureID()*/
+                                ResourceManager::getInstance()->getTexture("wall"), &temp, &corner.front()));
+            }
+            ((World *) sceneDisplay)->addModel(new Model(/*((BuildWall *) hud->getActions()->front())->getHeight()*/
+                    3.0, /*((BuildWall *) hud->getActions()->front())->getMateriel()->getTextureID()*/
+                    ResourceManager::getInstance()->getTexture("wall"), &corner.front(), &first));
+
+        }
+    }
+
+    /// Retourne les dimensions d'un image 2D
     Vector get2DTextureSize(const char* filePath) {
         SDL_Surface* surface = IMG_Load(filePath);
         Vector size = {(double)surface->w, (double)surface->h, 0};
@@ -361,6 +568,7 @@ public:
 
         return size;
     }
+    /// Retourne le GlContext
     GLContext* getGlContext(){
         return glContext;
     }
