@@ -1,16 +1,24 @@
 #ifndef POWERMANAGER_H
 #define POWERMANAGER_H
 #include "includes.h"
-#include "PowerSource.h"
+#include "PowerAppareil.h"
 
 class PowerManager : public Singleton<PowerManager> {
 private:
-    std::list<PowerSource*> sources;
+    std::list<PowerAppareil*> appareils;
 public:
     PowerManager();
 
-    void addSource(PowerSource* source) {
-        sources.push_back(source);
+    void addSource(PowerAppareil* appareil) {
+        appareils.push_back(appareil);
+    }
+
+    void resetPower() {
+
+    }
+
+    void updatePower() {
+
     }
 };
 
