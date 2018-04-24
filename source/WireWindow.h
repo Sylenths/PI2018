@@ -21,6 +21,13 @@ public:
         modelsSideWindow["1ArgentIcon"] = new CheckBox (1160, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1ArgentIcon"]->onClick = [this] () {};
         modelsSideWindow["1ArgentLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "Argent", 1160, 150, 0, 50, 20);
+
+        //Building Button
+        modelsSideWindow["1BuildingButtonWire"] = new Button (930, 580, 0, 340, 60, ResourceManager::getInstance()->getTexture("BuildButton"), ResourceManager::getInstance()->getTexture("BuildButtonOver"));
+        modelsSideWindow["1BuildingButtonWire"]->onClick = [this] () {};
+
+        modelsSideWindow["1CancelButtonWire"] = new Button (930, 650, 0, 340, 60, ResourceManager::getInstance()->getTexture("CancelButton"), ResourceManager::getInstance()->getTexture("CancelButtonOver"));
+        modelsSideWindow["1CancelButtonWire"]->onClick = [this] () {};
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){

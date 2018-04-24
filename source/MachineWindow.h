@@ -8,6 +8,13 @@ public:
 
     MachineWindow(){
         modelsSideWindow["SideMenuMachine"] = new Image(920, 0, 0, 360, 720, ResourceManager::getInstance()->getTexture("MachineWindow"));
+
+        //Building Button
+        modelsSideWindow["1BuildingButtonMachine"] = new Button (930, 580, 0, 340, 60, ResourceManager::getInstance()->getTexture("BuildButton"), ResourceManager::getInstance()->getTexture("BuildButtonOver"));
+        modelsSideWindow["1BuildingButtonMachine"]->onClick = [this] () {};
+
+        modelsSideWindow["1CancelButtonMachine"] = new Button (930, 650, 0, 340, 60, ResourceManager::getInstance()->getTexture("CancelButton"), ResourceManager::getInstance()->getTexture("CancelButtonOver"));
+        modelsSideWindow["1CancelButtonMachine"]->onClick = [this] () {};
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){

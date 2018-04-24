@@ -54,6 +54,13 @@ public:
         modelsSideWindow["1SIMTiumIcon"]->onClick = [this] () {};
         modelsSideWindow["1SIMTiumLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial12")->getFont(), {128,128,128,0}, "SIMTium", 1220, 265, 0, 50, 20);
 
+
+        //Building Button
+        modelsSideWindow["1BuildingButtonStructure"] = new Button (930, 580, 0, 340, 60, ResourceManager::getInstance()->getTexture("BuildButton"), ResourceManager::getInstance()->getTexture("BuildButtonOver"));
+        modelsSideWindow["1BuildingButtonStructure"]->onClick = [this] () {};
+
+        modelsSideWindow["1CancelButtonStructure"] = new Button (930, 650, 0, 340, 60, ResourceManager::getInstance()->getTexture("CancelButton"), ResourceManager::getInstance()->getTexture("CancelButtonOver"));
+        modelsSideWindow["1CancelButtonStructure"]->onClick = [this] () {};
     }
 
 

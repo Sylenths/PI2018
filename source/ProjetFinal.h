@@ -74,6 +74,11 @@ public:
         getTextureID("../../images/SideMenuMachine.png","MachineWindow");
         getTextureID("../../images/SideMenuInformation.png","InformationWindow");
         getTextureID("../../images/SideMenuCable.png","CableWindow");
+        getTextureID("../../images/BuildButton.png","BuildButton");
+        getTextureID("../../images/BuildButtonOver.png","BuildButtonOver");
+        getTextureID("../../images/CancelButton.png","CancelButton");
+        getTextureID("../../images/CancelButtonOver.png","CancelButtonOver");
+
 
         //Textures world
         getTextureID("../../images/skysphere_day.png", "daysky");
