@@ -302,7 +302,7 @@ public:
                     sceneDisplay->unsubscribeAll(observables);
                     sceneDisplay = sceneMap[Scene::getActiveScene()];
                     sceneDisplay->subscribeAll(observables);
-                    
+
             }
             if (sceneDisplay == sceneMap["World"] && activeCamera)
                 sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS));
