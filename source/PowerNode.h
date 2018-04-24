@@ -5,24 +5,16 @@
 
 
 class PowerNode /*: public Model*/ {
-private:
+protected:
     double powerIN;
     double used;
     double generated;
-    bool isAwire;
+    bool isASource;
     std::list<PowerNode*> wires;
 
 public:
     PowerNode() {
 
-    }
-
-    double getPowerOUT() {
-        return (powerIN + generated - used) / wires.size();
-    }
-
-    void setPowerIN(double powerIN) {
-        this->powerIN = powerIN;
     }
 
     void addWire(PowerNode* wire) {

@@ -4,7 +4,9 @@
 
 class PowerSwitch : public PowerNode {
 public:
-    PowerSwitch();
+    PowerSwitch() {
+
+    }
 };
 
 #endif
