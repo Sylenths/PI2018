@@ -217,11 +217,12 @@ public:
                 }
             }
 
-            if ((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()])) {
+            if (((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()])) || Scene::sceneChange) {
                 sceneDisplay->unsubscribeAll(observables);
                 sceneDisplay = sceneMap[Scene::getActiveScene()];
                 sceneDisplay->subscribeAll(observables);
                 controller->subscribeAll(observables, controller);
+                Scene::sceneChange = false;
             }
             addFondation();
             createWall();
@@ -296,14 +297,15 @@ public:
                 controller->resetMouseMotion();
             }
 
+
                 if ((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()])) {
                     sceneDisplay->unsubscribeAll(observables);
                     sceneDisplay = sceneMap[Scene::getActiveScene()];
                     sceneDisplay->subscribeAll(observables);
-
-                }
+                    
+            }
             if (sceneDisplay == sceneMap["World"] && activeCamera)
-                    sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS));
+                sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS));
 
             glContext->clear();
 

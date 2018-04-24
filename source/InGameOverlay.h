@@ -341,6 +341,7 @@ public:
         else
             sideWindow = sideWindowMap["Nothing"];
         // TODO: Code Structure mode
+        sceneChange = true;
         isConstructingFondation = !isConstructingFondation;
 
     }
@@ -351,6 +352,8 @@ public:
             sideWindow = sideWindowMap["Machine"];
         else
             sideWindow = sideWindowMap["Nothing"];
+        sceneChange = true;
+
         // TODO: Code delete mode
     }
 
@@ -360,6 +363,8 @@ public:
             sideWindow = sideWindowMap["Wire"];
         else
             sideWindow = sideWindowMap["Nothing"];
+        sceneChange = true;
+
 
         // TODO: Code Wire mode
     }
@@ -369,6 +374,8 @@ public:
             sideWindow = sideWindowMap["Information"];
         else
             sideWindow = sideWindowMap["Nothing"];
+        sceneChange = true;
+
         // TODO: Code Info mode
 
     }
@@ -378,6 +385,8 @@ public:
             sideWindow = sideWindowMap["Delete"];
         else
             sideWindow = sideWindowMap["Nothing"];
+        sceneChange = true;
+
         // TODO: Code delete mode
     }
 

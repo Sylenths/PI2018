@@ -16,9 +16,11 @@ protected:
     static std::string activeScene;     ///< permet de savoir quel menu est actif.
     static std::string previous;        ///< permet de savoir quel était le menu précédent actif.
     static bool FPS;                    ///< permet de savoir si l'affichage des fps est actif.
-    static bool sideWindowCheck;
+
 
 public:
+
+    static bool sceneChange;
 
     /// Destructeur
     virtual ~Scene() {}
@@ -42,9 +44,6 @@ public:
         return FPS;
     }
 
-    static bool getSideWindowUpdate(){
-        return sideWindowCheck;
-    }
 
     /// Affiche tous les models des menus actifs.
     virtual void draw () = 0;
@@ -62,6 +61,6 @@ public:
 std::string Scene::activeScene = "MainMenu";
 std::string Scene::previous = " ";
 bool Scene::FPS = false;
-bool Scene::sideWindowCheck = false;
+bool Scene::sceneChange = false;
 
 #endif
