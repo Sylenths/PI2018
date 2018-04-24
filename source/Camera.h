@@ -1,10 +1,10 @@
 /// \brief Représentation d'une caméra.
 /// \details Caméra dont le déplacement est contrôlable par l'utilisateur avec les touches WASD et la souris.
-/// \author Samuel Labelle
-/// \date 4 Avril 2018
+/// \author Samuel Labelle, Patrick Singcaster
+/// \date 24 Avril 2018
 /// \version 0.2
 /// \warning position et target doivent être différents et non-colinéaires sur les y. Champ de vision de 90 degrés.
-/// \bug Mouvement par déplacement sucessif fixes dépendant du taux de rafraichissement des touches du clavier.
+/// \bug Aucuns connus.
 
 #ifndef CAMERA_H
 #define CAMERA_H
@@ -16,7 +16,7 @@
 #include "Matrix.h"
 #include "Vector.h"
 
-#define CAMERA_MOVEMENTSPEED 30
+#define CAMERA_MOVEMENTSPEED 300
 #define CAMERA_HROTATIONSPEED 3.0
 #define CAMERA_VROTATIONSPEED 2.75
 
