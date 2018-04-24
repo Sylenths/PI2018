@@ -18,17 +18,16 @@ private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
     std::map<std::string, Scene*> sceneMap; ///< Carte de menu
     SDL_Event* sdlEvent; ///< Gestionnaire d'évennements
-    Scene* sceneDisplay;
+    Scene* sceneDisplay; ///<La scène qui s'affiche présentement
 
     std::map<unsigned int, Observable<SDL_Event*>*> observables; ///< Cartes d'observable pour intéragir avec l'interface.
-    Controller* controller;
-    bool activeCamera;
+    Controller* controller; ///<Gère les entrés utilisateurs
+    bool activeCamera; ///<Indique si la caméra est controllée par l'utilisateur
 
-    Chrono chrono;
-	Chrono FPSchrono;
+    Chrono chrono; ///<Chrono principale de la boucle de jeu
+	Chrono FPSchrono;///<Chrono pour les FPS
 
-    unsigned int fps;
-    unsigned int timeElapsed;
+    unsigned int fps;///<Les Fps de l'application
 
 public:
 
@@ -167,7 +166,7 @@ public:
         ++fps;
         glContext->setFrustum(IS2D);
         double temp = FPSchrono.getElapsed(MICROSECONDS);
-        if (FPSchrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la bouche run()
+        if (FPSchrono.getElapsed(MICROSECONDS) > 1000000.0) { /// le chrono se remet à zéro dans la boucle run()
             char buffer[10];
             SDL_itoa(fps, buffer, 10);
             SDL_SetWindowTitle(glContext->getWindow(), buffer);
@@ -561,6 +560,7 @@ public:
         }
     }
 
+    /// Retourne les dimensions d'un image 2D
     Vector get2DTextureSize(const char* filePath) {
         SDL_Surface* surface = IMG_Load(filePath);
         Vector size = {(double)surface->w, (double)surface->h, 0};
@@ -568,6 +568,7 @@ public:
 
         return size;
     }
+    /// Retourne le GlContext
     GLContext* getGlContext(){
         return glContext;
     }

@@ -7,11 +7,7 @@
 /// \bug Problemes avec le sideWindow , fonctionne à 90%
 #ifndef SOURCE_INGAMEOVERLAY_H
 #define SOURCE_INGAMEOVERLAY_H
-#define STRUCTURE 1
-#define MACHINE 2
-#define WIRE 3
-#define INFO 4
-#define DELETEE 5
+
 
 #include "includes.h"
 #include <queue>
@@ -34,8 +30,8 @@ private:
     std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
-    std::queue<Action*>* actionQueue;
-    SideWindow* sideWindow;
+    std::queue<Action*>* actionQueue;///< File contenant les actions a faire (Build, Delete, etc)
+    SideWindow* sideWindow; ///< Pointe la fenêtre de coté active
     std::map<std::string, SideWindow*> sideWindowMap; ///< Carte de sideWindow
     //RotatingImage* windIndicator;
 
@@ -45,7 +41,7 @@ public:
     /// Constructeur.
     /// \param powerCount Nombre d'électricité disponible.
     /// \param simCoinCount Nombre de SIMcoins disponible
-    /// \param temperatureC La temperature en celsius
+    /// \param temperatureC La température en celsius
     /// \param sunPower Puissance du soleil en pourcentage
     /// \param windSpeed Force du vent en pourcentage
     /// \param timeLeft Temps restant à la phase de construction.
@@ -337,6 +333,7 @@ public:
         activeHud = !activeHud;
     }
 
+    /// Active la fenêtre de construction de structure
     void activeStructureSideWindow(){
         if(sideWindow != sideWindowMap["Structure"]){
             sideWindow = sideWindowMap["Structure"];
@@ -348,6 +345,7 @@ public:
 
     }
 
+    /// Active la fenêtre de construction de machine
     void activeMachineSideWindow(){
         if(sideWindow != sideWindowMap["Machine"])
             sideWindow = sideWindowMap["Machine"];
@@ -355,6 +353,8 @@ public:
             sideWindow = sideWindowMap["Nothing"];
         // TODO: Code delete mode
     }
+
+    /// Active la fenêtre de construction de cable
     void activeWireSideWindow(){
         if(sideWindow != sideWindowMap["Wire"])
             sideWindow = sideWindowMap["Wire"];
@@ -363,6 +363,7 @@ public:
 
         // TODO: Code Wire mode
     }
+    /// Active la fenêtre d'information
     void activeInfoSideWindow(){
         if(sideWindow != sideWindowMap["Information"])
             sideWindow = sideWindowMap["Information"];
@@ -371,6 +372,7 @@ public:
         // TODO: Code Info mode
 
     }
+    /// Active la fenêtre de destruction
     void activeDeleteSideWindow(){
         if(sideWindow != sideWindowMap["Delete"])
             sideWindow = sideWindowMap["Delete"];
