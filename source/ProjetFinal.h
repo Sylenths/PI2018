@@ -224,6 +224,11 @@ public:
                 controller->subscribeAll(observables, controller);
                 Scene::sceneChange = false;
             }
+
+            if((SideWindow::getClic() != "") && (sceneDisplay == sceneMap["World"])){
+                ((World*)sceneMap["World"])->hud->actionFromButtonSideWindow();
+                sceneDisplay = sceneMap["World"];
+            }
             addFondation();
             createWall();
 
