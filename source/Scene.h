@@ -20,6 +20,8 @@ protected:
 
 public:
 
+    static bool sceneChange;
+
     /// Destructeur
     virtual ~Scene() {}
 
@@ -42,6 +44,7 @@ public:
         return FPS;
     }
 
+
     /// Affiche tous les models des menus actifs.
     virtual void draw () = 0;
     /// Permet d'inscrire tous les évènements comme observables.
@@ -58,5 +61,6 @@ public:
 std::string Scene::activeScene = "MainMenu";
 std::string Scene::previous = " ";
 bool Scene::FPS = false;
+bool Scene::sceneChange = false;
 
 #endif

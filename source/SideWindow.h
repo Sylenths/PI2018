@@ -14,6 +14,7 @@ class SideWindow{
 protected:
     std::map<std::string, Model*> modelsSideWindow;   ///< Liste des models à afficher.
 public:
+    bool cancelButton = false;
 
     /// Inscription des modèles aux événements.
     /// \param observables Événements.

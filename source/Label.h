@@ -11,7 +11,7 @@
 #ifndef SOURCE_LABEL_H
 #define SOURCE_LABEL_H
 
-class Label : public Image {
+class Label : public Model {
 private:
     std::string text;
     double ratio;
@@ -26,11 +26,44 @@ public:
     /// \param y Position en y par rapport au coin supérieur gauche.
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
-    Label(TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int w, unsigned int h) : Image(x, y, z, w, h, 0){
+    Label(TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int textureID = 0) : Model(x, y, z, textureID, false) {
         this->text = text;
-        this->w = w;
-        this->x = x;
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
+        this->w = sdlSurface->w;
+        this->x = x;
+        vertexCount = 6;
+        vertices = new double[18]{
+                x, y, 0.0,
+                x + sdlSurface->w, y, 0.0,
+                x, y + sdlSurface->h, 0.0,
+
+                x + sdlSurface->w, y, 0.0,
+                x, y + sdlSurface->h, 0.0,
+                x + sdlSurface->w, y + sdlSurface->h, 0.0
+        };
+
+        normals = new double[18]{
+                0.0, 0.0 , 1.0,
+                0.0, 0.0,  1.0,
+                0.0, 0.0,  1.0,
+
+                 0.0, 0.0 , 1.0,
+                 0.0, 0.0,  1.0,
+                 0.0, 0.0,  1.0
+        };
+
+        texCoords = new double [12]{
+                0.0,  0.0,
+                1.0,  0.0,
+                0.0,  1.0,
+
+                1.0,  0.0,
+                 0.0,  1.0,
+                 1.0,  1.0
+        };
+
+
+
         glGenTextures(1, &textureToDraw);
         glBindTexture(GL_TEXTURE_2D, textureToDraw);
         glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, sdlSurface->w, sdlSurface->h,0, GL_RGBA, GL_UNSIGNED_BYTE, sdlSurface->pixels);

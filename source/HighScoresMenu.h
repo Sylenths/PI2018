@@ -64,7 +64,7 @@ public:
                 y = 185;
             }
 
-            labelModels[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1, 362, 38);
+            labelModels[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1);
             y += 75;
 
 

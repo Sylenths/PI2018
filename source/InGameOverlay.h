@@ -97,7 +97,7 @@ public:
     /// \param windSpeed Force du vent en pourcentage
     /// \param timeLeft Temps restant a la phase de construction.
     void loadHUDTexture(unsigned int powerCount, unsigned int simCoinCount, unsigned int temperatureC, unsigned int sunPower, unsigned int windSpeed, unsigned int timeLeft){
-        Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
+        Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial30");
 
         models["skipturn"] = new Button (0, 0, 0.1, 175, 60,ResourceManager::getInstance()->getTexture("skipTurn"));
         models["skipturn"]->onClick = [this]() {isConstructingFondation = !isConstructingFondation; };
@@ -123,30 +123,30 @@ public:
 
         //Label
         auto strSimCoin = std::to_string(simCoinCount); // transforme unsigned int en string
-        models["simCoins"] = new Label(fontArial->getFont(),{0,165,255}, strSimCoin, 405, 0, 0.1, 40, 35);
+        models["simCoins"] = new Label(fontArial->getFont(),{0,165,255}, strSimCoin, 405, 0, 0.1);
 
         auto strPwr = std::to_string(powerCount);
-        models["power"] = new Label(fontArial->getFont(), {255,191,0}, strPwr, 405, 30, 0.1 , 40, 35);
+        models["power"] = new Label(fontArial->getFont(), {255,191,0}, strPwr, 405, 30, 0.1);
 
         auto strTime = std::to_string(timeLeft);
         strTime.push_back(' ');
         strTime.push_back('s');
-        models["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1 , 40, 60);
+        models["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1);
 
         auto strWind = std::to_string(windSpeed);
         strWind.push_back(' ');
         strWind.push_back('m');
         strWind.push_back('/');
         strWind.push_back('s');
-        models["windSpeed"] = new Label(fontArial->getFont(), {255,255,255}, strWind, 555, 15, 0.1 , 80, 35);
+        models["windSpeed"] = new Label(fontArial->getFont(), {255,255,255}, strWind, 555, 15, 0.1);
 
         auto strTemperature = std::to_string(temperatureC);
         strTemperature.push_back('c');
-        models["temperature"] = new Label(fontArial->getFont(), {255,255,255}, strTemperature, 685, 5, 0.1 , 20, 20);
+        models["temperature"] = new Label(fontArial->getFont(), {255,255,255}, strTemperature, 685, 5, 0.1);
 
         auto strSunPower = std::to_string(sunPower);
         strSunPower.push_back('%');
-        models["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1 , 25, 20);
+        models["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1);
     }
 
 
@@ -341,6 +341,7 @@ public:
         else
             sideWindow = sideWindowMap["Nothing"];
         // TODO: Code Structure mode
+        sceneChange = true;
         isConstructingFondation = !isConstructingFondation;
 
     }
@@ -351,6 +352,8 @@ public:
             sideWindow = sideWindowMap["Machine"];
         else
             sideWindow = sideWindowMap["Nothing"];
+        sceneChange = true;
+
         // TODO: Code delete mode
     }
 
@@ -360,6 +363,8 @@ public:
             sideWindow = sideWindowMap["Wire"];
         else
             sideWindow = sideWindowMap["Nothing"];
+        sceneChange = true;
+
 
         // TODO: Code Wire mode
     }
@@ -369,6 +374,8 @@ public:
             sideWindow = sideWindowMap["Information"];
         else
             sideWindow = sideWindowMap["Nothing"];
+        sceneChange = true;
+
         // TODO: Code Info mode
 
     }
@@ -378,11 +385,17 @@ public:
             sideWindow = sideWindowMap["Delete"];
         else
             sideWindow = sideWindowMap["Nothing"];
+        sceneChange = true;
+
         // TODO: Code delete mode
     }
 
+    void cancelButton(){
 
-    /*void sideWndowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+    }
+
+
+    void sideWndowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
         if(sideWindow != sideWindowMap["Nothing"])
             sideWindow->subscribeAll(observables);
     }
@@ -391,7 +404,7 @@ public:
         if(sideWindow != sideWindowMap["Nothing"])
             sideWindow->unsubscribeAll(observables);
     }
-     */
+
     /// Destructeur.
     ~InGameOverlay(){
         for (auto it : alertsList) {

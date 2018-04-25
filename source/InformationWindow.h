@@ -11,7 +11,7 @@ class InformationWindow : public SideWindow{
 public:
 
     InformationWindow(){
-        modelsSideWindow["SideMenuInformation"] = new Image(920, 0, 0, 360, 720, ResourceManager::getInstance()->getTexture("InformationWindow"));
+        modelsSideWindow["SideMenuInformation"] = new Image(920., 0.0, 0.0, 360.0, 720.0, ResourceManager::getInstance()->getTexture("InformationWindow"));
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){

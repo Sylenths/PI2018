@@ -1,16 +1,28 @@
 #ifndef POWERMANAGER_H
 #define POWERMANAGER_H
 #include "includes.h"
-#include "PowerSource.h"
+#include "PowerWire.h"
 
 class PowerManager : public Singleton<PowerManager> {
 private:
-    std::list<PowerSource*> sources;
+    std::map<std::pair<int, int>, PowerWire*> adjMatrice;
 public:
     PowerManager();
 
-    void addSource(PowerSource* source) {
-        sources.push_back(source);
+    void addSource() {
+
+    }
+
+    void addAppareil() {
+
+    }
+
+    void resetPower() {
+
+    }
+
+    void updatePower() {
+
     }
 };
 
