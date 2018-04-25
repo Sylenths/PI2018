@@ -10,7 +10,6 @@
 #define SOURCE_MODEL_H
 
 #include "Matrix.h"
-#include "ResourceManager.h"
 
 class Model : public Resource, public Observer<SDL_Event*> {
 	friend class Physics;
@@ -20,10 +19,16 @@ protected:
     unsigned int normalCount; ///< Nombre de normal
     double *vertices, *texCoords, *normals, *verticesHitBox, *normalsHitBox;
 
+    double *verticesShading;
+    double *normalsShading;
+    double *colorsShading;
+
     unsigned int textureToDraw; ///< Identificateur de la texture
 
     double posx, posy, posz;
     bool rotHitBox;
+
+    bool shading;
 
     std::map<std::string, unsigned int> textureIDs;
 
@@ -48,7 +53,6 @@ public:
         normals[x] = nv.x;
         normals[y] = nv.y;
         normals[z] = nv.z;
-
         }
 
         if(vertexCount) {
@@ -80,6 +84,20 @@ public:
 
     }
 
+    void updateShadingVertex(double* obstruction, unsigned int vertexCount, Vector sun) {
+        Vector AB, B;
+        double k;
+
+        for (int i = 0; i < vertexCount; ++i) {
+            B = Vector(obstruction[i * 3], obstruction[i * 3 + 1], obstruction[i * 3 + 2]);
+            AB = B - sun; // OB - OA = AB
+            k = 0.01 -(B.y)/(AB.y); // la quantité à multiplier à chacune des composantes pour atteindre notre plan y = 0
+            verticesShading[i] = k * AB.x + B.x;
+            verticesShading[i * 3 + 1] = 0.0;
+            verticesShading[i * 3 + 2] = k * AB.z + B.z;
+        }
+    }
+
     /// Constructeur.
     /// \param textureID Identificateur de la texture.
 	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
@@ -88,6 +106,10 @@ public:
         this->posy = posy;
         this->posz = posz;
         this->rotHitBox = rotHitBox;
+
+        shading = false;
+
+        colorsShading = nullptr;
 
         textureIDs["default"] = textureID;
         textureToDraw = textureID;
@@ -314,10 +336,16 @@ public:
                          0.0, -1.0, 0.0, //P2T2F6
                          0.0, -1.0, 0.0, //P3T2F6
                  };
+
+
        }
        Matrix m;
        m.loadTranslation(Vector(posx, posy, posz));
        transform(m);
+    }
+
+    void setShadingOn() {
+        shading = true;
     }
 
     Model(unsigned int height, unsigned int textureID, Vector* firstCorner, Vector* secondCorner) {
@@ -329,6 +357,10 @@ public:
         vertexCount = 6;
         normalCount = 6;
         texCount = 6;
+
+        shading = false;
+
+        colorsShading = nullptr;
 
 ///sommet
 
@@ -403,6 +435,12 @@ public:
         delete[] vertices;
         delete[] normals;
         delete[] texCoords;
+
+        if (colorsShading != nullptr) {
+            delete[] verticesShading;
+            delete[] normalsShading;
+            delete[] colorsShading;
+        }
     }
 
     void setTexture(std::string name = "", unsigned int ID = 0) {
@@ -431,6 +469,45 @@ public:
         glDisableClientState(GL_VERTEX_ARRAY);
         glDisableClientState(GL_NORMAL_ARRAY);
         glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    }
+
+    void drawAndShading() {
+            draw();
+
+            if (shading == true) {
+
+                if (colorsShading == nullptr) {
+                    verticesShading = new double[vertexCount * 3];
+                    normalsShading = new double[vertexCount * 3];
+                    colorsShading = new double[vertexCount * 4];
+
+                    for (int i = 0; i < vertexCount; ++i) {
+                        normalsShading[i] = 0.0;
+                        normalsShading[i * 3 + 1] = 1.0;
+                        normalsShading[i * 3 + 2] = 0.0;
+                        colorsShading[i * 4] = 0; // red
+                        colorsShading[i * 4 + 1] = 0; // green
+                        colorsShading[i * 4 + 2] = 0; // blue
+                        colorsShading[i * 4 + 3] = 127; // alpha
+                    }
+                }
+
+                updateShadingVertex(vertices, vertexCount, {10.0, 50.0, -10.0});
+
+                glEnableClientState(GL_VERTEX_ARRAY);
+                glEnableClientState(GL_NORMAL_ARRAY);
+                glEnableClientState(GL_COLOR_ARRAY);
+
+                glVertexPointer(3, GL_DOUBLE, 0, verticesShading);
+                glNormalPointer(GL_DOUBLE, 0, normalsShading);
+                glColorPointer(4, GL_DOUBLE, 0, colorsShading);
+
+                glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+
+                glDisableClientState(GL_VERTEX_ARRAY);
+                glDisableClientState(GL_NORMAL_ARRAY);
+                glDisableClientState(GL_COLOR_ARRAY);
+            }
     }
 
     virtual void notify(SDL_Event* sdlEvent) {}

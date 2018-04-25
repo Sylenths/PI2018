@@ -1,8 +1,6 @@
 #ifndef INCLUDES_H
 #define INCLUDES_H
 
-
-
 #define IS2D true
 #define IS3D false
 
@@ -61,7 +59,5 @@
 #include "Camera.h"
 #include "Action.h"
 #include "PowerManager.h"
-
-#include "Shading.h"
 
 #endif

@@ -320,12 +320,9 @@ public:
         }
     }
 
-    void addFondation(){
+    void addFondation() {
         if(activeCamera && Scene::getActiveScene() == "World" && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT){
             World* world = ((World*)sceneDisplay);
-
-
-
 
             if(world->hud->isConstructingFondation) {
 
