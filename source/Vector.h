@@ -1,8 +1,8 @@
 /// \brief Représentation d'un vecteur.
 /// \details Vecteur mathématique de 3 composantes.
 /// \author Samuel Labelle
-/// \date 30 Mars 2018
-/// \version 0.1
+/// \date 24 Avril 2018
+/// \version 0.3
 /// \warning Aucun.
 /// \bug Aucun.
 
@@ -91,6 +91,13 @@ struct Vector {
 	Vector operator-(const Vector &v) const { // vector substraction
 		return Vector(x - v.x, y - v.y, z - v.z);
 	}
+
+	/// Négation d'un vecteur
+	/// \return Vecteur dont les composantes ont été inversées
+	Vector operator-(){
+		return Vector(-x, -y, -z);
+	}
+
     /// Produit vectoriel (Cross Product) de deux vecteurs.
     /// \param v Second vecteur du produit vectoriel.
     /// \return Vecteur résultant du produit vectoriel.
