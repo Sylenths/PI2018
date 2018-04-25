@@ -10,7 +10,6 @@ protected:
     double lenght;
 public:
     PowerWire(PowerNode* node1, PowerNode* node2, double resistance, double lenght) {
-        isASource = false;
         this->node1 = node1;
         this->node2 = node2;
         this->resistance = resistance;
