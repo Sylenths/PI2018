@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PI2018:  Fichier source de source/DeleteWindow.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PI2018
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">DeleteWindow.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DELETEWINDOW_H</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define DELETEWINDOW_H</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;SideWindow.h&quot;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;includes.h&quot;</span></div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_delete_window.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_delete_window.html">DeleteWindow</a> : <span class="keyword">public</span> <a class="code" href="class_side_window.html">SideWindow</a>{</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_delete_window.html">DeleteWindow</a>(){</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="class_side_window.html#adafd669a554df8594ff3da517afbeecf">modelsSideWindow</a>[<span class="stringliteral">&quot;logoDestruction&quot;</span>] = <span class="keyword">new</span> <a class="code" href="class_image.html">Image</a>(700, 0, 0.1, 260, 60, <a class="code" href="class_singleton.html#ad6f103597095efda360db4a230308666">ResourceManager::getInstance</a>()-&gt;getTexture(<span class="stringliteral">&quot;deletewindow&quot;</span>));</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_delete_window.html#ad56aa6effeef9d801698f7cc2cea4fce">   20</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_delete_window.html#ad56aa6effeef9d801698f7cc2cea4fce">subscribeAll</a>(std::map&lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>, <a class="code" href="class_observable.html">Observable&lt;SDL_Event*&gt;</a>*&gt;&amp; observables){</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">if</span> (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = <span class="keyword">new</span> <a class="code" href="class_observable.html">Observable&lt;SDL_Event*&gt;</a>();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">if</span> (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = <span class="keyword">new</span> <a class="code" href="class_observable.html">Observable&lt;SDL_Event*&gt;</a>();</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it : <a class="code" href="class_side_window.html#adafd669a554df8594ff3da517afbeecf">modelsSideWindow</a>) {</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            observables[SDL_MOUSEBUTTONDOWN]-&gt;<a class="code" href="class_observable.html#ac5e570ced9c4a4d463da7bbd97fadec3">subscribe</a>(it.second);</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            observables[SDL_MOUSEMOTION]-&gt;subscribe(it.second);</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        }</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_delete_window.html#a7f384136a6f9422b51049825e1d501ef">   30</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_delete_window.html#a7f384136a6f9422b51049825e1d501ef">unsubscribeAll</a>(std::map&lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>, <a class="code" href="class_observable.html">Observable&lt;SDL_Event*&gt;</a>*&gt;&amp; observables){</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it : <a class="code" href="class_side_window.html#adafd669a554df8594ff3da517afbeecf">modelsSideWindow</a>) {</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            observables[SDL_MOUSEBUTTONDOWN]-&gt;unsubscribe(it.second);</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            observables[SDL_MOUSEMOTION]-&gt;unsubscribe(it.second);</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif //DELETEWINDOW_H</span></div><div class="ttc" id="class_side_window_html_adafd669a554df8594ff3da517afbeecf"><div class="ttname"><a href="class_side_window.html#adafd669a554df8594ff3da517afbeecf">SideWindow::modelsSideWindow</a></div><div class="ttdeci">std::map&lt; std::string, Model * &gt; modelsSideWindow</div><div class="ttdoc">Liste des models à afficher. </div><div class="ttdef"><b>Definition:</b> SideWindow.h:15</div></div>
+<div class="ttc" id="class_delete_window_html"><div class="ttname"><a href="class_delete_window.html">DeleteWindow</a></div><div class="ttdoc">Représentation de la fenêtre de construction des structures. </div><div class="ttdef"><b>Definition:</b> DeleteWindow.h:13</div></div>
+<div class="ttc" id="class_singleton_html_ad6f103597095efda360db4a230308666"><div class="ttname"><a href="class_singleton.html#ad6f103597095efda360db4a230308666">Singleton&lt; ResourceManager &gt;::getInstance</a></div><div class="ttdeci">static ResourceManager * getInstance()</div><div class="ttdoc">Récupérer l&amp;#39;instance. </div><div class="ttdef"><b>Definition:</b> Singleton.h:18</div></div>
+<div class="ttc" id="class_image_html"><div class="ttname"><a href="class_image.html">Image</a></div><div class="ttdoc">Représentation d&amp;#39;une image. </div><div class="ttdef"><b>Definition:</b> Image.h:12</div></div>
+<div class="ttc" id="class_side_window_html"><div class="ttname"><a href="class_side_window.html">SideWindow</a></div><div class="ttdoc">Représentation d&amp;#39;une fenêtre de coté pour le InGameOverlay. </div><div class="ttdef"><b>Definition:</b> SideWindow.h:13</div></div>
+<div class="ttc" id="class_delete_window_html_ad56aa6effeef9d801698f7cc2cea4fce"><div class="ttname"><a href="class_delete_window.html#ad56aa6effeef9d801698f7cc2cea4fce">DeleteWindow::subscribeAll</a></div><div class="ttdeci">void subscribeAll(std::map&lt; unsigned int, Observable&lt; SDL_Event *&gt; *&gt; &amp;observables)</div><div class="ttdef"><b>Definition:</b> DeleteWindow.h:20</div></div>
+<div class="ttc" id="class_observable_html"><div class="ttname"><a href="class_observable.html">Observable</a></div><div class="ttdoc">Représentation d&amp;#39;un observable. </div><div class="ttdef"><b>Definition:</b> Observable.h:14</div></div>
+<div class="ttc" id="class_delete_window_html_a7f384136a6f9422b51049825e1d501ef"><div class="ttname"><a href="class_delete_window.html#a7f384136a6f9422b51049825e1d501ef">DeleteWindow::unsubscribeAll</a></div><div class="ttdeci">void unsubscribeAll(std::map&lt; unsigned int, Observable&lt; SDL_Event *&gt; *&gt; &amp;observables)</div><div class="ttdef"><b>Definition:</b> DeleteWindow.h:30</div></div>
+<div class="ttc" id="class_observable_html_ac5e570ced9c4a4d463da7bbd97fadec3"><div class="ttname"><a href="class_observable.html#ac5e570ced9c4a4d463da7bbd97fadec3">Observable::subscribe</a></div><div class="ttdeci">void subscribe(Observer&lt; T &gt; *observer)</div><div class="ttdef"><b>Definition:</b> Observable.h:21</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

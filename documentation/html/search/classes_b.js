@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['scene',['Scene',['../class_scene.html',1,'']]],
-  ['scores',['Scores',['../class_scores.html',1,'']]],
-  ['settings',['Settings',['../class_settings.html',1,'']]],
-  ['singleton',['Singleton',['../class_singleton.html',1,'']]],
-  ['singleton_3c_20projetfinal_20_3e',['Singleton&lt; ProjetFinal &gt;',['../class_singleton.html',1,'']]],
-  ['singleton_3c_20resourcemanager_20_3e',['Singleton&lt; ResourceManager &gt;',['../class_singleton.html',1,'']]]
+  ['observable',['Observable',['../class_observable.html',1,'']]],
+  ['observer',['Observer',['../class_observer.html',1,'']]],
+  ['observer_3c_20sdl_5fevent_20_2a_3e',['Observer&lt; SDL_Event *&gt;',['../class_observer.html',1,'']]]
 ];

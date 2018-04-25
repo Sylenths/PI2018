@@ -64,52 +64,195 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
 <a href="#pub-static-methods">Fonctions membres publiques statiques</a> &#124;
+<a href="#pub-static-attribs">Attributs publics statiques</a> &#124;
 <a href="#pro-static-attribs">Attributs protégés statiques</a> &#124;
 <a href="class_scene-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle">
 <div class="title">Référence de la classe Scene<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Représentation de la scène active du programme.  
+ <a href="class_scene.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_scene_8h_source.html">Scene.h</a>&gt;</code></p>
 <div class="dynheader">
 Graphe d'héritage de Scene:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_scene.png" usemap="#Scene_map" alt=""/>
   <map id="Scene_map" name="Scene_map">
-<area href="class_menu.html" title="Représentation de tous les menus du jeu. " alt="Menu" shape="rect" coords="220,56,320,80"/>
-<area href="class_world.html" title="Contient les models a afficher. " alt="World" shape="rect" coords="330,56,430,80"/>
-<area href="class_highscore.html" alt="Highscore" shape="rect" coords="0,112,100,136"/>
-<area href="class_in_game_e_s_c.html" alt="InGameESC" shape="rect" coords="110,112,210,136"/>
-<area href="class_in_game_overlay.html" title="Représentation de l&#39;interface en jeu. " alt="InGameOverlay" shape="rect" coords="220,112,320,136"/>
-<area href="class_main_menu.html" title="Représentation du menu principal en jeu. " alt="MainMenu" shape="rect" coords="330,112,430,136"/>
-<area href="class_settings.html" title="Représentation du menu des options du jeu. " alt="Settings" shape="rect" coords="440,112,540,136"/>
+<area href="class_menu.html" title="Représentation de menu. " alt="Menu" shape="rect" coords="240,56,350,80"/>
+<area href="class_world.html" title="Reprsentation du monde et de la partie. " alt="World" shape="rect" coords="360,56,470,80"/>
+<area href="class_high_scores_menu.html" alt="HighScoresMenu" shape="rect" coords="0,112,110,136"/>
+<area href="class_in_game_overlay.html" title="Représentation de l&#39;interface en jeu. " alt="InGameOverlay" shape="rect" coords="120,112,230,136"/>
+<area href="class_main_menu.html" title="Menu principal. " alt="MainMenu" shape="rect" coords="240,112,350,136"/>
+<area href="class_pause_menu.html" title="Représentation du menu echap en jeu. " alt="PauseMenu" shape="rect" coords="360,112,470,136"/>
+<area href="class_settings_menu.html" title="Représentation du menu des options du jeu. " alt="SettingsMenu" shape="rect" coords="480,112,590,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:aa0a5be58e2ee2d1fdafc5fb46b5e661e"><td class="memItemLeft" align="right" valign="top"><a id="aa0a5be58e2ee2d1fdafc5fb46b5e661e"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#aa0a5be58e2ee2d1fdafc5fb46b5e661e">~Scene</a> ()</td></tr>
+<tr class="memdesc:aa0a5be58e2ee2d1fdafc5fb46b5e661e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur. <br /></td></tr>
+<tr class="separator:aa0a5be58e2ee2d1fdafc5fb46b5e661e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a789c16961aa1e316b2a4a05b95187546"><td class="memItemLeft" align="right" valign="top"><a id="a789c16961aa1e316b2a4a05b95187546"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()=0</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a789c16961aa1e316b2a4a05b95187546">draw</a> ()=0</td></tr>
+<tr class="memdesc:a789c16961aa1e316b2a4a05b95187546"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche tous les models des menus actifs. <br /></td></tr>
 <tr class="separator:a789c16961aa1e316b2a4a05b95187546"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcbbb3d331b48c0d881d656430e25bda"><td class="memItemLeft" align="right" valign="top"><a id="adcbbb3d331b48c0d881d656430e25bda"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>subscribeAll</b> (std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; *observables)=0</td></tr>
-<tr class="separator:adcbbb3d331b48c0d881d656430e25bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7c67f1ff35264c5623bbeee1ef1cb27"><td class="memItemLeft" align="right" valign="top"><a id="ae7c67f1ff35264c5623bbeee1ef1cb27"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> (std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; *observables)=0</td></tr>
-<tr class="separator:ae7c67f1ff35264c5623bbeee1ef1cb27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af01fb37b60b97f4ac699da325a89a35b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#af01fb37b60b97f4ac699da325a89a35b">subscribeAll</a> (std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; &amp;observables)=0</td></tr>
+<tr class="separator:af01fb37b60b97f4ac699da325a89a35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa939dffd229738d667d808b2bb8a09"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a9fa939dffd229738d667d808b2bb8a09">unsubscribeAll</a> (std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; &amp;observables)=0</td></tr>
+<tr class="separator:a9fa939dffd229738d667d808b2bb8a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab97b197efe209a68a2eb12f65dce4cf2"><td class="memItemLeft" align="right" valign="top"><a id="ab97b197efe209a68a2eb12f65dce4cf2"></a>
+virtual <a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#ab97b197efe209a68a2eb12f65dce4cf2">getCamera</a> ()</td></tr>
+<tr class="memdesc:ab97b197efe209a68a2eb12f65dce4cf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère la camera du monde. <br /></td></tr>
+<tr class="separator:ab97b197efe209a68a2eb12f65dce4cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Fonctions membres publiques statiques</h2></td></tr>
+<tr class="memitem:a1479b43180ac99f7191f8394f11f4023"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a1479b43180ac99f7191f8394f11f4023">changeActiveScene</a> (std::string scene)</td></tr>
+<tr class="separator:a1479b43180ac99f7191f8394f11f4023"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8dc7821ba766ff047d10325e9dad9af"><td class="memItemLeft" align="right" valign="top"><a id="af8dc7821ba766ff047d10325e9dad9af"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getActiveScene</b> ()</td></tr>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#af8dc7821ba766ff047d10325e9dad9af">getActiveScene</a> ()</td></tr>
+<tr class="memdesc:af8dc7821ba766ff047d10325e9dad9af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourner la menu actif. <br /></td></tr>
 <tr class="separator:af8dc7821ba766ff047d10325e9dad9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec0d55a02c9ead4198c4a96319b9347c"><td class="memItemLeft" align="right" valign="top"><a id="aec0d55a02c9ead4198c4a96319b9347c"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#aec0d55a02c9ead4198c4a96319b9347c">getActiveFPS</a> ()</td></tr>
+<tr class="memdesc:aec0d55a02c9ead4198c4a96319b9347c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourner un booléen "vrai" si l'affichage des fps est activé. <br /></td></tr>
+<tr class="separator:aec0d55a02c9ead4198c4a96319b9347c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Attributs publics statiques</h2></td></tr>
+<tr class="memitem:a9314eda7d1fd5b621b12394b1b28599f"><td class="memItemLeft" align="right" valign="top"><a id="a9314eda7d1fd5b621b12394b1b28599f"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>sceneChange</b> = false</td></tr>
+<tr class="separator:a9314eda7d1fd5b621b12394b1b28599f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Attributs protégés statiques</h2></td></tr>
 <tr class="memitem:a92287a5fab9d8dba7bb464c5f8a6bc8e"><td class="memItemLeft" align="right" valign="top"><a id="a92287a5fab9d8dba7bb464c5f8a6bc8e"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>activeScene</b> = &quot;MainMenu&quot;</td></tr>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a92287a5fab9d8dba7bb464c5f8a6bc8e">activeScene</a> = &quot;MainMenu&quot;</td></tr>
+<tr class="memdesc:a92287a5fab9d8dba7bb464c5f8a6bc8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir quel menu est actif. <br /></td></tr>
 <tr class="separator:a92287a5fab9d8dba7bb464c5f8a6bc8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a2e352f822b420f6ea691a11e613674"><td class="memItemLeft" align="right" valign="top"><a id="a6a2e352f822b420f6ea691a11e613674"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a6a2e352f822b420f6ea691a11e613674">previous</a> = &quot; &quot;</td></tr>
+<tr class="memdesc:a6a2e352f822b420f6ea691a11e613674"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir quel était le menu précédent actif. <br /></td></tr>
+<tr class="separator:a6a2e352f822b420f6ea691a11e613674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9151905ea5287a0fe045f717ff07d0ec"><td class="memItemLeft" align="right" valign="top"><a id="a9151905ea5287a0fe045f717ff07d0ec"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a9151905ea5287a0fe045f717ff07d0ec">FPS</a> = false</td></tr>
+<tr class="memdesc:a9151905ea5287a0fe045f717ff07d0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir si l'affichage des fps est actif. <br /></td></tr>
+<tr class="separator:a9151905ea5287a0fe045f717ff07d0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Représentation de la scène active du programme. </p>
+<p>Permet de savoir quel menu ou quel environnement est actif. </p><dl class="section author"><dt>Auteur</dt><dd>Antoine Legault </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>10 avril 2018 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section warning"><dt>Avertissement</dt><dd>. </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000030">Bogue:</a></b></dt><dd>Aucun. </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a1479b43180ac99f7191f8394f11f4023"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1479b43180ac99f7191f8394f11f4023">&#9670;&nbsp;</a></span>changeActiveScene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::string Scene::changeActiveScene </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>scene</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Permet de changer le menu affiché. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scene</td><td>le nom du nouveau menu qui sera affiché. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af01fb37b60b97f4ac699da325a89a35b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af01fb37b60b97f4ac699da325a89a35b">&#9670;&nbsp;</a></span>subscribeAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Scene::subscribeAll </td>
+          <td>(</td>
+          <td class="paramtype">std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; &amp;&#160;</td>
+          <td class="paramname"><em>observables</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Permet d'inscrire tous les évènements comme observables. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">observables</td><td>une map contenant tous les observables nécessaires. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémenté dans <a class="el" href="class_world.html#a1979a2ce1b9a056a2da24c931e960453">World</a>, <a class="el" href="class_high_scores_menu.html#adaf4d7806c2fa946f1962f4d817c68b4">HighScoresMenu</a>, <a class="el" href="class_in_game_overlay.html#afa545ae8dc13fdd730a6b1488dde631c">InGameOverlay</a>, <a class="el" href="class_settings_menu.html#ad72f10b911595d756e800051943cacb6">SettingsMenu</a>, <a class="el" href="class_pause_menu.html#aa1ad34421f6a904c76c6317e9ab35232">PauseMenu</a>, <a class="el" href="class_main_menu.html#a53dec876303a3826e217d65150a7a21a">MainMenu</a>, et <a class="el" href="class_menu.html#ae4a3cc866cc4f2164f644f994bbc9ccc">Menu</a>.</p>
+
+</div>
+</div>
+<a id="a9fa939dffd229738d667d808b2bb8a09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fa939dffd229738d667d808b2bb8a09">&#9670;&nbsp;</a></span>unsubscribeAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Scene::unsubscribeAll </td>
+          <td>(</td>
+          <td class="paramtype">std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; &amp;&#160;</td>
+          <td class="paramname"><em>observables</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Permet de désinscrire tous les observables. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">observables</td><td>une map contenant tous les observables nécessaires. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémenté dans <a class="el" href="class_high_scores_menu.html#a7412fdbd146644456c4d079ad2a5d559">HighScoresMenu</a>, <a class="el" href="class_world.html#ad80496fed6663ad4c56641bfffb50ad6">World</a>, <a class="el" href="class_in_game_overlay.html#aeae4677cecdeb12712743ddefdd25243">InGameOverlay</a>, <a class="el" href="class_settings_menu.html#a0dd5c9a41f1de3a98cc273b46d6a75d1">SettingsMenu</a>, <a class="el" href="class_pause_menu.html#ac03d72352a7a3b06de676c429cf32890">PauseMenu</a>, <a class="el" href="class_main_menu.html#ac2800b67abd2ec8a194907c4ce1269f9">MainMenu</a>, et <a class="el" href="class_menu.html#a9e5681a44da319358b0f944ad2866c4c">Menu</a>.</p>
+
+</div>
+</div>
 <hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
 <li>source/<a class="el" href="_scene_8h_source.html">Scene.h</a></li>
 </ul>

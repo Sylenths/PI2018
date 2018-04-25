@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['window',['Window',['../class_window.html#a96efd3d806565db46c9328c64347a48e',1,'Window']]],
-  ['world',['World',['../class_world.html#afa39d4e6f714a7a3691ac0c656f5e8a8',1,'World']]]
+  ['vector',['Vector',['../struct_vector.html#a00a6666b729cc2cef28849c477bdff14',1,'Vector::Vector(const double &amp;x=0., const double &amp;y=0., const double &amp;z=0.)'],['../struct_vector.html#a5f04e343b7306ad11f8a82c89b486764',1,'Vector::Vector(const Vector &amp;v)']]]
 ];

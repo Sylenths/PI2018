@@ -68,38 +68,37 @@ $(function() {
 <div class="title">Référence de la classe Camera</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Graphe d'héritage de Camera:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="class_camera.png" usemap="#Camera_map" alt=""/>
-  <map id="Camera_map" name="Camera_map">
-<area href="class_observer.html" alt="Observer&lt; SDL_Event *&gt;" shape="rect" coords="0,0,160,24"/>
-</map>
- </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:a97750f8d00affdcc8574c4b623725735"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a97750f8d00affdcc8574c4b623725735">getVerticalRotationAngle</a> ()</td></tr>
-<tr class="separator:a97750f8d00affdcc8574c4b623725735"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeca74e41b764eb986610889e75adb413"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aeca74e41b764eb986610889e75adb413">getHorizontalRotationAngle</a> ()</td></tr>
-<tr class="separator:aeca74e41b764eb986610889e75adb413"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af72ec1125b65268e0376d0469c20a966"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#af72ec1125b65268e0376d0469c20a966">Camera</a> (const <a class="el" href="struct_vector.html">Vector</a> &amp;position, const <a class="el" href="struct_vector.html">Vector</a> &amp;target, const <a class="el" href="struct_vector.html">Vector</a> &amp;up)</td></tr>
-<tr class="separator:af72ec1125b65268e0376d0469c20a966"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a009e2b908f7789e0000d79adb17a9515"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a009e2b908f7789e0000d79adb17a9515">getAngleFromHorizon</a> ()</td></tr>
+<tr class="separator:a009e2b908f7789e0000d79adb17a9515"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa29961423657e6ab4f61d2734c07cbf9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aa29961423657e6ab4f61d2734c07cbf9">getPos</a> ()</td></tr>
+<tr class="separator:aa29961423657e6ab4f61d2734c07cbf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af915ca4a6e13daa482caf02739351635"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#af915ca4a6e13daa482caf02739351635">getFront</a> ()</td></tr>
+<tr class="separator:af915ca4a6e13daa482caf02739351635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a002c0bd70082eee9f0e06c3c004ecb71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a002c0bd70082eee9f0e06c3c004ecb71">Camera</a> (const <a class="el" href="struct_vector.html">Vector</a> &amp;position, const <a class="el" href="struct_vector.html">Vector</a> &amp;target, <a class="el" href="struct_vector.html">Vector</a> up=<a class="el" href="struct_vector.html">Vector</a>(0., 1., 0.))</td></tr>
+<tr class="separator:a002c0bd70082eee9f0e06c3c004ecb71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa12f9307f9f1d470612ad41dfb348ac7"><td class="memItemLeft" align="right" valign="top"><a id="aa12f9307f9f1d470612ad41dfb348ac7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aa12f9307f9f1d470612ad41dfb348ac7">loadViewMatrix</a> ()</td></tr>
 <tr class="memdesc:aa12f9307f9f1d470612ad41dfb348ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Charger la matrice de vue de la caméra. <br /></td></tr>
 <tr class="separator:aa12f9307f9f1d470612ad41dfb348ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c76b02201c2988b0f6ce417c97f15fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a9c76b02201c2988b0f6ce417c97f15fc">notify</a> (SDL_Event *event)</td></tr>
-<tr class="separator:a9c76b02201c2988b0f6ce417c97f15fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3736aad503f18063d1db93e928caea47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a3736aad503f18063d1db93e928caea47">update</a> (double deltaTime)</td></tr>
+<tr class="separator:a3736aad503f18063d1db93e928caea47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a655a9724570e788913b64f837c177013"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a655a9724570e788913b64f837c177013">rotateView</a> (int relativeXMotion, int relativeYMotion)</td></tr>
+<tr class="separator:a655a9724570e788913b64f837c177013"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac86a043fcce7f6a0d2592d6b2a78e45a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ac86a043fcce7f6a0d2592d6b2a78e45a">startMove</a> (char move)</td></tr>
+<tr class="separator:ac86a043fcce7f6a0d2592d6b2a78e45a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8101a4045e3875e2f32c3195ad7877e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a8101a4045e3875e2f32c3195ad7877e8">stopMove</a> (char move)</td></tr>
+<tr class="separator:a8101a4045e3875e2f32c3195ad7877e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeeccee46cd0bf1f5114caa3d10967b2"><td class="memItemLeft" align="right" valign="top"><a id="afeeccee46cd0bf1f5114caa3d10967b2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#afeeccee46cd0bf1f5114caa3d10967b2">applyViewMatrix</a> ()</td></tr>
 <tr class="memdesc:afeeccee46cd0bf1f5114caa3d10967b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applique la matrice de vue de la caméra au contexte OpenGL. <br /></td></tr>
 <tr class="separator:afeeccee46cd0bf1f5114caa3d10967b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
-<a id="af72ec1125b65268e0376d0469c20a966"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af72ec1125b65268e0376d0469c20a966">&#9670;&nbsp;</a></span>Camera()</h2>
+<a id="a002c0bd70082eee9f0e06c3c004ecb71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a002c0bd70082eee9f0e06c3c004ecb71">&#9670;&nbsp;</a></span>Camera()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,8 +121,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="struct_vector.html">Vector</a> &amp;&#160;</td>
-          <td class="paramname"><em>up</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>up</em> = <code><a class="el" href="struct_vector.html">Vector</a>(0.,&#160;1.,&#160;0.)</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -142,7 +141,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
     <tr><td class="paramname">position</td><td>Position de la caméra. </td></tr>
     <tr><td class="paramname">target</td><td>Cible de la caméra. </td></tr>
     <tr><td class="paramname">up</td><td>Vecteur pointant vers le haut du monde. </td></tr>
-    <tr><td class="paramname">mode</td><td>Mode de déplacement de la caméra. </td></tr>
   </table>
   </dd>
 </dl>
@@ -150,8 +148,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
-<a id="aeca74e41b764eb986610889e75adb413"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeca74e41b764eb986610889e75adb413">&#9670;&nbsp;</a></span>getHorizontalRotationAngle()</h2>
+<a id="a009e2b908f7789e0000d79adb17a9515"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a009e2b908f7789e0000d79adb17a9515">&#9670;&nbsp;</a></span>getAngleFromHorizon()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -160,7 +158,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double Camera::getHorizontalRotationAngle </td>
+          <td class="memname">double Camera::getAngleFromHorizon </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -176,8 +174,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a97750f8d00affdcc8574c4b623725735"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97750f8d00affdcc8574c4b623725735">&#9670;&nbsp;</a></span>getVerticalRotationAngle()</h2>
+<a id="af915ca4a6e13daa482caf02739351635"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af915ca4a6e13daa482caf02739351635">&#9670;&nbsp;</a></span>getFront()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -186,7 +184,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double Camera::getVerticalRotationAngle </td>
+          <td class="memname"><a class="el" href="struct_vector.html">Vector</a> Camera::getFront </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -198,12 +196,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Calcule l'angle du regard par rapport à la verticale (intervalle ]0, 180[ ; 0 est vers le haut / les y+.) </p><dl class="section return"><dt>Renvoie</dt><dd>Angle. </dd></dl>
+<p>Accéder au vecteur unitaire pointant dans la direction où regarde la caméra. </p><dl class="section return"><dt>Renvoie</dt><dd>Vecteur unitaire. </dd></dl>
 
 </div>
 </div>
-<a id="a9c76b02201c2988b0f6ce417c97f15fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c76b02201c2988b0f6ce417c97f15fc">&#9670;&nbsp;</a></span>notify()</h2>
+<a id="aa29961423657e6ab4f61d2734c07cbf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa29961423657e6ab4f61d2734c07cbf9">&#9670;&nbsp;</a></span>getPos()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,27 +210,158 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Camera::notify </td>
+          <td class="memname"><a class="el" href="struct_vector.html">Vector</a> Camera::getPos </td>
           <td>(</td>
-          <td class="paramtype">SDL_Event *&#160;</td>
-          <td class="paramname"><em>event</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Notification de la caméra d'un événement d'appui de touche du clavier ou de déplacement de souris. </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Accéder au vecteur pointant la position de la caméra. </p><dl class="section return"><dt>Renvoie</dt><dd>Vecteur position </dd></dl>
+
+</div>
+</div>
+<a id="a655a9724570e788913b64f837c177013"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a655a9724570e788913b64f837c177013">&#9670;&nbsp;</a></span>rotateView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::rotateView </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>relativeXMotion</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>relativeYMotion</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Tourner la caméra. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">event</td><td>SDL_Event* contenant le déplacement de souris ou l'appui de la touche du clavier. </td></tr>
+    <tr><td class="paramname">relativeYMotion</td><td>Mouvement relatif de la souris en Y (pixels). </td></tr>
+    <tr><td class="paramname">relativeXMotion</td><td>Mouvement relatif de la souris en X (pixels). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implémente <a class="el" href="class_observer.html#a78133bb6a438c1c111b944e9283dcd07">Observer&lt; SDL_Event *&gt;</a>.</p>
+</div>
+</div>
+<a id="ac86a043fcce7f6a0d2592d6b2a78e45a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac86a043fcce7f6a0d2592d6b2a78e45a">&#9670;&nbsp;</a></span>startMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::startMove </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>move</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initie un mouvemnt dans une direction. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">move</td><td>Direction du mouvement. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8101a4045e3875e2f32c3195ad7877e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8101a4045e3875e2f32c3195ad7877e8">&#9670;&nbsp;</a></span>stopMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::stopMove </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>move</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Interrompt le mouvement dans une direction. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">move</td><td>Direction du mouvement. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3736aad503f18063d1db93e928caea47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3736aad503f18063d1db93e928caea47">&#9670;&nbsp;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::update </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Mettre à jour la position de la caméra. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>Temps écoulé. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

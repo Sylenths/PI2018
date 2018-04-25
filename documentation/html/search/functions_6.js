@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['image',['Image',['../class_image.html#a06223e76a0e4c9dfd48d99b99cc460e2',1,'Image']]],
-  ['ingameoverlay',['InGameOverlay',['../class_in_game_overlay.html#ab60b327824531135a116038eed33266d',1,'InGameOverlay']]]
+  ['highscoresmenu',['HighScoresMenu',['../class_high_scores_menu.html#ae26f2c29b02c52cbbe56ee65e3bd3b7e',1,'HighScoresMenu']]]
 ];
