@@ -4,9 +4,24 @@
 
 class PowerAppareil : public PowerNode {
 protected:
-    unsigned int proximiteSource;
+    int proximiteSource;
+    int key;
 public:
-    PowerAppareil();
+    PowerAppareil() {
+
+    }
+
+    void setProximite(int proximiteSource) {
+        this->proximiteSource = proximiteSource;
+    }
+
+    void setKey(int key) {
+        this->key = key;
+    }
+
+    int getKey() {
+       return key;
+    }
 };
 
 #endif

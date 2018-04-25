@@ -20,26 +20,49 @@ public:
     void addSource(PowerSource* source) {
         mapSource[sourceNbr] = source;
         for(int i = sourceNbr; i <= appareilNbr; ++i) {
-            std::pair<int, int> key1 = std::make_pair(sourceNbr, i);
-            adjMatrice[key1] = nullptr;
-            std::pair<int, int> key2 = std::make_pair(i, sourceNbr);
-            adjMatrice[key2] = nullptr;
+            adjMatrice[std::make_pair(sourceNbr, i)] = nullptr;
+            adjMatrice[std::make_pair(i, sourceNbr)] = nullptr;
         }
         sourceNbr--;
     }
 
     void addAppareil(PowerAppareil* appareil) {
         appareilNbr++;
+        appareil->setKey(appareilNbr);
         mapAppareil[appareilNbr] = appareil;
-        for(int i = appareilNbr; i >= sourceNbr; --i) {
-            std::pair<int, int> key1 = std::make_pair(appareilNbr, i);
-            adjMatrice[key1] = nullptr;
-            std::pair<int, int> key2 = std::make_pair(i, appareilNbr);
-            adjMatrice[key2] = nullptr;
+        for(int i = appareilNbr; i > sourceNbr; --i) {
+            adjMatrice[std::make_pair(appareilNbr, i)] = nullptr;
+            adjMatrice[std::make_pair(i, appareilNbr)] = nullptr;
         }
     }
 
-    void addWire(int node1, int node2, PowerWire* wire) {
+    void removeAppareil(int key) {
+        PowerAppareil* temp = mapAppareil[key];
+        mapAppareil[key] = mapAppareil[appareilNbr];
+        mapAppareil[key]->setKey(key);
+        delete temp;
+
+        for(int i = appareilNbr; i > sourceNbr; --i) {
+            adjMatrice[std::make_pair(key, i)] = adjMatrice[std::make_pair(appareilNbr, i)];
+            adjMatrice[std::make_pair(i, key)] = adjMatrice[std::make_pair(i, appareilNbr)];
+        }
+        appareilNbr--;
+    }
+
+    void removeSource(int key) {
+        sourceNbr++;
+        PowerSource* temp = mapSource[key];
+        mapSource[key] = mapSource[sourceNbr];
+        mapSource[key]->setKey(key);
+        delete temp;
+
+        for(int i = (sourceNbr); i <= appareilNbr; ++i) {
+            adjMatrice[std::make_pair(key, i)] = adjMatrice[std::make_pair(sourceNbr, i)];
+            adjMatrice[std::make_pair(i, key)] = adjMatrice[std::make_pair(i, sourceNbr)];
+        }
+    }
+
+    void connectWire(int node1, int node2, PowerWire* wire) {
         std::pair<int, int> key1 = std::make_pair(node1, node2);
         std::pair<int, int> key2 = std::make_pair(node2, node1);
         adjMatrice[key1] = wire;
