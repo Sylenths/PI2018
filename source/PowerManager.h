@@ -46,6 +46,12 @@ public:
         adjMatrice[key2] = wire;
     }
 
+    void setAppareilPriority() {
+        for(int i = 1; i <= appareilNbr; ++i) {
+
+        }
+    }
+
     void updatePower() {
 
     }
