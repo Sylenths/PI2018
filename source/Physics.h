@@ -182,7 +182,7 @@ public:
 	/// \param model1 Modèle en mouvement
 	/// \param model2 Modèle fixe.
 	/// \return Structure de donnée contenant les résultats de la collision.
-	static Physics::CollisionData collideMovingOnStaticModelHitboxes(Vector model1Movement, Model model1, Model model2){
+	static Physics::CollisionData collideMovingOnStaticModelHitboxes(Vector model1Movement, Model& model1, Model& model2){
 
 		Physics::CollisionData collisionResult;
 
@@ -229,7 +229,7 @@ public:
 	/// \param model1 Modèle en mouvement
 	/// \param model2 Modèle fixe.
 	/// \return Structure de donnée contenant les résultats de la collision.
-	static Physics::CollisionData collideMovingOnStaticModels(Vector model1Movement, Model model1, Model model2){
+	static Physics::CollisionData collideMovingOnStaticModels(Vector model1Movement, Model& model1, Model& model2){
 
 		Physics::CollisionData collisionResult;
 
