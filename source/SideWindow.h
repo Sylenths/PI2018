@@ -8,13 +8,19 @@
 #ifndef SIDEWINDOW_H
 #define SIDEWINDOW_H
 
-#include "InGameOverlay.h"
-
-class SideWindow{
+class SideWindow {
 protected:
     std::map<std::string, Model*> modelsSideWindow;   ///< Liste des models à afficher.
+
+
+
+
 public:
-    bool cancelButton = false;
+    static std::string actionButton;
+    static std::string getClic(){
+        return actionButton;
+    }
+
 
     /// Inscription des modèles aux événements.
     /// \param observables Événements.
@@ -35,5 +41,6 @@ public:
     }
 
 };
+std::string SideWindow::actionButton = "";
 
 #endif //SIDEWINDOW_H

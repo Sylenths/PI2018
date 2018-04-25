@@ -56,6 +56,7 @@ public:
     virtual void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0;
     /// Récupère la camera du monde.
     virtual Camera* getCamera(){}
+
 };
 
 std::string Scene::activeScene = "MainMenu";

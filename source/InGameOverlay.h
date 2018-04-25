@@ -56,7 +56,7 @@ public:
         sideWindowMap["Wire"] = new WireWindow();
         sideWindowMap["Machine"] = new MachineWindow();
         sideWindowMap["Information"] = new InformationWindow();
-        sideWindow = sideWindowMap["Nothing"];
+        sideWindow = nullptr;
         camera = new Camera({ 10.0, 3.5, 10.0 }, { 0.0, 3.5, 0.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
     }
@@ -84,7 +84,7 @@ public:
             for (auto it : models) {
                 it.second->draw();
             }
-            if(sideWindow != sideWindowMap["Nothing"])
+            if(sideWindow != nullptr)
                 sideWindow->draw();
         }
     }
@@ -100,7 +100,7 @@ public:
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial30");
 
         models["skipturn"] = new Button (0, 0, 0.1, 175, 60,ResourceManager::getInstance()->getTexture("skipTurn"));
-        models["skipturn"]->onClick = [this]() {isConstructingFondation = !isConstructingFondation; };
+        models["skipturn"]->onClick = [this]() {};
 
         models["structure"] = new Button (0, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("structure"));
         models["structure"]->onClick = [this]() { activeStructureSideWindow(); };
@@ -334,24 +334,17 @@ public:
     }
 
     /// Active la fenêtre de construction de structure
-    void activeStructureSideWindow(){
-        if(sideWindow != sideWindowMap["Structure"]){
-            sideWindow = sideWindowMap["Structure"];
-        }
-        else
-            sideWindow = sideWindowMap["Nothing"];
+    void activeStructureSideWindow() {
+        sideWindow = sideWindowMap["Structure"];
+
         // TODO: Code Structure mode
         sceneChange = true;
-        isConstructingFondation = !isConstructingFondation;
 
     }
 
     /// Active la fenêtre de construction de machine
     void activeMachineSideWindow(){
-        if(sideWindow != sideWindowMap["Machine"])
-            sideWindow = sideWindowMap["Machine"];
-        else
-            sideWindow = sideWindowMap["Nothing"];
+        sideWindow = sideWindowMap["Machine"];
         sceneChange = true;
 
         // TODO: Code delete mode
@@ -359,10 +352,7 @@ public:
 
     /// Active la fenêtre de construction de cable
     void activeWireSideWindow(){
-        if(sideWindow != sideWindowMap["Wire"])
-            sideWindow = sideWindowMap["Wire"];
-        else
-            sideWindow = sideWindowMap["Nothing"];
+        sideWindow = sideWindowMap["Wire"];
         sceneChange = true;
 
 
@@ -370,10 +360,8 @@ public:
     }
     /// Active la fenêtre d'information
     void activeInfoSideWindow(){
-        if(sideWindow != sideWindowMap["Information"])
-            sideWindow = sideWindowMap["Information"];
-        else
-            sideWindow = sideWindowMap["Nothing"];
+        sideWindow = sideWindowMap["Information"];
+
         sceneChange = true;
 
         // TODO: Code Info mode
@@ -381,28 +369,39 @@ public:
     }
     /// Active la fenêtre de destruction
     void activeDeleteSideWindow(){
-        if(sideWindow != sideWindowMap["Delete"])
-            sideWindow = sideWindowMap["Delete"];
-        else
-            sideWindow = sideWindowMap["Nothing"];
+        sideWindow = sideWindowMap["Delete"];
         sceneChange = true;
 
         // TODO: Code delete mode
     }
 
-    void cancelButton(){
-
+    void actionFromButtonSideWindow(){
+        if(SideWindow::getClic() == "cancel"){
+            isConstructingFondation = false;
+            sideWindow = nullptr;
+        }
+        if(SideWindow::getClic() == "build"){
+            isConstructingFondation = true;
+            sideWindow = nullptr;
+        }
+        if(SideWindow::getClic() == "fondation" || SideWindow::getClic() == "mur" || SideWindow::getClic() == "toit" || SideWindow::getClic() == "plancher"){
+            
+        }
+        SideWindow::actionButton = "";
     }
 
 
+
     void sideWndowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
-        if(sideWindow != sideWindowMap["Nothing"])
+        if(sideWindow != nullptr)
             sideWindow->subscribeAll(observables);
     }
 
     void sideWindowUnsubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
-        if(sideWindow != sideWindowMap["Nothing"])
+        if(sideWindow != nullptr){
             sideWindow->unsubscribeAll(observables);
+        }
+
     }
 
     /// Destructeur.
