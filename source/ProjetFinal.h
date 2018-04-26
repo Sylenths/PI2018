@@ -77,7 +77,10 @@ public:
         getTextureID("../../images/BuildButtonOver.png","BuildButtonOver");
         getTextureID("../../images/CancelButton.png","CancelButton");
         getTextureID("../../images/CancelButtonOver.png","CancelButtonOver");
-
+        getTextureID("../../images/SimCoinMinerButtonO.png","SimcoinsButtonOver");
+        getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
+        getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
+        getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
 
         //Textures world
         getTextureID("../../images/skysphere_day.png", "daysky");
@@ -174,6 +177,15 @@ public:
             FPSchrono.restart();
         }
     }
+   /* Observable<SDL_Event*>* getMBDObservable(){
+        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        return observables[SDL_MOUSEBUTTONDOWN];
+    }
+    Observable<SDL_Event*>* getMMObservable(){
+        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
+        return observables[SDL_MOUSEMOTION];
+    }*/
+
 
     /// Représente la boucle de jeu.
     void run(std::string filePath) {
