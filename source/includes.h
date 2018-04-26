@@ -8,12 +8,16 @@
 #define BUILD_WALL 2
 #define BUILD_FLOOR 3
 #define BUILD_ROOF 4
+#define BUILD_WIRE 5
+#define DELETE 6
 #define NULLMATERIAL 0
 #define CARDBOARD 1
 #define WOOD 2
 #define ROCK 3
 #define METAL 4
 #define SIMTIUM 5
+#define COPPER 6
+#define SILVER 7
 #include <list>
 #include <cmath>
 #include <string>
@@ -24,6 +28,7 @@
 #include <map>
 #include <stdio.h>
 #include <stdlib.h>
+#include <array>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
