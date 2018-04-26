@@ -12,14 +12,11 @@
 
 class StructureWindow : public SideWindow{
 private:
-
-    unsigned int height;
     char buffer[10];
 
 public:
+    static unsigned  int height;
     StructureWindow(){
-
-        height = 0;
         isBuilding = false;
 
         modelsSideWindow["SideMenuStructure"] = new Image(920, 0, 0, 360, 720, ResourceManager::getInstance()->getTexture("StructureWindow"));
@@ -173,7 +170,6 @@ public:
     }
 
 
-
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
         if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
         if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
@@ -192,4 +188,5 @@ public:
 
     }
 };
+unsigned int StructureWindow::height = 1;
 #endif //STRUCTUREWINDOW_H

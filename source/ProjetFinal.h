@@ -396,8 +396,7 @@ public:
             SideWindow::isBuilding = false;
             SideWindow::buildType = BUILD_NOTHING;
             std::map<std::pair<int, int>, Fondation *> *fondationGrid = ((World *) sceneDisplay)->hud->getFondations();
-            Fondation *start = /*((BuildWall *) ((World*)sceneDisplay)->hud->getActions()->front())->getFondation()*/ (*fondationGrid)[std::make_pair(
-                    0, 0)];
+            Fondation *start = (*fondationGrid)[std::make_pair(0, 0)];
             while (start->north) {
                 start = start->north;
             }
@@ -551,17 +550,33 @@ public:
                      (stop->centerPoint->z == currentPosition->centerPoint->z)));
             int size = corner.size() - 1;
             Vector first = corner.front();
+            unsigned int texture;
+            switch(SideWindow::materialType){
+                case CARDBOARD:
+                    texture = ResourceManager::getInstance()->getTexture("wall");
+                    break;
+                case WOOD:
+                    texture = ResourceManager::getInstance()->getTexture("fondMaison");
+                    break;
+                case ROCK:
+                    texture = ResourceManager::getInstance()->getTexture("daysky");
+                    break;
+                case METAL:
+                    texture = ResourceManager::getInstance()->getTexture("nightsky");
+                    break;
+                case SIMTIUM:
+                    texture = ResourceManager::getInstance()->getTexture("grass");
+                    break;
+            }
+
+
             for (int i = 0; i < size; ++i) {
                 Vector temp = corner.front();
                 corner.pop_front();
                 ((World *) sceneDisplay)->addModel(
-                        new Model(/*((BuildWall *) hud->getActions()->front())->getHeight()*/
-                                3.0, /*((BuildWall *) hud->getActions()->front())->getMateriel()->getTextureID()*/
-                                ResourceManager::getInstance()->getTexture("wall"), &temp, &corner.front()));
+                        new Model( /*StructureWindow::height*/ 3, texture, &temp, &corner.front()));
             }
-            ((World *) sceneDisplay)->addModel(new Model(/*((BuildWall *) hud->getActions()->front())->getHeight()*/
-                    3.0, /*((BuildWall *) hud->getActions()->front())->getMateriel()->getTextureID()*/
-                    ResourceManager::getInstance()->getTexture("wall"), &corner.front(), &first));
+            ((World *) sceneDisplay)->addModel(new Model(/*StructureWindow::height*/ 3, texture, &corner.front(), &first));
 
         }
     }
