@@ -264,11 +264,13 @@ public:
                     activeCamera = false;
                     glContext->releaseInput();
                     sceneDisplay->subscribeAll(observables);
+                    ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
                     break;
                 case SDLK_g:
                     activeCamera = true;
                     glContext->grabInput();
                     sceneDisplay->unsubscribeAll(observables);
+                    ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
@@ -593,9 +595,9 @@ public:
                 Vector temp = corner.front();
                 corner.pop_front();
                 ((World *) sceneDisplay)->addModel(
-                        new Model( /*StructureWindow::height*/ 3, texture, &temp, &corner.front()));
+                        new Model( StructureWindow::height, texture, &temp, &corner.front()));
             }
-            ((World *) sceneDisplay)->addModel(new Model(/*StructureWindow::height*/ 3, texture, &corner.front(), &first));
+            ((World *) sceneDisplay)->addModel(new Model(StructureWindow::height, texture, &corner.front(), &first));
 
         }
     }

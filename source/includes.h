@@ -9,6 +9,7 @@
 #define BUILD_FLOOR 3
 #define BUILD_ROOF 4
 #define BUILD_WIRE 5
+#define DELETE 6
 #define NULLMATERIAL 0
 #define CARDBOARD 1
 #define WOOD 2
@@ -27,6 +28,7 @@
 #include <map>
 #include <stdio.h>
 #include <stdlib.h>
+#include <array>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>

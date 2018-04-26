@@ -26,6 +26,7 @@ public:
         modelsSideWindow["1FondationIcon"] = new CheckBox (970, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1FondationIcon"]->onClick = [this] () { onFoundationClick();};
         modelsSideWindow["1FondationLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Fondation", 970, 150, 0);
+        //modelsSideWindow["1FondationDesc"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "hello", 1000, 400, 0);
 
         modelsSideWindow["1MurIcon"] = new CheckBox (1040, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1MurIcon"]->onClick = [this] () { onWallClick();};
