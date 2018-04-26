@@ -392,7 +392,9 @@ public:
 
     void createWall(){
         if(Scene::getActiveScene() == "World")
-        if (SideWindow::buildType == BUILD_FLOOR && SideWindow::isBuilding) {
+        if (SideWindow::buildType == BUILD_WALL && SideWindow::isBuilding) {
+            SideWindow::isBuilding = false;
+            SideWindow::buildType = BUILD_NOTHING;
             std::map<std::pair<int, int>, Fondation *> *fondationGrid = ((World *) sceneDisplay)->hud->getFondations();
             Fondation *start = /*((BuildWall *) ((World*)sceneDisplay)->hud->getActions()->front())->getFondation()*/ (*fondationGrid)[std::make_pair(
                     0, 0)];
@@ -400,38 +402,39 @@ public:
                 start = start->north;
             }
             Fondation *previousPosition = start;
+            Fondation *stop;
             Fondation *currentPosition;
-            Fondation *switchVariable;
             std::list<Vector> corner;
 
             if (previousPosition->east) {
-                currentPosition = previousPosition->east;
-                if(previousPosition->west){
-                    corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
-                }
-                if(previousPosition->south){
+                stop = currentPosition = previousPosition->east;
+                if(!previousPosition->west){
                     corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
+                    if(!previousPosition->south){
+                        corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                    }
                 }
+
             } else {
                 corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, -1.0});
                 if (previousPosition->south) {
-                    currentPosition = previousPosition->south;
+                    stop = currentPosition = previousPosition->south;
+                    if (!previousPosition->west) {
+                        corner.push_front((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
+                    }
                 } else {
                     corner.push_front((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
                     if (previousPosition->west) {
-                        currentPosition = previousPosition->west;
+                        stop = currentPosition = previousPosition->west;
                     } else {
-                        currentPosition = previousPosition;
+                        stop = currentPosition = previousPosition;
                         corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
                         corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
                     }
                 }
             }
 
-            while (!((start->centerPoint->x == currentPosition->centerPoint->x) &&
-                     (start->centerPoint->z == currentPosition->centerPoint->z))) {
-
-
+            do
                 ///deplace vers l'est et regarde a le nord
                 if (currentPosition == previousPosition->east) {
                     if (!currentPosition->north) {
@@ -458,60 +461,58 @@ public:
 
                 }
                 else {
-                    ///deplace vers le sud et regarde a l'est
-                    if (currentPosition == previousPosition->south) {
-                        if (!currentPosition->east) {
-                            if (currentPosition->south) {
+                    ///deplace vers l'oest et regarde a le sud
+                    if (currentPosition == previousPosition->west) {
+
+                        if (!currentPosition->south) {
+                            if (currentPosition->west) {
                                 previousPosition = currentPosition;
-                                currentPosition = currentPosition->south;
+                                currentPosition = currentPosition->west;
                             } else {
-                                if (currentPosition->west) {
-                                    previousPosition = currentPosition;
-                                    currentPosition = currentPosition->west;
-                                    /* +1,+1*/                            corner.push_back(
-                                            (*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
-                                } else {
+                                if (currentPosition->north) {
                                     previousPosition = currentPosition;
                                     currentPosition = currentPosition->north;
-                                    corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
-                                    corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                                    /*-1+1*/                                   corner.push_back(
+                                            (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                                } else {
+                                    previousPosition = currentPosition;
+                                    currentPosition = currentPosition->east;
+                                    corner.push_back(
+                                            (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                                    corner.push_back(
+                                            (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
                                 }
                             }
                         } else {
                             previousPosition = currentPosition;
-                            currentPosition = currentPosition->east;
-                            corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, -1.0});
+                            currentPosition = currentPosition->south;
+                            corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
                         }
-
                     } else {
-                        ///deplace vers l'oest et regarde a le sud
-                        if (currentPosition == previousPosition->west) {
-
-                            if (!currentPosition->south) {
-                                if (currentPosition->west) {
+                        ///deplace vers le sud et regarde a l'est
+                        if (currentPosition == previousPosition->south) {
+                            if (!currentPosition->east) {
+                                if (currentPosition->south) {
                                     previousPosition = currentPosition;
-                                    currentPosition = currentPosition->west;
+                                    currentPosition = currentPosition->south;
                                 } else {
-                                    if (currentPosition->north) {
+                                    if (currentPosition->west) {
                                         previousPosition = currentPosition;
-                                        currentPosition = currentPosition->north;
-                                        /*-1+1*/                                   corner.push_back(
-                                                (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
+                                        currentPosition = currentPosition->west;
+                                        /* +1,+1*/                            corner.push_back(
+                                                (*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
                                     } else {
                                         previousPosition = currentPosition;
-                                        currentPosition = currentPosition->east;
-                                        corner.push_back(
-                                                (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
-                                        corner.push_back(
-                                                (*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, -1.0});
+                                        currentPosition = currentPosition->north;
+                                        corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
+                                        corner.push_back((*previousPosition->centerPoint) + (Vector) {-1.0, 0.0, 1.0});
                                     }
                                 }
                             } else {
                                 previousPosition = currentPosition;
-                                currentPosition = currentPosition->south;
-                                corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, 1.0});
+                                currentPosition = currentPosition->east;
+                                corner.push_back((*previousPosition->centerPoint) + (Vector) {1.0, 0.0, -1.0});
                             }
-
                         } else {
                             ///deplace vers le nord et regarde a l'oest
                             if (currentPosition == previousPosition->north) {
@@ -544,12 +545,10 @@ public:
 
                     }
                 }
-
-
-
-
-
-            }
+            while (!((start->centerPoint->x == previousPosition->centerPoint->x) &&
+                     (start->centerPoint->z == previousPosition->centerPoint->z) &&
+                     (stop->centerPoint->x == currentPosition->centerPoint->x) &&
+                     (stop->centerPoint->z == currentPosition->centerPoint->z)));
             int size = corner.size() - 1;
             Vector first = corner.front();
             for (int i = 0; i < size; ++i) {
@@ -563,7 +562,7 @@ public:
             ((World *) sceneDisplay)->addModel(new Model(/*((BuildWall *) hud->getActions()->front())->getHeight()*/
                     3.0, /*((BuildWall *) hud->getActions()->front())->getMateriel()->getTextureID()*/
                     ResourceManager::getInstance()->getTexture("wall"), &corner.front(), &first));
-                    SideWindow::isBuilding = false;
+
         }
     }
 
