@@ -8,12 +8,7 @@
 #ifndef SOURCE_INGAMEOVERLAY_H
 #define SOURCE_INGAMEOVERLAY_H
 
-#define NOTBUILDING 0
-#define BUILDINGFONDATIONS 1
-#define BUILDINGFLOORS 2
-#define BUILDINGWALL 3
-#define BUILDINGROOF
-#define DELETING 5
+
 #include "includes.h"
 #include <queue>
 #include "Menu.h"
@@ -55,7 +50,7 @@ public:
         fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,false);
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
         actionQueue = new std::queue<Action*>;
-        constructingMode = NOTBUILDING;
+        constructingMode = BUILD_NOTHING;
         sideWindowMap["Delete"] = new DeleteWindow();
         sideWindowMap["Structure"] = new StructureWindow();
         sideWindowMap["Wire"] = new WireWindow();

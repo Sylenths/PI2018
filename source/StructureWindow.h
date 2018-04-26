@@ -86,13 +86,13 @@ public:
 
     }
     void onBuildClick(){
-        if(buildType == SIDEWINDOW_BUILD_FONDATION ||(buildType != SIDEWINDOW_BUILD_NOTHING && materialType)) {
+        if(buildType == BUILD_FONDATION ||(buildType != BUILD_NOTHING && materialType)) {
             isBuilding = true;
             SideWindow::closed = true;
         }
     }
     void onCancelClick(){
-        buildType = SIDEWINDOW_BUILD_NOTHING;
+        buildType = BUILD_NOTHING;
         materialType = NULLMATERIAL;
         isBuilding = false;
         closed = true;
@@ -101,7 +101,7 @@ public:
         ((CheckBox*)modelsSideWindow["1MurIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1PlancherIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1ToitIcon"])->uncheck();
-        buildType = SIDEWINDOW_BUILD_FONDATION;
+        buildType = BUILD_FONDATION;
         ((CheckBox*)modelsSideWindow["1FondationIcon"])->check();
     }
 
@@ -109,7 +109,7 @@ public:
         ((CheckBox*)modelsSideWindow["1FondationIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1PlancherIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1ToitIcon"])->uncheck();
-        buildType = SIDEWINDOW_BUILD_WALL;
+        buildType = BUILD_WALL;
         ((CheckBox*)modelsSideWindow["1MurIcon"])->check();
 
     }
@@ -117,14 +117,14 @@ public:
         ((CheckBox*)modelsSideWindow["1FondationIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1MurIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1ToitIcon"])->uncheck();
-        buildType = SIDEWINDOW_BUILD_FLOOR;
+        buildType = BUILD_FLOOR;
         ((CheckBox*)modelsSideWindow["1PlancherIcon"])->check();
     }
     void onRoofClick(){
         ((CheckBox*)modelsSideWindow["1FondationIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1MurIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1PlancherIcon"])->uncheck();
-        buildType = SIDEWINDOW_BUILD_ROOF;
+        buildType = BUILD_ROOF;
         ((CheckBox*)modelsSideWindow["1ToitIcon"])->check();
     }
     void onCardboardClick(){

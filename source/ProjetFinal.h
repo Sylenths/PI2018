@@ -330,7 +330,7 @@ public:
     }
 
     void addFondation() {
-        if(SideWindow::buildType == BUILDINGFONDATIONS && SideWindow::isBuilding) {
+        if(SideWindow::buildType == BUILD_FONDATION && SideWindow::isBuilding) {
             if(activeCamera && Scene::getActiveScene() == "World" && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT){
             World* world = ((World*)sceneDisplay);
 
@@ -392,7 +392,7 @@ public:
 
     void createWall(){
         if(Scene::getActiveScene() == "World")
-        if (SideWindow::buildType == SIDEWINDOW_BUILD_FLOOR && SideWindow::isBuilding) {
+        if (SideWindow::buildType == BUILD_FLOOR && SideWindow::isBuilding) {
             std::map<std::pair<int, int>, Fondation *> *fondationGrid = ((World *) sceneDisplay)->hud->getFondations();
             Fondation *start = /*((BuildWall *) ((World*)sceneDisplay)->hud->getActions()->front())->getFondation()*/ (*fondationGrid)[std::make_pair(
                     0, 0)];
