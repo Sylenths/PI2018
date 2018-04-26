@@ -38,12 +38,12 @@ public:
     /// \param deltaTime Temps écoulé depuis le dernier calcul d'angle
     void update(Chrono deltaTime) {
         //on considère qu'une phase dure 15 minutes, donc rotationne de 6 degrés par minutes (qu'on converti en microsecondes)
-        if(sphereAngle >= 180) {
+        if(sphereAngle >= 180 && sphereAngle < 360) { //NightTime
             isDayTime = false;
             textureToDraw = textureIDs["nightsky"];
         }
         else {
-            if(sphereAngle >= 360) {
+            if(sphereAngle >= 360) {//DayTime
                 isDayTime = true;
                 sphereAngle = 0;
                 textureToDraw = textureIDs["daysky"];
@@ -56,7 +56,6 @@ public:
             }
         }
     }
-
 };
 
 
