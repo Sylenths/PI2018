@@ -4,7 +4,8 @@
 
 class PanneauSolaire : public PowerSource {
 public:
-    PanneauSolaire();
+    PanneauSolaire(){
+    };
 };
 
 #endif
