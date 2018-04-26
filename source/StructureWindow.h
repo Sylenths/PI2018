@@ -1,8 +1,8 @@
 /// \brief Représentation de la fenêtre de construction des structures
 /// \details Permet de choisir le matériel pour les planchers, murs et les toits et la hauteur des murs.
-/// \author Guillaume Julien - Desmarchais, Antoine Legault
+/// \author Guillaume Julien - Desmarchais, Antoine Legault, Mickaël Grisé-Roy
 /// \date 20 mars 2018
-/// \version 0.1
+/// \version 1.0
 /// \warning Aucun
 /// \bug Aucun
 #ifndef STRUCTUREWINDOW_H

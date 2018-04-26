@@ -162,11 +162,9 @@ public:
         if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
         if (!observables[SDL_KEYDOWN]) observables[SDL_KEYDOWN] = new Observable<SDL_Event*>();
         hud->subscribeAll(observables);
-        hud->sideWndowSubscribe(observables);
     }
     virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
         hud->unsubscribeAll(observables);
-        hud->sideWindowUnsubscribe(observables);
     }
 
     InGameOverlay* getHud(){
