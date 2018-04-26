@@ -385,7 +385,7 @@ public:
             sideWindow = nullptr;
         }
         if(SideWindow::getClic() == "fondation" || SideWindow::getClic() == "mur" || SideWindow::getClic() == "toit" || SideWindow::getClic() == "plancher"){
-            
+
         }
         SideWindow::actionButton = "";
     }

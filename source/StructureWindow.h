@@ -14,10 +14,12 @@ class StructureWindow : public SideWindow{
 private:
     std::string structureType;
     std::string materialType;
+    unsigned height;
 public:
     StructureWindow(){
         structureType = "";
         materialType = "";
+        height = 0;
 
         modelsSideWindow["SideMenuStructure"] = new Image(920, 0, 0, 360, 720, ResourceManager::getInstance()->getTexture("StructureWindow"));
 
@@ -67,8 +69,29 @@ public:
 
         modelsSideWindow["1CancelButtonStructure"] = new Button (930, 650, 0, 340, 60, ResourceManager::getInstance()->getTexture("CancelButton"), ResourceManager::getInstance()->getTexture("CancelButtonOver"));
         modelsSideWindow["1CancelButtonStructure"]->onClick = [this] () {actionButton = "cancel";};
+
+        //Parameter
+        modelsSideWindow["1AddHeight"] = new Button ( 1020, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1AddHeight"]->onClick = [this] () {height++;};
+
+        modelsSideWindow["1SoustracHeight"] = new Button (1130, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1SoustracHeight"]->onClick = [this] () {height--;};
+
+        char buffer[10];
+        SDL_itoa(height, buffer, 10);
+
+        modelsSideWindow["1HeightNumber"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1085, 300, 0);
+
+
+
     }
 
+    /*char setBuffer(unsigned int){
+        char buffer[10];
+        SDL_itoa(height, buffer, 10);
+        return buffer;
+    }
+*/
     void structureTypeCheck(std::string type, std::string modelName){
         if(structureType == "")
             structureType = type;
@@ -84,7 +107,7 @@ public:
     }
 
     void materialTypeCheck(std::string type, std::string modelName){
-        if(structureType == "")
+        if(materialType == "")
             materialType = type;
         else{
             modelsSideWindow["1CartonIcon"]->setTexture("",0);
@@ -94,6 +117,7 @@ public:
             modelsSideWindow["1SIMTiumIcon"]->setTexture("",0);
             modelsSideWindow[modelName]->setTexture("clic", ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         }
+        actionButton = type;
     }
 
 
