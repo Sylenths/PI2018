@@ -78,8 +78,9 @@ public:
         }
 
         addModel(new Sky(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("daysky"),false, "../../models/obj/skysphere.obj"));
-        addModel(new Model(0.0, 0.0, 5.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj"));
-
+        Model* simCoinMiner = new Model(0.0, 0.0, 5.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj");
+        simCoinMiner->setShadingOn();
+        addModel(simCoinMiner);
 
         worldLight = new Light(5.0, 200.0, 5.0, 1.0);
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
