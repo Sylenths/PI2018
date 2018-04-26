@@ -3,7 +3,17 @@
 
 #define IS2D true
 #define IS3D false
-
+#define SIDEWINDOW_BUILD_NOTHING 0
+#define SIDEWINDOW_BUILD_FONDATION 1
+#define SIDEWINDOW_BUILD_WALL 2
+#define SIDEWINDOW_BUILD_FLOOR 3
+#define SIDEWINDOW_BUILD_ROOF 4
+#define NULLMATERIAL 0
+#define CARDBOARD 1
+#define WOOD 2
+#define ROCK 3
+#define METAL 4
+#define SIMTIUM 5
 #include <list>
 #include <cmath>
 #include <string>

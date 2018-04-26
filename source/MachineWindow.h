@@ -14,7 +14,13 @@ public:
         modelsSideWindow["1BuildingButtonMachine"]->onClick = [this] () {};
 
         modelsSideWindow["1CancelButtonMachine"] = new Button (930, 650, 0, 340, 60, ResourceManager::getInstance()->getTexture("CancelButton"), ResourceManager::getInstance()->getTexture("CancelButtonOver"));
-        modelsSideWindow["1CancelButtonMachine"]->onClick = [this] () {};
+        modelsSideWindow["1CancelButtonMachine"]->onClick = [this] () {onCancelClick();};
+    }
+    void onCancelClick(){
+        buildType = SIDEWINDOW_BUILD_NOTHING;
+        materialType = NULLMATERIAL;
+        isBuilding = false;
+        closed = true;
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){

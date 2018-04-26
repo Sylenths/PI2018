@@ -225,9 +225,11 @@ public:
                 Scene::sceneChange = false;
             }
 
-            if((SideWindow::getClic() != "") && (sceneDisplay == sceneMap["World"])){
-                ((World*)sceneMap["World"])->hud->actionFromButtonSideWindow();
-                sceneDisplay = sceneMap["World"];
+            if((SideWindow::closed == true) && (sceneDisplay == sceneMap["World"])){
+                ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
+                ((World*)sceneDisplay)->hud->closeSideWindow();
+
+                SideWindow::closed = false;
             }
             addFondation();
             createWall();
@@ -328,10 +330,11 @@ public:
     }
 
     void addFondation() {
-        if(activeCamera && Scene::getActiveScene() == "World" && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT){
+        if(SideWindow::buildType == BUILDINGFONDATIONS && SideWindow::isBuilding) {
+            if(activeCamera && Scene::getActiveScene() == "World" && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT){
             World* world = ((World*)sceneDisplay);
 
-            if(world->hud->isConstructingFondation) {
+
 
                 Vector front = world->getCamera()->getFront();
                 Vector pos = world->getCamera()->getPos();
@@ -388,8 +391,8 @@ public:
     }
 
     void createWall(){
-        if (((World *) sceneDisplay)->test == 2) {
-            ((World *) sceneDisplay)->test = 0;
+        if(Scene::getActiveScene() == "World")
+        if (SideWindow::buildType == SIDEWINDOW_BUILD_FLOOR && SideWindow::isBuilding) {
             std::map<std::pair<int, int>, Fondation *> *fondationGrid = ((World *) sceneDisplay)->hud->getFondations();
             Fondation *start = /*((BuildWall *) ((World*)sceneDisplay)->hud->getActions()->front())->getFondation()*/ (*fondationGrid)[std::make_pair(
                     0, 0)];
@@ -560,7 +563,7 @@ public:
             ((World *) sceneDisplay)->addModel(new Model(/*((BuildWall *) hud->getActions()->front())->getHeight()*/
                     3.0, /*((BuildWall *) hud->getActions()->front())->getMateriel()->getTextureID()*/
                     ResourceManager::getInstance()->getTexture("wall"), &corner.front(), &first));
-
+                    SideWindow::isBuilding = false;
         }
     }
 

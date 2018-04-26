@@ -1,4 +1,4 @@
-/// \brief Représentation de l'interface en jeu.
+ /// \brief Représentation de l'interface en jeu.
 /// \details Interface pour construire et pour donner les informations sur la partie.
 /// \author Antoine Legault , Guillaume Julien - Desmarchais, Mickaël Grisé-Roy
 /// \date 24 mars 2018
@@ -8,7 +8,12 @@
 #ifndef SOURCE_INGAMEOVERLAY_H
 #define SOURCE_INGAMEOVERLAY_H
 
-
+#define NOTBUILDING 0
+#define BUILDINGFONDATIONS 1
+#define BUILDINGFLOORS 2
+#define BUILDINGWALL 3
+#define BUILDINGROOF
+#define DELETING 5
 #include "includes.h"
 #include <queue>
 #include "Menu.h"
@@ -36,7 +41,7 @@ private:
     //RotatingImage* windIndicator;
 
 public:
-    bool isConstructingFondation;
+    int constructingMode; ///< indique le mode de construction
 
     /// Constructeur.
     /// \param powerCount Nombre d'électricité disponible.
@@ -50,7 +55,7 @@ public:
         fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,false);
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
         actionQueue = new std::queue<Action*>;
-        isConstructingFondation = false;
+        constructingMode = NOTBUILDING;
         sideWindowMap["Delete"] = new DeleteWindow();
         sideWindowMap["Structure"] = new StructureWindow();
         sideWindowMap["Wire"] = new WireWindow();
@@ -327,6 +332,9 @@ public:
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
         ((Label*)models["time"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
+    int getBuildType(){
+        return SideWindow::buildType;
+    }
 
     /// Active/Desactive l'affichage du InGameOverlay
     void toggleHud(){
@@ -375,22 +383,10 @@ public:
         // TODO: Code delete mode
     }
 
-    void actionFromButtonSideWindow(){
-        if(SideWindow::getClic() == "cancel"){
-            isConstructingFondation = false;
-            sideWindow = nullptr;
-        }
-        if(SideWindow::getClic() == "build"){
-            isConstructingFondation = true;
-            sideWindow = nullptr;
-        }
-        if(SideWindow::getClic() == "fondation" || SideWindow::getClic() == "mur" || SideWindow::getClic() == "toit" || SideWindow::getClic() == "plancher"){
-
-        }
-        SideWindow::actionButton = "";
+    void closeSideWindow(){
+        sideWindow = nullptr;
+        sceneChange = true;
     }
-
-
 
     void sideWndowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
         if(sideWindow != nullptr)
