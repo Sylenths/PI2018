@@ -13,9 +13,10 @@
 class StructureWindow : public SideWindow{
 private:
 
-    unsigned height;
+
 
 public:
+    static unsigned  int height;
     StructureWindow(){
 
         height = 0;
@@ -171,6 +172,8 @@ public:
 
 
 
+
+
     /*char setBuffer(unsigned int){
         char buffer[10];
         SDL_itoa(height, buffer, 10);
@@ -224,4 +227,5 @@ public:
 
     }
 };
+unsigned int StructureWindow::height = 0;
 #endif //STRUCTUREWINDOW_H
