@@ -17,7 +17,7 @@ public:
         modelsSideWindow["1CancelButtonMachine"]->onClick = [this] () {onCancelClick();};
     }
     void onCancelClick(){
-        buildType = SIDEWINDOW_BUILD_NOTHING;
+        buildType = BUILD_NOTHING;
         materialType = NULLMATERIAL;
         isBuilding = false;
         closed = true;
