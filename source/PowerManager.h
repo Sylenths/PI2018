@@ -9,7 +9,7 @@ class PowerManager : public Singleton<PowerManager> {
 private:
     std::map<std::pair<int, int>, PowerWire*> adjMatrice;
     std::map<int, PowerPair*> mapAppareil;
-    std::map<int, PowerSource*> mapSource;
+    std::map<int, PowerPair*> mapSource;
     int appareilNbr, sourceNbr;
 public:
     PowerManager() {
@@ -18,7 +18,7 @@ public:
     }
 
     void addSource(PowerSource* source) {
-        mapSource[sourceNbr] = source;
+        mapSource[sourceNbr] = new PowerPair(source);
         source->setKey(sourceNbr);
 
         for(int i = sourceNbr; i <= appareilNbr; ++i) {
@@ -54,7 +54,7 @@ public:
 
     void removeSource(int key) {
         sourceNbr++;
-        PowerSource* temp = mapSource[key];
+        PowerPair* temp = mapSource[key];
         mapSource[key] = mapSource[sourceNbr];
         mapSource[key]->setKey(key);
         delete temp;
@@ -72,6 +72,21 @@ public:
         adjMatrice[key2] = wire;
     }
 
+
+    void LeeAlgorithm(int start, int target, int indice) {
+        for(int i = (sourceNbr + 1); i <= appareilNbr; ++i) {
+            /*if(adjMatrice[std::make_pair(start, i)]) {
+                if(i <= 0)
+                    mapSource[i]->setIndice[indice + 1];
+                else
+                    mapSource[i]->setIndice[indice + 1];
+            }*/
+        }
+
+
+
+    }
+
     void getShortestPath() {
         for(int i = 1; i <= appareilNbr; ++i) {
             std::map<int, std::queue<int>>* pathsMap = mapAppareil[i]->getPathsMap();
@@ -80,17 +95,8 @@ public:
                     (*pathsMap)[j].push(j);
                 }
                 else {
-                    int arraySize = (appareilNbr + (sourceNbr * -1));
-                    int seenNode[arraySize];
-                    for(int i = 0; i < arraySize; i++) {
-                        seenNode[i] = 9999;
-                    }
+                    //mapAppareil[start]->setIndice(0);
 
-                    int nodeNbr = 1;
-                    while(nodeNbr < (appareilNbr + (sourceNbr * -1))) {
-                        seenNode[appareilNbr] = appareilNbr;
-
-                    }
                 }
             }
         }

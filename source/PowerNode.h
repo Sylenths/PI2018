@@ -6,6 +6,7 @@
 
 class PowerNode /*: public Model*/ {
 protected:
+    int indice;
     double powerIN;
     double used;
     double generated;
@@ -14,12 +15,20 @@ protected:
 
 public:
     PowerNode() {
-
+        indice = 0;
     }
 
     void addWire(PowerNode* wire) {
         wires.push_back(wire);
     }
+
+    virtual void setKey(int key) {};
+
+    virtual int getKey() {};
+
+
+
+
 
 
 };
