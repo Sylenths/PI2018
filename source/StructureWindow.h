@@ -75,6 +75,9 @@ public:
         modelsSideWindow["1SoustracHeight"] = new Button (1020, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1SoustracHeight"]->onClick = [this] () {updateHeightParameterMinus();};
 
+        modelsSideWindow["1HeightLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Wall height", 1025, 360, 0);
+
+
         SDL_itoa(height, buffer, 10);
         modelsSideWindow["1HeightNumber"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1085, 300, 0);
 
