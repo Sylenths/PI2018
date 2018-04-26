@@ -38,7 +38,7 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky")), atmosphere(0.0, 0.0, 0.0, false, 0) {
+    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky")), atmosphere(0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
@@ -115,6 +115,7 @@ public:
             atmosphere.darken(chrono);
         else
             atmosphere.lighten(chrono);
+        atmosphere.draw();
 
         hud->getCamera()->applyViewMatrix();
         worldLight->applyLightPosition();
