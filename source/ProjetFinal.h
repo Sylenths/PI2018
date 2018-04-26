@@ -240,10 +240,12 @@ public:
                 case SDLK_f:
                     activeCamera = false;
                     glContext->releaseInput();
+                    sceneDisplay->subscribeAll(observables);
                     break;
                 case SDLK_g:
                     activeCamera = true;
                     glContext->grabInput();
+                    sceneDisplay->unsubscribeAll(observables);
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
