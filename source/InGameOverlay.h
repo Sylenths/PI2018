@@ -1,4 +1,4 @@
-/// \brief Représentation de l'interface en jeu.
+ /// \brief Représentation de l'interface en jeu.
 /// \details Interface pour construire et pour donner les informations sur la partie.
 /// \author Antoine Legault , Guillaume Julien - Desmarchais, Mickaël Grisé-Roy
 /// \date 24 mars 2018
@@ -8,7 +8,12 @@
 #ifndef SOURCE_INGAMEOVERLAY_H
 #define SOURCE_INGAMEOVERLAY_H
 
-
+#define NOTBUILDING 0
+#define BUILDINGFONDATIONS 1
+#define BUILDINGFLOORS 2
+#define BUILDINGWALL 3
+#define BUILDINGROOF
+#define DELETING 5
 #include "includes.h"
 #include <queue>
 #include "Menu.h"
@@ -36,7 +41,7 @@ private:
     //RotatingImage* windIndicator;
 
 public:
-    bool isConstructingFondation;
+    int constructingMode; ///< indique le mode de construction
 
     /// Constructeur.
     /// \param powerCount Nombre d'électricité disponible.
@@ -50,13 +55,13 @@ public:
         fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,false);
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
         actionQueue = new std::queue<Action*>;
-        isConstructingFondation = false;
+        constructingMode = NOTBUILDING;
         sideWindowMap["Delete"] = new DeleteWindow();
         sideWindowMap["Structure"] = new StructureWindow();
         sideWindowMap["Wire"] = new WireWindow();
         sideWindowMap["Machine"] = new MachineWindow();
         sideWindowMap["Information"] = new InformationWindow();
-        sideWindow = sideWindowMap["Nothing"];
+        sideWindow = nullptr;
         camera = new Camera({ 10.0, 3.5, 10.0 }, { 0.0, 3.5, 0.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
     }
@@ -84,7 +89,7 @@ public:
             for (auto it : models) {
                 it.second->draw();
             }
-            if(sideWindow != sideWindowMap["Nothing"])
+            if(sideWindow != nullptr)
                 sideWindow->draw();
         }
     }
@@ -97,10 +102,10 @@ public:
     /// \param windSpeed Force du vent en pourcentage
     /// \param timeLeft Temps restant a la phase de construction.
     void loadHUDTexture(unsigned int powerCount, unsigned int simCoinCount, unsigned int temperatureC, unsigned int sunPower, unsigned int windSpeed, unsigned int timeLeft){
-        Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
+        Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial30");
 
         models["skipturn"] = new Button (0, 0, 0.1, 175, 60,ResourceManager::getInstance()->getTexture("skipTurn"));
-        models["skipturn"]->onClick = [this]() {isConstructingFondation = !isConstructingFondation; };
+        models["skipturn"]->onClick = [this]() {};
 
         models["structure"] = new Button (0, 630, 0.1, 90, 90, ResourceManager::getInstance()->getTexture("structure"));
         models["structure"]->onClick = [this]() { activeStructureSideWindow(); };
@@ -123,30 +128,30 @@ public:
 
         //Label
         auto strSimCoin = std::to_string(simCoinCount); // transforme unsigned int en string
-        models["simCoins"] = new Label(fontArial->getFont(),{0,165,255}, strSimCoin, 405, 0, 0.1, 40, 35);
+        models["simCoins"] = new Label(fontArial->getFont(),{0,165,255}, strSimCoin, 405, 0, 0.1);
 
         auto strPwr = std::to_string(powerCount);
-        models["power"] = new Label(fontArial->getFont(), {255,191,0}, strPwr, 405, 30, 0.1 , 40, 35);
+        models["power"] = new Label(fontArial->getFont(), {255,191,0}, strPwr, 405, 30, 0.1);
 
         auto strTime = std::to_string(timeLeft);
         strTime.push_back(' ');
         strTime.push_back('s');
-        models["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1 , 40, 60);
+        models["time"] = new Label(fontArial->getFont(), {255,255,255}, strTime, 240, 0, 0.1);
 
         auto strWind = std::to_string(windSpeed);
         strWind.push_back(' ');
         strWind.push_back('m');
         strWind.push_back('/');
         strWind.push_back('s');
-        models["windSpeed"] = new Label(fontArial->getFont(), {255,255,255}, strWind, 555, 15, 0.1 , 80, 35);
+        models["windSpeed"] = new Label(fontArial->getFont(), {255,255,255}, strWind, 555, 15, 0.1);
 
         auto strTemperature = std::to_string(temperatureC);
         strTemperature.push_back('c');
-        models["temperature"] = new Label(fontArial->getFont(), {255,255,255}, strTemperature, 685, 5, 0.1 , 20, 20);
+        models["temperature"] = new Label(fontArial->getFont(), {255,255,255}, strTemperature, 685, 5, 0.1);
 
         auto strSunPower = std::to_string(sunPower);
         strSunPower.push_back('%');
-        models["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1 , 25, 20);
+        models["sun"] = new Label(fontArial->getFont(), {255,255,255}, strSunPower, 685, 37, 0.1);
     }
 
 
@@ -327,6 +332,9 @@ public:
         Font* fontArial = ResourceManager::getInstance()->getResource<Font*>("font - arial12");
         ((Label*)models["time"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
+    int getBuildType(){
+        return SideWindow::buildType;
+    }
 
     /// Active/Desactive l'affichage du InGameOverlay
     void toggleHud(){
@@ -334,24 +342,17 @@ public:
     }
 
     /// Active la fenêtre de construction de structure
-    void activeStructureSideWindow(){
-        if(sideWindow != sideWindowMap["Structure"]){
-            sideWindow = sideWindowMap["Structure"];
-        }
-        else
-            sideWindow = sideWindowMap["Nothing"];
+    void activeStructureSideWindow() {
+        sideWindow = sideWindowMap["Structure"];
+
         // TODO: Code Structure mode
         sceneChange = true;
-        isConstructingFondation = !isConstructingFondation;
 
     }
 
     /// Active la fenêtre de construction de machine
     void activeMachineSideWindow(){
-        if(sideWindow != sideWindowMap["Machine"])
-            sideWindow = sideWindowMap["Machine"];
-        else
-            sideWindow = sideWindowMap["Nothing"];
+        sideWindow = sideWindowMap["Machine"];
         sceneChange = true;
 
         // TODO: Code delete mode
@@ -359,10 +360,7 @@ public:
 
     /// Active la fenêtre de construction de cable
     void activeWireSideWindow(){
-        if(sideWindow != sideWindowMap["Wire"])
-            sideWindow = sideWindowMap["Wire"];
-        else
-            sideWindow = sideWindowMap["Nothing"];
+        sideWindow = sideWindowMap["Wire"];
         sceneChange = true;
 
 
@@ -370,10 +368,8 @@ public:
     }
     /// Active la fenêtre d'information
     void activeInfoSideWindow(){
-        if(sideWindow != sideWindowMap["Information"])
-            sideWindow = sideWindowMap["Information"];
-        else
-            sideWindow = sideWindowMap["Nothing"];
+        sideWindow = sideWindowMap["Information"];
+
         sceneChange = true;
 
         // TODO: Code Info mode
@@ -381,24 +377,27 @@ public:
     }
     /// Active la fenêtre de destruction
     void activeDeleteSideWindow(){
-        if(sideWindow != sideWindowMap["Delete"])
-            sideWindow = sideWindowMap["Delete"];
-        else
-            sideWindow = sideWindowMap["Nothing"];
+        sideWindow = sideWindowMap["Delete"];
         sceneChange = true;
 
         // TODO: Code delete mode
     }
 
+    void closeSideWindow(){
+        sideWindow = nullptr;
+        sceneChange = true;
+    }
 
     void sideWndowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
-        if(sideWindow != sideWindowMap["Nothing"])
+        if(sideWindow != nullptr)
             sideWindow->subscribeAll(observables);
     }
 
     void sideWindowUnsubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
-        if(sideWindow != sideWindowMap["Nothing"])
+        if(sideWindow != nullptr){
             sideWindow->unsubscribeAll(observables);
+        }
+
     }
 
     /// Destructeur.

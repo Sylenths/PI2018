@@ -8,12 +8,22 @@
 #ifndef SIDEWINDOW_H
 #define SIDEWINDOW_H
 
-#include "InGameOverlay.h"
 
-class SideWindow{
+
+class SideWindow {
 protected:
     std::map<std::string, Model*> modelsSideWindow;   ///< Liste des models à afficher.
+
+
+
+
 public:
+    static int buildType;
+    static int materialType;
+    static bool isBuilding;
+    static bool closed;
+
+
 
     /// Inscription des modèles aux événements.
     /// \param observables Événements.
@@ -34,5 +44,10 @@ public:
     }
 
 };
+int SideWindow::buildType = 0;
+int SideWindow::materialType = 0;
+bool SideWindow::isBuilding = false;
+bool SideWindow::closed = false;
+
 
 #endif //SIDEWINDOW_H

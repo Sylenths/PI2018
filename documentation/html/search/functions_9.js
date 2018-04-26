@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['normalize',['normalize',['../struct_vector.html#a7586a8c96e492a72418191a0300f3123',1,'Vector']]],
-  ['notify',['notify',['../class_button.html#a356536921e929a79edc11754e08ac405',1,'Button::notify()'],['../class_camera.html#a9c76b02201c2988b0f6ce417c97f15fc',1,'Camera::notify()'],['../class_camera_d_i_r_t_y.html#a040ff9b2a6912abab4316439d7c242f9',1,'CameraDIRTY::notify()'],['../class_image.html#accfe6a44a661dff41af17ef11f0eba01',1,'Image::notify()'],['../class_model.html#a943a6c52dd61be4f5fe7e8d60dd83eaf',1,'Model::notify()'],['../class_observable.html#abc76f593ffea27f552833dafcd78bc5a',1,'Observable::notify()'],['../class_observer.html#a78133bb6a438c1c111b944e9283dcd07',1,'Observer::notify()']]]
+  ['mainmenu',['MainMenu',['../class_main_menu.html#a53eecf9d5ffd094f54ac4193e7e57eaf',1,'MainMenu']]],
+  ['matrix',['Matrix',['../struct_matrix.html#a2dba13c45127354c9f75ef576f49269b',1,'Matrix']]],
+  ['model',['Model',['../class_model.html#add75a73c4c39d6485b6d617d8639f069',1,'Model::Model(double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char *objFile=nullptr)'],['../class_model.html#a5222680222ba369f9b06cfa3b8dd37b8',1,'Model::Model(unsigned int height, unsigned int textureID, Vector *firstCorner, Vector *secondCorner)']]]
 ];

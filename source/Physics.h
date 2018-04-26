@@ -1,8 +1,8 @@
 /// \brief Classe de méthodes statiques pour les calculs de physique et de collisions.
 /// \details
 /// \author Samuel Labelle
-/// \date 24 Avril 2018
-/// \version 0.1
+/// \date 25 Avril 2018
+/// \version 0.2
 /// \warning Non extensivement testée
 /// \bug Les calculs ne sont pas optimisés.
 
@@ -48,13 +48,13 @@ class Physics{
 public:
 
 	/// Collisionne un segment et un triangle.
+	/// \param segmentOrigin Point de départ du segment.
 	/// \param segment Segment (Vecteur)
 	/// \param tri Triangle.
 	/// \param normal Normale du triangle.
 	/// \return Structure de donnée contenant les résultats de la collision.
-	static Physics::CollisionData collideVectorOnTri(Vector segment, Physics::Triangle tri, Vector normal){
+	static Physics::CollisionData collideVectorOnTri(Vector segmentOrigin, Vector segment, Physics::Triangle tri, Vector normal){
 		normal.normalize();
-		segment.normalize();// Not sure if parts of the alo require non normalised segment vector...
 
 		double dotp = normal * segment;
 
@@ -66,7 +66,7 @@ public:
 		if(ratio > 1)
 			return {false};
 
-		Vector intersect(segment * ratio);
+		Vector intersect(segmentOrigin + (segment * ratio));
 
 		Physics::FlatTriangle flatTri;
 		Physics::Vec2D flatVec;
@@ -103,10 +103,11 @@ public:
 	}
 
 	/// Collisionne un Segment (vecteur) et un modèle.
+	/// \param origin Point de départ du segment.
 	/// \param vec Segment (vecteur).
 	/// \param model Modèle.
 	/// \return Structure de donnée contenant les résultats de la collision.
-	static Physics::CollisionData collideVectorOnModel(Vector vec, Model& model){
+	static Physics::CollisionData collideVectorOnModel(Vector origin, Vector vec, Model& model){
 
 		Physics::Triangle triangle;
 		unsigned int pos = 0;
@@ -128,13 +129,13 @@ public:
 			};
 
 			//Average triangle normals
-			normal = {
+			/*normal = {
 				((model.normals[pos    ] + model.normals[pos + 3] + model.normals[pos + 6]) / 3), // x
 				((model.normals[pos + 1] + model.normals[pos + 4] + model.normals[pos + 7]) / 3), // y
 				((model.normals[pos + 2] + model.normals[pos + 5] + model.normals[pos + 8]) / 3)  // z
-			};
+			};*/
 
-			collisionResult = collideVectorOnTri(vec, triangle, normal);
+			collisionResult = collideVectorOnTri(origin, vec, triangle, model.normals[pos]);
 
 			if(collisionResult.collided){
 				return collisionResult;
@@ -145,11 +146,11 @@ public:
 	}
 
 	/// Collisionne la Hitbox d'un modèle et un segment de droite (vecteur).
+	/// \param origin Point de départ du segment.
 	/// \param vec Segment.
 	/// \param model Modèle.
 	/// \return Structure de donnée contenant les résultats de la collision.
-	static Physics::CollisionData collideVectorOnHitbox(Vector vec, Model& model){
-
+	static Physics::CollisionData collideVectorOnHitbox(Vector origin, Vector vec, Model& model){
 
 		Physics::Triangle triangle;
 		unsigned int pos = 0;
@@ -166,11 +167,105 @@ public:
 				{model.verticesHitBox[pos + 6], model.verticesHitBox[pos + 7], model.verticesHitBox[pos + 8]}
 			};
 
-			collisionResult = collideVectorOnTri(vec, triangle, model.normalsHitBox[pos]);
+			collisionResult = collideVectorOnTri(origin, vec, triangle, model.normalsHitBox[pos]);
 
 			if(collisionResult.collided){
 				return collisionResult;
 			}
+		}
+
+		return {false};
+	}
+
+	/// Collisionne la hitbox d'un modèle en mouvement sur la hitbox d'un modèle fixe.
+	/// \param model1Movement Déplacement du modèle en mouvement.
+	/// \param model1 Modèle en mouvement
+	/// \param model2 Modèle fixe.
+	/// \return Structure de donnée contenant les résultats de la collision.
+	static Physics::CollisionData collideMovingOnStaticModelHitboxes(Vector model1Movement, Model& model1, Model& model2){
+
+		Physics::CollisionData collisionResult;
+
+		unsigned int x;
+
+		//For each point in model1, collide with model2
+		for(unsigned int i = 0; i < 36/*vertexcount*/; ++i) {
+			x = i * 3;
+
+			collisionResult = collideVectorOnHitbox(
+				{model1.verticesHitBox[x],
+				 model1.verticesHitBox[x + 1],
+				 model1.verticesHitBox[x + 2]
+				},
+				model1Movement,
+				model2);
+
+			if(collisionResult.collided)
+				return collisionResult;
+		}
+
+		model1Movement = -model1Movement;
+
+		for(unsigned int i = 0; i < 36/*vertexcount*/; ++i) {
+			x = i * 3;
+
+			collisionResult = collideVectorOnHitbox(
+				{model2.verticesHitBox[x],
+				 model2.verticesHitBox[x + 1],
+				 model2.verticesHitBox[x + 2]
+				},
+				model1Movement,
+				model1);
+
+			if(collisionResult.collided)
+				return collisionResult;
+		}
+
+		return {false};
+	}
+
+	/// Collisionne un modèle en mouvement sur un modèle fixe.
+	/// \param model1Movement Déplacement du modèle en mouvement.
+	/// \param model1 Modèle en mouvement
+	/// \param model2 Modèle fixe.
+	/// \return Structure de donnée contenant les résultats de la collision.
+	static Physics::CollisionData collideMovingOnStaticModels(Vector model1Movement, Model& model1, Model& model2){
+
+		Physics::CollisionData collisionResult;
+
+		unsigned int x;
+
+		//For each point in model1, collide with model2
+		for(unsigned int i = 0; i < model1.vertexCount; ++i) {
+			x = i * 3;
+
+			collisionResult = collideVectorOnHitbox(
+				{model1.vertices[x],
+				 model1.vertices[x + 1],
+				 model1.vertices[x + 2]
+				},
+				model1Movement,
+				model2);
+
+			if(collisionResult.collided)
+				return collisionResult;
+		}
+
+		model1Movement = -model1Movement;
+
+		for(unsigned int i = 0; i < model2.vertexCount; ++i) {
+			x = i * 3;
+
+			collisionResult = collideVectorOnHitbox(
+				{model2.vertices[x],
+				 model2.vertices[x + 1],
+				 model2.vertices[x + 2]
+				},
+				model1Movement,
+				model1);
+
+			if(collisionResult.collided)
+				return collisionResult;
 		}
 
 		return {false};

@@ -16,7 +16,7 @@ protected:
     static std::string activeScene;     ///< permet de savoir quel menu est actif.
     static std::string previous;        ///< permet de savoir quel était le menu précédent actif.
     static bool FPS;                    ///< permet de savoir si l'affichage des fps est actif.
-    
+
 
 public:
 
@@ -44,6 +44,7 @@ public:
         return FPS;
     }
 
+
     /// Affiche tous les models des menus actifs.
     virtual void draw () = 0;
     /// Permet d'inscrire tous les évènements comme observables.
@@ -55,6 +56,7 @@ public:
     virtual void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0;
     /// Récupère la camera du monde.
     virtual Camera* getCamera(){}
+
 };
 
 std::string Scene::activeScene = "MainMenu";

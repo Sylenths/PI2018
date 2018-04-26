@@ -29,7 +29,7 @@ public:
     Model* floor;
     InGameOverlay* hud;
 
-    int test = 0;
+    int test;
     /// Ajoute un model a afficher
     /// \param model le model a ajouter
     /// \param modelKey Nom donne au model
@@ -51,6 +51,7 @@ public:
         addModel((*hud->getFondations())[std::make_pair(0,0)]);
         floor =  new Model(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("grass"), false, "../../models/obj/grass.obj");
         addModel(floor);
+        test = 0;
 
         // Génération d'une forêt de 300 arbres...
         for (int i = 0; i < 300; i++) {
@@ -60,21 +61,25 @@ public:
             z = rand() % 800 - 400;
           }
 
+
+
+
           switch(rand() % 8) {
-            case 0: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("bambou"),false, "../../models/obj/tree.obj")); break;
-            case 1: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("cerisier"),false, "../../models/obj/tree.obj")); break;
-            case 2: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("fraksinus"),false, "../../models/obj/tree.obj")); break;
-            case 3: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("gongko"),false, "../../models/obj/tree.obj")); break;
-            case 4: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("mapple"),false, "../../models/obj/tree.obj")); break;
-            case 5: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("oak"),false, "../../models/obj/tree.obj")); break;
-            case 6: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("pin"),false, "../../models/obj/tree.obj")); break;
-            case 7: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("sequoia"),false, "../../models/obj/tree.obj")); break;
+            case 0: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("bambou"),false, "../../models/obj/tree2.0.obj")); break;
+            case 1: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("cerisier"),false, "../../models/obj/tree2.0.obj")); break;
+            case 2: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("fraksinus"),false, "../../models/obj/tree2.0.obj")); break;
+            case 3: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("gongko"),false, "../../models/obj/tree2.0.obj")); break;
+            case 4: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("mapple"),false, "../../models/obj/tree2.0.obj")); break;
+            case 5: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("oak"),false, "../../models/obj/tree2.0.obj")); break;
+            case 6: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("pin"),false, "../../models/obj/tree2.0.obj")); break;
+            case 7: addModel(new Model(x, 0.0, z, ResourceManager::getInstance()->getTexture("sequoia"),false, "../../models/obj/tree2.0.obj")); break;
           }
+
         }
 
         addModel(new Sky(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("daysky"),false, "../../models/obj/skysphere.obj"));
         addModel(new Model(0.0, 0.0, 5.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj"));
-        addModel(new Model(0.0, 0.0, -5.0, ResourceManager::getInstance()->getTexture("human"), true, "../../models/obj/human.obj"));
+
 
         worldLight = new Light(5.0, 200.0, 5.0, 1.0);
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
@@ -120,7 +125,7 @@ public:
         hud->getCamera()->applyViewMatrix();
         worldLight->applyLightPosition();
         for(auto it = modelList.begin(); it != modelList.end(); it++)
-            (*it)->draw();
+            (*it)->drawAndShading();
         GLContext::setFrustum(IS2D);
         glDepthFunc(GL_LESS);
         hudLight->applyLightPosition();

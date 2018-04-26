@@ -3,8 +3,21 @@
 #include "PowerNode.h"
 
 class PowerSource : public PowerNode {
+private:
+    double producedCurrent;
+    int key;
 public:
-    PowerSource();
+    PowerSource() {
+
+    }
+
+    void setKey(int key) {
+        this->key = key;
+    }
+
+    int getKey() {
+        return key;
+    }
 };
 
 #endif

@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PI2018: Référence de la classe SideWindow</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PI2018
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-attribs">Attributs publics</a> &#124;
+<a href="#pro-attribs">Attributs protégés</a> &#124;
+<a href="class_side_window-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de la classe SideWindow<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Représentation d'une fenêtre de coté pour le <a class="el" href="class_in_game_overlay.html" title="Représentation de l&#39;interface en jeu. ">InGameOverlay</a>.  
+ <a href="class_side_window.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_side_window_8h_source.html">SideWindow.h</a>&gt;</code></p>
+<div class="dynheader">
+Graphe d'héritage de SideWindow:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_side_window.png" usemap="#SideWindow_map" alt=""/>
+  <map id="SideWindow_map" name="SideWindow_map">
+<area href="class_delete_window.html" title="Représentation de la fenêtre de construction des structures. " alt="DeleteWindow" shape="rect" coords="0,56,118,80"/>
+<area href="class_information_window.html" title="Représentation de la fenêtre d&#39;information. " alt="InformationWindow" shape="rect" coords="128,56,246,80"/>
+<area href="class_machine_window.html" alt="MachineWindow" shape="rect" coords="256,56,374,80"/>
+<area href="class_structure_window.html" title="Représentation de la fenêtre de construction des structures. " alt="StructureWindow" shape="rect" coords="384,56,502,80"/>
+<area href="class_wire_window.html" title="Représentation de la fenêtre de cablâge. " alt="WireWindow" shape="rect" coords="512,56,630,80"/>
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a955384ebf619a994a9650b7b14c5d4be"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_side_window.html#a955384ebf619a994a9650b7b14c5d4be">subscribeAll</a> (std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; &amp;observables)=0</td></tr>
+<tr class="separator:a955384ebf619a994a9650b7b14c5d4be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5034a5a6ad5c5955417b1d9ee3083e33"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_side_window.html#a5034a5a6ad5c5955417b1d9ee3083e33">unsubscribeAll</a> (std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; &amp;observables)=0</td></tr>
+<tr class="separator:a5034a5a6ad5c5955417b1d9ee3083e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1665c995d5ba7dbb224f0cb5fee7091a"><td class="memItemLeft" align="right" valign="top"><a id="a1665c995d5ba7dbb224f0cb5fee7091a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()</td></tr>
+<tr class="separator:a1665c995d5ba7dbb224f0cb5fee7091a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Attributs publics</h2></td></tr>
+<tr class="memitem:a986bbd166ba414f48067bc5305f61739"><td class="memItemLeft" align="right" valign="top"><a id="a986bbd166ba414f48067bc5305f61739"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>cancelButton</b> = false</td></tr>
+<tr class="separator:a986bbd166ba414f48067bc5305f61739"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Attributs protégés</h2></td></tr>
+<tr class="memitem:adafd669a554df8594ff3da517afbeecf"><td class="memItemLeft" align="right" valign="top"><a id="adafd669a554df8594ff3da517afbeecf"></a>
+std::map&lt; std::string, <a class="el" href="class_model.html">Model</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_side_window.html#adafd669a554df8594ff3da517afbeecf">modelsSideWindow</a></td></tr>
+<tr class="memdesc:adafd669a554df8594ff3da517afbeecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liste des models à afficher. <br /></td></tr>
+<tr class="separator:adafd669a554df8594ff3da517afbeecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Représentation d'une fenêtre de coté pour le <a class="el" href="class_in_game_overlay.html" title="Représentation de l&#39;interface en jeu. ">InGameOverlay</a>. </p>
+<p>classe abstraite représentant une fenêtre de coté. </p><dl class="section author"><dt>Auteur</dt><dd>Guillaume Julien - Desmarchais, Antoine Legault </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>20 mars 2018 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section warning"><dt>Avertissement</dt><dd>Aucun </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000033">Bogue:</a></b></dt><dd>Aucun </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a955384ebf619a994a9650b7b14c5d4be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a955384ebf619a994a9650b7b14c5d4be">&#9670;&nbsp;</a></span>subscribeAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void SideWindow::subscribeAll </td>
+          <td>(</td>
+          <td class="paramtype">std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; &amp;&#160;</td>
+          <td class="paramname"><em>observables</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Inscription des modèles aux événements. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">observables</td><td>Événements. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémenté dans <a class="el" href="class_structure_window.html#add247831d038372862f312d5551f302f">StructureWindow</a>, <a class="el" href="class_wire_window.html#ad837d6a84718c56aa3b5ed60439919da">WireWindow</a>, <a class="el" href="class_delete_window.html#ad56aa6effeef9d801698f7cc2cea4fce">DeleteWindow</a>, <a class="el" href="class_machine_window.html#adf5673025597eba0c3ed537f48c11826">MachineWindow</a>, et <a class="el" href="class_information_window.html#adadbf9eea4df73c0656fc164ccc5c91f">InformationWindow</a>.</p>
+
+</div>
+</div>
+<a id="a5034a5a6ad5c5955417b1d9ee3083e33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5034a5a6ad5c5955417b1d9ee3083e33">&#9670;&nbsp;</a></span>unsubscribeAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void SideWindow::unsubscribeAll </td>
+          <td>(</td>
+          <td class="paramtype">std::map&lt; unsigned int, <a class="el" href="class_observable.html">Observable</a>&lt; SDL_Event *&gt; *&gt; &amp;&#160;</td>
+          <td class="paramname"><em>observables</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Désinscription des modèles aux événements. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">observables</td><td>Événements. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémenté dans <a class="el" href="class_structure_window.html#ad5b92dfab1d428196ed24db1ab64f547">StructureWindow</a>, <a class="el" href="class_wire_window.html#adc6524d56470efcc0b0b122171db8fff">WireWindow</a>, <a class="el" href="class_delete_window.html#a7f384136a6f9422b51049825e1d501ef">DeleteWindow</a>, <a class="el" href="class_machine_window.html#adc56f3256c8ba410238bd90ad0e33fae">MachineWindow</a>, et <a class="el" href="class_information_window.html#aad95fa1b39cd7d1f0ba9103ce96b194f">InformationWindow</a>.</p>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>source/<a class="el" href="_side_window_8h_source.html">SideWindow.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

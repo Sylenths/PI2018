@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['projetfinal',['ProjetFinal',['../class_projet_final.html',1,'']]]
+  ['label',['Label',['../class_label.html',1,'']]],
+  ['light',['Light',['../class_light.html',1,'']]]
 ];
