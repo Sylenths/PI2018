@@ -22,7 +22,8 @@ public:
     static int materialType;
     static bool isBuilding;
     static bool closed;
-
+    static bool opened;
+    static bool switched;
 
 
     /// Inscription des modèles aux événements.
@@ -48,6 +49,10 @@ int SideWindow::buildType = 0;
 int SideWindow::materialType = 0;
 bool SideWindow::isBuilding = false;
 bool SideWindow::closed = false;
+bool SideWindow::opened = false;
+bool SideWindow::switched = false;
+
+
 
 
 #endif //SIDEWINDOW_H

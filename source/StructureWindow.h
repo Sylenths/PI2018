@@ -1,8 +1,8 @@
 /// \brief Représentation de la fenêtre de construction des structures
 /// \details Permet de choisir le matériel pour les planchers, murs et les toits et la hauteur des murs.
-/// \author Guillaume Julien - Desmarchais, Antoine Legault
+/// \author Guillaume Julien - Desmarchais, Antoine Legault, Mickaël Grisé-Roy
 /// \date 20 mars 2018
-/// \version 0.1
+/// \version 1.0
 /// \warning Aucun
 /// \bug Aucun
 #ifndef STRUCTUREWINDOW_H
@@ -15,7 +15,7 @@ private:
     char buffer[10];
 
 public:
-    static unsigned  int height;
+    static unsigned int height;
     StructureWindow(){
         isBuilding = false;
 
@@ -69,11 +69,14 @@ public:
         modelsSideWindow["1CancelButtonStructure"]->onClick = [this] () {onCancelClick();};
 
         //Parameter
-        modelsSideWindow["1AddHeight"] = new Button ( 1020, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1AddHeight"] = new Button ( 1130, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1AddHeight"]->onClick = [this] () {updateHeightParameterAdd();};
 
-        modelsSideWindow["1SoustracHeight"] = new Button (1130, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1SoustracHeight"] = new Button (1020, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1SoustracHeight"]->onClick = [this] () {updateHeightParameterMinus();};
+
+        modelsSideWindow["1HeightLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Wall height", 1025, 360, 0);
+
 
         SDL_itoa(height, buffer, 10);
         modelsSideWindow["1HeightNumber"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1085, 300, 0);
@@ -90,7 +93,8 @@ public:
     }
 
     void updateHeightParameterMinus(){
-        height--;
+        if(height > 1)
+            height--;
         SDL_itoa(height, buffer, 10);
         ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
     }

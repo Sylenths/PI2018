@@ -16,7 +16,7 @@
 
 #define PHYSICS_EPSILON 0.000001
 
-namespace Physics {
+namespace PhysicsData {
 
 	struct CollisionData {
 		bool collided;
@@ -53,7 +53,7 @@ public:
 	/// \param tri Triangle.
 	/// \param normal Normale du triangle.
 	/// \return Structure de donnée contenant les résultats de la collision.
-	static Physics::CollisionData collideVectorOnTri(Vector segmentOrigin, Vector segment, Physics::Triangle tri, Vector normal){
+	static PhysicsData::CollisionData collideVectorOnTri(Vector segmentOrigin, Vector segment, PhysicsData::Triangle tri, Vector normal){
 		normal.normalize();
 
 		double dotp = normal * segment;
@@ -68,8 +68,8 @@ public:
 
 		Vector intersect(segmentOrigin + (segment * ratio));
 
-		Physics::FlatTriangle flatTri;
-		Physics::Vec2D flatVec;
+		PhysicsData::FlatTriangle flatTri;
+		PhysicsData::Vec2D flatVec;
 
 		if((normal.x > normal.y) && (normal.x > normal.z)){
 			//remove x from tri
@@ -107,11 +107,11 @@ public:
 	/// \param vec Segment (vecteur).
 	/// \param model Modèle.
 	/// \return Structure de donnée contenant les résultats de la collision.
-	static Physics::CollisionData collideVectorOnModel(Vector origin, Vector vec, Model& model){
+	static PhysicsData::CollisionData collideVectorOnModel(Vector origin, Vector vec, Model& model){
 
-		Physics::Triangle triangle;
+		PhysicsData::Triangle triangle;
 		unsigned int pos = 0;
-		Physics::CollisionData collisionResult;
+		PhysicsData::CollisionData collisionResult;
 		Vector normal;
 
 		unsigned int triangleCount = model.vertexCount / 3;
@@ -150,11 +150,11 @@ public:
 	/// \param vec Segment.
 	/// \param model Modèle.
 	/// \return Structure de donnée contenant les résultats de la collision.
-	static Physics::CollisionData collideVectorOnHitbox(Vector origin, Vector vec, Model& model){
+	static PhysicsData::CollisionData collideVectorOnHitbox(Vector origin, Vector vec, Model& model){
 
-		Physics::Triangle triangle;
+		PhysicsData::Triangle triangle;
 		unsigned int pos = 0;
-		Physics::CollisionData collisionResult;
+		PhysicsData::CollisionData collisionResult;
 
 		for(unsigned int i = 0; i < 12; ++i) {
 
@@ -182,9 +182,9 @@ public:
 	/// \param model1 Modèle en mouvement
 	/// \param model2 Modèle fixe.
 	/// \return Structure de donnée contenant les résultats de la collision.
-	static Physics::CollisionData collideMovingOnStaticModelHitboxes(Vector model1Movement, Model& model1, Model& model2){
+	static PhysicsData::CollisionData collideMovingOnStaticModelHitboxes(Vector model1Movement, Model& model1, Model& model2){
 
-		Physics::CollisionData collisionResult;
+		PhysicsData::CollisionData collisionResult;
 
 		unsigned int x;
 
@@ -229,9 +229,9 @@ public:
 	/// \param model1 Modèle en mouvement
 	/// \param model2 Modèle fixe.
 	/// \return Structure de donnée contenant les résultats de la collision.
-	static Physics::CollisionData collideMovingOnStaticModels(Vector model1Movement, Model& model1, Model& model2){
+	static PhysicsData::CollisionData collideMovingOnStaticModels(Vector model1Movement, Model& model1, Model& model2){
 
-		Physics::CollisionData collisionResult;
+		PhysicsData::CollisionData collisionResult;
 
 		unsigned int x;
 

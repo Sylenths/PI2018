@@ -78,8 +78,9 @@ public:
         }
 
         addModel(new Sky(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("daysky"),false, "../../models/obj/skysphere.obj"));
-        addModel(new Model(0.0, 0.0, 5.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj"));
-
+        Model* simCoinMiner = new Model(0.0, 0.0, 5.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj");
+        simCoinMiner->setShadingOn();
+        addModel(simCoinMiner);
 
         worldLight = new Light(5.0, 200.0, 5.0, 1.0);
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
@@ -162,11 +163,9 @@ public:
         if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
         if (!observables[SDL_KEYDOWN]) observables[SDL_KEYDOWN] = new Observable<SDL_Event*>();
         hud->subscribeAll(observables);
-        hud->sideWndowSubscribe(observables);
     }
     virtual void unsubscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
         hud->unsubscribeAll(observables);
-        hud->sideWindowUnsubscribe(observables);
     }
 
     InGameOverlay* getHud(){

@@ -19,9 +19,9 @@ protected:
     unsigned int normalCount; ///< Nombre de normal
     double *vertices, *texCoords, *normals, *verticesHitBox, *normalsHitBox;
 
-    double *verticesShading;
-    double *normalsShading;
-    double *colorsShading;
+    double *verticesShading; ///< Nombre de vertices pour l'ombrage
+    double *normalsShading; ///< Nombre de normales pour l'ombrage
+    double *colorsShading; ///< Un tableau de couleur RGBA pour chacun des triangles
 
     unsigned int textureToDraw; ///< Identificateur de la texture
 
@@ -84,17 +84,30 @@ public:
 
     }
 
-    void updateShadingVertex(double* obstruction, unsigned int vertexCount, Vector sun) {
+    void updateShadingVertex(Vector sun) {
         Vector AB, B;
         double k;
+        double ABnorm;
+        double test;
+
+        Vector temp;
 
         for (int i = 0; i < vertexCount; ++i) {
-            B = Vector(obstruction[i * 3], obstruction[i * 3 + 1], obstruction[i * 3 + 2]);
+            B = Vector(vertices[i * 3], vertices[i * 3 + 1], vertices[i * 3 + 2]);
             AB = B - sun; // OB - OA = AB
-            k = 0.01 -(B.y)/(AB.y); // la quantité à multiplier à chacune des composantes pour atteindre notre plan y = 0
-            verticesShading[i] = k * AB.x + B.x;
-            verticesShading[i * 3 + 1] = 0.0;
-            verticesShading[i * 3 + 2] = k * AB.z + B.z;
+
+                    //k = -1 * (AB.y + B.y); // Le y sera toujours égal a 0 pour l'ombre donc on trouve le k en trouvant la distance entre le B.y et le 0 avec AB comme vecteur directeur
+            //      ABnorm = AB.getNorm();
+            //    verticesShading[i * 3] = AB.x + k + B.x;
+            //  verticesShading[i * 3 + 1] = AB.y + k + B.y;
+            //verticesShading[i * 3 + 2] = AB.z + k + B.z;
+
+            //test = verticesShading[i * 3 + 1];
+
+            k = ((0.1 - B.y)/(AB.y)); // la quantité à multiplier à chacune des composantes pour atteindre notre plan y = 0
+            verticesShading[i * 3    ] = k*AB.x + B.x;
+            verticesShading[i * 3 + 1] = 0.1;
+            verticesShading[i * 3 + 2] = k*AB.z + B.z;
         }
     }
 
@@ -487,14 +500,14 @@ public:
                         normalsShading[i] = 0.0;
                         normalsShading[i * 3 + 1] = 1.0;
                         normalsShading[i * 3 + 2] = 0.0;
-                        colorsShading[i * 4] = 0; // red
+                        colorsShading[i * 4    ] = 0; // red
                         colorsShading[i * 4 + 1] = 0; // green
                         colorsShading[i * 4 + 2] = 0; // blue
                         colorsShading[i * 4 + 3] = 127; // alpha
                     }
                 }
 
-                updateShadingVertex(vertices, vertexCount, {10.0, 50.0, -10.0});
+                updateShadingVertex({20.0, 20.0, -20.0});
 
                 glEnableClientState(GL_VERTEX_ARRAY);
                 glEnableClientState(GL_NORMAL_ARRAY);

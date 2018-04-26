@@ -217,20 +217,31 @@ public:
                 }
             }
 
-            if (((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()])) || Scene::sceneChange) {
+            if (((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()]))) {
+
                 sceneDisplay->unsubscribeAll(observables);
                 sceneDisplay = sceneMap[Scene::getActiveScene()];
                 sceneDisplay->subscribeAll(observables);
                 controller->subscribeAll(observables, controller);
-                Scene::sceneChange = false;
             }
+            if((SideWindow::switched) && (sceneDisplay == sceneMap["World"])){
+                ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
+                SideWindow::switched = false;
+                ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
+
+            }
+
 
             if((SideWindow::closed == true) && (sceneDisplay == sceneMap["World"])){
                 ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
-                ((World*)sceneDisplay)->hud->closeSideWindow();
 
                 SideWindow::closed = false;
             }
+            if(SideWindow::opened && (sceneDisplay == sceneMap["World"])){
+                ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
+                SideWindow::opened = false;
+            }
+
             addFondation();
             createWall();
 
@@ -240,10 +251,12 @@ public:
                 case SDLK_f:
                     activeCamera = false;
                     glContext->releaseInput();
+                    sceneDisplay->subscribeAll(observables);
                     break;
                 case SDLK_g:
                     activeCamera = true;
                     glContext->grabInput();
+                    sceneDisplay->unsubscribeAll(observables);
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
@@ -265,9 +278,7 @@ public:
                         sceneDisplay->getCamera()->startMove(CAMERA_MOVE_RIGHT);
                     }
                     break;
-                case SDLK_9:
-                    ((World*)sceneDisplay)->test = 2;
-                    break;
+
                 case SDLK_ESCAPE:
                     if (sceneDisplay == sceneMap["World"]) {
                         glContext->releaseInput();
@@ -305,12 +316,7 @@ public:
             }
 
 
-                if ((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()])) {
-                    sceneDisplay->unsubscribeAll(observables);
-                    sceneDisplay = sceneMap[Scene::getActiveScene()];
-                    sceneDisplay->subscribeAll(observables);
 
-            }
             if (sceneDisplay == sceneMap["World"] && activeCamera)
                 sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS));
 
@@ -392,6 +398,7 @@ public:
 
     void createWall(){
         if(Scene::getActiveScene() == "World")
+
         if (SideWindow::buildType == BUILD_WALL && SideWindow::isBuilding) {
             SideWindow::isBuilding = false;
             SideWindow::buildType = BUILD_NOTHING;
