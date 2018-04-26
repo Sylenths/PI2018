@@ -1,8 +1,8 @@
 /// \brief Représentation de la fenêtre de construction des structures
 /// \details Permet de choisir le matériel pour les planchers, murs et les toits et la hauteur des murs.
-/// \author Guillaume Julien - Desmarchais, Antoine Legault
+/// \author Guillaume Julien - Desmarchais, Antoine Legault, Mickaël Grisé-Roy
 /// \date 20 mars 2018
-/// \version 0.1
+/// \version 1.0
 /// \warning Aucun
 /// \bug Aucun
 #ifndef STRUCTUREWINDOW_H
@@ -12,13 +12,11 @@
 
 class StructureWindow : public SideWindow{
 private:
-
-    unsigned height;
+    char buffer[10];
 
 public:
+    static unsigned int height;
     StructureWindow(){
-
-        height = 0;
         isBuilding = false;
 
         modelsSideWindow["SideMenuStructure"] = new Image(920, 0, 0, 360, 720, ResourceManager::getInstance()->getTexture("StructureWindow"));
@@ -28,6 +26,7 @@ public:
         modelsSideWindow["1FondationIcon"] = new CheckBox (970, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1FondationIcon"]->onClick = [this] () { onFoundationClick();};
         modelsSideWindow["1FondationLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Fondation", 970, 150, 0);
+        //modelsSideWindow["1FondationDesc"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "hello", 1000, 400, 0);
 
         modelsSideWindow["1MurIcon"] = new CheckBox (1040, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1MurIcon"]->onClick = [this] () { onWallClick();};
@@ -71,20 +70,36 @@ public:
         modelsSideWindow["1CancelButtonStructure"]->onClick = [this] () {onCancelClick();};
 
         //Parameter
-        modelsSideWindow["1AddHeight"] = new Button ( 1020, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
-        modelsSideWindow["1AddHeight"]->onClick = [this] () {height++;};
+        modelsSideWindow["1AddHeight"] = new Button ( 1130, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1AddHeight"]->onClick = [this] () {updateHeightParameterAdd();};
 
-        modelsSideWindow["1SoustracHeight"] = new Button (1130, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
-        modelsSideWindow["1SoustracHeight"]->onClick = [this] () {height--;};
+        modelsSideWindow["1SoustracHeight"] = new Button (1020, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1SoustracHeight"]->onClick = [this] () {updateHeightParameterMinus();};
 
-        char buffer[10];
+        modelsSideWindow["1HeightLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Wall height", 1025, 360, 0);
+
+
         SDL_itoa(height, buffer, 10);
-
         modelsSideWindow["1HeightNumber"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1085, 300, 0);
 
 
 
+
     }
+
+    void updateHeightParameterAdd(){
+        height++;
+        SDL_itoa(height, buffer, 10);
+        ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
+    }
+
+    void updateHeightParameterMinus(){
+        if(height > 1)
+            height--;
+        SDL_itoa(height, buffer, 10);
+        ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
+    }
+
     void onBuildClick(){
         if(buildType == BUILD_FONDATION ||(buildType != BUILD_NOTHING && materialType)) {
             isBuilding = true;
@@ -102,7 +117,6 @@ public:
         ((CheckBox*)modelsSideWindow["1PlancherIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1ToitIcon"])->uncheck();
         buildType = BUILD_FONDATION;
-        ((CheckBox*)modelsSideWindow["1FondationIcon"])->check();
     }
 
     void onWallClick(){
@@ -110,7 +124,6 @@ public:
         ((CheckBox*)modelsSideWindow["1PlancherIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1ToitIcon"])->uncheck();
         buildType = BUILD_WALL;
-        ((CheckBox*)modelsSideWindow["1MurIcon"])->check();
 
     }
     void onFloorClick(){
@@ -118,14 +131,12 @@ public:
         ((CheckBox*)modelsSideWindow["1MurIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1ToitIcon"])->uncheck();
         buildType = BUILD_FLOOR;
-        ((CheckBox*)modelsSideWindow["1PlancherIcon"])->check();
     }
     void onRoofClick(){
         ((CheckBox*)modelsSideWindow["1FondationIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1MurIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1PlancherIcon"])->uncheck();
         buildType = BUILD_ROOF;
-        ((CheckBox*)modelsSideWindow["1ToitIcon"])->check();
     }
     void onCardboardClick(){
         ((CheckBox*)modelsSideWindow["1BoisIcon"])->uncheck();
@@ -133,7 +144,6 @@ public:
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1SIMTiumIcon"])->uncheck();
         materialType = CARDBOARD;
-        ((CheckBox*)modelsSideWindow["1CartonIcon"])->check();
     }
     void onWoodClick(){
         ((CheckBox*)modelsSideWindow["1CartonIcon"])->uncheck();
@@ -141,7 +151,6 @@ public:
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1SIMTiumIcon"])->uncheck();
         materialType = WOOD;
-        ((CheckBox*)modelsSideWindow["1BoisIcon"])->check();
     }
     void onRockClick(){
         ((CheckBox*)modelsSideWindow["1BoisIcon"])->uncheck();
@@ -149,7 +158,6 @@ public:
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1SIMTiumIcon"])->uncheck();
         materialType = ROCK;
-        ((CheckBox*)modelsSideWindow["1PierreIcon"])->check();
     }
     void onMetalClick(){
         ((CheckBox*)modelsSideWindow["1BoisIcon"])->uncheck();
@@ -157,7 +165,6 @@ public:
         ((CheckBox*)modelsSideWindow["1PierreIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1SIMTiumIcon"])->uncheck();
         materialType = METAL;
-        ((CheckBox*)modelsSideWindow["1MetalIcon"])->check();
     }
     void onSIMTiumClick(){
         ((CheckBox*)modelsSideWindow["1BoisIcon"])->uncheck();
@@ -165,45 +172,7 @@ public:
         ((CheckBox*)modelsSideWindow["1PierreIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
         materialType = SIMTIUM;
-        ((CheckBox*)modelsSideWindow["1SIMTiumIcon"])->check();
     }
-
-
-
-
-    /*char setBuffer(unsigned int){
-        char buffer[10];
-        SDL_itoa(height, buffer, 10);
-        return buffer;
-    }
-*/
-   /* void structureTypeCheck(std::string type, std::string modelName){
-        if(structureType == "")
-            structureType = type;
-        else{
-            modelsSideWindow["1FondationIcon"]->setTexture("",0);
-            modelsSideWindow["1MurIcon"]->setTexture("",0);
-            modelsSideWindow["1PlancherIcon"]->setTexture("",0);
-            modelsSideWindow["1ToitIcon"]->setTexture("",0);
-            modelsSideWindow[modelName]->setTexture("clic", ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
-        }
-
-        actionButton = type;
-    }*/
-
-   /* void materialTypeCheck(std::string type, std::string modelName){
-        if(materialType == "")
-            materialType = type;
-        else{
-            modelsSideWindow["1CartonIcon"]->setTexture("",0);
-            modelsSideWindow["1BoisIcon"]->setTexture("",0);
-            modelsSideWindow["1PierreIcon"]->setTexture("",0);
-            modelsSideWindow["1MetalIcon"]->setTexture("",0);
-            modelsSideWindow["1SIMTiumIcon"]->setTexture("",0);
-            modelsSideWindow[modelName]->setTexture("clic", ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
-        }
-        actionButton = type;
-    }*/
 
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
@@ -224,4 +193,5 @@ public:
 
     }
 };
+unsigned int StructureWindow::height = 1;
 #endif //STRUCTUREWINDOW_H

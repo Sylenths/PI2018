@@ -34,8 +34,11 @@ private:
     SideWindow* sideWindow; ///< Pointe la fenêtre de coté active
     std::map<std::string, SideWindow*> sideWindowMap; ///< Carte de sideWindow
     //RotatingImage* windIndicator;
+    SideWindow* lastSideWindow; ///< Pointe la dernière fenêtre de coté
+
 
 public:
+    bool activeSideWindow;
     int constructingMode; ///< indique le mode de construction
 
     /// Constructeur.
@@ -59,6 +62,8 @@ public:
         sideWindow = nullptr;
         camera = new Camera({ 10.0, 3.5, 10.0 }, { 0.0, 3.5, 0.0 }, { 0.0, 1.0, 0.0 });
         camera->loadViewMatrix();
+        activeSideWindow = false;
+        lastSideWindow = nullptr;
     }
 
     std::queue<Action*>* getActions(){
@@ -338,59 +343,96 @@ public:
 
     /// Active la fenêtre de construction de structure
     void activeStructureSideWindow() {
+        lastSideWindow = sideWindow;
+
+        SideWindow::isBuilding = false;
+        if(sideWindow)
+            SideWindow::switched= true;
+        else
+            SideWindow::opened = true;
         sideWindow = sideWindowMap["Structure"];
 
         // TODO: Code Structure mode
-        sceneChange = true;
 
     }
 
     /// Active la fenêtre de construction de machine
     void activeMachineSideWindow(){
+        lastSideWindow = sideWindow;
+
+        SideWindow::isBuilding = false;
+        if(sideWindow)
+        SideWindow::switched= true;
+        else
+        SideWindow::opened = true;
         sideWindow = sideWindowMap["Machine"];
-        sceneChange = true;
+
+
 
         // TODO: Code delete mode
     }
 
     /// Active la fenêtre de construction de cable
     void activeWireSideWindow(){
+        lastSideWindow = sideWindow;
+
+        SideWindow::isBuilding = false;
+        if(sideWindow)
+            SideWindow::switched= true;
+        else
+            SideWindow::opened = true;
         sideWindow = sideWindowMap["Wire"];
-        sceneChange = true;
+
+
 
 
         // TODO: Code Wire mode
     }
     /// Active la fenêtre d'information
     void activeInfoSideWindow(){
-        sideWindow = sideWindowMap["Information"];
+        lastSideWindow = sideWindow;
 
-        sceneChange = true;
+        SideWindow::isBuilding = false;
+        if(sideWindow)
+            SideWindow::switched= true;
+        else
+            SideWindow::opened = true;
+        sideWindow = sideWindowMap["Information"];
 
         // TODO: Code Info mode
 
     }
     /// Active la fenêtre de destruction
     void activeDeleteSideWindow(){
+        lastSideWindow = sideWindow;
+        SideWindow::isBuilding = false;
+        if(sideWindow)
+            SideWindow::switched= true;
+        else
+            SideWindow::opened = true;
         sideWindow = sideWindowMap["Delete"];
-        sceneChange = true;
 
         // TODO: Code delete mode
     }
 
-    void closeSideWindow(){
-        sideWindow = nullptr;
-        sceneChange = true;
-    }
 
-    void sideWndowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+
+    void sideWindowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
         if(sideWindow != nullptr)
             sideWindow->subscribeAll(observables);
     }
 
     void sideWindowUnsubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
-        if(sideWindow != nullptr){
+        if(sideWindow) {
             sideWindow->unsubscribeAll(observables);
+            sideWindow = nullptr;
+        }
+
+    }
+    void lastSideWindowUnsubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+        if(lastSideWindow) {
+            lastSideWindow->unsubscribeAll(observables);
+            lastSideWindow = nullptr;
         }
 
     }
