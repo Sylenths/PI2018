@@ -2,13 +2,13 @@
 #define POWERMANAGER_H
 #include "includes.h"
 #include "PowerWire.h"
-#include "PowerAppareil.h"
+#include "PowerPair.h"
 #include "PowerSource.h"
 
 class PowerManager : public Singleton<PowerManager> {
 private:
     std::map<std::pair<int, int>, PowerWire*> adjMatrice;
-    std::map<int, PowerAppareil*> mapAppareil;
+    std::map<int, PowerPair*> mapAppareil;
     std::map<int, PowerSource*> mapSource;
     int appareilNbr, sourceNbr;
 public:
@@ -19,6 +19,8 @@ public:
 
     void addSource(PowerSource* source) {
         mapSource[sourceNbr] = source;
+        source->setKey(sourceNbr);
+
         for(int i = sourceNbr; i <= appareilNbr; ++i) {
             adjMatrice[std::make_pair(sourceNbr, i)] = nullptr;
             adjMatrice[std::make_pair(i, sourceNbr)] = nullptr;
@@ -29,7 +31,8 @@ public:
     void addAppareil(PowerAppareil* appareil) {
         appareilNbr++;
         appareil->setKey(appareilNbr);
-        mapAppareil[appareilNbr] = appareil;
+        mapAppareil[appareilNbr] = new PowerPair(appareil);
+
         for(int i = appareilNbr; i > sourceNbr; --i) {
             adjMatrice[std::make_pair(appareilNbr, i)] = nullptr;
             adjMatrice[std::make_pair(i, appareilNbr)] = nullptr;
@@ -37,7 +40,7 @@ public:
     }
 
     void removeAppareil(int key) {
-        PowerAppareil* temp = mapAppareil[key];
+        PowerPair* temp = mapAppareil[key];
         mapAppareil[key] = mapAppareil[appareilNbr];
         mapAppareil[key]->setKey(key);
         delete temp;
@@ -69,9 +72,24 @@ public:
         adjMatrice[key2] = wire;
     }
 
-    void setAppareilPriority() {
+    void getShortestPath() {
         for(int i = 1; i <= appareilNbr; ++i) {
+            std::map<int, std::queue<int>>* pathsMap = mapAppareil[i]->getPathsMap();
+            for(int j = (sourceNbr + 1); j <= 0; ++j) {
+                if(adjMatrice[std::make_pair(i, j)]) {
+                    (*pathsMap)[j].push(j);
+                }
+                else {
+                    //const int arraySize = (appareilNbr + (sourceNbr * -1));
+                    //std::array<int, arraySize> seenNode;
+                    //seenNode.fill(999999999);
 
+                    int nodeNbr = 1;
+                    while(nodeNbr < (appareilNbr + (sourceNbr * -1))) {
+
+                    }
+                }
+            }
         }
     }
 
