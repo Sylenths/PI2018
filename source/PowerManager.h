@@ -80,12 +80,15 @@ public:
                     (*pathsMap)[j].push(j);
                 }
                 else {
-                    //const int arraySize = (appareilNbr + (sourceNbr * -1));
-                    //std::array<int, arraySize> seenNode;
-                    //seenNode.fill(999999999);
+                    int arraySize = (appareilNbr + (sourceNbr * -1));
+                    int seenNode[arraySize];
+                    for(int i = 0; i < arraySize; i++) {
+                        seenNode[i] = 9999;
+                    }
 
                     int nodeNbr = 1;
                     while(nodeNbr < (appareilNbr + (sourceNbr * -1))) {
+                        seenNode[appareilNbr] = appareilNbr;
 
                     }
                 }
