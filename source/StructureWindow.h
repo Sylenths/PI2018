@@ -15,7 +15,7 @@ private:
     char buffer[10];
 
 public:
-    static unsigned  int height;
+    static unsigned int height;
     StructureWindow(){
         isBuilding = false;
 
@@ -69,10 +69,10 @@ public:
         modelsSideWindow["1CancelButtonStructure"]->onClick = [this] () {onCancelClick();};
 
         //Parameter
-        modelsSideWindow["1AddHeight"] = new Button ( 1020, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1AddHeight"] = new Button ( 1130, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1AddHeight"]->onClick = [this] () {updateHeightParameterAdd();};
 
-        modelsSideWindow["1SoustracHeight"] = new Button (1130, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1SoustracHeight"] = new Button (1020, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1SoustracHeight"]->onClick = [this] () {updateHeightParameterMinus();};
 
         SDL_itoa(height, buffer, 10);
@@ -90,7 +90,8 @@ public:
     }
 
     void updateHeightParameterMinus(){
-        height--;
+        if(height > 1)
+            height--;
         SDL_itoa(height, buffer, 10);
         ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
     }
