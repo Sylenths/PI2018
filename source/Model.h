@@ -347,8 +347,10 @@ public:
     void setShadingOn() {
         shading = true;
     }
-
+    ///Constructeur de mur
     Model(unsigned int height, unsigned int textureID, Vector* firstCorner, Vector* secondCorner) {
+
+
         textureIDs["default"] = textureID;
         textureToDraw = textureID;
         vertices = normals = texCoords = nullptr;
