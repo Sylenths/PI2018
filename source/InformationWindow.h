@@ -7,11 +7,18 @@
 /// \bug Aucun
 #ifndef INFORMATIONWINDOW_H
 #define INFORMATIONWINDOW_H
+
+#include "includes.h"
+#include "TextWindow.h"
+#include "SideWindow.h"
 class InformationWindow : public SideWindow{
 public:
 
     InformationWindow(){
-        modelsSideWindow["SideMenuInformation"] = new Image(920., 0.0, 0.0, 360.0, 720.0, ResourceManager::getInstance()->getTexture("InformationWindow"));
+        modelsSideWindow["SideMenuInformation"] = new Image(920.0, 0.0, 0.0, 360.0, 720.0, ResourceManager::getInstance()->getTexture("InformationWindow"));
+
+        //modelsSideWindow["test"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "awidawibwabwdaddiwadbiwabdbndiadwaadwawbawuibdabdibbdwabbawbwabwiabwabwdbawbdbiawbwbdiabm,sxnaiuwnxkjsanxiausdawxaw", 1220, 265, 0, 300, 300);
+
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){

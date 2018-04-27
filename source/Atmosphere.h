@@ -2,29 +2,32 @@
 /// \details Permet de changer l'opacité du filtre et sa couleur
 /// \author Mathilde Harnois, Guillaume Julien-Desmarchais
 /// \date 17 avril 2018
-/// \version 0.1
-/// \warning Aucuns.
-/// \bug Aucuns.
+/// \version 0.5
+/// \warning Le chrono de projet final doit restart a chaque debut de journée et de nuit
+/// \bug
 
 #ifndef SOURCE_ATMOSPHERE_H
 #define SOURCE_ATMOSPHERE_H
+
+#define HALFTURN 450 //seconds
 
 #include "includes.h"
 
 class Atmosphere : public Model {
 private:
-    unsigned int atmosphereTextureId;
-
+    unsigned int atmosphereTextureId, alpha;
+    Chrono* atmoChrono;
     bool dayTime;
-
     Uint32 *pixel;
 
 public:
 
     Atmosphere(double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Model(posx, posy, posz, textureID, rotHitBox, objFile) {
         pixel = new Uint32;
-
-        pixel[0] = 200;//A
+        dayTime = true;
+        alpha = 220;
+        atmoChrono = new Chrono();
+        pixel[0] = alpha;//A
         pixel[0] = (pixel[0] << 8) | 38;//B
         pixel[0] = (pixel[0] << 8) | 145;//G
         pixel[0] = (pixel[0] << 8) | 211;//R
@@ -40,35 +43,102 @@ public:
 
     ~Atmosphere() {
         delete pixel;
+        delete atmoChrono;
     }
 
-    void lighten(Chrono deltaTime){
-        pixel[0] -= (0.0 * deltaTime.getElapsed(MILISECONDS));//Alpha 0.00044444
+    void lightenDay() {
+        if(alpha - 1 >= 0) {
+            pixel[0] = --alpha;
+            pixel[0] = (pixel[0] << 8) | 38;//B
+            pixel[0] = (pixel[0] << 8) | 145;//G
+            pixel[0] = (pixel[0] << 8) | 211;//R
+            glBindTexture(GL_TEXTURE_2D, atmosphereTextureId);
+            glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+        }
+    }
+
+    void darkenDay() {
+        if (alpha + 1 <= 255) {
+            pixel[0] = ++alpha;
+            pixel[0] = (pixel[0] << 8) | 40;//B
+            pixel[0] = (pixel[0] << 8) | 0;//G
+            pixel[0] = (pixel[0] << 8) | 0;//R
+            glBindTexture(GL_TEXTURE_2D, atmosphereTextureId);
+            glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+        }
+    }
+
+
+     void lightenNight() {
+        if(alpha - 1 >= 0) {
+            pixel[0] = --alpha;
+            pixel[0] = (pixel[0] << 8) | 38;//B
+            pixel[0] = (pixel[0] << 8) | 145;//G
+            pixel[0] = (pixel[0] << 8) | 211;//R
+            glBindTexture(GL_TEXTURE_2D, atmosphereTextureId);
+            glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+        }
+    }
+
+    void darkenNight() {
+        if (alpha + 1 <= 255) {
+            pixel[0] = ++alpha;
+            pixel[0] = (pixel[0] << 8) | 40;//B
+            pixel[0] = (pixel[0] << 8) | 0;//G
+            pixel[0] = (pixel[0] << 8) | 0;//R
+            glBindTexture(GL_TEXTURE_2D, atmosphereTextureId);
+            glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+        }
+    }
+
+
+    void updateAtmosphere(Chrono time) {
+        if (atmoChrono->getElapsed(SECONDS) >= 2.5) { //A chaque 2.5 secondes
+            atmoChrono->restart();
+            if (dayTime) {
+                if (time.getElapsed(SECONDS) > HALFTURN) //Si Passer milieu journee
+                    darkenDay();
+                else
+                    lightenDay();
+            }
+
+            else
+            if (time.getElapsed(SECONDS) > HALFTURN)//Si passer milieu nuit
+                lightenNight();
+            else
+                darkenNight();
+        }
+    }
+
+
+    void setNightColor(){
+        pixel[0] = alpha;//A
+        pixel[0] = (pixel[0] << 8) | 40;//B
+        pixel[0] = (pixel[0] << 8) | 0;//G
+        pixel[0] = (pixel[0] << 8) | 0;//R
+        glBindTexture(GL_TEXTURE_2D, atmosphereTextureId);
+        glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+    }
+
+    void setSunsetColor(){
+        pixel[0] = alpha;//A
         pixel[0] = (pixel[0] << 8) | 38;//B
         pixel[0] = (pixel[0] << 8) | 145;//G
         pixel[0] = (pixel[0] << 8) | 211;//R
         glBindTexture(GL_TEXTURE_2D, atmosphereTextureId);
         glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
-}
+    }
 
-    void darken(Chrono deltaTime){
-        int opacity = 0.000444 * deltaTime.getElapsed(MILISECONDS);
-        pixel[0] = opacity;
+    void setBlueSky(){
+        pixel[0] = alpha;
         pixel[0] = (pixel[0] << 8) | 255;//B
-        pixel[0] = (pixel[0] << 8) | 255;//G
-        pixel[0] = (pixel[0] << 8) | 255;//R
+        pixel[0] = (pixel[0] << 8) | 89;//G
+        pixel[0] = (pixel[0] << 8) | 0;//R
         glBindTexture(GL_TEXTURE_2D, atmosphereTextureId);
         glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
     }
 
 
-
-    void adjustColor(){
-        if (dayTime){
-
-
-        }
-    }
 
     void draw() {
         glBindTexture(GL_TEXTURE_2D, atmosphereTextureId);
