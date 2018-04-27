@@ -125,7 +125,7 @@ public:
 
         for(auto it = modelList.begin(); it != modelList.end(); it++)
             (*it)->drawAndShading();
-
+        atmosphere.updateAtmosphere(chrono);
         atmosphere.draw();
         GLContext::setFrustum(IS2D);
         glDepthFunc(GL_LESS);
