@@ -27,10 +27,8 @@ class InGameOverlay : public Menu{
 private:
     bool activeHud;///< Bool qui determine si le hud est affiché
     Camera* camera;
-    std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
-    std::queue<Action*>* actionQueue;///< File contenant les actions a faire (Build, Delete, etc)
     SideWindow* sideWindow; ///< Pointe la fenêtre de coté active
     std::map<std::string, SideWindow*> sideWindowMap; ///< Carte de sideWindow
     //RotatingImage* windIndicator;
@@ -50,9 +48,7 @@ public:
     /// \param timeLeft Temps restant à la phase de construction.
     InGameOverlay(unsigned int powerCount = 0, unsigned int simCoinCount = 0, unsigned int temperatureC = 0, unsigned int sunPower = 0, Vector windSpeed = {0, 0, 0}, unsigned int timeLeft = 0) {
         activeHud = true;
-        fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,false);
         loadHUDTexture(powerCount, simCoinCount, temperatureC, sunPower, windSpeed.getNorm(), timeLeft);
-        actionQueue = new std::queue<Action*>;
         constructingMode = BUILD_NOTHING;
         sideWindowMap["Delete"] = new DeleteWindow();
         sideWindowMap["Structure"] = new StructureWindow();
@@ -66,15 +62,11 @@ public:
         lastSideWindow = nullptr;
     }
 
-    std::queue<Action*>* getActions(){
-            return actionQueue;
-    }
+
     Camera* getCamera(){
         return camera;
     }
-    std::map<std::pair<int,int>, Fondation*>* getFondations (){
-        return &fondationGrid;
-    };
+
 
     /// Affiche le InGameOverlay.
     void draw(){
@@ -449,7 +441,6 @@ public:
             delete it.second;
 
         //delete sideWindow;
-        delete actionQueue;
         delete camera;
 
     }

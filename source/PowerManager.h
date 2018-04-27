@@ -10,6 +10,7 @@ private:
     std::map<std::pair<int, int>, PowerWire*> adjMatrice;
     std::map<int, PowerPair*> mapAppareil;
     std::map<int, PowerPair*> mapSource;
+
     int appareilNbr, sourceNbr;
 public:
     PowerManager() {
@@ -72,34 +73,60 @@ public:
         adjMatrice[key2] = wire;
     }
 
-
-    void LeeAlgorithm(int start, int target, int indice) {
+    void SetIndice(int indice) {
+        bool indiceAltered = false;
         for(int i = (sourceNbr + 1); i <= appareilNbr; ++i) {
-            /*if(adjMatrice[std::make_pair(start, i)]) {
-                if(i <= 0)
-                    mapSource[i]->setIndice[indice + 1];
-                else
-                    mapSource[i]->setIndice[indice + 1];
-            }*/
-        }
-
-
-
-    }
-
-    void getShortestPath() {
-        for(int i = 1; i <= appareilNbr; ++i) {
-            std::map<int, std::queue<int>>* pathsMap = mapAppareil[i]->getPathsMap();
-            for(int j = (sourceNbr + 1); j <= 0; ++j) {
-                if(adjMatrice[std::make_pair(i, j)]) {
-                    (*pathsMap)[j].push(j);
+            if((i <= 0) && (mapSource[i]->getIndice() == indice)) {
+                int key = mapSource[i]->getKey();
+                for(int j = sourceNbr + 1; j <= appareilNbr; ++j) {
+                    if(adjMatrice[std::make_pair(key, j)]) {
+                        if((j <= 0) && (mapSource[j]->getIndice() == 9999)) {
+                            mapSource[j]->setIndice(indice + 1);
+                            indiceAltered = true;
+                        }
+                        if((j > 0) && (mapAppareil[j]->getIndice() == 9999)) {
+                            mapAppareil[j]->setIndice(indice + 1);
+                            indiceAltered = true;
+                        }
+                    }
                 }
-                else {
-                    //mapAppareil[start]->setIndice(0);
-
+            }
+            if((i > 0) && (mapAppareil[i]->getIndice() == indice)) {
+                int key = mapAppareil[i]->getKey();
+                for(int j = sourceNbr + 1; j <= appareilNbr; ++j) {
+                    if(adjMatrice[std::make_pair(key, j)]) {
+                        if((j <= 0) && (mapSource[j]->getIndice() == 9999)) {
+                            mapSource[j]->setIndice(indice + 1);
+                            indiceAltered = true;
+                        }
+                        if((j > 0) && (mapAppareil[j]->getIndice() == 9999)) {
+                            mapAppareil[j]->setIndice(indice + 1);
+                            indiceAltered = true;
+                        }
+                    }
                 }
             }
         }
+        if(indiceAltered)
+            SetIndice(indice + 1);
+        else
+            return;
+    }
+
+    void resetIndice() {
+        for(int i = (sourceNbr + 1); i <= appareilNbr; ++i) {
+            if(i <= 0) {
+                mapSource[i]->setIndice(9999);
+            }
+            else {
+                mapAppareil[i]->setIndice(9999);
+            }
+        }
+    }
+
+
+    void getShortestPath() {
+
     }
 
     void updatePower() {

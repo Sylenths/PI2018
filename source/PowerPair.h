@@ -11,7 +11,7 @@ protected:
 public:
     PowerPair(PowerNode* node) {
         this->node = node;
-        indice = 0;
+        indice = 9999;
     }
 
     PowerNode* getAppareil() {
@@ -20,6 +20,10 @@ public:
 
     void setKey(int key) {
         node->setKey(key);
+    }
+
+    int getKey() {
+        return node->getKey();
     }
 
     std::map<int, std::queue<int>>* getPathsMap() {

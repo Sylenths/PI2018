@@ -3,11 +3,11 @@
 #define SOURCE_MACHINEWINDOW_H
 
 #include "SideWindow.h"
-#include "ScrollingMenu.h"
+//#include "ScrollingMenu.h"
 
 class MachineWindow : public SideWindow{
     std::map<unsigned int, Button*>  menuDeroulantBoutons;
-    ScrollingMenu* scrollMenu;
+    //ScrollingMenu* scrollMenu;
     bool scrollUp;
     bool scrollDown;
 public:
@@ -32,7 +32,7 @@ public:
         menuDeroulantBoutons[6] = new Button(920,530,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
         menuDeroulantBoutons[7] = new Button(920,610,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
         //Création du menu déroulant.
-        scrollMenu = new ScrollingMenu(menuDeroulantBoutons,3);
+        //scrollMenu = new ScrollingMenu(menuDeroulantBoutons,3);
 
     }
     void onCancelClick(){
@@ -50,17 +50,17 @@ public:
             observables[SDL_MOUSEBUTTONDOWN]->subscribe(it.second);
             observables[SDL_MOUSEMOTION]->subscribe(it.second);
         }
-        scrollUp = scrollMenu->getScrollUp();
-        scrollDown = scrollMenu->getScrollDown();
+        //scrollUp = scrollMenu->getScrollUp();
+        //scrollDown = scrollMenu->getScrollDown();
 
         if(scrollUp){
         // subscribe les 3 boutons.
-            scrollMenu->resetScrollUp();
+            //scrollMenu->resetScrollUp();
 
         }
         if(scrollDown){
             //Subscribe les 3 boutons.
-            scrollMenu->resetScrollDown();
+            //scrollMenu->resetScrollDown();
         }
 
     }
@@ -85,7 +85,7 @@ public:
 
     }
     void draw(){
-        scrollMenu->draw();
+        //scrollMenu->draw();
         for (auto it : modelsSideWindow)
             it.second->draw();
 

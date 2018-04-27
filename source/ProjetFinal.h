@@ -77,10 +77,10 @@ public:
         getTextureID("../../images/BuildButtonOver.png","BuildButtonOver");
         getTextureID("../../images/CancelButton.png","CancelButton");
         getTextureID("../../images/CancelButtonOver.png","CancelButtonOver");
-        getTextureID("../../images/SimCoinMinerButtonO.png","SimcoinsButtonOver");
-        getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
-        getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
-        getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
+        //getTextureID("../../images/SimCoinMinerButtonO.png","SimcoinsButtonOver");
+        //getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
+        //getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
+        //getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
 
         //Textures world
         getTextureID("../../images/skysphere_day.png", "daysky");
@@ -365,7 +365,7 @@ public:
                         Vector intersection = (front * ratio) + pos;
                         int x = round(intersection.x / 2.0);
                         int z = round(intersection.z / 2.0);
-                        std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->hud->getFondations();
+                        std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->getFondations();
                         if(!(*fondationGrid)[std::make_pair(x,z)]) {
                             Fondation* fondation = new Fondation((double)x * 2.0, 0.0, (double)z * 2.0, false);
                             if ((*fondationGrid)[std::make_pair(x - 1, z)]){
@@ -409,6 +409,13 @@ public:
 
         }
     }
+    void addRoof(){
+        if(Scene::getActiveScene() == "World")
+
+            if (SideWindow::buildType == BUILD_FLOOR && SideWindow::isBuilding) {
+            }
+    }
+
 
     void createWall(){
         if(Scene::getActiveScene() == "World")
@@ -416,7 +423,7 @@ public:
         if (SideWindow::buildType == BUILD_WALL && SideWindow::isBuilding) {
             SideWindow::isBuilding = false;
             SideWindow::buildType = BUILD_NOTHING;
-            std::map<std::pair<int, int>, Fondation *> *fondationGrid = ((World *) sceneDisplay)->hud->getFondations();
+            std::map<std::pair<int, int>, Fondation *> *fondationGrid = ((World *) sceneDisplay)->getFondations();
             Fondation *start = (*fondationGrid)[std::make_pair(0, 0)];
             while (start->north) {
                 start = start->north;
@@ -597,7 +604,7 @@ public:
                 ((World *) sceneDisplay)->addModel(
                         new Model( StructureWindow::height, texture, &temp, &corner.front()));
             }
-            ((World *) sceneDisplay)->addModel(new Model(StructureWindow::height, texture, &corner.front(), &first));
+            ((World *) sceneDisplay)->addWall(new Model(StructureWindow::height, texture, &corner.front(), &first));
 
         }
     }
