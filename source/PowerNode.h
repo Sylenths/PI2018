@@ -21,6 +21,14 @@ public:
         wires.push_back(wire);
     }
 
+    virtual void setKey(int key) {};
+
+    virtual int getKey() {};
+
+
+
+
+
 
 };
 

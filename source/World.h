@@ -45,7 +45,7 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky")), atmosphere(0.0, 0.0, 0.0, false, 0) {
+    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky")), atmosphere(0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
@@ -86,6 +86,7 @@ public:
         }
 
         addModel(new Sky(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("daysky"),false, "../../models/obj/skysphere.obj"));
+
         Model* simCoinMiner = new Model(0.0, 0.0, 5.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj");
         simCoinMiner->setShadingOn();
         addModel(simCoinMiner);
@@ -113,15 +114,15 @@ public:
         glDepthFunc(GL_LEQUAL);
 
         sky.update(chrono);
-        if(sky.getTime())
-            atmosphere.darken(chrono);
-        else
-            atmosphere.lighten(chrono);
+
 
         hud->getCamera()->applyViewMatrix();
         worldLight->applyLightPosition();
+
         for(auto it = modelList.begin(); it != modelList.end(); it++)
             (*it)->drawAndShading();
+        atmosphere.updateAtmosphere(chrono);
+        atmosphere.draw();
         GLContext::setFrustum(IS2D);
         glDepthFunc(GL_LESS);
         hudLight->applyLightPosition();
