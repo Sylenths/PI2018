@@ -6,7 +6,6 @@
 
 class PowerNode /*: public Model*/ {
 protected:
-    int indice;
     double powerIN;
     double used;
     double generated;
@@ -15,7 +14,7 @@ protected:
 
 public:
     PowerNode() {
-        indice = 0;
+
     }
 
     void addWire(PowerNode* wire) {
