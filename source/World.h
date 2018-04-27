@@ -17,6 +17,9 @@
 class World : public Scene{
 private:
     std::list<Model*> modelList; ///< La liste de models à afficher
+    std::list<Model*> wallList; ///< La liste de models à afficher
+    std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
+
     Sky sky;
     Atmosphere atmosphere;
     Vector wind;
@@ -26,7 +29,7 @@ private:
     Chrono chrono;
 
 public:
-    Model* floor;
+    Model* flatGround;
     InGameOverlay* hud;
 
     int test;
@@ -35,6 +38,10 @@ public:
     /// \param modelKey Nom donne au model
     void addModel(Model* model){
         modelList.push_back(model);
+    }
+    void addWall(Model* model){
+        modelList.push_back(model);
+        wallList.push_back(model);
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
@@ -47,10 +54,11 @@ public:
         totalPower = 0;
         usedPower = 0;
         elapsedTime = 0;
+        fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,false);
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
-        addModel((*hud->getFondations())[std::make_pair(0,0)]);
-        floor =  new Model(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("grass"), false, "../../models/obj/grass.obj");
-        addModel(floor);
+        addModel(fondationGrid[std::make_pair(0,0)]);
+        flatGround =  new Model(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("grass"), false, "../../models/obj/grass.obj");
+        addModel(flatGround);
         test = 0;
 
         // Génération d'une forêt de 300 arbres...
@@ -92,27 +100,15 @@ public:
         delete worldLight;
         delete hudLight;
     }
-
-    void checkForActions(){
-
-        while(!hud->getActions()->empty()){
-            switch (hud->getActions()->front()->getActionType()){
-                case BUILD:/* double x = ((Build*)hud->getActions()->front())->x;
-                            double y = ((Build*)hud->getActions()->front())->y;
-                            double z = ((Build*)hud->getActions()->front())->z;
-                            addModel(new Model(x,y,z,false,ResourceManager::getInstance()->getTexture("human"),"../../models/obj/human.obj"));
-                            delete hud->getActions()->front();*/
+    std::map<std::pair<int,int>, Fondation*>* getFondations (){
+        return &fondationGrid;
+    };
 
 
-                    hud->getActions()->pop();
-                    break;
-            }
-        }
-    }
+
 
     /// Affichage des models
     void draw() {
-        checkForActions();
         GLContext::setFrustum(IS3D);
         glDepthFunc(GL_LEQUAL);
 
