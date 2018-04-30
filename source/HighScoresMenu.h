@@ -58,6 +58,8 @@ public:
             sprintf(intCharBuffer, "%d", j);
             labelNameBuffer = std::string("HighscoreLabel") + intCharBuffer;
 
+
+
             // Créer mes labels.
             if(j == 5){
                 x = 815;

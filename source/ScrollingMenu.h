@@ -22,20 +22,19 @@ public:
         scrollUp = false;
     }
 // Retourne la position avant le scroll.
-    int ScrollDown(){
+    void ScrollDown(){
         if (position + nombreDeBoutonsAffiche < boutons.size()){
             scrollDown = true;
             position++;
         }
-        return (position - 1);
     }
 //Retourne la postition avant le scroll.
-    int ScrollUp(){
+    void ScrollUp(){
         if(position - 1 > 0){
             scrollUp = true;
             position--;
         }
-        return (position + 1);
+
     }
 
     void resetScrollUp(){
@@ -49,7 +48,10 @@ public:
         return scrollUp;
     }
     bool getScrollDown(){
-        return ScrollDown();
+        return scrollDown;
+    }
+    int getPosition(){
+        return position;
     }
 
     void draw(){

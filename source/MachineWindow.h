@@ -3,13 +3,15 @@
 #define SOURCE_MACHINEWINDOW_H
 
 #include "SideWindow.h"
-//#include "ScrollingMenu.h"
+#include "ScrollingMenu.h"
 
 class MachineWindow : public SideWindow{
     std::map<unsigned int, Button*>  menuDeroulantBoutons;
-    //ScrollingMenu* scrollMenu;
+    ScrollingMenu* scrollMenu;
     bool scrollUp;
     bool scrollDown;
+    bool openWindow;
+    bool closeWindow;
 public:
 
     MachineWindow(){
@@ -32,7 +34,9 @@ public:
         menuDeroulantBoutons[6] = new Button(920,530,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
         menuDeroulantBoutons[7] = new Button(920,610,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
         //Création du menu déroulant.
-        //scrollMenu = new ScrollingMenu(menuDeroulantBoutons,3);
+        scrollMenu = new ScrollingMenu(menuDeroulantBoutons,3);
+        openWindow = true;
+        closeWindow = false;
 
     }
     void onCancelClick(){
@@ -40,6 +44,7 @@ public:
         materialType = NULLMATERIAL;
         isBuilding = false;
         closed = true;
+        closeWindow = true;
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
@@ -50,17 +55,19 @@ public:
             observables[SDL_MOUSEBUTTONDOWN]->subscribe(it.second);
             observables[SDL_MOUSEMOTION]->subscribe(it.second);
         }
-        //scrollUp = scrollMenu->getScrollUp();
-        //scrollDown = scrollMenu->getScrollDown();
+        scrollUp = scrollMenu->getScrollUp();
+        scrollDown = scrollMenu->getScrollDown();
 
-        if(scrollUp){
+        int position = scrollMenu->getPosition();
+        if(scrollUp || scrollDown || openWindow){
         // subscribe les 3 boutons.
-            //scrollMenu->resetScrollUp();
-
-        }
-        if(scrollDown){
-            //Subscribe les 3 boutons.
-            //scrollMenu->resetScrollDown();
+            for (int i = 0; i < 3 ; ++i) {
+                observables[SDL_MOUSEBUTTONDOWN]->subscribe(menuDeroulantBoutons[position + i]);
+                observables[SDL_MOUSEMOTION]->subscribe(menuDeroulantBoutons[position + i]);
+            }
+            scrollMenu->resetScrollUp();
+            scrollMenu->resetScrollDown();
+            openWindow = false;
         }
 
     }
@@ -70,14 +77,31 @@ public:
             observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(it.second);
             observables[SDL_MOUSEMOTION]->unsubscribe(it.second);
 
+            int position = scrollMenu->getPosition();
+            scrollUp = scrollMenu->getScrollUp();
+            scrollDown = scrollMenu->getScrollDown();
+
             if(scrollUp){
                 // unsubscribe les 3 boutons.
-
+                for (int i = 0; i < 3; ++i) {
+                    observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(menuDeroulantBoutons[(position+1)+i]);
+                    observables[SDL_MOUSEMOTION]->unsubscribe(menuDeroulantBoutons[(position+1)+i]);
+                }
 
             }
             if(scrollDown) {
                 // unsubscribe les 3 boutons.
-
+                for (int i = 0; i < 3 ; ++i) {
+                    observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(menuDeroulantBoutons[(position-1)+i]);
+                    observables[SDL_MOUSEMOTION]->unsubscribe(menuDeroulantBoutons[(position-1)+i]);
+                }
+            }
+            if(closeWindow){
+                for (int i = 0; i < 3; ++i) {
+                    observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(menuDeroulantBoutons[(position+i)]);
+                    observables[SDL_MOUSEMOTION]->unsubscribe(menuDeroulantBoutons[(position+i)]);
+                }
+                closeWindow = false;
             }
         }
 
@@ -85,7 +109,7 @@ public:
 
     }
     void draw(){
-        //scrollMenu->draw();
+        scrollMenu->draw();
         for (auto it : modelsSideWindow)
             it.second->draw();
 
