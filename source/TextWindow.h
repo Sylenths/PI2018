@@ -4,13 +4,12 @@
 
 #include "includes.h"
 
-class TextWindow : Model{
+class TextWindow : public Model{
 private:
     std::string text;
     SDL_Surface* sdlSurface;
     int w;
     int x;
-    int h;
     int y;
 public:
     /// Ajoute la texture avec le texte dans le resourceManager
@@ -23,21 +22,20 @@ public:
     /// \param height Hauteur de l'image.
     TextWindow(TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int w, unsigned h, unsigned int textureID = 0) : Model(x, y, z, textureID, false) {
         this->text = text;
-        cutTextForBox();
-        sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
-        this->w = sdlSurface->w;
-        this->h = sdlSurface->h;
+        this->w = w;
         this->x = x;
         this->y = y;
+        cutTextForBox();
+        sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
         vertexCount = 6;
         vertices = new double[18]{
                 x, y, 0.0,
-                x + sdlSurface->w, y, 0.0,
+                x + w, y, 0.0,
                 x, y + sdlSurface->h, 0.0,
 
-                x + sdlSurface->w, y, 0.0,
+                x + w, y, 0.0,
                 x, y + sdlSurface->h, 0.0,
-                x + sdlSurface->w, y + sdlSurface->h, 0.0
+                x + w, y + sdlSurface->h, 0.0
         };
 
         normals = new double[18]{
@@ -73,9 +71,20 @@ public:
     }
 
     void cutTextForBox(){
-        for(int i = 1; i < text.length()/w; i++){
-            text.insert(i*w, "\n");
+        char runner;
+        int width = 0;
+        for(int i = 0; i < text.length(); i++){
+            runner = text[i];
+            if(runner == '\n'){
+                width = 0;
+            }
+            if(width >= w){
+                text.insert(i, "\n");
+            }
+            width++;
+
         }
+
 
     }
 
