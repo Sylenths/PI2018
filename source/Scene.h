@@ -20,7 +20,6 @@ protected:
 
 public:
 
-    static bool sceneChange;
 
     /// Destructeur
     virtual ~Scene() {}
@@ -62,6 +61,5 @@ public:
 std::string Scene::activeScene = "MainMenu";
 std::string Scene::previous = " ";
 bool Scene::FPS = false;
-bool Scene::sceneChange = false;
 
 #endif

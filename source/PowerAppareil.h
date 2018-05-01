@@ -6,7 +6,6 @@
 class PowerAppareil : public PowerNode {
 protected:
     int proximiteSource;
-    int key;
 public:
     PowerAppareil() {
 

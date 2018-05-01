@@ -1,8 +1,8 @@
 /// \brief Représentation de la fenêtre de construction des structures
 /// \details Permet de choisir le matériel pour les planchers, murs et les toits et la hauteur des murs.
-/// \author Guillaume Julien - Desmarchais, Antoine Legault
+/// \author Guillaume Julien - Desmarchais, Antoine Legault, Mickaël Grisé-Roy
 /// \date 20 mars 2018
-/// \version 0.1
+/// \version 1.0
 /// \warning Aucun
 /// \bug Aucun
 #ifndef STRUCTUREWINDOW_H
@@ -15,10 +15,14 @@ private:
     char buffer[10];
 
 public:
-    static unsigned int height;
+    static unsigned int storyAmount;
+    static unsigned int chosenStory;
+    std::vector<unsigned int> height;
     StructureWindow(){
         isBuilding = false;
-
+        chosenStory = 0;
+        storyAmount = 0;
+        height.push_back(1);
         modelsSideWindow["SideMenuStructure"] = new Image(920, 0, 0, 360, 720, ResourceManager::getInstance()->getTexture("StructureWindow"));
 
 
@@ -26,6 +30,7 @@ public:
         modelsSideWindow["1FondationIcon"] = new CheckBox (970, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1FondationIcon"]->onClick = [this] () { onFoundationClick();};
         modelsSideWindow["1FondationLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Fondation", 970, 150, 0);
+        //modelsSideWindow["1FondationDesc"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "hello", 1000, 400, 0);
 
         modelsSideWindow["1MurIcon"] = new CheckBox (1040, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1MurIcon"]->onClick = [this] () { onWallClick();};
@@ -69,30 +74,54 @@ public:
         modelsSideWindow["1CancelButtonStructure"]->onClick = [this] () {onCancelClick();};
 
         //Parameter
-        modelsSideWindow["1AddHeight"] = new Button ( 1130, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1AddHeight"] = new Button ( 1050, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1AddHeight"]->onClick = [this] () {updateHeightParameterAdd();};
 
-        modelsSideWindow["1SoustracHeight"] = new Button (1020, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1SoustracHeight"] = new Button (940, 300, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1SoustracHeight"]->onClick = [this] () {updateHeightParameterMinus();};
 
-        SDL_itoa(height, buffer, 10);
-        modelsSideWindow["1HeightNumber"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1085, 300, 0);
+        modelsSideWindow["1HeightLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Wall height", 945, 360, 0);
 
+
+        SDL_itoa(height[0], buffer, 10);
+
+        modelsSideWindow["1HeightNumber"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1005, 300, 0);
+
+
+        modelsSideWindow["AddStory"] = new Button ( 1220, 300, -1, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["AddStory"]->onClick = [this] () {updateStoryChosenPlus();};
+
+        modelsSideWindow["SoustracStory"] = new Button (1110, 300, -1, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["SoustracStory"]->onClick = [this] () {updateStoryChosenMinus();};
+
+        modelsSideWindow["StoryLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Story Chosen", 1115, 360, -2);
+
+
+        SDL_itoa(height[0], buffer, 10);
+        modelsSideWindow["StoryChosen"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1110 + 45, 300,-2);
 
 
 
     }
 
+    void updateStoryChosenPlus(){
+        if(chosenStory < storyAmount)
+            chosenStory++;
+    }
+    void updateStoryChosenMinus(){
+        if(chosenStory)
+            chosenStory--;
+    }
     void updateHeightParameterAdd(){
-        height++;
-        SDL_itoa(height, buffer, 10);
+        height[chosenStory]++;
+        SDL_itoa(height[chosenStory], buffer, 10);
         ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
     }
 
     void updateHeightParameterMinus(){
-        if(height > 1)
-            height--;
-        SDL_itoa(height, buffer, 10);
+        if(height.at(chosenStory) > 1)
+            height.at(chosenStory)--;
+        SDL_itoa(height.at(chosenStory), buffer, 10);
         ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
     }
 
@@ -169,6 +198,13 @@ public:
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
         materialType = SIMTIUM;
     }
+    unsigned int getRealHeight(){
+        unsigned heightToReturn = 0;
+        for(int i = 0; i <= chosenStory ; i++){
+            heightToReturn += height.at(chosenStory);
+        }
+        return heightToReturn;
+    }
 
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
@@ -188,6 +224,12 @@ public:
         }
 
     }
+    static std::vector<unsigned int> MakeVector(){
+        std::vector<unsigned int> v;
+        v.push_back(1);
+        return v;
+    }
 };
-unsigned int StructureWindow::height = 1;
+unsigned int StructureWindow::chosenStory = 0;
+unsigned int StructureWindow::storyAmount = 0;
 #endif //STRUCTUREWINDOW_H

@@ -19,7 +19,8 @@ public:
     /// \param height Hauteur du bouton.
     /// \param defaultTextureID La texture de base affichée sur le bouton.
     /// \param mouseOverTextureID La texture affichée sur le bouton lorsqu'on le survole avec la souris.
-    Button(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int mouseOverTextureID = 0) : Image(x, y, z, width, height, defaultTextureID) {
+    Button(double x, double y, double z, double width, double height, unsigned int defaultTextureID,
+           unsigned int mouseOverTextureID = 0) : Image(x, y, z, width, height, defaultTextureID) {
         textureIDs["over"] = (mouseOverTextureID) ? mouseOverTextureID : defaultTextureID;
         onClick = nullptr;
     }
@@ -27,22 +28,26 @@ public:
 
     /// Réception de notification d'événement SDL.
     /// \param sdlEvent Événement SDL.
-    void notify(SDL_Event* sdlEvent) {
+    void notify(SDL_Event *sdlEvent) {
         if ((sdlEvent->button.x >= vertices[0]) && (sdlEvent->button.x <= vertices[3]) &&
             (sdlEvent->button.y >= vertices[1]) && (sdlEvent->button.y <= vertices[4])) {
             switch (sdlEvent->type) {
                 case SDL_MOUSEBUTTONDOWN:
                     if ((sdlEvent->button.button == SDL_BUTTON_LEFT) && onClick)
                         onClick();
-                break;
+                    break;
 
                 case SDL_MOUSEMOTION:
                     textureToDraw = textureIDs["over"];
-                break;
+                    break;
             }
-        }
-        else
+        } else
             textureToDraw = textureIDs["default"];
+    }
+
+    void updateButtonPosition(double x, double y){
+        this->posx = x;
+        this->posy = y;
     }
 };
 

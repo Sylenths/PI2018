@@ -77,7 +77,10 @@ public:
         getTextureID("../../images/BuildButtonOver.png","BuildButtonOver");
         getTextureID("../../images/CancelButton.png","CancelButton");
         getTextureID("../../images/CancelButtonOver.png","CancelButtonOver");
-
+        //getTextureID("../../images/SimCoinMinerButtonO.png","SimcoinsButtonOver");
+        //getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
+        //getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
+        //getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
 
         //Textures world
         getTextureID("../../images/skysphere_day.png", "daysky");
@@ -174,6 +177,15 @@ public:
             FPSchrono.restart();
         }
     }
+   /* Observable<SDL_Event*>* getMBDObservable(){
+        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        return observables[SDL_MOUSEBUTTONDOWN];
+    }
+    Observable<SDL_Event*>* getMMObservable(){
+        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
+        return observables[SDL_MOUSEMOTION];
+    }*/
+
 
     /// Représente la boucle de jeu.
     void run(std::string filePath) {
@@ -217,20 +229,31 @@ public:
                 }
             }
 
-            if (((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()])) || Scene::sceneChange) {
+            if (((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()]))) {
+
                 sceneDisplay->unsubscribeAll(observables);
                 sceneDisplay = sceneMap[Scene::getActiveScene()];
                 sceneDisplay->subscribeAll(observables);
                 controller->subscribeAll(observables, controller);
-                Scene::sceneChange = false;
             }
+            if((SideWindow::switched) && (sceneDisplay == sceneMap["World"])){
+                ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
+                SideWindow::switched = false;
+                ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
+
+            }
+
 
             if((SideWindow::closed == true) && (sceneDisplay == sceneMap["World"])){
                 ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
-                ((World*)sceneDisplay)->hud->closeSideWindow();
 
                 SideWindow::closed = false;
             }
+            if(SideWindow::opened && (sceneDisplay == sceneMap["World"])){
+                ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
+                SideWindow::opened = false;
+            }
+            addFloor();
             addFondation();
             createWall();
 
@@ -240,10 +263,14 @@ public:
                 case SDLK_f:
                     activeCamera = false;
                     glContext->releaseInput();
+                    sceneDisplay->subscribeAll(observables);
+                    ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
                     break;
                 case SDLK_g:
                     activeCamera = true;
                     glContext->grabInput();
+                    sceneDisplay->unsubscribeAll(observables);
+                    ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
@@ -265,9 +292,7 @@ public:
                         sceneDisplay->getCamera()->startMove(CAMERA_MOVE_RIGHT);
                     }
                     break;
-                case SDLK_9:
-                    ((World*)sceneDisplay)->test = 2;
-                    break;
+
                 case SDLK_ESCAPE:
                     if (sceneDisplay == sceneMap["World"]) {
                         glContext->releaseInput();
@@ -305,12 +330,7 @@ public:
             }
 
 
-                if ((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()])) {
-                    sceneDisplay->unsubscribeAll(observables);
-                    sceneDisplay = sceneMap[Scene::getActiveScene()];
-                    sceneDisplay->subscribeAll(observables);
 
-            }
             if (sceneDisplay == sceneMap["World"] && activeCamera)
                 sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS));
 
@@ -345,7 +365,7 @@ public:
                         Vector intersection = (front * ratio) + pos;
                         int x = round(intersection.x / 2.0);
                         int z = round(intersection.z / 2.0);
-                        std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->hud->getFondations();
+                        std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->getFondations();
                         if(!(*fondationGrid)[std::make_pair(x,z)]) {
                             Fondation* fondation = new Fondation((double)x * 2.0, 0.0, (double)z * 2.0, false);
                             if ((*fondationGrid)[std::make_pair(x - 1, z)]){
@@ -378,7 +398,10 @@ public:
 
                             if((*fondationGrid)[std::make_pair(x,z)])
                                 world->addModel((*fondationGrid)[std::make_pair(x,z)]);
+                            else
+                                delete fondation;
                         }
+
                     }
                 }
 
@@ -389,13 +412,73 @@ public:
 
         }
     }
+    void addFloor(){
+
+            if (StructureWindow::chosenStory && Scene::getActiveScene() == "World" && SideWindow::buildType == BUILD_FLOOR && SideWindow::materialType != NULLMATERIAL && SideWindow::isBuilding && activeCamera && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT) {
+                World* world = ((World*)sceneDisplay);
+                Vector front = world->getCamera()->getFront();
+                Vector pos = world->getCamera()->getPos();
+                Vector nFloor = {0.0, 2.5, 0.0};
+                unsigned int height = world->hud->getRealHeight();
+                if (front * nFloor) {
+                    double ratio = -((pos.y - height) / front.y);
+                    if (ratio > 0) {
+                        Vector intersection = (front * ratio) + pos;
+                        int x = round(intersection.x / 2.0);
+                        int z = round(intersection.z / 2.0);
+                        std::vector<std::map<std::pair<int,int>, Floor*>>* floorGrids = world->getFloors();
+                        if(!((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])) {
+                            Floor* floor = new Floor((double)x * 2.0, 0.0, (double)z * 2.0, false);
+                            if ((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x - 1, z)]){
+                                if(!(*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])
+                                    (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)] = floor;
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)]->west = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x - 1, z)];
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x - 1, z)]->east = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)];
+                            }
+
+                            if((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x + 1, z)]){
+                                if(!(*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])
+                                    (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)] = floor;
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)]->east = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x + 1, z)];
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x + 1, z)]->west = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)];
+                            }
+
+                            if((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x, z - 1)]){
+                                if(!(*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])
+                                    (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)] = floor;
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)]->north = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x , z - 1)];
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x , z - 1)]->south = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)];
+                            }
+
+                            if((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x, z + 1)]){
+                                if(!(*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])
+                                    (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)] = floor;
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)]->south = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x , z + 1)];
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x , z + 1)]->north = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)];
+                            }
+
+                            if((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])
+                                world->addModel((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)]);
+                            else
+                                delete floor;
+                        }
+                    }
+                }
+
+
+
+
+            }
+    }
+
 
     void createWall(){
         if(Scene::getActiveScene() == "World")
+
         if (SideWindow::buildType == BUILD_WALL && SideWindow::isBuilding) {
             SideWindow::isBuilding = false;
             SideWindow::buildType = BUILD_NOTHING;
-            std::map<std::pair<int, int>, Fondation *> *fondationGrid = ((World *) sceneDisplay)->hud->getFondations();
+            std::map<std::pair<int, int>, Fondation *> *fondationGrid = ((World *) sceneDisplay)->getFondations();
             Fondation *start = (*fondationGrid)[std::make_pair(0, 0)];
             while (start->north) {
                 start = start->north;
@@ -574,9 +657,10 @@ public:
                 Vector temp = corner.front();
                 corner.pop_front();
                 ((World *) sceneDisplay)->addModel(
-                        new Model( /*StructureWindow::height*/ 3, texture, &temp, &corner.front()));
+                        new Model( ((World *) sceneDisplay)->hud->getRealHeight(), texture, &temp, &corner.front()));
             }
-            ((World *) sceneDisplay)->addModel(new Model(/*StructureWindow::height*/ 3, texture, &corner.front(), &first));
+            ((World *) sceneDisplay)->addWall(new Model(((World *) sceneDisplay)->hud->getRealHeight(), texture, &corner.front(), &first));
+            StructureWindow::storyAmount++;
 
         }
     }

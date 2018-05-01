@@ -5,7 +5,7 @@
 class PowerSource : public PowerNode {
 private:
     double producedCurrent;
-    int key;
+
 public:
     PowerSource() {
 
@@ -18,6 +18,8 @@ public:
     int getKey() {
         return key;
     }
+
+
 };
 
 #endif
