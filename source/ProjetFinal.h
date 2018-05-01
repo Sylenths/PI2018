@@ -81,6 +81,8 @@ public:
         getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
         getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
         getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
+        getTextureID("../../images/UpButton.png","UpButton");
+        getTextureID("../../images/DownButton.png","DownButton");
 
         //Textures world
         getTextureID("../../images/skysphere_day.png", "daysky");

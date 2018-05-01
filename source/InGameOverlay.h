@@ -358,6 +358,7 @@ public:
         else
         SideWindow::opened = true;
         sideWindow = sideWindowMap["Machine"];
+        ((MachineWindow*)sideWindow)->openWindows();
 
 
 

@@ -23,7 +23,12 @@ public:
 
         modelsSideWindow["1CancelButtonMachine"] = new Button (930, 650, 0, 340, 60, ResourceManager::getInstance()->getTexture("CancelButton"), ResourceManager::getInstance()->getTexture("CancelButtonOver"));
         modelsSideWindow["1CancelButtonMachine"]->onClick = [this] () {onCancelClick();};
-        
+
+        modelsSideWindow["1UpButton"] = new Button(1260,50,0,25,45, ResourceManager::getInstance()->getTexture("UpButton"));
+        modelsSideWindow["1UpButton"]->onClick = [this](){scrollMenu->ScrollUp();};
+
+        modelsSideWindow["1DownButton"] = new Button(1260,245,0,25,45, ResourceManager::getInstance()->getTexture("DownButton"));
+        modelsSideWindow["1DownButton"]->onClick = [this](){scrollMenu->ScrollDown();};
 
         //Création des bouttons de machine.
         menuDeroulantBoutons[0] = new Button(920,50,0,340,80, ResourceManager::getInstance()->getTexture("SimcoinsButton"), ResourceManager::getInstance()->getTexture("SimcoinsButtonOver"));
@@ -44,8 +49,11 @@ public:
         buildType = BUILD_NOTHING;
         materialType = NULLMATERIAL;
         isBuilding = false;
-        closed = true;
-        closeWindow = true;
+        closeWindow = closed = true;
+
+    }
+    void openWindows(){
+        openWindow = true;
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){

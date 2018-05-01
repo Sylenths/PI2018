@@ -45,9 +45,11 @@ public:
             textureToDraw = textureIDs["default"];
     }
 
-    void updateButtonPosition(double x, double y){
-        this->posx = x;
-        this->posy = y;
+    void updateButtonPosition(double x, double y, double z){
+        Matrix m;
+        m.loadTranslation(Vector(x, y,z));
+        transform(m);
+
     }
 };
 
