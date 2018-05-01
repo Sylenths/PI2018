@@ -23,6 +23,7 @@ public:
 
         modelsSideWindow["1CancelButtonMachine"] = new Button (930, 650, 0, 340, 60, ResourceManager::getInstance()->getTexture("CancelButton"), ResourceManager::getInstance()->getTexture("CancelButtonOver"));
         modelsSideWindow["1CancelButtonMachine"]->onClick = [this] () {onCancelClick();};
+        
 
         //Création des bouttons de machine.
         menuDeroulantBoutons[0] = new Button(920,50,0,340,80, ResourceManager::getInstance()->getTexture("SimcoinsButton"), ResourceManager::getInstance()->getTexture("SimcoinsButtonOver"));
