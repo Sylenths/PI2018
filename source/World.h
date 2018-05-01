@@ -103,8 +103,11 @@ public:
     }
     std::map<std::pair<int,int>, Fondation*>* getFondations (){
         return &fondationGrid;
-    };
+    }
 
+    std::vector<std::map<std::pair<int,int>, Floor*>>* getFloors(){
+        return &floorGrids;
+    }
 
 
 
@@ -114,7 +117,6 @@ public:
         glDepthFunc(GL_LEQUAL);
 
         sky.update(chrono);
-
 
         hud->getCamera()->applyViewMatrix();
         worldLight->applyLightPosition();

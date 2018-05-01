@@ -77,10 +77,10 @@ public:
         getTextureID("../../images/BuildButtonOver.png","BuildButtonOver");
         getTextureID("../../images/CancelButton.png","CancelButton");
         getTextureID("../../images/CancelButtonOver.png","CancelButtonOver");
-        //getTextureID("../../images/SimCoinMinerButtonO.png","SimcoinsButtonOver");
-        //getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
-        //getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
-        //getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
+        getTextureID("../../images/SimCoinMinerButtonO.png","SimcoinsButtonOver");
+        getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
+        getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
+        getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
 
         //Textures world
         getTextureID("../../images/skysphere_day.png", "daysky");
@@ -253,7 +253,7 @@ public:
                 ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
                 SideWindow::opened = false;
             }
-
+            addFloor();
             addFondation();
             createWall();
 
@@ -398,7 +398,10 @@ public:
 
                             if((*fondationGrid)[std::make_pair(x,z)])
                                 world->addModel((*fondationGrid)[std::make_pair(x,z)]);
+                            else
+                                delete fondation;
                         }
+
                     }
                 }
 
@@ -411,7 +414,7 @@ public:
     }
     void addFloor(){
 
-            if (Scene::getActiveScene() == "World" && SideWindow::buildType == BUILD_FLOOR && SideWindow::materialType != NULLMATERIAL && SideWindow::isBuilding && activeCamera && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT) {
+            if (StructureWindow::chosenStory && Scene::getActiveScene() == "World" && SideWindow::buildType == BUILD_FLOOR && SideWindow::materialType != NULLMATERIAL && SideWindow::isBuilding && activeCamera && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT) {
                 World* world = ((World*)sceneDisplay);
                 Vector front = world->getCamera()->getFront();
                 Vector pos = world->getCamera()->getPos();
@@ -423,39 +426,41 @@ public:
                         Vector intersection = (front * ratio) + pos;
                         int x = round(intersection.x / 2.0);
                         int z = round(intersection.z / 2.0);
-                        std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->getFondations();
-                        if(!(*fondationGrid)[std::make_pair(x,z)]) {
-                            Fondation* fondation = new Fondation((double)x * 2.0, 0.0, (double)z * 2.0, false);
-                            if ((*fondationGrid)[std::make_pair(x - 1, z)]){
-                                if(!(*fondationGrid)[std::make_pair(x,z)])
-                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
-                                (*fondationGrid)[std::make_pair(x,z)]->west = (*fondationGrid)[std::make_pair(x - 1, z)];
-                                (*fondationGrid)[std::make_pair(x - 1, z)]->east = (*fondationGrid)[std::make_pair(x,z)];
+                        std::vector<std::map<std::pair<int,int>, Floor*>>* floorGrids = world->getFloors();
+                        if(!((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])) {
+                            Floor* floor = new Floor((double)x * 2.0, 0.0, (double)z * 2.0, false);
+                            if ((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x - 1, z)]){
+                                if(!(*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])
+                                    (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)] = floor;
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)]->west = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x - 1, z)];
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x - 1, z)]->east = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)];
                             }
 
-                            if((*fondationGrid)[std::make_pair(x + 1, z)]){
-                                if(!(*fondationGrid)[std::make_pair(x,z)])
-                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
-                                (*fondationGrid)[std::make_pair(x,z)]->east = (*fondationGrid)[std::make_pair(x + 1, z)];
-                                (*fondationGrid)[std::make_pair(x + 1, z)]->west = (*fondationGrid)[std::make_pair(x,z)];
+                            if((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x + 1, z)]){
+                                if(!(*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])
+                                    (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)] = floor;
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)]->east = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x + 1, z)];
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x + 1, z)]->west = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)];
                             }
 
-                            if((*fondationGrid)[std::make_pair(x, z - 1)]){
-                                if(!(*fondationGrid)[std::make_pair(x,z)])
-                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
-                                (*fondationGrid)[std::make_pair(x,z)]->north = (*fondationGrid)[std::make_pair(x , z - 1)];
-                                (*fondationGrid)[std::make_pair(x , z - 1)]->south = (*fondationGrid)[std::make_pair(x,z)];
+                            if((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x, z - 1)]){
+                                if(!(*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])
+                                    (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)] = floor;
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)]->north = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x , z - 1)];
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x , z - 1)]->south = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)];
                             }
 
-                            if((*fondationGrid)[std::make_pair(x, z + 1)]){
-                                if(!(*fondationGrid)[std::make_pair(x,z)])
-                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
-                                (*fondationGrid)[std::make_pair(x,z)]->south = (*fondationGrid)[std::make_pair(x , z + 1)];
-                                (*fondationGrid)[std::make_pair(x , z + 1)]->north = (*fondationGrid)[std::make_pair(x,z)];
+                            if((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x, z + 1)]){
+                                if(!(*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])
+                                    (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)] = floor;
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)]->south = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x , z + 1)];
+                                (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x , z + 1)]->north = (*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)];
                             }
 
-                            if((*fondationGrid)[std::make_pair(x,z)])
-                                world->addModel((*fondationGrid)[std::make_pair(x,z)]);
+                            if((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)])
+                                world->addModel((*floorGrids).at(StructureWindow::chosenStory)[std::make_pair(x,z)]);
+                            else
+                                delete floor;
                         }
                     }
                 }
@@ -655,6 +660,7 @@ public:
                         new Model( ((World *) sceneDisplay)->hud->getRealHeight(), texture, &temp, &corner.front()));
             }
             ((World *) sceneDisplay)->addWall(new Model(((World *) sceneDisplay)->hud->getRealHeight(), texture, &corner.front(), &first));
+            StructureWindow::storyAmount++;
 
         }
     }
