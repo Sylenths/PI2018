@@ -2,14 +2,14 @@
 #define POWERMANAGER_H
 #include "includes.h"
 #include "PowerWire.h"
-#include "PowerPair.h"
+#include "PowerAppareil.h"
 #include "PowerSource.h"
 
 class PowerManager : public Singleton<PowerManager> {
 private:
     std::map<std::pair<int, int>, PowerWire*> adjMatrice;
-    std::map<int, PowerPair*> mapAppareil;
-    std::map<int, PowerPair*> mapSource;
+    std::map<int, PowerNode*> mapAppareil;
+    std::map<int, PowerNode*> mapSource;
 
     int appareilNbr, sourceNbr;
 public:
@@ -19,7 +19,7 @@ public:
     }
 
     void addSource(PowerSource* source) {
-        mapSource[sourceNbr] = new PowerPair(source);
+        mapSource[sourceNbr] = source;
         source->setKey(sourceNbr);
 
         for(int i = sourceNbr; i <= appareilNbr; ++i) {
@@ -32,7 +32,7 @@ public:
     void addAppareil(PowerAppareil* appareil) {
         appareilNbr++;
         appareil->setKey(appareilNbr);
-        mapAppareil[appareilNbr] = new PowerPair(appareil);
+        mapAppareil[appareilNbr] = appareil;
 
         for(int i = appareilNbr; i > sourceNbr; --i) {
             adjMatrice[std::make_pair(appareilNbr, i)] = nullptr;
@@ -41,7 +41,7 @@ public:
     }
 
     void removeAppareil(int key) {
-        PowerPair* temp = mapAppareil[key];
+        PowerNode* temp = mapAppareil[key];
         mapAppareil[key] = mapAppareil[appareilNbr];
         mapAppareil[key]->setKey(key);
         delete temp;
@@ -55,7 +55,7 @@ public:
 
     void removeSource(int key) {
         sourceNbr++;
-        PowerPair* temp = mapSource[key];
+        PowerNode* temp = mapSource[key];
         mapSource[key] = mapSource[sourceNbr];
         mapSource[key]->setKey(key);
         delete temp;
@@ -73,7 +73,7 @@ public:
         adjMatrice[key2] = wire;
     }
 
-    void SetIndice(int indice) {
+    void setIndice(int indice) {
         bool indiceAltered = false;
         for(int i = (sourceNbr + 1); i <= appareilNbr; ++i) {
             if((i <= 0) && (mapSource[i]->getIndice() == indice)) {
@@ -108,7 +108,7 @@ public:
             }
         }
         if(indiceAltered)
-            SetIndice(indice + 1);
+            setIndice(indice + 1);
         else
             return;
     }
@@ -125,8 +125,35 @@ public:
     }
 
 
-    void getShortestPath() {
+    void getShortestPath(PowerAppareil* from) {
+        from->clearPathsMap();
+        from->setIndice(0);
+        setIndice(0);
 
+        for(int i = (sourceNbr + 1); i <= 0; ++i) {
+            int indiceTmp = 9999;
+            int currentKey = i;
+            int nextKey;
+
+            while(mapAppareil[currentKey] != from) {
+                for(int j = (sourceNbr + 1); j <= appareilNbr; ++j) {
+                    if(adjMatrice[std::make_pair(currentKey, j)]) {
+                        if((j <= 0) && (mapSource[j]->getIndice() < indiceTmp)) {
+                            indiceTmp = mapSource[j]->getIndice();
+                            nextKey = j;
+                        }
+                        if((j > 0) && (mapAppareil[j]->getIndice() < indiceTmp)) {
+                            indiceTmp = mapAppareil[j]->getIndice();
+                            nextKey = j;
+                        }
+                    }
+                }
+
+                from->pushBackPathsMap(i, currentKey);
+                currentKey = nextKey;
+            }
+        }
+        resetIndice();
     }
 
     void updatePower() {
