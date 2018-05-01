@@ -1,10 +1,10 @@
 /// \brief La maille est la somme de tous les points pour former une forme géométrique dans OpenGL.
 /// \details
-/// \author Tai Chen Li, Samuel Labelle, Gabriel Bourdages
+/// \author Tai Chen Li, Samuel Labelle, Gabriel Bourdages, Mathilde Harnois
 /// \date 28 mars 2018
 /// \version 0.2
 /// \warning Aucuns.
-/// \bug Aucuns.
+/// \bug Bug graphique avec l'ombre
 
 #ifndef SOURCE_MODEL_H
 #define SOURCE_MODEL_H
@@ -31,6 +31,30 @@ protected:
     bool shading;
 
     std::map<std::string, unsigned int> textureIDs;
+
+    /// Crée l'ombre du modèle
+    /// \param sun Vecteur indiquant la position du soleil
+    void updateShadingVertex(Vector sun) {
+        Vector AB, B;
+        double k;
+
+        Vector temp;
+
+        for (int i = 0; i < vertexCount; ++i) {
+            B = Vector(vertices[i * 3], vertices[i * 3 + 1], vertices[i * 3 + 2]);
+            AB = B - sun; // OB - OA = AB
+
+            k = ((0.1 - B.y)/(AB.y)); // la quantité à multiplier à chacune des composantes pour atteindre notre plan y = 0
+            verticesShading[i * 3    ] = k*AB.x + B.x;
+            verticesShading[i * 3 + 1] = 0.1;
+            verticesShading[i * 3 + 2] = k*AB.z + B.z;
+        }
+    }
+
+    /// Enlève les triangles de surplus dans l'ombre afin d'enlever les superpositions
+    void cleanShadingVertex() {
+
+    }
 
 public:
     std::function<void()> onClick;  ///< Pointeur de méthode réagissant à un click de souris.
@@ -82,33 +106,6 @@ public:
             }
         }
 
-    }
-
-    void updateShadingVertex(Vector sun) {
-        Vector AB, B;
-        double k;
-        double ABnorm;
-        double test;
-
-        Vector temp;
-
-        for (int i = 0; i < vertexCount; ++i) {
-            B = Vector(vertices[i * 3], vertices[i * 3 + 1], vertices[i * 3 + 2]);
-            AB = B - sun; // OB - OA = AB
-
-                    //k = -1 * (AB.y + B.y); // Le y sera toujours égal a 0 pour l'ombre donc on trouve le k en trouvant la distance entre le B.y et le 0 avec AB comme vecteur directeur
-            //      ABnorm = AB.getNorm();
-            //    verticesShading[i * 3] = AB.x + k + B.x;
-            //  verticesShading[i * 3 + 1] = AB.y + k + B.y;
-            //verticesShading[i * 3 + 2] = AB.z + k + B.z;
-
-            //test = verticesShading[i * 3 + 1];
-
-            k = ((0.1 - B.y)/(AB.y)); // la quantité à multiplier à chacune des composantes pour atteindre notre plan y = 0
-            verticesShading[i * 3    ] = k*AB.x + B.x;
-            verticesShading[i * 3 + 1] = 0.1;
-            verticesShading[i * 3 + 2] = k*AB.z + B.z;
-        }
     }
 
     /// Constructeur.

@@ -36,13 +36,13 @@ public:
     }
 
     void lighten (Chrono deltaTime) {
-        for(int i = 3; i < vertexCount; i+= 4) {
+        for(int i = 4; i < vertexCount; i+= 4) {
             colors[i] -= 2.83 * pow(10, -6);
         }
     }
 
     void darken (Chrono deltaTime) {
-        for(int i = 3; i < vertexCount; i+= 4) {
+        for(int i = 4; i < vertexCount; i+= 4) {
             colors[i] += 2.83 * pow(10, -6);
         }
     }
