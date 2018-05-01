@@ -16,7 +16,6 @@ private:
     bool isDayTime; ///< Booléen qui indique si c'est le jour ou la nuit
     double sphereAngle; ///< Angle de la sphère en fonction des axes x et y
     Matrix rotation; ///< Matrice de rotation du ciel
-    //Chrono chrono;
 
 public:
 
@@ -30,6 +29,7 @@ public:
         textureIDs["night"] =  ResourceManager::getInstance()->getTexture("nightsky");
     }
 
+    /// Obtient le temps
     bool getTime() {
         return isDayTime;
     }

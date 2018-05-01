@@ -118,7 +118,6 @@ public:
 
         sky.update(chrono);
 
-
         hud->getCamera()->applyViewMatrix();
         worldLight->applyLightPosition();
 

@@ -5,22 +5,28 @@
 
 class PowerAppareil : public PowerNode {
 protected:
-    int proximiteSource;
+    int proximityIndice;
+    double usedCurrent;
+    double currentLeft;
 public:
-    PowerAppareil() {
-
+    PowerAppareil(double usedCurrent) {
+        this->usedCurrent = usedCurrent;
+        usedCurrent = currentLeft;
     }
 
-    void setProximite(int proximiteSource) {
-        this->proximiteSource = proximiteSource;
+    void setProximite() {
+        proximityIndice = 0;
+        for(std::map<int, std::stack<int>>::iterator it = pathsMap.begin(); it != pathsMap.end(); it++) {
+            proximityIndice += (*it).second.size();
+        }
     }
 
-    void setKey(int key) {
-        this->key = key;
+    int getProximite() {
+        return proximityIndice;
     }
 
-    int getKey() {
-       return key;
+    double getCurrentLeft() {
+        return currentLeft;
     }
 };
 

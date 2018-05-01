@@ -33,7 +33,7 @@ private:
     std::map<std::string, SideWindow*> sideWindowMap; ///< Carte de sideWindow
     //RotatingImage* windIndicator;
     SideWindow* lastSideWindow; ///< Pointe la dernière fenêtre de coté
-
+    std::list<Model*> wallList;///< Liste de mur
 
 public:
     bool activeSideWindow;
@@ -67,7 +67,13 @@ public:
         return camera;
     }
 
+    std::list<Model*>* getWallList(){
+        return &wallList;
+    }
 
+    void addWall(Model* wall){
+        wallList.push_back(wall);
+    }
     /// Affiche le InGameOverlay.
     void draw(){
         if(activeHud) {
@@ -358,6 +364,7 @@ public:
         else
         SideWindow::opened = true;
         sideWindow = sideWindowMap["Machine"];
+        ((MachineWindow*)sideWindow)->openWindows();
 
 
 

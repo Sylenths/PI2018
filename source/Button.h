@@ -19,8 +19,7 @@ public:
     /// \param height Hauteur du bouton.
     /// \param defaultTextureID La texture de base affichée sur le bouton.
     /// \param mouseOverTextureID La texture affichée sur le bouton lorsqu'on le survole avec la souris.
-    Button(double x, double y, double z, double width, double height, unsigned int defaultTextureID,
-           unsigned int mouseOverTextureID = 0) : Image(x, y, z, width, height, defaultTextureID) {
+    Button(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int mouseOverTextureID = 0) : Image(x, y, z, width, height, defaultTextureID) {
         textureIDs["over"] = (mouseOverTextureID) ? mouseOverTextureID : defaultTextureID;
         onClick = nullptr;
     }
@@ -45,9 +44,11 @@ public:
             textureToDraw = textureIDs["default"];
     }
 
-    void updateButtonPosition(double x, double y){
-        this->posx = x;
-        this->posy = y;
+    void updateButtonPosition(double x, double y, double z){
+        Matrix m;
+        m.loadTranslation(Vector(x, y,z));
+        transform(m);
+
     }
 };
 

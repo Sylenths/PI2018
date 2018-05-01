@@ -6,11 +6,14 @@
 
 class TextWindow : public Model{
 private:
+    std::list<Label*> labelList;
     std::string text;
-    SDL_Surface* sdlSurface;
     int w;
     int x;
     int y;
+    int z;
+    SDL_Color color;
+    TTF_Font* font;
 public:
     /// Ajoute la texture avec le texte dans le resourceManager
     /// \param font Police de caractères
@@ -25,84 +28,38 @@ public:
         this->w = w;
         this->x = x;
         this->y = y;
+        this->z = z;
+        this->color = color;
+        this->font = font;
         cutTextForBox();
-        sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
-        vertexCount = 6;
-        vertices = new double[18]{
-                (double) x,(double) y, 0.0,
-                (double) (x + w), (double) y, 0.0,
-                (double)x,(double) (y + sdlSurface->h), 0.0,
-
-                (double)(x + w), (double)y, 0.0,
-                (double)x, (double)y + sdlSurface->h, 0.0,
-                (double)(x + w), (double)(y + sdlSurface->h), 0.0
-        };
-
-        normals = new double[18]{
-                0.0, 0.0 , 1.0,
-                0.0, 0.0,  1.0,
-                0.0, 0.0,  1.0,
-
-                0.0, 0.0 , 1.0,
-                0.0, 0.0,  1.0,
-                0.0, 0.0,  1.0
-        };
-
-        texCoords = new double [12]{
-                0.0,  0.0,
-                1.0,  0.0,
-                0.0,  1.0,
-
-                1.0,  0.0,
-                0.0,  1.0,
-                1.0,  1.0
-        };
-
-
-
-        glGenTextures(1, &textureToDraw);
-        glBindTexture(GL_TEXTURE_2D, textureToDraw);
-        glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, sdlSurface->w, sdlSurface->h,0, GL_RGBA, GL_UNSIGNED_BYTE, sdlSurface->pixels);
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-        textureIDs["default"] = textureToDraw;
     }
 
     void cutTextForBox(){
         char runner;
+        int height = y;
         int width = 0;
-        for(int i = 0; i < text.length(); i++){
+        for(int i = 0; i < text.size(); i++){
             runner = text[i];
-            if(runner == '\n'){
+            if(runner == '\n' || width >= w || i == (text.size() - 1) ){
+                if(height == y){
+                    labelList.push_back(new Label(font, color, text.substr( 0 , i).c_str(), x, height , z));
+                }
+                else
+                    labelList.push_back(new Label(font, color, text.substr(i - width + 1, width).c_str(), x, height , z));
+                height += 15;
                 width = 0;
-            }
-            if(width >= w){
-                text.insert(i, "\n");
             }
             width++;
 
         }
-
+        if(labelList.empty())
+            labelList.push_back(new Label(font, color, text.c_str(), x, y , z));
 
     }
 
-    void updateTextTexture(std::string text, TTF_Font* font, SDL_Color color){
-        sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
-        glDeleteTextures(1,&textureToDraw);
-        glGenTextures(1, &textureToDraw);
-        glBindTexture(GL_TEXTURE_2D, textureToDraw);
-        glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, sdlSurface->w, sdlSurface->h,0, GL_RGBA, GL_UNSIGNED_BYTE, sdlSurface->pixels);
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-        textureIDs["default"] = textureToDraw;
-    }
-
-    ~TextWindow(){
-        SDL_FreeSurface(sdlSurface);
+    void draw(){
+        for (auto it : labelList)
+            it->draw();
     }
 
 };
