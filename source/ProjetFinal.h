@@ -258,6 +258,7 @@ public:
             addFloor();
             addFondation();
             createWall();
+            selectWallForRoofCreation();
 
 
             ///controle des touches
@@ -473,6 +474,154 @@ public:
             }
     }
 
+    void selectWallForRoofCreation() {
+        if (Scene::getActiveScene() == "World") {
+
+            if ((SideWindow::buildType == BUILD_ROOF && SideWindow::isBuilding) &&
+                (controller->getClickMousePosition()[2] == SDL_BUTTON_RIGHT)) {
+                /*if (!SideWindow::firstWall) {
+                    PhysicsData::CollisionData previousData;
+                    for (auto it = ((World *) sceneDisplay)->hud->getWallList()->begin();
+                         it != ((World *) sceneDisplay)->hud->getWallList()->end(); it++) {
+                        PhysicsData::CollisionData currentData = Physics::collideVectorOnModel(((World *) sceneDisplay)->hud->getCamera()->getPos(), ((World *) sceneDisplay)->hud->getCamera()->getFront(), (*(*it)));
+                        if (currentData.collided) {
+                            if (SideWindow::firstWall) {
+                                if (currentData.ratio < previousData.ratio) {
+                                    previousData = currentData;
+                                    SideWindow::firstWall = (*it);
+                                }
+                            } else {
+                                previousData = currentData;
+                                SideWindow::firstWall = (*it);
+                            }
+
+                        }
+                    }
+                }
+                else{
+                    if (!SideWindow::secondWall && SideWindow::firstWall) {
+                        PhysicsData::CollisionData previousData;
+                        for (auto it = ((World *) sceneDisplay)->hud->getWallList()->begin();
+                             it != ((World *) sceneDisplay)->hud->getWallList()->end(); it++) {
+                            PhysicsData::CollisionData currentData = Physics::collideVectorOnModel(
+                                    ((World *) sceneDisplay)->hud->getCamera()->getPos(),
+                                    ((World *) sceneDisplay)->hud->getCamera()->getFront(), (*(*it)));
+                            if (currentData.collided) {
+                                if (SideWindow::secondWall) {
+                                    if (currentData.ratio < previousData.ratio) {
+                                        previousData = currentData;
+                                        SideWindow::secondWall = (*it);
+                                    }
+                                } else {
+                                    previousData = currentData;
+                                    SideWindow::secondWall = (*it);
+                                }
+                            }
+                        }
+                        if (SideWindow::firstWall == SideWindow::secondWall) {
+                            //SideWindow::secondWall = nullptr;
+                        }
+                    }
+                }*/
+
+                SideWindow::firstWall = ((World *) sceneDisplay)->hud->getWallList()->front();
+                SideWindow::secondWall = ((World *) sceneDisplay)->hud->getWallList()->back();
+
+                if(SideWindow::firstWall && SideWindow::secondWall){
+                    SideWindow::isBuilding = false;
+                    SideWindow::buildType = BUILD_NOTHING;
+                    bool wall1OnX = false;
+                    bool wall2OnX = false;
+                    double posx, posy, posz, max, width, lenght;
+                    posx = posy = posz = max = width = lenght = 0.0;
+                    if (SideWindow::firstWall->getMesh(0) == SideWindow::firstWall->getMesh(3))
+                        wall1OnX = true;
+                    if (SideWindow::secondWall->getMesh(0) == SideWindow::secondWall->getMesh(3))
+                        wall2OnX = true;
+
+
+                    if (SideWindow::firstWall->getMesh(0) < SideWindow::firstWall->getMesh(3)) {
+                        posx = SideWindow::firstWall->getMesh(0);
+                    } else {
+                        posx = SideWindow::firstWall->getMesh(3);
+                    }
+                    if (posx > SideWindow::secondWall->getMesh(0)) {
+                        posx = SideWindow::secondWall->getMesh(0);
+                    }
+                    if (posx > SideWindow::secondWall->getMesh(3)) {
+                        posx = SideWindow::secondWall->getMesh(3);
+                    }
+
+                    if (SideWindow::firstWall->getMesh(0) > SideWindow::firstWall->getMesh(3)) {
+                        max = SideWindow::firstWall->getMesh(0);
+                    } else {
+                        max = SideWindow::firstWall->getMesh(3);
+                    }
+                    if (max < SideWindow::secondWall->getMesh(0)) {
+                        max = SideWindow::secondWall->getMesh(0);
+                    }
+                    if (max < SideWindow::secondWall->getMesh(3)) {
+                        max = SideWindow::secondWall->getMesh(3);
+                    }
+                    width = abs(max - posx);
+
+
+                    if (SideWindow::firstWall->getMesh(2) < SideWindow::firstWall->getMesh(5)) {
+                        posz = SideWindow::firstWall->getMesh(2);
+                    } else {
+                        posz = SideWindow::firstWall->getMesh(5);
+                    }
+                    if (posz > SideWindow::secondWall->getMesh(2)) {
+                        posz = SideWindow::secondWall->getMesh(2);
+                    }
+                    if (posz > SideWindow::secondWall->getMesh(5)) {
+                        posz = SideWindow::secondWall->getMesh(5);
+                    }
+
+                    if (SideWindow::firstWall->getMesh(2) > SideWindow::firstWall->getMesh(5)) {
+                        max = SideWindow::firstWall->getMesh(2);
+                    } else {
+                        max = SideWindow::firstWall->getMesh(5);
+                    }
+                    if (max < SideWindow::secondWall->getMesh(2)) {
+                        max = SideWindow::secondWall->getMesh(2);
+                    }
+                    if (max < SideWindow::secondWall->getMesh(5)) {
+                        max = SideWindow::secondWall->getMesh(5);
+                    }
+                    lenght = abs(max - posz);
+
+
+                    unsigned int texture;
+                    switch (SideWindow::materialType) {
+                        case CARDBOARD:
+                            texture = ResourceManager::getInstance()->getTexture("wall");
+                            break;
+                        case WOOD:
+                            texture = ResourceManager::getInstance()->getTexture("fondMaison");
+                            break;
+                        case ROCK:
+                            texture = ResourceManager::getInstance()->getTexture("daysky");
+                            break;
+                        case METAL:
+                            texture = ResourceManager::getInstance()->getTexture("nightsky");
+                            break;
+                        case SIMTIUM:
+                            texture = ResourceManager::getInstance()->getTexture("grass");
+                            break;
+                    }
+
+                    ((World *) sceneDisplay)->addModel(
+                            new Model(2.0/*width*/, 3.0/*StructureWindow::height*/, 2.0/*lenght*/, posx, 1.0/*posy*/, posz, texture));
+
+                }
+            }
+
+
+
+        }
+    }
+
 
     void createWall(){
         if(Scene::getActiveScene() == "World")
@@ -658,11 +807,14 @@ public:
             for (int i = 0; i < size; ++i) {
                 Vector temp = corner.front();
                 corner.pop_front();
-                ((World *) sceneDisplay)->addModel(
-                        new Model( ((World *) sceneDisplay)->hud->getRealHeight(), texture, &temp, &corner.front()));
+
+                ((World *) sceneDisplay)->addModel((new Model( /*StructureWindow::height*/ 3, texture, &temp, &corner.front())));
+                ((World *) sceneDisplay)->hud->addWall(new Model( /*StructureWindow::height*/ 3, texture, &temp, &corner.front()));
+
             }
-            ((World *) sceneDisplay)->addWall(new Model(((World *) sceneDisplay)->hud->getRealHeight(), texture, &corner.front(), &first));
-            StructureWindow::storyAmount++;
+
+            ((World *) sceneDisplay)->addModel(new Model(/*StructureWindow::height*/ 3, texture, &corner.front(), &first));
+            ((World *) sceneDisplay)->hud->addWall(new Model(/*StructureWindow::height*/ 3, texture, &corner.front(), &first));
 
         }
     }

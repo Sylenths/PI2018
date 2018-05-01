@@ -24,6 +24,8 @@ public:
     static bool closed;
     static bool opened;
     static bool switched;
+    static Model* firstWall;
+    static Model* secondWall;
 
 
     /// Inscription des modèles aux événements.
@@ -51,7 +53,8 @@ bool SideWindow::isBuilding = false;
 bool SideWindow::closed = false;
 bool SideWindow::opened = false;
 bool SideWindow::switched = false;
-
+Model* SideWindow::firstWall = nullptr;
+Model* SideWindow::secondWall = nullptr;
 
 
 

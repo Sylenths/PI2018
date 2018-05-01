@@ -501,6 +501,186 @@ public:
 //todo hitbox
    }
 
+    ///Constructeur de toit
+    Model(unsigned int width, unsigned int height, unsigned int lenght, double posx, double posy, double posz, unsigned int textureID){
+        textureIDs["default"] = textureID;
+        textureToDraw = textureID;
+        normalsHitBox, verticesHitBox, vertices = normals = texCoords = nullptr;
+        Vector up;
+        Vector temp;
+        vertexCount = 12;
+        normalCount = 12;
+        texCount = 12;
+
+        rotHitBox = false;
+
+        shading = false;
+        colorsShading = nullptr;
+
+        ///mesh
+        vertices = new double[36];
+        vertices[0] = ((double)width) / 2.0;
+        vertices[1] = 0.0;
+        vertices[2] = ((double)lenght) / 2.0;
+        vertices[3] = -((double)width) / 2.0;
+        vertices[4] = 0.0;
+        vertices[5] = ((double)lenght) / 2.0;
+        vertices[6] = 0.0;
+        vertices[7] = ((double)height);
+        vertices[8] = 0.0;
+        vertices[9] = -((double)width) / 2.0;
+        vertices[10] = 0.0;
+        vertices[11] = -((double)lenght) / 2.0;
+        vertices[12] = -((double)width) / 2.0;
+        vertices[13] = 0.0;
+        vertices[14] = -((double)lenght) / 2.0;
+        vertices[15] = 0.0;
+        vertices[16] = ((double)height);
+        vertices[17] = 0.0;
+        vertices[18] = -((double)width) / 2.0;
+        vertices[19] = 0.0;
+        vertices[20] = -((double)lenght) / 2.0;
+        vertices[21] = ((double)width) / 2.0;
+        vertices[22] = 0.0;
+        vertices[23] = -((double)lenght) / 2.0;
+        vertices[24] = 0.0;
+        vertices[25] = ((double)height);
+        vertices[26] = 0.0;
+        vertices[27] = ((double)width) / 2.0;
+        vertices[28] = 0.0;
+        vertices[29] = -((double)lenght) / 2.0;
+        vertices[30] = ((double)width) / 2.0;
+        vertices[31] = 0.0;
+        vertices[32] = ((double)lenght) / 2.0;
+        vertices[33] = 0.0;
+        vertices[34] = ((double)height);
+        vertices[35] = 0.0;
+
+        ///normal
+        normals = new double[36];
+        up = Vector(0.0 , (double)height, -(double)lenght / 2.0);
+        temp = (Vector(vertices[0] - vertices[3], 0.0, vertices[2] - vertices[5]) % up);
+        normals[6] = normals[3] = normals[0] = temp.x;
+        normals[7] = normals[4] = normals[1] = temp.y;
+        normals[8] = normals[5] = normals[2] = temp.x;
+        up = Vector((double)width / 2.0 , (double)height, 0.0);
+        temp = (Vector(vertices[0] - vertices[3], 0.0, vertices[2] - vertices[5]) % up);
+        normals[15] = normals[12] = normals[9] = temp.x;
+        normals[16] = normals[13] = normals[10] = temp.y;
+        normals[17] = normals[14] = normals[11] = temp.x;
+        up = Vector(0.0 , (double)height, (double)lenght / 2.0);
+        temp = (Vector(vertices[0] - vertices[3], 0.0, vertices[2] - vertices[5]) % up);
+        normals[18] = normals[21] = normals[24] = temp.x;
+        normals[19] = normals[22] = normals[25] = temp.y;
+        normals[20] = normals[23] = normals[26] = temp.x;
+        up = Vector(-(double)width / 2.0 , (double)height, 0.0);
+        temp = (Vector(vertices[0] - vertices[3], 0.0, vertices[2] - vertices[5]) % up);
+        normals[27] = normals[30] = normals[33] = temp.x;
+        normals[28] = normals[31] = normals[34] = temp.y;
+        normals[29] = normals[32] = normals[35] = temp.x;
+
+        ///coordoné de texture
+        texCoords = new double[24];
+        texCoords[0] = 1.0;
+        texCoords[1] = 1.0;
+        texCoords[2] = 0.0;
+        texCoords[3] = 1.0;
+        texCoords[4] = 0.5;
+        texCoords[5] = 0.0;
+        texCoords[6] = 1.0;
+        texCoords[7] = 1.0;
+        texCoords[8] = 0.0;
+        texCoords[9] = 1.0;
+        texCoords[10] = 0.5;
+        texCoords[11] = 0.0;
+
+        texCoords[12] = 1.0;
+        texCoords[13] = 1.0;
+        texCoords[14] = 0.0;
+        texCoords[15] = 1.0;
+        texCoords[16] = 0.5;
+        texCoords[17] = 0.0;
+        texCoords[18] = 1.0;
+        texCoords[19] = 1.0;
+        texCoords[20] = 0.0;
+        texCoords[21] = 1.0;
+        texCoords[22] = 0.5;
+        texCoords[23] = 0.0;
+
+
+
+
+        //todo hitbox
+
+        verticesHitBox = new double[36];
+        verticesHitBox[0] = ((double)width) / 2.0;
+        verticesHitBox[1] = 0.0;
+        verticesHitBox[2] = ((double)lenght) / 2.0;
+        verticesHitBox[3] = -((double)width) / 2.0;
+        verticesHitBox[4] = 0.0;
+        verticesHitBox[5] = ((double)lenght) / 2.0;
+        verticesHitBox[6] = 0.0;
+        verticesHitBox[7] = ((double)height);
+        verticesHitBox[8] = 0.0;
+        verticesHitBox[9] = -((double)width) / 2.0;
+        verticesHitBox[10] = 0.0;
+        verticesHitBox[11] = -((double)lenght) / 2.0;
+        verticesHitBox[12] = -((double)width) / 2.0;
+        verticesHitBox[13] = 0.0;
+        verticesHitBox[14] = -((double)lenght) / 2.0;
+        verticesHitBox[15] = 0.0;
+        verticesHitBox[16] = ((double)height);
+        verticesHitBox[17] = 0.0;
+        verticesHitBox[18] = -((double)width) / 2.0;
+        verticesHitBox[19] = 0.0;
+        verticesHitBox[20] = -((double)lenght) / 2.0;
+        verticesHitBox[21] = ((double)width) / 2.0;
+        verticesHitBox[22] = 0.0;
+        verticesHitBox[23] = -((double)lenght) / 2.0;
+        verticesHitBox[24] = 0.0;
+        verticesHitBox[25] = ((double)height);
+        verticesHitBox[26] = 0.0;
+        verticesHitBox[27] = ((double)width) / 2.0;
+        verticesHitBox[28] = 0.0;
+        verticesHitBox[29] = -((double)lenght) / 2.0;
+        verticesHitBox[30] = ((double)width) / 2.0;
+        verticesHitBox[31] = 0.0;
+        verticesHitBox[32] = ((double)lenght) / 2.0;
+        verticesHitBox[33] = 0.0;
+        verticesHitBox[34] = ((double)height);
+        verticesHitBox[35] = 0.0;
+
+
+
+        normalsHitBox = new double[36];
+        up = Vector(0.0 , (double)height, -(double)lenght / 2.0);
+        temp = (Vector(vertices[0] - vertices[3], 0.0, vertices[2] - vertices[5]) % up);
+        normalsHitBox[6] = normalsHitBox[3] = normalsHitBox[0] = temp.x;
+        normalsHitBox[7] = normalsHitBox[4] = normalsHitBox[1] = temp.y;
+        normalsHitBox[8] = normalsHitBox[5] = normalsHitBox[2] = temp.x;
+        up = Vector((double)width / 2.0 , (double)height, 0.0);
+        temp = (Vector(vertices[0] - vertices[3], 0.0, vertices[2] - vertices[5]) % up);
+        normalsHitBox[15] = normalsHitBox[12] = normalsHitBox[9] = temp.x;
+        normalsHitBox[16] = normalsHitBox[13] = normalsHitBox[10] = temp.y;
+        normalsHitBox[17] = normalsHitBox[14] = normalsHitBox[11] = temp.x;
+        up = Vector(0.0 , (double)height, (double)lenght / 2.0);
+        temp = (Vector(vertices[0] - vertices[3], 0.0, vertices[2] - vertices[5]) % up);
+        normalsHitBox[18] = normalsHitBox[21] = normalsHitBox[24] = temp.x;
+        normalsHitBox[19] = normalsHitBox[22] = normalsHitBox[25] = temp.y;
+        normalsHitBox[20] = normalsHitBox[23] = normalsHitBox[26] = temp.x;
+        up = Vector(-(double)width / 2.0 , (double)height, 0.0);
+        temp = (Vector(vertices[0] - vertices[3], 0.0, vertices[2] - vertices[5]) % up);
+        normalsHitBox[27] = normalsHitBox[30] = normalsHitBox[33] = temp.x;
+        normalsHitBox[28] = normalsHitBox[31] = normalsHitBox[34] = temp.y;
+        normalsHitBox[29] = normalsHitBox[32] = normalsHitBox[35] = temp.x;
+
+
+        Matrix m;
+        m.loadTranslation(Vector(posx, posy, posz));
+        transform(m);
+        1+1;
+    }
+
 
     /// Destructeur.
     ~Model() {
@@ -580,6 +760,10 @@ public:
                 glDisableClientState(GL_NORMAL_ARRAY);
                 glDisableClientState(GL_COLOR_ARRAY);
             }
+    }
+
+    double getMesh(int position){
+        return vertices[position];
     }
 
     virtual void notify(SDL_Event* sdlEvent) {}
