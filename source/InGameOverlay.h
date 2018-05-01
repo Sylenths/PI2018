@@ -406,9 +406,7 @@ public:
 
         // TODO: Code delete mode
     }
-    unsigned int getRealHeight(){
-        return  sideWindowMap["Structure"]->getRealHeight();
-    }
+
 
 
     void sideWindowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
@@ -443,8 +441,15 @@ public:
             delete it.second;
 
         //delete sideWindow;
-        delete camera;
+            delete camera;
 
+    }
+    unsigned int getFloorHeight(){
+        return  sideWindowMap["Structure"]->getFloorHeight();
+
+    }
+    unsigned int getHeight(){
+        return sideWindowMap["Structure"]->getHeight();
     }
 
 };

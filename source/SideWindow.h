@@ -43,7 +43,8 @@ public:
         for (auto it : modelsSideWindow)
             delete it.second;
     }
-    virtual unsigned getRealHeight(){}
+    virtual unsigned getFloorHeight(){}
+    virtual unsigned int getHeight(){}
 };
 int SideWindow::buildType = 0;
 int SideWindow::materialType = 0;

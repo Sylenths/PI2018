@@ -38,11 +38,11 @@ public:
 
         modelsSideWindow["1PlancherIcon"] = new CheckBox (1110, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1PlancherIcon"]->onClick = [this] () {onFloorClick();};
-        modelsSideWindow["1PlanLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Toit", 1110, 150, 0);
+        modelsSideWindow["1PlanLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Plancher", 1110, 150, 0);
 
         modelsSideWindow["1ToitIcon"] = new CheckBox (1180, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1ToitIcon"]->onClick = [this] () {onRoofClick();};
-        modelsSideWindow["1ToitLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Plancher", 1180, 150, 0);
+        modelsSideWindow["1ToitLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Toit", 1180, 150, 0);
 
         //type de matérieux
         modelsSideWindow["1CartonIcon"] = new CheckBox (940, 205, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
@@ -88,17 +88,17 @@ public:
         modelsSideWindow["1HeightNumber"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1005, 300, 0);
 
 
-        modelsSideWindow["AddStory"] = new Button ( 1220, 300, -1, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
-        modelsSideWindow["AddStory"]->onClick = [this] () {updateStoryChosenPlus();};
+        modelsSideWindow["1AddStory"] = new Button ( 1220, 300, -1, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1AddStory"]->onClick = [this] () {updateStoryChosenPlus();};
 
-        modelsSideWindow["SoustracStory"] = new Button (1110, 300, -1, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
-        modelsSideWindow["SoustracStory"]->onClick = [this] () {updateStoryChosenMinus();};
+        modelsSideWindow["1SoustracStory"] = new Button (1110, 300, -1, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1SoustracStory"]->onClick = [this] () {updateStoryChosenMinus();};
 
-        modelsSideWindow["StoryLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Story Chosen", 1115, 360, -2);
+        modelsSideWindow["1StoryLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Story Chosen", 1100, 360, 0);
 
 
-        SDL_itoa(height[0], buffer, 10);
-        modelsSideWindow["StoryChosen"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1110 + 45, 300,-2);
+        SDL_itoa(chosenStory, buffer, 10);
+        modelsSideWindow["1StoryChosen"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1110 + 65, 300,0);
 
 
 
@@ -107,18 +107,31 @@ public:
     void updateStoryChosenPlus(){
         if(chosenStory < storyAmount)
             chosenStory++;
+        if(chosenStory == height.size())
+            height.push_back(1);
+
+        SDL_itoa(chosenStory, buffer, 10);
+        ((Label*)modelsSideWindow["1StoryChosen"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
+
     }
     void updateStoryChosenMinus(){
         if(chosenStory)
             chosenStory--;
+        SDL_itoa(chosenStory, buffer, 10);
+        ((Label*)modelsSideWindow["1StoryChosen"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
+
     }
     void updateHeightParameterAdd(){
-        height[chosenStory]++;
+
+            height.at(chosenStory)++;
+
+
         SDL_itoa(height[chosenStory], buffer, 10);
         ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
     }
 
     void updateHeightParameterMinus(){
+
         if(height.at(chosenStory) > 1)
             height.at(chosenStory)--;
         SDL_itoa(height.at(chosenStory), buffer, 10);
@@ -198,12 +211,8 @@ public:
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
         materialType = SIMTIUM;
     }
-    unsigned int getRealHeight(){
-        unsigned heightToReturn = 0;
-        for(int i = 0; i <= chosenStory ; i++){
-            heightToReturn += height.at(chosenStory);
-        }
-        return heightToReturn;
+    unsigned int getHeight(){
+        return height[0];
     }
 
 
@@ -224,11 +233,16 @@ public:
         }
 
     }
-    static std::vector<unsigned int> MakeVector(){
-        std::vector<unsigned int> v;
-        v.push_back(1);
-        return v;
+    unsigned int getFloorHeight(){
+        if(chosenStory == 1)
+            return height[0];
+        unsigned int heightToReturn = 0;
+        for(int i = 0; i < chosenStory; i++){
+            heightToReturn += height[i];
+        }
+        return heightToReturn;
     }
+
 };
 unsigned int StructureWindow::chosenStory = 0;
 unsigned int StructureWindow::storyAmount = 0;
