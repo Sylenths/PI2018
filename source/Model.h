@@ -63,33 +63,55 @@ protected:
         bool signRef;
         double* shadingEdges;
         std::vector<double> vShadingEdges;
-        //initialiser signRef
 
-        for (int i = 0; i < (vertexCount - 3); i += 9) {
+        for (int i = 0; i < (vertexCount / 3); i += 9) {
             signRef = signOfD(verticesShading[i + 6], verticesShading[i + 8], verticesShading[i], verticesShading[i + 2], verticesShading[i + 3], verticesShading[i + 5]);
-            for (int j = 6; j < (vertexCount - 2); j++) {
-                //Si le déterminant est du même signe que le signe de référence du triangle
-                if (signOfD(verticesShading[j], verticesShading[j + 2], verticesShading[i], verticesShading[i + 2], verticesShading[i + 3], verticesShading[5]) == signRef) {
-                    //Si c'est le dernier sommet
-                    if (j == (vertexCount - 3)) {
-                        for (int k = 0; k < 6; k++) {
-                            //on ajoute le segment (6 sommets) au tableau de sommets qui composent les extrémités de l'ombre
-                            vShadingEdges.push_back(verticesShading[j + k]);
+            for (int j = 0; j < (vertexCount - 2); j += 3) {
+                //Si le point j ne fait pas parti du segment
+                if (!(j == i || j == (i + 3))) {
+                    //Si le déterminant est du même signe que le signe de référence du triangle
+                    if (signOfD(verticesShading[j], verticesShading[j + 2], verticesShading[i], verticesShading[i + 2], verticesShading[i + 3], verticesShading[i + 5]) == signRef) {
+                        //Si c'est le dernier sommet
+                        if (j == (vertexCount - 3)) {
+                            for (int k = 0; k < 6; k++) {
+                                //on ajoute le segment (6 sommets) au tableau de sommets qui composent les extrémités de l'ombre
+                                vShadingEdges.push_back(verticesShading[j + k]);
+                            }
                         }
+                    } else {
+                        //on arrête la boucle et on va au prochain segment
+                        j = vertexCount;
                     }
                 }
-                else {
-                    //on arrête la boucle et on va au prochain segment
-                    j = vertexCount;
+            }
+
+            for (int j = 0; j < (vertexCount - 2); j += 3) {
+                if (!(j == (i + 3) || j == (i + 6))) {
+                    if (signOfD(verticesShading[j], verticesShading[j + 2], verticesShading[i + 3], verticesShading[i + 5], verticesShading[i + 6], verticesShading[i + 8]) == signRef) {
+                        if (j == (vertexCount - 3)) {
+                            for (int k = 0; k < 6; k++) {
+                                vShadingEdges.push_back(verticesShading[j + k]);
+                            }
+                        }
+                    }
+                    else
+                        j = vertexCount;
                 }
             }
 
-            for (int j = 2; j < (vertexCount - 2); j++) {
-
-            }
-
-            for (int j = 2; j < (vertexCount - 2); j++) {
-
+            for (int j = 0; j < (vertexCount - 2); j += 3) {
+                if (!(j == (i + 3) || j == (i + 6))) {
+                    if (signOfD(verticesShading[j], verticesShading[j + 2], verticesShading[i + 6], verticesShading[i + 8], verticesShading[i], verticesShading[i + 2]) == signRef) {
+                        if (j == (vertexCount - 3)) {
+                            for (int k = 0; k < 6; k++) {
+                                vShadingEdges.push_back(verticesShading[j + k]);
+                            }
+                        }
+                    }
+                    else {
+                        j = vertexCount;
+                    }
+                }
             }
         }
     }

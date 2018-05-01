@@ -26,11 +26,16 @@ public:
         if (position + nombreDeBoutonsAffiche < boutons.size()){
             scrollDown = true;
             position++;
+
+            //boutons[position]->updateButtonPosition(920,50,0);
+            //boutons[position + 1]->updateButtonPosition(920,130,0);
+            //boutons[position + 2]->updateButtonPosition(920,210,0);
+
         }
     }
 //Retourne la postition avant le scroll.
     void ScrollUp(){
-        if(position - 1 > 0){
+        if(position > 0){
             scrollUp = true;
             position--;
         }
