@@ -77,10 +77,10 @@ public:
         getTextureID("../../images/BuildButtonOver.png","BuildButtonOver");
         getTextureID("../../images/CancelButton.png","CancelButton");
         getTextureID("../../images/CancelButtonOver.png","CancelButtonOver");
-        //getTextureID("../../images/SimCoinMinerButtonO.png","SimcoinsButtonOver");
-        //getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
-        //getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
-        //getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
+        getTextureID("../../images/SimCoinMinerButtonO.png","SimcoinsButtonOver");
+        getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
+        getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
+        getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
 
         //Textures world
         getTextureID("../../images/skysphere_day.png", "daysky");
