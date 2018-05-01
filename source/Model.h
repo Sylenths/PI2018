@@ -51,9 +51,47 @@ protected:
         }
     }
 
+    bool signOfD(double& xCordp, double& zCordp, double& xCord1, double& zCord1, double& xCord2, double& zCord2) {
+        if (((xCordp - xCord1) * (zCord2 - zCord1) - (zCordp - zCord1) * (xCord2 - xCord1)) < 0)
+            return false;
+        else
+            return true;
+    }
+
     /// Enlève les triangles de surplus dans l'ombre afin d'enlever les superpositions
     void cleanShadingVertex() {
+        bool signRef;
+        double* shadingEdges;
+        std::vector<double> vShadingEdges;
+        //initialiser signRef
 
+        for (int i = 0; i < (vertexCount - 3); i += 9) {
+            signRef = signOfD(verticesShading[i + 6], verticesShading[i + 8], verticesShading[i], verticesShading[i + 2], verticesShading[i + 3], verticesShading[i + 5]);
+            for (int j = 6; j < (vertexCount - 2); j++) {
+                //Si le déterminant est du même signe que le signe de référence du triangle
+                if (signOfD(verticesShading[j], verticesShading[j + 2], verticesShading[i], verticesShading[i + 2], verticesShading[i + 3], verticesShading[5]) == signRef) {
+                    //Si c'est le dernier sommet
+                    if (j == (vertexCount - 3)) {
+                        for (int k = 0; k < 6; k++) {
+                            //on ajoute le segment (6 sommets) au tableau de sommets qui composent les extrémités de l'ombre
+                            vShadingEdges.push_back(verticesShading[j + k]);
+                        }
+                    }
+                }
+                else {
+                    //on arrête la boucle et on va au prochain segment
+                    j = vertexCount;
+                }
+            }
+
+            for (int j = 2; j < (vertexCount - 2); j++) {
+
+            }
+
+            for (int j = 2; j < (vertexCount - 2); j++) {
+
+            }
+        }
     }
 
 public:

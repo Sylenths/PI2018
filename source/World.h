@@ -117,15 +117,6 @@ public:
         glDepthFunc(GL_LEQUAL);
 
         sky.update(chrono);
-<<<<<<< HEAD
-        if(sky.getTime())
-            atmosphere.darken(chrono);
-        else
-            atmosphere.lighten(chrono);
-        atmosphere.draw();
-=======
-
->>>>>>> ca1b8d626b7c2cd3292f5be0a48495c77e1d5966
 
         hud->getCamera()->applyViewMatrix();
         worldLight->applyLightPosition();
