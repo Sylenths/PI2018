@@ -88,13 +88,13 @@ public:
         modelsSideWindow["1HeightNumber"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1005, 300, 0);
 
 
-        modelsSideWindow["AddStory"] = new Button ( 1220, 300, -1, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
-        modelsSideWindow["AddStory"]->onClick = [this] () {updateStoryChosenPlus();};
+        modelsSideWindow["1AddStory"] = new Button ( 1220, 300, -1, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1AddStory"]->onClick = [this] () {updateStoryChosenPlus();};
 
-        modelsSideWindow["SoustracStory"] = new Button (1110, 300, -1, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
-        modelsSideWindow["SoustracStory"]->onClick = [this] () {updateStoryChosenMinus();};
+        modelsSideWindow["1SoustracStory"] = new Button (1110, 300, -1, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
+        modelsSideWindow["1SoustracStory"]->onClick = [this] () {updateStoryChosenMinus();};
 
-        modelsSideWindow["StoryLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Story Chosen", 1115, 360, -2);
+        modelsSideWindow["1StoryLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Story Chosen", 1115, 360, -2);
 
 
         SDL_itoa(height[0], buffer, 10);

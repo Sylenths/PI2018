@@ -16,7 +16,7 @@ public:
 
         switch (material) {
         case 1:
-            this->resistance = (0.000000016 * lenght) / (M_PI * (diameter / 2.0) * (diameter / 2.0));
+            //this->resistance = (0.000000016 * lenght) / (M_PI * (diameter / 2.0) * (diameter / 2.0));
             break;
         default:
             break;
