@@ -19,7 +19,7 @@ private:
     std::list<Model*> modelList; ///< La liste de models à afficher
     std::list<Model*> wallList; ///< La liste de models à afficher
     std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
-
+    std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;
     Sky sky;
     Atmosphere atmosphere;
     Vector wind;

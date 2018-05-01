@@ -406,7 +406,9 @@ public:
 
         // TODO: Code delete mode
     }
-
+    unsigned int getRealHeight(){
+        return  sideWindowMap["Structure"]->getRealHeight();
+    }
 
 
     void sideWindowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){

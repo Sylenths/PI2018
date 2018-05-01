@@ -409,10 +409,60 @@ public:
 
         }
     }
-    void addRoof(){
-        if(Scene::getActiveScene() == "World")
+    void addFloor(){
 
-            if (SideWindow::buildType == BUILD_FLOOR && SideWindow::isBuilding) {
+            if (Scene::getActiveScene() == "World" && SideWindow::buildType == BUILD_FLOOR && SideWindow::materialType != NULLMATERIAL && SideWindow::isBuilding && activeCamera && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT) {
+                World* world = ((World*)sceneDisplay);
+                Vector front = world->getCamera()->getFront();
+                Vector pos = world->getCamera()->getPos();
+                Vector nFloor = {0.0, 2.5, 0.0};
+                unsigned int height = world->hud->getRealHeight();
+                if (front * nFloor) {
+                    double ratio = -((pos.y - height) / front.y);
+                    if (ratio > 0) {
+                        Vector intersection = (front * ratio) + pos;
+                        int x = round(intersection.x / 2.0);
+                        int z = round(intersection.z / 2.0);
+                        std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->getFondations();
+                        if(!(*fondationGrid)[std::make_pair(x,z)]) {
+                            Fondation* fondation = new Fondation((double)x * 2.0, 0.0, (double)z * 2.0, false);
+                            if ((*fondationGrid)[std::make_pair(x - 1, z)]){
+                                if(!(*fondationGrid)[std::make_pair(x,z)])
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
+                                (*fondationGrid)[std::make_pair(x,z)]->west = (*fondationGrid)[std::make_pair(x - 1, z)];
+                                (*fondationGrid)[std::make_pair(x - 1, z)]->east = (*fondationGrid)[std::make_pair(x,z)];
+                            }
+
+                            if((*fondationGrid)[std::make_pair(x + 1, z)]){
+                                if(!(*fondationGrid)[std::make_pair(x,z)])
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
+                                (*fondationGrid)[std::make_pair(x,z)]->east = (*fondationGrid)[std::make_pair(x + 1, z)];
+                                (*fondationGrid)[std::make_pair(x + 1, z)]->west = (*fondationGrid)[std::make_pair(x,z)];
+                            }
+
+                            if((*fondationGrid)[std::make_pair(x, z - 1)]){
+                                if(!(*fondationGrid)[std::make_pair(x,z)])
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
+                                (*fondationGrid)[std::make_pair(x,z)]->north = (*fondationGrid)[std::make_pair(x , z - 1)];
+                                (*fondationGrid)[std::make_pair(x , z - 1)]->south = (*fondationGrid)[std::make_pair(x,z)];
+                            }
+
+                            if((*fondationGrid)[std::make_pair(x, z + 1)]){
+                                if(!(*fondationGrid)[std::make_pair(x,z)])
+                                    (*fondationGrid)[std::make_pair(x,z)] = fondation;
+                                (*fondationGrid)[std::make_pair(x,z)]->south = (*fondationGrid)[std::make_pair(x , z + 1)];
+                                (*fondationGrid)[std::make_pair(x , z + 1)]->north = (*fondationGrid)[std::make_pair(x,z)];
+                            }
+
+                            if((*fondationGrid)[std::make_pair(x,z)])
+                                world->addModel((*fondationGrid)[std::make_pair(x,z)]);
+                        }
+                    }
+                }
+
+
+
+
             }
     }
 
@@ -602,9 +652,9 @@ public:
                 Vector temp = corner.front();
                 corner.pop_front();
                 ((World *) sceneDisplay)->addModel(
-                        new Model( StructureWindow::height, texture, &temp, &corner.front()));
+                        new Model( ((World *) sceneDisplay)->hud->getRealHeight(), texture, &temp, &corner.front()));
             }
-            ((World *) sceneDisplay)->addWall(new Model(StructureWindow::height, texture, &corner.front(), &first));
+            ((World *) sceneDisplay)->addWall(new Model(((World *) sceneDisplay)->hud->getRealHeight(), texture, &corner.front(), &first));
 
         }
     }

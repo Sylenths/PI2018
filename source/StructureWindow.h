@@ -15,10 +15,14 @@ private:
     char buffer[10];
 
 public:
-    static unsigned int height;
+    static unsigned int storyAmount;
+    static unsigned int chosenStory;
+    std::vector<unsigned int> height;
     StructureWindow(){
         isBuilding = false;
-
+        chosenStory = 0;
+        storyAmount = 0;
+        height.push_back(1);
         modelsSideWindow["SideMenuStructure"] = new Image(920, 0, 0, 360, 720, ResourceManager::getInstance()->getTexture("StructureWindow"));
 
 
@@ -79,7 +83,7 @@ public:
         modelsSideWindow["1HeightLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Wall height", 1025, 360, 0);
 
 
-        SDL_itoa(height, buffer, 10);
+        SDL_itoa(height[0], buffer, 10);
         modelsSideWindow["1HeightNumber"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1085, 300, 0);
 
 
@@ -87,16 +91,17 @@ public:
 
     }
 
+
     void updateHeightParameterAdd(){
-        height++;
-        SDL_itoa(height, buffer, 10);
+        height[chosenStory]++;
+        SDL_itoa(height[chosenStory], buffer, 10);
         ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
     }
 
     void updateHeightParameterMinus(){
-        if(height > 1)
-            height--;
-        SDL_itoa(height, buffer, 10);
+        if(height[chosenStory] > 1)
+            height[chosenStory]--;
+        SDL_itoa(height[chosenStory], buffer, 10);
         ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0});
     }
 
@@ -173,6 +178,13 @@ public:
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
         materialType = SIMTIUM;
     }
+    unsigned int getRealHeight(){
+        unsigned heightToReturn = 0;
+        for(int i = 0; i <= chosenStory ; i++){
+            heightToReturn += height[chosenStory];
+        }
+        return heightToReturn;
+    }
 
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
@@ -192,6 +204,12 @@ public:
         }
 
     }
+    static std::vector<unsigned int> MakeVector(){
+        std::vector<unsigned int> v;
+        v.push_back(1);
+        return v;
+    }
 };
-unsigned int StructureWindow::height = 1;
+unsigned int StructureWindow::chosenStory = 0;
+unsigned int StructureWindow::storyAmount = 0;
 #endif //STRUCTUREWINDOW_H

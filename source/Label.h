@@ -32,13 +32,13 @@ public:
         this->x = x;
         vertexCount = 6;
         vertices = new double[18]{
-                x, y, 0.0,
-                x + sdlSurface->w, y, 0.0,
-                x, y + sdlSurface->h, 0.0,
+                (double)x, (double)y, 0.0,
+                (double)(x + sdlSurface->w), (double)y, 0.0,
+                (double)x, (double)(y + sdlSurface->h), 0.0,
 
-                x + sdlSurface->w, y, 0.0,
-                x, y + sdlSurface->h, 0.0,
-                x + sdlSurface->w, y + sdlSurface->h, 0.0
+                (double)(x + sdlSurface->w), (double)y, 0.0,
+                (double)x, (double)(y + sdlSurface->h), 0.0,
+                (double)(x + sdlSurface->w), (double)(y + sdlSurface->h), 0.0
         };
 
         normals = new double[18]{

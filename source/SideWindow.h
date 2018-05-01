@@ -43,7 +43,7 @@ public:
         for (auto it : modelsSideWindow)
             delete it.second;
     }
-
+    virtual unsigned getRealHeight(){}
 };
 int SideWindow::buildType = 0;
 int SideWindow::materialType = 0;

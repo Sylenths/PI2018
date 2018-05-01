@@ -29,13 +29,13 @@ public:
         sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
         vertexCount = 6;
         vertices = new double[18]{
-                x, y, 0.0,
-                x + w, y, 0.0,
-                x, y + sdlSurface->h, 0.0,
+                (double) x,(double) y, 0.0,
+                (double) (x + w), (double) y, 0.0,
+                (double)x,(double) (y + sdlSurface->h), 0.0,
 
-                x + w, y, 0.0,
-                x, y + sdlSurface->h, 0.0,
-                x + w, y + sdlSurface->h, 0.0
+                (double)(x + w), (double)y, 0.0,
+                (double)x, (double)y + sdlSurface->h, 0.0,
+                (double)(x + w), (double)(y + sdlSurface->h), 0.0
         };
 
         normals = new double[18]{

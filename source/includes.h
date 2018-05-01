@@ -55,6 +55,7 @@
 #include "Model.h"
 #include "Materiel.h"
 #include "Structure.h"
+#include "Floor.h"
 #include "Fondation.h"
 #include "Font.h"
 #include "Image.h"
