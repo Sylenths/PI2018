@@ -2,21 +2,25 @@
 #define POWERWIRE_H
 #include "PowerNode.h"
 
-class PowerWire : public PowerNode {
+class PowerWire {
 protected:
-    PowerNode* node1;
-    PowerNode* node2;
     double resistance;
     double lenght;
+    double diameter;
+    int material;
 public:
-    PowerWire(PowerNode* node1, PowerNode* node2, double resistance, double lenght) {
-        this->node1 = node1;
-        this->node2 = node2;
-        this->resistance = resistance;
+    PowerWire(double lenght, double diameter, int material) {
         this->lenght = lenght;
+        this->material = material;
+        this->diameter = diameter;
 
-        node1->addWire(this);
-        node2->addWire(this);
+        switch (material) {
+        case 1:
+            this->resistance = (0.000000016 * lenght) / (M_PI * (diameter / 2.0) * (diameter / 2.0));
+            break;
+        default:
+            break;
+        }
     }
 
 

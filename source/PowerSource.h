@@ -5,21 +5,21 @@
 class PowerSource : public PowerNode {
 private:
     double producedCurrent;
+    double currentLeft;
 
 public:
-    PowerSource() {
-
+    PowerSource(double producedCurrent) {
+        this->producedCurrent = producedCurrent;
+        currentLeft = producedCurrent;
     }
 
-    void setKey(int key) {
-        this->key = key;
+    void usedCurrent(double used) {
+        currentLeft -= used;
     }
 
-    int getKey() {
-        return key;
+    void resetCurrent() {
+        currentLeft = producedCurrent;
     }
-
-
 };
 
 #endif

@@ -6,24 +6,17 @@
 
 class PowerNode /*: public Model*/ {
 protected:
-    double used;
-    double generated;
     int key;
     int indice;
-    std::map<int, std::list<int>> pathsMap;
-    std::list<PowerNode*> wires;
+    std::map<int, std::stack<int>> pathsMap;
 
 public:
     PowerNode() {
         this->indice = 9999;
     }
 
-    void addWire(PowerNode* wire) {
-        wires.push_back(wire);
-    }
-
     void pushBackPathsMap(int source, int keyPath) {
-        pathsMap[source].push_back(keyPath);
+        pathsMap[source].push(keyPath);
     }
 
     void clearPathsMap() {
@@ -38,9 +31,13 @@ public:
         return indice;
     }
 
-    virtual void setKey(int key) {};
+    void setKey(int key) {
+        this->key = key;
+    }
 
-    virtual int getKey() {};
+    int getKey() {
+        return key;
+    }
 
 
 

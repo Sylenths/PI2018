@@ -8,8 +8,8 @@
 class PowerManager : public Singleton<PowerManager> {
 private:
     std::map<std::pair<int, int>, PowerWire*> adjMatrice;
-    std::map<int, PowerNode*> mapAppareil;
-    std::map<int, PowerNode*> mapSource;
+    std::map<int, PowerAppareil*> mapAppareil;
+    std::map<int, PowerSource*> mapSource;
 
     int appareilNbr, sourceNbr;
 public:
@@ -47,7 +47,9 @@ public:
         delete temp;
 
         for(int i = appareilNbr; i > sourceNbr; --i) {
+            delete adjMatrice[std::make_pair(key, i)];
             adjMatrice[std::make_pair(key, i)] = adjMatrice[std::make_pair(appareilNbr, i)];
+            delete adjMatrice[std::make_pair(i, key)];
             adjMatrice[std::make_pair(i, key)] = adjMatrice[std::make_pair(i, appareilNbr)];
         }
         appareilNbr--;
@@ -61,14 +63,17 @@ public:
         delete temp;
 
         for(int i = (sourceNbr); i <= appareilNbr; ++i) {
+            delete adjMatrice[std::make_pair(key, i)];
             adjMatrice[std::make_pair(key, i)] = adjMatrice[std::make_pair(sourceNbr, i)];
+            delete adjMatrice[std::make_pair(i, key)];
             adjMatrice[std::make_pair(i, key)] = adjMatrice[std::make_pair(i, sourceNbr)];
         }
     }
 
-    void connectWire(int node1, int node2, PowerWire* wire) {
+    void createWire(int node1, int node2, double lenght, double diameter, int material) {
         std::pair<int, int> key1 = std::make_pair(node1, node2);
         std::pair<int, int> key2 = std::make_pair(node2, node1);
+        PowerWire* wire = new PowerWire(lenght, diameter, material);
         adjMatrice[key1] = wire;
         adjMatrice[key2] = wire;
     }
@@ -131,32 +136,44 @@ public:
         setIndice(0);
 
         for(int i = (sourceNbr + 1); i <= 0; ++i) {
-            int indiceTmp = 9999;
-            int currentKey = i;
-            int nextKey;
+            if(mapSource[i]->getIndice() != 9999) {
+                int indiceTmp = 9999;
+                int currentKey = i;
+                int nextKey;
 
-            while(mapAppareil[currentKey] != from) {
-                for(int j = (sourceNbr + 1); j <= appareilNbr; ++j) {
-                    if(adjMatrice[std::make_pair(currentKey, j)]) {
-                        if((j <= 0) && (mapSource[j]->getIndice() < indiceTmp)) {
-                            indiceTmp = mapSource[j]->getIndice();
-                            nextKey = j;
-                        }
-                        if((j > 0) && (mapAppareil[j]->getIndice() < indiceTmp)) {
-                            indiceTmp = mapAppareil[j]->getIndice();
-                            nextKey = j;
+                while(mapAppareil[currentKey] != from) {
+                    for(int j = (sourceNbr + 1); j <= appareilNbr; ++j) {
+                        if(adjMatrice[std::make_pair(currentKey, j)]) {
+                            if((j <= 0) && (mapSource[j]->getIndice() < indiceTmp)) {
+                                indiceTmp = mapSource[j]->getIndice();
+                                nextKey = j;
+                            }
+                            if((j > 0) && (mapAppareil[j]->getIndice() < indiceTmp)) {
+                                indiceTmp = mapAppareil[j]->getIndice();
+                                nextKey = j;
+                            }
                         }
                     }
-                }
 
-                from->pushBackPathsMap(i, currentKey);
-                currentKey = nextKey;
+                    from->pushBackPathsMap(i, currentKey);
+                    currentKey = nextKey;
+                }
             }
+
         }
         resetIndice();
+        from->setProximite();
     }
 
     void updatePower() {
+        std::list<std::pair<int, int>> listPriority;
+        for(int i = 1; i <= appareilNbr; ++i) {
+            getShortestPath(mapAppareil[i]);
+            listPriority.push_back(std::make_pair(i, mapAppareil[i]->getProximite()));
+        }
+
+
+
 
     }
 };
