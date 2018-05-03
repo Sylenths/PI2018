@@ -56,13 +56,26 @@ public:
                 if(height == y){
                     labelList.push_back(new Label(font, color, text.substr(0, spacePosition).c_str(), x, height , z));
                 }
-                else{
+                if(height == y && runner == '\n'){
+                    labelList.push_back(new Label(font, color, text.substr(0, i).c_str(), x, height , z));
+                }
+                if(textWindowWidth >= w){
                     labelList.push_back(new Label(font, color, text.substr(lastPosition, spacePosition - lastPosition).c_str(), x, height , z));
                 }
+                if( runner == '\n')
+                    labelList.push_back(new Label(font, color, text.substr(lastPosition, width).c_str(), x, height , z));
+
                 if(i == text.size())
                     labelList.push_back(new Label(font, color, text.substr(lastPosition, i - lastPosition).c_str(), x, height , z));
 
-                lastPosition = spacePosition + 1;
+                if(i == text.size() && runner == '\n')
+                    labelList.push_back(new Label(font, color, text.substr(lastPosition, i - lastPosition).c_str(), x, height , z));
+
+
+                if(spacePosition != 0)
+                    lastPosition = spacePosition + 1;
+                else
+                    lastPosition = width + 1;
                 height += 15;
                 width = 0;
             }
