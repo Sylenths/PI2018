@@ -14,7 +14,6 @@
 class Label : public Model {
 private:
     std::string text;
-    int w;
     int x;
 public:
     /// Ajoute la texture avec le texte dans le resourceManager
@@ -28,7 +27,6 @@ public:
     Label(TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int textureID = 0) : Model(x, y, z, textureID, false) {
         this->text = text;
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
-        this->w = sdlSurface->w;
         this->x = x;
         vertexCount = 6;
         vertices = new double[18]{

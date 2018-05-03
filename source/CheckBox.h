@@ -15,7 +15,6 @@ class CheckBox : public Image {
 protected:
     bool checked;
     bool MouseOver;
-    bool ActivatingTextMouseOver;
 public:
 
 
@@ -28,12 +27,11 @@ public:
     /// \param height Hauteur du bouton.
     /// \param defaultTextureID La texture de base affichée sur le bouton.
     /// \param checkTextureID La seconde texture affichée qui sera changée lors d'un clic de souris.
-    CheckBox(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int checkTextureID, bool ActivatingTextMouseOver = false) : Image(x, y, z, width, height, defaultTextureID) {
+    CheckBox(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int checkTextureID) : Image(x, y, z, width, height, defaultTextureID) {
         textureIDs["clic"] =  (checkTextureID) ? checkTextureID : defaultTextureID;
         onClick = nullptr;
         checked = false;
         MouseOver = false;
-        this->ActivatingTextMouseOver = ActivatingTextMouseOver;
     }
     void check(){
         checked = true;
@@ -67,7 +65,6 @@ public:
                     }break;
 
                 case SDL_MOUSEMOTION:
-                    if(ActivatingTextMouseOver)
                         MouseOver = true;
 
                     break;

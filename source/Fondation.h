@@ -9,6 +9,7 @@
 
 class Fondation : public Structure{
 public:
+    Materiel* material;
     Vector* centerPoint;
     Fondation* north;
     Fondation* south;
@@ -18,6 +19,7 @@ public:
     Fondation(double posx, double posy, double posz, bool rotHitBox,  unsigned int textureID = ResourceManager::getInstance()->getTexture("fondation"), const char* objFile = "../../models/obj/fondation.obj") : Structure( posx, posy, posz, textureID, rotHitBox, objFile){
         north = south = east = west = nullptr;
         centerPoint = new Vector(posx,posy,posz);
+
     }
 };
 #endif //SOURCE_FONDATION_H

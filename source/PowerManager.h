@@ -193,14 +193,23 @@ public:
 
     }
 
+
+
     void updatePower() {
         std::map<int, std::pair<int, int>> mapPriority;
-        int j = 0;
+        int j = -1;
         for(int i = 1; i <= appareilNbr; ++i) {
+            j++;
             getShortestPath(mapAppareil[i]);
             mapPriority[j] = std::make_pair(i, mapAppareil[i]->getProximite());
-            j++;
+
         }
+
+        quickSort(mapPriority, 0, j);
+
+
+
+
 
 
 

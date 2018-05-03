@@ -1,7 +1,7 @@
 /// \brief Représentation du cadre du jeu.
 /// \details Le coeur du projet, l'application.
-/// \author Antoine Legault, Jade St-Pierre Bouchard, Tai Chen Li, Samuel Labelle
-/// \date 28 mars 2018
+/// \author Antoine Legault, Jade St-Pierre Bouchard, Tai Chen Li, Samuel Labelle, Shelby Versailles
+/// \date 3 mai 2018
 /// \version 0.1
 /// \warning Le premier compte de FPS sera faussé, car on doit laisser au moins faire un tour de boucle pour savoir sa vraie vitesse de bouclage.
 /// \bug Aucuns.
@@ -10,6 +10,7 @@
 
 #include "includes.h"
 #include "Controller.h"
+#include "Physics.h"
 
 #define IN2D 1
 #define IN3D 0
@@ -81,6 +82,8 @@ public:
         getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
         getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
         getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
+        getTextureID("../../images/WindTurbineButtonO.png","WindTurbineButtonOver");
+        getTextureID("../../images/WindTurbineButton.png","WindTurbineButton");
         getTextureID("../../images/UpButton.png","UpButton");
         getTextureID("../../images/DownButton.png","DownButton");
 
@@ -259,7 +262,9 @@ public:
             addFondation();
             createWall();
             selectWallForRoofCreation();
-
+            if(controller->getClickMousePosition()[2] != -1){
+                controller->resetClicMousePosition();
+            }
 
             ///controle des touches
             switch (controller->getKeyDown()) {
@@ -340,6 +345,9 @@ public:
             glContext->clear();
 
             sceneDisplay->draw();
+            if(sceneDisplay == sceneMap["World"]){
+                ((World*)sceneMap["World"])->hud->scrollingMenuUpdateSubscribe(observables);
+            }
             if(Scene::getActiveFPS() == true)
                 showFPS();
             else
@@ -421,8 +429,7 @@ public:
                 World* world = ((World*)sceneDisplay);
                 std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->getFondations();
 
-                activeCamera = false;
-                glContext->releaseInput();
+
                 Vector front = world->getCamera()->getFront();
                 Vector pos = world->getCamera()->getPos();
                 Vector nFloor = {0.0, 2.5, 0.0};
@@ -434,23 +441,98 @@ public:
                         int x = round(intersection.x / 2.0);
                         int z = round(intersection.z / 2.0);
                         std::vector<std::map<std::pair<int,int>, Floor*>>* floorGrids = world->getFloors();
+
+
+
                         if( StructureWindow::chosenStory > floorGrids->size()){
                             floorGrids->push_back(std::map<std::pair<int,int>, Floor*>());
                         }
+
+
+
+
+
                         Floor* floor = new Floor((double)x * 2.0, world->hud->getFloorHeight(), (double)z * 2.0, false);
 
-                        if((*floorGrids)[StructureWindow::chosenStory - 1].empty()){
-                            if(StructureWindow::chosenStory > 2 && ((*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x,z)] && ( !(*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x,z)]->east || !(*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x,z)]->west || !(*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x,z)]->south ||!(*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x,z)]->north))){
-                                (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)] = floor;
+
+                        if(StructureWindow::chosenStory == 1) {
+                            if ((*floorGrids)[StructureWindow::chosenStory - 1].empty()) {
+
+                                if (StructureWindow::chosenStory == 1 && (*fondationGrid)[std::make_pair(x, z)] &&
+                                    (!(*fondationGrid)[std::make_pair(x, z)]->north ||
+                                     !(*fondationGrid)[std::make_pair(x, z)]->east ||
+                                     !(*fondationGrid)[std::make_pair(x, z)]->south ||
+                                     !(*fondationGrid)[std::make_pair(x, z)]->west)) {
+                                    (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                                }
                             }
-                            if(StructureWindow::chosenStory == 1 && (*fondationGrid)[std::make_pair(x,z)] && (!(*fondationGrid)[std::make_pair(x,z)]->north || !(*fondationGrid)[std::make_pair(x,z)]->east || !(*fondationGrid)[std::make_pair(x,z)]->south ||!(*fondationGrid)[std::make_pair(x,z)]->west)){
-                                (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)] = floor;
+                            else {
+                                if (!(*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] && (((*fondationGrid)[std::make_pair(x-1,z)]  || (*fondationGrid)[std::make_pair(x-2,z)] || (*fondationGrid)[std::make_pair(x ,z-1)] || (*fondationGrid)[std::make_pair(x,z - 2)] || (*fondationGrid)[std::make_pair(x + 1,z)] || (*fondationGrid)[std::make_pair(x + 2,z)] || (*fondationGrid)[std::make_pair(x,z + 1)] || (*fondationGrid)[std::make_pair(x,z + 2)]) ||(((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x + 1, z)] && (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x , z + 1)]) || ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x + 1, z)] && (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x , z - 1)]) || ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x - 1, z)] && (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x , z - 1)])  || ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x - 1 , z)] && (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x , z + 1)]) )) ) {
+                                    Fondation *fondation = new Fondation((double) x * 2.0, 0.0, (double) z * 2.0,
+                                                                         false);
+                                    if ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x - 1, z)]) {
+                                        if (!(*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)])
+                                            (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)]->west = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x - 1, z)];
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x - 1, z)]->east = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x, z)];
+                                    }
+
+                                    if ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x + 1, z)]) {
+                                        if (!(*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)])
+                                            (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)]->east = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x + 1, z)];
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x + 1, z)]->west = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x, z)];
+                                    }
+
+                                    if ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z - 1)]) {
+                                        if (!(*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)])
+                                            (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)]->north = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x, z - 1)];
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z - 1)]->south = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x, z)];
+                                    }
+
+                                    if ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z + 1)]) {
+                                        if (!(*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)])
+                                            (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)]->south = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x, z + 1)];
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z + 1)]->north = (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)];
+                                    }
+
+                                }
+
                             }
                         }
                         else{
+                            if ((*floorGrids)[StructureWindow::chosenStory - 1].empty() && StructureWindow::chosenStory > 2 &&
+                                ((*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x, z)] &&
+                                 (!(*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x, z)]->east ||
+                                  !(*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x, z)]->west ||
+                                  !(*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x, z)]->south ||
+                                  !(*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x, z)]->north))) {
+                                (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                            }
+
+
 
 
                         }
+
+
+
+
+
+
+
+
+
+
                         if((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)])
                             world->addModel((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)]);
                         else
@@ -468,10 +550,11 @@ public:
 
             if ((SideWindow::buildType == BUILD_ROOF && SideWindow::isBuilding) &&
                 (controller->getClickMousePosition()[2] == SDL_BUTTON_RIGHT)) {
-                /*if (!SideWindow::firstWall) {
+
+                if (!SideWindow::firstWall) {
                     PhysicsData::CollisionData previousData;
-                    for (auto it = ((World *) sceneDisplay)->hud->getWallList()->begin();
-                         it != ((World *) sceneDisplay)->hud->getWallList()->end(); it++) {
+                    for (auto it = ((World *) sceneDisplay)->getWallList()->begin();
+                         it != ((World *) sceneDisplay)->getWallList()->end(); it++) {
                         PhysicsData::CollisionData currentData = Physics::collideVectorOnModel(((World *) sceneDisplay)->hud->getCamera()->getPos(), ((World *) sceneDisplay)->hud->getCamera()->getFront(), (*(*it)));
                         if (currentData.collided) {
                             if (SideWindow::firstWall) {
@@ -490,11 +573,8 @@ public:
                 else{
                     if (!SideWindow::secondWall && SideWindow::firstWall) {
                         PhysicsData::CollisionData previousData;
-                        for (auto it = ((World *) sceneDisplay)->hud->getWallList()->begin();
-                             it != ((World *) sceneDisplay)->hud->getWallList()->end(); it++) {
-                            PhysicsData::CollisionData currentData = Physics::collideVectorOnModel(
-                                    ((World *) sceneDisplay)->hud->getCamera()->getPos(),
-                                    ((World *) sceneDisplay)->hud->getCamera()->getFront(), (*(*it)));
+                        for (auto it = ((World *) sceneDisplay)->getWallList()->begin(); it != ((World *) sceneDisplay)->getWallList()->end(); it++) {
+                            PhysicsData::CollisionData currentData = Physics::collideVectorOnModel(((World *) sceneDisplay)->hud->getCamera()->getPos(), ((World *) sceneDisplay)->hud->getCamera()->getFront(), (*(*it)));
                             if (currentData.collided) {
                                 if (SideWindow::secondWall) {
                                     if (currentData.ratio < previousData.ratio) {
@@ -511,10 +591,8 @@ public:
                             //SideWindow::secondWall = nullptr;
                         }
                     }
-                }*/
+                }
 
-                SideWindow::firstWall = ((World *) sceneDisplay)->getWallList()->front();
-                SideWindow::secondWall = ((World *) sceneDisplay)->getWallList()->back();
 
                 if(SideWindow::firstWall && SideWindow::secondWall){
                     SideWindow::isBuilding = false;
@@ -529,57 +607,88 @@ public:
                         wall2OnX = true;
 
 
-                    if (SideWindow::firstWall->getMesh(0) < SideWindow::firstWall->getMesh(3)) {
-                        posx = SideWindow::firstWall->getMesh(0);
+                    double x1 = SideWindow::firstWall->getMesh(0);
+                    double x2 = SideWindow::secondWall->getMesh(0);
+                    double x3 = SideWindow::firstWall->getMesh(3);
+                    double x4 = SideWindow::secondWall->getMesh(3);
+                    
+                    
+                    
+                    
+                    
+                    if (x1 < x3) {
+                        posx = x1;
                     } else {
-                        posx = SideWindow::firstWall->getMesh(3);
+                        posx = x3;
                     }
-                    if (posx > SideWindow::secondWall->getMesh(0)) {
-                        posx = SideWindow::secondWall->getMesh(0);
+                    if (posx > x2) {
+                        posx = x2;
                     }
-                    if (posx > SideWindow::secondWall->getMesh(3)) {
-                        posx = SideWindow::secondWall->getMesh(3);
+                    if (posx > x4) {
+                        posx = x4;
                     }
 
-                    if (SideWindow::firstWall->getMesh(0) > SideWindow::firstWall->getMesh(3)) {
-                        max = SideWindow::firstWall->getMesh(0);
+                    if (x1 > x3) {
+                        max = x1;
                     } else {
-                        max = SideWindow::firstWall->getMesh(3);
+                        max = x3;
                     }
-                    if (max < SideWindow::secondWall->getMesh(0)) {
-                        max = SideWindow::secondWall->getMesh(0);
+                    if (max < x2) {
+                        max = x2;
                     }
-                    if (max < SideWindow::secondWall->getMesh(3)) {
-                        max = SideWindow::secondWall->getMesh(3);
+                    if (max < x4) {
+                        max = x4;
                     }
                     width = abs(max - posx);
 
-
-                    if (SideWindow::firstWall->getMesh(2) < SideWindow::firstWall->getMesh(5)) {
-                        posz = SideWindow::firstWall->getMesh(2);
+                    double z1 = SideWindow::firstWall->getMesh(2);
+                    double z2 = SideWindow::secondWall->getMesh(2);
+                    double z3 = SideWindow::firstWall->getMesh(5);
+                    double z4 = SideWindow::secondWall->getMesh(5);
+                    
+                    if (z1 < z3) {
+                        posz = z1;
                     } else {
-                        posz = SideWindow::firstWall->getMesh(5);
+                        posz = z3;
                     }
-                    if (posz > SideWindow::secondWall->getMesh(2)) {
-                        posz = SideWindow::secondWall->getMesh(2);
+                    if (posz > z2) {
+                        posz = z2;
                     }
-                    if (posz > SideWindow::secondWall->getMesh(5)) {
-                        posz = SideWindow::secondWall->getMesh(5);
+                    if (posz > z4) {
+                        posz = z4;
                     }
 
-                    if (SideWindow::firstWall->getMesh(2) > SideWindow::firstWall->getMesh(5)) {
-                        max = SideWindow::firstWall->getMesh(2);
+                    if (z1 > z3) {
+                        max = z1;
                     } else {
-                        max = SideWindow::firstWall->getMesh(5);
+                        max = z3;
                     }
-                    if (max < SideWindow::secondWall->getMesh(2)) {
-                        max = SideWindow::secondWall->getMesh(2);
+                    if (max < z2) {
+                        max = z2;
                     }
-                    if (max < SideWindow::secondWall->getMesh(5)) {
-                        max = SideWindow::secondWall->getMesh(5);
+                    if (max < z4) {
+                        max = z4;
                     }
                     lenght = abs(max - posz);
 
+
+                    double y1 = SideWindow::firstWall->getMesh(1);
+                    double y2 = SideWindow::secondWall->getMesh(1);
+                    double y3 = SideWindow::firstWall->getMesh(4);
+                    double y4 = SideWindow::secondWall->getMesh(4);
+
+                    if (y1 > y3) {
+                        posy = y1;
+                    } else {
+                        posy = y3;
+                    }
+                    if (posy < y2) {
+                        posy = y2;
+                    }
+                    if (posy < y4) {
+                        posy = y4;
+                    }
+                    
 
                     unsigned int texture;
                     switch (SideWindow::materialType) {
@@ -601,8 +710,9 @@ public:
                     }
 
                     ((World *) sceneDisplay)->addModel(
-                            new Model(width, 3.0/*StructureWindow::height*/, lenght, posx, 1.0/*posy*/, posz, texture));
-
+                            new Model(width, 3.0/*StructureWindow::height*/, lenght, posx, posy, posz, texture));
+                    SideWindow::firstWall = nullptr;
+                    SideWindow::secondWall = nullptr;
                 }
             }
 
