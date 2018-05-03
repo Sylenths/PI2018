@@ -9,7 +9,7 @@
 #define STRUCTUREWINDOW_H
 
 #include "includes.h"
-
+#include "TextWindow.h"
 class StructureWindow : public SideWindow{
 private:
     char buffer[10];
@@ -30,24 +30,33 @@ public:
         modelsSideWindow["1FondationIcon"] = new CheckBox (970, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1FondationIcon"]->onClick = [this] () { onFoundationClick();};
         modelsSideWindow["1FondationLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Fondation", 970, 150, 0);
-        //modelsSideWindow["1FondationDesc"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "hello", 1000, 400, 0);
+        modelsSideWindow["1FondationDesc"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "La structure de base pour permettre de construire les autres types de structure ou de machines.", 1110, 440, 0, 135, 300, modelsSideWindow["1FondationIcon"]);
+
 
         modelsSideWindow["1MurIcon"] = new CheckBox (1040, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1MurIcon"]->onClick = [this] () { onWallClick();};
         modelsSideWindow["1MurLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Mur", 1040, 150, 0);
+        modelsSideWindow["1MurDesc"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "La structure permet de construire des murs sur tous les fondations, il faut rentrer une hauteur en parametre.", 1110, 440, 0, 135, 300, modelsSideWindow["1MurIcon"]);
+
 
         modelsSideWindow["1PlancherIcon"] = new CheckBox (1110, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1PlancherIcon"]->onClick = [this] () {onFloorClick();};
         modelsSideWindow["1PlanLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Plancher", 1110, 150, 0);
+        modelsSideWindow["1PlancherDesc"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "La structure permet de construire des planchers sur des fondations possedant des murs, il faut rentrer l'etage sur lequel on veut travailler.", 1110, 440, 0, 135, 300, modelsSideWindow["1PlancherIcon"]);
+
 
         modelsSideWindow["1ToitIcon"] = new CheckBox (1180, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1ToitIcon"]->onClick = [this] () {onRoofClick();};
         modelsSideWindow["1ToitLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Toit", 1180, 150, 0);
+        modelsSideWindow["1ToitDesc"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "La structure permet de construire un toit sur des fondations possedant des murs.", 1110, 440, 0, 135, 300, modelsSideWindow["1ToitIcon"]);
+        
 
         //type de matérieux
         modelsSideWindow["1CartonIcon"] = new CheckBox (940, 205, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1CartonIcon"]->onClick = [this] () {onCardboardClick();};
         modelsSideWindow["1CartonLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Carton", 940, 265, 0);
+        modelsSideWindow["1CartonLabelDesc"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, , 1110, 440, 0, 135, 300, modelsSideWindow["1PlancherIcon"]);
+
 
         modelsSideWindow["1BoisIcon"] = new CheckBox (1010, 205, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1BoisIcon"]->onClick = [this] () {onWoodClick();};
