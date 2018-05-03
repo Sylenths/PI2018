@@ -62,18 +62,25 @@ public:
         modelsSideWindow["1BoisIcon"] = new CheckBox (1010, 205, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1BoisIcon"]->onClick = [this] () {onWoodClick();};
         modelsSideWindow["1BoisLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Bois", 1010, 265, 0);
+        modelsSideWindow["1BoisDesc"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, Materiel::bois->getDescription() , 940, 440, 0, 150, 300, modelsSideWindow["1BoisIcon"]);
+
 
         modelsSideWindow["1PierreIcon"] = new CheckBox (1080, 205, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1PierreIcon"]->onClick = [this] () {onRockClick();};
         modelsSideWindow["1PierreLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Pierre", 1080, 265, 0);
+        modelsSideWindow["1PierreDesc"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, Materiel::pierre->getDescription() , 940, 440, 0, 150, 300, modelsSideWindow["1PierreIcon"]);
+
 
         modelsSideWindow["1MetalIcon"] = new CheckBox (1150, 205, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1MetalIcon"]->onClick = [this] () {onMetalClick();};
         modelsSideWindow["1MetalLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Metal", 1150, 265, 0);
+        modelsSideWindow["1MetalDesc"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, Materiel::metal->getDescription() , 940, 440, 0, 150, 300, modelsSideWindow["1MetalIcon"]);
+
 
         modelsSideWindow["1SIMTiumIcon"] = new CheckBox (1220, 205, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1SIMTiumIcon"]->onClick = [this] () {onSIMTiumClick();};
         modelsSideWindow["1SIMTiumLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "SIMTium", 1220, 265, 0);
+        modelsSideWindow["1SIMTiumDesc"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, Materiel::simtium->getDescription() , 940, 440, 0, 150, 300, modelsSideWindow["1SIMTiumIcon"]);
 
 
         //Building Button
