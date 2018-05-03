@@ -9,7 +9,7 @@
 #define STRUCTUREWINDOW_H
 
 #include "includes.h"
-
+#include "TextWindow.h"
 class StructureWindow : public SideWindow{
 private:
     char buffer[10];
@@ -30,7 +30,8 @@ public:
         modelsSideWindow["1FondationIcon"] = new CheckBox (970, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1FondationIcon"]->onClick = [this] () { onFoundationClick();};
         modelsSideWindow["1FondationLabel"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Fondation", 970, 150, 0);
-        //modelsSideWindow["1FondationDesc"] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "hello", 1000, 400, 0);
+        modelsSideWindow["1FondationDesc"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "La structure de base pour permettre de construire les autres types de structure ou de machines.", 1110, 440, 0, 135, 300, modelsSideWindow["1FondationIcon"]);
+
 
         modelsSideWindow["1MurIcon"] = new CheckBox (1040, 90, 0, 50, 50, ResourceManager::getInstance()->getTexture("ChoixNonAppuyer"), ResourceManager::getInstance()->getTexture("ChoixAppuyer"));
         modelsSideWindow["1MurIcon"]->onClick = [this] () { onWallClick();};
