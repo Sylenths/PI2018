@@ -52,14 +52,14 @@ public:
                 spacePosition = i;
             }
             TTF_SizeText(font, text.substr(lastPosition, width).c_str(), &textWindowWidth, &textWindowHeight);
-            if(runner == '\n' || textWindowWidth >= w || i == (text.size() - 1) ){
+            if(runner == '\n' || textWindowWidth >= w || i == text.size() ){
                 if(height == y){
                     labelList.push_back(new Label(font, color, text.substr(0, spacePosition).c_str(), x, height , z));
                 }
                 else{
                     labelList.push_back(new Label(font, color, text.substr(lastPosition, spacePosition - lastPosition).c_str(), x, height , z));
                 }
-                if(i == (text.size() - 1))
+                if(i == text.size())
                     labelList.push_back(new Label(font, color, text.substr(lastPosition, i - lastPosition).c_str(), x, height , z));
 
                 lastPosition = spacePosition + 1;
