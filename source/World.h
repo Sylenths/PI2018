@@ -43,6 +43,10 @@ public:
         wallList.push_back(model);
     }
 
+    std::list<Model*>* getWallList(){
+        return &wallList;
+    }
+
     /// Constructeur, tout les models nécéssaires sont loadés ici.
     World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : atmosphere(0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
         this->wind = wind;
