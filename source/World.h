@@ -122,13 +122,12 @@ public:
         glDepthFunc(GL_LEQUAL);
         
         hud->getCamera()->applyViewMatrix();
-        worldLight->applyLightPosition();
+        atmosphere.getRealLight().applyLightPosition();
 
         for(auto it = modelList.begin(); it != modelList.end(); it++)
-            (*it)->drawAndShading();
+            (*it)->drawAndShading(atmosphere.getRealLight().getVectorLight());
 
-        atmosphere.updateAtmosphereChrono();
-
+        atmosphere.updateAtmosphere();
         atmosphere.draw();
 
         GLContext::setFrustum(IS2D);

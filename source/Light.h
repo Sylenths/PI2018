@@ -8,7 +8,7 @@
 
 class Light {
 private:
-    float position[4];///< Position de la lumière
+    float position[4];///< Position de la lumière.
 
 public:
     /// Constructeur.
@@ -25,13 +25,18 @@ public:
     void applyLightPosition() {
         glLightfv(GL_LIGHT0, GL_POSITION, position);
     }
+    /// Met à jour la position de la lumière
     /// \param x Composante x
     /// \param y Composante y
     /// \param z Composante z
-    void setPosition(const float& x, const float& y, const float& z) {
+    void update(const float& x, const float& y, const float& z) {
         position[0] = x;
         position[1] = y;
         position[2] = z;
     }
+    Vector getVectorLight(){
+        return Vector(position[0],position[1],position[2]);
+    }
+
 };
 #endif

@@ -3,47 +3,68 @@
 /// \author Mathilde Harnois
 /// \date 12 avril 2018
 /// \version 0.1
-/// \warning Aucuns.
-/// \bug Aucuns.
+/// \warning
+/// \bug La lumiere du monde glisse en bas de l'axe des Y et crée des anomalies, à corriger.
 
 #ifndef SOURCE_SKY_H
 #define SOURCE_SKY_H
+
+
 
 #include "includes.h"
 
 class Sky : public Model {
 private:
     Matrix rotation; ///< Matrice de rotation du ciel
-    Chrono* skyChrono;
+    Chrono* skyChrono;///< Chrono pour la rotation du ciel
+    Vector vecteur;///< Représentation de la lumière en vecteur.
+    Light worldLight;///< La lumière de notre monde
 
 public:
 
     /// Contructeur
     /// \param textureID Identificateur de la texture.
     /// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
-    Sky(double posx, double posy, double posz, unsigned int textureDay, unsigned int textureNight, bool rotHitBox, const char* objFile = nullptr) : Model(posx, posy, posz, textureDay, rotHitBox, objFile) {
+    Sky(double posx, double posy, double posz, unsigned int textureDay, unsigned int textureNight, bool rotHitBox, const char* objFile = nullptr) : Model(posx, posy, posz, textureDay, rotHitBox, objFile), worldLight(500.0,10.0,500.0, 1.0) {
         skyChrono = new Chrono();
+        vecteur = {0.0,450.0,0.0};
         textureIDs["night"] =  textureNight;
         textureIDs["day"] = textureDay;
         textureToDraw = textureIDs["day"];
-        rotation.loadXrotation(80);
+        rotation.loadXrotation(70);
         transform(rotation);
-        rotation.loadXrotation(-0.04);
-    }
+        rotation.loadXrotation(70);
+        vecteur = rotation * vecteur;
 
+        rotation.loadXrotation(-0.04);//Rotation de 360* apres 900 secondes (cycle jour-nuit)
+    }
+    ///Change la texture pour celle de nuit
     void setNight(){
         textureToDraw = textureIDs["night"];
-    }
+        rotation.loadXrotation(180);
+        vecteur = rotation * vecteur;
 
+        rotation.loadXrotation(-0.04);
+    }
+    ///Change la texture pour celle de nuit
     void setDay(){
         textureToDraw = textureIDs["day"];
+        rotation.loadXrotation(180);
+        vecteur = rotation * vecteur;
+        rotation.loadXrotation(-0.04);
     }
-
+    ///Applique la rotation de la terre
     void rotateSky(){
         if (skyChrono->getElapsed(SECONDS) > 0.1){
             transform(rotation);
+            vecteur = rotation * vecteur;
+            worldLight.update(vecteur.x,vecteur.y,vecteur.z);
             skyChrono->restart();
         }
+    }
+
+    Light getLight(){
+        return worldLight;
     }
 
     void draw(){

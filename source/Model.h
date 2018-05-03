@@ -723,7 +723,7 @@ public:
         glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     }
 
-    void drawAndShading() {
+    void drawAndShading(Vector lightPos) {
             draw();
 
             if (shading == true) {
@@ -744,7 +744,7 @@ public:
                     }
                 }
 
-                updateShadingVertex({20.0, 20.0, -20.0});
+                updateShadingVertex(lightPos);
 
                 glEnableClientState(GL_VERTEX_ARRAY);
                 glEnableClientState(GL_NORMAL_ARRAY);
