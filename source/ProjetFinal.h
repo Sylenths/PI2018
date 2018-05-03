@@ -446,11 +446,9 @@ public:
                             if(StructureWindow::chosenStory == 1 && (*fondationGrid)[std::make_pair(x,z)] && (!(*fondationGrid)[std::make_pair(x,z)]->north || !(*fondationGrid)[std::make_pair(x,z)]->east || !(*fondationGrid)[std::make_pair(x,z)]->south ||!(*fondationGrid)[std::make_pair(x,z)]->west)){
                                 (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)] = floor;
                             }
-
-
-
                         }
                         else{
+
 
                         }
                         if((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)])
