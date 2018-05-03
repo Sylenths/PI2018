@@ -32,20 +32,25 @@ public:
     static Materiel* simtium;
 
     std::string getDescription(){
-        description += "Résistance: ";
-        description += resistance;
+        char buffer[10];
+        SDL_itoa(resistance, buffer, 10);
+        description += "Resistance: ";
+        description += buffer;
         description += "\n";
 
+        SDL_itoa(price, buffer, 10);
         description += "Prix: ";
-        description +=  price;
+        description +=  buffer;
         description += "\n";
 
+        SDL_itoa(masse, buffer, 10);
         description += "Masse: ";
-        description += masse;
+        description += buffer;
         description += "\n";
 
+        SDL_itoa(pointDeRupture, buffer, 10);
         description += "Point de rupture: ";
-        description += pointDeRupture;
+        description += buffer;
         description += "\n";
 
         return description;

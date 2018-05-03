@@ -53,29 +53,27 @@ public:
             }
             TTF_SizeText(font, text.substr(lastPosition, width).c_str(), &textWindowWidth, &textWindowHeight);
             if(runner == '\n' || textWindowWidth >= w || i == text.size() ){
-                if(height == y){
+                if(height == y && runner != '\n'){
                     labelList.push_back(new Label(font, color, text.substr(0, spacePosition).c_str(), x, height , z));
+                    lastPosition = spacePosition + 1;
                 }
                 if(height == y && runner == '\n'){
                     labelList.push_back(new Label(font, color, text.substr(0, i).c_str(), x, height , z));
+                    lastPosition = i;
                 }
-                if(textWindowWidth >= w){
+                if(textWindowWidth >= w && height != y){
                     labelList.push_back(new Label(font, color, text.substr(lastPosition, spacePosition - lastPosition).c_str(), x, height , z));
-                }
-                if( runner == '\n')
-                    labelList.push_back(new Label(font, color, text.substr(lastPosition, width).c_str(), x, height , z));
-
-                if(i == text.size())
-                    labelList.push_back(new Label(font, color, text.substr(lastPosition, i - lastPosition).c_str(), x, height , z));
-
-                if(i == text.size() && runner == '\n')
-                    labelList.push_back(new Label(font, color, text.substr(lastPosition, i - lastPosition).c_str(), x, height , z));
-
-
-                if(spacePosition != 0)
                     lastPosition = spacePosition + 1;
-                else
-                    lastPosition = width + 1;
+                }
+                if( runner == '\n' && height != y){
+                    labelList.push_back(new Label(font, color, text.substr(lastPosition + 1, width).c_str(), x, height , z));
+                    lastPosition = i;
+                }
+
+                if(i == text.size()){
+                    labelList.push_back(new Label(font, color, text.substr(lastPosition, i - lastPosition).c_str(), x, height , z));
+                }
+
                 height += 15;
                 width = 0;
             }
