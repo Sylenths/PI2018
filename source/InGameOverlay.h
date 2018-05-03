@@ -364,7 +364,6 @@ public:
         else
         SideWindow::opened = true;
         sideWindow = sideWindowMap["Machine"];
-        ((MachineWindow*)sideWindow)->openWindows();
 
 
 
@@ -414,7 +413,15 @@ public:
         // TODO: Code delete mode
     }
 
+    void scrollingMenuUpdateSubscribe(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
+        if(sideWindow == sideWindowMap["Machine"]){
+            if(((MachineWindow*)sideWindowMap["Machine"])->isClicked()){
+                ((MachineWindow*)sideWindowMap["Machine"])->unsubscribeScrollMenu(observables);
+                ((MachineWindow*)sideWindowMap["Machine"])->subscribeScrollMenu(observables);
 
+            }
+        }
+    }
 
     void sideWindowSubscribe( std::map<unsigned int, Observable<SDL_Event*>*>& observables){
         if(sideWindow != nullptr)

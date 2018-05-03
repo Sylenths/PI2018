@@ -82,6 +82,8 @@ public:
         getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
         getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
         getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
+        getTextureID("../../images/WindTurbineButtonO.png","WindTurbineButtonOver");
+        getTextureID("../../images/WindTurbineButton.png","WindTurbineButton");
         getTextureID("../../images/UpButton.png","UpButton");
         getTextureID("../../images/DownButton.png","DownButton");
 
@@ -343,6 +345,9 @@ public:
             glContext->clear();
 
             sceneDisplay->draw();
+            if(sceneDisplay == sceneMap["World"]){
+                ((World*)sceneMap["World"])->hud->scrollingMenuUpdateSubscribe(observables);
+            }
             if(Scene::getActiveFPS() == true)
                 showFPS();
             else
@@ -449,11 +454,9 @@ public:
                             if(StructureWindow::chosenStory == 1 && (*fondationGrid)[std::make_pair(x,z)] && (!(*fondationGrid)[std::make_pair(x,z)]->north || !(*fondationGrid)[std::make_pair(x,z)]->east || !(*fondationGrid)[std::make_pair(x,z)]->south ||!(*fondationGrid)[std::make_pair(x,z)]->west)){
                                 (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)] = floor;
                             }
-
-
-
                         }
                         else{
+
 
                         }
                         if((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)])

@@ -102,6 +102,9 @@ public:
         delete hud;
         delete worldLight;
         delete hudLight;
+        for(auto it : modelList){
+            delete it;
+        }
     }
     std::map<std::pair<int,int>, Fondation*>* getFondations (){
         return &fondationGrid;

@@ -8,6 +8,7 @@ class TextWindow : public Model{
 private:
     std::list<Label*> labelList;
     std::string text;
+    Model* modelToSubcribe;
     int w;
     int x;
     int y;
@@ -23,8 +24,9 @@ public:
     /// \param y Position en y par rapport au coin supérieur gauche.
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
-    TextWindow(TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int w, unsigned h, unsigned int textureID = 0) : Model(x, y, z, textureID, false) {
+    TextWindow(TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int w, unsigned h, Model* modelToSubscribe = nullptr, unsigned int textureID = 0) : Model(x, y, z, textureID, false) {
         this->text = text;
+        this->modelToSubcribe = modelToSubscribe;
         this->w = w;
         this->x = x;
         this->y = y;
@@ -38,28 +40,56 @@ public:
         char runner;
         int height = y;
         int width = 0;
-        for(int i = 0; i < text.size(); i++){
+        int textWindowWidth = 0;
+        int textWindowHeight = 0;
+        int spacePosition = 0;
+        int lastPosition = 0;
+        for(int i = 0; i <= text.size(); i++){
+            if(i != 0)
+                width++;
             runner = text[i];
-            if(runner == '\n' || width >= w || i == (text.size() - 1) ){
+            if(runner == ' '){
+                spacePosition = i;
+            }
+            TTF_SizeText(font, text.substr(lastPosition, width).c_str(), &textWindowWidth, &textWindowHeight);
+            if(runner == '\n' || textWindowWidth >= w || i == text.size() ){
                 if(height == y){
-                    labelList.push_back(new Label(font, color, text.substr( 0 , i).c_str(), x, height , z));
+                    labelList.push_back(new Label(font, color, text.substr(0, spacePosition).c_str(), x, height , z));
                 }
+                if(height == y && runner == '\n'){
+                    labelList.push_back(new Label(font, color, text.substr(0, i).c_str(), x, height , z));
+                }
+                if(textWindowWidth >= w){
+                    labelList.push_back(new Label(font, color, text.substr(lastPosition, spacePosition - lastPosition).c_str(), x, height , z));
+                }
+                if( runner == '\n')
+                    labelList.push_back(new Label(font, color, text.substr(lastPosition, width).c_str(), x, height , z));
+
+                if(i == text.size())
+                    labelList.push_back(new Label(font, color, text.substr(lastPosition, i - lastPosition).c_str(), x, height , z));
+
+                if(i == text.size() && runner == '\n')
+                    labelList.push_back(new Label(font, color, text.substr(lastPosition, i - lastPosition).c_str(), x, height , z));
+
+
+                if(spacePosition != 0)
+                    lastPosition = spacePosition + 1;
                 else
-                    labelList.push_back(new Label(font, color, text.substr(i - width + 1, width).c_str(), x, height , z));
+                    lastPosition = width + 1;
                 height += 15;
                 width = 0;
             }
-            width++;
+
 
         }
         if(labelList.empty())
             labelList.push_back(new Label(font, color, text.c_str(), x, y , z));
 
     }
-
     void draw(){
-        for (auto it : labelList)
-            it->draw();
+        if(((CheckBox*)modelToSubcribe)->getMouseOver())
+            for (auto it : labelList)
+                it->draw();
     }
 
 };
