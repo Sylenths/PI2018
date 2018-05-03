@@ -20,7 +20,6 @@ private:
     std::list<Model*> wallList; ///< La liste de models à afficher
     std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;
-    Sky sky;
     Atmosphere atmosphere;
     Vector wind;
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
@@ -45,7 +44,7 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : sky(0.0, 0.0, 0.0, false, ResourceManager::getInstance()->getTexture("daysky")), atmosphere(0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
+    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : atmosphere(0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
@@ -85,7 +84,6 @@ public:
 
         }
 
-        addModel(new Sky(0.0, 0.0, 0.0, ResourceManager::getInstance()->getTexture("daysky"),false, "../../models/obj/skysphere.obj"));
 
         Model* simCoinMiner = new Model(0.0, 0.0, 5.0, ResourceManager::getInstance()->getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj");
         simCoinMiner->setShadingOn();
@@ -115,16 +113,17 @@ public:
     void draw() {
         GLContext::setFrustum(IS3D);
         glDepthFunc(GL_LEQUAL);
-
-        sky.update(chrono);
-
+        
         hud->getCamera()->applyViewMatrix();
         worldLight->applyLightPosition();
 
         for(auto it = modelList.begin(); it != modelList.end(); it++)
             (*it)->drawAndShading();
-        atmosphere.updateAtmosphere(chrono);
+
+        atmosphere.updateAtmosphereChrono();
+
         atmosphere.draw();
+
         GLContext::setFrustum(IS2D);
         glDepthFunc(GL_LESS);
         hudLight->applyLightPosition();
