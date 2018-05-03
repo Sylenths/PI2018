@@ -81,6 +81,8 @@ public:
         getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
         getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
         getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
+        getTextureID("../../images/WindTurbineButtonO.png","WindTurbineButtonOver");
+        getTextureID("../../images/WindTurbineButton.png","WindTurbineButton");
         getTextureID("../../images/UpButton.png","UpButton");
         getTextureID("../../images/DownButton.png","DownButton");
 
@@ -340,6 +342,9 @@ public:
             glContext->clear();
 
             sceneDisplay->draw();
+            if(sceneDisplay == sceneMap["World"]){
+                ((World*)sceneMap["World"])->hud->scrollingMenuUpdateSubscribe(observables);
+            }
             if(Scene::getActiveFPS() == true)
                 showFPS();
             else
