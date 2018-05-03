@@ -451,11 +451,9 @@ public:
                             if(StructureWindow::chosenStory == 1 && (*fondationGrid)[std::make_pair(x,z)] && (!(*fondationGrid)[std::make_pair(x,z)]->north || !(*fondationGrid)[std::make_pair(x,z)]->east || !(*fondationGrid)[std::make_pair(x,z)]->south ||!(*fondationGrid)[std::make_pair(x,z)]->west)){
                                 (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)] = floor;
                             }
-
-
-
                         }
                         else{
+
 
                         }
                         if((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)])
@@ -520,8 +518,8 @@ public:
                     }
                 }*/
 
-                SideWindow::firstWall = ((World *) sceneDisplay)->hud->getWallList()->front();
-                SideWindow::secondWall = ((World *) sceneDisplay)->hud->getWallList()->back();
+                SideWindow::firstWall = ((World *) sceneDisplay)->getWallList()->front();
+                SideWindow::secondWall = ((World *) sceneDisplay)->getWallList()->back();
 
                 if(SideWindow::firstWall && SideWindow::secondWall){
                     SideWindow::isBuilding = false;
@@ -608,7 +606,7 @@ public:
                     }
 
                     ((World *) sceneDisplay)->addModel(
-                            new Model(2.0/*width*/, 3.0/*StructureWindow::height*/, 2.0/*lenght*/, posx, 1.0/*posy*/, posz, texture));
+                            new Model(width, 3.0/*StructureWindow::height*/, lenght, posx, 1.0/*posy*/, posz, texture));
 
                 }
             }
@@ -799,14 +797,17 @@ public:
                     break;
             }
 
-
+            Model* mur;
             for (int i = 0; i < size; ++i) {
                 Vector temp = corner.front();
                 corner.pop_front();
-                ((World *) sceneDisplay)->addModel(
-                        new Model( ((World *) sceneDisplay)->hud->getHeight(), texture, &temp, &corner.front()));
+                mur = new Model( ((World *) sceneDisplay)->hud->getHeight(), texture, &temp, &corner.front());
+                //((World *) sceneDisplay)->addModel(mur);
+                ((World *) sceneDisplay)->addWall(mur);
             }
-            ((World *) sceneDisplay)->addWall(new Model(((World *) sceneDisplay)->hud->getHeight(), texture, &corner.front(), &first));
+            mur = new Model(((World *) sceneDisplay)->hud->getHeight(), texture, &corner.front(), &first);
+            //((World *) sceneDisplay)->addModel(mur);
+            ((World *) sceneDisplay)->addWall(mur);
             if(StructureWindow::chosenStory == StructureWindow::storyAmount)
             StructureWindow::storyAmount++;
 

@@ -165,12 +165,44 @@ public:
         from->setProximite();
     }
 
+    void quickSort(std::map<int, std::pair<int, int>> list, int left, int right) {
+        int i = left;
+        int j = right;
+        std::pair<int, int> tmp;
+        int pivot = list[(left + right) / 2].second;
+
+        while(i <= j) {
+            while(list[i].second < pivot)
+                i++;
+            while(list[j].second > pivot)
+                j--;
+            if(i <= j) {
+                tmp = list[i];
+                list[i] = list[j];
+                list[j] = tmp;
+                i++;
+                j--;
+            }
+
+        }
+
+        if(left < j)
+            quickSort(list, left, j);
+        if(i < right)
+            quickSort(list, i, right);
+
+    }
+
     void updatePower() {
-        std::list<std::pair<int, int>> listPriority;
+        std::map<int, std::pair<int, int>> mapPriority;
+        int j = 0;
         for(int i = 1; i <= appareilNbr; ++i) {
             getShortestPath(mapAppareil[i]);
-            listPriority.push_back(std::make_pair(i, mapAppareil[i]->getProximite()));
+            mapPriority[j] = std::make_pair(i, mapAppareil[i]->getProximite());
+            j++;
         }
+
+
 
 
 
