@@ -34,11 +34,11 @@ public:
         menuDeroulantBoutons[0] = new Button(920,50,0,340,80, ResourceManager::getInstance()->getTexture("SimcoinsButton"), ResourceManager::getInstance()->getTexture("SimcoinsButtonOver"));
         menuDeroulantBoutons[1] = new Button(920,130,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
         menuDeroulantBoutons[2] = new Button(920,210,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
-        menuDeroulantBoutons[3] = new Button(920,290,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
-        menuDeroulantBoutons[4] = new Button(920,370,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
-        menuDeroulantBoutons[5] = new Button(920,450,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
-        menuDeroulantBoutons[6] = new Button(920,530,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
-        menuDeroulantBoutons[7] = new Button(920,610,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
+        menuDeroulantBoutons[3] = new Button(920,50,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
+        menuDeroulantBoutons[4] = new Button(920,130,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
+        menuDeroulantBoutons[5] = new Button(920,210,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
+        menuDeroulantBoutons[6] = new Button(920,50,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
+        menuDeroulantBoutons[7] = new Button(920,130,0,340,80, ResourceManager::getInstance()->getTexture("PanneauSolaireButton"), ResourceManager::getInstance()->getTexture("PanneauSolaireButtonOver"));
         //Création du menu déroulant.
         scrollMenu = new ScrollingMenu(menuDeroulantBoutons,3);
         openWindow = true;

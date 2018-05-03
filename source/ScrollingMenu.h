@@ -25,7 +25,7 @@ public:
     void ScrollDown(){
         if (position + nombreDeBoutonsAffiche < boutons.size()){
             scrollDown = true;
-            position++;
+            position += nombreDeBoutonsAffiche;
 
             //boutons[position]->updateButtonPosition(920,50,0);
             //boutons[position + 1]->updateButtonPosition(920,130,0);
@@ -37,7 +37,7 @@ public:
     void ScrollUp(){
         if(position > 0){
             scrollUp = true;
-            position--;
+            position -= nombreDeBoutonsAffiche;
         }
 
     }
@@ -61,7 +61,8 @@ public:
 
     void draw(){
         for (int i = 0; i <nombreDeBoutonsAffiche ; ++i) {
-            boutons[position + i]->draw();
+            if(boutons[position + i])
+            boutons[position+i]->draw();
         }
     }
 
