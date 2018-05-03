@@ -129,13 +129,13 @@ public:
 			};
 
 			//Average triangle normals
-			/*normal = {
+			normal = {
 				((model.normals[pos    ] + model.normals[pos + 3] + model.normals[pos + 6]) / 3), // x
 				((model.normals[pos + 1] + model.normals[pos + 4] + model.normals[pos + 7]) / 3), // y
 				((model.normals[pos + 2] + model.normals[pos + 5] + model.normals[pos + 8]) / 3)  // z
-			};*/
+			};
 
-			collisionResult = collideVectorOnTri(origin, vec, triangle, model.normals[pos]);
+			collisionResult = collideVectorOnTri(origin, vec, triangle, normal);
 
 			if(collisionResult.collided){
 				return collisionResult;

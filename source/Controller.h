@@ -47,7 +47,7 @@ public:
 		    case SDL_MOUSEBUTTONUP:
 			    mouseClickPosition[0] = event->button.x;
 			    mouseClickPosition[1] = event->button.y;
-			    mouseClickPosition[2] = event->button.button;
+			    //mouseClickPosition[2] = event->button.button;
 			    break;
 		    default:
 			    break;
