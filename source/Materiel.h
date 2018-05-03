@@ -47,6 +47,8 @@ public:
         description += "Point de rupture:";
         description += pointDeRupture;
         description += "\n";
+
+        return description;
     }
 };
 
