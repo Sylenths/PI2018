@@ -32,19 +32,19 @@ public:
     static Materiel* simtium;
 
     std::string getDescription(){
-        description += "Résistance:";
+        description += "Résistance: ";
         description += resistance;
         description += "\n";
 
-        description += "Prix:";
+        description += "Prix: ";
         description +=  price;
         description += "\n";
 
-        description += "Masse:";
+        description += "Masse: ";
         description += masse;
         description += "\n";
 
-        description += "Point de rupture:";
+        description += "Point de rupture: ";
         description += pointDeRupture;
         description += "\n";
     }
