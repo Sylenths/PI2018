@@ -16,8 +16,10 @@
 #define ROCK 3
 #define METAL 4
 #define SIMTIUM 5
-#define COPPER 6
-#define SILVER 7
+#define COPPER 1
+#define SILVER 2
+#define GOLD 3
+#define DDP 120
 #include <list>
 #include <cmath>
 #include <string>
@@ -30,6 +32,7 @@
 #include <stdlib.h>
 #include <array>
 #include <stack>
+
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
