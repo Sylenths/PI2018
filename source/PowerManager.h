@@ -154,10 +154,10 @@ public:
                             }
                         }
                     }
-
-                    from->pushBackPathsMap(i, currentKey);
+                    (*from->getPathMap())[i].push(currentKey);
                     currentKey = nextKey;
                 }
+                (*from->getPathMap())[i].push(from->getKey());
             }
 
         }
@@ -165,10 +165,10 @@ public:
         from->setProximite();
     }
 
-    void quickSort(std::map<int, std::pair<int, int>> list, int left, int right) {
+    void quickSort(std::map<int, std::pair<std::pair<int, int>, int>> list, int left, int right) {
         int i = left;
         int j = right;
-        std::pair<int, int> tmp;
+        std::pair<std::pair<int, int>, int> tmp;
         int pivot = list[(left + right) / 2].second;
 
         while(i <= j) {
@@ -196,26 +196,40 @@ public:
 
 
     void updatePower() {
-        std::map<int, std::pair<int, int>> mapPriority;
-        int j = -1;
+        //int priority, std::pair(std::pair<int appareilkey, int sourcekey>, int pathSize)
+        // key                                first.first     first.second     second
+        std::map<int, std::pair<std::pair<int, int>, int>> mapPriority;
+        int mapSize = 0;
         for(int i = 1; i <= appareilNbr; ++i) {
-            j++;
             getShortestPath(mapAppareil[i]);
-            mapPriority[j] = std::make_pair(i, mapAppareil[i]->getProximite());
-
+            for(int j = (sourceNbr + 1); j < 0; ++j) {
+                if((*mapAppareil[i]->getPathMap()).find(j) != (*mapAppareil[i]->getPathMap()).end()) {
+                    mapPriority[mapSize] = std::make_pair(std::make_pair(i, j), (*mapAppareil[i]->getPathMap())[j].size());
+                    mapSize++;
+                }
+            }
         }
+        quickSort(mapPriority, 0, mapSize);
 
-        quickSort(mapPriority, 0, j);
-
-
-
-
-
-
-
-
-
-
+        for(int i = 0; i < mapSize; ++i) {
+            int appareilKey = mapPriority[i].first.first;
+            int sourceKey = mapPriority[i].first.second;
+            int nextNode;
+            int prevNode;
+            if(!mapAppareil[appareilKey]->isFeeded()) {
+                mapSource[sourceKey]->resetCurrent();
+                prevNode = (*mapAppareil[appareilKey]->getPathMap())[sourceKey].front();
+                (*mapAppareil[appareilKey]->getPathMap())[sourceKey].pop();
+                while((*mapAppareil[appareilKey]->getPathMap())[sourceKey].size()) {
+                    nextNode = (*mapAppareil[appareilKey]->getPathMap())[sourceKey].front();
+                    (*mapAppareil[appareilKey]->getPathMap())[sourceKey].pop();
+                    mapSource[sourceKey]->updateCurrent(adjMatrice[std::make_pair(prevNode, nextNode)]->dissipatePower(mapSource[sourceKey]->getCurrentLeft()));
+                    prevNode = nextNode;
+                    if(nextNode == appareilKey)
+                        mapSource[sourceKey]->updateCurrent(mapAppareil[appareilKey]->updateCurrent(mapSource[sourceKey]->getCurrentLeft()));
+                }
+            }
+        }
     }
 };
 

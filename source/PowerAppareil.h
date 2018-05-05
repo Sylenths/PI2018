@@ -9,7 +9,7 @@ protected:
     double usedCurrent;
     double currentLeft;
     bool feeded;
-    std::map<int, std::stack<int>> pathsMap;
+    std::map<int, std::queue<int>>* pathsMap;
     int mapSize;
 public:
     PowerAppareil(double usedCurrent) {
@@ -17,17 +17,15 @@ public:
         usedCurrent = currentLeft;
         mapSize = 0;
         feeded = false;
+        pathsMap = new std::map<int, std::queue<int>>();
     }
 
-    void pushBackPathsMap(int source, int keyPath) {
-        pathsMap[source].push(keyPath);
-
+    std::map<int, std::queue<int>>* getPathMap() {
+        return pathsMap;
     }
-
-
 
     void clearPathsMap() {
-        pathsMap.clear();
+        (*pathsMap).clear();
 
     }
 

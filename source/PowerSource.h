@@ -13,12 +13,16 @@ public:
         currentLeft = producedCurrent;
     }
 
-    void usedCurrent(double used) {
-        currentLeft -= used;
+    void updateCurrent(double current) {
+        currentLeft = current;
     }
 
     void resetCurrent() {
         currentLeft = producedCurrent;
+    }
+
+    double getCurrentLeft() {
+        return currentLeft;
     }
 };
 
