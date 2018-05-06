@@ -47,6 +47,28 @@ class Physics{
 
 public:
 
+	/// Collisionne un segment et un plan infini.
+	/// \param segmentOrigin Point de départ du segment.
+	/// \param segment Segment (Vecteur)
+	/// \param normalOrigin Point faisant partie de la surface plane.
+	/// \param planeNormal Normale de la surface plane infinie.
+	/// \return Structure de donnée contenant les résultats de la collision.
+	static PhysicsData::CollisionData collideVectorOnPlane(Vector segmentOrigin, Vector segment, Vector normalOrigin, Vector normal){
+		normal.normalize();
+
+		double dotp = normal * segment;
+
+		if((PHYSICS_EPSILON > dotp) && (dotp > -PHYSICS_EPSILON))
+			return {false};
+
+		double ratio = ((normal * normalOrigin) / (normal * segment));
+
+		if(ratio > 1)
+			return {false};
+
+		return {true, segmentOrigin + (segment * ratio)/*intersect*/, ratio};
+	}
+
 	/// Collisionne un segment et un triangle.
 	/// \param segmentOrigin Point de départ du segment.
 	/// \param segment Segment (Vecteur)
