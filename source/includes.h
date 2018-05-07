@@ -50,10 +50,11 @@
 #endif
 
 #include "Entity.h"
-#include "Chrono.h"
-#include "Singleton.h"
 #include "Resource.h"
 #include "ResourceManager.h"
+#include "Texture2d.h"
+#include "Chrono.h"
+#include "Singleton.h"
 #include "Observable.h"
 #include "Vector.h"
 #include "Matrix.h"

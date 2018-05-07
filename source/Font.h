@@ -32,7 +32,7 @@ public:
         return font;
     }
 
-    std::string getType() {
+    const std::string getType() {
         return "Font";
     }
 };

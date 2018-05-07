@@ -746,9 +746,9 @@ public:
 
     virtual void notify(SDL_Event* sdlEvent) {}
 
-    std::string getType() {
+    const std::string getType() {
         return "Model";
     }
 };
 
-#endif //SOURCE_MODEL_H
+#endif

@@ -150,9 +150,9 @@ public:
                 const char* name = scores[i]->getName().c_str();
                 char score[10];
                 SDL_itoa(scores[i]->getScore(),score,10);
-                fprintf(fichier,name);
+                fprintf(fichier, name);
                 fprintf(fichier, "  ");
-                fprintf(fichier,score);
+                fprintf(fichier, score);
                 fprintf(fichier, " ");
                 fprintf(fichier,"\n");
             }

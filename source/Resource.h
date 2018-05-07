@@ -12,7 +12,7 @@
 #include <string>
 
 class Resource {
-    virtual std::string getType() = 0;
+    virtual const std::string getType() = 0;
 };
 
 #endif
