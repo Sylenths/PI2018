@@ -10,29 +10,38 @@
 #include "includes.h"
 
 class MainMenu : public Menu2d {
+private:
+    Texture2d* imageBackground,
+             * buttonBackground;
 public:
     /// Constructeur
     MainMenu(){
-        entities2d["1FondMaison"] = new Image2d("1FondMaison", Vector(0.0, 0.0, 0.0), "../../images/maisonApp.png");
+        imageBackground = new Texture2d("MainMenuBackground", "../../images/maisonApp.png");
+        entities2d["1MainMenuBackGround"] = new Image2d("MainMenuBackGround", Vector(0.0, 0.0, 0.0), imageBackground);
 
-        entities2d["ButtonStart"] = new Button2d("ButtonStart", Vector(967.0, 50.0, 0.0), Vector2d(300, 130), EntityManager::get<Font*>("font - arial28"), "Start", {0, 0, 0});
+        buttonBackground = new Texture2d("MenuButtonBackground", "../../images/MainMenuButtonBackground.png");
+        entities2d["ButtonStart"] = new Button2d("ButtonStart", Vector(967.0, 50.0, 0.0), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Start", {0, 0, 0});
         entities2d["ButtonStart"]->onClick = [this]() { Scene::changeActiveScene("World"); };
 
-        entities2d["ButtonSettings"] = new Button2d("ButtonSettings", Vector(967, 225, 0), Vector2d(300, 130), EntityManager::get<Font*>("font - arial28"), "Settings", {0, 0, 0});
+        entities2d["ButtonSettings"] = new Button2d("ButtonSettings", Vector(967, 225, 0), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Settings", {0, 0, 0});
         entities2d["ButtonSettings"]->onClick = [this]() { Scene::changeActiveScene("SettingsMenu"); };
 
-        entities2d["ButtonHighScore"] = new Button2d("ButtonHighScore", Vector(967, 400, 0), Vector2d(300, 130), EntityManager::get<Font*>("font - arial28"), "High Scores", {0, 0, 0});
+        entities2d["ButtonHighScore"] = new Button2d("ButtonHighScore", Vector(967, 400, 0), buttonBackground, EntityManager::get<Font*>("font - arial28"), "High Scores", {0, 0, 0});
         entities2d["ButtonHighScore"]->onClick = [this]() { Scene::changeActiveScene("HighScoresMenu"); };
 
-        entities2d["ButtonQuitGame"] = new Button2d("ButtonQuitGame", Vector(967, 575, 0), Vector2d(300, 130), EntityManager::get<Font*>("font - arial28"), "Quit", {0, 0, 0});
+        entities2d["ButtonQuitGame"] = new Button2d("ButtonQuitGame", Vector(967, 575, 0), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Quit", {0, 0, 0});
         entities2d["ButtonQuitGame"]->onClick = [this]() { Scene::changeActiveScene("Quit"); };
+    }
+
+    ~MainMenu() {
+        delete buttonBackground;
+        delete imageBackground;
     }
 
     /// Permet d'inscrire tous les évènements comme observables.
     /// \param observables une map contenant tous les observables nécessaires.
     void subscribeAll(std::map <unsigned int, Observable<SDL_Event*>*>& observables){
         if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
-
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(entities2d["ButtonStart"]);
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(entities2d["ButtonSettings"]);
         observables[SDL_MOUSEBUTTONDOWN]->subscribe(entities2d["ButtonHighScore"]);

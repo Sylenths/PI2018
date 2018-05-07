@@ -14,9 +14,13 @@ public:
     }
 
     virtual void draw() {
+        glDisable(GL_DEPTH_TEST);
+
         for (auto it : entities2d)
             if (it.second->visible)
                 it.second->draw();
+
+        glEnable(GL_DEPTH_TEST);
     }
 
     virtual void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;
