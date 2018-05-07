@@ -11,6 +11,8 @@
 #ifndef SOURCE_LABEL_H
 #define SOURCE_LABEL_H
 
+#include "includes.h"
+
 class Label : public Model {
 private:
     std::string text;

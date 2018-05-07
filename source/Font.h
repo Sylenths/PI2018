@@ -5,6 +5,7 @@
 /// \version 0.4
 /// \warning Aucuns
 /// \bug Aucuns
+
 #ifndef SOURCE_FONT_H
 #define SOURCE_FONT_H
 
@@ -25,17 +26,11 @@ public:
     /// Destructeur.
     ~Font() {
         TTF_CloseFont(font);
-        font = nullptr; //To be safe...
     }
 
     TTF_Font* getFont(){
         return font;
     }
-
-    const std::string getType() {
-        return "Font";
-    }
 };
-
 
 #endif

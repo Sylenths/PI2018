@@ -29,6 +29,10 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     }
 
+    Texture2d(const std::string& name) : Entity(name) {
+        height = width = ID = 0;
+    }
+
     virtual ~Texture2d() {
         glDeleteTextures(1, &ID);
     }
@@ -36,6 +40,12 @@ public:
     const unsigned int getID() const { return ID; }
     const int getWidth() const { return width; }
     const int getHeight() const { return height; }
+
+    void set(const unsigned int& ID, const int& width, const int& height) {
+        this->ID = ID;
+        this->width = width;
+        this->height = height;
+    }
 };
 
 #endif

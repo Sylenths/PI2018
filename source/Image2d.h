@@ -13,6 +13,8 @@ public:
     }
 
     void draw() {
+        glDisable(GL_DEPTH_TEST);
+
         glBindTexture(GL_TEXTURE_2D, defaultTexture.getID());
         glBegin(GL_QUADS);
             glTexCoord2d(0.0, 0.0);
@@ -24,6 +26,8 @@ public:
             glTexCoord2d(0.0, 1.0);
             glVertex3d(position.x, position.y + defaultTexture.getHeight(), 0.0);
         glEnd();
+
+        glEnable(GL_DEPTH_TEST);
     }
 
     void notify(SDL_Event* sdlEvent) {

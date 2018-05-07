@@ -31,14 +31,6 @@ private:
     unsigned int fps;///<Les Fps de l'application
 
 public:
-
-    /// Chargeur de texture (les mets automatiquement dans le ressource manager).
-    /// \param filename Fichier de texture a charger.
-    /// \param textureName Nom significatif a donner a la texture.
-    static void getTextureID(const char* fileName, std::string textureName) {
-        EntityManager::add(new Texture2d(textureName, fileName));
-    }
-
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
         //Texture pour le InGameOverlay
