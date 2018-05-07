@@ -11,18 +11,18 @@ class MainMenu : public Menu {
 public:
     /// Constructeur
     MainMenu(){
-        models["FondMaison"] = new Image(0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondMaison"));
+        models["FondMaison"] = new Image(0, 0, 0, 1280, 720, ResourceManager::getTexture("FondMaison"));
 
-        models["ButtonStart"] = new Button (967, 50, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonStartOver"), ResourceManager::getInstance()->getTexture("ButtonStart"));
+        models["ButtonStart"] = new Button (967, 50, 0, 298, 128, ResourceManager::getTexture("ButtonStartOver"), ResourceManager::getTexture("ButtonStart"));
         models["ButtonStart"]->onClick = [this]() { Scene::changeActiveScene("World"); };
 
-        models["ButtonSettings"] = new Button(967, 225, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonSettingsOver"), ResourceManager::getInstance()->getTexture("ButtonSettings"));
+        models["ButtonSettings"] = new Button(967, 225, 0, 298, 128, ResourceManager::getTexture("ButtonSettingsOver"), ResourceManager::getTexture("ButtonSettings"));
         models["ButtonSettings"]->onClick = [this]() { Scene::changeActiveScene("SettingsMenu"); };
 
-        models["ButtonHighScore"] = new Button(967, 400, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonHighScoreOver"), ResourceManager::getInstance()->getTexture("ButtonHighScore"));
+        models["ButtonHighScore"] = new Button(967, 400, 0, 298, 128, ResourceManager::getTexture("ButtonHighScoreOver"), ResourceManager::getTexture("ButtonHighScore"));
         models["ButtonHighScore"]->onClick = [this]() { Scene::changeActiveScene("HighScoresMenu"); };
 
-        models["ButtonQuitGame"] = new Button(967, 575, 0, 298, 128, ResourceManager::getInstance()->getTexture("ButtonQuitGame"), ResourceManager::getInstance()->getTexture("ButtonQuitGameOver"));
+        models["ButtonQuitGame"] = new Button(967, 575, 0, 298, 128, ResourceManager::getTexture("ButtonQuitGame"), ResourceManager::getTexture("ButtonQuitGameOver"));
         models["ButtonQuitGame"]->onClick = [this]() { Scene::changeActiveScene("Quit"); };
     }
 

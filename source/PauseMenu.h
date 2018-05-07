@@ -16,15 +16,15 @@ public:
 
     ///Constructeur
     PauseMenu(){
-        models["PauseMenuFond"] = new Image(0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("PauseMenuFond"));
+        models["PauseMenuFond"] = new Image(0, 0, 0, 1280, 720, ResourceManager::getTexture("PauseMenuFond"));
 
-        models["1resumeGameButton"] = new Button (238, 225, 0, 786, 113, ResourceManager::getInstance()->getTexture("PauseResumeGame"), ResourceManager::getInstance()->getTexture("PauseResumeGameOver"));
+        models["1resumeGameButton"] = new Button (238, 225, 0, 786, 113, ResourceManager::getTexture("PauseResumeGame"), ResourceManager::getTexture("PauseResumeGameOver"));
         models["1resumeGameButton"]->onClick = [this]() {Scene::changeActiveScene("World");};
 
-        models["2settingsButton"] = new Button (238, 350, 0, 786, 113, ResourceManager::getInstance()->getTexture("PauseSettings"), ResourceManager::getInstance()->getTexture("PauseSettingsOver"));
+        models["2settingsButton"] = new Button (238, 350, 0, 786, 113, ResourceManager::getTexture("PauseSettings"), ResourceManager::getTexture("PauseSettingsOver"));
         models["2settingsButton"]->onClick = [this]() {Scene::changeActiveScene("SettingsMenu");};
 
-        models["3quitGameButton"] = new Button (238, 475, 0, 786, 113, ResourceManager::getInstance()->getTexture("PauseQuitGame"), ResourceManager::getInstance()->getTexture("PauseQuitGameOver"));
+        models["3quitGameButton"] = new Button (238, 475, 0, 786, 113, ResourceManager::getTexture("PauseQuitGame"), ResourceManager::getTexture("PauseQuitGameOver"));
         models["3quitGameButton"]->onClick = [this]() {Scene::changeActiveScene("MainMenu");};
 
     }

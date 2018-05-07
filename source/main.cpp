@@ -72,13 +72,13 @@ int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
 
-    ResourceManager::getInstance()->addResource("font - arial12",new Font("../Fonts/arial.ttf", 72));
-    ResourceManager::getInstance()->addResource("font - arial28",new Font("../Fonts/arial.ttf", 50));
-    ResourceManager::getInstance()->addResource("font - arial30",new Font("../Fonts/arial.ttf", 30));
-    ResourceManager::getInstance()->addResource("font - arial32",new Font("../Fonts/arial.ttf", 15));
+    ResourceManager::addResource("font - arial12",new Font("../Fonts/arial.ttf", 72));
+    ResourceManager::addResource("font - arial28",new Font("../Fonts/arial.ttf", 50));
+    ResourceManager::addResource("font - arial30",new Font("../Fonts/arial.ttf", 30));
+    ResourceManager::addResource("font - arial32",new Font("../Fonts/arial.ttf", 15));
     ProjetFinal::getInstance()->run(filePath.c_str());
-    ProjetFinal::deleteInstance();
-    ResourceManager::deleteInstance();
+    ProjetFinal::getInstance()->deleteInstance();
+    ResourceManager::destroyResources();
 
     Chrono tst;
     std::cout << tst.getElapsed(SECONDS) << std::endl;

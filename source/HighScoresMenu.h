@@ -14,7 +14,7 @@
 class HighScoresMenu : public Menu {
 private:
     Scores* scores[11];
-    Font* font = ResourceManager::getInstance()->getResource<Font*>("font - arial28");
+    Font* font = ResourceManager::getResource<Font*>("font - arial28");
     std::map<std::string, Model*> labelModels;
     std::string fichierSauvegardeScores;
 
@@ -36,9 +36,9 @@ public:
 
     /// Constructeur
     HighScoresMenu(){
-        models["backButtonHighscore"] = new Button (498, 550, 0.l, 284, 113, ResourceManager::getInstance()->getTexture("backButton"),ResourceManager::getInstance()->getTexture("BackButtonOver"));
+        models["backButtonHighscore"] = new Button (498, 550, 0.l, 284, 113, ResourceManager::getTexture("backButton"),ResourceManager::getTexture("BackButtonOver"));
         models["backButtonHighscore"]->onClick = [this]() { Scene::changeActiveScene(previous); };
-        models["fond"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getInstance()->getTexture("FondHighscore"));
+        models["fond"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getTexture("FondHighscore"));
 
         for (int i = 0; i < 10 ; ++i)
             scores[i] = new Scores();
@@ -66,7 +66,7 @@ public:
                 y = 185;
             }
 
-            labelModels[labelNameBuffer] = new Label(ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1);
+            labelModels[labelNameBuffer] = new Label(ResourceManager::getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1);
             y += 75;
 
 
@@ -139,7 +139,7 @@ public:
         sprintf(intCharBuffer, "%d", scores[position]->getScore());
         labelbuffer = scores[position]->getName()+ "    " + intCharBuffer;
         labelNameBuffer = std::string("HighscoreLabel") + intCharBuffer;
-        ((Label*)labelModels[labelNameBuffer])->updateTextTexture(labelbuffer,ResourceManager::getInstance()->getResource<Font*>("font - arial28")->getFont(),{128,128,128,0});
+        ((Label*)labelModels[labelNameBuffer])->updateTextTexture(labelbuffer,ResourceManager::getResource<Font*>("font - arial28")->getFont(),{128,128,128,0});
     }
 
     /// Permet d'enregistrer les scores dans le fichier.

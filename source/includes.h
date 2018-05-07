@@ -3,6 +3,7 @@
 
 #define IS2D true
 #define IS3D false
+
 #define BUILD_NOTHING 0
 #define BUILD_FONDATION 1
 #define BUILD_WALL 2
@@ -10,6 +11,7 @@
 #define BUILD_ROOF 4
 #define BUILD_WIRE 5
 #define DELETE 6
+
 #define NULLMATERIAL 0
 #define CARDBOARD 1
 #define WOOD 2
@@ -20,10 +22,12 @@
 #define SILVER 2
 #define GOLD 3
 #define DDP 120
+
 #include <list>
 #include <cmath>
 #include <string>
 #include <functional>
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <iterator>
@@ -32,7 +36,8 @@
 #include <stdlib.h>
 #include <array>
 #include <stack>
-
+#include <utility>
+#include <functional>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
@@ -44,15 +49,12 @@
   #include <SDL2_image/SDL_image.h>
 #endif
 
-
-#include <iostream>
-#include <utility>
-#include <functional>
+#include "Entity.h"
 #include "Chrono.h"
 #include "Singleton.h"
-#include "Observable.h"
 #include "Resource.h"
 #include "ResourceManager.h"
+#include "Observable.h"
 #include "Vector.h"
 #include "Matrix.h"
 #include "GLContext.h"

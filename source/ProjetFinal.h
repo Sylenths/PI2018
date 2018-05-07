@@ -53,7 +53,7 @@ public:
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-            ResourceManager::getInstance()->addTexture(textureName, textureID);
+            ResourceManager::addTexture(textureName, textureID);
     }
 
     /// Charge toutes les textures necessaire au programme
@@ -693,19 +693,19 @@ public:
                     unsigned int texture;
                     switch (SideWindow::materialType) {
                         case CARDBOARD:
-                            texture = ResourceManager::getInstance()->getTexture("wall");
+                            texture = ResourceManager::getTexture("wall");
                             break;
                         case WOOD:
-                            texture = ResourceManager::getInstance()->getTexture("fondMaison");
+                            texture = ResourceManager::getTexture("fondMaison");
                             break;
                         case ROCK:
-                            texture = ResourceManager::getInstance()->getTexture("daysky");
+                            texture = ResourceManager::getTexture("daysky");
                             break;
                         case METAL:
-                            texture = ResourceManager::getInstance()->getTexture("nightsky");
+                            texture = ResourceManager::getTexture("nightsky");
                             break;
                         case SIMTIUM:
-                            texture = ResourceManager::getInstance()->getTexture("grass");
+                            texture = ResourceManager::getTexture("grass");
                             break;
                     }
 
@@ -886,19 +886,19 @@ public:
             unsigned int texture;
             switch(SideWindow::materialType){
                 case CARDBOARD:
-                    texture = ResourceManager::getInstance()->getTexture("wall");
+                    texture = ResourceManager::getTexture("wall");
                     break;
                 case WOOD:
-                    texture = ResourceManager::getInstance()->getTexture("fondMaison");
+                    texture = ResourceManager::getTexture("fondMaison");
                     break;
                 case ROCK:
-                    texture = ResourceManager::getInstance()->getTexture("daysky");
+                    texture = ResourceManager::getTexture("daysky");
                     break;
                 case METAL:
-                    texture = ResourceManager::getInstance()->getTexture("nightsky");
+                    texture = ResourceManager::getTexture("nightsky");
                     break;
                 case SIMTIUM:
-                    texture = ResourceManager::getInstance()->getTexture("grass");
+                    texture = ResourceManager::getTexture("grass");
                     break;
             }
 

@@ -9,14 +9,15 @@
 #ifndef SOURCE_RESOURCEMANAGER_H
 #define SOURCE_RESOURCEMANAGER_H
 
-class ResourceManager : public Singleton<ResourceManager> {
+class ResourceManager {
 private:
-    std::map<std::string, Resource*> resources;  ///< Map de ressources.
-    std::map<std::string, unsigned int> textures;
+    static std::map<std::string, Resource*> resources;  ///< Ressources.
+    static std::map<std::string, unsigned int> textures;
+
 public:
 
 	/// Destruction de toutes les ressources vers la fin du jeu.
-	~ResourceManager() {
+    static void destroyResources() {
 
 		std::map<std::string, Resource*>::iterator it = resources.begin();
 		while(it != resources.end()) {
@@ -32,11 +33,11 @@ public:
 	}
 
 	/// Ajouter une ressource.
-    void addResource(std::string resourceKey, Resource* resource) {
+    static void addResource(std::string resourceKey, Resource* resource) {
 		resources[resourceKey] = resource;
 	}
 	/// Supprimer une ressource AVEC DESTRUCTEUR. ATTENTION!
-    void removeResource(std::string resourceKey) {
+    static void removeResource(std::string resourceKey) {
 		if(resources[resourceKey]) {
 			delete resources[resourceKey];
 			resources.erase(resourceKey);
@@ -44,20 +45,20 @@ public:
 	}
 	/// Récupérer une ressource.
     template <typename T>
-    T getResource(std::string resourceKey) {
+    static T getResource(std::string resourceKey) {
 		if(resources[resourceKey])
 			return (T)resources[resourceKey];
 	}
 	/// Ajouter une paire nom / identifiant numérique de texture OpenGL.
 	/// \param textureKey Nom de la texture.
 	/// \param textureID Identifiant numérique de texture OpenGL.
-    void addTexture(std::string textureKey, unsigned int textureID) {
+    static void addTexture(std::string textureKey, unsigned int textureID) {
         textures[textureKey] = textureID;
     }
 
 	/// Supprimer un identifiant numérique de texture OpenGL.
 	/// \param textureKey Nom de la texture.
-    void removeTexture(std::string textureKey) {
+    static void removeTexture(std::string textureKey) {
         if(textures[textureKey]) {
             glDeleteTextures(1,&textures[textureKey]);
             textures.erase(textureKey);
@@ -66,12 +67,14 @@ public:
 	/// Récupérer l'identifiant de texture OpenGL à partir du nom d'une texture.
 	/// \param textureKey Nom de la texture.
 	/// \return Identifiant numérique de texture OpenGL.
-    unsigned int getTexture(std::string textureKey) {
+    static unsigned int getTexture(std::string textureKey) {
         if(textures[textureKey]) {
             return textures[textureKey];
         }
     }
 };
 
+std::map<std::string, Resource*> ResourceManager::resources;
+std::map<std::string, unsigned int> ResourceManager::textures;
 
 #endif
