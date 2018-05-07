@@ -55,6 +55,7 @@
 #include "Chrono.h"
 #include "Singleton.h"
 #include "Observable.h"
+#include "Vector2d.h"
 #include "Vector.h"
 #include "Matrix.h"
 #include "GLContext.h"

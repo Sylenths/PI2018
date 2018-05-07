@@ -5,26 +5,43 @@
 
 class Image2d : public VisualEntity2d {
 private:
-    Texture2d texture2d;
+    Texture2d defaultTexture;
 
 public:
-  Image2d(const std::string& name, const char* fileName, const Vector& position, bool visible = true) : VisualEntity2d(name, position, visible), texture2d("txtr" + name, fileName) {}
+    Image2d(const std::string& name, const Vector& position, const char* textureFileName) : defaultTexture("txtr" + name, textureFileName), VisualEntity2d(name, position, Vector2d(defaultTexture.getWidth(), defaultTexture.getHeight())) {
+        onClick = nullptr;
+    }
 
-  void draw() {
-    glBindTexture(GL_TEXTURE_2D, texture2d.getID());
-    glBegin(GL_QUADS);
-        glTexCoord2d(0.0, 0.0);
-        glVertex3d(position.x, position.y, 0.0);
-        glTexCoord2d(1.0, 0.0);
-        glVertex3d(position.x + texture2d.getWidth(), position.y, 0.0);
-        glTexCoord2d(1.0, 1.0);
-        glVertex3d(position.x + texture2d.getWidth(), position.y + texture2d.getHeight(), 0.0);
-        glTexCoord2d(0.0, 1.0);
-        glVertex3d(position.x, position.y + texture2d.getHeight(), 0.0);
-    glEnd();
-  }
+    void draw() {
+        glBindTexture(GL_TEXTURE_2D, defaultTexture.getID());
+        glBegin(GL_QUADS);
+            glTexCoord2d(0.0, 0.0);
+            glVertex3d(position.x, position.y, 0.0);
+            glTexCoord2d(1.0, 0.0);
+            glVertex3d(position.x + defaultTexture.getWidth(), position.y, 0.0);
+            glTexCoord2d(1.0, 1.0);
+            glVertex3d(position.x + defaultTexture.getWidth(), position.y + defaultTexture.getHeight(), 0.0);
+            glTexCoord2d(0.0, 1.0);
+            glVertex3d(position.x, position.y + defaultTexture.getHeight(), 0.0);
+        glEnd();
+    }
 
-  virtual void notify(SDL_Event* sdlEvent) {}
+    void notify(SDL_Event* sdlEvent) {
+        if ((sdlEvent->button.x > position.x) && (sdlEvent->button.x < (position.x + defaultTexture.getWidth())) && (sdlEvent->button.y > position.y) && (sdlEvent->button.y < (position.y + defaultTexture.getHeight()))) {
+            switch (sdlEvent->type) {
+                case SDL_MOUSEBUTTONDOWN:
+                    if ((sdlEvent->button.button == SDL_BUTTON_LEFT) && onClick)
+                        onClick();
+                    break;
+
+                case SDL_MOUSEMOTION:
+                    //textureToDraw = textureIDs["over"];
+                    break;
+            }
+        }
+        //else
+            //textureToDraw = textureIDs["default"];
+    }
 };
 
 #endif

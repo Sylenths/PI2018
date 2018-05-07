@@ -4,8 +4,13 @@
 #include "includes.h"
 
 class VisualEntity2d : public VisualEntity {
+protected:
+    Vector2d size;
+
 public:
-  VisualEntity2d(const std::string& name, const Vector& position, bool visible = true) : VisualEntity(name, position, visible) { }
+  VisualEntity2d(const std::string& name, const Vector& position, const Vector2d& size, bool visible = true) : VisualEntity(name, position, visible) {
+      this->size = size;
+  }
 
   virtual void draw() = 0;
 };
