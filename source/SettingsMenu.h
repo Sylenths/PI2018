@@ -28,19 +28,10 @@ public:
         models["1labelMoveRight"]          = new Label("1labelMoveRight", EntityManager::get<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move right    :    D   ", 650, 360, 0.1);
 
         models["FPSButton"] = new CheckBox ("FPSButton", 380, 360, 0, 250, 50, EntityManager::get<Texture2d*>("FPSButtonNO")->getID(), EntityManager::get<Texture2d*>("FPSButtonYES")->getID());
-        models["FPSButton"]->onClick = [this] () {showFPS();};
+        models["FPSButton"]->onClick = [this] () { FPS = !FPS; };
         models["1backButton"]  = new Button ("1backButton", 498, 550, 0, 284, 113, EntityManager::get<Texture2d*>("backButton")->getID(), EntityManager::get<Texture2d*>("BackButtonOver")->getID());
         models["1backButton"]->onClick = [this]() { Scene::changeActiveScene(previous); };
     }
-
-
-    void showFPS(){
-        if(FPS == false)
-            FPS = true;
-        else
-            FPS = false;
-    }
-
 
     /// Permet d'inscrire tous les évènements comme observables.
     /// \param observables une map contenant tous les observables nécessaires.

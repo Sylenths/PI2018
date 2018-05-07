@@ -29,8 +29,11 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     }
 
+    virtual ~Texture2d() {
+        glDeleteTextures(1, &ID);
+    }
+
     const unsigned int getID() const { return ID; }
-    const std::string getType() const { return "Texture2d"; }
     const int getWidth() const { return width; }
     const int getHeight() const { return height; }
 };

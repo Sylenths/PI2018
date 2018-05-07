@@ -90,17 +90,6 @@ public:
         EntityManager::add(new Texture2d("clouds", "../../images/clouds.png"));
         EntityManager::add(new Texture2d("simcoinminer", "../../images/simcoinminer.png"));
 
-        //Textures boutons menu principal
-        EntityManager::add(new Texture2d("ButtonStart", "../../images/start.png"));
-        EntityManager::add(new Texture2d("ButtonStartOver", "../../images/starto.png"));
-        EntityManager::add(new Texture2d("ButtonSettings", "../../images/settings.png"));
-        EntityManager::add(new Texture2d("ButtonSettingsOver", "../../images/settingso.png"));
-        EntityManager::add(new Texture2d("ButtonHighScore", "../../images/highscore.png"));
-        EntityManager::add(new Texture2d("ButtonHighScoreOver", "../../images/highscoreo.png"));
-        EntityManager::add(new Texture2d("ButtonQuitGame", "../../images/QuitGame.png"));
-        EntityManager::add(new Texture2d("ButtonQuitGameOver", "../../images/QuitGameOver.png"));
-        EntityManager::add(new Texture2d("FondMaison", "../../images/maisonApp.png"));
-
         //Textures boutons settings
         EntityManager::add(new Texture2d("FPSButton", "../../images/BoutonNO.png"));
         EntityManager::add(new Texture2d("FPSButtonNO", "../../images/BoutonNO.png"));
@@ -691,8 +680,7 @@ public:
                             break;
                     }
 
-                    ((World *) sceneDisplay)->addModel(
-                            new Model("", width, 3.0/*StructureWindow::height*/, lenght, posx, posy, posz, texture));
+                    ((World*)sceneDisplay)->addModel(new Model("", width, 3.0/*StructureWindow::height*/, lenght, posx, posy, posz, texture));
                     SideWindow::firstWall = nullptr;
                     SideWindow::secondWall = nullptr;
                 }

@@ -5,37 +5,33 @@
 /// \version 0.1
 /// \warning .
 /// \bug Aucun.
+///
 #ifndef SCENE_H
 #define SCENE_H
 
-
-#include "Camera.h"
+#include "includes.h"
 
 class Scene {
 protected:
-    static std::string activeScene;     ///< permet de savoir quel menu est actif.
-    static std::string previous;        ///< permet de savoir quel était le menu précédent actif.
-    static bool FPS;                    ///< permet de savoir si l'affichage des fps est actif.
-
+    static std::string active;     ///< permet de savoir quel menu est actif.
+    static std::string previous;   ///< permet de savoir quel était le menu précédent actif.
+    static bool FPS;               ///< permet de savoir si l'affichage des fps est actif.
 
 public:
-
-
     /// Destructeur
     virtual ~Scene() {}
-
 
     /// Permet de changer le menu affiché.
     /// \param scene le nom du nouveau menu qui sera affiché.
     static std::string changeActiveScene(std::string scene){
-        previous = activeScene;
-        activeScene = scene;
-        return activeScene;
+        previous = active;
+        active = scene;
+        return active;
     }
 
     /// Retourner la menu actif.
     static std::string getActiveScene() {
-        return activeScene;
+        return active;
     }
 
     /// Retourner un booléen "vrai" si l'affichage des fps est activé.
@@ -43,9 +39,9 @@ public:
         return FPS;
     }
 
-
     /// Affiche tous les models des menus actifs.
     virtual void draw () = 0;
+
     /// Permet d'inscrire tous les évènements comme observables.
     /// \param observables une map contenant tous les observables nécessaires.
     virtual void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0;
@@ -53,12 +49,12 @@ public:
     /// Permet de désinscrire tous les observables.
     /// \param observables une map contenant tous les observables nécessaires.
     virtual void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0;
-    /// Récupère la camera du monde.
-    virtual Camera* getCamera(){}
 
+    /// Récupère la camera du monde.
+    virtual Camera* getCamera() {}
 };
 
-std::string Scene::activeScene = "MainMenu";
+std::string Scene::active = "MainMenu";
 std::string Scene::previous = " ";
 bool Scene::FPS = false;
 

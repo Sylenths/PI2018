@@ -16,11 +16,13 @@ private:
 public:
 	/// Destruction de toutes les ressources vers la fin du jeu.
     static void destroy() {
+        /*
         std::map<std::string, Entity*>::iterator it = entities.begin();
         while(it != entities.end()) {
-			delete ((*it).second);// (*it).second is the Resource* of the current map "container"
+            if ((*it).second) delete ((*it).second);// (*it).second is the Resource* of the current map "container"
             it = entities.erase(it);// Remove map "container" at current it position then set it to next map "container".
 		}
+        */
 	}
 
 	/// Ajouter une ressource.
