@@ -31,6 +31,10 @@ public:
     TTF_Font* getFont(){
         return font;
     }
+
+    std::string getType() {
+        return "Font";
+    }
 };
 
 

@@ -13,6 +13,7 @@
 
 class Model : public Resource, public Observer<SDL_Event*> {
 	friend class Physics;
+
 protected:
     unsigned int vertexCount; ///< Nombre de vertice
     unsigned int texCount; ///< Nombre de coordonné de texture
@@ -744,6 +745,10 @@ public:
     }
 
     virtual void notify(SDL_Event* sdlEvent) {}
+
+    std::string getType() {
+        return "Model";
+    }
 };
 
 #endif //SOURCE_MODEL_H
