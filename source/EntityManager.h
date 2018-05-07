@@ -11,7 +11,7 @@
 
 class ResourceManager {
 private:
-    static std::map<std::string, Resource*> resources;  ///< Ressources.
+    static std::map<std::string, Entity*> resources;  ///< Ressources.
     static std::map<std::string, unsigned int> textures;
 
 public:
@@ -19,7 +19,7 @@ public:
 	/// Destruction de toutes les ressources vers la fin du jeu.
     static void destroyResources() {
 
-		std::map<std::string, Resource*>::iterator it = resources.begin();
+        std::map<std::string, Entity*>::iterator it = resources.begin();
 		while(it != resources.end()) {
 			delete ((*it).second);// (*it).second is the Resource* of the current map "container"
 			it = resources.erase(it);// Remove map "container" at current it position then set it to next map "container".
@@ -33,7 +33,7 @@ public:
 	}
 
 	/// Ajouter une ressource.
-    static void addResource(std::string resourceKey, Resource* resource) {
+    static void addResource(std::string resourceKey, Entity* resource) {
 		resources[resourceKey] = resource;
 	}
 	/// Supprimer une ressource AVEC DESTRUCTEUR. ATTENTION!
@@ -74,7 +74,7 @@ public:
     }
 };
 
-std::map<std::string, Resource*> ResourceManager::resources;
+std::map<std::string, Entity*> ResourceManager::resources;
 std::map<std::string, unsigned int> ResourceManager::textures;
 
 #endif

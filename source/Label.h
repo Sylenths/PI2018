@@ -24,7 +24,7 @@ public:
     /// \param y Position en y par rapport au coin supérieur gauche.
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
-    Label(TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int textureID = 0) : Model(x, y, z, textureID, false) {
+    Label(const std::string& name, TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int textureID = 0) : Model(name, x, y, z, textureID, false) {
         this->text = text;
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
         this->x = x;

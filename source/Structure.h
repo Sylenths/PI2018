@@ -9,10 +9,10 @@
 
 #include "includes.h"
 
-class Structure : public Model{
+class Structure : public Model {
 private:
 public:
-    Structure( double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Model(posx, posy, posz, textureID, rotHitBox, objFile){
+    Structure(const std::string name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Model(name, posx, posy, posz, textureID, rotHitBox, objFile){
     }
 };
 

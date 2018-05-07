@@ -27,7 +27,7 @@ public:
     /// \param height Hauteur du bouton.
     /// \param defaultTextureID La texture de base affichée sur le bouton.
     /// \param checkTextureID La seconde texture affichée qui sera changée lors d'un clic de souris.
-    CheckBox(double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int checkTextureID) : Image(x, y, z, width, height, defaultTextureID) {
+    CheckBox(const std::string name, double x, double y, double z, double width, double height, unsigned int defaultTextureID, unsigned int checkTextureID) : Image(name, x, y, z, width, height, defaultTextureID) {
         textureIDs["clic"] =  (checkTextureID) ? checkTextureID : defaultTextureID;
         onClick = nullptr;
         checked = false;

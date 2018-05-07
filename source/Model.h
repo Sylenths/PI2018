@@ -11,7 +11,7 @@
 
 #include "Matrix.h"
 
-class Model : public Resource, public Observer<SDL_Event*> {
+class Model : public Entity, public Observer<SDL_Event*> {
 	friend class Physics;
 
 protected:
@@ -172,7 +172,7 @@ public:
     /// Constructeur.
     /// \param textureID Identificateur de la texture.
 	/// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
-    Model(double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) {
+    Model(const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Entity(name) {
         this->posx = posx;
         this->posy = posy;
         this->posz = posz;
@@ -419,7 +419,7 @@ public:
         shading = true;
     }
     ///Constructeur de mur
-    Model(unsigned int height, unsigned int textureID, Vector* firstCorner, Vector* secondCorner) {
+    Model(const std::string& name, unsigned int height, unsigned int textureID, Vector* firstCorner, Vector* secondCorner) : Entity(name) {
 
 
         textureIDs["default"] = textureID;
@@ -487,7 +487,7 @@ public:
    }
 
     ///Constructeur de toit
-    Model(unsigned int width, unsigned int height, unsigned int lenght, double posx, double posy, double posz, unsigned int textureID){
+    Model(const std::string& name, unsigned int width, unsigned int height, unsigned int lenght, double posx, double posy, double posz, unsigned int textureID) : Entity(name) {
         textureIDs["default"] = textureID;
         textureToDraw = textureID;
         normalsHitBox, verticesHitBox, vertices = normals = texCoords = nullptr;

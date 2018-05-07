@@ -25,7 +25,7 @@ public:
     /// Contructeur
     /// \param textureID Identificateur de la texture.
     /// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
-    Sky(double posx, double posy, double posz, unsigned int textureDay, unsigned int textureNight, bool rotHitBox, const char* objFile = nullptr) : Model(posx, posy, posz, textureDay, rotHitBox, objFile), worldLight(500.0,10.0,500.0, 1.0) {
+    Sky(const std::string name, double posx, double posy, double posz, unsigned int textureDay, unsigned int textureNight, bool rotHitBox, const char* objFile = nullptr) : Model(name, posx, posy, posz, textureDay, rotHitBox, objFile), worldLight(500.0,10.0,500.0, 1.0) {
         skyChrono = new Chrono();
         vecteur = {0.0,450.0,0.0};
         textureIDs["night"] =  textureNight;

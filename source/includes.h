@@ -50,8 +50,7 @@
 #endif
 
 #include "Entity.h"
-#include "Resource.h"
-#include "ResourceManager.h"
+#include "EntityManager.h"
 #include "Texture2d.h"
 #include "Chrono.h"
 #include "Singleton.h"

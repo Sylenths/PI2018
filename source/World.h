@@ -48,7 +48,7 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : atmosphere(0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
+    World(const std::string name, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
@@ -57,10 +57,10 @@ public:
         totalPower = 0;
         usedPower = 0;
         elapsedTime = 0;
-        fondationGrid[std::make_pair(0,0)]= new Fondation(0,0,0,false);
+        fondationGrid[std::make_pair(0,0)]= new Fondation("", 0,0,0,false);
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
         addModel(fondationGrid[std::make_pair(0,0)]);
-        flatGround =  new Model(0.0, 0.0, 0.0, ResourceManager::getTexture("grass"), false, "../../models/obj/grass.obj");
+        flatGround =  new Model("", 0.0, 0.0, 0.0, ResourceManager::getTexture("grass"), false, "../../models/obj/grass.obj");
         addModel(flatGround);
         test = 0;
 
@@ -76,20 +76,20 @@ public:
 
 
           switch(rand() % 8) {
-            case 0: addModel(new Model(x, 0.0, z, ResourceManager::getTexture("bambou"),false, "../../models/obj/tree2.0.obj")); break;
-            case 1: addModel(new Model(x, 0.0, z, ResourceManager::getTexture("cerisier"),false, "../../models/obj/tree2.0.obj")); break;
-            case 2: addModel(new Model(x, 0.0, z, ResourceManager::getTexture("fraksinus"),false, "../../models/obj/tree2.0.obj")); break;
-            case 3: addModel(new Model(x, 0.0, z, ResourceManager::getTexture("gongko"),false, "../../models/obj/tree2.0.obj")); break;
-            case 4: addModel(new Model(x, 0.0, z, ResourceManager::getTexture("mapple"),false, "../../models/obj/tree2.0.obj")); break;
-            case 5: addModel(new Model(x, 0.0, z, ResourceManager::getTexture("oak"),false, "../../models/obj/tree2.0.obj")); break;
-            case 6: addModel(new Model(x, 0.0, z, ResourceManager::getTexture("pin"),false, "../../models/obj/tree2.0.obj")); break;
-            case 7: addModel(new Model(x, 0.0, z, ResourceManager::getTexture("sequoia"),false, "../../models/obj/tree2.0.obj")); break;
+            case 0: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("bambou"),false, "../../models/obj/tree2.0.obj")); break;
+            case 1: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("cerisier"),false, "../../models/obj/tree2.0.obj")); break;
+            case 2: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("fraksinus"),false, "../../models/obj/tree2.0.obj")); break;
+            case 3: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("gongko"),false, "../../models/obj/tree2.0.obj")); break;
+            case 4: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("mapple"),false, "../../models/obj/tree2.0.obj")); break;
+            case 5: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("oak"),false, "../../models/obj/tree2.0.obj")); break;
+            case 6: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("pin"),false, "../../models/obj/tree2.0.obj")); break;
+            case 7: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("sequoia"),false, "../../models/obj/tree2.0.obj")); break;
           }
 
         }
 
 
-        Model* simCoinMiner = new Model(0.0, 0.0, 5.0, ResourceManager::getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj");
+        Model* simCoinMiner = new Model("", 0.0, 0.0, 5.0, ResourceManager::getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj");
         simCoinMiner->setShadingOn();
         addModel(simCoinMiner);
 

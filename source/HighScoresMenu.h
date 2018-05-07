@@ -36,9 +36,9 @@ public:
 
     /// Constructeur
     HighScoresMenu(){
-        models["backButtonHighscore"] = new Button (498, 550, 0.l, 284, 113, ResourceManager::getTexture("backButton"),ResourceManager::getTexture("BackButtonOver"));
+        models["backButtonHighscore"] = new Button ("backButtonHighscore", 498, 550, 0.l, 284, 113, ResourceManager::getTexture("backButton"),ResourceManager::getTexture("BackButtonOver"));
         models["backButtonHighscore"]->onClick = [this]() { Scene::changeActiveScene(previous); };
-        models["fond"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getTexture("FondHighscore"));
+        models["fond"] = new Image ("fond", 0, 0, 0, 1280, 720, ResourceManager::getTexture("FondHighscore"));
 
         for (int i = 0; i < 10 ; ++i)
             scores[i] = new Scores();
@@ -66,7 +66,7 @@ public:
                 y = 185;
             }
 
-            labelModels[labelNameBuffer] = new Label(ResourceManager::getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1);
+            labelModels[labelNameBuffer] = new Label("", ResourceManager::getResource<Font*>("font - arial28")->getFont(), {128,128,128,0},labelbuffer, x, y, 0.1);
             y += 75;
 
 

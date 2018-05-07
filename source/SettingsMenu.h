@@ -15,21 +15,21 @@ class SettingsMenu : public Menu {
 public:
     /// Constructeur
     SettingsMenu() {
-        models["FondSettings"] = new Image (0, 0, 0, 1280, 720, ResourceManager::getTexture("FondSettings"));
+        models["FondSettings"] = new Image ("FondSettings", 0, 0, 0, 1280, 720, ResourceManager::getTexture("FondSettings"));
 
-        models["1labelActiveCamera"]       = new Label(ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Camera on     :    G   ", 71, 200, 0.1);
-        models["1labelDesactiveCamera"]    = new Label(ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Camera off    :    F   ", 71, 260, 0.1);
-        models["1labelPauseMenu"]          = new Label(ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Pause menu    :    ESC   ", 71, 310,0.1);
-        models["FPSLabel"]                 = new Label(ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Active FPS visibility  :", 71, 360, 0.1);
+        models["1labelActiveCamera"]       = new Label("1labelActiveCamera", ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Camera on     :    G   ", 71, 200, 0.1);
+        models["1labelDesactiveCamera"]    = new Label("1labelDesactiveCamera", ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Camera off    :    F   ", 71, 260, 0.1);
+        models["1labelPauseMenu"]          = new Label("1labelPauseMenu", ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Pause menu    :    ESC   ", 71, 310,0.1);
+        models["FPSLabel"]                 = new Label("FPSLabel", ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Active FPS visibility  :", 71, 360, 0.1);
 
-        models["1labelMoveForward"]        = new Label(ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move forward  :    W   ", 650, 200, 0.1);
-        models["1labelMoveBackward"]       = new Label(ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move backward :    S   ", 650, 260, 0.1);
-        models["1labelMoveLeft"]           = new Label(ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move left     :    A   ", 650, 310, 0.1);
-        models["1labelMoveRight"]          = new Label(ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move right    :    D   ", 650, 360, 0.1);
+        models["1labelMoveForward"]        = new Label("1labelMoveForward", ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move forward  :    W   ", 650, 200, 0.1);
+        models["1labelMoveBackward"]       = new Label("1labelMoveBackward", ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move backward :    S   ", 650, 260, 0.1);
+        models["1labelMoveLeft"]           = new Label("1labelMoveLeft", ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move left     :    A   ", 650, 310, 0.1);
+        models["1labelMoveRight"]          = new Label("1labelMoveRight", ResourceManager::getResource<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move right    :    D   ", 650, 360, 0.1);
 
-        models["FPSButton"] = new CheckBox (380, 360, 0, 250, 50, ResourceManager::getTexture("FPSButtonNO"), ResourceManager::getTexture("FPSButtonYES"));
+        models["FPSButton"] = new CheckBox ("FPSButton", 380, 360, 0, 250, 50, ResourceManager::getTexture("FPSButtonNO"), ResourceManager::getTexture("FPSButtonYES"));
         models["FPSButton"]->onClick = [this] () {showFPS();};
-        models["1backButton"]  = new Button (498, 550, 0, 284, 113, ResourceManager::getTexture("backButton"), ResourceManager::getTexture("BackButtonOver"));
+        models["1backButton"]  = new Button ("1backButton", 498, 550, 0, 284, 113, ResourceManager::getTexture("backButton"), ResourceManager::getTexture("BackButtonOver"));
         models["1backButton"]->onClick = [this]() { Scene::changeActiveScene(previous); };
     }
 

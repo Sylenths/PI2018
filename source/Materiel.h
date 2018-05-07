@@ -8,10 +8,9 @@
 #ifndef SOURCE_MATERIEL_H
 #define SOURCE_MATERIEL_H
 
-#include "ResourceManager.h"
-#include "ProjetFinal.h"
+#include "includes.h"
 
-class Materiel{
+class Materiel {
 private:
     unsigned int resistance, price, textureID, masse, pointDeRupture;
     std::string description;
