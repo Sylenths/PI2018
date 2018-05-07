@@ -15,9 +15,9 @@ class InformationWindow : public SideWindow{
 public:
 
     InformationWindow(){
-        modelsSideWindow["SideMenuInformation"] = new Image("SideMenuInformation", 920.0, 0.0, 0.0, 360.0, 720.0, ResourceManager::getTexture("InformationWindow"));
+        modelsSideWindow["SideMenuInformation"] = new Image("SideMenuInformation", 920.0, 0.0, 0.0, 360.0, 720.0, EntityManager::get<Texture2d*>("InformationWindow")->getID());
 
-        //modelsSideWindow["2test"] = new TextWindow(ResourceManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Salut\nles\ngens\nje\ntest\ndes\ntrucs", 1000, 200, 0, 300, 300);
+        //modelsSideWindow["2test"] = new TextWindow(EntityManager::getInstance()->getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Salut\nles\ngens\nje\ntest\ndes\ntrucs", 1000, 200, 0, 300, 300);
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){

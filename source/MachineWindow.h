@@ -14,30 +14,30 @@ class MachineWindow : public SideWindow{
 public:
 
     MachineWindow(){
-        modelsSideWindow["SideMenuMachine"] = new Image("SideMenuMachine", 920, 0, 0, 360, 720, ResourceManager::getTexture("MachineWindow"));
+        modelsSideWindow["SideMenuMachine"] = new Image("SideMenuMachine", 920, 0, 0, 360, 720, EntityManager::get<Texture2d*>("MachineWindow")->getID());
 
         //Building Button
-        modelsSideWindow["1BuildingButtonMachine"] = new Button ("1BuildingButtonMachine", 930, 580, 0, 340, 60, ResourceManager::getTexture("BuildButton"), ResourceManager::getTexture("BuildButtonOver"));
+        modelsSideWindow["1BuildingButtonMachine"] = new Button ("1BuildingButtonMachine", 930, 580, 0, 340, 60, EntityManager::get<Texture2d*>("BuildButton")->getID(), EntityManager::get<Texture2d*>("BuildButtonOver")->getID());
         modelsSideWindow["1BuildingButtonMachine"]->onClick = [this] () {};
 
-        modelsSideWindow["1CancelButtonMachine"] = new Button ("1CancelButtonMachine", 930, 650, 0, 340, 60, ResourceManager::getTexture("CancelButton"), ResourceManager::getTexture("CancelButtonOver"));
+        modelsSideWindow["1CancelButtonMachine"] = new Button ("1CancelButtonMachine", 930, 650, 0, 340, 60, EntityManager::get<Texture2d*>("CancelButton")->getID(), EntityManager::get<Texture2d*>("CancelButtonOver")->getID());
         modelsSideWindow["1CancelButtonMachine"]->onClick = [this] () {onCancelClick();};
 
-        modelsSideWindow["1UpButton"] = new Button("1UpButton", 1260,50,0,25,45, ResourceManager::getTexture("UpButton"));
+        modelsSideWindow["1UpButton"] = new Button("1UpButton", 1260,50,0,25,45, EntityManager::get<Texture2d*>("UpButton")->getID());
         modelsSideWindow["1UpButton"]->onClick = [this](){scrollMenu->ScrollUp();};
 
-        modelsSideWindow["1DownButton"] = new Button("1DownButton", 1260,245,0,25,45, ResourceManager::getTexture("DownButton"));
+        modelsSideWindow["1DownButton"] = new Button("1DownButton", 1260,245,0,25,45, EntityManager::get<Texture2d*>("DownButton")->getID());
         modelsSideWindow["1DownButton"]->onClick = [this](){scrollMenu->ScrollDown();};
 
         //Création des bouttons de machine.
-        menuDeroulantBoutons[0] = new Button("", 920,50,0,340,80, ResourceManager::getTexture("SimcoinsButton"), ResourceManager::getTexture("SimcoinsButtonOver"));
-        menuDeroulantBoutons[1] = new Button("", 920,130,0,340,80, ResourceManager::getTexture("PanneauSolaireButton"), ResourceManager::getTexture("PanneauSolaireButtonOver"));
-        menuDeroulantBoutons[2] = new Button("", 920,210,0,340,80, ResourceManager::getTexture("WindTurbineButton"), ResourceManager::getTexture("WindTurbineButtonOver"));
-        menuDeroulantBoutons[3] = new Button("", 920,50,0,340,80, ResourceManager::getTexture("PanneauSolaireButton"), ResourceManager::getTexture("PanneauSolaireButtonOver"));
-        menuDeroulantBoutons[4] = new Button("", 920,130,0,340,80, ResourceManager::getTexture("PanneauSolaireButton"), ResourceManager::getTexture("PanneauSolaireButtonOver"));
-        menuDeroulantBoutons[5] = new Button("", 920,210,0,340,80, ResourceManager::getTexture("PanneauSolaireButton"), ResourceManager::getTexture("PanneauSolaireButtonOver"));
-        menuDeroulantBoutons[6] = new Button("", 920,50,0,340,80, ResourceManager::getTexture("PanneauSolaireButton"), ResourceManager::getTexture("PanneauSolaireButtonOver"));
-        menuDeroulantBoutons[7] = new Button("", 920,130,0,340,80, ResourceManager::getTexture("PanneauSolaireButton"), ResourceManager::getTexture("PanneauSolaireButtonOver"));
+        menuDeroulantBoutons[0] = new Button("", 920,50,0,340,80, EntityManager::get<Texture2d*>("SimcoinsButton")->getID(), EntityManager::get<Texture2d*>("SimcoinsButtonOver")->getID());
+        menuDeroulantBoutons[1] = new Button("", 920,130,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->getID(), EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->getID());
+        menuDeroulantBoutons[2] = new Button("", 920,210,0,340,80, EntityManager::get<Texture2d*>("WindTurbineButton")->getID(), EntityManager::get<Texture2d*>("WindTurbineButtonOver")->getID());
+        menuDeroulantBoutons[3] = new Button("", 920,50,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->getID(), EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->getID());
+        menuDeroulantBoutons[4] = new Button("", 920,130,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->getID(), EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->getID());
+        menuDeroulantBoutons[5] = new Button("", 920,210,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->getID(), EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->getID());
+        menuDeroulantBoutons[6] = new Button("", 920,50,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->getID(), EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->getID());
+        menuDeroulantBoutons[7] = new Button("", 920,130,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->getID(), EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->getID());
         //Création du menu déroulant.
         scrollMenu = new ScrollingMenu(menuDeroulantBoutons,3);
         closeWindow = false;

@@ -35,111 +35,93 @@ public:
     /// Chargeur de texture (les mets automatiquement dans le ressource manager).
     /// \param filename Fichier de texture a charger.
     /// \param textureName Nom significatif a donner a la texture.
-    static void getTextureID(const char* filename, std::string textureName) {
-            unsigned int textureID;
-            glGenTextures(1, &textureID);
-            glBindTexture(GL_TEXTURE_2D, textureID);
-
-            SDL_Surface* surface = IMG_Load(filename);
-            #if defined(_WIN32) || defined(__linux__)
-              glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, surface->w, surface->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
-	    #else
-              glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, surface->w, surface->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, surface->pixels);
-	    #endif
-            SDL_FreeSurface(surface);
-
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-              glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-            ResourceManager::addTexture(textureName, textureID);
+    static void getTextureID(const char* fileName, std::string textureName) {
+        EntityManager::add(new Texture2d(textureName, fileName));
     }
 
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
         //Texture pour le InGameOverlay
-        Texture2d* texture2d = new Texture2d("alert", "../../images/alert_ico.png");
-        getTextureID("../../images/alert_ico.png", "alert");
-        getTextureID("../../images/delete_btn.png", "delete");
-        getTextureID("../../images/info_btn.png", "info");
-        getTextureID("../../images/Machines_btn.png", "machine");
-        getTextureID("../../images/skipturn_btn.png", "skipTurn");
-        getTextureID("../../images/struct_btn.png", "structure");
-        getTextureID("../../images/topbar_tex.png", "topBar");
-        getTextureID("../../images/wire_btn.png", "wire");
-        getTextureID("../../images/Delete.png", "deletewindow");
-        getTextureID("../../images/SideMenuStructure.png", "StructureWindow");
-        getTextureID("../../images/ChoixNonAppuyer.png", "ChoixNonAppuyer");
-        getTextureID("../../images/ChoixAppuyer.png", "ChoixAppuyer");
-        getTextureID("../../images/SideMenuMachine.png","MachineWindow");
-        getTextureID("../../images/SideMenuInformation.png","InformationWindow");
-        getTextureID("../../images/SideMenuCable.png","CableWindow");
-        getTextureID("../../images/BuildButton.png","BuildButton");
-        getTextureID("../../images/BuildButtonOver.png","BuildButtonOver");
-        getTextureID("../../images/CancelButton.png","CancelButton");
-        getTextureID("../../images/CancelButtonOver.png","CancelButtonOver");
-        getTextureID("../../images/SimCoinMinerButtonO.png","SimcoinsButtonOver");
-        getTextureID("../../images/SimCoinMinerButton.png","SimcoinsButton");
-        getTextureID("../../images/PanneauSolaireO.png","PanneauSolaireButtonOver");
-        getTextureID("../../images/PanneauSolaire.png","PanneauSolaireButton");
-        getTextureID("../../images/WindTurbineButtonO.png","WindTurbineButtonOver");
-        getTextureID("../../images/WindTurbineButton.png","WindTurbineButton");
-        getTextureID("../../images/UpButton.png","UpButton");
-        getTextureID("../../images/DownButton.png","DownButton");
+        EntityManager::add(new Texture2d("alert", "../../images/alert_ico.png"));
+        EntityManager::add(new Texture2d("delete", "../../images/delete_btn.png"));
+        EntityManager::add(new Texture2d("info", "../../images/info_btn.png"));
+        EntityManager::add(new Texture2d("machine", "../../images/Machines_btn.png"));
+        EntityManager::add(new Texture2d("skipTurn", "../../images/skipturn_btn.png"));
+        EntityManager::add(new Texture2d("structure", "../../images/struct_btn.png"));
+        EntityManager::add(new Texture2d("topBar", "../../images/topbar_tex.png"));
+        EntityManager::add(new Texture2d("wire", "../../images/wire_btn.png"));
+        EntityManager::add(new Texture2d("deletewindow", "../../images/Delete.png"));
+        EntityManager::add(new Texture2d("StructureWindow", "../../images/SideMenuStructure.png"));
+        EntityManager::add(new Texture2d("ChoixNonAppuyer", "../../images/ChoixNonAppuyer.png"));
+        EntityManager::add(new Texture2d("ChoixAppuyer", "../../images/ChoixAppuyer.png"));
+        EntityManager::add(new Texture2d("MachineWindow", "../../images/SideMenuMachine.png"));
+        EntityManager::add(new Texture2d("InformationWindow", "../../images/SideMenuInformation.png"));
+        EntityManager::add(new Texture2d("CableWindow", "../../images/SideMenuCable.png"));
+        EntityManager::add(new Texture2d("BuildButton", "../../images/BuildButton.png"));
+        EntityManager::add(new Texture2d("BuildButtonOver", "../../images/BuildButtonOver.png"));
+        EntityManager::add(new Texture2d("CancelButton", "../../images/CancelButton.png"));
+        EntityManager::add(new Texture2d("CancelButtonOver", "../../images/CancelButtonOver.png"));
+        EntityManager::add(new Texture2d("SimcoinsButtonOver", "../../images/SimCoinMinerButtonO.png"));
+        EntityManager::add(new Texture2d("SimcoinsButton", "../../images/SimCoinMinerButton.png"));
+        EntityManager::add(new Texture2d("PanneauSolaireButtonOver", "../../images/PanneauSolaireO.png"));
+        EntityManager::add(new Texture2d("PanneauSolaireButton", "../../images/PanneauSolaire.png"));
+        EntityManager::add(new Texture2d("WindTurbineButtonOver", "../../images/WindTurbineButtonO.png"));
+        EntityManager::add(new Texture2d("WindTurbineButton", "../../images/WindTurbineButton.png"));
+        EntityManager::add(new Texture2d("UpButton", "../../images/UpButton.png"));
+        EntityManager::add(new Texture2d("DownButton", "../../images/DownButton.png"));
 
         //Textures world
-        getTextureID("../../images/skysphere_day.png", "daysky");
-        getTextureID("../../images/skysphere_night.png", "nightsky");
-        getTextureID("../../images/grass.png", "grass");
+        EntityManager::add(new Texture2d("daysky", "../../images/skysphere_day.png"));
+        EntityManager::add(new Texture2d("nightsky", "../../images/skysphere_night.png"));
+        EntityManager::add(new Texture2d("grass", "../../images/grass.png"));
 
-        getTextureID("../../images/trees/bambou.png", "bambou");
-        getTextureID("../../images/trees/cerisier.png", "cerisier");
-        getTextureID("../../images/trees/fraksinus.png", "fraksinus");
-        getTextureID("../../images/trees/gongko.png", "gongko");
-        getTextureID("../../images/trees/mapple.png", "mapple");
-        getTextureID("../../images/trees/oak.png", "oak");
-        getTextureID("../../images/trees/pin.png", "pin");
-        getTextureID("../../images/trees/sequoia.png", "sequoia");
+        EntityManager::add(new Texture2d("bambou", "../../images/trees/bambou.png"));
+        EntityManager::add(new Texture2d("cerisier", "../../images/trees/cerisier.png"));
+        EntityManager::add(new Texture2d("fraksinus", "../../images/trees/fraksinus.png"));
+        EntityManager::add(new Texture2d("gongko", "../../images/trees/gongko.png"));
+        EntityManager::add(new Texture2d("mapple", "../../images/trees/mapple.png"));
+        EntityManager::add(new Texture2d("oak", "../../images/trees/oak.png"));
+        EntityManager::add(new Texture2d("pin", "../../images/trees/pin.png"));
+        EntityManager::add(new Texture2d("sequoia", "../../images/trees/sequoia.png"));
 
-        getTextureID("../../images/fondation.png", "fondation");
-        getTextureID("../../images/wall.png", "wall");
-        getTextureID("../../images/human.png","human");
-        getTextureID("../../images/clouds.png", "clouds");
-        getTextureID("../../images/simcoinminer.png", "simcoinminer");
+        EntityManager::add(new Texture2d("fondation", "../../images/fondation.png"));
+        EntityManager::add(new Texture2d("wall", "../../images/wall.png"));
+        EntityManager::add(new Texture2d("human", "../../images/human.png"));
+        EntityManager::add(new Texture2d("clouds", "../../images/clouds.png"));
+        EntityManager::add(new Texture2d("simcoinminer", "../../images/simcoinminer.png"));
 
         //Textures boutons menu principal
-        getTextureID("../../images/start.png", "ButtonStart");
-        getTextureID("../../images/starto.png", "ButtonStartOver");
-        getTextureID("../../images/settings.png", "ButtonSettings");
-        getTextureID("../../images/settingso.png", "ButtonSettingsOver");
-        getTextureID("../../images/highscore.png", "ButtonHighScore");
-        getTextureID("../../images/highscoreo.png", "ButtonHighScoreOver");
-        getTextureID("../../images/QuitGame.png", "ButtonQuitGame");
-        getTextureID("../../images/QuitGameOver.png", "ButtonQuitGameOver");
-        getTextureID("../../images/maisonApp.png", "FondMaison");
+        EntityManager::add(new Texture2d("ButtonStart", "../../images/start.png"));
+        EntityManager::add(new Texture2d("ButtonStartOver", "../../images/starto.png"));
+        EntityManager::add(new Texture2d("ButtonSettings", "../../images/settings.png"));
+        EntityManager::add(new Texture2d("ButtonSettingsOver", "../../images/settingso.png"));
+        EntityManager::add(new Texture2d("ButtonHighScore", "../../images/highscore.png"));
+        EntityManager::add(new Texture2d("ButtonHighScoreOver", "../../images/highscoreo.png"));
+        EntityManager::add(new Texture2d("ButtonQuitGame", "../../images/QuitGame.png"));
+        EntityManager::add(new Texture2d("ButtonQuitGameOver", "../../images/QuitGameOver.png"));
+        EntityManager::add(new Texture2d("FondMaison", "../../images/maisonApp.png"));
 
         //Textures boutons settings
-        getTextureID("../../images/BoutonNO.png", "FPSButton");
-        getTextureID("../../images/BoutonNO.png", "FPSButtonNO");
-        getTextureID("../../images/BoutonYES.png", "FPSButtonYES");
-        getTextureID("../../images/BoutonBack.png", "backButton");
-        getTextureID("../../images/SettingsMenu.png", "FondSettings");
-        getTextureID("../../images/backOver.png", "BackButtonOver");
-        getTextureID("../../images/BoutonYESOver.png", "FPSButtonYESOVER");
-        getTextureID("../../images/BoutonNOOver.png", "FPSButtonNOOVER");
+        EntityManager::add(new Texture2d("FPSButton", "../../images/BoutonNO.png"));
+        EntityManager::add(new Texture2d("FPSButtonNO", "../../images/BoutonNO.png"));
+        EntityManager::add(new Texture2d("FPSButtonYES", "../../images/BoutonYES.png"));
+        EntityManager::add(new Texture2d("backButton", "../../images/BoutonBack.png"));
+        EntityManager::add(new Texture2d("FondSettings", "../../images/SettingsMenu.png"));
+        EntityManager::add(new Texture2d("BackButtonOver", "../../images/backOver.png"));
+        EntityManager::add(new Texture2d("FPSButtonYESOVER", "../../images/BoutonYESOver.png"));
+        EntityManager::add(new Texture2d("FPSButtonNOOVER", "../../images/BoutonNOOver.png"));
 
         //Textures menu Highscore
-        getTextureID("../../images/MenuHighScore.png","FondHighscore");
+        EntityManager::add(new Texture2d("FondHighscore", "../../images/MenuHighScore.png"));
 
         //Textures Pause Menu
-        getTextureID("../../images/PauseQuitGame.png", "PauseQuitGame");
-        getTextureID("../../images/PauseQuitGameOver.png", "PauseQuitGameOver");
-        getTextureID("../../images/PauseResumeGame.png", "PauseResumeGame");
-        getTextureID("../../images/PauseResumeGameOver.png", "PauseResumeGameOver");
-        getTextureID("../../images/PauseSettings.png", "PauseSettings");
-        getTextureID("../../images/PauseSettingsOver.png", "PauseSettingsOver");
-        getTextureID("../../images/PauseMenuFond.png", "PauseMenuFond");
+        EntityManager::add(new Texture2d("PauseQuitGame", "../../images/PauseQuitGame.png"));
+        EntityManager::add(new Texture2d("PauseQuitGameOver", "../../images/PauseQuitGameOver.png"));
+        EntityManager::add(new Texture2d("PauseResumeGame", "../../images/PauseResumeGame.png"));
+        EntityManager::add(new Texture2d("PauseResumeGameOver", "../../images/PauseResumeGameOver.png"));
+        EntityManager::add(new Texture2d("PauseSettings", "../../images/PauseSettings.png"));
+        EntityManager::add(new Texture2d("PauseSettingsOver", "../../images/PauseSettingsOver.png"));
+        EntityManager::add(new Texture2d("PauseMenuFond", "../../images/PauseMenuFond.png"));
     }
 
 	/// Constructeur
@@ -693,19 +675,19 @@ public:
                     unsigned int texture;
                     switch (SideWindow::materialType) {
                         case CARDBOARD:
-                            texture = ResourceManager::getTexture("wall");
+                            texture = EntityManager::get<Texture2d*>("wall")->getID();
                             break;
                         case WOOD:
-                            texture = ResourceManager::getTexture("fondMaison");
+                            texture = EntityManager::get<Texture2d*>("fondMaison")->getID();
                             break;
                         case ROCK:
-                            texture = ResourceManager::getTexture("daysky");
+                            texture = EntityManager::get<Texture2d*>("daysky")->getID();
                             break;
                         case METAL:
-                            texture = ResourceManager::getTexture("nightsky");
+                            texture = EntityManager::get<Texture2d*>("nightsky")->getID();
                             break;
                         case SIMTIUM:
-                            texture = ResourceManager::getTexture("grass");
+                            texture = EntityManager::get<Texture2d*>("grass")->getID();
                             break;
                     }
 
@@ -886,19 +868,19 @@ public:
             unsigned int texture;
             switch(SideWindow::materialType){
                 case CARDBOARD:
-                    texture = ResourceManager::getTexture("wall");
+                    texture = EntityManager::get<Texture2d*>("wall")->getID();
                     break;
                 case WOOD:
-                    texture = ResourceManager::getTexture("fondMaison");
+                    texture = EntityManager::get<Texture2d*>("fondMaison")->getID();
                     break;
                 case ROCK:
-                    texture = ResourceManager::getTexture("daysky");
+                    texture = EntityManager::get<Texture2d*>("daysky")->getID();
                     break;
                 case METAL:
-                    texture = ResourceManager::getTexture("nightsky");
+                    texture = EntityManager::get<Texture2d*>("nightsky")->getID();
                     break;
                 case SIMTIUM:
-                    texture = ResourceManager::getTexture("grass");
+                    texture = EntityManager::get<Texture2d*>("grass")->getID();
                     break;
             }
 

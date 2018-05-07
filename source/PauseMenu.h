@@ -16,15 +16,15 @@ public:
 
     ///Constructeur
     PauseMenu(){
-        models["PauseMenuFond"] = new Image("PauseMenuFond", 0, 0, 0, 1280, 720, ResourceManager::getTexture("PauseMenuFond"));
+        models["PauseMenuFond"] = new Image("PauseMenuFond", 0, 0, 0, 1280, 720, EntityManager::get<Texture2d*>("PauseMenuFond")->getID());
 
-        models["1resumeGameButton"] = new Button ("1resumeGameButton", 238, 225, 0, 786, 113, ResourceManager::getTexture("PauseResumeGame"), ResourceManager::getTexture("PauseResumeGameOver"));
+        models["1resumeGameButton"] = new Button ("1resumeGameButton", 238, 225, 0, 786, 113, EntityManager::get<Texture2d*>("PauseResumeGame")->getID(), EntityManager::get<Texture2d*>("PauseResumeGameOver")->getID());
         models["1resumeGameButton"]->onClick = [this]() {Scene::changeActiveScene("World");};
 
-        models["2settingsButton"] = new Button ("2settingsButton", 238, 350, 0, 786, 113, ResourceManager::getTexture("PauseSettings"), ResourceManager::getTexture("PauseSettingsOver"));
+        models["2settingsButton"] = new Button ("2settingsButton", 238, 350, 0, 786, 113, EntityManager::get<Texture2d*>("PauseSettings")->getID(), EntityManager::get<Texture2d*>("PauseSettingsOver")->getID());
         models["2settingsButton"]->onClick = [this]() {Scene::changeActiveScene("SettingsMenu");};
 
-        models["3quitGameButton"] = new Button ("3quitGameButton", 238, 475, 0, 786, 113, ResourceManager::getTexture("PauseQuitGame"), ResourceManager::getTexture("PauseQuitGameOver"));
+        models["3quitGameButton"] = new Button ("3quitGameButton", 238, 475, 0, 786, 113, EntityManager::get<Texture2d*>("PauseQuitGame")->getID(), EntityManager::get<Texture2d*>("PauseQuitGameOver")->getID());
         models["3quitGameButton"]->onClick = [this]() {Scene::changeActiveScene("MainMenu");};
 
     }

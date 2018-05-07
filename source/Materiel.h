@@ -15,10 +15,9 @@ private:
     unsigned int resistance, price, textureID, masse, pointDeRupture;
     std::string description;
 public:
-    Materiel( unsigned int resistance, unsigned int price, unsigned int masse, unsigned int pointDeRupture, unsigned int textureID){
+    Materiel( unsigned int resistance, unsigned int price, unsigned int masse, unsigned int pointDeRupture){
         this->price = price;
         this->resistance = resistance;
-        this->textureID = textureID;
         this->masse = masse;
         this->pointDeRupture = pointDeRupture;
         description = "";
@@ -56,10 +55,10 @@ public:
     }
 };
 
-Materiel* Materiel::carton = new Materiel(5,1,2,5,ResourceManager::getTexture("bambou"));
-Materiel* Materiel::bois = new Materiel(4,2,3,4,ResourceManager::getTexture("bambou"));
-Materiel* Materiel::pierre = new Materiel(3,3,4,3,ResourceManager::getTexture("bambou"));
-Materiel* Materiel::metal = new Materiel(2,4,5,2,ResourceManager::getTexture("bambou"));
-Materiel* Materiel::simtium = new Materiel(1,1,1,5,ResourceManager::getTexture("bambou"));
+Materiel* Materiel::carton = new Materiel(5,1,2,5);
+Materiel* Materiel::bois = new Materiel(4,2,3,4);
+Materiel* Materiel::pierre = new Materiel(3,3,4,3);
+Materiel* Materiel::metal = new Materiel(2,4,5,2);
+Materiel* Materiel::simtium = new Materiel(1,1,1,5);
 
 #endif //SOURCE_MATERIEL_H

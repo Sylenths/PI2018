@@ -16,7 +16,7 @@ public:
     Fondation* east;
     Fondation* west;
 
-    Fondation(const std::string name, double posx, double posy, double posz, bool rotHitBox,  unsigned int textureID = ResourceManager::getTexture("fondation"), const char* objFile = "../../models/obj/fondation.obj") : Structure(name, posx, posy, posz, textureID, rotHitBox, objFile){
+    Fondation(const std::string name, double posx, double posy, double posz, bool rotHitBox,  unsigned int textureID = EntityManager::get<Texture2d*>("fondation")->getID(), const char* objFile = "../../models/obj/fondation.obj") : Structure(name, posx, posy, posz, textureID, rotHitBox, objFile){
         north = south = east = west = nullptr;
         centerPoint = new Vector(posx,posy,posz);
 

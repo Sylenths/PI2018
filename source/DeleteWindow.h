@@ -14,7 +14,7 @@ class DeleteWindow : public SideWindow{
 public:
 
     DeleteWindow(){
-        modelsSideWindow["logoDestruction"] = new Image("logoDestruction", 700, 0, 0.1, 260, 60, ResourceManager::getTexture("deletewindow"));
+        modelsSideWindow["logoDestruction"] = new Image("logoDestruction", 700, 0, 0.1, 260, 60, EntityManager::get<Texture2d*>("deletewindow")->getID());
     }
 
     void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){

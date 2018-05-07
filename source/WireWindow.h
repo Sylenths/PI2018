@@ -11,22 +11,22 @@ class WireWindow : public SideWindow{
 public:
 
     WireWindow(){
-        modelsSideWindow["SideMenuWire"] = new Image("SideMenuWire", 920, 0, 0, 360, 720, ResourceManager::getTexture("CableWindow"));
+        modelsSideWindow["SideMenuWire"] = new Image("SideMenuWire", 920, 0, 0, 360, 720, EntityManager::get<Texture2d*>("CableWindow")->getID());
 
         //type matériaux
-        modelsSideWindow["1CuivreIcon"] = new CheckBox ("1CuivreIcon", 1000, 90, 0, 50, 50, ResourceManager::getTexture("ChoixNonAppuyer"), ResourceManager::getTexture("ChoixAppuyer"));
+        modelsSideWindow["1CuivreIcon"] = new CheckBox ("1CuivreIcon", 1000, 90, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->getID(), EntityManager::get<Texture2d*>("ChoixAppuyer")->getID());
         modelsSideWindow["1CuivreIcon"]->onClick = [this] () {onCopperClick();};
-        modelsSideWindow["1CuivreLabel"] = new Label("1CuivreLabel", ResourceManager::getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Cuivre", 1000, 150, 0);
+        modelsSideWindow["1CuivreLabel"] = new Label("1CuivreLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Cuivre", 1000, 150, 0);
 
-        modelsSideWindow["1ArgentIcon"] = new CheckBox ("1ArgentIcon", 1160, 90, 0, 50, 50, ResourceManager::getTexture("ChoixNonAppuyer"), ResourceManager::getTexture("ChoixAppuyer"));
+        modelsSideWindow["1ArgentIcon"] = new CheckBox ("1ArgentIcon", 1160, 90, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->getID(), EntityManager::get<Texture2d*>("ChoixAppuyer")->getID());
         modelsSideWindow["1ArgentIcon"]->onClick = [this] () {onSilverClick();};
-        modelsSideWindow["1ArgentLabel"] = new Label("1ArgentLabel", ResourceManager::getResource<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Argent", 1160, 150, 0);
+        modelsSideWindow["1ArgentLabel"] = new Label("1ArgentLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Argent", 1160, 150, 0);
 
         //Building Button
-        modelsSideWindow["1BuildingButtonWire"] = new Button ("1BuildingButtonWire", 930, 580, 0, 340, 60, ResourceManager::getTexture("BuildButton"), ResourceManager::getTexture("BuildButtonOver"));
+        modelsSideWindow["1BuildingButtonWire"] = new Button ("1BuildingButtonWire", 930, 580, 0, 340, 60, EntityManager::get<Texture2d*>("BuildButton")->getID(), EntityManager::get<Texture2d*>("BuildButtonOver")->getID());
         modelsSideWindow["1BuildingButtonWire"]->onClick = [this] () {onBuildClick();};
 
-        modelsSideWindow["1CancelButtonWire"] = new Button ("1CancelButtonWire", 930, 650, 0, 340, 60, ResourceManager::getTexture("CancelButton"), ResourceManager::getTexture("CancelButtonOver"));
+        modelsSideWindow["1CancelButtonWire"] = new Button ("1CancelButtonWire", 930, 650, 0, 340, 60, EntityManager::get<Texture2d*>("CancelButton")->getID(), EntityManager::get<Texture2d*>("CancelButtonOver")->getID());
         modelsSideWindow["1CancelButtonWire"]->onClick = [this] () {onCancelClick();};
     }
     void onCancelClick(){

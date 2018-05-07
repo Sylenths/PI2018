@@ -35,7 +35,7 @@ private:
 
 public:
 
-    Atmosphere(const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : sky(name, 0.0, 0.0, 0.0,ResourceManager::getTexture("daysky"), ResourceManager::getTexture("nightsky") ,false, "../../models/obj/skysphere.obj"), Model(name, posx, posy, posz, textureID, rotHitBox, objFile) {
+    Atmosphere(const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : sky(name, 0.0, 0.0, 0.0,EntityManager::get<Texture2d*>("daysky")->getID(), EntityManager::get<Texture2d*>("nightsky")->getID() ,false, "../../models/obj/skysphere.obj"), Model(name, posx, posy, posz, textureID, rotHitBox, objFile) {
         x2 = X1 + TRANSITIONTIME;
         x4 = X3 + TRANSITIONTIME;
         multiplicator1 = ((-ALPHADAY) / (x2 - X1));

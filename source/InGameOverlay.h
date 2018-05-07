@@ -92,28 +92,28 @@ public:
     /// \param windSpeed Force du vent en pourcentage
     /// \param timeLeft Temps restant a la phase de construction.
     void loadHUDTexture(unsigned int powerCount, unsigned int simCoinCount, unsigned int temperatureC, unsigned int sunPower, unsigned int windSpeed, unsigned int timeLeft){
-        Font* fontArial = ResourceManager::getResource<Font*>("font - arial30");
+        Font* fontArial = EntityManager::get<Font*>("font - arial30");
 
-        models["skipturn"] = new Button ("skipturn", 0, 0, 0.1, 175, 60,ResourceManager::getTexture("skipTurn"));
+        models["skipturn"] = new Button ("skipturn", 0, 0, 0.1, 175, 60,EntityManager::get<Texture2d*>("skipTurn")->getID());
         models["skipturn"]->onClick = [this]() {};
 
-        models["structure"] = new Button ("structure", 0, 630, 0.1, 90, 90, ResourceManager::getTexture("structure"));
+        models["structure"] = new Button ("structure", 0, 630, 0.1, 90, 90, EntityManager::get<Texture2d*>("structure")->getID());
         models["structure"]->onClick = [this]() { activeStructureSideWindow(); };
 
-        models["machine"] = new Button ("machine", 90, 630, 0.1, 90, 90,ResourceManager::getTexture("machine"));
+        models["machine"] = new Button ("machine", 90, 630, 0.1, 90, 90,EntityManager::get<Texture2d*>("machine")->getID());
         models["machine"]->onClick = [this]() { activeMachineSideWindow(); };
 
-        models["cablage"] = new Button ("cablage", 180, 630, 0.1, 90, 90,ResourceManager::getTexture("wire"));
+        models["cablage"] = new Button ("cablage", 180, 630, 0.1, 90, 90,EntityManager::get<Texture2d*>("wire")->getID());
         models["cablage"]->onClick = [this]() { activeWireSideWindow(); };
 
-        models["info"] = new Button ("info", 270, 630, 0.1, 90, 90,ResourceManager::getTexture("info"));
+        models["info"] = new Button ("info", 270, 630, 0.1, 90, 90,EntityManager::get<Texture2d*>("info")->getID());
         models["info"]->onClick = [this]() { activeInfoSideWindow(); };
 
-        models["delete"] = new Button ("delete", 360, 630, 0.1, 90, 90, ResourceManager::getTexture("delete"));
+        models["delete"] = new Button ("delete", 360, 630, 0.1, 90, 90, EntityManager::get<Texture2d*>("delete")->getID());
         models["delete"]->onClick = [this]() { activeDeleteSideWindow(); };
 
         //Image2D
-        logoList.push_back(new Image("", 175, 0, 0.1, 540, 60, ResourceManager::getTexture("topBar")));
+        logoList.push_back(new Image("", 175, 0, 0.1, 540, 60, EntityManager::get<Texture2d*>("topBar")->getID()));
 
         //Label
         auto strSimCoin = std::to_string(simCoinCount); // transforme unsigned int en string
@@ -176,39 +176,39 @@ public:
             if(alertCount < 7) //Affiche les alertes dans la colonne de gauche
                 switch (it){
                     case 'p'://pluie/acide
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     case 'n'://neige/acide
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     case 'm'://meteorite/grele
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     case 'v'://vent/tornade
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     case 'f'://feu
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     case 't'://temperature
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     case 'e'://eclair
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60,ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60,EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     case 's'://seisme
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     case 'r'://radiation
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     default:
@@ -218,46 +218,46 @@ public:
             else//affiche les alertes dans la colonne de droite
                 switch (it){
                     case 'p'://pluie/acide
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     case 'n'://neige/acide
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
 
                         break;
 
                     case 'm'://meteorite/grele
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
 
                         break;
 
                     case 'v'://vent/tornade
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
 
                         break;
 
                     case 'f'://feu
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
 
                         break;
 
                     case 't'://temperature
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
 
                         break;
 
                     case 'e'://eclair
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
 
                         break;
 
                     case 's'://seisme
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
 
                         break;
 
                     case 'r'://radiation
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, ResourceManager::getTexture("alert")));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
                         break;
 
                     default:
@@ -271,7 +271,7 @@ public:
     /// \param power nombre d'electricite disponible
     void updatePower(unsigned int power){
         auto s = std::to_string(power);
-        Font* fontArial = ResourceManager::getResource<Font*>("font - arial12");
+        Font* fontArial = EntityManager::get<Font*>("font - arial12");
         ((Label*)models["power"])->updateTextTexture(s, fontArial->getFont(),{255,191,0});
     }
 
@@ -279,7 +279,7 @@ public:
     /// \param SIMcoin nombre de SIMcoins disponibles.
     void updateSIMcoin(unsigned int SIMcoin){
         auto s = std::to_string(SIMcoin);
-        Font* fontArial = ResourceManager::getResource<Font*>("font - arial12");
+        Font* fontArial = EntityManager::get<Font*>("font - arial12");
         ((Label*)models["simCoins"])->updateTextTexture(s, fontArial->getFont(),{0,165,255});
     }
 
@@ -288,7 +288,7 @@ public:
     void updateTemperature(unsigned int temp){
         auto s = std::to_string(temp);
         s.push_back('c');
-        Font* fontArial = ResourceManager::getResource<Font*>("font - arial12");
+        Font* fontArial = EntityManager::get<Font*>("font - arial12");
         ((Label*)models["temperature"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
@@ -296,7 +296,7 @@ public:
     /// \param sunPower La force du soleil en pourcentage
     void updateSunPower(unsigned int sunPower){
         auto s = std::to_string(sunPower);
-        Font* fontArial = ResourceManager::getResource<Font*>("font - arial12");
+        Font* fontArial = EntityManager::get<Font*>("font - arial12");
         ((Label*)models["sun"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
@@ -308,7 +308,7 @@ public:
         s.push_back('m');
         s.push_back('/');
         s.push_back('s');
-        Font* fontArial = ResourceManager::getResource<Font*>("font - arial12");
+        Font* fontArial = EntityManager::get<Font*>("font - arial12");
         ((Label*)models["windSpeed"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
 
@@ -318,7 +318,7 @@ public:
         auto s = std::to_string(time);
         s.push_back(' ');
         s.push_back('s');
-        Font* fontArial = ResourceManager::getResource<Font*>("font - arial12");
+        Font* fontArial = EntityManager::get<Font*>("font - arial12");
         ((Label*)models["time"])->updateTextTexture(s, fontArial->getFont(),{255,255,255});
     }
     int getBuildType(){

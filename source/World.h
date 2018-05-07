@@ -60,7 +60,7 @@ public:
         fondationGrid[std::make_pair(0,0)]= new Fondation("", 0,0,0,false);
         hud = new InGameOverlay(0, simCoin, temperature, sunPower, wind, 0);
         addModel(fondationGrid[std::make_pair(0,0)]);
-        flatGround =  new Model("", 0.0, 0.0, 0.0, ResourceManager::getTexture("grass"), false, "../../models/obj/grass.obj");
+        flatGround =  new Model("", 0.0, 0.0, 0.0, EntityManager::get<Texture2d*>("grass")->getID(), false, "../../models/obj/grass.obj");
         addModel(flatGround);
         test = 0;
 
@@ -76,20 +76,20 @@ public:
 
 
           switch(rand() % 8) {
-            case 0: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("bambou"),false, "../../models/obj/tree2.0.obj")); break;
-            case 1: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("cerisier"),false, "../../models/obj/tree2.0.obj")); break;
-            case 2: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("fraksinus"),false, "../../models/obj/tree2.0.obj")); break;
-            case 3: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("gongko"),false, "../../models/obj/tree2.0.obj")); break;
-            case 4: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("mapple"),false, "../../models/obj/tree2.0.obj")); break;
-            case 5: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("oak"),false, "../../models/obj/tree2.0.obj")); break;
-            case 6: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("pin"),false, "../../models/obj/tree2.0.obj")); break;
-            case 7: addModel(new Model("", x, 0.0, z, ResourceManager::getTexture("sequoia"),false, "../../models/obj/tree2.0.obj")); break;
+            case 0: addModel(new Model("", x, 0.0, z, EntityManager::get<Texture2d*>("bambou")->getID(),false, "../../models/obj/tree2.0.obj")); break;
+            case 1: addModel(new Model("", x, 0.0, z, EntityManager::get<Texture2d*>("cerisier")->getID(),false, "../../models/obj/tree2.0.obj")); break;
+            case 2: addModel(new Model("", x, 0.0, z, EntityManager::get<Texture2d*>("fraksinus")->getID(),false, "../../models/obj/tree2.0.obj")); break;
+            case 3: addModel(new Model("", x, 0.0, z, EntityManager::get<Texture2d*>("gongko")->getID(),false, "../../models/obj/tree2.0.obj")); break;
+            case 4: addModel(new Model("", x, 0.0, z, EntityManager::get<Texture2d*>("mapple")->getID(),false, "../../models/obj/tree2.0.obj")); break;
+            case 5: addModel(new Model("", x, 0.0, z, EntityManager::get<Texture2d*>("oak")->getID(),false, "../../models/obj/tree2.0.obj")); break;
+            case 6: addModel(new Model("", x, 0.0, z, EntityManager::get<Texture2d*>("pin")->getID(),false, "../../models/obj/tree2.0.obj")); break;
+            case 7: addModel(new Model("", x, 0.0, z, EntityManager::get<Texture2d*>("sequoia")->getID(),false, "../../models/obj/tree2.0.obj")); break;
           }
 
         }
 
 
-        Model* simCoinMiner = new Model("", 0.0, 0.0, 5.0, ResourceManager::getTexture("simcoinminer"), true, "../../models/obj/simcoin_miner.obj");
+        Model* simCoinMiner = new Model("", 0.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->getID(), true, "../../models/obj/simcoin_miner.obj");
         simCoinMiner->setShadingOn();
         addModel(simCoinMiner);
 
