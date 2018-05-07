@@ -60,7 +60,7 @@ public:
                         if(textureToDraw == textureIDs["default"])
                             check();
                         else
-                           check();
+                           uncheck();
                         onClick();
                     }break;
 
