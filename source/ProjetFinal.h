@@ -607,12 +607,16 @@ public:
 
                     double x1 = SideWindow::firstWall->getMesh(0);
                     double x2 = SideWindow::secondWall->getMesh(0);
-                    double x3 = SideWindow::firstWall->getMesh(3);
-                    double x4 = SideWindow::secondWall->getMesh(3);
-                    
-                    
-                    
-                    
+                    double x3 = SideWindow::firstWall->getMesh(6);
+                    double x4 = SideWindow::secondWall->getMesh(6);
+                    double x5 = SideWindow::firstWall->getMesh(3);
+                    double x6 = SideWindow::secondWall->getMesh(3);
+                    double x7 = SideWindow::firstWall->getMesh(9);
+                    double x8 = SideWindow::secondWall->getMesh(9);
+                    double x9 = SideWindow::firstWall->getMesh(12);
+                    double x10 = SideWindow::secondWall->getMesh(12);
+                    double x11 = SideWindow::firstWall->getMesh(15);
+                    double x12 = SideWindow::secondWall->getMesh(15);
                     
                     if (x1 < x3) {
                         posx = x1;
@@ -641,8 +645,8 @@ public:
 
                     double z1 = SideWindow::firstWall->getMesh(2);
                     double z2 = SideWindow::secondWall->getMesh(2);
-                    double z3 = SideWindow::firstWall->getMesh(5);
-                    double z4 = SideWindow::secondWall->getMesh(5);
+                    double z3 = SideWindow::firstWall->getMesh(8);
+                    double z4 = SideWindow::secondWall->getMesh(8);
                     
                     if (z1 < z3) {
                         posz = z1;
@@ -670,23 +674,15 @@ public:
                     lenght = abs(max - posz);
 
 
-                    double y1 = SideWindow::firstWall->getMesh(1);
-                    double y2 = SideWindow::secondWall->getMesh(1);
-                    double y3 = SideWindow::firstWall->getMesh(4);
-                    double y4 = SideWindow::secondWall->getMesh(4);
+                    double y1 = SideWindow::firstWall->getMesh(4);
+                    double y2 = SideWindow::secondWall->getMesh(4);
 
-                    if (y1 > y3) {
+
+                    if (y1 > y2) {
                         posy = y1;
                     } else {
-                        posy = y3;
-                    }
-                    if (posy < y2) {
                         posy = y2;
                     }
-                    if (posy < y4) {
-                        posy = y4;
-                    }
-                    
 
                     unsigned int texture;
                     switch (SideWindow::materialType) {
