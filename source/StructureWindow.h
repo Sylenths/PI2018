@@ -29,22 +29,22 @@ public:
         //type de structure
         modelsSideWindow["1FondationIcon"] = new CheckBox ("1FondationIcon", 970, 90, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->getID(), EntityManager::get<Texture2d*>("ChoixAppuyer")->getID());
         modelsSideWindow["1FondationIcon"]->onClick = [this] () { onFoundationClick();};
-        modelsSideWindow["1FondationLabel"] = new Label("1FondationLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Fondation", 970, 150, 0);
+        modelsSideWindow["1FondationLabel"] = new Label("1FondationLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Fondation", 963, 150, 0);
         modelsSideWindow["1FondationDesc"] = new TextWindow("1FondationDesc", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "La structure de base pour permettre de construire les autres types de structure ou de machines.", 1110, 440, 0, 135, 300, modelsSideWindow["1FondationIcon"]);
 
         modelsSideWindow["1MurIcon"] = new CheckBox ("1MurIcon", 1040, 90, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->getID(), EntityManager::get<Texture2d*>("ChoixAppuyer")->getID());
         modelsSideWindow["1MurIcon"]->onClick = [this] () { onWallClick();};
-        modelsSideWindow["1MurLabel"] = new Label("1MurLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Mur", 1040, 150, 0);
+        modelsSideWindow["1MurLabel"] = new Label("1MurLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Mur", 1050, 150, 0);
         modelsSideWindow["1MurDesc"] = new TextWindow("1MurDesc", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "La structure permet de construire des murs sur tous les fondations, il faut rentrer une hauteur en parametre.", 1110, 440, 0, 135, 300, modelsSideWindow["1MurIcon"]);
 
         modelsSideWindow["1PlancherIcon"] = new CheckBox ("1PlancherIcon", 1110, 90, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->getID(), EntityManager::get<Texture2d*>("ChoixAppuyer")->getID());
         modelsSideWindow["1PlancherIcon"]->onClick = [this] () {onFloorClick();};
-        modelsSideWindow["1PlanLabel"] = new Label("1PlanLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Plancher", 1110, 150, 0);
+        modelsSideWindow["1PlanLabel"] = new Label("1PlanLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Plancher", 1105, 150, 0);
         modelsSideWindow["1PlancherDesc"] = new TextWindow("1PlancherDesc", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "La structure permet de construire des planchers sur des fondations possedant des murs, il faut rentrer l'etage sur lequel on veut travailler.", 1110, 440, 0, 135, 300, modelsSideWindow["1PlancherIcon"]);
 
         modelsSideWindow["1ToitIcon"] = new CheckBox ("1ToitIcon", 1180, 90, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->getID(), EntityManager::get<Texture2d*>("ChoixAppuyer")->getID());
         modelsSideWindow["1ToitIcon"]->onClick = [this] () {onRoofClick();};
-        modelsSideWindow["1ToitLabel"] = new Label("1ToitLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Toit", 1180, 150, 0);
+        modelsSideWindow["1ToitLabel"] = new Label("1ToitLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Toit", 1190, 150, 0);
         modelsSideWindow["1ToitDesc"] = new TextWindow("1ToitDesc", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "La structure permet de construire un toit sur des fondations possedant des murs.", 1110, 440, 0, 135, 300, modelsSideWindow["1ToitIcon"]);
 
         //type de matérieux

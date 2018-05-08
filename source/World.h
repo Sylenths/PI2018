@@ -24,7 +24,6 @@ private:
     Vector wind;
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
     Light* worldLight, * hudLight;
-    Matrix fanRotationMatrix;
     Chrono chrono;
 
 public:

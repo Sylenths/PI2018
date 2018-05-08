@@ -31,7 +31,6 @@ private:
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
     SideWindow* sideWindow; ///< Pointe la fenêtre de coté active
     std::map<std::string, SideWindow*> sideWindowMap; ///< Carte de sideWindow
-    //RotatingImage* windIndicator;
     SideWindow* lastSideWindow; ///< Pointe la dernière fenêtre de coté
 public:
     bool activeSideWindow;
@@ -92,7 +91,7 @@ public:
     /// \param windSpeed Force du vent en pourcentage
     /// \param timeLeft Temps restant a la phase de construction.
     void loadHUDTexture(unsigned int powerCount, unsigned int simCoinCount, unsigned int temperatureC, unsigned int sunPower, unsigned int windSpeed, unsigned int timeLeft){
-        Font* fontArial = EntityManager::get<Font*>("font - arial30");
+        Font* fontArial = EntityManager::get<Font*>("font - arial32");
 
         models["skipturn"] = new Button ("skipturn", 0, 0, 0.1, 175, 60,EntityManager::get<Texture2d*>("skipTurn")->getID());
         models["skipturn"]->onClick = [this]() {};
@@ -341,8 +340,6 @@ public:
             SideWindow::opened = true;
         sideWindow = sideWindowMap["Structure"];
 
-        // TODO: Code Structure mode
-
     }
 
     /// Active la fenêtre de construction de machine
@@ -357,8 +354,6 @@ public:
         sideWindow = sideWindowMap["Machine"];
 
 
-
-        // TODO: Code delete mode
     }
 
     /// Active la fenêtre de construction de cable
@@ -373,9 +368,6 @@ public:
         sideWindow = sideWindowMap["Wire"];
 
 
-
-
-        // TODO: Code Wire mode
     }
     /// Active la fenêtre d'information
     void activeInfoSideWindow(){
@@ -388,8 +380,6 @@ public:
             SideWindow::opened = true;
         sideWindow = sideWindowMap["Information"];
 
-        // TODO: Code Info mode
-
     }
     /// Active la fenêtre de destruction
     void activeDeleteSideWindow(){
@@ -401,7 +391,6 @@ public:
             SideWindow::opened = true;
         sideWindow = sideWindowMap["Delete"];
 
-        // TODO: Code delete mode
     }
 
     void scrollingMenuUpdateSubscribe(std::map<unsigned int, Observable<SDL_Event*>*>& observables){
@@ -445,7 +434,6 @@ public:
         for (auto it : sideWindowMap)
             delete it.second;
 
-        //delete sideWindow;
             delete camera;
 
     }

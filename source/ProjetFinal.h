@@ -146,14 +146,6 @@ public:
             FPSchrono.restart();
         }
     }
-   /* Observable<SDL_Event*>* getMBDObservable(){
-        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
-        return observables[SDL_MOUSEBUTTONDOWN];
-    }
-    Observable<SDL_Event*>* getMMObservable(){
-        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
-        return observables[SDL_MOUSEMOTION];
-    }*/
 
 
     /// Représente la boucle de jeu.
