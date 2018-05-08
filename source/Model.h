@@ -134,13 +134,7 @@ public:
         vertices[y] = nv.y;
         vertices[z] = nv.z;
 
-            nv.x = m.m14;
-            nv.y = m.m24;
-            nv.z = m.m34;
-
-            vertices[x] += nv.x;
-            vertices[y] += nv.y;
-            vertices[z] += nv.z;
+          
 
 
 
