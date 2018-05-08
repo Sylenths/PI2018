@@ -17,10 +17,14 @@ public:
         modelsSideWindow["1CuivreIcon"] = new CheckBox ("1CuivreIcon", 1000, 90, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->ID, EntityManager::get<Texture2d*>("ChoixAppuyer")->ID);
         modelsSideWindow["1CuivreIcon"]->onClick = [this] () {onCopperClick();};
         modelsSideWindow["1CuivreLabel"] = new Label("1CuivreLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Cuivre", 1000, 150, 0);
+        modelsSideWindow["1CuivreDesc"] = new TextWindow("1CuivreDesc", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, Materiel::cuivre->getDescription(), 925, 300, 0, 135, 300, modelsSideWindow["1CuivreIcon"]);
+
 
         modelsSideWindow["1ArgentIcon"] = new CheckBox ("1ArgentIcon", 1160, 90, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->ID, EntityManager::get<Texture2d*>("ChoixAppuyer")->ID);
         modelsSideWindow["1ArgentIcon"]->onClick = [this] () {onSilverClick();};
         modelsSideWindow["1ArgentLabel"] = new Label("1ArgentLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Argent", 1160, 150, 0);
+        modelsSideWindow["1ArgentDesc"] = new TextWindow("1ArgentDesc", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, Materiel::argent->getDescription(), 925, 300, 0, 135, 300, modelsSideWindow["1ArgentIcon"]);
+
 
         //Building Button
         modelsSideWindow["1BuildingButtonWire"] = new Button ("1BuildingButtonWire", 930, 580, 0, 340, 60, EntityManager::get<Texture2d*>("BuildButton")->ID, EntityManager::get<Texture2d*>("BuildButtonOver")->ID);
