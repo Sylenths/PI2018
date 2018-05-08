@@ -61,6 +61,8 @@ public:
         EntityManager::add(new Texture2d("WindTurbineButton", "../../images/WindTurbineButton.png"));
         EntityManager::add(new Texture2d("UpButton", "../../images/UpButton.png"));
         EntityManager::add(new Texture2d("DownButton", "../../images/DownButton.png"));
+        EntityManager::add(new Texture2d("PlusButton", "../../images/BoutonPlus.png"));
+        EntityManager::add(new Texture2d("MoinsButton", "../../images/BoutonMoins.png"));
 
         //Textures world
         EntityManager::add(new Texture2d("daysky", "../../images/skysphere_day.png"));
