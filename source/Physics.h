@@ -1,10 +1,10 @@
 /// \brief Classe de méthodes statiques pour les calculs de physique et de collisions.
 /// \details
 /// \author Samuel Labelle
-/// \date 25 Avril 2018
+/// \date 7 mai 2018
 /// \version 0.2
-/// \warning Non extensivement testée
-/// \bug Les calculs ne sont pas optimisés.
+/// \warning Non extensivement testée, les collisions des sphères sont incomplètes.
+/// \bug Les calculs ne sont pas optimisés, les collisions des sphères sont incomplètes.
 
 #ifndef PHYSICS_H
 #define PHYSICS_H
