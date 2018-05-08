@@ -5,18 +5,22 @@
 
 class Menu2d : public Scene {
 protected:
-    std::map<std::string, VisualEntity2d*> entities2d; ///< Liste des entités visuels 2D à afficher.
+    std::list<VisualEntity2d*> visualEntities2d; ///< Liste des entités visuels 2D à afficher.
 
 public:
     virtual ~Menu2d() {
-        for (auto it : entities2d)
-            delete it.second;
+        for (auto it : visualEntities2d)
+            delete it;
     }
 
     virtual void draw() {
-        for (auto it : entities2d)
-            if (it.second->visible)
-                it.second->draw();
+        glDisable(GL_DEPTH_TEST);
+
+        for (auto it : visualEntities2d)
+            if (it->visible)
+                it->draw();
+
+        glEnable(GL_DEPTH_TEST);
     }
 
     virtual void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;

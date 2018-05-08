@@ -88,13 +88,22 @@ Graphe d'héritage de World:</div>
 Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:a4a32eea35f52c41d2e664df0f8ad716d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#a4a32eea35f52c41d2e664df0f8ad716d">addModel</a> (<a class="el" href="class_model.html">Model</a> *model)</td></tr>
 <tr class="separator:a4a32eea35f52c41d2e664df0f8ad716d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe61a159b52ae8fa36333e45d4581836"><td class="memItemLeft" align="right" valign="top"><a id="afe61a159b52ae8fa36333e45d4581836"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#afe61a159b52ae8fa36333e45d4581836">World</a> (unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, <a class="el" href="struct_vector.html">Vector</a> wind)</td></tr>
-<tr class="memdesc:afe61a159b52ae8fa36333e45d4581836"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur, tout les models nécéssaires sont loadés ici. <br /></td></tr>
-<tr class="separator:afe61a159b52ae8fa36333e45d4581836"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac79e07f3289d34dd93b27b03363142fe"><td class="memItemLeft" align="right" valign="top"><a id="ac79e07f3289d34dd93b27b03363142fe"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>checkForActions</b> ()</td></tr>
-<tr class="separator:ac79e07f3289d34dd93b27b03363142fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11ab9a58fe11a6748ef8bb55aa82702a"><td class="memItemLeft" align="right" valign="top"><a id="a11ab9a58fe11a6748ef8bb55aa82702a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addWall</b> (<a class="el" href="class_model.html">Model</a> *model)</td></tr>
+<tr class="separator:a11ab9a58fe11a6748ef8bb55aa82702a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c9bbd07f019ebef61cc3d462e6ae625"><td class="memItemLeft" align="right" valign="top"><a id="a7c9bbd07f019ebef61cc3d462e6ae625"></a>
+std::list&lt; <a class="el" href="class_model.html">Model</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>getWallList</b> ()</td></tr>
+<tr class="separator:a7c9bbd07f019ebef61cc3d462e6ae625"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b07b083f927b1220013220aa0a8b3a"><td class="memItemLeft" align="right" valign="top"><a id="a76b07b083f927b1220013220aa0a8b3a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#a76b07b083f927b1220013220aa0a8b3a">World</a> (const std::string name, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, <a class="el" href="struct_vector.html">Vector</a> wind)</td></tr>
+<tr class="memdesc:a76b07b083f927b1220013220aa0a8b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur, tout les models nécéssaires sont loadés ici. <br /></td></tr>
+<tr class="separator:a76b07b083f927b1220013220aa0a8b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd8dd7a40b6a07b49a2bb5d292df01ae"><td class="memItemLeft" align="right" valign="top"><a id="acd8dd7a40b6a07b49a2bb5d292df01ae"></a>
+std::map&lt; std::pair&lt; int, int &gt;, <a class="el" href="class_fondation.html">Fondation</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>getFondations</b> ()</td></tr>
+<tr class="separator:acd8dd7a40b6a07b49a2bb5d292df01ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a09bb35a5c7dee094962438abe8de40"><td class="memItemLeft" align="right" valign="top"><a id="a3a09bb35a5c7dee094962438abe8de40"></a>
+std::vector&lt; std::map&lt; std::pair&lt; int, int &gt;, <a class="el" href="class_floor.html">Floor</a> * &gt; &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>getFloors</b> ()</td></tr>
+<tr class="separator:a3a09bb35a5c7dee094962438abe8de40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab51a17ccbb108616daacd0c34973dc8d"><td class="memItemLeft" align="right" valign="top"><a id="ab51a17ccbb108616daacd0c34973dc8d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#ab51a17ccbb108616daacd0c34973dc8d">draw</a> ()</td></tr>
 <tr class="memdesc:ab51a17ccbb108616daacd0c34973dc8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affichage des models. <br /></td></tr>
@@ -132,14 +141,14 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Attributs publics</h2></td></tr>
-<tr class="memitem:a7c8458d2b41f00aab641aeb112df9718"><td class="memItemLeft" align="right" valign="top"><a id="a7c8458d2b41f00aab641aeb112df9718"></a>
-<a class="el" href="class_model.html">Model</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>floor</b></td></tr>
-<tr class="separator:a7c8458d2b41f00aab641aeb112df9718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af648386d1868f10ef65c8333ae298156"><td class="memItemLeft" align="right" valign="top"><a id="af648386d1868f10ef65c8333ae298156"></a>
+<a class="el" href="class_model.html">Model</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>flatGround</b></td></tr>
+<tr class="separator:af648386d1868f10ef65c8333ae298156"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa79648a8e080a98ddab1ef35b57a078c"><td class="memItemLeft" align="right" valign="top"><a id="aa79648a8e080a98ddab1ef35b57a078c"></a>
 <a class="el" href="class_in_game_overlay.html">InGameOverlay</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>hud</b></td></tr>
 <tr class="separator:aa79648a8e080a98ddab1ef35b57a078c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8c8a439c4d0a0da004ee9c929d68372"><td class="memItemLeft" align="right" valign="top"><a id="ab8c8a439c4d0a0da004ee9c929d68372"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>test</b> = 0</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>test</b></td></tr>
 <tr class="separator:ab8c8a439c4d0a0da004ee9c929d68372"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -155,15 +164,11 @@ static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="
 static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#aec0d55a02c9ead4198c4a96319b9347c">getActiveFPS</a> ()</td></tr>
 <tr class="memdesc:aec0d55a02c9ead4198c4a96319b9347c inherit pub_static_methods_class_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourner un booléen "vrai" si l'affichage des fps est activé. <br /></td></tr>
 <tr class="separator:aec0d55a02c9ead4198c4a96319b9347c inherit pub_static_methods_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_static_attribs_class_scene"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_class_scene')"><img src="closed.png" alt="-"/>&#160;Attributs publics statiques hérités de <a class="el" href="class_scene.html">Scene</a></td></tr>
-<tr class="memitem:a9314eda7d1fd5b621b12394b1b28599f inherit pub_static_attribs_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="a9314eda7d1fd5b621b12394b1b28599f"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>sceneChange</b> = false</td></tr>
-<tr class="separator:a9314eda7d1fd5b621b12394b1b28599f inherit pub_static_attribs_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_class_scene"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_class_scene')"><img src="closed.png" alt="-"/>&#160;Attributs protégés statiques hérités de <a class="el" href="class_scene.html">Scene</a></td></tr>
-<tr class="memitem:a92287a5fab9d8dba7bb464c5f8a6bc8e inherit pro_static_attribs_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="a92287a5fab9d8dba7bb464c5f8a6bc8e"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a92287a5fab9d8dba7bb464c5f8a6bc8e">activeScene</a> = &quot;MainMenu&quot;</td></tr>
-<tr class="memdesc:a92287a5fab9d8dba7bb464c5f8a6bc8e inherit pro_static_attribs_class_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir quel menu est actif. <br /></td></tr>
-<tr class="separator:a92287a5fab9d8dba7bb464c5f8a6bc8e inherit pro_static_attribs_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b4659f25115d7a5c77d17588b1404ed inherit pro_static_attribs_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="a6b4659f25115d7a5c77d17588b1404ed"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a6b4659f25115d7a5c77d17588b1404ed">active</a> = &quot;MainMenu&quot;</td></tr>
+<tr class="memdesc:a6b4659f25115d7a5c77d17588b1404ed inherit pro_static_attribs_class_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir quel menu est actif. <br /></td></tr>
+<tr class="separator:a6b4659f25115d7a5c77d17588b1404ed inherit pro_static_attribs_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a2e352f822b420f6ea691a11e613674 inherit pro_static_attribs_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="a6a2e352f822b420f6ea691a11e613674"></a>
 static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a6a2e352f822b420f6ea691a11e613674">previous</a> = &quot; &quot;</td></tr>
 <tr class="memdesc:a6a2e352f822b420f6ea691a11e613674 inherit pro_static_attribs_class_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir quel était le menu précédent actif. <br /></td></tr>

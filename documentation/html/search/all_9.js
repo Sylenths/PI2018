@@ -1,7 +1,8 @@
 var searchData=
 [
   ['liste_20des_20bogues',['Liste des bogues',['../bug.html',1,'']]],
-  ['label',['Label',['../class_label.html',1,'Label'],['../class_label.html#a7ac0197b8d46629cf169a4e4ed89c5aa',1,'Label::Label()']]],
+  ['label',['Label',['../class_label.html',1,'Label'],['../class_label.html#af2d19e1bd1386f3a155ba6bbed25000f',1,'Label::Label()']]],
+  ['label2d',['Label2d',['../class_label2d.html',1,'']]],
   ['light',['Light',['../class_light.html',1,'Light'],['../class_light.html#a692f536bfa8538480c092def40b66062',1,'Light::Light()']]],
   ['loadarbitraryrotation',['loadArbitraryRotation',['../struct_matrix.html#a55ccbb920bbe3ec7b2532440a6077723',1,'Matrix']]],
   ['loadhudtexture',['loadHUDTexture',['../class_in_game_overlay.html#ac306897111d1611b6cf0ff343f68d6f1',1,'InGameOverlay']]],

@@ -4,11 +4,10 @@
 #include "includes.h"
 
 class Texture2d : public Entity {
-private:
+public:
     unsigned int ID;
     int width, height;
 
-public:
     Texture2d(const std::string& name, const char* fileName) : Entity(name) {
         glGenTextures(1, &ID);
         glBindTexture(GL_TEXTURE_2D, ID);
@@ -35,16 +34,6 @@ public:
 
     virtual ~Texture2d() {
         glDeleteTextures(1, &ID);
-    }
-
-    const unsigned int getID() const { return ID; }
-    const int getWidth() const { return width; }
-    const int getHeight() const { return height; }
-
-    void set(const unsigned int& ID, const int& width, const int& height) {
-        this->ID = ID;
-        this->width = width;
-        this->height = height;
     }
 };
 

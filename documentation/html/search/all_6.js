@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['get',['get',['../class_entity_manager.html#aa78fe4faff447d619f86d623b455f089',1,'EntityManager']]],
   ['get2dtexturesize',['get2DTextureSize',['../class_projet_final.html#abaf70600b05ce3d9ab1bfcaed40a26c6',1,'ProjetFinal']]],
   ['getactiontype',['getActionType',['../class_action.html#af610349e59bdf55c9f6108ef323b64da',1,'Action']]],
   ['getactivefps',['getActiveFPS',['../class_scene.html#aec0d55a02c9ead4198c4a96319b9347c',1,'Scene']]],
@@ -7,6 +8,8 @@ var searchData=
   ['getanglefromhorizon',['getAngleFromHorizon',['../class_camera.html#a009e2b908f7789e0000d79adb17a9515',1,'Camera']]],
   ['getcamera',['getCamera',['../class_in_game_overlay.html#ab18f8532526bed37f53ce53a7283d5f7',1,'InGameOverlay::getCamera()'],['../class_scene.html#ab97b197efe209a68a2eb12f65dce4cf2',1,'Scene::getCamera()'],['../class_world.html#aa1b875b5944fec66d00ae89a1aef3f4f',1,'World::getCamera()']]],
   ['getclickmouseposition',['getClickMousePosition',['../class_controller.html#a33ab4201442e87e3a815d234456db894',1,'Controller']]],
+  ['getclosestpointonlinesegment',['getClosestPointOnLineSegment',['../class_physics.html#a34bee460d1a162b5561f0df2b43c10a1',1,'Physics']]],
+  ['getclosestpointontrisides',['getClosestPointOnTriSides',['../class_physics.html#adbd153e580203e04a8e25e784ec30022',1,'Physics']]],
   ['getdata',['getData',['../class_action_double.html#a8689115d17bdd8c84f9b5df10a1b81f0',1,'ActionDouble::getData()'],['../class_action_int.html#a213b69ccad879d4b3eb5c5437f0d8dc7',1,'ActionInt::getData()']]],
   ['getelapsed',['getElapsed',['../class_chrono.html#a725ddde6342a4c0385d2b33525112b1f',1,'Chrono']]],
   ['getfront',['getFront',['../class_camera.html#af915ca4a6e13daa482caf02739351635',1,'Camera']]],
@@ -19,9 +22,6 @@ var searchData=
   ['getnormalized',['getNormalized',['../struct_vector.html#a5faabd57f3f5bae4381a4bdd2d7f3f96',1,'Vector']]],
   ['getnormalizedhorizontalcomponents',['getNormalizedHorizontalComponents',['../struct_vector.html#acf04cabe1c30c898c1bd12fcc2f9f8a3',1,'Vector']]],
   ['getpos',['getPos',['../class_camera.html#aa29961423657e6ab4f61d2734c07cbf9',1,'Camera']]],
-  ['getresource',['getResource',['../class_resource_manager.html#a36e1aa92116f3d5ec30cfc62ac0a2259',1,'ResourceManager']]],
-  ['gettexture',['getTexture',['../class_resource_manager.html#ae1f882a42ea298740729f3a5b73f238c',1,'ResourceManager']]],
-  ['gettextureid',['getTextureID',['../class_projet_final.html#a875de5e4530bb767a4d1fa266674e477',1,'ProjetFinal']]],
   ['gettype',['getType',['../class_action_double.html#aabd6f7b4ab9fe050a67225240bb687f9',1,'ActionDouble::getType()'],['../class_action_int.html#a6634bb3319d5f0f4a53892243a8cfc08',1,'ActionInt::getType()'],['../class_action_parameter.html#ae20305f66def25ec6759973b45d99893',1,'ActionParameter::getType()']]],
   ['glcontext',['GLContext',['../class_g_l_context.html',1,'GLContext'],['../class_g_l_context.html#adea958a6f2efc929125f74b68a581bef',1,'GLContext::GLContext()']]],
   ['grabinput',['grabInput',['../class_g_l_context.html#a1e4e8d544e8e6f57d5d54e24c1e943a5',1,'GLContext']]]

@@ -5,33 +5,26 @@
 
 class Button2d : public VisualEntity2d {
 private:
-    Label2d label2d;
+    Image2d* background;
+    Label2d* title;
 
 public:
-    Button2d(const std::string& name, const Vector& position, const Vector2d& size, Font* font, const std::string& text, const SDL_Color& color) : VisualEntity2d(name, position, size), label2d("lbl" + name, position, font, text, color) {
+    Button2d(const std::string& name, const Vector& position, Texture2d* texture, Font* font, const std::string& text, const SDL_Color& color) : VisualEntity2d(name, position, Vector2d(texture->width, texture->height)) {
         onClick = nullptr;
-        label2d.position.x = (size.x / 2.0) - (label2d.getWidth() / 2.0) + position.x;
-        label2d.position.y = (size.y / 2.0) - (label2d.getHeight() / 2.0) + position.y;
+        background = new Image2d("ButtonBackground", position, texture);
+        title = new Label2d("lblButtonTitle", position, font, text, color);
+        title->position.x = (size.x / 2.0) - (title->texture.width / 2.0) + position.x;
+        title->position.y = (size.y / 2.0) - (title->texture.height / 2.0) + position.y;
+    }
+
+    ~Button2d() {
+        delete title;
+        delete background;
     }
 
     void draw() {
-        glDisable(GL_DEPTH_TEST);
-        glDisable(GL_TEXTURE_2D);
-        glEnable(GL_COLOR);
-
-        glBegin(GL_QUADS);
-            glColor4d(1.0, 1.0, 1.0, 0.5);
-            glVertex3d(position.x, position.y, 0.0);
-            glVertex3d(position.x + size.x, position.y, 0.0);
-            glVertex3d(position.x + size.x, position.y + size.y, 0.0);
-            glVertex3d(position.x, position.y + size.y, 0.0);
-        glEnd();
-
-        glDisable(GL_COLOR);
-        glEnable(GL_DEPTH_TEST);
-        glEnable(GL_TEXTURE_2D);
-
-        label2d.draw();
+        background->draw();
+        title->draw();
     }
 
     void notify(SDL_Event *sdlEvent) {

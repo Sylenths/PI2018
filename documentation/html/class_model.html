@@ -64,6 +64,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
 <a href="#pub-attribs">Attributs publics</a> &#124;
+<a href="#pro-methods">Fonctions membres protégées</a> &#124;
 <a href="#pro-attribs">Attributs protégés</a> &#124;
 <a href="#friends">Amis</a> &#124;
 <a href="class_model-members.html">Liste de tous les membres</a>  </div>
@@ -82,16 +83,18 @@ Graphe d'héritage de Model:</div>
  <div class="center">
   <img src="class_model.png" usemap="#Model_map" alt=""/>
   <map id="Model_map" name="Model_map">
-<area href="class_resource.html" title="Représentation de tous les resources nécessaires au projet. " alt="Resource" shape="rect" coords="255,0,415,24"/>
-<area href="class_observer.html" alt="Observer&lt; SDL_Event *&gt;" shape="rect" coords="425,0,585,24"/>
-<area href="class_atmosphere.html" title="Gestion de l&#39;atmosphère. " alt="Atmosphere" shape="rect" coords="0,112,160,136"/>
+<area href="class_entity.html" alt="Entity" shape="rect" coords="340,0,500,24"/>
+<area href="class_observer.html" alt="Observer&lt; SDL_Event *&gt;" shape="rect" coords="510,0,670,24"/>
+<area href="class_atmosphere.html" alt="Atmosphere" shape="rect" coords="0,112,160,136"/>
 <area href="class_image.html" title="Représentation d&#39;une image. " alt="Image" shape="rect" coords="170,112,330,136"/>
 <area href="class_label.html" title="Classe représentant un étiquette. " alt="Label" shape="rect" coords="340,112,500,136"/>
 <area href="class_sky.html" title="Gestion du ciel. " alt="Sky" shape="rect" coords="510,112,670,136"/>
 <area href="class_structure.html" title="Classe mère de d&#39;autre classe. " alt="Structure" shape="rect" coords="680,112,840,136"/>
+<area href="class_text_window.html" alt="TextWindow" shape="rect" coords="850,112,1010,136"/>
 <area href="class_button.html" title="Représentation d&#39;un bouton. " alt="Button" shape="rect" coords="85,168,245,192"/>
 <area href="class_check_box.html" title="Représentation d&#39;une case à cocher. " alt="CheckBox" shape="rect" coords="255,168,415,192"/>
-<area href="class_fondation.html" title="Represente les fondation sur les quelles les mur vont être construit. " alt="Fondation" shape="rect" coords="680,168,840,192"/>
+<area href="class_floor.html" alt="Floor" shape="rect" coords="595,168,755,192"/>
+<area href="class_fondation.html" title="Represente les fondation sur les quelles les mur vont être construit. " alt="Fondation" shape="rect" coords="765,168,925,192"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -99,16 +102,17 @@ Graphe d'héritage de Model:</div>
 Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:aeb04209946f35684bb6e5d231df5944e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#aeb04209946f35684bb6e5d231df5944e">transform</a> (<a class="el" href="struct_matrix.html">Matrix</a> &amp;m)</td></tr>
 <tr class="separator:aeb04209946f35684bb6e5d231df5944e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a41427a455e4281b0f54ea7052396e4"><td class="memItemLeft" align="right" valign="top"><a id="a6a41427a455e4281b0f54ea7052396e4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateShadingVertex</b> (double *obstruction, unsigned int <a class="el" href="class_model.html#aef8356f6096d0acb524a2dcd00c9e846">vertexCount</a>, <a class="el" href="struct_vector.html">Vector</a> sun)</td></tr>
-<tr class="separator:a6a41427a455e4281b0f54ea7052396e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add75a73c4c39d6485b6d617d8639f069"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#add75a73c4c39d6485b6d617d8639f069">Model</a> (double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char *objFile=nullptr)</td></tr>
-<tr class="separator:add75a73c4c39d6485b6d617d8639f069"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ca90743df834390fab6ceb6d06f6e4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a7ca90743df834390fab6ceb6d06f6e4b">Model</a> (const std::string &amp;name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char *objFile=nullptr)</td></tr>
+<tr class="separator:a7ca90743df834390fab6ceb6d06f6e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add574cdd64e52c6b6d430643be0cc185"><td class="memItemLeft" align="right" valign="top"><a id="add574cdd64e52c6b6d430643be0cc185"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setShadingOn</b> ()</td></tr>
 <tr class="separator:add574cdd64e52c6b6d430643be0cc185"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5222680222ba369f9b06cfa3b8dd37b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a5222680222ba369f9b06cfa3b8dd37b8">Model</a> (unsigned int height, unsigned int textureID, <a class="el" href="struct_vector.html">Vector</a> *firstCorner, <a class="el" href="struct_vector.html">Vector</a> *secondCorner)</td></tr>
-<tr class="separator:a5222680222ba369f9b06cfa3b8dd37b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add72361fc5040ce204719406bbff54a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#add72361fc5040ce204719406bbff54a1">Model</a> (const std::string &amp;name, unsigned int height, unsigned int textureID, <a class="el" href="struct_vector.html">Vector</a> *firstCorner, <a class="el" href="struct_vector.html">Vector</a> *secondCorner)</td></tr>
+<tr class="memdesc:add72361fc5040ce204719406bbff54a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de mur.  <a href="#add72361fc5040ce204719406bbff54a1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:add72361fc5040ce204719406bbff54a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5a2d23f1de57b3f0a970edb62ca3388"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#ab5a2d23f1de57b3f0a970edb62ca3388">Model</a> (const std::string &amp;name, unsigned int width, unsigned int height, unsigned int lenght, double posx, double posy, double posz, unsigned int textureID)</td></tr>
+<tr class="memdesc:ab5a2d23f1de57b3f0a970edb62ca3388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de toit.  <a href="#ab5a2d23f1de57b3f0a970edb62ca3388">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab5a2d23f1de57b3f0a970edb62ca3388"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6ebd2062a0b823db841a0b88baac4c0"><td class="memItemLeft" align="right" valign="top"><a id="ad6ebd2062a0b823db841a0b88baac4c0"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#ad6ebd2062a0b823db841a0b88baac4c0">~Model</a> ()</td></tr>
 <tr class="memdesc:ad6ebd2062a0b823db841a0b88baac4c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur. <br /></td></tr>
@@ -120,13 +124,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setTexture</b> (std::
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a95dac41274acb62b3d8885277c8945d7">draw</a> ()</td></tr>
 <tr class="memdesc:a95dac41274acb62b3d8885277c8945d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche le modèle. <br /></td></tr>
 <tr class="separator:a95dac41274acb62b3d8885277c8945d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09c6421883011aee9ddb727e9ecea672"><td class="memItemLeft" align="right" valign="top"><a id="a09c6421883011aee9ddb727e9ecea672"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawAndShading</b> ()</td></tr>
-<tr class="separator:a09c6421883011aee9ddb727e9ecea672"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e285366b5da4f1ddc3c069117e0581c"><td class="memItemLeft" align="right" valign="top"><a id="a2e285366b5da4f1ddc3c069117e0581c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>drawAndShading</b> (<a class="el" href="struct_vector.html">Vector</a> lightPos)</td></tr>
+<tr class="separator:a2e285366b5da4f1ddc3c069117e0581c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c978aa2ae0c5bd6395111eb9586e03b"><td class="memItemLeft" align="right" valign="top"><a id="a0c978aa2ae0c5bd6395111eb9586e03b"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getMesh</b> (int position)</td></tr>
+<tr class="separator:a0c978aa2ae0c5bd6395111eb9586e03b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a943a6c52dd61be4f5fe7e8d60dd83eaf"><td class="memItemLeft" align="right" valign="top"><a id="a943a6c52dd61be4f5fe7e8d60dd83eaf"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a943a6c52dd61be4f5fe7e8d60dd83eaf">notify</a> (SDL_Event *sdlEvent)</td></tr>
 <tr class="memdesc:a943a6c52dd61be4f5fe7e8d60dd83eaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reçoit une notification de l'observable. <br /></td></tr>
 <tr class="separator:a943a6c52dd61be4f5fe7e8d60dd83eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9a0896c3c5d5893620e50c43c3ddc9b"><td class="memItemLeft" align="right" valign="top"><a id="ae9a0896c3c5d5893620e50c43c3ddc9b"></a>
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> ()</td></tr>
+<tr class="separator:ae9a0896c3c5d5893620e50c43c3ddc9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_entity')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques hérités de <a class="el" href="class_entity.html">Entity</a></td></tr>
+<tr class="memitem:ae1a626886554c496fb3891e0835142b0 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="ae1a626886554c496fb3891e0835142b0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (const std::string &amp;name)</td></tr>
+<tr class="separator:ae1a626886554c496fb3891e0835142b0 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8811e270c21f713206d5f673d5fca662 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a8811e270c21f713206d5f673d5fca662"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
+<tr class="separator:a8811e270c21f713206d5f673d5fca662 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Attributs publics</h2></td></tr>
@@ -134,6 +151,18 @@ Attributs publics</h2></td></tr>
 std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a19e7e9a44455ef0601d04c660bb8ea01">onClick</a></td></tr>
 <tr class="memdesc:a19e7e9a44455ef0601d04c660bb8ea01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointeur de méthode réagissant à un click de souris. <br /></td></tr>
 <tr class="separator:a19e7e9a44455ef0601d04c660bb8ea01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Fonctions membres protégées</h2></td></tr>
+<tr class="memitem:a53d8616242c57784edbba95c47f6b8c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a53d8616242c57784edbba95c47f6b8c4">updateShadingVertex</a> (<a class="el" href="struct_vector.html">Vector</a> sun)</td></tr>
+<tr class="separator:a53d8616242c57784edbba95c47f6b8c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1932e33320f56e816bbcefc713075e0"><td class="memItemLeft" align="right" valign="top"><a id="af1932e33320f56e816bbcefc713075e0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>signOfD</b> (double &amp;xCordp, double &amp;zCordp, double &amp;xCord1, double &amp;zCord1, double &amp;xCord2, double &amp;zCord2)</td></tr>
+<tr class="separator:af1932e33320f56e816bbcefc713075e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a832258ba69f2b9748a39798222346176"><td class="memItemLeft" align="right" valign="top"><a id="a832258ba69f2b9748a39798222346176"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a832258ba69f2b9748a39798222346176">cleanShadingVertex</a> ()</td></tr>
+<tr class="memdesc:a832258ba69f2b9748a39798222346176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enlève les triangles de surplus dans l'ombre afin d'enlever les superpositions. <br /></td></tr>
+<tr class="separator:a832258ba69f2b9748a39798222346176"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Attributs protégés</h2></td></tr>
@@ -165,13 +194,16 @@ double *&#160;</td><td class="memItemRight" valign="bottom"><b>verticesHitBox</b
 double *&#160;</td><td class="memItemRight" valign="bottom"><b>normalsHitBox</b></td></tr>
 <tr class="separator:a30bbe013c045e0054e0e33556ccb9881"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a089858e8b3d2c94351e6497d34ced39f"><td class="memItemLeft" align="right" valign="top"><a id="a089858e8b3d2c94351e6497d34ced39f"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>verticesShading</b></td></tr>
+double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a089858e8b3d2c94351e6497d34ced39f">verticesShading</a></td></tr>
+<tr class="memdesc:a089858e8b3d2c94351e6497d34ced39f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de vertices pour l'ombrage. <br /></td></tr>
 <tr class="separator:a089858e8b3d2c94351e6497d34ced39f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58136e9fa46935b7736623973e17bf25"><td class="memItemLeft" align="right" valign="top"><a id="a58136e9fa46935b7736623973e17bf25"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>normalsShading</b></td></tr>
+double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a58136e9fa46935b7736623973e17bf25">normalsShading</a></td></tr>
+<tr class="memdesc:a58136e9fa46935b7736623973e17bf25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de normales pour l'ombrage. <br /></td></tr>
 <tr class="separator:a58136e9fa46935b7736623973e17bf25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1344fbd564e245b16b9be292c0192bea"><td class="memItemLeft" align="right" valign="top"><a id="a1344fbd564e245b16b9be292c0192bea"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>colorsShading</b></td></tr>
+double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a1344fbd564e245b16b9be292c0192bea">colorsShading</a></td></tr>
+<tr class="memdesc:a1344fbd564e245b16b9be292c0192bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Un tableau de couleur RGBA pour chacun des triangles. <br /></td></tr>
 <tr class="separator:a1344fbd564e245b16b9be292c0192bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a997c7dd33d9c4317429574332924b5fd"><td class="memItemLeft" align="right" valign="top"><a id="a997c7dd33d9c4317429574332924b5fd"></a>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a997c7dd33d9c4317429574332924b5fd">textureToDraw</a></td></tr>
@@ -204,14 +236,14 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Physics</b></td></tr
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>La maille est la somme de tous les points pour former une forme géométrique dans OpenGL. </p>
-<dl class="section author"><dt>Auteur</dt><dd>Tai Chen Li, Samuel Labelle, Gabriel Bourdages </dd></dl>
+<dl class="section author"><dt>Auteur</dt><dd>Tai Chen Li, Samuel Labelle, Gabriel Bourdages, Mathilde Harnois </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>28 mars 2018 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.2 </dd></dl>
 <dl class="section warning"><dt>Avertissement</dt><dd>Aucuns. </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000022">Bogue:</a></b></dt><dd>Aucuns. </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000023">Bogue:</a></b></dt><dd>Bug graphique avec l'ombre </dd></dl>
 </div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
-<a id="add75a73c4c39d6485b6d617d8639f069"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add75a73c4c39d6485b6d617d8639f069">&#9670;&nbsp;</a></span>Model() <span class="overload">[1/2]</span></h2>
+<a id="a7ca90743df834390fab6ceb6d06f6e4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ca90743df834390fab6ceb6d06f6e4b">&#9670;&nbsp;</a></span>Model() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,6 +254,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Physics</b></td></tr
         <tr>
           <td class="memname">Model::Model </td>
           <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>posx</em>, </td>
         </tr>
@@ -277,8 +315,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Physics</b></td></tr
 
 </div>
 </div>
-<a id="a5222680222ba369f9b06cfa3b8dd37b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5222680222ba369f9b06cfa3b8dd37b8">&#9670;&nbsp;</a></span>Model() <span class="overload">[2/2]</span></h2>
+<a id="add72361fc5040ce204719406bbff54a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add72361fc5040ce204719406bbff54a1">&#9670;&nbsp;</a></span>Model() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,6 +327,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Physics</b></td></tr
         <tr>
           <td class="memname">Model::Model </td>
           <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>height</em>, </td>
         </tr>
@@ -322,7 +366,86 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Physics</b></td></tr
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructeur de mur. </p>
 <p>sommet</p>
+<p>normal</p>
+<p>coordoné de texture </p>
+
+</div>
+</div>
+<a id="ab5a2d23f1de57b3f0a970edb62ca3388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5a2d23f1de57b3f0a970edb62ca3388">&#9670;&nbsp;</a></span>Model() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Model::Model </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>lenght</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>posx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>posy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>posz</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>textureID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructeur de toit. </p>
+<p>mesh</p>
 <p>normal</p>
 <p>coordoné de texture </p>
 
@@ -355,6 +478,38 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Physics</b></td></tr
 <p>Applique une matrice de transformation au modèle. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">m</td><td>Matrice de transformation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a53d8616242c57784edbba95c47f6b8c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53d8616242c57784edbba95c47f6b8c4">&#9670;&nbsp;</a></span>updateShadingVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Model::updateShadingVertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>sun</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Crée l'ombre du modèle </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sun</td><td>Vecteur indiquant la position du soleil </td></tr>
   </table>
   </dd>
 </dl>

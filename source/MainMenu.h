@@ -1,8 +1,8 @@
 /// \brief Menu principal.
 /// \details Interface graphique utilisateur du menu principal.
-/// \author Antoine Legault
+/// \author Antoine Legault et Patrick Singcaster
 /// \date 24 mars 2018
-/// \version 0.1
+/// \version 0.2
 
 #ifndef MAINMENU_H
 #define MAINMENU_H
@@ -10,42 +10,54 @@
 #include "includes.h"
 
 class MainMenu : public Menu2d {
+private:
+    Texture2d* imageBackground,
+             * buttonBackground;
 public:
     /// Constructeur
     MainMenu(){
-        entities2d["1FondMaison"] = new Image2d("1FondMaison", Vector(0.0, 0.0, 0.0), "../../images/maisonApp.png");
+        buttonBackground = new Texture2d("MenuButtonBackground", "../../images/MainMenuButtonBackground.png");
+        imageBackground = new Texture2d("MainMenuBackground", "../../images/maisonApp.png");
 
-        entities2d["ButtonStart"] = new Button2d("ButtonStart", Vector(967.0, 50.0, 0.0), Vector2d(300, 130), EntityManager::get<Font*>("font - arial28"), "Start", {0, 0, 0});
-        entities2d["ButtonStart"]->onClick = [this]() { Scene::changeActiveScene("World"); };
+        visualEntities2d.push_back(new Image2d("MainMenuBackGround", Vector(0.0, 0.0, 0.0), imageBackground));
 
-        entities2d["ButtonSettings"] = new Button2d("ButtonSettings", Vector(967, 225, 0), Vector2d(300, 130), EntityManager::get<Font*>("font - arial28"), "Settings", {0, 0, 0});
-        entities2d["ButtonSettings"]->onClick = [this]() { Scene::changeActiveScene("SettingsMenu"); };
+        Button2d* button = new Button2d("ButtonStart", Vector(967.0, 50.0, 0.1), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Start", {0, 0, 0});
+        button->onClick = [this]() { Scene::changeActiveScene("World"); };
+        visualEntities2d.push_back(button);
 
-        entities2d["ButtonHighScore"] = new Button2d("ButtonHighScore", Vector(967, 400, 0), Vector2d(300, 130), EntityManager::get<Font*>("font - arial28"), "High Scores", {0, 0, 0});
-        entities2d["ButtonHighScore"]->onClick = [this]() { Scene::changeActiveScene("HighScoresMenu"); };
+        button = new Button2d("ButtonSettings", Vector(967.0, 225.0, 0.1), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Settings", {0, 0, 0});
+        button->onClick = [this]() { Scene::changeActiveScene("SettingsMenu"); };
+        visualEntities2d.push_back(button);
 
-        entities2d["ButtonQuitGame"] = new Button2d("ButtonQuitGame", Vector(967, 575, 0), Vector2d(300, 130), EntityManager::get<Font*>("font - arial28"), "Quit", {0, 0, 0});
-        entities2d["ButtonQuitGame"]->onClick = [this]() { Scene::changeActiveScene("Quit"); };
+        button = new Button2d("ButtonHighScore", Vector(967.0, 400.0, 0.1), buttonBackground, EntityManager::get<Font*>("font - arial28"), "High Scores", {0, 0, 0});
+        button->onClick = [this]() { Scene::changeActiveScene("HighScoresMenu"); };
+        visualEntities2d.push_back(button);
+
+        button = new Button2d("ButtonQuitGame", Vector(967.0, 575.0, 0.1), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Quit", {0, 0, 0});
+        button->onClick = [this]() { Scene::changeActiveScene("Quit"); };
+        visualEntities2d.push_back(button);
     }
 
-    /// Permet d'inscrire tous les évènements comme observables.
-    /// \param observables une map contenant tous les observables nécessaires.
+    ~MainMenu() {
+        delete buttonBackground;
+        delete imageBackground;
+    }
+
+    /// Permet d'inscrire les observateurs aux événements.
+    /// \param observables Tous les observables.
     void subscribeAll(std::map <unsigned int, Observable<SDL_Event*>*>& observables){
         if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
-
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(entities2d["ButtonStart"]);
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(entities2d["ButtonSettings"]);
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(entities2d["ButtonHighScore"]);
-        observables[SDL_MOUSEBUTTONDOWN]->subscribe(entities2d["ButtonQuitGame"]);
+        std::list<VisualEntity2d*>::iterator it = visualEntities2d.begin();
+        while (++it != visualEntities2d.end())
+            observables[SDL_MOUSEBUTTONDOWN]->subscribe(*it);
     }
 
-    /// Permet de désinscrire tous les observables.
-    /// \param observables une map contenant tous les observables nécessaires.
+    /// Permet d'e désinscrire les observateurs des événements.
+    /// \param observables Tous les observables.
     void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables){        
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(entities2d["ButtonStart"]);
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(entities2d["ButtonSettings"]);
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(entities2d["ButtonHighScore"]);
-        observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(entities2d["ButtonQuitGame"]);
+        std::list<VisualEntity2d*>::iterator it = visualEntities2d.begin();
+        while (++it != visualEntities2d.end())
+            observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(*it);
     }
 };
 

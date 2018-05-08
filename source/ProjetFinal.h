@@ -61,6 +61,8 @@ public:
         EntityManager::add(new Texture2d("WindTurbineButton", "../../images/WindTurbineButton.png"));
         EntityManager::add(new Texture2d("UpButton", "../../images/UpButton.png"));
         EntityManager::add(new Texture2d("DownButton", "../../images/DownButton.png"));
+        EntityManager::add(new Texture2d("PlusButton", "../../images/BoutonPlus.png"));
+        EntityManager::add(new Texture2d("MoinsButton", "../../images/BoutonMoins.png"));
 
         //Textures world
         EntityManager::add(new Texture2d("daysky", "../../images/skysphere_day.png"));
@@ -146,14 +148,6 @@ public:
             FPSchrono.restart();
         }
     }
-   /* Observable<SDL_Event*>* getMBDObservable(){
-        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
-        return observables[SDL_MOUSEBUTTONDOWN];
-    }
-    Observable<SDL_Event*>* getMMObservable(){
-        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
-        return observables[SDL_MOUSEMOTION];
-    }*/
 
 
     /// Représente la boucle de jeu.
@@ -656,19 +650,19 @@ public:
                     unsigned int texture;
                     switch (SideWindow::materialType) {
                         case CARDBOARD:
-                            texture = EntityManager::get<Texture2d*>("wall")->getID();
+                            texture = EntityManager::get<Texture2d*>("wall")->ID;
                             break;
                         case WOOD:
-                            texture = EntityManager::get<Texture2d*>("fondMaison")->getID();
+                            texture = EntityManager::get<Texture2d*>("fondMaison")->ID;
                             break;
                         case ROCK:
-                            texture = EntityManager::get<Texture2d*>("daysky")->getID();
+                            texture = EntityManager::get<Texture2d*>("daysky")->ID;
                             break;
                         case METAL:
-                            texture = EntityManager::get<Texture2d*>("nightsky")->getID();
+                            texture = EntityManager::get<Texture2d*>("nightsky")->ID;
                             break;
                         case SIMTIUM:
-                            texture = EntityManager::get<Texture2d*>("grass")->getID();
+                            texture = EntityManager::get<Texture2d*>("grass")->ID;
                             break;
                     }
 
@@ -848,19 +842,19 @@ public:
             unsigned int texture;
             switch(SideWindow::materialType){
                 case CARDBOARD:
-                    texture = EntityManager::get<Texture2d*>("wall")->getID();
+                    texture = EntityManager::get<Texture2d*>("wall")->ID;
                     break;
                 case WOOD:
-                    texture = EntityManager::get<Texture2d*>("fondMaison")->getID();
+                    texture = EntityManager::get<Texture2d*>("fondMaison")->ID;
                     break;
                 case ROCK:
-                    texture = EntityManager::get<Texture2d*>("daysky")->getID();
+                    texture = EntityManager::get<Texture2d*>("daysky")->ID;
                     break;
                 case METAL:
-                    texture = EntityManager::get<Texture2d*>("nightsky")->getID();
+                    texture = EntityManager::get<Texture2d*>("nightsky")->ID;
                     break;
                 case SIMTIUM:
-                    texture = EntityManager::get<Texture2d*>("grass")->getID();
+                    texture = EntityManager::get<Texture2d*>("grass")->ID;
                     break;
             }
 

@@ -15,8 +15,6 @@
 
 class Label : public Model {
 private:
-    std::string text;
-    int x;
 public:
     /// Ajoute la texture avec le texte dans le resourceManager
     /// \param font Police de caractères
@@ -27,9 +25,7 @@ public:
     /// \param width Largeur de l'image.
     /// \param height Hauteur de l'image.
     Label(const std::string& name, TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int textureID = 0) : Model(name, x, y, z, textureID, false) {
-        this->text = text;
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
-        this->x = x;
         vertexCount = 6;
         vertices = new double[18]{
                 (double)x, (double)y, 0.0,

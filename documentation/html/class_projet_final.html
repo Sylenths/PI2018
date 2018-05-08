@@ -63,7 +63,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
-<a href="#pub-static-methods">Fonctions membres publiques statiques</a> &#124;
 <a href="class_projet_final-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle">
 <div class="title">Référence de la classe ProjetFinal</div>  </div>
@@ -100,6 +99,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ab2dba3bcd7b5c8eab41aa41cb628aba9"><td class="memItemLeft" align="right" valign="top"><a id="ab2dba3bcd7b5c8eab41aa41cb628aba9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addFondation</b> ()</td></tr>
 <tr class="separator:ab2dba3bcd7b5c8eab41aa41cb628aba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a860d17a593c0cf8c05f9f8c4e6a09cec"><td class="memItemLeft" align="right" valign="top"><a id="a860d17a593c0cf8c05f9f8c4e6a09cec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addFloor</b> ()</td></tr>
+<tr class="separator:a860d17a593c0cf8c05f9f8c4e6a09cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e41bdf199bb1109d785a5b01ae62688"><td class="memItemLeft" align="right" valign="top"><a id="a7e41bdf199bb1109d785a5b01ae62688"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>selectWallForRoofCreation</b> ()</td></tr>
+<tr class="separator:a7e41bdf199bb1109d785a5b01ae62688"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bddcd8c274080b6d8f20d2bb284afdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_projet_final.html#a9bddcd8c274080b6d8f20d2bb284afdf">createWall</a> ()</td></tr>
 <tr class="separator:a9bddcd8c274080b6d8f20d2bb284afdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaf70600b05ce3d9ab1bfcaed40a26c6"><td class="memItemLeft" align="right" valign="top"><a id="abaf70600b05ce3d9ab1bfcaed40a26c6"></a>
@@ -111,10 +116,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>addFondation</b> ()</
 <tr class="memdesc:aeb2a0edcc8bcb36dd4690aab93513679"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne le GlContext. <br /></td></tr>
 <tr class="separator:aeb2a0edcc8bcb36dd4690aab93513679"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Fonctions membres publiques statiques</h2></td></tr>
-<tr class="memitem:a875de5e4530bb767a4d1fa266674e477"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_projet_final.html#a875de5e4530bb767a4d1fa266674e477">getTextureID</a> (const char *filename, std::string textureName)</td></tr>
-<tr class="separator:a875de5e4530bb767a4d1fa266674e477"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Membres hérités additionnels</h2></td></tr>
 <tr class="inherit_header pub_static_methods_class_singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_singleton')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques statiques hérités de <a class="el" href="class_singleton.html">Singleton&lt; ProjetFinal &gt;</a></td></tr>
 <tr class="memitem:ad6f103597095efda360db4a230308666 inherit pub_static_methods_class_singleton"><td class="memItemLeft" align="right" valign="top"><a id="ad6f103597095efda360db4a230308666"></a>
 static <a class="el" href="class_projet_final.html">ProjetFinal</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_singleton.html#ad6f103597095efda360db4a230308666">getInstance</a> ()</td></tr>
@@ -221,52 +224,9 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </table>
 </div><div class="memdoc">
 <p>deplace vers l'est et regarde a le nord</p>
-<p>deplace vers le sud et regarde a l'est</p>
 <p>deplace vers l'oest et regarde a le sud</p>
+<p>deplace vers le sud et regarde a l'est</p>
 <p>deplace vers le nord et regarde a l'oest </p>
-
-</div>
-</div>
-<a id="a875de5e4530bb767a4d1fa266674e477"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a875de5e4530bb767a4d1fa266674e477">&#9670;&nbsp;</a></span>getTextureID()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void ProjetFinal::getTextureID </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filename</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>textureName</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Chargeur de texture (les mets automatiquement dans le ressource manager). </p><dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">filename</td><td>Fichier de texture a charger. </td></tr>
-    <tr><td class="paramname">textureName</td><td>Nom significatif a donner a la texture. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

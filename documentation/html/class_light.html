@@ -82,8 +82,11 @@ Fonctions membres publiques</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light.html#ac456894908faeb4a5507d7e659cc56ed">applyLightPosition</a> ()</td></tr>
 <tr class="memdesc:ac456894908faeb4a5507d7e659cc56ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applique la lumière dans notre monde. <br /></td></tr>
 <tr class="separator:ac456894908faeb4a5507d7e659cc56ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4cdd9f8fd7119c5e8a8b6e93d8df4e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light.html#ab4cdd9f8fd7119c5e8a8b6e93d8df4e1">setPosition</a> (const float &amp;x, const float &amp;y, const float &amp;z)</td></tr>
-<tr class="separator:ab4cdd9f8fd7119c5e8a8b6e93d8df4e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cc09a536be4e35e16228975ec77ba4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light.html#a4cc09a536be4e35e16228975ec77ba4a">update</a> (const float &amp;x, const float &amp;y, const float &amp;z)</td></tr>
+<tr class="separator:a4cc09a536be4e35e16228975ec77ba4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b1269be311b716ac536fe8979cd8da5"><td class="memItemLeft" align="right" valign="top"><a id="a9b1269be311b716ac536fe8979cd8da5"></a>
+<a class="el" href="struct_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getVectorLight</b> ()</td></tr>
+<tr class="separator:a9b1269be311b716ac536fe8979cd8da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Représentation de la lumiere dans l'environnement. </p>
@@ -148,8 +151,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
-<a id="ab4cdd9f8fd7119c5e8a8b6e93d8df4e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4cdd9f8fd7119c5e8a8b6e93d8df4e1">&#9670;&nbsp;</a></span>setPosition()</h2>
+<a id="a4cc09a536be4e35e16228975ec77ba4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cc09a536be4e35e16228975ec77ba4a">&#9670;&nbsp;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,7 +161,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Light::setPosition </td>
+          <td class="memname">void Light::update </td>
           <td>(</td>
           <td class="paramtype">const float &amp;&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -187,7 +190,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Paramètres</dt><dd>
+<p>Met à jour la position de la lumière </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>Composante x </td></tr>
     <tr><td class="paramname">y</td><td>Composante y </td></tr>
