@@ -8,7 +8,7 @@ private:
     double currentLeft;
 
 public:
-    PowerSource(double producedCurrent) {
+    PowerSource(double producedCurrent, const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : PowerNode(name, posx, posy, posz, textureID, rotHitBox, objFile) {
         this->producedCurrent = producedCurrent;
         currentLeft = producedCurrent;
     }
