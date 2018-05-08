@@ -4,6 +4,11 @@
 #include "includes.h"
 
 class Menu2d : public Scene {
+private:
+    static bool compareVisualEntity2d(VisualEntity2d* e1, VisualEntity2d* e2) {
+        return e1->position.z < e2->position.z;
+    }
+
 protected:
     std::list<VisualEntity2d*> visualEntities2d; ///< Liste des entités visuels 2D à afficher.
 
@@ -21,6 +26,10 @@ public:
                 it->draw();
 
         glEnable(GL_DEPTH_TEST);
+    }
+
+    void sortLayers() {
+        visualEntities2d.sort(compareVisualEntity2d);
     }
 
     virtual void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;

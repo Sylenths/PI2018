@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[]) {
     //Test PowerManager
-
+    /*
     PowerAppareil* app1 = new PowerAppareil(100.0);
     PowerAppareil* app2 = new PowerAppareil(100.0);
     PowerAppareil* app3 = new PowerAppareil(100.0);
@@ -44,15 +44,7 @@ int main(int argc, char* argv[]) {
     pwr->updatePower();
     //(*app5->getPathMap())[0].pop();
     //int front = (*app5->getPathMap())[0].front();
-
-
-
-
-
-
-
-
-
+*/
 
 
 

@@ -12,7 +12,7 @@ protected:
     std::map<int, std::queue<int>>* pathsMap;
     int mapSize;
 public:
-    PowerAppareil(double usedCurrent) {
+    PowerAppareil(double usedCurrent, const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : PowerNode(name, posx, posy, posz ,textureID, rotHitBox, objFile) {
         this->usedCurrent = usedCurrent;
         usedCurrent = currentLeft;
         mapSize = 0;

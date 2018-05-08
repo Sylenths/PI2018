@@ -5,25 +5,31 @@
 
 class Button2d : public VisualEntity2d {
 private:
-    Image2d* background;
+    int textureID;
+    Image2d* images[2];
     Label2d* title;
 
 public:
-    Button2d(const std::string& name, const Vector& position, Texture2d* texture, Font* font, const std::string& text, const SDL_Color& color) : VisualEntity2d(name, position, Vector2d(texture->width, texture->height)) {
-        onClick = nullptr;
-        background = new Image2d("ButtonBackground", position, texture);
+    Button2d(const std::string& name, const Vector& position, Font* font, const std::string& text, const SDL_Color& color, Texture2d* backTexture, Texture2d* hoverTexture = nullptr) : VisualEntity2d(name, position, Vector2d(backTexture->width, backTexture->height)) {
+        images[0] = new Image2d("ButtonBackground", position, backTexture);
+        images[1] = (hoverTexture) ? new Image2d("ButtonHover", position, hoverTexture) : nullptr;
+        textureID = 0;
+
         title = new Label2d("lblButtonTitle", position, font, text, color);
         title->position.x = (size.x / 2.0) - (title->texture.width / 2.0) + position.x;
         title->position.y = (size.y / 2.0) - (title->texture.height / 2.0) + position.y;
+
+        onClick = nullptr;
     }
 
     ~Button2d() {
         delete title;
-        delete background;
+        delete images[0];
+        delete images[1];
     }
 
     void draw() {
-        background->draw();
+        images[textureID]->draw();
         title->draw();
     }
 
@@ -33,8 +39,14 @@ public:
                 case SDL_MOUSEBUTTONDOWN:
                     if ((sdlEvent->button.button == SDL_BUTTON_LEFT) && onClick) onClick();
                     break;
+
+                case SDL_MOUSEMOTION:
+                    if (images[1]) textureID = 1;
+                    break;
             }
         }
+        else
+            textureID = 0;
     }
 };
 
