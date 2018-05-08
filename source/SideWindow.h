@@ -13,10 +13,6 @@
 class SideWindow {
 protected:
     std::map<std::string, Model*> modelsSideWindow;   ///< Liste des models à afficher.
-
-
-
-
 public:
     static int buildType;
     static int materialType;

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PI2018:  Fichier source de source/VisualEntity2d.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PI2018
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">VisualEntity2d.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef VISUALENTITY2D_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define VISUALENTITY2D_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;includes.h&quot;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="class_visual_entity2d.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_visual_entity2d.html">VisualEntity2d</a> : <span class="keyword">public</span> <a class="code" href="class_visual_entity.html">VisualEntity</a> {</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">protected</span>:</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="class_vector2d.html">Vector2d</a> size;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  <a class="code" href="class_visual_entity2d.html">VisualEntity2d</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> <a class="code" href="struct_vector.html">Vector</a>&amp; position, <span class="keyword">const</span> <a class="code" href="class_vector2d.html">Vector2d</a>&amp; size, <span class="keywordtype">bool</span> visible = <span class="keyword">true</span>) : <a class="code" href="class_visual_entity.html">VisualEntity</a>(name, position, visible) {</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;      this-&gt;size = size;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  }</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> draw() = 0;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;};</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="struct_vector_html"><div class="ttname"><a href="struct_vector.html">Vector</a></div><div class="ttdoc">Représentation d&amp;#39;un vecteur. </div><div class="ttdef"><b>Definition:</b> Vector.h:14</div></div>
+<div class="ttc" id="class_vector2d_html"><div class="ttname"><a href="class_vector2d.html">Vector2d</a></div><div class="ttdef"><b>Definition:</b> Vector2d.h:4</div></div>
+<div class="ttc" id="class_visual_entity_html"><div class="ttname"><a href="class_visual_entity.html">VisualEntity</a></div><div class="ttdef"><b>Definition:</b> VisualEntity.h:6</div></div>
+<div class="ttc" id="class_visual_entity2d_html"><div class="ttname"><a href="class_visual_entity2d.html">VisualEntity2d</a></div><div class="ttdef"><b>Definition:</b> VisualEntity2d.h:6</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

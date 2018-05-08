@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['y',['y',['../struct_vector.html#a09a21a140718f234eea348d5058cee0b',1,'Vector']]]
+  ['vertexcount',['vertexCount',['../class_model.html#aef8356f6096d0acb524a2dcd00c9e846',1,'Model']]],
+  ['verticesshading',['verticesShading',['../class_model.html#a089858e8b3d2c94351e6497d34ced39f',1,'Model']]]
 ];

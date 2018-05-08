@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['x',['x',['../struct_vector.html#a133722e00601091cb2075219da5da6e4',1,'Vector']]]
+  ['texcount',['texCount',['../class_model.html#a2f811c1e5a739a274f3533b286b01d00',1,'Model']]],
+  ['texturetodraw',['textureToDraw',['../class_model.html#a997c7dd33d9c4317429574332924b5fd',1,'Model']]]
 ];

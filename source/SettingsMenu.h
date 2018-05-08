@@ -15,7 +15,7 @@ class SettingsMenu : public Menu {
 public:
     /// Constructeur
     SettingsMenu() {
-        models["FondSettings"] = new Image ("FondSettings", 0, 0, 0, 1280, 720, EntityManager::get<Texture2d*>("FondSettings")->getID());
+        models["FondSettings"] = new Image ("FondSettings", 0, 0, 0, 1280, 720, EntityManager::get<Texture2d*>("FondSettings")->ID);
 
         models["1labelActiveCamera"]       = new Label("1labelActiveCamera", EntityManager::get<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Camera on     :    G   ", 71, 200, 0.1);
         models["1labelDesactiveCamera"]    = new Label("1labelDesactiveCamera", EntityManager::get<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Camera off    :    F   ", 71, 260, 0.1);
@@ -27,9 +27,9 @@ public:
         models["1labelMoveLeft"]           = new Label("1labelMoveLeft", EntityManager::get<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move left     :    A   ", 650, 310, 0.1);
         models["1labelMoveRight"]          = new Label("1labelMoveRight", EntityManager::get<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Move right    :    D   ", 650, 360, 0.1);
 
-        models["FPSButton"] = new CheckBox ("FPSButton", 380, 360, 0, 250, 50, EntityManager::get<Texture2d*>("FPSButtonNO")->getID(), EntityManager::get<Texture2d*>("FPSButtonYES")->getID());
+        models["FPSButton"] = new CheckBox ("FPSButton", 380, 360, 0, 250, 50, EntityManager::get<Texture2d*>("FPSButtonNO")->ID, EntityManager::get<Texture2d*>("FPSButtonYES")->ID);
         models["FPSButton"]->onClick = [this] () { FPS = !FPS; };
-        models["1backButton"]  = new Button ("1backButton", 498, 550, 0, 284, 113, EntityManager::get<Texture2d*>("backButton")->getID(), EntityManager::get<Texture2d*>("BackButtonOver")->getID());
+        models["1backButton"]  = new Button ("1backButton", 498, 550, 0, 284, 113, EntityManager::get<Texture2d*>("backButton")->ID, EntityManager::get<Texture2d*>("BackButtonOver")->ID);
         models["1backButton"]->onClick = [this]() { Scene::changeActiveScene(previous); };
     }
 

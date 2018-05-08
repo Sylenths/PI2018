@@ -9,12 +9,12 @@ private:
     Label2d* title;
 
 public:
-    Button2d(const std::string& name, const Vector& position, Texture2d* texture, Font* font, const std::string& text, const SDL_Color& color) : VisualEntity2d(name, position, Vector2d(texture->getWidth(), texture->getHeight())) {
+    Button2d(const std::string& name, const Vector& position, Texture2d* texture, Font* font, const std::string& text, const SDL_Color& color) : VisualEntity2d(name, position, Vector2d(texture->width, texture->height)) {
         onClick = nullptr;
         background = new Image2d("ButtonBackground", position, texture);
         title = new Label2d("lblButtonTitle", position, font, text, color);
-        title->position.x = (size.x / 2.0) - (title->getWidth() / 2.0) + position.x;
-        title->position.y = (size.y / 2.0) - (title->getHeight() / 2.0) + position.y;
+        title->position.x = (size.x / 2.0) - (title->texture.width / 2.0) + position.x;
+        title->position.y = (size.y / 2.0) - (title->texture.height / 2.0) + position.y;
     }
 
     ~Button2d() {

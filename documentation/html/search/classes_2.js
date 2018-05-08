@@ -5,6 +5,6 @@ var searchData=
   ['checkbox',['CheckBox',['../class_check_box.html',1,'']]],
   ['chrono',['Chrono',['../class_chrono.html',1,'']]],
   ['climatiseur',['Climatiseur',['../class_climatiseur.html',1,'']]],
-  ['collisiondata',['CollisionData',['../struct_physics_1_1_collision_data.html',1,'Physics']]],
+  ['collisiondata',['CollisionData',['../struct_physics_data_1_1_collision_data.html',1,'PhysicsData']]],
   ['controller',['Controller',['../class_controller.html',1,'']]]
 ];
