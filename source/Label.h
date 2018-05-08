@@ -15,6 +15,8 @@
 
 class Label : public Model {
 private:
+    int x;
+    int y;
 public:
     /// Ajoute la texture avec le texte dans le resourceManager
     /// \param font Police de caractères
@@ -27,6 +29,8 @@ public:
     Label(const std::string& name, TTF_Font* font, SDL_Color color, std::string text, unsigned int x, unsigned int y, unsigned int z, unsigned int textureID = 0) : Model(name, x, y, z, textureID, false) {
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
         vertexCount = 6;
+        this->x = x;
+        this->y = y;
         vertices = new double[18]{
                 (double)x, (double)y, 0.0,
                 (double)(x + sdlSurface->w), (double)y, 0.0,
@@ -73,6 +77,14 @@ public:
 
     void updateTextTexture(std::string text, TTF_Font* font, SDL_Color color){
         SDL_Surface* sdlSurface = TTF_RenderText_Blended(font , text.c_str(), color);
+
+        vertices[3] = (double)(x + sdlSurface->w);
+        vertices[7] = (double)(y + sdlSurface->h);
+        vertices[9] = (double)(x + sdlSurface->w);
+        vertices[13] = (double)(y + sdlSurface->h);
+        vertices[15] =  (double)(x + sdlSurface->w);
+        vertices[16] = (double)(y + sdlSurface->h);
+
         glDeleteTextures(1,&textureToDraw);
         glGenTextures(1, &textureToDraw);
         glBindTexture(GL_TEXTURE_2D, textureToDraw);
