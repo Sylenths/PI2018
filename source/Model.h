@@ -31,6 +31,9 @@ protected:
 
     bool shading;
 
+    Vector baseCenter;
+    Vector realCenter;
+
     std::map<std::string, unsigned int> textureIDs;
 
     /// Crée l'ombre du modèle
@@ -124,10 +127,13 @@ public:
     /// \param m Matrice de transformation.
     void transform(Matrix& m){//matrix not being a reference causes crashes (because no copy constructor is defined)
         unsigned int x, y, z;
+        baseCenter = m * baseCenter;
+        realCenter = m * realCenter;
         for (int i = 0; i < vertexCount; ++i) {
         x = i * 3;
         y = x + 1;
         z = x + 2;
+
 
         Vector nv = m * Vector(vertices[x], vertices[y], vertices[z]);
         vertices[x] = nv.x;
@@ -181,6 +187,8 @@ public:
         this->posy = posy;
         this->posz = posz;
         this->rotHitBox = rotHitBox;
+        double ymax;
+
 
         shading = false;
 
@@ -293,7 +301,8 @@ public:
             }
 
             fichier.close();
-            double xmin = 0.0, xmax = 0.0, ymin = 0.0, ymax = 0.0, zmin = 0.0, zmax = 0.0;
+            double xmin = 0.0, xmax = 0.0, ymin = 0.0, zmin = 0.0, zmax = 0.0;
+            ymax = 0.0;
             for(int i = 0; i < vertexCount; i++) {
                 int x, y, z;
                  x = i * 3;
@@ -414,6 +423,8 @@ public:
 
 
        }
+       baseCenter = Vector(0.0, 0.0, 0.0);
+       realCenter = Vector(0.0, ymax/2, 0.0);
        Matrix m;
        m.loadTranslation(Vector(posx, posy, posz));
        transform(m);
@@ -576,6 +587,8 @@ public:
         texCoords[3] = 1.0;
         texCoords[4] = 0.5;
         texCoords[5] = 0.0;
+
+
         texCoords[6] = 1.0;
         texCoords[7] = 1.0;
         texCoords[8] = 0.0;
@@ -589,6 +602,7 @@ public:
         texCoords[15] = 1.0;
         texCoords[16] = 0.5;
         texCoords[17] = 0.0;
+
         texCoords[18] = 1.0;
         texCoords[19] = 1.0;
         texCoords[20] = 0.0;
@@ -745,7 +759,7 @@ public:
     }
 
     double getMesh(int position){
-        return vertices[position];
+        return (vertices[position]);
     }
 
     virtual void notify(SDL_Event* sdlEvent) {}

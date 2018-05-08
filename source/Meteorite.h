@@ -17,10 +17,16 @@ private:
     double radius;///< Le rayon de la météorite
     Vector centerPos;///<La position du centre de la météorite
     Vector speed;///< Le vecteur vitesse de la météorite
-    Chrono time;
-    Chrono timer;
+    Chrono time;///< Indique le temps écoulé entre chaque rafaichissement d'écran
+
 
 public:
+    /// Constructeur
+    /// \param radius Le rayon du météore
+    /// \param centerPos Le point central de la sphere
+    /// \param initialSpeed Le vecteur vitesse initial
+    /// \param textureID L'ID OGL de
+    /// \param objfile
     Meteorite( double radius, Vector centerPos, Vector initialSpeed, unsigned int textureID = EntityManager::get<Texture2d *>("meteorite")->ID,const char* objfile = "../../models/obj/meteorite.obj" ) : Model("",centerPos.x, centerPos.y, centerPos.z, textureID, false,objfile) {
         this->radius = radius;
         this->speed = initialSpeed;
@@ -33,7 +39,6 @@ public:
         matrix.loadTranslation(centerPos);
         transform(matrix);
         time.restart();
-        timer.restart();
     }
     void draw(){
         double dt = time.getElapsed(SECONDS);
@@ -45,15 +50,6 @@ public:
         matrix.loadTranslation(shifting);
         transform(matrix);
         time.restart();
-        if(timer.getElapsed(SECONDS) > 3) {
-            //std::cout << speed.y << " ";
-            timer.restart();
-        }
-
-
-
-
-
 
         glBindTexture(GL_TEXTURE_2D, textureToDraw);
 

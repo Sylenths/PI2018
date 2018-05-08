@@ -115,14 +115,14 @@ public:
             height.push_back(1);
 
         SDL_itoa(chosenStory, buffer, 10);
-        ((Label*)modelsSideWindow["1StoryChosen"])->updateTextTexture(buffer, EntityManager::get<Font*>("font - arial28")->getFont(), {128,128,128,0});
+        ((Label*)modelsSideWindow["1StoryChosen"])->updateTextTexture(buffer, EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0});
 
     }
     void updateStoryChosenMinus(){
         if(chosenStory)
             chosenStory--;
         SDL_itoa(chosenStory, buffer, 10);
-        ((Label*)modelsSideWindow["1StoryChosen"])->updateTextTexture(buffer, EntityManager::get<Font*>("font - arial28")->getFont(), {128,128,128,0});
+        ((Label*)modelsSideWindow["1StoryChosen"])->updateTextTexture(buffer, EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0});
 
     }
     void updateHeightParameterAdd(){
@@ -131,7 +131,7 @@ public:
 
 
         SDL_itoa(height[chosenStory], buffer, 10);
-        ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, EntityManager::get<Font*>("font - arial28")->getFont(), {128,128,128,0});
+        ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0});
     }
 
     void updateHeightParameterMinus(){
@@ -139,13 +139,13 @@ public:
         if(height.at(chosenStory) > 1)
             height.at(chosenStory)--;
         SDL_itoa(height.at(chosenStory), buffer, 10);
-        ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, EntityManager::get<Font*>("font - arial28")->getFont(), {128,128,128,0});
+        ((Label*)modelsSideWindow["1HeightNumber"])->updateTextTexture(buffer, EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0});
     }
 
     void onBuildClick(){
         if(buildType == BUILD_FONDATION ||(buildType != BUILD_NOTHING && materialType)) {
             isBuilding = true;
-            SideWindow::closed = true;
+            closed = true;
         }
     }
     void onCancelClick(){

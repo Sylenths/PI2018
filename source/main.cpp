@@ -2,51 +2,50 @@
 
 int main(int argc, char* argv[]) {
     //Test PowerManager
-
+    /*
     PowerAppareil* app1 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
     PowerAppareil* app2 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
     PowerAppareil* app3 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
     PowerAppareil* app4 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
     PowerAppareil* app5 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
-    PowerSource* src0 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
-    PowerSource* src1 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
-    PowerSource* src2 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
-    PowerSource* src3 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src0 = new PowerSource(150.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src1 = new PowerSource(150.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src2 = new PowerSource(150.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src3 = new PowerSource(150.0, "", 0.0, 0.0, 0.0, 1, false);
 
-    PowerManager* pwr = new PowerManager();
+    //PowerManager* pwr = new PowerManager();
 
-    pwr->addAppareil(app1);
-    pwr->addAppareil(app2);
-    pwr->addAppareil(app3);
-    pwr->addAppareil(app4);
-    pwr->addAppareil(app5);
-    pwr->addSource(src0);
-    pwr->addSource(src1);
-    pwr->addSource(src2);
-    pwr->addSource(src3);
+    PowerManager::getInstance()->addAppareil(app1);
+    PowerManager::getInstance()->addAppareil(app2);
+    PowerManager::getInstance()->addAppareil(app3);
+    PowerManager::getInstance()->addAppareil(app4);
+    PowerManager::getInstance()->addAppareil(app5);
+    PowerManager::getInstance()->addSource(src0);
+    PowerManager::getInstance()->addSource(src1);
+    PowerManager::getInstance()->addSource(src2);
+    PowerManager::getInstance()->addSource(src3);
 
-    pwr->createWire(app1->getKey(), src3->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(app1->getKey(), src0->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(app2->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(app3->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(app4->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(app4->getKey(), src2->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(app4->getKey(), app5->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(src1->getKey(), src0->getKey(), 20.0, 0.001, GOLD);
+    PowerManager::getInstance()->createWire(app1->getKey(), src3->getKey(), 20.0, 0.001, GOLD);
+    PowerManager::getInstance()->createWire(app1->getKey(), src0->getKey(), 20.0, 0.001, GOLD);
+    PowerManager::getInstance()->createWire(app2->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
+    PowerManager::getInstance()->createWire(app3->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
+    PowerManager::getInstance()->createWire(app4->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
+    PowerManager::getInstance()->createWire(app4->getKey(), src2->getKey(), 20.0, 0.001, GOLD);
+    PowerManager::getInstance()->createWire(app4->getKey(), app5->getKey(), 20.0, 0.001, GOLD);
+    PowerManager::getInstance()->createWire(src1->getKey(), src0->getKey(), 20.0, 0.001, GOLD);
 
 
-    pwr->getShortestPath(app1);
-    pwr->getShortestPath(app2);
-    pwr->getShortestPath(app3);
-    pwr->getShortestPath(app4);
-    pwr->getShortestPath(app5);
 
-    pwr->updatePower();
+
+    PowerManager::getInstance()->updatePower();
+    PowerManager::getInstance()->seePower();
+
+
     //(*app5->getPathMap())[0].pop();
     //int front = (*app5->getPathMap())[0].front();
 
 
-
+*/
 
     srand(time(0));
 
