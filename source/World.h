@@ -91,7 +91,7 @@ public:
 
         }
 
-        meteorite = new Meteorite(1.,{0.,0.,0.},{0.,100.,0.});
+        meteorite = new Meteorite(1.,{0.,0.,0.},{5.,10.,0.});
 
         Model* simCoinMiner = new Model("", 0.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj");
         simCoinMiner->setShadingOn();
