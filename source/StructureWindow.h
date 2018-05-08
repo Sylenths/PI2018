@@ -216,7 +216,7 @@ public:
         materialType = SIMTIUM;
     }
     unsigned int getHeight(){
-        return height[0];
+        return height[chosenStory];
     }
 
 
