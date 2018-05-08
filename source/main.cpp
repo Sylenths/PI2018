@@ -2,16 +2,16 @@
 
 int main(int argc, char* argv[]) {
     //Test PowerManager
-    /*
-    PowerAppareil* app1 = new PowerAppareil(100.0);
-    PowerAppareil* app2 = new PowerAppareil(100.0);
-    PowerAppareil* app3 = new PowerAppareil(100.0);
-    PowerAppareil* app4 = new PowerAppareil(100.0);
-    PowerAppareil* app5 = new PowerAppareil(100.0);
-    PowerSource* src1 = new PowerSource(100.0);
-    PowerSource* src2 = new PowerSource(100.0);
-    PowerSource* src3 = new PowerSource(100.0);
-    PowerSource* src4 = new PowerSource(100.0);
+
+    PowerAppareil* app1 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerAppareil* app2 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerAppareil* app3 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerAppareil* app4 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerAppareil* app5 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src0 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src1 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src2 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src3 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
 
     PowerManager* pwr = new PowerManager();
 
@@ -20,19 +20,19 @@ int main(int argc, char* argv[]) {
     pwr->addAppareil(app3);
     pwr->addAppareil(app4);
     pwr->addAppareil(app5);
+    pwr->addSource(src0);
     pwr->addSource(src1);
     pwr->addSource(src2);
     pwr->addSource(src3);
-    pwr->addSource(src4);
 
-    pwr->createWire(app1->getKey(), src4->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(app1->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(app2->getKey(), src2->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(app3->getKey(), src2->getKey(), 20.0, 0.001, GOLD);
+    pwr->createWire(app1->getKey(), src3->getKey(), 20.0, 0.001, GOLD);
+    pwr->createWire(app1->getKey(), src0->getKey(), 20.0, 0.001, GOLD);
+    pwr->createWire(app2->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
+    pwr->createWire(app3->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
+    pwr->createWire(app4->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
     pwr->createWire(app4->getKey(), src2->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(app4->getKey(), src3->getKey(), 20.0, 0.001, GOLD);
     pwr->createWire(app4->getKey(), app5->getKey(), 20.0, 0.001, GOLD);
-    pwr->createWire(src2->getKey(), src1->getKey(), 20.0, 0.001, GOLD);
+    pwr->createWire(src1->getKey(), src0->getKey(), 20.0, 0.001, GOLD);
 
 
     pwr->getShortestPath(app1);
@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
     pwr->updatePower();
     //(*app5->getPathMap())[0].pop();
     //int front = (*app5->getPathMap())[0].front();
-*/
+
 
 
 
