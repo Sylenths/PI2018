@@ -231,6 +231,8 @@ public:
                     activeCamera = false;
                     glContext->releaseInput();
                     sceneDisplay->subscribeAll(observables);
+                    ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
+                    ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
                     ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
                     break;
                 case SDLK_g:
@@ -238,7 +240,7 @@ public:
                     glContext->grabInput();
                     sceneDisplay->unsubscribeAll(observables);
                     ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
-                    //((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
+                    ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
