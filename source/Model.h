@@ -579,6 +579,8 @@ public:
         texCoords[3] = 1.0;
         texCoords[4] = 0.5;
         texCoords[5] = 0.0;
+
+
         texCoords[6] = 1.0;
         texCoords[7] = 1.0;
         texCoords[8] = 0.0;
@@ -592,6 +594,7 @@ public:
         texCoords[15] = 1.0;
         texCoords[16] = 0.5;
         texCoords[17] = 0.0;
+
         texCoords[18] = 1.0;
         texCoords[19] = 1.0;
         texCoords[20] = 0.0;
@@ -748,7 +751,7 @@ public:
     }
 
     double getMesh(int position){
-        return vertices[position];
+        return (vertices[position]);
     }
 
     virtual void notify(SDL_Event* sdlEvent) {}
