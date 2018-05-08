@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[]) {
     //Test PowerManager
-
+    /*
     PowerAppareil* app1 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
     PowerAppareil* app2 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
     PowerAppareil* app3 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
@@ -15,7 +15,6 @@ int main(int argc, char* argv[]) {
 
     //PowerManager* pwr = new PowerManager();
 
-    PowerManager::getInstance()->
     PowerManager::getInstance()->addAppareil(app1);
     PowerManager::getInstance()->addAppareil(app2);
     PowerManager::getInstance()->addAppareil(app3);
@@ -46,7 +45,7 @@ int main(int argc, char* argv[]) {
     //int front = (*app5->getPathMap())[0].front();
 
 
-
+*/
 
     srand(time(0));
 
