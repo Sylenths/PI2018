@@ -25,6 +25,7 @@ private:
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
     Light* worldLight, * hudLight;
     Chrono chrono;
+    Model * meteorite;
 
 public:
     Model* flatGround;
@@ -87,6 +88,7 @@ public:
 
         }
 
+        meteorite = new Meteorite(1.,{0.,0.,0.},{0.,100.,0.});
 
         Model* simCoinMiner = new Model("", 0.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj");
         simCoinMiner->setShadingOn();
@@ -128,7 +130,7 @@ public:
 
         atmosphere.updateAtmosphere();
         atmosphere.draw();
-
+        meteorite->draw();
         GLContext::setFrustum(IS2D);
         glDepthFunc(GL_LESS);
         hudLight->applyLightPosition();

@@ -65,6 +65,7 @@ public:
         EntityManager::add(new Texture2d("MoinsButton", "../../images/BoutonMoins.png"));
 
         //Textures world
+        EntityManager::add(new Texture2d("meteorite", "../../images/meteorite.png"));
         EntityManager::add(new Texture2d("daysky", "../../images/skysphere_day.png"));
         EntityManager::add(new Texture2d("nightsky", "../../images/skysphere_night.png"));
         EntityManager::add(new Texture2d("grass", "../../images/grass.png"));

@@ -60,6 +60,8 @@
 #include "Matrix.h"
 #include "GLContext.h"
 #include "Model.h"
+#include "Meteorite.h"
+
 #include "Materiel.h"
 #include "Structure.h"
 #include "Floor.h"

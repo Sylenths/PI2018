@@ -194,6 +194,13 @@ struct Matrix{
 		          << "|" << m31 << " " << m32 << " " << m33 << " " << m34 << "|" << "\n"
 		          << "|" << m41 << " " << m42 << " " << m43 << " " << m44 << "|" << "\n" << std::endl;
 	}
+
+    void loadScaling(double scaleX, double scaleY, double scaleZ){
+        loadIdentity();
+        m11 = scaleX;
+        m22 = scaleY;
+        m33 = scaleZ;
+    }
 };
 
 #endif //MATRIX_H
