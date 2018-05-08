@@ -31,6 +31,9 @@ protected:
 
     bool shading;
 
+    Vector* baseCenter;
+    Vector* realCenter;
+
     std::map<std::string, unsigned int> textureIDs;
 
     /// Crée l'ombre du modèle
