@@ -8,10 +8,10 @@ int main(int argc, char* argv[]) {
     PowerAppareil* app3 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
     PowerAppareil* app4 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
     PowerAppareil* app5 = new PowerAppareil(100.0, "", 0.0, 0.0, 0.0, 1, false);
-    PowerSource* src0 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
-    PowerSource* src1 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
-    PowerSource* src2 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
-    PowerSource* src3 = new PowerSource(100.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src0 = new PowerSource(150.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src1 = new PowerSource(150.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src2 = new PowerSource(150.0, "", 0.0, 0.0, 0.0, 1, false);
+    PowerSource* src3 = new PowerSource(150.0, "", 0.0, 0.0, 0.0, 1, false);
 
     PowerManager* pwr = new PowerManager();
 
@@ -42,6 +42,9 @@ int main(int argc, char* argv[]) {
     pwr->getShortestPath(app5);
 
     pwr->updatePower();
+    pwr->seePower();
+
+
     //(*app5->getPathMap())[0].pop();
     //int front = (*app5->getPathMap())[0].front();
 

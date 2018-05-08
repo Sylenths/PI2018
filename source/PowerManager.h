@@ -199,6 +199,7 @@ public:
         //int priority, std::pair(std::pair<int appareilkey, int sourcekey>, int pathSize)
         // key                                first.first     first.second     second
         //std::map<int, std::pair<std::pair<int, int>, int>> mapPriority;
+        mapPriority.clear();
         int mapSize = 0;
         for(int i = 1; i <= appareilNbr; ++i) {
             getShortestPath(mapAppareil[i]);
@@ -211,13 +212,22 @@ public:
         }
         quickSort(0, mapSize - 1);
 
+        for(int j = (sourceNbr + 1); j <= appareilNbr; ++j) {
+            if(j <= 0) {
+                mapSource[j]->resetCurrent();
+
+            }
+            if(j > 0) {
+                mapAppareil[j]->resetCurrent();
+            }
+        }
+
         for(int i = 0; i < mapSize; ++i) {
             int appareilKey = mapPriority[i].first.first;
             int sourceKey = mapPriority[i].first.second;
             int nextNode;
             int prevNode;
             if(!mapAppareil[appareilKey]->isFeeded()) {
-                mapSource[sourceKey]->resetCurrent();
                 prevNode = (*mapAppareil[appareilKey]->getPathMap())[sourceKey].front();
                 (*mapAppareil[appareilKey]->getPathMap())[sourceKey].pop();
                 while((*mapAppareil[appareilKey]->getPathMap())[sourceKey].size()) {
@@ -230,6 +240,17 @@ public:
                 }
             }
         }
+    }
+
+    void seePower() {
+        for(int i = 0; i < mapPriority.size(); ++i) {
+            std::cout << mapPriority[i].first.first << " ";
+        }
+        std::cout << std::endl;
+        for(int i = 0; i < mapPriority.size(); ++i) {
+            std::cout << mapPriority[i].first.second << " ";
+        }
+        std::cout << std::endl;
     }
 };
 
