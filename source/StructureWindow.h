@@ -81,31 +81,31 @@ public:
         modelsSideWindow["1CancelButtonStructure"]->onClick = [this] () {onCancelClick();};
 
         //Parameter
-        modelsSideWindow["1AddHeight"] = new Button ("1AddHeight", 1050, 300, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->getID(), EntityManager::get<Texture2d*>("ChoixAppuyer")->getID());
+        modelsSideWindow["1AddHeight"] = new Button ("1AddHeight", 1150, 300, 0, 20, 20, EntityManager::get<Texture2d*>("PlusButton")->getID());
         modelsSideWindow["1AddHeight"]->onClick = [this] () {updateHeightParameterAdd();};
 
-        modelsSideWindow["1SoustracHeight"] = new Button ("1SoustracHeight", 940, 300, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->getID(), EntityManager::get<Texture2d*>("ChoixAppuyer")->getID());
+        modelsSideWindow["1SoustracHeight"] = new Button ("1SoustracHeight", 1050, 300, 0, 20, 20, EntityManager::get<Texture2d*>("MoinsButton")->getID());
         modelsSideWindow["1SoustracHeight"]->onClick = [this] () {updateHeightParameterMinus();};
 
-        modelsSideWindow["1HeightLabel"] = new Label("1HeightLabel", EntityManager::get<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Wall height", 945, 360, 0);
+        modelsSideWindow["1HeightLabel"] = new Label("1HeightLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Wall height : ", 925, 300, 0);
 
 
         SDL_itoa(height[0], buffer, 10);
 
-        modelsSideWindow["1HeightNumber"] = new Label("1HeightNumber", EntityManager::get<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1005, 300, 0);
+        modelsSideWindow["1HeightNumber"] = new Label("1HeightNumber", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, buffer, 1100, 300, 0);
 
 
-        modelsSideWindow["1AddStory"] = new Button ("1AddStory", 1220, 300, -1, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->getID(), EntityManager::get<Texture2d*>("ChoixAppuyer")->getID());
+        modelsSideWindow["1AddStory"] = new Button ("1AddStory", 1150, 335, 0, 20, 20, EntityManager::get<Texture2d*>("PlusButton")->getID());
         modelsSideWindow["1AddStory"]->onClick = [this] () {updateStoryChosenPlus();};
 
-        modelsSideWindow["1SoustracStory"] = new Button ("1SoustracStory", 1110, 300, -1, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->getID(), EntityManager::get<Texture2d*>("ChoixAppuyer")->getID());
+        modelsSideWindow["1SoustracStory"] = new Button ("1SoustracStory", 1050, 335, 0, 20 ,20, EntityManager::get<Texture2d*>("MoinsButton")->getID());
         modelsSideWindow["1SoustracStory"]->onClick = [this] () {updateStoryChosenMinus();};
 
-        modelsSideWindow["1StoryLabel"] = new Label("1StoryLabel", EntityManager::get<Font*>("font - arial30")->getFont(), {128,128,128,0}, "Story Chosen", 1100, 360, 0);
+        modelsSideWindow["1StoryLabel"] = new Label("1StoryLabel", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, "Story Chosen : ", 925, 335, 0);
 
 
         SDL_itoa(chosenStory, buffer, 10);
-        modelsSideWindow["1StoryChosen"] = new Label("1StoryChosen", EntityManager::get<Font*>("font - arial28")->getFont(), {128,128,128,0}, buffer, 1110 + 65, 300,0);
+        modelsSideWindow["1StoryChosen"] = new Label("1StoryChosen", EntityManager::get<Font*>("font - arial32")->getFont(), {128,128,128,0}, buffer, 1100, 335 , 0);
     }
 
     void updateStoryChosenPlus(){
