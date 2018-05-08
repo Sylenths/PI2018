@@ -231,6 +231,8 @@ public:
                     activeCamera = false;
                     glContext->releaseInput();
                     sceneDisplay->subscribeAll(observables);
+                    ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
+                    ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
                     ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
                     break;
                 case SDLK_g:
@@ -238,6 +240,7 @@ public:
                     glContext->grabInput();
                     sceneDisplay->unsubscribeAll(observables);
                     ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
+                    ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
@@ -323,8 +326,6 @@ public:
         if(SideWindow::buildType == BUILD_FONDATION && SideWindow::isBuilding) {
             if(activeCamera && Scene::getActiveScene() == "World" && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT){
             World* world = ((World*)sceneDisplay);
-
-
 
                 Vector front = world->getCamera()->getFront();
                 Vector pos = world->getCamera()->getPos();
@@ -475,6 +476,46 @@ public:
                                   !(*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x, z)]->south ||
                                   !(*floorGrids)[StructureWindow::chosenStory - 2][std::make_pair(x, z)]->north))) {
                                 (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                            }
+                            else {
+                                if (!(*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] && (((*fondationGrid)[std::make_pair(x-1,z)]  || (*fondationGrid)[std::make_pair(x-2,z)] || (*fondationGrid)[std::make_pair(x ,z-1)] || (*fondationGrid)[std::make_pair(x,z - 2)] || (*fondationGrid)[std::make_pair(x + 1,z)] || (*fondationGrid)[std::make_pair(x + 2,z)] || (*fondationGrid)[std::make_pair(x,z + 1)] || (*fondationGrid)[std::make_pair(x,z + 2)]) ||(((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x + 1, z)] && (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x , z + 1)]) || ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x + 1, z)] && (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x , z - 1)]) || ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x - 1, z)] && (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x , z - 1)])  || ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x - 1 , z)] && (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x , z + 1)]) )) ) {
+                                    if ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x - 1, z)]) {
+                                        if (!(*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)])
+                                            (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)]->west = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x - 1, z)];
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x - 1, z)]->east = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x, z)];
+                                    }
+
+                                    if ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x + 1, z)]) {
+                                        if (!(*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)])
+                                            (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)]->east = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x + 1, z)];
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x + 1, z)]->west = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x, z)];
+                                    }
+
+                                    if ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z - 1)]) {
+                                        if (!(*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)])
+                                            (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)]->north = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x, z - 1)];
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z - 1)]->south = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x, z)];
+                                    }
+
+                                    if ((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z + 1)]) {
+                                        if (!(*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)])
+                                            (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)] = floor;
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)]->south = (*floorGrids)[
+                                                StructureWindow::chosenStory - 1][std::make_pair(x, z + 1)];
+                                        (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z + 1)]->north = (*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x, z)];
+                                    }
+
+                                }
+
                             }
 
 
@@ -880,7 +921,10 @@ public:
                 SideWindow::buildType = BUILD_NOTHING;
                 std::vector<std::map<std::pair<int, int>, Floor *>> *floorGrid = ((World *) sceneDisplay)->getFloors();
                 auto it = (*floorGrid)[StructureWindow::chosenStory - 1].begin();
-                Floor *start = (*floorGrid)[StructureWindow::chosenStory - 1].begin().operator*().second;
+                while(!(*it).second){
+                    it++;
+                }
+                Floor *start = (*it).second;
                 while (start->north) {
                     start = start->north;
                 }
