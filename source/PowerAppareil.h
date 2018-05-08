@@ -29,12 +29,13 @@ public:
 
     }
 
-    int getProximite() {
-        return proximityIndice;
-    }
-
     bool isFeeded() {
         return feeded;
+    }
+
+    void resetCurrent() {
+        currentLeft = usedCurrent;
+        feeded = false;
     }
 
     double updateCurrent(double currentIn) {
