@@ -41,6 +41,12 @@ struct Vector {
 		return std::sqrt(x * x + y * y + z * z);
 	}
 
+	/// Calcule le carré de la norme du vecteur.
+	/// \return Norme du vecteur.
+	double getSquaredNorm() const { // return vector's length
+		return x * x + y * y + z * z;
+	}
+
     /// Normalise le vecteur.
     /// \return Vecteur normalisé.
 	Vector& normalize() { // make vector be of length 1

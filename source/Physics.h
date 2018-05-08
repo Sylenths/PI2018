@@ -1,10 +1,10 @@
 /// \brief Classe de méthodes statiques pour les calculs de physique et de collisions.
 /// \details
 /// \author Samuel Labelle
-/// \date 7 mai 2018
+/// \date  mai 2018
 /// \version 0.2
-/// \warning Non extensivement testée, les collisions des sphères sont incomplètes.
-/// \bug Les calculs ne sont pas optimisés, les collisions des sphères sont incomplètes.
+/// \warning Non extensivement testée.
+/// \bug Les calculs ne sont pas optimisés.
 
 #ifndef PHYSICS_H
 #define PHYSICS_H
@@ -350,7 +350,22 @@ public:
 		Vector p23 = getClosestPointOnLineSegment(tri.p2, tri.p3, point);
 		Vector p31 = getClosestPointOnLineSegment(tri.p3, tri.p1, point);
 
-		return Vector(0, 0, 0);// TODO: closest pointOnSegment to point;
+		double np12 = p12.getSquaredNorm(), np23 = p23.getSquaredNorm(), np31 = p31.getSquaredNorm();
+
+		if (np12 >= np23)
+		{
+			if (np12 >= np31)
+				return p12;
+			else
+				return p31;
+		}
+		else
+		{
+			if (np23 >= np31)
+				return p23;
+			else
+				return p31;
+		}
 
 	}
 
@@ -363,13 +378,13 @@ public:
 	static PhysicsData::CollisionData collideVectorOnSphere(Vector vectorOrigin, Vector vector, Vector sphereOrigin, double sphereRadius){
 		Vector normalizedVector(vector.getNormalized());
 
-		Vector Q = sphereOrigin - vectorOrigin;
+		Vector Q = sphereOrigin - vectorOrigin; // Vector from vectorOrigin to sphereOrigin
 
-		double c = Q.getNorm();
+		double c = Q.x * Q.x + Q.y * Q.y + Q.z * Q.z; //distance squared between vectorOrigin and sphereOrigin;
 
-		double v = Q * vector.getNormalized();
+		double v = Q * normalizedVector; // Project Q on vector to collide
 
-		double d = sphereRadius*sphereRadius - (c*c - v*v);
+		double d = sphereRadius*sphereRadius - (c - v*v);
 
 		// Failure to intersect, return false.
 		if (d < 0.0) {
@@ -397,17 +412,19 @@ public:
 
 		PhysicsData::CollisionData cData = collideVectorOnPlane(collisionPoint, sphereMovement, tri.p1, triangleNormal);
 
-		if(isPointWithinTri(cData.point, tri, triangleNormal) && cData.collided) {
+		if(isPointWithinTri(cData.point, tri, triangleNormal)) {
 			return cData;
 		}
 		// Sphere center failing collision with the main triangle body, check collision with triangle sides (and verticies).
 		// get point on triangle sides closest to sphere center point.
-		Vector nearestPointToTriPlaneCollision = getClosestPointOnTriSides(cData.point, tri);
+		Vector nearestPointToTriOnPlaneCollision = getClosestPointOnTriSides(cData.point, tri);
 
-		PhysicsData::CollisionData cData2 = collideVectorOnSphere(nearestPointToTriPlaneCollision, -sphereMovement, sphereCenter, sphereRadius);
+		PhysicsData::CollisionData cData2 = collideVectorOnSphere(nearestPointToTriOnPlaneCollision, -sphereMovement, sphereCenter, sphereRadius);
 
-		//TODO: Returned data...
-		return {false};
+		if(cData2.collided)
+			return {true, -cData2.point, cData2.ratio};
+		else
+			return {false};
 
 
 	}
