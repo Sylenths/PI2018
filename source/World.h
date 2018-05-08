@@ -14,6 +14,9 @@
 #include "Atmosphere.h"
 #include "Build.h"
 #include "BuildWall.h"
+
+#include "PanneauSolaire.h"
+
 class World : public Scene{
 private:
     std::list<Model*> modelList; ///< La liste de models à afficher
