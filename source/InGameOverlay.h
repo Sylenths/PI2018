@@ -93,26 +93,26 @@ public:
     void loadHUDTexture(unsigned int powerCount, unsigned int simCoinCount, unsigned int temperatureC, unsigned int sunPower, unsigned int windSpeed, unsigned int timeLeft){
         Font* fontArial = EntityManager::get<Font*>("font - arial32");
 
-        models["skipturn"] = new Button ("skipturn", 0, 0, 0.1, 175, 60,EntityManager::get<Texture2d*>("skipTurn")->getID());
+        models["skipturn"] = new Button ("skipturn", 0, 0, 0.1, 175, 60,EntityManager::get<Texture2d*>("skipTurn")->ID);
         models["skipturn"]->onClick = [this]() {};
 
-        models["structure"] = new Button ("structure", 0, 630, 0.1, 90, 90, EntityManager::get<Texture2d*>("structure")->getID());
+        models["structure"] = new Button ("structure", 0, 630, 0.1, 90, 90, EntityManager::get<Texture2d*>("structure")->ID);
         models["structure"]->onClick = [this]() { activeStructureSideWindow(); };
 
-        models["machine"] = new Button ("machine", 90, 630, 0.1, 90, 90,EntityManager::get<Texture2d*>("machine")->getID());
+        models["machine"] = new Button ("machine", 90, 630, 0.1, 90, 90,EntityManager::get<Texture2d*>("machine")->ID);
         models["machine"]->onClick = [this]() { activeMachineSideWindow(); };
 
-        models["cablage"] = new Button ("cablage", 180, 630, 0.1, 90, 90,EntityManager::get<Texture2d*>("wire")->getID());
+        models["cablage"] = new Button ("cablage", 180, 630, 0.1, 90, 90,EntityManager::get<Texture2d*>("wire")->ID);
         models["cablage"]->onClick = [this]() { activeWireSideWindow(); };
 
-        models["info"] = new Button ("info", 270, 630, 0.1, 90, 90,EntityManager::get<Texture2d*>("info")->getID());
+        models["info"] = new Button ("info", 270, 630, 0.1, 90, 90,EntityManager::get<Texture2d*>("info")->ID);
         models["info"]->onClick = [this]() { activeInfoSideWindow(); };
 
-        models["delete"] = new Button ("delete", 360, 630, 0.1, 90, 90, EntityManager::get<Texture2d*>("delete")->getID());
+        models["delete"] = new Button ("delete", 360, 630, 0.1, 90, 90, EntityManager::get<Texture2d*>("delete")->ID);
         models["delete"]->onClick = [this]() { activeDeleteSideWindow(); };
 
         //Image2D
-        logoList.push_back(new Image("", 175, 0, 0.1, 540, 60, EntityManager::get<Texture2d*>("topBar")->getID()));
+        logoList.push_back(new Image("", 175, 0, 0.1, 540, 60, EntityManager::get<Texture2d*>("topBar")->ID));
 
         //Label
         auto strSimCoin = std::to_string(simCoinCount); // transforme unsigned int en string
@@ -175,39 +175,39 @@ public:
             if(alertCount < 7) //Affiche les alertes dans la colonne de gauche
                 switch (it){
                     case 'p'://pluie/acide
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     case 'n'://neige/acide
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     case 'm'://meteorite/grele
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     case 'v'://vent/tornade
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     case 'f'://feu
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     case 't'://temperature
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     case 'e'://eclair
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60,EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60,EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     case 's'://seisme
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     case 'r'://radiation
-                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 0 ,150 + (alertCount * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     default:
@@ -217,46 +217,46 @@ public:
             else//affiche les alertes dans la colonne de droite
                 switch (it){
                     case 'p'://pluie/acide
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     case 'n'://neige/acide
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
 
                         break;
 
                     case 'm'://meteorite/grele
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
 
                         break;
 
                     case 'v'://vent/tornade
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
 
                         break;
 
                     case 'f'://feu
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
 
                         break;
 
                     case 't'://temperature
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
 
                         break;
 
                     case 'e'://eclair
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
 
                         break;
 
                     case 's'://seisme
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
 
                         break;
 
                     case 'r'://radiation
-                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->getID()));
+                        alertsList.push_back(new Image("", 60 ,150 + ((alertCount % 7) * 60), 0.1, 60, 60, EntityManager::get<Texture2d*>("alert")->ID));
                         break;
 
                     default:
