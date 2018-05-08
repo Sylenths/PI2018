@@ -28,7 +28,7 @@ private:
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
     Light* worldLight, * hudLight;
     Chrono chrono;
-    Model * meteorite;
+    std::list<Meteorite *> meteorites;
 
 public:
     Model* flatGround;
@@ -178,6 +178,9 @@ public:
 
     InGameOverlay* getHud(){
         return hud;
+    }
+    void collideMeteorites(){
+
     }
 
 
