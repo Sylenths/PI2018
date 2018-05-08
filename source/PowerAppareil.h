@@ -29,13 +29,6 @@ public:
 
     }
 
-    void setProximite() {
-        proximityIndice = 0;
-        //for(std::map<int, std::stack<int>>::iterator it = pathsMap.begin(); it != pathsMap.end(); it++) {
-        //    proximityIndice += (*it).second.size();
-        //}
-    }
-
     int getProximite() {
         return proximityIndice;
     }

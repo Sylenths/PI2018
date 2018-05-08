@@ -10,6 +10,7 @@ private:
     std::map<std::pair<int, int>, PowerWire*> adjMatrice;
     std::map<int, PowerAppareil*> mapAppareil;
     std::map<int, PowerSource*> mapSource;
+    std::map<int, std::pair<std::pair<int, int>, int>> mapPriority;
 
     int appareilNbr, sourceNbr;
 public:
@@ -162,24 +163,23 @@ public:
 
         }
         resetIndice();
-        from->setProximite();
     }
 
-    void quickSort(std::map<int, std::pair<std::pair<int, int>, int>> list, int left, int right) {
+    void quickSort(int left, int right) {
         int i = left;
         int j = right;
         std::pair<std::pair<int, int>, int> tmp;
-        int pivot = list[(left + right) / 2].second;
+        int pivot = mapPriority[(left + right) / 2].second;
 
         while(i <= j) {
-            while(list[i].second < pivot)
+            while(mapPriority[i].second < pivot)
                 i++;
-            while(list[j].second > pivot)
+            while(mapPriority[j].second > pivot)
                 j--;
             if(i <= j) {
-                tmp = list[i];
-                list[i] = list[j];
-                list[j] = tmp;
+                tmp = mapPriority[i];
+                mapPriority[i] = mapPriority[j];
+                mapPriority[j] = tmp;
                 i++;
                 j--;
             }
@@ -187,9 +187,9 @@ public:
         }
 
         if(left < j)
-            quickSort(list, left, j);
+            quickSort(left, j);
         if(i < right)
-            quickSort(list, i, right);
+            quickSort(i, right);
 
     }
 
@@ -198,18 +198,18 @@ public:
     void updatePower() {
         //int priority, std::pair(std::pair<int appareilkey, int sourcekey>, int pathSize)
         // key                                first.first     first.second     second
-        std::map<int, std::pair<std::pair<int, int>, int>> mapPriority;
+        //std::map<int, std::pair<std::pair<int, int>, int>> mapPriority;
         int mapSize = 0;
         for(int i = 1; i <= appareilNbr; ++i) {
             getShortestPath(mapAppareil[i]);
-            for(int j = (sourceNbr + 1); j < 0; ++j) {
+            for(int j = (sourceNbr + 1); j <= 0; ++j) {
                 if((*mapAppareil[i]->getPathMap()).find(j) != (*mapAppareil[i]->getPathMap()).end()) {
-                    mapPriority[mapSize] = std::make_pair(std::make_pair(i, j), (*mapAppareil[i]->getPathMap())[j].size());
+                    mapPriority[mapSize] = std::make_pair(std::make_pair(i, j), (*mapAppareil[i]->getPathMap())[j].size() - 1);
                     mapSize++;
                 }
             }
         }
-        quickSort(mapPriority, 0, mapSize);
+        quickSort(0, mapSize - 1);
 
         for(int i = 0; i < mapSize; ++i) {
             int appareilKey = mapPriority[i].first.first;
