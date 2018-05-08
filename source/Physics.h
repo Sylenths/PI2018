@@ -429,6 +429,49 @@ public:
 
 	}
 
+	///
+	/// \param sphereMovement
+	/// \param sphereCenter
+	/// \param sphereRadius
+	/// \param model
+	/// \return
+	static PhysicsData::CollisionData collideMovingSphereOnModel(Vector& sphereMovement, Vector& sphereCenter, double& sphereRadius, Model& model){
+
+		PhysicsData::Triangle triangle;
+		unsigned int pos = 0;
+		PhysicsData::CollisionData collisionResult;
+		Vector normal;
+
+		unsigned int triangleCount = model.vertexCount / 3;
+
+		for(unsigned int i = 0; i < triangleCount; ++i) {
+
+			pos = i * 9;
+
+			//Extract triangle from model
+			triangle = {
+				//                  x                        y                       z
+				{model.vertices[pos    ], model.vertices[pos + 1], model.vertices[pos + 2]}, // p1
+				{model.vertices[pos + 3], model.vertices[pos + 4], model.vertices[pos + 5]}, // p2
+				{model.vertices[pos + 6], model.vertices[pos + 7], model.vertices[pos + 8]}  // p3
+			};
+
+			//Average triangle normals
+			normal = {
+				((model.normals[pos    ] + model.normals[pos + 3] + model.normals[pos + 6]) / 3), // x
+				((model.normals[pos + 1] + model.normals[pos + 4] + model.normals[pos + 7]) / 3), // y
+				((model.normals[pos + 2] + model.normals[pos + 5] + model.normals[pos + 8]) / 3)  // z
+			};
+
+			collisionResult = collideMovingSphereOnTri(sphereMovement, sphereCenter, sphereRadius, triangle, normal);
+
+			if(collisionResult.collided){
+				return collisionResult;
+			}
+		}
+
+		return {false};
+	}
 	/*
 	static PhysicsData::CollisionData collideMovingSphereOnSphere(){
 
