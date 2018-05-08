@@ -46,7 +46,7 @@ public:
         transform(matrix);
         time.restart();
         if(timer.getElapsed(SECONDS) > 3) {
-            std::cout << speed.y << " ";
+            //std::cout << speed.y << " ";
             timer.restart();
         }
 

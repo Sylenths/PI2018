@@ -124,7 +124,7 @@ public:
     void draw() {
         GLContext::setFrustum(IS3D);
         glDepthFunc(GL_LEQUAL);
-        
+
         hud->getCamera()->applyViewMatrix();
         atmosphere.getRealLight().applyLightPosition();
 
