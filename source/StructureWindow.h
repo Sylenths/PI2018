@@ -145,7 +145,7 @@ public:
     void onBuildClick(){
         if(buildType == BUILD_FONDATION ||(buildType != BUILD_NOTHING && materialType)) {
             isBuilding = true;
-            SideWindow::closed = true;
+            closed = true;
         }
     }
     void onCancelClick(){

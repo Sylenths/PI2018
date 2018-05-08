@@ -30,7 +30,8 @@ public:
         modelsSideWindow["1DownButton"]->onClick = [this](){scrollMenu->ScrollDown();};
 
         //Création des bouttons de machine.
-        menuDeroulantBoutons[0] = new Button("", 920,50,0,340,80, EntityManager::get<Texture2d*>("SimcoinsButton")->ID, EntityManager::get<Texture2d*>("SimcoinsButtonOver")->ID);
+        menuDeroulantBoutons[0] = new Button("SimCoinsMiner", 920,50,0,340,80, EntityManager::get<Texture2d*>("SimcoinsButton")->ID, EntityManager::get<Texture2d*>("SimcoinsButtonOver")->ID);
+        menuDeroulantBoutons[0]-> onClick = [this] () {onClicSIMCoinsMiner();};
         menuDeroulantBoutons[1] = new Button("", 920,130,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->ID, EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->ID);
         menuDeroulantBoutons[2] = new Button("", 920,210,0,340,80, EntityManager::get<Texture2d*>("WindTurbineButton")->ID, EntityManager::get<Texture2d*>("WindTurbineButtonOver")->ID);
         menuDeroulantBoutons[3] = new Button("", 920,50,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->ID, EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->ID);
@@ -43,6 +44,11 @@ public:
         closeWindow = false;
 
     }
+
+    void onClicSIMCoinsMiner(){
+        MachineType = "SimCoinsMiner";
+    }
+
     void onCancelClick(){
         buildType = BUILD_NOTHING;
         materialType = NULLMATERIAL;

@@ -22,6 +22,7 @@ public:
     static bool switched;
     static Model* firstWall;
     static Model* secondWall;
+    static std::string MachineType;
 
 
     /// Inscription des modèles aux événements.
@@ -52,6 +53,7 @@ bool SideWindow::opened = false;
 bool SideWindow::switched = false;
 Model* SideWindow::firstWall = nullptr;
 Model* SideWindow::secondWall = nullptr;
+std::string SideWindow::MachineType = "";
 
 
 
