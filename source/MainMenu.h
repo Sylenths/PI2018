@@ -21,21 +21,23 @@ public:
 
         visualEntities2d.push_back(new Image2d("MainMenuBackGround", Vector(0.0, 0.0, 0.0), imageBackground));
 
-        Button2d* button = new Button2d("ButtonStart", Vector(967.0, 50.0, 0.1), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Start", {0, 0, 0});
+        Button2d* button = new Button2d("ButtonStart", Vector(967.0, 50.0, 1.0), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Start", {0, 0, 0});
         button->onClick = [this]() { Scene::changeActiveScene("World"); };
         visualEntities2d.push_back(button);
 
-        button = new Button2d("ButtonSettings", Vector(967.0, 225.0, 0.1), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Settings", {0, 0, 0});
+        button = new Button2d("ButtonSettings", Vector(967.0, 225.0, 1.0), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Settings", {0, 0, 0});
         button->onClick = [this]() { Scene::changeActiveScene("SettingsMenu"); };
         visualEntities2d.push_back(button);
 
-        button = new Button2d("ButtonHighScore", Vector(967.0, 400.0, 0.1), buttonBackground, EntityManager::get<Font*>("font - arial28"), "High Scores", {0, 0, 0});
+        button = new Button2d("ButtonHighScore", Vector(967.0, 400.0, 1.0), buttonBackground, EntityManager::get<Font*>("font - arial28"), "High Scores", {0, 0, 0});
         button->onClick = [this]() { Scene::changeActiveScene("HighScoresMenu"); };
         visualEntities2d.push_back(button);
 
-        button = new Button2d("ButtonQuitGame", Vector(967.0, 575.0, 0.1), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Quit", {0, 0, 0});
+        button = new Button2d("ButtonQuitGame", Vector(967.0, 575.0, 1.0), buttonBackground, EntityManager::get<Font*>("font - arial28"), "Quit", {0, 0, 0});
         button->onClick = [this]() { Scene::changeActiveScene("Quit"); };
         visualEntities2d.push_back(button);
+
+        sortLayers();
     }
 
     ~MainMenu() {
