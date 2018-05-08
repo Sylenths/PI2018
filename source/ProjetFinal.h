@@ -238,6 +238,7 @@ public:
                     glContext->grabInput();
                     sceneDisplay->unsubscribeAll(observables);
                     ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
+                    //((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
@@ -323,8 +324,6 @@ public:
         if(SideWindow::buildType == BUILD_FONDATION && SideWindow::isBuilding) {
             if(activeCamera && Scene::getActiveScene() == "World" && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT){
             World* world = ((World*)sceneDisplay);
-
-
 
                 Vector front = world->getCamera()->getFront();
                 Vector pos = world->getCamera()->getPos();
