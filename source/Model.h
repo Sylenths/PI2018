@@ -497,9 +497,9 @@ public:
         normalsHitBox, verticesHitBox, vertices = normals = texCoords = nullptr;
         Vector up;
         Vector temp;
-        vertexCount = 4;
-        normalCount = 4;
-        texCount = 4;
+        vertexCount = 12;
+        normalCount = 12;
+        texCount = 12;
 
         rotHitBox = false;
 
