@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertexcount',['vertexCount',['../class_model.html#aef8356f6096d0acb524a2dcd00c9e846',1,'Model']]]
+  ['sdlwindow',['sdlwindow',['../class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7',1,'Window']]]
 ];

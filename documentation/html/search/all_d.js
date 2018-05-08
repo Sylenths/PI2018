@@ -6,7 +6,6 @@ var searchData=
   ['powerappareil',['PowerAppareil',['../class_power_appareil.html',1,'']]],
   ['powermanager',['PowerManager',['../class_power_manager.html',1,'']]],
   ['powernode',['PowerNode',['../class_power_node.html',1,'']]],
-  ['powerrunner',['PowerRunner',['../class_power_runner.html',1,'']]],
   ['powersource',['PowerSource',['../class_power_source.html',1,'']]],
   ['powerswitch',['PowerSwitch',['../class_power_switch.html',1,'']]],
   ['powerwire',['PowerWire',['../class_power_wire.html',1,'']]],

@@ -8,6 +8,5 @@ var searchData=
   ['_7emenu',['~Menu',['../class_menu.html#a5bf168cbb40e28e718ced8f248b3d37a',1,'Menu']]],
   ['_7emodel',['~Model',['../class_model.html#ad6ebd2062a0b823db841a0b88baac4c0',1,'Model']]],
   ['_7eprojetfinal',['~ProjetFinal',['../class_projet_final.html#a72bb803a8447c986acb05e414fbd7edd',1,'ProjetFinal']]],
-  ['_7eresourcemanager',['~ResourceManager',['../class_resource_manager.html#a671c186e4630599e7e36d000c53eaf80',1,'ResourceManager']]],
   ['_7escene',['~Scene',['../class_scene.html#aa0a5be58e2ee2d1fdafc5fb46b5e661e',1,'Scene']]]
 ];

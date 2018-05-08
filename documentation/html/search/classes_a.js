@@ -5,5 +5,6 @@ var searchData=
   ['materiel',['Materiel',['../class_materiel.html',1,'']]],
   ['matrix',['Matrix',['../struct_matrix.html',1,'']]],
   ['menu',['Menu',['../class_menu.html',1,'']]],
+  ['menu2d',['Menu2d',['../class_menu2d.html',1,'']]],
   ['model',['Model',['../class_model.html',1,'']]]
 ];

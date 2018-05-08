@@ -52,7 +52,7 @@ public:
 	/// \param segment Segment (Vecteur)
 	/// \param normalOrigin Point faisant partie de la surface plane.
 	/// \param planeNormal Normale de la surface plane infinie.
-	/// \return Structure de donnée contenant les résultats de la collision.
+	/// \return Structure de données contenant les résultats de la collision.
 	static PhysicsData::CollisionData collideVectorOnPlane(Vector segmentOrigin, Vector segment, Vector normalOrigin, Vector normal){
 		normal.normalize();
 
@@ -69,44 +69,29 @@ public:
 		return {true, segmentOrigin + (segment * ratio)/*intersect*/, ratio};
 	}
 
-	/// Collisionne un segment et un triangle.
-	/// \param segmentOrigin Point de départ du segment.
-	/// \param segment Segment (Vecteur)
-	/// \param tri Triangle.
-	/// \param normal Normale du triangle.
-	/// \return Structure de donnée contenant les résultats de la collision.
-	static PhysicsData::CollisionData collideVectorOnTri(Vector segmentOrigin, Vector segment, PhysicsData::Triangle tri, Vector normal){
-		normal.normalize();
-
-		double dotp = normal * segment;
-
-		if((PHYSICS_EPSILON > dotp) && (dotp > -PHYSICS_EPSILON))
-			return {false};
-
-		double ratio = ((normal * tri.p1) / (normal * segment));
-
-		if(ratio > 1)
-			return {false};
-
-		Vector intersect(segmentOrigin + (segment * ratio));
-
+	/// Détermine si un pointse trouve à l'intérieur d'un triangle.
+	/// \param point Le point.
+	/// \param tri Le triangle
+	/// \param normal Vecteur normalisé représentant la normle du triangle.
+	/// \return Le point se trouve dans le triangle. (booléen)
+	static bool isPointWithinTri(Vector point, PhysicsData::Triangle tri, Vector normal){
 		PhysicsData::FlatTriangle flatTri;
 		PhysicsData::Vec2D flatVec;
 
 		if((normal.x > normal.y) && (normal.x > normal.z)){
 			//remove x from tri
 			flatTri = {{tri.p1.y, tri.p1.z}, {tri.p2.y, tri.p2.z}, {tri.p3.y, tri.p3.z}};
-			flatVec = {intersect.y, intersect.z};
+			flatVec = {point.y, point.z};
 		}
 		else if(normal.y > normal.z){
 			//remove y from tri
 			flatTri = {{tri.p1.x, tri.p1.z}, {tri.p2.x, tri.p2.z}, {tri.p3.x, tri.p3.z}};
-			flatVec = {intersect.x, intersect.z};
+			flatVec = {point.x, point.z};
 		}
 		else{
 			//remove z from tri
 			flatTri = {{tri.p1.x, tri.p1.y}, {tri.p2.x, tri.p2.y}, {tri.p3.x, tri.p3.y}};
-			flatVec = {intersect.x, intersect.y};
+			flatVec = {point.x, point.y};
 		}
 
 		bool b1 = signbit(det22(flatVec.x, flatVec.y, flatTri.p1.x, flatTri.p1.y));
@@ -115,7 +100,28 @@ public:
 
 		if(b1 == b2 && b1 == b3){
 			//Collision inside triangle.
-			return {true, intersect, ratio};
+			return true;
+		}
+		else{
+			//No collision inside triangle.
+			return false;
+		}
+	}
+
+	/// Collisionne un segment et un triangle.
+	/// \param segmentOrigin Point de départ du segment.
+	/// \param segment Segment (Vecteur)
+	/// \param tri Triangle.
+	/// \param normal Normale du triangle.
+	/// \return Structure de données contenant les résultats de la collision.
+	static PhysicsData::CollisionData collideVectorOnTri(Vector segmentOrigin, Vector segment, PhysicsData::Triangle tri, Vector normal){
+
+		PhysicsData::CollisionData cData = collideVectorOnPlane(segmentOrigin, segment, tri.p1, normal);
+		bool pointInTriangle = isPointWithinTri(cData.point, tri, normal);
+
+		if(pointInTriangle){
+			//Collision inside triangle.
+			return {true, cData.point, cData.ratio};
 		}
 		else{
 			//No collision inside triangle.
@@ -128,7 +134,7 @@ public:
 	/// \param origin Point de départ du segment.
 	/// \param vec Segment (vecteur).
 	/// \param model Modèle.
-	/// \return Structure de donnée contenant les résultats de la collision.
+	/// \return Structure de données contenant les résultats de la collision.
 	static PhysicsData::CollisionData collideVectorOnModel(Vector origin, Vector vec, Model& model){
 
 		PhysicsData::Triangle triangle;
@@ -171,7 +177,7 @@ public:
 	/// \param origin Point de départ du segment.
 	/// \param vec Segment.
 	/// \param model Modèle.
-	/// \return Structure de donnée contenant les résultats de la collision.
+	/// \return Structure de données contenant les résultats de la collision.
 	static PhysicsData::CollisionData collideVectorOnHitbox(Vector origin, Vector vec, Model& model){
 
 		PhysicsData::Triangle triangle;
@@ -211,7 +217,7 @@ public:
 	/// \param model1Movement Déplacement du modèle en mouvement.
 	/// \param model1 Modèle en mouvement
 	/// \param model2 Modèle fixe.
-	/// \return Structure de donnée contenant les résultats de la collision.
+	/// \return Structure de données contenant les résultats de la collision.
 	static PhysicsData::CollisionData collideMovingOnStaticModelHitboxes(Vector model1Movement, Model& model1, Model& model2){
 
 		PhysicsData::CollisionData collisionResult;
@@ -258,7 +264,7 @@ public:
 	/// \param model1Movement Déplacement du modèle en mouvement.
 	/// \param model1 Modèle en mouvement
 	/// \param model2 Modèle fixe.
-	/// \return Structure de donnée contenant les résultats de la collision.
+	/// \return Structure de données contenant les résultats de la collision.
 	static PhysicsData::CollisionData collideMovingOnStaticModels(Vector model1Movement, Model& model1, Model& model2){
 
 		PhysicsData::CollisionData collisionResult;
@@ -301,6 +307,124 @@ public:
 		return {false};
 	}
 
+	/// Trouve le point faisant partie d'un segment de droite qui est le plus rapprochè d'un autre point situé ailleurs dans l'espace.
+	/// \param searchOrigin Point dont on recherche le point le plus rapproché sur lw segment de droite.
+	/// \param a Point un délimitant le segment de droite.
+	/// \param b Point deux délimitant le segment de droite.
+	/// \return Point le plus rapproché du point de recherche se trouvant sur le segment de droite.
+	static Vector getClosestPointOnLineSegment(Vector searchOrigin, Vector a, Vector b) {
+
+		// Determine length of A-->Point vector.
+		Vector c = searchOrigin - a;
+
+		// Get a normalised vector that is co-linear with AB for projection.
+		Vector V = (b - a).normalize();
+
+		double j = (b.x - a.x), k = (b.y - a.y), l = (b.z - a.z);
+		double d = j*j + k*k + l*l; // Do not square root this.
+
+		double projectionLength = V * c;
+
+		// See if projected point is not on the segment and, if so, return the appropriate end of the segment.
+
+		if (projectionLength < 0) return a;
+
+		if ((projectionLength * projectionLength) > d) return b; // Avoid computing the square root of d by squaring t, less processor intensive.
+
+		// Return projected point on segment
+
+		V.normalize();
+		V = V * projectionLength;
+
+		return a + V;
+
+	}
+
+	/// Trouve le point des côtés d'un triangle le plus rapproché d'un autre point ailleurs dans l'espace.
+	/// \param point Point dont on cherche le point le plus rapproché.
+	/// \param tri Triangle.
+	/// \return Point faisant partie des côtés du triangle le plus proche du point de recherche.
+	static Vector getClosestPointOnTriSides(Vector point, PhysicsData::Triangle tri) {
+
+		Vector p12 = getClosestPointOnLineSegment(tri.p1, tri.p2, point);
+		Vector p23 = getClosestPointOnLineSegment(tri.p2, tri.p3, point);
+		Vector p31 = getClosestPointOnLineSegment(tri.p3, tri.p1, point);
+
+		return Vector(0, 0, 0);// TODO: closest pointOnSegment to point;
+
+	}
+
+	/// Collisionne un vecteur sur une sphère.
+	/// \param vectorOrigin point d'origine du vecteur.
+	/// \param vector Vecteur.
+	/// \param sphereOrigin Point d'origine de la sphère.
+	/// \param sphereRadius Rayon de la sphère.
+	/// \return Structure de données contenant les résultats de la collision.
+	static PhysicsData::CollisionData collideVectorOnSphere(Vector vectorOrigin, Vector vector, Vector sphereOrigin, double sphereRadius){
+		Vector normalizedVector(vector.getNormalized());
+
+		Vector Q = sphereOrigin - vectorOrigin;
+
+		double c = Q.getNorm();
+
+		double v = Q * vector.getNormalized();
+
+		double d = sphereRadius*sphereRadius - (c*c - v*v);
+
+		// Failure to intersect, return false.
+		if (d < 0.0) {
+			return {false};
+		}
+
+
+		double distanceToIntersect = (v - sqrt(d));
+
+		return {true, vectorOrigin + (normalizedVector * distanceToIntersect), distanceToIntersect / vector.getNorm()};
+	}
+
+	/// Collisionne une sphère en mouvement sur un triangle.
+	/// \param sphereMovement Déplacement de la sphère.
+	/// \param sphereCenter Point centre de la sphère.
+	/// \param sphereRadius Rayon de la sphère.
+	/// \param tri Triangle.
+	/// \param triangleNormal Vecteur normal du triangle.
+	/// \return Structure de données contenant les résultats de la collision.
+	static PhysicsData::CollisionData collideMovingSphereOnTri(Vector& sphereMovement, Vector& sphereCenter, double& sphereRadius, PhysicsData::Triangle& tri, Vector& triangleNormal ){
+
+		triangleNormal.normalize();
+		// make a triangle with sphere radius added in the normal direction. (so we get the sphere center point when colliding.)
+		Vector collisionPoint(sphereCenter + (-triangleNormal * sphereRadius));
+
+		PhysicsData::CollisionData cData = collideVectorOnPlane(collisionPoint, sphereMovement, tri.p1, triangleNormal);
+
+		if(isPointWithinTri(cData.point, tri, triangleNormal) && cData.collided) {
+			return cData;
+		}
+		// Sphere center failing collision with the main triangle body, check collision with triangle sides (and verticies).
+		// get point on triangle sides closest to sphere center point.
+		Vector nearestPointToTriPlaneCollision = getClosestPointOnTriSides(cData.point, tri);
+
+		PhysicsData::CollisionData cData2 = collideVectorOnSphere(nearestPointToTriPlaneCollision, -sphereMovement, sphereCenter, sphereRadius);
+
+		//TODO: Returned data...
+		return {false};
+
+
+	}
+
+	/*
+	static PhysicsData::CollisionData collideMovingSphereOnSphere(){
+
+	}
+
+	static PhysicsData::CollisionData collideMovingSphereOnPoint(){
+
+	}
+
+	static PhysicsData::CollisionData collideMovingSphereOnModel(){
+
+	}
+*/
 };
 
 #endif //PHYSICS_H

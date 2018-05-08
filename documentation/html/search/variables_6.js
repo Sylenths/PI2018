@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sdlwindow',['sdlwindow',['../class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7',1,'Window']]]
+  ['onclick',['onClick',['../class_model.html#a19e7e9a44455ef0601d04c660bb8ea01',1,'Model']]]
 ];

@@ -82,33 +82,34 @@ Graphe d'héritage de Fondation:</div>
   <map id="Fondation_map" name="Fondation_map">
 <area href="class_structure.html" title="Classe mère de d&#39;autre classe. " alt="Structure" shape="rect" coords="85,112,245,136"/>
 <area href="class_model.html" title="La maille est la somme de tous les points pour former une forme géométrique dans OpenGL. " alt="Model" shape="rect" coords="85,56,245,80"/>
-<area href="class_resource.html" title="Représentation de tous les resources nécessaires au projet. " alt="Resource" shape="rect" coords="0,0,160,24"/>
+<area href="class_entity.html" alt="Entity" shape="rect" coords="0,0,160,24"/>
 <area href="class_observer.html" alt="Observer&lt; SDL_Event *&gt;" shape="rect" coords="170,0,330,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:a7f15e88076d86c03a087c77b5c9dd508"><td class="memItemLeft" align="right" valign="top"><a id="a7f15e88076d86c03a087c77b5c9dd508"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Fondation</b> (double posx, double posy, double posz, bool rotHitBox, unsigned int textureID=<a class="el" href="class_singleton.html#ad6f103597095efda360db4a230308666">ResourceManager::getInstance</a>() -&gt;getTexture(&quot;fondation&quot;), const char *objFile=&quot;../../models/obj/fondation.obj&quot;)</td></tr>
-<tr class="separator:a7f15e88076d86c03a087c77b5c9dd508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ae606fdb1d92e3a4ede6d45dd3b720f"><td class="memItemLeft" align="right" valign="top"><a id="a9ae606fdb1d92e3a4ede6d45dd3b720f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Fondation</b> (const std::string name, double posx, double posy, double posz, bool rotHitBox, unsigned int textureID=<a class="el" href="class_entity_manager.html#aa78fe4faff447d619f86d623b455f089">EntityManager::get</a>&lt; <a class="el" href="class_texture2d.html">Texture2d</a> *&gt;(&quot;fondation&quot;) -&gt;getID(), const char *objFile=&quot;../../models/obj/fondation.obj&quot;)</td></tr>
+<tr class="separator:a9ae606fdb1d92e3a4ede6d45dd3b720f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_structure"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_structure')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques hérités de <a class="el" href="class_structure.html">Structure</a></td></tr>
-<tr class="memitem:ac6b926fb89bfb07cccc63f04b5a0342d inherit pub_methods_class_structure"><td class="memItemLeft" align="right" valign="top"><a id="ac6b926fb89bfb07cccc63f04b5a0342d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Structure</b> (double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char *objFile=nullptr)</td></tr>
-<tr class="separator:ac6b926fb89bfb07cccc63f04b5a0342d inherit pub_methods_class_structure"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9c1961f9969af0ca5f8532f5b2e3723 inherit pub_methods_class_structure"><td class="memItemLeft" align="right" valign="top"><a id="ad9c1961f9969af0ca5f8532f5b2e3723"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Structure</b> (const std::string name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char *objFile=nullptr)</td></tr>
+<tr class="separator:ad9c1961f9969af0ca5f8532f5b2e3723 inherit pub_methods_class_structure"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_model"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_model')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques hérités de <a class="el" href="class_model.html">Model</a></td></tr>
 <tr class="memitem:aeb04209946f35684bb6e5d231df5944e inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#aeb04209946f35684bb6e5d231df5944e">transform</a> (<a class="el" href="struct_matrix.html">Matrix</a> &amp;m)</td></tr>
 <tr class="separator:aeb04209946f35684bb6e5d231df5944e inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a41427a455e4281b0f54ea7052396e4 inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top"><a id="a6a41427a455e4281b0f54ea7052396e4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateShadingVertex</b> (double *obstruction, unsigned int <a class="el" href="class_model.html#aef8356f6096d0acb524a2dcd00c9e846">vertexCount</a>, <a class="el" href="struct_vector.html">Vector</a> sun)</td></tr>
-<tr class="separator:a6a41427a455e4281b0f54ea7052396e4 inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add75a73c4c39d6485b6d617d8639f069 inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#add75a73c4c39d6485b6d617d8639f069">Model</a> (double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char *objFile=nullptr)</td></tr>
-<tr class="separator:add75a73c4c39d6485b6d617d8639f069 inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ca90743df834390fab6ceb6d06f6e4b inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a7ca90743df834390fab6ceb6d06f6e4b">Model</a> (const std::string &amp;name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char *objFile=nullptr)</td></tr>
+<tr class="separator:a7ca90743df834390fab6ceb6d06f6e4b inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add574cdd64e52c6b6d430643be0cc185 inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top"><a id="add574cdd64e52c6b6d430643be0cc185"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setShadingOn</b> ()</td></tr>
 <tr class="separator:add574cdd64e52c6b6d430643be0cc185 inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5222680222ba369f9b06cfa3b8dd37b8 inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a5222680222ba369f9b06cfa3b8dd37b8">Model</a> (unsigned int height, unsigned int textureID, <a class="el" href="struct_vector.html">Vector</a> *firstCorner, <a class="el" href="struct_vector.html">Vector</a> *secondCorner)</td></tr>
-<tr class="separator:a5222680222ba369f9b06cfa3b8dd37b8 inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add72361fc5040ce204719406bbff54a1 inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#add72361fc5040ce204719406bbff54a1">Model</a> (const std::string &amp;name, unsigned int height, unsigned int textureID, <a class="el" href="struct_vector.html">Vector</a> *firstCorner, <a class="el" href="struct_vector.html">Vector</a> *secondCorner)</td></tr>
+<tr class="memdesc:add72361fc5040ce204719406bbff54a1 inherit pub_methods_class_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de mur.  <a href="class_model.html#add72361fc5040ce204719406bbff54a1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:add72361fc5040ce204719406bbff54a1 inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5a2d23f1de57b3f0a970edb62ca3388 inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#ab5a2d23f1de57b3f0a970edb62ca3388">Model</a> (const std::string &amp;name, unsigned int width, unsigned int height, unsigned int lenght, double posx, double posy, double posz, unsigned int textureID)</td></tr>
+<tr class="memdesc:ab5a2d23f1de57b3f0a970edb62ca3388 inherit pub_methods_class_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de toit.  <a href="class_model.html#ab5a2d23f1de57b3f0a970edb62ca3388">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab5a2d23f1de57b3f0a970edb62ca3388 inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6ebd2062a0b823db841a0b88baac4c0 inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top"><a id="ad6ebd2062a0b823db841a0b88baac4c0"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#ad6ebd2062a0b823db841a0b88baac4c0">~Model</a> ()</td></tr>
 <tr class="memdesc:ad6ebd2062a0b823db841a0b88baac4c0 inherit pub_methods_class_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur. <br /></td></tr>
@@ -120,16 +121,32 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setTexture</b> (std::
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a95dac41274acb62b3d8885277c8945d7">draw</a> ()</td></tr>
 <tr class="memdesc:a95dac41274acb62b3d8885277c8945d7 inherit pub_methods_class_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche le modèle. <br /></td></tr>
 <tr class="separator:a95dac41274acb62b3d8885277c8945d7 inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09c6421883011aee9ddb727e9ecea672 inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top"><a id="a09c6421883011aee9ddb727e9ecea672"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawAndShading</b> ()</td></tr>
-<tr class="separator:a09c6421883011aee9ddb727e9ecea672 inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e285366b5da4f1ddc3c069117e0581c inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top"><a id="a2e285366b5da4f1ddc3c069117e0581c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>drawAndShading</b> (<a class="el" href="struct_vector.html">Vector</a> lightPos)</td></tr>
+<tr class="separator:a2e285366b5da4f1ddc3c069117e0581c inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c978aa2ae0c5bd6395111eb9586e03b inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top"><a id="a0c978aa2ae0c5bd6395111eb9586e03b"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getMesh</b> (int position)</td></tr>
+<tr class="separator:a0c978aa2ae0c5bd6395111eb9586e03b inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a943a6c52dd61be4f5fe7e8d60dd83eaf inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top"><a id="a943a6c52dd61be4f5fe7e8d60dd83eaf"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a943a6c52dd61be4f5fe7e8d60dd83eaf">notify</a> (SDL_Event *sdlEvent)</td></tr>
 <tr class="memdesc:a943a6c52dd61be4f5fe7e8d60dd83eaf inherit pub_methods_class_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reçoit une notification de l'observable. <br /></td></tr>
 <tr class="separator:a943a6c52dd61be4f5fe7e8d60dd83eaf inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9a0896c3c5d5893620e50c43c3ddc9b inherit pub_methods_class_model"><td class="memItemLeft" align="right" valign="top"><a id="ae9a0896c3c5d5893620e50c43c3ddc9b"></a>
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> ()</td></tr>
+<tr class="separator:ae9a0896c3c5d5893620e50c43c3ddc9b inherit pub_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_entity')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques hérités de <a class="el" href="class_entity.html">Entity</a></td></tr>
+<tr class="memitem:ae1a626886554c496fb3891e0835142b0 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="ae1a626886554c496fb3891e0835142b0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (const std::string &amp;name)</td></tr>
+<tr class="separator:ae1a626886554c496fb3891e0835142b0 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8811e270c21f713206d5f673d5fca662 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top"><a id="a8811e270c21f713206d5f673d5fca662"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
+<tr class="separator:a8811e270c21f713206d5f673d5fca662 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Attributs publics</h2></td></tr>
+<tr class="memitem:a907f3f72858ec3de67605a965230b855"><td class="memItemLeft" align="right" valign="top"><a id="a907f3f72858ec3de67605a965230b855"></a>
+<a class="el" href="class_materiel.html">Materiel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>material</b></td></tr>
+<tr class="separator:a907f3f72858ec3de67605a965230b855"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18219f44ec3b1be6fa5b7c5cd01f3260"><td class="memItemLeft" align="right" valign="top"><a id="a18219f44ec3b1be6fa5b7c5cd01f3260"></a>
 <a class="el" href="struct_vector.html">Vector</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>centerPoint</b></td></tr>
 <tr class="separator:a18219f44ec3b1be6fa5b7c5cd01f3260"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,6 +170,16 @@ std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom">
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Membres hérités additionnels</h2></td></tr>
+<tr class="inherit_header pro_methods_class_model"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_model')"><img src="closed.png" alt="-"/>&#160;Fonctions membres protégées hérités de <a class="el" href="class_model.html">Model</a></td></tr>
+<tr class="memitem:a53d8616242c57784edbba95c47f6b8c4 inherit pro_methods_class_model"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a53d8616242c57784edbba95c47f6b8c4">updateShadingVertex</a> (<a class="el" href="struct_vector.html">Vector</a> sun)</td></tr>
+<tr class="separator:a53d8616242c57784edbba95c47f6b8c4 inherit pro_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1932e33320f56e816bbcefc713075e0 inherit pro_methods_class_model"><td class="memItemLeft" align="right" valign="top"><a id="af1932e33320f56e816bbcefc713075e0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>signOfD</b> (double &amp;xCordp, double &amp;zCordp, double &amp;xCord1, double &amp;zCord1, double &amp;xCord2, double &amp;zCord2)</td></tr>
+<tr class="separator:af1932e33320f56e816bbcefc713075e0 inherit pro_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a832258ba69f2b9748a39798222346176 inherit pro_methods_class_model"><td class="memItemLeft" align="right" valign="top"><a id="a832258ba69f2b9748a39798222346176"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a832258ba69f2b9748a39798222346176">cleanShadingVertex</a> ()</td></tr>
+<tr class="memdesc:a832258ba69f2b9748a39798222346176 inherit pro_methods_class_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enlève les triangles de surplus dans l'ombre afin d'enlever les superpositions. <br /></td></tr>
+<tr class="separator:a832258ba69f2b9748a39798222346176 inherit pro_methods_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_model"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_model')"><img src="closed.png" alt="-"/>&#160;Attributs protégés hérités de <a class="el" href="class_model.html">Model</a></td></tr>
 <tr class="memitem:aef8356f6096d0acb524a2dcd00c9e846 inherit pro_attribs_class_model"><td class="memItemLeft" align="right" valign="top"><a id="aef8356f6096d0acb524a2dcd00c9e846"></a>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#aef8356f6096d0acb524a2dcd00c9e846">vertexCount</a></td></tr>
@@ -182,13 +209,16 @@ double *&#160;</td><td class="memItemRight" valign="bottom"><b>verticesHitBox</b
 double *&#160;</td><td class="memItemRight" valign="bottom"><b>normalsHitBox</b></td></tr>
 <tr class="separator:a30bbe013c045e0054e0e33556ccb9881 inherit pro_attribs_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a089858e8b3d2c94351e6497d34ced39f inherit pro_attribs_class_model"><td class="memItemLeft" align="right" valign="top"><a id="a089858e8b3d2c94351e6497d34ced39f"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>verticesShading</b></td></tr>
+double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a089858e8b3d2c94351e6497d34ced39f">verticesShading</a></td></tr>
+<tr class="memdesc:a089858e8b3d2c94351e6497d34ced39f inherit pro_attribs_class_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de vertices pour l'ombrage. <br /></td></tr>
 <tr class="separator:a089858e8b3d2c94351e6497d34ced39f inherit pro_attribs_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58136e9fa46935b7736623973e17bf25 inherit pro_attribs_class_model"><td class="memItemLeft" align="right" valign="top"><a id="a58136e9fa46935b7736623973e17bf25"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>normalsShading</b></td></tr>
+double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a58136e9fa46935b7736623973e17bf25">normalsShading</a></td></tr>
+<tr class="memdesc:a58136e9fa46935b7736623973e17bf25 inherit pro_attribs_class_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de normales pour l'ombrage. <br /></td></tr>
 <tr class="separator:a58136e9fa46935b7736623973e17bf25 inherit pro_attribs_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1344fbd564e245b16b9be292c0192bea inherit pro_attribs_class_model"><td class="memItemLeft" align="right" valign="top"><a id="a1344fbd564e245b16b9be292c0192bea"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>colorsShading</b></td></tr>
+double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a1344fbd564e245b16b9be292c0192bea">colorsShading</a></td></tr>
+<tr class="memdesc:a1344fbd564e245b16b9be292c0192bea inherit pro_attribs_class_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Un tableau de couleur RGBA pour chacun des triangles. <br /></td></tr>
 <tr class="separator:a1344fbd564e245b16b9be292c0192bea inherit pro_attribs_class_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a997c7dd33d9c4317429574332924b5fd inherit pro_attribs_class_model"><td class="memItemLeft" align="right" valign="top"><a id="a997c7dd33d9c4317429574332924b5fd"></a>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a997c7dd33d9c4317429574332924b5fd">textureToDraw</a></td></tr>
@@ -219,7 +249,7 @@ std::map&lt; std::string, unsigned int &gt;&#160;</td><td class="memItemRight" v
 <dl class="section date"><dt>Date</dt><dd>17 avril 2018 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section warning"><dt>Avertissement</dt><dd>N'est pas complet manque ce qu'il faut lors de la création de la fondation. </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000012">Bogue:</a></b></dt><dd>Aucuns. </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000013">Bogue:</a></b></dt><dd>Aucuns. </dd></dl>
 </div><hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
 <li>source/<a class="el" href="_fondation_8h_source.html">Fondation.h</a></li>
 </ul>
