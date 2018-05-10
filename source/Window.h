@@ -12,6 +12,7 @@
 class Window {
 protected:
     SDL_Window* sdlWindow;  ///< Affichage de la fenêtres.
+    static unsigned int width, height;
 
 public:
 	/// Constructeur.
@@ -31,6 +32,8 @@ public:
 
     void setSize(const int& width, const int&height) {
         SDL_SetWindowSize(sdlWindow, width, height);
+        Window::width = width;
+        Window::height = height;
     }
 
     /// Méthode virtuelle pour effacer le contenu de la fenêtre.
@@ -40,5 +43,7 @@ public:
 
 };
 
+unsigned int Window::width;
+unsigned int Window::height;
 
 #endif //SDLPROJECT_WINDOW_H

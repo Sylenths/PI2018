@@ -14,7 +14,7 @@ class GLContext : public Window {
 private:
     SDL_GLContext glContext; ///< Contexte OpenGL-SDL
     static Matrix projectionMatrix;
-    static unsigned int width, height;
+
 public:
 	/// Constructeur
 	/// \param title Titre de la fenêtre.
@@ -28,8 +28,8 @@ public:
         double right = std::tan(angle / 2.0) * nearPlane;
         double top = ((double) height / (double) width) * right;
 
-        GLContext::width = width;
-        GLContext::height = height;
+        Window::width = width;
+        Window::height = height;
         GLContext::projectionMatrix.loadProjection(top, right, nearPlane, farPlane);
     }
 	/// Destructeur.
@@ -87,14 +87,12 @@ public:
     }
     /// Replacer le curseur de la souris au centre de la fenêtre.
     void resetMousePosition() {
-        SDL_WarpMouseInWindow(sdlWindow, 640, 360);
+        SDL_WarpMouseInWindow(sdlWindow, Window::width / 2, Window::height);
         SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
     }
 
 };
 
 Matrix GLContext::projectionMatrix;
-unsigned int GLContext::width;
-unsigned int GLContext::height;
 
 #endif //SDLPROJECT_GLCONTEXT_H
