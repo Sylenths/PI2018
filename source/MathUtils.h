@@ -11,6 +11,10 @@
 
 #define _USE_MATH_DEFINES
 #define MATH_PI 3.14159265358979323846
+#define PRESSION_SI 101325.0
+#define TEMPERATURE_SI 273.15
+#define MOLARMASSEAIR 28.965338
+#define CONSTANTEGAZPARFAITS 8.3144621
 
 #include <math.h>
 
@@ -45,4 +49,19 @@ double det22(double& a, double& c, double& b, double& d) {
     return a * d - b * c;
 }
 
+/// Donne la pression atmospherique en fonction de la temperature.
+/// \param temperatureEnKelvin Temperature ambiante en Kelvin.
+double pressionEnFonctionDeTemperature(double temperatureEnKelvin){
+    return ((PRESSION_SI/TEMPERATURE_SI)*temperatureEnKelvin);
+}
+
+/// Donne la masse volumique de l'air en fonction de la temperature.
+/// \param temperatureEnKelvin Temperature ambiante en Kelvin.
+double masseVolumiqueAirEnFonctionDeTemperature(double temperatureEnKelvin){
+    return ((pressionEnFonctionDeTemperature(temperatureEnKelvin)*MOLARMASSEAIR)/(CONSTANTEGAZPARFAITS*temperatureEnKelvin));
+}
+
+double getCineticEnergie(double masse, double vitesse){
+    return (.5*masse*(vitesse*vitesse));
+}
 #endif //MATHUTILS_H
