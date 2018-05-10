@@ -43,6 +43,7 @@ public:
     }
 
     ~MainMenu() {
+        delete buttonHover;
         delete buttonBackground;
         delete imageBackground;
     }
@@ -50,7 +51,9 @@ public:
     /// Permet d'inscrire les observateurs aux événements.
     /// \param observables Tous les observables.
     void subscribeAll(std::map <unsigned int, Observable<SDL_Event*>*>& observables){
-        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        if (!observables[SDL_MOUSEBUTTONDOWN])
+            observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+
         std::list<VisualEntity2d*>::iterator it = visualEntities2d.begin();
         while (++it != visualEntities2d.end()) {
             observables[SDL_MOUSEBUTTONDOWN]->subscribe(*it);
