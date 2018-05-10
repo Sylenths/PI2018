@@ -12,7 +12,7 @@
 class MainMenu : public Menu2d {
 public:
     /// Constructeur
-    MainMenu(){
+    MainMenu() {
         visualEntities2d.push_back(new Image2d("MainMenuBackGround", Vector(0.0, 0.0, -2.0), EntityManager::get<Texture2d*>("MenuBackground")));
         visualEntities2d.push_back(new Label2d("MainMenuTitle", Vector(50.0, 50.0, -1.0), EntityManager::get<Font*>("fntMrRobot"), "SIMstruction", { 0, 0, 0, 255 }));
 

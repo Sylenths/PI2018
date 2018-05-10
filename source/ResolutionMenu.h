@@ -10,18 +10,23 @@
 #include "includes.h"
 
 class ResolutionMenu : public Menu2d {
+private:
+    GLContext* context;
+
 public:
     /// Constructeur
-    ResolutionMenu() {
+    ResolutionMenu(GLContext* context) {
+        this->context = context;
+
         visualEntities2d.push_back(new Image2d("MainMenuBackGround", Vector(0.0, 0.0, -2.0), EntityManager::get<Texture2d*>("MenuBackground")));
-        visualEntities2d.push_back(new Label2d("MainMenuTitle", Vector(50.0, 50.0, -1.0), EntityManager::get<Font*>("fntMrRobot"), "Settings", { 0, 0, 0, 255 }));
+        visualEntities2d.push_back(new Label2d("MainMenuTitle", Vector(50.0, 50.0, -1.0), EntityManager::get<Font*>("fntMrRobot"), "Resolution", { 0, 0, 0, 255 }));
 
         Button2d* button = new Button2d("ButtonResolution", Vector(967.0, 50.0, 1.0), EntityManager::get<Font*>("fntButton"), "1280 x 720", {0, 0, 0}, EntityManager::get<Texture2d*>("MenuButtonBackground"), EntityManager::get<Texture2d*>("MenuButtonHover"));
-        //button->onClick = [this]() { Scene::changeActiveScene("ResolutionMenu"); };
+        button->onClick = [this]() { this->context->setSize(1280, 720); };
         visualEntities2d.push_back(button);
 
         button = new Button2d("ButtonKeys", Vector(967.0, 225.0, 1.0), EntityManager::get<Font*>("fntButton"), "1440 x 900", {0, 0, 0}, EntityManager::get<Texture2d*>("MenuButtonBackground"), EntityManager::get<Texture2d*>("MenuButtonHover"));
-        //button->onClick = [this]() { Scene::changeActiveScene("KeysMenu"); };
+        button->onClick = [this]() { this->context->setSize(1440, 900); };
         visualEntities2d.push_back(button);
 
         button = new Button2d("ButtonBack", Vector(967.0, 575.0, 1.0), EntityManager::get<Font*>("fntButton"), "Back", {0, 0, 0}, EntityManager::get<Texture2d*>("MenuButtonBackground"), EntityManager::get<Texture2d*>("MenuButtonHover"));
