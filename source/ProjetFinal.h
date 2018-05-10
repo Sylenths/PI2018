@@ -237,15 +237,19 @@ public:
             switch (controller->getKeyDown()) {
                 case SDLK_f:
                     activeCamera = false;
+                    sceneDisplay->subscribeAll(observables);
                     glContext->releaseInput();
 
                     break;
                 case SDLK_g:
                     activeCamera = true;
                     glContext->grabInput();
+                    ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
+                    ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
+                    sceneDisplay->unsubscribeAll(observables);
                     break;
                 case SDL_MOUSEBUTTONDOWN:
-                    if(sceneDisplay == sceneMap["World"] && SideWindow::MachineType != "")
+                    if((sceneDisplay == sceneMap["World"]) && (SideWindow::MachineType != ""))
                         ((World*)sceneDisplay)->createMachine(controller->getClickMousePosition()[0], controller->getClickMousePosition()[1], 10);
                     break;
                 case SDLK_w:
@@ -279,12 +283,9 @@ public:
             }
             switch (controller->getKeyUp()) {
                 case SDLK_f:
-                    sceneDisplay->subscribeAll(observables);
                     break;
                 case SDLK_g:
-                    ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
-                    ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
-                    sceneDisplay->unsubscribeAll(observables);
+
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {

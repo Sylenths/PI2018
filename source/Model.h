@@ -57,65 +57,80 @@ protected:
     }
 
 
-    bool signOfD(double& xCordp, double& zCordp, double& xCord1, double& zCord1, double& xCord2, double& zCord2) {
-        if (((xCordp - xCord1) * (zCord2 - zCord1) - (zCordp - zCord1) * (xCord2 - xCord1)) < 0)
-            return false;
+    bool getSign(double& Ax, double& Az, double& Bx, double& Bz, double& Sx, double& Sz) {
+        double temp = (Sx - Ax)*(Bz - Az) - (Sz - Az)*(Bx - Ax);
+        if (temp > 0)
+            return 1;
         else
-            return true;
+            return 0;
     }
 
     /// Enlève les triangles de surplus dans l'ombre afin d'enlever les superpositions
     void cleanShadingVertex() {
-        bool signRef;
-        double* shadingEdges;
-        std::vector<double> vShadingEdges;
+        bool signOf;
+        std::vector<double> verticesEdge;
 
-        for (int i = 0; i < (vertexCount / 3); i += 9) {
-            signRef = signOfD(verticesShading[i + 6], verticesShading[i + 8], verticesShading[i], verticesShading[i + 2], verticesShading[i + 3], verticesShading[i + 5]);
-            for (int j = 0; j < (vertexCount - 2); j += 3) {
-                //Si le point j ne fait pas parti du segment
-                if (!(j == i || j == (i + 3))) {
-                    //Si le déterminant est du même signe que le signe de référence du triangle
-                    if (signOfD(verticesShading[j], verticesShading[j + 2], verticesShading[i], verticesShading[i + 2], verticesShading[i + 3], verticesShading[i + 5]) == signRef) {
-                        //Si c'est le dernier sommet
-                        if (j == (vertexCount - 3)) {
-                            for (int k = 0; k < 6; k++) {
-                                //on ajoute le segment (6 sommets) au tableau de sommets qui composent les extrémités de l'ombre
-                                vShadingEdges.push_back(verticesShading[j + k]);
-                            }
+        for (int i = 0; i < vertexCount; ++i) {
+            signOf = getSign(verticesShading[i * 9], verticesShading[i * 9 + 2], verticesShading[i * 9 + 3], verticesShading[i * 9 + 5], verticesShading[i * 9 + 6], verticesShading[i * 9 + 8]);
+
+            verticesEdge.push_back(verticesShading[i * 9    ]);
+            verticesEdge.push_back(verticesShading[i * 9 + 2]);
+            verticesEdge.push_back(verticesShading[i * 9 + 3]);
+            verticesEdge.push_back(verticesShading[i * 9 + 5]);
+
+            for (int i2 = 0; i2 < vertexCount; ++i2) {
+                if (!((verticesShading[i2 * 3] == verticesShading[i * 9]) && (verticesShading[i2 * 3 + 2] == verticesShading[i * 9 + 2]))) { // pas égal à A
+                    if (!((verticesShading[i2 * 3] == verticesShading[i * 9 + 3]) && (verticesShading[i2 * 3 + 2] == verticesShading[i * 9 + 5]))) { // pas égal à B
+                        if (signOf != getSign(verticesShading[i * 9], verticesShading[i * 9 + 2], verticesShading[i * 9 + 3], verticesShading[i * 9 + 5], verticesShading[i2 * 3], verticesShading[i2 * 3 + 2])) {
+                            verticesEdge.pop_back();
+                            verticesEdge.pop_back();
+                            verticesEdge.pop_back();
+                            verticesEdge.pop_back();
+                            //overflow the iterator as a pseudo-break
+                            i2 = vertexCount;
                         }
-                    } else {
-                        //on arrête la boucle et on va au prochain segment
-                        j = vertexCount;
                     }
                 }
             }
 
-            for (int j = 0; j < (vertexCount - 2); j += 3) {
-                if (!(j == (i + 3) || j == (i + 6))) {
-                    if (signOfD(verticesShading[j], verticesShading[j + 2], verticesShading[i + 3], verticesShading[i + 5], verticesShading[i + 6], verticesShading[i + 8]) == signRef) {
-                        if (j == (vertexCount - 3)) {
-                            for (int k = 0; k < 6; k++) {
-                                vShadingEdges.push_back(verticesShading[j + k]);
-                            }
+            signOf = getSign(verticesShading[i * 9 + 3], verticesShading[i * 9 + 5], verticesShading[i * 9 + 6], verticesShading[i * 9 + 8], verticesShading[i * 9], verticesShading[i * 9 + 2]);
+
+            verticesEdge.push_back(verticesShading[i * 9 + 3]);
+            verticesEdge.push_back(verticesShading[i * 9 + 5]);
+            verticesEdge.push_back(verticesShading[i * 9 + 6]);
+            verticesEdge.push_back(verticesShading[i * 9 + 8]);
+
+            for (int i2 = 0; i2 < vertexCount; ++i2) {
+                if (!((verticesShading[i2 * 3] == verticesShading[i * 9 + 3]) && (verticesShading[i2 * 3 + 2] == verticesShading[i * 9 + 5]))) { // pas égal à A
+                    if (!((verticesShading[i2 * 3] == verticesShading[i * 9 + 6]) && (verticesShading[i2 * 3 + 2] == verticesShading[i * 9 + 8]))) { // pas égal à B
+                        if (signOf != getSign(verticesShading[i * 9 + 3], verticesShading[i * 9 + 5], verticesShading[i * 9 + 6], verticesShading[i * 9 + 8], verticesShading[i2 * 3], verticesShading[i2 * 3 + 2])) {
+                            verticesEdge.pop_back();
+                            verticesEdge.pop_back();
+                            verticesEdge.pop_back();
+                            verticesEdge.pop_back();
+                            i2 = vertexCount;
                         }
                     }
-                    else
-                        j = vertexCount;
                 }
             }
 
-            for (int j = 0; j < (vertexCount - 2); j += 3) {
-                if (!(j == (i + 3) || j == (i + 6))) {
-                    if (signOfD(verticesShading[j], verticesShading[j + 2], verticesShading[i + 6], verticesShading[i + 8], verticesShading[i], verticesShading[i + 2]) == signRef) {
-                        if (j == (vertexCount - 3)) {
-                            for (int k = 0; k < 6; k++) {
-                                vShadingEdges.push_back(verticesShading[j + k]);
-                            }
+            signOf = getSign(verticesShading[i * 9 + 6], verticesShading[i * 9 + 8], verticesShading[i * 9], verticesShading[i * 9 + 2], verticesShading[i * 9 + 3], verticesShading[i * 9 + 5]);
+
+            verticesEdge.push_back(verticesShading[i * 9 + 6]);
+            verticesEdge.push_back(verticesShading[i * 9 + 8]);
+            verticesEdge.push_back(verticesShading[i * 9    ]);
+            verticesEdge.push_back(verticesShading[i * 9 + 2]);
+
+            for (int i2 = 0; i2 < vertexCount; ++i2) {
+                if (!((verticesShading[i2 * 3] == verticesShading[i * 9 + 6]) && (verticesShading[i2 * 3 + 2] == verticesShading[i * 9 + 8]))) { // pas égal à A
+                    if (!((verticesShading[i2 * 3] == verticesShading[i * 9]) && (verticesShading[i2 * 3 + 2] == verticesShading[i * 9 + 2]))) { // pas égal à B
+                        if (signOf != getSign(verticesShading[i * 9 + 6], verticesShading[i * 9 + 8], verticesShading[i * 9], verticesShading[i * 9 + 2], verticesShading[i2 * 3], verticesShading[i2 * 3 + 2])) {
+                            verticesEdge.pop_back();
+                            verticesEdge.pop_back();
+                            verticesEdge.pop_back();
+                            verticesEdge.pop_back();
+                            i2 = vertexCount;
                         }
-                    }
-                    else {
-                        j = vertexCount;
                     }
                 }
             }
