@@ -16,7 +16,7 @@ protected:
     static std::stack<std::string> scenes;
     static bool FPS;               ///< permet de savoir si l'affichage des fps est actif.
 
-public:
+public:    
     /// Destructeur
     virtual ~Scene() {}
 
@@ -27,7 +27,7 @@ public:
         return scene;
     }
 
-    void popScene() {
+    static void popScene() {
         scenes.pop();
     }
 

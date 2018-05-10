@@ -166,7 +166,6 @@ public:
         glAlphaFunc(GL_GREATER, 0.4);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glTexEnvf(GL_TEXTURE_2D, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-        //glCullFace(GL_FRONT_AND_BACK);
 
         glEnable(GL_POINT_SMOOTH);
 
@@ -183,7 +182,7 @@ public:
         sceneDisplay = sceneMap["MainMenu"];
 
         sceneMap["SettingsMenu"] = new SettingsMenu();
-        sceneMap["ResolutionMenu"] = new ResolutionMenu();
+        sceneMap["ResolutionMenu"] = new ResolutionMenu(glContext);
         sceneMap["HighScoresMenu"] = new HighScoresMenu();
         sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World("", 0, 0, 0, 20, {0, 0, 0});
