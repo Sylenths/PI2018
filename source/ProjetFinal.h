@@ -33,6 +33,10 @@ private:
 public:
     /// Charge toutes les textures necessaire au programme
     void loadTextures() {
+        EntityManager::add(new Texture2d("MenuButtonBackground", "../../images/MainMenuButtonBackground.png"));
+        EntityManager::add(new Texture2d("MenuButtonHover", "../../images/MainMenuButtonHover.png"));
+        EntityManager::add(new Texture2d("MenuBackground", "../../images/maisonApp.png"));
+
         //Texture pour le InGameOverlay
         EntityManager::add(new Texture2d("alert", "../../images/alert_ico.png"));
         EntityManager::add(new Texture2d("delete", "../../images/delete_btn.png"));
