@@ -29,8 +29,14 @@ class Eolienne : public PowerSource {
     /// Production d'énergie par seconde.
     void setTurbinePower(){
         double windPower;
-        windPower = .5*masseVolumiqueAirEnFonctionDeTemperature(temperature)*(MATH_PI*pow(paleLength,2))*pow(windSpeed,3);
-        power = (55/100)*windPower;
+        if(windSpeed>= 4){
+            windPower = .5*masseVolumiqueAirEnFonctionDeTemperature(temperature)*(MATH_PI*pow(paleLength,2))*pow(windSpeed,3);
+            power = (55/100)*windPower;
+        }
+        else {
+            power = 0.0;
+        }
+
     }
 
     /// Calcule la masse des pales de l'eolienne en fonction de leur longueur.
