@@ -24,7 +24,7 @@ public:
 	/// \param height Hauteur de la fenêtre, en pixels.
 	/// \param flags Flags SDL.
     GLContext(const char* title, int x, int y, int width, int height, double angle, double nearPlane, double farPlane, unsigned int windowflags = 0) : Window(title, x,y,width, height, windowflags | SDL_WINDOW_OPENGL) {
-        glContext = SDL_GL_CreateContext(sdlwindow);
+        glContext = SDL_GL_CreateContext(sdlWindow);
         double right = std::tan(angle / 2.0) * nearPlane;
         double top = ((double) height / (double) width) * right;
 
@@ -44,23 +44,23 @@ public:
 
 	/// Prends le contrôle de la souris et du clavier.
 	void grabInput(){
-		SDL_SetWindowGrab(sdlwindow, SDL_TRUE);
+        SDL_SetWindowGrab(sdlWindow, SDL_TRUE);
 		SDL_SetRelativeMouseMode(SDL_TRUE);
 	}
 
 	/// Rends le contrôle de la souris et du clavier.
 	void releaseInput(){
-		SDL_SetWindowGrab(sdlwindow, SDL_FALSE);
+        SDL_SetWindowGrab(sdlWindow, SDL_FALSE);
 		SDL_SetRelativeMouseMode(SDL_FALSE);
 	}
 
     /// Rafraîchir le contenu de la fenêtre.
     void refresh() {
-        SDL_GL_SwapWindow(sdlwindow);
+        SDL_GL_SwapWindow(sdlWindow);
     }
 
     SDL_Window* getWindow(){
-        return sdlwindow;
+        return sdlWindow;
     }
     /// Affichage de l'environnement graphique.
     /// \param angle Angle du champ de vision.
@@ -87,15 +87,14 @@ public:
     }
     /// Replacer le curseur de la souris au centre de la fenêtre.
     void resetMousePosition() {
-        SDL_WarpMouseInWindow(sdlwindow, 640, 360);
+        SDL_WarpMouseInWindow(sdlWindow, 640, 360);
         SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
     }
 
 };
+
 Matrix GLContext::projectionMatrix;
 unsigned int GLContext::width;
 unsigned int GLContext::height;
-
-
 
 #endif //SDLPROJECT_GLCONTEXT_H
