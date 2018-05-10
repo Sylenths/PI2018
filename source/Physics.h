@@ -14,7 +14,7 @@
 #include "Model.h"
 #include "MathUtils.h"
 
-#define PHYSICS_EPSILON 0.000001
+#define PHYSICS_EPSILON 0.00000001
 
 namespace PhysicsData {
 
@@ -56,17 +56,38 @@ public:
 	static PhysicsData::CollisionData collideVectorOnPlane(Vector segmentOrigin, Vector segment, Vector normalOrigin, Vector planeNormal){
 		planeNormal.normalize();
 
-		double dotp = planeNormal * segment;
+		/*double dotp = planeNormal * segment;
 
 		if((PHYSICS_EPSILON > dotp) && (dotp > -PHYSICS_EPSILON))
 			return {false};
 
 		double ratio = ((planeNormal * normalOrigin) / (planeNormal * segment));
 
-		if(ratio > 1)
+		if(ratio > 1 || ratio <= 0)
 			return {false};
 
-		return {true, segmentOrigin + (segment * ratio)/*intersect*/, ratio};
+
+		//return {true, segmentOrigin + (segment * ratio), ratio};
+		*/
+
+		Vector w = segmentOrigin - normalOrigin;// normalorigin to segmentorigin
+
+		double D = planeNormal * segment;
+		double N = -planeNormal * w;
+
+		if (((D >= 0)?D:-D) < PHYSICS_EPSILON) { // segment is parallel to plane
+			return {false}; // no intersection
+		}
+		// they are not parallel
+		// compute intersect
+		double intersect = N / D;
+		if (intersect < 0 || intersect > 1)
+			return {false};                        // no intersection
+
+		Vector collisionPoint = segmentOrigin + segment * intersect;                  // compute segment intersect point
+		return {true, collisionPoint, intersect};
+
+
 	}
 
 	/// Détermine si un point se trouve à l'intérieur d'un triangle.
@@ -479,21 +500,23 @@ public:
 	/// \param movingSphereRadius Rayon de la sphère en mouvement.
 	/// \param staticSphereCenter
 	/// \param staticSphereRadius Rayon de la sphère immobile.
-	/// \return Structure de données contenant les résultats de la collision, le point étant la position du centre de la sphère déplacée.
+	/// \return Structure de données contenant les résultats de la collision, le point est le point de collision sur surface de la sphère statique et le ratio correspond au rapport entre la norme du vecteur déplacement et la distance parcourue avant la collision.
 	static PhysicsData::CollisionData collideMovingSphereOnSphere(Vector sphereMovement,
 	                                                              Vector movingSphereCentre, double movingSphereRadius,
 	                                                              Vector staticSphereCenter, double staticSphereRadius){
-		// add early false collision detection using radii sum test ?
+		// add early collision detection avoidance using radii sum test ?
 
-		// Trasforming the moving sphere in a point and transfer its radius to the other sphere.
+		// Transforming the moving sphere in a point and transfer its radius to the other sphere.
 		PhysicsData::CollisionData cData = collideVectorOnSphere(movingSphereCentre, sphereMovement, staticSphereCenter, movingSphereRadius + staticSphereRadius);
 
-		return cData;
-		//unless we'd like the point of collision between the surface of the spheres, 'cause this is where the center point of the moving sphere is,
-		// then we've got to figure out the point between the spheres where the collision occured
+		return {cData.collided, (staticSphereCenter - cData.point).normalize() * movingSphereRadius, cData.ratio};
 		// this should do the trick : (staticSphereCenter - cData.point).normalize() * movingSphereRadius;
-		// not sure what to return as a ratio in that case, though...
+		// the ratio is between the movement vector and the new moving sphere center
 
+	}
+
+	static PhysicsData::CollisionData collideMovingSpheres(Vector sphere1Movement, Vector sphere1Center, double sphere1Radius,
+														   Vector sphere2Movement, Vector sphere2Center, double sphere2Radius) {
 	}
 
 	/*

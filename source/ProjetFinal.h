@@ -28,6 +28,8 @@ private:
     Chrono chrono; ///<Chrono principale de la boucle de jeu
 	Chrono FPSchrono;///<Chrono pour les FPS
 
+    bool spawnMachineCap;
+
     unsigned int fps;///<Les Fps de l'application
 
 public:
@@ -128,6 +130,7 @@ public:
         controller->subscribeAll(observables, controller);
         activeCamera = false;
         fps = 0;
+        spawnMachineCap = true;
     }
 
     /// Destructeur
@@ -166,7 +169,6 @@ public:
         glAlphaFunc(GL_GREATER, 0.4);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glTexEnvf(GL_TEXTURE_2D, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-        //glCullFace(GL_FRONT_AND_BACK);
 
         glEnable(GL_POINT_SMOOTH);
 
@@ -183,7 +185,7 @@ public:
         sceneDisplay = sceneMap["MainMenu"];
 
         sceneMap["SettingsMenu"] = new SettingsMenu();
-        sceneMap["ResolutionMenu"] = new ResolutionMenu();
+        sceneMap["ResolutionMenu"] = new ResolutionMenu(glContext);
         sceneMap["HighScoresMenu"] = new HighScoresMenu();
         sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World("", 0, 0, 0, 20, {0, 0, 0});
@@ -230,6 +232,7 @@ public:
             addFondation();
             createWall();
             createRoof();
+
             if (controller->getClickMousePosition()[2] != -1)
                 controller->resetClicMousePosition();
 
@@ -248,9 +251,16 @@ public:
                     ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
                     sceneDisplay->unsubscribeAll(observables);
                     break;
-                case SDL_MOUSEBUTTONDOWN:
-                    if((sceneDisplay == sceneMap["World"]) && (SideWindow::MachineType != ""))
-                        ((World*)sceneDisplay)->createMachine(controller->getClickMousePosition()[0], controller->getClickMousePosition()[1], 10);
+
+                case SDLK_e: {
+                    if ((sceneDisplay == sceneMap["World"]) && (SideWindow::isBuildingMachine)) {
+                        PhysicsData::CollisionData posMachine = Physics::collideVectorOnPlane(sceneDisplay->getCamera()->getPos(), sceneDisplay->getCamera()->getFront() * 10, {0.0, 0.1, 0.0}, {0.0, 1.0, 0.0});
+                        if(posMachine.collided && spawnMachineCap == true){
+                            ((World *) sceneDisplay)->createMachine(posMachine.point.x, posMachine.point.y, posMachine.point.z);
+                            spawnMachineCap = false;
+                        }
+                    }
+                }
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
@@ -286,6 +296,9 @@ public:
                     break;
                 case SDLK_g:
 
+                    break;
+                case SDLK_e:
+                    spawnMachineCap = true;
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {

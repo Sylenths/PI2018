@@ -16,10 +16,13 @@
 #include "BuildWall.h"
 
 #include "PanneauSolaire.h"
+#include "PowerManager.h"
+#include "SIMCoinMiner.h"
 
 class World : public Scene{
 private:
     std::list<Model*> modelList; ///< La liste de models à afficher
+    std::list<PowerAppareil*> powerApparielList;
     std::list<Model*> wallList; ///< La liste de models à afficher
     std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;
@@ -41,6 +44,11 @@ public:
     void addModel(Model* model){
         modelList.push_back(model);
     }
+
+    void addPowerAppariel(PowerAppareil* powerAppareil){
+        powerApparielList.push_back(powerAppareil);
+    }
+
     void addWall(Model* model){
         modelList.push_back(model);
         wallList.push_back(model);
@@ -96,6 +104,13 @@ public:
         simCoinMiner->setShadingOn();
         addModel(simCoinMiner);
 
+
+        SIMCoinMiner* test = new SIMCoinMiner(5.0, "SimCoinsMiner", 50.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj" );
+        addModel(test);
+        PowerManager::getInstance()->addAppareil(test);
+
+
+
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
 
         chrono.restart();
@@ -106,6 +121,8 @@ public:
         for(auto it : modelList){
             delete it;
         }
+       // for (auto it : powerApparielList)
+         //   delete it;
     }
     std::map<std::pair<int,int>, Fondation*>* getFondations (){
         return &fondationGrid;
@@ -162,11 +179,15 @@ public:
         return hud->getCamera();
     }
 
-    void createMachine(int x, int y, int z){
+    void createMachine(int positionX, int positionY, int positionZ){
         if(SideWindow::MachineType == "SimCoinsMiner"){
-            addModel(new Model("", x, y, z, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            addPowerAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            addModel(powerApparielList.back());
+            PowerManager::getInstance()->addAppareil(powerApparielList.back());
         }
+        if(SideWindow::MachineType == "PanneauSolaire"){
 
+        }
 
     }
 
