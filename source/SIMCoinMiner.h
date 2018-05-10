@@ -13,7 +13,7 @@ private:
     bool isInFunction;
     int SIMCoinsGenerated;
 public:
-    SIMCoinMiner(const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : PowerAppareil(usedCurrent, name, posx, posy, posz, textureID, rotHitBox, objFile) {
+    SIMCoinMiner(double usedCurrent, const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : PowerAppareil(usedCurrent, name, posx, posy, posz, textureID, rotHitBox, objFile) {
         /*isAsource = false;
         used = 0;
         generated = 0;

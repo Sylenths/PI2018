@@ -18,7 +18,7 @@ public:
 
         //Building Button
         modelsSideWindow["1BuildingButtonMachine"] = new Button ("1BuildingButtonMachine", 930, 580, 0, 340, 60, EntityManager::get<Texture2d*>("BuildButton")->ID, EntityManager::get<Texture2d*>("BuildButtonOver")->ID);
-        modelsSideWindow["1BuildingButtonMachine"]->onClick = [this] () {};
+        modelsSideWindow["1BuildingButtonMachine"]->onClick = [this] () {onBuildClick();};
 
         modelsSideWindow["1CancelButtonMachine"] = new Button ("1CancelButtonMachine", 930, 650, 0, 340, 60, EntityManager::get<Texture2d*>("CancelButton")->ID, EntityManager::get<Texture2d*>("CancelButtonOver")->ID);
         modelsSideWindow["1CancelButtonMachine"]->onClick = [this] () {onCancelClick();};
@@ -31,9 +31,11 @@ public:
 
         //Création des bouttons de machine.
         menuDeroulantBoutons[0] = new Button("SimCoinsMiner", 920,50,0,340,80, EntityManager::get<Texture2d*>("SimcoinsButton")->ID, EntityManager::get<Texture2d*>("SimcoinsButtonOver")->ID);
-        menuDeroulantBoutons[0]-> onClick = [this] () {onClicSIMCoinsMiner();};
+        menuDeroulantBoutons[0]-> onClick = [this] () {onClicMachine("SimCoinsMiner");};
         menuDeroulantBoutons[1] = new Button("", 920,130,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->ID, EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->ID);
+        menuDeroulantBoutons[1]->onClick = [this] () {onClicMachine("PanneauSolaire");};
         menuDeroulantBoutons[2] = new Button("", 920,210,0,340,80, EntityManager::get<Texture2d*>("WindTurbineButton")->ID, EntityManager::get<Texture2d*>("WindTurbineButtonOver")->ID);
+        menuDeroulantBoutons[2]->onClick = [this] () {onClicMachine("WindTurbine");};
         menuDeroulantBoutons[3] = new Button("", 920,50,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->ID, EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->ID);
         menuDeroulantBoutons[4] = new Button("", 920,130,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->ID, EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->ID);
         menuDeroulantBoutons[5] = new Button("", 920,210,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->ID, EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->ID);
@@ -45,17 +47,24 @@ public:
 
     }
 
-    void onClicSIMCoinsMiner(){
-        MachineType = "SimCoinsMiner";
+    void onBuildClick(){
+        if(MachineType != "") {
+            isBuildingMachine = true;
+            closed = true;
+        }
     }
-
     void onCancelClick(){
-        buildType = BUILD_NOTHING;
-        materialType = NULLMATERIAL;
-        isBuilding = false;
-        closeWindow = closed = true;
+        MachineType == "";
+        closed = true;
+        isBuildingMachine = false;
 
     }
+
+    void onClicMachine(std::string machineName){
+        MachineType = machineName;
+    }
+
+
 
     bool isClicked(){
         scrollDown = scrollMenu->getScrollDown();

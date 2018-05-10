@@ -41,11 +41,11 @@ public:
         }
     }
 
-    void removeAppareil(int key) {
-        PowerNode* temp = mapAppareil[key];
+    void removeAppareil(PowerAppareil* appareil) {
+        int key = appareil->getKey();
         mapAppareil[key] = mapAppareil[appareilNbr];
         mapAppareil[key]->setKey(key);
-        delete temp;
+        delete appareil;
 
         for(int i = appareilNbr; i > sourceNbr; --i) {
             delete adjMatrice[std::make_pair(key, i)];
@@ -56,12 +56,12 @@ public:
         appareilNbr--;
     }
 
-    void removeSource(int key) {
+    void removeSource(PowerSource* source) {
         sourceNbr++;
-        PowerNode* temp = mapSource[key];
+        int key = source->getKey();
         mapSource[key] = mapSource[sourceNbr];
         mapSource[key]->setKey(key);
-        delete temp;
+        delete source;
 
         for(int i = (sourceNbr); i <= appareilNbr; ++i) {
             delete adjMatrice[std::make_pair(key, i)];

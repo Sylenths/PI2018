@@ -16,14 +16,25 @@
 #include "BuildWall.h"
 
 #include "PanneauSolaire.h"
+
 #include "Wall.h"
 #include "Roof.h"
 
+#include "PowerManager.h"
+#include "SIMCoinMiner.h"
+
+
 class World : public Scene{
 private:
+    GLContext* context;
     std::list<Model*> modelList; ///< La liste de models à afficher
+
     std::list<Wall*> wallList; ///< La liste de murs à afficher
     std::list<Roof*> roofList; ///< La liste de toits à afficher
+
+    std::list<PowerAppareil*> powerApparielList;
+
+
     std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;
     Atmosphere atmosphere;
@@ -44,6 +55,12 @@ public:
     void addModel(Model* model){
         modelList.push_back(model);
     }
+
+
+    void addPowerAppariel(PowerAppareil* powerAppareil){
+        powerApparielList.push_back(powerAppareil);
+    }
+
     void addWall(Wall* model){
         wallList.push_back(model);
     }
@@ -58,7 +75,8 @@ public:
         return &roofList;
     }
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(const std::string name, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
+    World(const std::string name, GLContext* context, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
+        this->context = context;
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
@@ -103,6 +121,13 @@ public:
         simCoinMiner->setShadingOn();
         addModel(simCoinMiner);
 
+
+        SIMCoinMiner* test = new SIMCoinMiner(5.0, "SimCoinsMiner", 50.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj" );
+        addModel(test);
+        PowerManager::getInstance()->addAppareil(test);
+
+
+
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
 
         chrono.restart();
@@ -113,6 +138,8 @@ public:
         for(auto it : modelList){
             delete it;
         }
+       // for (auto it : powerApparielList)
+         //   delete it;
     }
     std::map<std::pair<int,int>, Fondation*>* getFondations (){
         return &fondationGrid;
@@ -126,7 +153,7 @@ public:
 
     /// Affichage des models
     void draw() {
-        GLContext::setFrustum(IS3D);
+        context->setFrustum(IS3D);
         glDepthFunc(GL_LEQUAL);
 
         hud->getCamera()->applyViewMatrix();
@@ -144,11 +171,10 @@ public:
 
         atmosphere.updateAtmosphere();
         atmosphere.draw();
-        GLContext::setFrustum(IS2D);
+        context->setFrustum(IS2D);
         glDepthFunc(GL_LESS);
         hudLight->applyLightPosition();
         hud->draw();
-
     }
 
     /// Mise a jour du temps dans l'H.U.D.
@@ -176,11 +202,15 @@ public:
         return hud->getCamera();
     }
 
-    void createMachine(int x, int y, int z){
+    void createMachine(int positionX, int positionY, int positionZ){
         if(SideWindow::MachineType == "SimCoinsMiner"){
-            addModel(new Model("", x, y, z, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            addPowerAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            addModel(powerApparielList.back());
+            PowerManager::getInstance()->addAppareil(powerApparielList.back());
         }
+        if(SideWindow::MachineType == "PanneauSolaire"){
 
+        }
 
     }
 

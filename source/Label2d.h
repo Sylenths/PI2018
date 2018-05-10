@@ -8,10 +8,17 @@ public:
   Texture2d texture;
 
   Label2d(const std::string name, const Vector& position, Font* font, const std::string& text, const SDL_Color& color) : VisualEntity2d(name, position, Vector2d(0.0, 0.0)), texture("txtr" + name) {
+      setText(font, text, color);
+      this->size.x = texture.width;
+      this->size.y = texture.height;
+  }
+
+  void setText(Font* font, const std::string& text, const SDL_Color& color) {
       SDL_Surface* sdlSurface = TTF_RenderText_Blended(font->getFont(), text.c_str(), color);
       texture.width = sdlSurface->w;
       texture.height = sdlSurface->h;
 
+      glDeleteTextures(1, &texture.ID);
       glGenTextures(1, &texture.ID);
       glBindTexture(GL_TEXTURE_2D, texture.ID);
       glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, sdlSurface->w, sdlSurface->h,0, GL_RGBA, GL_UNSIGNED_BYTE, sdlSurface->pixels);

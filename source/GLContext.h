@@ -12,9 +12,9 @@
 
 class GLContext : public Window {
 private:
-    SDL_GLContext glContext; ///< Contexte OpenGL-SDL
-    static Matrix projectionMatrix;
-    static unsigned int width, height;
+    SDL_GLContext glContext; ///< Contexte OpenGL
+    static Matrix projectionMatrix; ///< Matrice de projection
+
 public:
 	/// Constructeur
 	/// \param title Titre de la fenêtre.
@@ -23,15 +23,14 @@ public:
 	/// \param width Largeur de la fenêtre, en pixels.
 	/// \param height Hauteur de la fenêtre, en pixels.
 	/// \param flags Flags SDL.
-    GLContext(const char* title, int x, int y, int width, int height, double angle, double nearPlane, double farPlane, unsigned int windowflags = 0) : Window(title, x,y,width, height, windowflags | SDL_WINDOW_OPENGL) {
-        glContext = SDL_GL_CreateContext(sdlwindow);
+    GLContext(const char* title, int x, int y, int width, int height, double angle, double nearPlane, double farPlane, unsigned int windowflags = 0) : Window(title, x, y, width, height, windowflags | SDL_WINDOW_OPENGL) {
+        glContext = SDL_GL_CreateContext(sdlWindow);
+
         double right = std::tan(angle / 2.0) * nearPlane;
         double top = ((double) height / (double) width) * right;
-
-        GLContext::width = width;
-        GLContext::height = height;
         GLContext::projectionMatrix.loadProjection(top, right, nearPlane, farPlane);
     }
+
 	/// Destructeur.
     ~GLContext() {
         SDL_GL_DeleteContext(glContext);
@@ -44,58 +43,48 @@ public:
 
 	/// Prends le contrôle de la souris et du clavier.
 	void grabInput(){
-		SDL_SetWindowGrab(sdlwindow, SDL_TRUE);
+        SDL_SetWindowGrab(sdlWindow, SDL_TRUE);
 		SDL_SetRelativeMouseMode(SDL_TRUE);
 	}
 
 	/// Rends le contrôle de la souris et du clavier.
 	void releaseInput(){
-		SDL_SetWindowGrab(sdlwindow, SDL_FALSE);
+        SDL_SetWindowGrab(sdlWindow, SDL_FALSE);
 		SDL_SetRelativeMouseMode(SDL_FALSE);
 	}
 
     /// Rafraîchir le contenu de la fenêtre.
     void refresh() {
-        SDL_GL_SwapWindow(sdlwindow);
+        SDL_GL_SwapWindow(sdlWindow);
     }
 
     SDL_Window* getWindow(){
-        return sdlwindow;
+        return sdlWindow;
     }
+
     /// Affichage de l'environnement graphique.
     /// \param angle Angle du champ de vision.
     /// \param nearPlane Distance de la zone de vue rapproché.
     /// \param farPlane Distance de la zone de vue éloignée.
     /// \param is2D Permet de savoir si l'objet est en 2D ou 3D.
-    static void setFrustum(bool is2D) {
-
-
+    void setFrustum(bool is2D) {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        if(is2D) {
-            glOrtho(0.0, (double) width, (double) height, 0.0, 1.0, -1.0);
-        }
 
-        else {
+        (is2D) ? glOrtho(0.0, (double) width, (double) height, 0.0, 1.0, -1.0) : glMultMatrixd(projectionMatrix.matrix);
 
-            glMultMatrixd(projectionMatrix.matrix);
-
-        }
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
 
     }
     /// Replacer le curseur de la souris au centre de la fenêtre.
     void resetMousePosition() {
-        SDL_WarpMouseInWindow(sdlwindow, 640, 360);
+        SDL_WarpMouseInWindow(sdlWindow, width / 2, height);
         SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
     }
 
 };
+
 Matrix GLContext::projectionMatrix;
-unsigned int GLContext::width;
-unsigned int GLContext::height;
-
-
 
 #endif //SDLPROJECT_GLCONTEXT_H
