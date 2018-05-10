@@ -63,7 +63,7 @@ public:
 
 		double ratio = ((planeNormal * normalOrigin) / (planeNormal * segment));
 
-		if(ratio > 1 || ratio < 0)
+		if(ratio > 1 || ratio <= 0)
 			return {false};
 
 

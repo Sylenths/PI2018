@@ -31,9 +31,11 @@ public:
 
         //Création des bouttons de machine.
         menuDeroulantBoutons[0] = new Button("SimCoinsMiner", 920,50,0,340,80, EntityManager::get<Texture2d*>("SimcoinsButton")->ID, EntityManager::get<Texture2d*>("SimcoinsButtonOver")->ID);
-        menuDeroulantBoutons[0]-> onClick = [this] () {onClicSIMCoinsMiner();};
+        menuDeroulantBoutons[0]-> onClick = [this] () {onClicMachine("SimCoinsMiner");};
         menuDeroulantBoutons[1] = new Button("", 920,130,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->ID, EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->ID);
+        menuDeroulantBoutons[1]->onClick = [this] () {onClicMachine("PanneauSolaire");};
         menuDeroulantBoutons[2] = new Button("", 920,210,0,340,80, EntityManager::get<Texture2d*>("WindTurbineButton")->ID, EntityManager::get<Texture2d*>("WindTurbineButtonOver")->ID);
+        menuDeroulantBoutons[2]->onClick = [this] () {onClicMachine("WindTurbine");};
         menuDeroulantBoutons[3] = new Button("", 920,50,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->ID, EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->ID);
         menuDeroulantBoutons[4] = new Button("", 920,130,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->ID, EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->ID);
         menuDeroulantBoutons[5] = new Button("", 920,210,0,340,80, EntityManager::get<Texture2d*>("PanneauSolaireButton")->ID, EntityManager::get<Texture2d*>("PanneauSolaireButtonOver")->ID);
@@ -58,9 +60,8 @@ public:
 
     }
 
-    void onClicSIMCoinsMiner(){
-        MachineType = "SimCoinsMiner";
-
+    void onClicMachine(std::string machineName){
+        MachineType = machineName;
     }
 
 

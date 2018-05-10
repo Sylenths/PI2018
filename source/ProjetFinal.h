@@ -28,6 +28,8 @@ private:
     Chrono chrono; ///<Chrono principale de la boucle de jeu
 	Chrono FPSchrono;///<Chrono pour les FPS
 
+    bool spawnMachineCap;
+
     unsigned int fps;///<Les Fps de l'application
 
 public:
@@ -128,6 +130,7 @@ public:
         controller->subscribeAll(observables, controller);
         activeCamera = false;
         fps = 0;
+        spawnMachineCap = true;
     }
 
     /// Destructeur
@@ -230,6 +233,7 @@ public:
             addFondation();
             createWall();
             createRoof();
+
             if (controller->getClickMousePosition()[2] != -1)
                 controller->resetClicMousePosition();
 
@@ -249,6 +253,16 @@ public:
                     sceneDisplay->unsubscribeAll(observables);
                     break;
 
+                case SDLK_e: {
+                    if ((sceneDisplay == sceneMap["World"]) && (SideWindow::isBuildingMachine)) {
+                        PhysicsData::CollisionData posMachine = Physics::collideVectorOnPlane(sceneDisplay->getCamera()->getPos(), sceneDisplay->getCamera()->getFront() * 10, {0.0, 0.1, 0.0}, {0.0, 1.0, 0.0});
+                        if(posMachine.collided && spawnMachineCap == true){
+                            ((World *) sceneDisplay)->createMachine(posMachine.point.x, posMachine.point.y, posMachine.point.z);
+                            spawnMachineCap = false;
+                        }
+                    }
+                }
+                    break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
                         sceneDisplay->getCamera()->startMove(CAMERA_MOVE_FRONT);
@@ -284,13 +298,8 @@ public:
                 case SDLK_g:
 
                     break;
-                case SDLK_e: {
-                    if ((sceneDisplay == sceneMap["World"]) && (SideWindow::isBuildingMachine)) {
-                        PhysicsData::CollisionData posMachine = Physics::collideVectorOnPlane(sceneDisplay->getCamera()->getPos(), sceneDisplay->getCamera()->getFront() * 10, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
-                        if(posMachine.collided)
-                            ((World *) sceneDisplay)->createMachine(posMachine.point.x, posMachine.point.y, posMachine.point.z);
-                    }
-                }
+                case SDLK_e:
+                    spawnMachineCap = true;
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
