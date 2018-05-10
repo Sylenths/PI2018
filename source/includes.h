@@ -92,5 +92,7 @@
 #include "ProjetFinal.h"
 #include "Action.h"
 #include "PowerManager.h"
+#include "Wall.h"
+#include "Roof.h"
 
 #endif
