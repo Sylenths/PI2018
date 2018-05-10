@@ -18,7 +18,7 @@ public:
 
         //Building Button
         modelsSideWindow["1BuildingButtonMachine"] = new Button ("1BuildingButtonMachine", 930, 580, 0, 340, 60, EntityManager::get<Texture2d*>("BuildButton")->ID, EntityManager::get<Texture2d*>("BuildButtonOver")->ID);
-        modelsSideWindow["1BuildingButtonMachine"]->onClick = [this] () {};
+        modelsSideWindow["1BuildingButtonMachine"]->onClick = [this] () {onBuildClick();};
 
         modelsSideWindow["1CancelButtonMachine"] = new Button ("1CancelButtonMachine", 930, 650, 0, 340, 60, EntityManager::get<Texture2d*>("CancelButton")->ID, EntityManager::get<Texture2d*>("CancelButtonOver")->ID);
         modelsSideWindow["1CancelButtonMachine"]->onClick = [this] () {onCancelClick();};
@@ -45,17 +45,25 @@ public:
 
     }
 
+    void onBuildClick(){
+        if(MachineType != "") {
+            isBuildingMachine = true;
+            closed = true;
+        }
+    }
+    void onCancelClick(){
+        MachineType == "";
+        closed = true;
+        isBuildingMachine = false;
+
+    }
+
     void onClicSIMCoinsMiner(){
         MachineType = "SimCoinsMiner";
-    }
-
-    void onCancelClick(){
-        buildType = BUILD_NOTHING;
-        materialType = NULLMATERIAL;
-        isBuilding = false;
-        closeWindow = closed = true;
 
     }
+
+
 
     bool isClicked(){
         scrollDown = scrollMenu->getScrollDown();

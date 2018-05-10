@@ -20,6 +20,7 @@ public:
     static bool closed;
     static bool opened;
     static bool switched;
+    static bool isBuildingMachine;
     static Model* firstWall;
     static Model* secondWall;
     static std::string MachineType;
@@ -51,6 +52,7 @@ bool SideWindow::isBuilding = false;
 bool SideWindow::closed = false;
 bool SideWindow::opened = false;
 bool SideWindow::switched = false;
+bool SideWindow::isBuildingMachine = false;
 Model* SideWindow::firstWall = nullptr;
 Model* SideWindow::secondWall = nullptr;
 std::string SideWindow::MachineType = "";

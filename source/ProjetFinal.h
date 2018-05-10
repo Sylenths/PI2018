@@ -248,10 +248,7 @@ public:
                     ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
                     sceneDisplay->unsubscribeAll(observables);
                     break;
-                case SDL_MOUSEBUTTONDOWN:
-                    if((sceneDisplay == sceneMap["World"]) && (SideWindow::MachineType != ""))
-                        ((World*)sceneDisplay)->createMachine(controller->getClickMousePosition()[0], controller->getClickMousePosition()[1], 10);
-                    break;
+
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
                         sceneDisplay->getCamera()->startMove(CAMERA_MOVE_FRONT);
@@ -286,6 +283,14 @@ public:
                     break;
                 case SDLK_g:
 
+                    break;
+                case SDLK_e: {
+                    if ((sceneDisplay == sceneMap["World"]) && (SideWindow::isBuildingMachine)) {
+                        PhysicsData::CollisionData posMachine = Physics::collideVectorOnPlane(sceneDisplay->getCamera()->getPos(), sceneDisplay->getCamera()->getFront() * 10, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
+                        if(posMachine.collided)
+                            ((World *) sceneDisplay)->createMachine(posMachine.point.x, posMachine.point.y, posMachine.point.z);
+                    }
+                }
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
