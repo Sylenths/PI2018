@@ -1,5 +1,5 @@
 
-#define GRAVITY 9.8
+
 
 /// \brief Représentation d'une météorite
 /// \details Classe contenant toutes les informations relatives à une météorite

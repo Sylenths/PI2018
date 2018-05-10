@@ -22,6 +22,7 @@
 #define SILVER 2
 #define GOLD 3
 #define DDP 120
+#define GRAVITY 9.8
 
 #include <list>
 #include <cmath>

@@ -16,11 +16,14 @@
 #include "BuildWall.h"
 
 #include "PanneauSolaire.h"
+#include "Wall.h"
+#include "Roof.h"
 
 class World : public Scene{
 private:
     std::list<Model*> modelList; ///< La liste de models à afficher
-    std::list<Model*> wallList; ///< La liste de models à afficher
+    std::list<Wall*> wallList; ///< La liste de murs à afficher
+    std::list<Roof*> roofList; ///< La liste de toits à afficher
     std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;
     Atmosphere atmosphere;
@@ -29,7 +32,7 @@ private:
     Light* worldLight, * hudLight;
     Chrono chrono;
     std::list<Meteorite *> meteorites;
-
+    bool structureWasModified;
 public:
     Model* flatGround;
     InGameOverlay* hud;
@@ -41,15 +44,19 @@ public:
     void addModel(Model* model){
         modelList.push_back(model);
     }
-    void addWall(Model* model){
-        modelList.push_back(model);
+    void addWall(Wall* model){
         wallList.push_back(model);
     }
-
-    std::list<Model*>* getWallList(){
-        return &wallList;
+    void addRoof(Roof* model){
+        roofList.push_back(model);
     }
 
+    std::list<Wall*>* getWallList(){
+        return &wallList;
+    }
+    std::list<Roof*>* getRoofList(){
+        return &roofList;
+    }
     /// Constructeur, tout les models nécéssaires sont loadés ici.
     World(const std::string name, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
         this->wind = wind;
@@ -66,7 +73,7 @@ public:
         flatGround =  new Model("", 0.0, 0.0, 0.0, EntityManager::get<Texture2d*>("grass")->ID, false, "../../models/obj/grass.obj");
         addModel(flatGround);
         test = 0;
-
+        structureWasModified = false;
         // Génération d'une forêt de 300 arbres...
         for (int i = 0; i < 300; i++) {
           double x = rand() % 800 - 400, z = rand() % 800 - 400;
@@ -128,6 +135,13 @@ public:
         for(auto it = modelList.begin(); it != modelList.end(); it++)
             (*it)->drawAndShading(atmosphere.getRealLight().getVectorLight());
 
+        for(auto it = wallList.begin(); it != wallList.end(); it++)
+            (*it)->drawAndShading(atmosphere.getRealLight().getVectorLight());
+
+        for(auto it = roofList.begin(); it != roofList.end(); it++)
+            (*it)->drawAndShading(atmosphere.getRealLight().getVectorLight());
+
+
         atmosphere.updateAtmosphere();
         atmosphere.draw();
         GLContext::setFrustum(IS2D);
@@ -185,6 +199,13 @@ public:
     }
     void collideMeteorites(){
 
+    }
+
+    bool wasStructureModified(){
+        return structureWasModified;
+    }
+    void setStructureWasModified(bool wasIt){
+        structureWasModified = wasIt;
     }
 
 

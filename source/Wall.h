@@ -8,8 +8,12 @@
 #ifndef SOURCE_WALL_H
 #define SOURCE_WALL_H
 class Wall : public Structure{
+private:
+    double realWeight;
 public:
     Materiel* material;
+    double weight;
+    double forceApplied;
     Wall(const std::string& name, unsigned int height, unsigned int textureID, Vector* firstCorner, Vector* secondCorner, int material) : Structure(name, posx, posy, posz, textureID, rotHitBox, nullptr) {
         vertexCount = 6;
         normalCount = 6;
@@ -32,7 +36,8 @@ public:
                 this->material = Materiel::simtium;
                 break;
         }
-
+        weight = abs((firstCorner->x - secondCorner->x) * (firstCorner->z - secondCorner->z) * height);
+        forceApplied = 0.0;
 ///sommet
 
         vertices = new double[18];
@@ -113,6 +118,8 @@ public:
             normalsHitBox[2] = normalsHitBox[5] = normalsHitBox[8] = normalsHitBox[11] = normalsHitBox[14] = normalsHitBox[17] = 0.0;
         }
     }
-
+    double getRealWeight(){
+        return realWeight;
+    }
 };
 #endif

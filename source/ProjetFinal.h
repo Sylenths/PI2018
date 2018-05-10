@@ -425,8 +425,26 @@ public:
 
 
 
+                        unsigned int texture;
+                        switch (SideWindow::materialType) {
+                            case CARDBOARD:
+                                texture = EntityManager::get<Texture2d *>("wall")->ID;
+                                break;
+                            case WOOD:
+                                texture = EntityManager::get<Texture2d *>("daysky")->ID;
+                                break;
+                            case ROCK:
+                                texture = EntityManager::get<Texture2d *>("daysky")->ID;
+                                break;
+                            case METAL:
+                                texture = EntityManager::get<Texture2d *>("nightsky")->ID;
+                                break;
+                            case SIMTIUM:
+                                texture = EntityManager::get<Texture2d *>("grass")->ID;
+                                break;
+                        }
 
-                        Floor* floor = new Floor("", (double)x * 2.0, world->hud->getFloorHeight(), (double)z * 2.0, false);
+                        Floor* floor = new Floor("", (double)x * 2.0, world->hud->getFloorHeight(), (double)z * 2.0, false, texture, SideWindow::materialType);
 
 
                         if(StructureWindow::chosenStory == 1) {
@@ -537,14 +555,6 @@ public:
                         }
 
 
-
-
-
-
-
-
-
-
                         if((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)])
                             world->addModel((*floorGrids)[StructureWindow::chosenStory - 1][std::make_pair(x,z)]);
                         else
@@ -622,14 +632,6 @@ public:
                     double x2 = SideWindow::secondWall->getMesh(0);
                     double x3 = SideWindow::firstWall->getMesh(6);
                     double x4 = SideWindow::secondWall->getMesh(6);
-                    double x5 = SideWindow::firstWall->getMesh(3);
-                    double x6 = SideWindow::secondWall->getMesh(3);
-                    double x7 = SideWindow::firstWall->getMesh(9);
-                    double x8 = SideWindow::secondWall->getMesh(9);
-                    double x9 = SideWindow::firstWall->getMesh(12);
-                    double x10 = SideWindow::secondWall->getMesh(12);
-                    double x11 = SideWindow::firstWall->getMesh(15);
-                    double x12 = SideWindow::secondWall->getMesh(15);
                     
                     if (x1 < x3) {
                         posx = x1;
@@ -716,7 +718,7 @@ public:
                             break;
                     }
 
-                    ((World*)sceneDisplay)->addModel(new Roof("", width, 3.0/*StructureWindow::height*/, lenght, posx, posy, posz, texture, SideWindow::materialType));
+                    ((World*)sceneDisplay)->addRoof(new Roof("", width, 3.0/*StructureWindow::height*/, lenght, posx, posy, posz, texture, SideWindow::materialType));
                     SideWindow::firstWall = nullptr;
                     SideWindow::secondWall = nullptr;
                 }
@@ -908,7 +910,7 @@ public:
                         break;
                 }
 
-                Model *mur;
+                Wall *mur;
                 for (int i = 0; i < size; ++i) {
                     Vector temp = corner.front();
                     corner.pop_front();
@@ -1109,7 +1111,7 @@ public:
                 }
 
 
-                Model *mur;
+                Wall *mur;
                 for (int i = 0; i < size; ++i) {
                     Vector temp = corner.front();
                     corner.pop_front();
@@ -1127,6 +1129,145 @@ public:
             }
         }
     }
+//todo ajouter le poid des machiness
+    void testForCollapse(){
+        if(Scene::getScene() == "World"){
+            World* world = ((World*)sceneDisplay);
+            if(world->wasStructureModified()){
+                world->setStructureWasModified(false);
+                std::list<Wall*>* walls = world->getWallList();
+                std::list<Roof*>* roofs =  world->getRoofList();
+                std::vector<std::map<std::pair<int,int>,Floor*>>* floors = world->getFloors();
+
+                //todo affecter les toits par la neige
+
+
+
+                ///toit sur mur
+                unsigned int numberOfWall = 0;
+                for (auto it1 = roofs->begin(); it1 != roofs->end(); ++it1) {
+                    if((*it1)->forceApplied >= (*it1)->material->resistance * 10.0){
+                        roofs->remove((*it1));
+                        world->setStructureWasModified(true);
+                    }
+                    else {
+                        (*it1)->weight = (*it1)->forceApplied + (*it1)->getRealWeight();
+                        for (auto it2 = walls->begin(); it2 != walls->end(); ++it2) {
+                            if (Physics::collideMovingOnStaticModels((Vector) (0.0, -0.001, 0.0), *(*it1), *(*it2)).collided) {
+                                numberOfWall++;
+                                (*it2)->forceApplied = (*it1)->weight;
+                            }
+                        }
+                        ///si il y a pas de mur pour suporter le toit
+                        if (numberOfWall != 0) {
+                            for (auto it2 = walls->begin(); it2 != walls->end(); ++it2) {
+                                if ((*it2)->forceApplied != 0) {
+                                    (*it2)->forceApplied = (*it2)->forceApplied / 2.0;
+                                    if ((*it2)->forceApplied >= (*it2)->material->resistance * 10.0) {
+                                        walls->remove((*it2));
+                                        world->setStructureWasModified(true);
+                                    } else {
+                                        (*it2)->weight = (*it2)->forceApplied + (*it2)->getRealWeight();
+                                        (*it2)->forceApplied = 0.0;
+                                    }
+                                }
+                            }
+                        } else {
+                            roofs->remove((*it1));
+                            world->setStructureWasModified(true);
+                        }
+                    }
+                }
+
+
+
+                for (auto it0 = floors->begin(); it0 != floors->end(); it0++) {
+                    unsigned int floorAffectedByWall = 0;
+                    unsigned int floorAffectingWall = 0;
+
+                    ///mur sur plancher
+                    for (auto it1 = walls->begin(); it1 != walls->end() ; ++it1) {
+                        for (auto it2 = it0.base()->begin(); it2 != it0.base()->end(); ++it2) {
+                            if(it2->second != nullptr){
+                                if(Physics::collideMovingOnStaticModels(Vector(0.0, -0.001, 0.0),*(*it1), *((*it2).second)).collided){
+                                    floorAffectedByWall++;
+                                    (*it2).second->forceApplied = (*it1)->weight;
+                                }
+                            }
+                        }
+                        for (auto it2 = it0.base()->begin(); it2 != it0.base()->end(); ++it2) {
+                            if(it2->second != nullptr && it2->second->forceApplied != 0.0){
+                                if(it2->second->forceApplied != 0) {
+                                    it2->second->forceApplied = it2->second->forceApplied / 2.0;
+                                    if (it2->second->forceApplied >= it2->second->material->resistance * 10.0) {
+                                        it0.base()->erase(it2);
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                    ///plancher sur plancher
+                    double floorWeight = 0.0;
+                    for (auto it1 = it0.base()->begin(); it1 != it0.base()->end(); ++it1) {
+                        if(it1->second != nullptr){
+                            floorWeight += it1->second->getRealWeight() + it1->second->forceApplied;
+                            it1->second->forceApplied = 0.0;
+                            for (auto it2 = walls->begin(); it2 != walls->end(); ++it2) {
+                                if (Physics::collideMovingOnStaticModels(Vector(0.0, -0.001, 0.0), *(*it1).second, *(*it2)).collided) {
+                                    floorAffectingWall++;
+                                    it1->second->forceApplied = 1.0;
+                                    (*it2)->forceApplied = 1.0;
+                                }
+                            }
+                        }
+                    }
+                    ///si il y a ou a ou pas de mur pour tenir les planchers
+                    if(floorAffectingWall == 0){
+                        it0.base()->clear();
+                    }
+                    else {
+                        double temp = (floorWeight / (double) floorAffectingWall);
+                        for (auto it1 = it0.base()->begin(); it1 != it0.base()->end(); ++it1) {
+                            if (it1->second != nullptr && it1->second->forceApplied != 0.0) {
+                                if (it1->second->material->resistance * 10 < temp) {
+                                    it1->second->weight = temp + it1->second->getRealWeight();
+                                    it1->second->forceApplied = 0.0;
+                                }
+                                else{
+                                    it0.base()->erase(it1);
+                                    world->setStructureWasModified(true);
+                                }
+                            }
+                        }
+                    }
+                    ///plancher sur mur
+                    for (auto it1 = walls->begin(); it1 != walls->end() ; ++it1) {
+                        if((*it1)->forceApplied != 0.0){
+                            (*it1)->forceApplied = 0.0;
+                            for (auto it2 = it0.base()->begin(); it2 != it0.base()->end() ; ++it2) {
+                                if(it2->second != nullptr && Physics::collideMovingOnStaticModels(Vector(0.0, -0.001, 0.0), *(*it2).second, *(*it1)).collided){
+                                    (*it1)->forceApplied += it2->second->weight;
+                                }
+                            }
+                            if((*it1)->forceApplied >= (*it1)->material->resistance * 10){
+                                walls->remove(*it1);
+                                world->setStructureWasModified(true);
+                            }
+                            else{
+                                (*it1)->weight = (*it1)->forceApplied + (*it1)->getRealWeight();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
 
     /// Retourne les dimensions d'un image 2D
     Vector get2DTextureSize(const char* filePath) {

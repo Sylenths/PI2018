@@ -7,7 +7,11 @@
 #ifndef SOURCE_ROOF_H
 #define SOURCE_ROOF_H
 class Roof : public Structure{
+private:
+    double realWeight;
 public:
+    double weight;
+    double forceApplied;
     Materiel* material;
     Roof(const std::string& name, unsigned int width, unsigned int height, unsigned int lenght, double posx, double posy, double posz, unsigned int textureID, int material) : Structure(name, posx, posy, posz, textureID, rotHitBox, nullptr) {
 
@@ -16,6 +20,8 @@ public:
             vertexCount = 12;
             normalCount = 12;
             texCount = 12;
+
+            forceApplied = 0.0;
 
         switch(material){
             case WOOD:
@@ -34,7 +40,7 @@ public:
                 this->material = Materiel::simtium;
                 break;
         }
-
+        realWeight = ((double)width * sqrt((double)lenght * (double)lenght * (double)height * (double)height)) + ((double)lenght * sqrt((double)width * (double)width * (double)height * (double)height)) * this->material->masse * GRAVITY;
         ///mesh
         vertices = new double[36];
         vertices[0] = ((double)width) + posx;
@@ -195,6 +201,9 @@ public:
         normalsHitBox[29] = normalsHitBox[32] = normalsHitBox[35] = temp.x;
     }
 
+    double getRealWeight(){
+        return realWeight;
+    }
 
 };
 

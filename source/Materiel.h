@@ -12,9 +12,10 @@
 
 class Materiel {
 private:
-    unsigned int resistance, price, textureID, masse, pointDeRupture;
+
     std::string description;
 public:
+    unsigned int resistance, price, textureID, masse, pointDeRupture;
     Materiel( unsigned int resistance, unsigned int price, unsigned int masse, unsigned int pointDeRupture){
         this->price = price;
         this->resistance = resistance;
