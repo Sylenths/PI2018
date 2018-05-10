@@ -162,9 +162,9 @@ public:
         return hud->getCamera();
     }
 
-    void createMachine(int x, int y, int z){
+    void createMachine(int positionX, int positionY, int positionZ){
         if(SideWindow::MachineType == "SimCoinsMiner"){
-            addModel(new Model("", x, y, z, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            addModel(new Model("", positionX, positionY, positionZ, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
         }
 
 

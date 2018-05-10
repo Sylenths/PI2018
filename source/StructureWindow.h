@@ -158,6 +158,7 @@ public:
         ((CheckBox*)modelsSideWindow["1MurIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1PlancherIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1ToitIcon"])->uncheck();
+        ((CheckBox*)modelsSideWindow["1FondationIcon"])->check();
         buildType = BUILD_FONDATION;
     }
 
@@ -165,6 +166,7 @@ public:
         ((CheckBox*)modelsSideWindow["1FondationIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1PlancherIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1ToitIcon"])->uncheck();
+        ((CheckBox*)modelsSideWindow["1MurIcon"])->check();
         buildType = BUILD_WALL;
 
     }
@@ -172,12 +174,14 @@ public:
         ((CheckBox*)modelsSideWindow["1FondationIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1MurIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1ToitIcon"])->uncheck();
+        ((CheckBox*)modelsSideWindow["1PlancherIcon"])->check();
         buildType = BUILD_FLOOR;
     }
     void onRoofClick(){
         ((CheckBox*)modelsSideWindow["1FondationIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1MurIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1PlancherIcon"])->uncheck();
+        ((CheckBox*)modelsSideWindow["1ToitIcon"])->check();
         buildType = BUILD_ROOF;
     }
     void onCardboardClick(){
