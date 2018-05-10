@@ -37,7 +37,7 @@ public:
     /// Constructeur
     HighScoresMenu(){
         models["backButtonHighscore"] = new Button ("backButtonHighscore", 498, 550, 0.l, 284, 113, EntityManager::get<Texture2d*>("backButton")->ID,EntityManager::get<Texture2d*>("BackButtonOver")->ID);
-        models["backButtonHighscore"]->onClick = [this]() { Scene::changeActiveScene(previous); };
+        models["backButtonHighscore"]->onClick = [this]() { Scene::popScene(); };
         models["fond"] = new Image ("fond", 0, 0, 0, 1280, 720, EntityManager::get<Texture2d*>("FondHighscore")->ID);
 
         for (int i = 0; i < 10 ; ++i)

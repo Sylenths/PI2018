@@ -92,7 +92,7 @@ public:
         }
 
 
-        Model* simCoinMiner = new Model("", 0.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj");
+        Model* simCoinMiner = new Model("", 100.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj");
         simCoinMiner->setShadingOn();
         addModel(simCoinMiner);
 
@@ -160,6 +160,14 @@ public:
     }
     Camera* getCamera(){
         return hud->getCamera();
+    }
+
+    void createMachine(int x, int y, int z){
+        if(SideWindow::MachineType == "SimCoinsMiner"){
+            addModel(new Model("", x, y, z, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+        }
+
+
     }
 
     virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {

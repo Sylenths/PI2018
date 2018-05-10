@@ -63,6 +63,8 @@ int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
 
+    EntityManager::add(new Font("fntMrRobot", "../../fonts/MrRobot.ttf", 70));
+    EntityManager::add(new Font("fntButton", "../../fonts/SegoeUI.ttf", 50));
     EntityManager::add(new Font("font - arial12", "../Fonts/arial.ttf", 72));
     EntityManager::add(new Font("font - arial28", "../Fonts/arial.ttf", 50));
     EntityManager::add(new Font("font - arial30", "../Fonts/arial.ttf", 30));
