@@ -14,7 +14,7 @@
 #include "Model.h"
 #include "MathUtils.h"
 
-#define PHYSICS_EPSILON 0.000001
+#define PHYSICS_EPSILON 0.00000001
 
 namespace PhysicsData {
 
@@ -56,18 +56,38 @@ public:
 	static PhysicsData::CollisionData collideVectorOnPlane(Vector segmentOrigin, Vector segment, Vector normalOrigin, Vector planeNormal){
 		planeNormal.normalize();
 
-		double dotp = planeNormal * segment;
+		/*double dotp = planeNormal * segment;
 
 		if((PHYSICS_EPSILON > dotp) && (dotp > -PHYSICS_EPSILON))
 			return {false};
 
 		double ratio = ((planeNormal * normalOrigin) / (planeNormal * segment));
 
-		if(ratio > 1 || ratio < 0)
+		if(ratio > 1 || ratio <= 0)
 			return {false};
 
 
-		return {true, segmentOrigin + (segment * ratio)/*intersect*/, ratio};
+		//return {true, segmentOrigin + (segment * ratio), ratio};
+		*/
+
+		Vector w = segmentOrigin - normalOrigin;// normalorigin to segmentorigin
+
+		double D = planeNormal * segment;
+		double N = -planeNormal * w;
+
+		if (((D >= 0)?D:-D) < PHYSICS_EPSILON) { // segment is parallel to plane
+			return {false}; // no intersection
+		}
+		// they are not parallel
+		// compute intersect
+		double intersect = N / D;
+		if (intersect < 0 || intersect > 1)
+			return {false};                        // no intersection
+
+		Vector collisionPoint = segmentOrigin + segment * intersect;                  // compute segment intersect point
+		return {true, collisionPoint, intersect};
+
+
 	}
 
 	/// Détermine si un point se trouve à l'intérieur d'un triangle.
