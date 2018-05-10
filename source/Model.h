@@ -48,12 +48,14 @@ protected:
             B = Vector(vertices[i * 3], vertices[i * 3 + 1], vertices[i * 3 + 2]);
             AB = B - sun; // OB - OA = AB
 
-            k = ((0.1 - B.y)/(AB.y)); // la quantité à multiplier à chacune des composantes pour atteindre notre plan y = 0
-            verticesShading[i * 3    ] = k*AB.x + B.x;
+            k = ((0.1 - B.y) /
+                 (AB.y)); // la quantité à multiplier à chacune des composantes pour atteindre notre plan y = 0
+            verticesShading[i * 3] = k * AB.x + B.x;
             verticesShading[i * 3 + 1] = 0.1;
-            verticesShading[i * 3 + 2] = k*AB.z + B.z;
+            verticesShading[i * 3 + 2] = k * AB.z + B.z;
         }
     }
+
 
     bool signOfD(double& xCordp, double& zCordp, double& xCord1, double& zCord1, double& xCord2, double& zCord2) {
         if (((xCordp - xCord1) * (zCord2 - zCord1) - (zCordp - zCord1) * (xCord2 - xCord1)) < 0)

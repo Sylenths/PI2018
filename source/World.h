@@ -96,14 +96,12 @@ public:
         simCoinMiner->setShadingOn();
         addModel(simCoinMiner);
 
-        worldLight = new Light(5.0, 200.0, 5.0, 1.0);
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
 
         chrono.restart();
     }
     ~World(){
         delete hud;
-        delete worldLight;
         delete hudLight;
         for(auto it : modelList){
             delete it;

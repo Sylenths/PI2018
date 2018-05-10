@@ -2,20 +2,20 @@
 /// \details Permet de changer l'opacité du filtre et la couleur de l'Atmosphère. Gère aussi le ciel;
 /// \author Mathilde Harnois, Guillaume Julien-Desmarchais
 /// \date 17 avril 2018
-/// \version 0.5
+/// \version 0.7
 /// \warning
-/// \bug Quand alpha passe de 102 (ciel bleu) à 104 (ciel gris) on peut voir le changement de couleur.
+/// \bug
 
 #ifndef SOURCE_ATMOSPHERE_H
 #define SOURCE_ATMOSPHERE_H
 
 
 #define ALPHANIGHT 180
-#define ALPHADAY 180
-#define TRANSITIONTIME 90 //Time for toning down/up alpha
+#define ALPHADAY 255
+#define TRANSITIONTIME 225 //Time for toning down/up alpha
 #define HALFTURN 450 //Time for one cycle
-#define X1 15  //Start of Toning down alpha (seconds)
-#define X3 345 //Start of Toning up alpha   (seconds)
+#define X1 0  //Start of Toning down alpha (seconds)
+#define X3 225 //Start of Toning up alpha   (seconds)
 
 
 #include <bitset>
@@ -29,7 +29,7 @@ private:
     int multiplicator1, multiplicator2;
     double chrono;
     Chrono* atmoChrono;
-    bool dayTime;
+    bool dayTime, changedTextured;
     Uint32 *pixel;
     Sky sky;
 
@@ -38,19 +38,21 @@ public:
     Atmosphere(const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : sky(name, 0.0, 0.0, 0.0,EntityManager::get<Texture2d*>("daysky")->ID, EntityManager::get<Texture2d*>("nightsky")->ID ,false, "../../models/obj/skysphere.obj"), Model(name, posx, posy, posz, textureID, rotHitBox, objFile) {
         x2 = X1 + TRANSITIONTIME;
         x4 = X3 + TRANSITIONTIME;
-        multiplicator1 = ((-ALPHADAY) / (x2 - X1));
-        multiplicator2 = ((ALPHANIGHT) / (x4 - X3));
+        multiplicator1 = ((ALPHADAY) / (x2 - X1));
+        multiplicator2 = ((-ALPHANIGHT) / (x4 - X3));
 
-        b1 = (ALPHADAY - (multiplicator1 * X1));
+        b1 = (ALPHADAY - (multiplicator1 * x2));
         b2 = (ALPHANIGHT - (multiplicator2 * x4));
         pixel = new Uint32;
 
         dayTime = true;
-        alpha = 180;//
+        changedTextured = true;
+        alpha = 0;//
         atmoChrono = new Chrono();
-        r = 253;
-        g = 150;
-        b = 43;
+
+        r = 34;
+        g = 92;
+        b = 173;
         pixel[0] = alpha;//A
         pixel[0] = (pixel[0] << 8) | b;//B43
         pixel[0] = (pixel[0] << 8) | g;//G150
@@ -74,41 +76,51 @@ public:
 
         chrono = atmoChrono->getElapsed(SECONDS);
         sky.rotateSky();
-        if(chrono >= X1 && chrono <= x2){//Tone Down alpha to prepare for Night RGBA Colour
+        if(chrono >= X1 && chrono <= x2){//Tone Up alpha to prepare for Night
             int newAlpha = (multiplicator1 * chrono) + b1;
-            if(newAlpha  >= 0)
+            if(newAlpha  <= 255)
                 alpha = newAlpha;
 
+            if (changedTextured){
+                if (dayTime)
+                    changeSkyColorToLight_Blue();
+                else
+                    changeSkyColorToDark_Orange();
+                changedTextured = false;
+            }
             updateRGBA();
-            return;
         }
 
-        if (chrono >= 106 && chrono <= 110){//Apply night setting ()
-            if (dayTime) {
-                r = 25;
-                g = 25;
-                b = 77;
-            }return;
-        }
+        else {
+            if (!changedTextured) {
+                if (dayTime) {
+                    sky.setNight();
+                    changeSkyColorToDark_Blue();
 
-        if (chrono >= X3 && chrono <= x4){//Second Half Tone up alpha
+                } else {
+                    sky.setDay();
+                    changeSkyColorToLight_Orange();
+
+                }
+                dayTime = !dayTime;
+                changedTextured = true;
+            }
+
             int newAlpha = (multiplicator2 * chrono) + b2;
 
-            if(newAlpha <= 255)
+            if (newAlpha >= 0)
                 alpha = newAlpha;
 
             updateRGBA();
-            return;
-        }
-        if (chrono > HALFTURN){
-            atmoChrono->restart();
-            if (dayTime){
-                sky.setNight();
-                dayTime = !dayTime;
-            }
-            else{
-                sky.setDay();
-                dayTime = !dayTime;
+
+            if (chrono > HALFTURN) {
+                atmoChrono->restart();
+                if (!dayTime) {
+                    changeSkyColorToDark_Orange();
+                } else {
+                    changeSkyColorToLight_Orange();
+                }
+                changedTextured = true;
             }
         }
     }
@@ -120,6 +132,28 @@ public:
         pixel[0] = (pixel[0] << 8) | r;//R 211
         glBindTexture(GL_TEXTURE_2D, atmosphereTextureId);
         glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+    }
+
+    void changeSkyColorToDark_Orange(){
+        r = 94;
+        g = 41;
+        b = 6;
+    }
+
+    void changeSkyColorToLight_Orange(){
+        r = 147;
+        g = 67;
+        b = 12;
+    }
+    void changeSkyColorToLight_Blue(){
+        r = 28;
+        g = 79;
+        b = 150;
+    }
+    void changeSkyColorToDark_Blue(){
+        r = 21;
+        g = 56;
+        b = 104;
     }
 
     Light getRealLight(){

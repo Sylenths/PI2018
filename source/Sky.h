@@ -17,7 +17,7 @@ class Sky : public Model {
 private:
     Matrix rotation; ///< Matrice de rotation du ciel
     Chrono* skyChrono;///< Chrono pour la rotation du ciel
-    Vector vecteur;///< Représentation de la lumière en vecteur.
+    Vector vecteur, vecteurTestSoleil;///< Représentation de la lumière en vecteur.
     Light worldLight;///< La lumière de notre monde
 
 public:
@@ -27,35 +27,44 @@ public:
     /// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
     Sky(const std::string name, double posx, double posy, double posz, unsigned int textureDay, unsigned int textureNight, bool rotHitBox, const char* objFile = nullptr) : Model(name, posx, posy, posz, textureDay, rotHitBox, objFile), worldLight(500.0,10.0,500.0, 1.0) {
         skyChrono = new Chrono();
-        vecteur = {0.0,450.0,0.0};
+        vecteur = {0.0,470.0,0.0};
+        vecteurTestSoleil = {0.0,510.0,0.0};
         textureIDs["night"] =  textureNight;
         textureIDs["day"] = textureDay;
         textureToDraw = textureIDs["day"];
-        rotation.loadXrotation(70);
-        transform(rotation);
-        rotation.loadXrotation(70);
-        vecteur = rotation * vecteur;
 
-        rotation.loadXrotation(-0.04);//Rotation de 360* apres 900 secondes (cycle jour-nuit)
+        rotation.loadXrotation(90);
+        transform(rotation);//Set skysphere in place
+
+        vecteur = rotation * vecteur;//Set light in place
+        worldLight.update(vecteur.x,vecteur.y,vecteur.z);
+
+        rotation.loadXrotation(-0.004);//Rotation de 360* apres 900 secondes (cycle jour-nuit)
+
     }
     ///Change la texture pour celle de nuit
     void setNight(){
         textureToDraw = textureIDs["night"];
-        rotation.loadXrotation(180);
-        vecteur = rotation * vecteur;
-
-        rotation.loadXrotation(-0.04);
     }
     ///Change la texture pour celle de nuit
     void setDay(){
         textureToDraw = textureIDs["day"];
-        rotation.loadXrotation(180);
-        vecteur = rotation * vecteur;
-        rotation.loadXrotation(-0.04);
     }
     ///Applique la rotation de la terre
     void rotateSky(){
-        if (skyChrono->getElapsed(SECONDS) > 0.1){
+        if (skyChrono->getElapsed(SECONDS) > 0.01){
+
+            if (vecteur.y < 0){//Flip Light
+                vecteur = {0.0,470.0,0.0};
+                rotation.loadXrotation(90);
+                vecteur = rotation * vecteur;//Set light in place
+                worldLight.update(vecteur.x,vecteur.y,vecteur.z);
+
+                skyChrono->restart();
+                rotation.loadXrotation(-0.004);
+                transform(rotation);
+                return;
+            }
             transform(rotation);
             vecteur = rotation * vecteur;
             worldLight.update(vecteur.x,vecteur.y,vecteur.z);
