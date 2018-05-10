@@ -215,6 +215,7 @@ public:
             }
 
             if((SideWindow::closed == true) && (sceneDisplay == sceneMap["World"])){
+                ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
                 ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
 
                 SideWindow::closed = false;
@@ -237,17 +238,15 @@ public:
                 case SDLK_f:
                     activeCamera = false;
                     glContext->releaseInput();
-                    sceneDisplay->subscribeAll(observables);
-                    ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
-                    ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
-                    ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
+
                     break;
                 case SDLK_g:
                     activeCamera = true;
                     glContext->grabInput();
-                    sceneDisplay->unsubscribeAll(observables);
-                    ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
-                    ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
+                    break;
+                case SDL_MOUSEBUTTONDOWN:
+                    if(sceneDisplay == sceneMap["World"] && SideWindow::MachineType != "")
+                        ((World*)sceneDisplay)->createMachine(controller->getClickMousePosition()[0], controller->getClickMousePosition()[1], 10);
                     break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
@@ -279,6 +278,14 @@ public:
                     break;
             }
             switch (controller->getKeyUp()) {
+                case SDLK_f:
+                    sceneDisplay->subscribeAll(observables);
+                    break;
+                case SDLK_g:
+                    ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
+                    ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
+                    sceneDisplay->unsubscribeAll(observables);
+                    break;
                 case SDLK_w:
                     if (sceneDisplay == sceneMap["World"]) {
                         sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_FRONT);
