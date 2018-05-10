@@ -13,6 +13,11 @@ public:
         onClick = nullptr;
     }
 
+    Image2d(const std::string& name, const Vector& position, Texture2d* texture, double width, double height) : VisualEntity2d(name, position, Vector2d(width, height)) {
+        defaultTexture = texture;
+        onClick = nullptr;
+    }
+
     void draw() {
         glBindTexture(GL_TEXTURE_2D, defaultTexture->ID);
         glBegin(GL_QUADS);

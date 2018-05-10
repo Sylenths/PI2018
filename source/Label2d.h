@@ -9,6 +9,8 @@ public:
 
   Label2d(const std::string name, const Vector& position, Font* font, const std::string& text, const SDL_Color& color) : VisualEntity2d(name, position, Vector2d(0.0, 0.0)), texture("txtr" + name) {
       setText(font, text, color);
+      this->size.x = texture.width;
+      this->size.y = texture.height;
   }
 
   void setText(Font* font, const std::string& text, const SDL_Color& color) {
