@@ -3,7 +3,7 @@
 /// \author Samuel Labelle
 /// \date  mai 2018
 /// \version 0.2
-/// \warning Non extensivement testée.
+/// \warning Non extensivement testée, les métodes de collision sont suceptibles de collisionner sur n'importe quel triangle d'un modèle se trouvant dans une trajectoire de collision.
 /// \bug Les calculs ne sont pas optimisés.
 
 #ifndef PHYSICS_H
@@ -53,15 +53,15 @@ public:
 	/// \param normalOrigin Point faisant partie de la surface plane.
 	/// \param planeNormal Normale de la surface plane infinie.
 	/// \return Structure de données contenant les résultats de la collision.
-	static PhysicsData::CollisionData collideVectorOnPlane(Vector segmentOrigin, Vector segment, Vector normalOrigin, Vector normal){
-		normal.normalize();
+	static PhysicsData::CollisionData collideVectorOnPlane(Vector segmentOrigin, Vector segment, Vector normalOrigin, Vector planeNormal){
+		planeNormal.normalize();
 
-		double dotp = normal * segment;
+		double dotp = planeNormal * segment;
 
 		if((PHYSICS_EPSILON > dotp) && (dotp > -PHYSICS_EPSILON))
 			return {false};
 
-		double ratio = ((normal * normalOrigin) / (normal * segment));
+		double ratio = ((planeNormal * normalOrigin) / (planeNormal * segment));
 
 		if(ratio > 1)
 			return {false};
@@ -69,10 +69,10 @@ public:
 		return {true, segmentOrigin + (segment * ratio)/*intersect*/, ratio};
 	}
 
-	/// Détermine si un pointse trouve à l'intérieur d'un triangle.
+	/// Détermine si un point se trouve à l'intérieur d'un triangle.
 	/// \param point Le point.
-	/// \param tri Le triangle
-	/// \param normal Vecteur normalisé représentant la normle du triangle.
+	/// \param tri Le triangle.
+	/// \param normal Vecteur normalisé représentant la normale du triangle.
 	/// \return Le point se trouve dans le triangle. (booléen)
 	static bool isPointWithinTri(Vector point, PhysicsData::Triangle tri, Vector normal){
 		PhysicsData::FlatTriangle flatTri;
@@ -307,7 +307,7 @@ public:
 		return {false};
 	}
 
-	/// Trouve le point faisant partie d'un segment de droite qui est le plus rapprochè d'un autre point situé ailleurs dans l'espace.
+	/// Trouve le point faisant partie d'un segment de droite qui est le plus rapproché d'un autre point situé ailleurs dans l'espace.
 	/// \param searchOrigin Point dont on recherche le point le plus rapproché sur lw segment de droite.
 	/// \param a Point un délimitant le segment de droite.
 	/// \param b Point deux délimitant le segment de droite.
@@ -370,7 +370,7 @@ public:
 	}
 
 	/// Collisionne un vecteur sur une sphère.
-	/// \param vectorOrigin point d'origine du vecteur.
+	/// \param vectorOrigin Point d'origine du vecteur.
 	/// \param vector Vecteur.
 	/// \param sphereOrigin Point d'origine de la sphère.
 	/// \param sphereRadius Rayon de la sphère.
@@ -429,12 +429,12 @@ public:
 
 	}
 
-	///
-	/// \param sphereMovement
-	/// \param sphereCenter
-	/// \param sphereRadius
-	/// \param model
-	/// \return
+	/// Collisionne une sphère en mouvement sur un modèle.
+	/// \param sphereMovement Vecteur de déplacement de la sphère.
+	/// \param sphereCenter Centre de la sphère.
+	/// \param sphereRadius Rayon de la sphère.
+	/// \param model Modèle su lequel collisionner la sphère.
+	/// \return Structure de données contenant les résultats de la collision.
 	static PhysicsData::CollisionData collideMovingSphereOnModel(Vector& sphereMovement, Vector& sphereCenter, double& sphereRadius, Model& model){
 
 		PhysicsData::Triangle triangle;
@@ -472,12 +472,32 @@ public:
 
 		return {false};
 	}
-	/*
-	static PhysicsData::CollisionData collideMovingSphereOnSphere(){
+
+	/// Collisionne une sphère en mouvement sur une sphère immobile
+	/// \param sphereMovement Vecteur de déplacement de la sphère en mouvemnent.
+	/// \param movingSphereCentre
+	/// \param movingSphereRadius Rayon de la sphère en mouvement.
+	/// \param staticSphereCenter
+	/// \param staticSphereRadius Rayon de la sphère immobile.
+	/// \return Structure de données contenant les résultats de la collision, le point étant la position du centre de la sphère déplacée.
+	static PhysicsData::CollisionData collideMovingSphereOnSphere(Vector sphereMovement,
+	                                                              Vector movingSphereCentre, double movingSphereRadius,
+	                                                              Vector staticSphereCenter, double staticSphereRadius){
+		// add early false collision detection using radii sum test ?
+
+		// Trasforming the moving sphere in a point and transfer its radius to the other sphere.
+		PhysicsData::CollisionData cData = collideVectorOnSphere(movingSphereCentre, sphereMovement, staticSphereCenter, movingSphereRadius + staticSphereRadius);
+
+		return cData;
+		//unless we'd like the point of collision between the surface of the spheres, 'cause this is where the center point of the moving sphere is,
+		// then we've got to figure out the point between the spheres where the collision occured
+		// this should do the trick : (staticSphereCenter - cData.point).normalize() * movingSphereRadius;
+		// not sure what to return as a ratio in that case, though...
 
 	}
 
-	static PhysicsData::CollisionData collideMovingSphereOnPoint(){
+	/*
+	satic PhysicsData::CollisionData collideMovingSphereOnPoint(){
 
 	}
 
