@@ -1,11 +1,14 @@
 #ifndef ITEMBUTTON_H
 #define ITEMBUTTON_H
+#include "includes.h"
 
 
-class ItemButton
-{
+class ItemButton {
+protected:
+    *Image2d image;
+
 public:
     ItemButton();
 };
 
-#endif // ITEMBUTTON_H
+#endif
