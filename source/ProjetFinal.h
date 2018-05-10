@@ -179,15 +179,17 @@ public:
 
         sceneMap["MainMenu"] = new MainMenu();
         sceneMap["MainMenu"]->subscribeAll(observables);
-        sceneDisplay = sceneMap[Scene::getActiveScene()];
+        Scene::pushScene("MainMenu");
+        sceneDisplay = sceneMap["MainMenu"];
 
         sceneMap["SettingsMenu"] = new SettingsMenu();
+        sceneMap["ResolutionMenu"] = new ResolutionMenu();
         sceneMap["HighScoresMenu"] = new HighScoresMenu();
         sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World("", 0, 0, 0, 20, {0, 0, 0});
 
         chrono.restart();
-        while (Scene::getActiveScene() != "Quit") {
+        while (Scene::getScene() != "Quit") {
             while (SDL_PollEvent(sdlEvent)) {
                 switch (sdlEvent->type) {
                     default:
@@ -197,13 +199,14 @@ public:
                 }
             }
 
-            if (((Scene::getActiveScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getActiveScene()]))) {
+            if (((Scene::getScene() != "Quit") && (sceneDisplay != sceneMap[Scene::getScene()]))) {
 
                 sceneDisplay->unsubscribeAll(observables);
-                sceneDisplay = sceneMap[Scene::getActiveScene()];
+                sceneDisplay = sceneMap[Scene::getScene()];
                 sceneDisplay->subscribeAll(observables);
                 controller->subscribeAll(observables, controller);
             }
+
             if((SideWindow::switched) && (sceneDisplay == sceneMap["World"])){
                 ((World*)sceneDisplay)->hud->lastSideWindowUnsubscribe(observables);
                 SideWindow::switched = false;
@@ -211,23 +214,23 @@ public:
 
             }
 
-
             if((SideWindow::closed == true) && (sceneDisplay == sceneMap["World"])){
                 ((World*)sceneDisplay)->hud->sideWindowUnsubscribe(observables);
 
                 SideWindow::closed = false;
             }
+
             if(SideWindow::opened && (sceneDisplay == sceneMap["World"])){
                 ((World*)sceneDisplay)->hud->sideWindowSubscribe(observables);
                 SideWindow::opened = false;
             }
+
             addFloor();
             addFondation();
             createWall();
             selectWallForRoofCreation();
-            if(controller->getClickMousePosition()[2] != -1){
+            if (controller->getClickMousePosition()[2] != -1)
                 controller->resetClicMousePosition();
-            }
 
             ///controle des touches
             switch (controller->getKeyDown()) {
@@ -271,7 +274,7 @@ public:
                     if (sceneDisplay == sceneMap["World"]) {
                         glContext->releaseInput();
                         activeCamera = false;
-                        sceneDisplay->changeActiveScene("PauseMenu");
+                        sceneDisplay->pushScene("PauseMenu");
                     }
                     break;
             }
@@ -303,8 +306,6 @@ public:
                 controller->resetMouseMotion();
             }
 
-
-
             if (sceneDisplay == sceneMap["World"] && activeCamera)
                 sceneDisplay->getCamera()->update(chrono.getElapsed(SECONDS));
 
@@ -328,7 +329,7 @@ public:
 
     void addFondation() {
         if(SideWindow::buildType == BUILD_FONDATION && SideWindow::isBuilding) {
-            if(activeCamera && Scene::getActiveScene() == "World" && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT){
+            if(activeCamera && Scene::getScene() == "World" && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT){
             World* world = ((World*)sceneDisplay);
 
                 Vector front = world->getCamera()->getFront();
@@ -389,7 +390,7 @@ public:
     }
     void addFloor(){
 
-            if (StructureWindow::chosenStory && Scene::getActiveScene() == "World" && SideWindow::buildType == BUILD_FLOOR && SideWindow::materialType != NULLMATERIAL && SideWindow::isBuilding && activeCamera && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT) {
+            if (StructureWindow::chosenStory && Scene::getScene() == "World" && SideWindow::buildType == BUILD_FLOOR && SideWindow::materialType != NULLMATERIAL && SideWindow::isBuilding && activeCamera && controller->getClickMousePosition()[2] == SDL_BUTTON_LEFT) {
                 World* world = ((World*)sceneDisplay);
                 std::map<std::pair<int,int>, Fondation*>* fondationGrid = world->getFondations();
 
@@ -549,7 +550,7 @@ public:
     }
 
     void selectWallForRoofCreation() {
-        if (Scene::getActiveScene() == "World") {
+        if (Scene::getScene() == "World") {
 
             if ((SideWindow::buildType == BUILD_ROOF && SideWindow::isBuilding) &&
                 (controller->getClickMousePosition()[2] == SDL_BUTTON_RIGHT)) {
@@ -721,7 +722,7 @@ public:
 
 
     void createWall(){
-        if(Scene::getActiveScene() == "World")
+        if(Scene::getScene() == "World")
 
         if (SideWindow::buildType == BUILD_WALL && SideWindow::isBuilding ) {
             if (StructureWindow::chosenStory == 0) {

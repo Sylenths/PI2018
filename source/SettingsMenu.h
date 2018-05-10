@@ -16,8 +16,16 @@ public:
         visualEntities2d.push_back(new Image2d("MainMenuBackGround", Vector(0.0, 0.0, -2.0), EntityManager::get<Texture2d*>("MenuBackground")));
         visualEntities2d.push_back(new Label2d("MainMenuTitle", Vector(50.0, 50.0, -1.0), EntityManager::get<Font*>("fntMrRobot"), "Settings", { 0, 0, 0, 255 }));
 
-        Button2d* button = new Button2d("ButtonBack", Vector(967.0, 575.0, 1.0), EntityManager::get<Font*>("fntButton"), "Back", {0, 0, 0}, EntityManager::get<Texture2d*>("MenuButtonBackground"), EntityManager::get<Texture2d*>("MenuButtonHover"));
-        button->onClick = [this]() { Scene::changeActiveScene(previous); };
+        Button2d* button = new Button2d("ButtonResolution", Vector(967.0, 50.0, 1.0), EntityManager::get<Font*>("fntButton"), "Resolution", {0, 0, 0}, EntityManager::get<Texture2d*>("MenuButtonBackground"), EntityManager::get<Texture2d*>("MenuButtonHover"));
+        button->onClick = [this]() { Scene::pushScene("ResolutionMenu"); };
+        visualEntities2d.push_back(button);
+
+        button = new Button2d("ButtonKeys", Vector(967.0, 225.0, 1.0), EntityManager::get<Font*>("fntButton"), "Keys", {0, 0, 0}, EntityManager::get<Texture2d*>("MenuButtonBackground"), EntityManager::get<Texture2d*>("MenuButtonHover"));
+        button->onClick = [this]() { Scene::pushScene("KeysMenu"); };
+        visualEntities2d.push_back(button);
+
+        button = new Button2d("ButtonBack", Vector(967.0, 575.0, 1.0), EntityManager::get<Font*>("fntButton"), "Back", {0, 0, 0}, EntityManager::get<Texture2d*>("MenuButtonBackground"), EntityManager::get<Texture2d*>("MenuButtonHover"));
+        button->onClick = [this]() { Scene::popScene(); };
         visualEntities2d.push_back(button);
 
         sortLayers();

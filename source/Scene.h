@@ -13,8 +13,7 @@
 
 class Scene {
 protected:
-    static std::string active;     ///< permet de savoir quel menu est actif.
-    static std::string previous;   ///< permet de savoir quel était le menu précédent actif.
+    static std::stack<std::string> scenes;
     static bool FPS;               ///< permet de savoir si l'affichage des fps est actif.
 
 public:
@@ -23,15 +22,18 @@ public:
 
     /// Permet de changer le menu affiché.
     /// \param scene le nom du nouveau menu qui sera affiché.
-    static std::string changeActiveScene(std::string scene){
-        previous = active;
-        active = scene;
-        return active;
+    static std::string pushScene(std::string scene) {
+        scenes.push(scene);
+        return scene;
+    }
+
+    void popScene() {
+        scenes.pop();
     }
 
     /// Retourner la menu actif.
-    static std::string getActiveScene() {
-        return active;
+    static std::string getScene() {
+        return scenes.top();
     }
 
     /// Retourner un booléen "vrai" si l'affichage des fps est activé.
@@ -54,8 +56,7 @@ public:
     virtual Camera* getCamera() {}
 };
 
-std::string Scene::active = "MainMenu";
-std::string Scene::previous = " ";
+std::stack<std::string> Scene::scenes;
 bool Scene::FPS = false;
 
 #endif

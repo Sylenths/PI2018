@@ -82,6 +82,7 @@
 #include "Menu2d.h"
 #include "MainMenu.h"
 #include "SettingsMenu.h"
+#include "ResolutionMenu.h"
 #include "InGameOverlay.h"
 #include "PauseMenu.h"
 #include "Scores.h"
