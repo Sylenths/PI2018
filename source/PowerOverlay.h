@@ -2,10 +2,9 @@
 #define POWEROVERLAY_H
 
 
-class PowerOverlay
-{
+class PowerOverlay {
 public:
     PowerOverlay();
 };
 
-#endif // POWEROVERLAY_H
+#endif
