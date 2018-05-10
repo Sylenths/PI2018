@@ -123,7 +123,7 @@ public:
     /// \param windowflags Flags SDL.
     ProjetFinal(const char* title = "P.I. 2018", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED, int width = 1280, int height = 720, unsigned int windowflags = 0) {
         glContext = new GLContext(title, x, y, width, height, 89.0, 0.1, 1000.0, windowflags);
-        GLContext::setFrustum(true);
+        glContext->setFrustum(true);
         sdlEvent = new SDL_Event();
         loadTextures();
         controller = new Controller;
@@ -188,7 +188,7 @@ public:
         sceneMap["ResolutionMenu"] = new ResolutionMenu(glContext);
         sceneMap["HighScoresMenu"] = new HighScoresMenu();
         sceneMap["PauseMenu"] = new PauseMenu();
-        sceneMap["World"] = new World("", 0, 0, 0, 20, {0, 0, 0});
+        sceneMap["World"] = new World("", glContext, 0, 0, 0, 20, {0, 0, 0});
 
         chrono.restart();
         while (Scene::getScene() != "Quit") {

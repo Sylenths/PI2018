@@ -21,6 +21,7 @@
 
 class World : public Scene{
 private:
+    GLContext* context;
     std::list<Model*> modelList; ///< La liste de models à afficher
     std::list<PowerAppareil*> powerApparielList;
     std::list<Model*> wallList; ///< La liste de models à afficher
@@ -59,7 +60,8 @@ public:
     }
 
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(const std::string name, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
+    World(const std::string name, GLContext* context, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
+        this->context = context;
         this->wind = wind;
         this->temperature = temperature;
         this->sunPower = sunPower;
@@ -136,7 +138,7 @@ public:
 
     /// Affichage des models
     void draw() {
-        GLContext::setFrustum(IS3D);
+        context->setFrustum(IS3D);
         glDepthFunc(GL_LEQUAL);
 
         hud->getCamera()->applyViewMatrix();
@@ -147,11 +149,10 @@ public:
 
         atmosphere.updateAtmosphere();
         atmosphere.draw();
-        GLContext::setFrustum(IS2D);
+        context->setFrustum(IS2D);
         glDepthFunc(GL_LESS);
         hudLight->applyLightPosition();
         hud->draw();
-
     }
 
     /// Mise a jour du temps dans l'H.U.D.

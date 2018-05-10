@@ -12,8 +12,8 @@
 
 class GLContext : public Window {
 private:
-    SDL_GLContext glContext; ///< Contexte OpenGL-SDL
-    static Matrix projectionMatrix;
+    SDL_GLContext glContext; ///< Contexte OpenGL
+    static Matrix projectionMatrix; ///< Matrice de projection
 
 public:
 	/// Constructeur
@@ -23,15 +23,14 @@ public:
 	/// \param width Largeur de la fenêtre, en pixels.
 	/// \param height Hauteur de la fenêtre, en pixels.
 	/// \param flags Flags SDL.
-    GLContext(const char* title, int x, int y, int width, int height, double angle, double nearPlane, double farPlane, unsigned int windowflags = 0) : Window(title, x,y,width, height, windowflags | SDL_WINDOW_OPENGL) {
+    GLContext(const char* title, int x, int y, int width, int height, double angle, double nearPlane, double farPlane, unsigned int windowflags = 0) : Window(title, x, y, width, height, windowflags | SDL_WINDOW_OPENGL) {
         glContext = SDL_GL_CreateContext(sdlWindow);
+
         double right = std::tan(angle / 2.0) * nearPlane;
         double top = ((double) height / (double) width) * right;
-
-        Window::width = width;
-        Window::height = height;
         GLContext::projectionMatrix.loadProjection(top, right, nearPlane, farPlane);
     }
+
 	/// Destructeur.
     ~GLContext() {
         SDL_GL_DeleteContext(glContext);
@@ -62,32 +61,25 @@ public:
     SDL_Window* getWindow(){
         return sdlWindow;
     }
+
     /// Affichage de l'environnement graphique.
     /// \param angle Angle du champ de vision.
     /// \param nearPlane Distance de la zone de vue rapproché.
     /// \param farPlane Distance de la zone de vue éloignée.
     /// \param is2D Permet de savoir si l'objet est en 2D ou 3D.
-    static void setFrustum(bool is2D) {
-
-
+    void setFrustum(bool is2D) {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        if(is2D) {
-            glOrtho(0.0, (double) width, (double) height, 0.0, 1.0, -1.0);
-        }
 
-        else {
+        (is2D) ? glOrtho(0.0, (double) width, (double) height, 0.0, 1.0, -1.0) : glMultMatrixd(projectionMatrix.matrix);
 
-            glMultMatrixd(projectionMatrix.matrix);
-
-        }
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
 
     }
     /// Replacer le curseur de la souris au centre de la fenêtre.
     void resetMousePosition() {
-        SDL_WarpMouseInWindow(sdlWindow, Window::width / 2, Window::height);
+        SDL_WarpMouseInWindow(sdlWindow, width / 2, height);
         SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
     }
 
