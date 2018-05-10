@@ -77,6 +77,7 @@
 #include "Label2d.h"
 #include "Button.h"
 #include "Button2d.h"
+#include "CheckBox.h"
 #include "Menu.h"
 #include "Menu2d.h"
 #include "MainMenu.h"

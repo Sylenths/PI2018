@@ -32,8 +32,31 @@ public:
         visualEntities2d.sort(compareVisualEntity2d);
     }
 
-    virtual void subscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;
-    virtual void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) = 0 ;
+    /// Permet d'inscrire les observateurs aux événements.
+    /// \param observables Tous les observables.
+    void subscribeAll(std::map <unsigned int, Observable<SDL_Event*>*>& observables){
+        if (!observables[SDL_MOUSEBUTTONDOWN]) observables[SDL_MOUSEBUTTONDOWN] = new Observable<SDL_Event*>();
+        if (!observables[SDL_MOUSEMOTION]) observables[SDL_MOUSEMOTION] = new Observable<SDL_Event*>();
+
+        std::list<VisualEntity2d*>::iterator it = visualEntities2d.begin();
+        while (it != visualEntities2d.end()) {
+            if ((*it)->position.z > 0.0) {
+                observables[SDL_MOUSEBUTTONDOWN]->subscribe(*it);
+                observables[SDL_MOUSEMOTION]->subscribe(*it);
+            }
+            it++;
+        }
+    }
+
+    /// Permet de désinscrire tous les observables.
+    /// \param observables une map contenant tous les observables nécessaires.
+    void unsubscribeAll(std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
+        std::list<VisualEntity2d*>::iterator it = visualEntities2d.begin();
+        while (it != visualEntities2d.end()) {
+            observables[SDL_MOUSEBUTTONDOWN]->unsubscribe(*it);
+            observables[SDL_MOUSEMOTION]->unsubscribe(*it++);
+        }
+    }
 };
 
 #endif
