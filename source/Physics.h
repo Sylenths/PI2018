@@ -63,8 +63,9 @@ public:
 
 		double ratio = ((planeNormal * normalOrigin) / (planeNormal * segment));
 
-		if(ratio > 1)
+		if(ratio > 1 || ratio < 0)
 			return {false};
+
 
 		return {true, segmentOrigin + (segment * ratio)/*intersect*/, ratio};
 	}
@@ -479,21 +480,23 @@ public:
 	/// \param movingSphereRadius Rayon de la sphère en mouvement.
 	/// \param staticSphereCenter
 	/// \param staticSphereRadius Rayon de la sphère immobile.
-	/// \return Structure de données contenant les résultats de la collision, le point étant la position du centre de la sphère déplacée.
+	/// \return Structure de données contenant les résultats de la collision, le point est le point de collision sur surface de la sphère statique et le ratio correspond au rapport entre la norme du vecteur déplacement et la distance parcourue avant la collision.
 	static PhysicsData::CollisionData collideMovingSphereOnSphere(Vector sphereMovement,
 	                                                              Vector movingSphereCentre, double movingSphereRadius,
 	                                                              Vector staticSphereCenter, double staticSphereRadius){
-		// add early false collision detection using radii sum test ?
+		// add early collision detection avoidance using radii sum test ?
 
-		// Trasforming the moving sphere in a point and transfer its radius to the other sphere.
+		// Transforming the moving sphere in a point and transfer its radius to the other sphere.
 		PhysicsData::CollisionData cData = collideVectorOnSphere(movingSphereCentre, sphereMovement, staticSphereCenter, movingSphereRadius + staticSphereRadius);
 
-		return cData;
-		//unless we'd like the point of collision between the surface of the spheres, 'cause this is where the center point of the moving sphere is,
-		// then we've got to figure out the point between the spheres where the collision occured
+		return {cData.collided, (staticSphereCenter - cData.point).normalize() * movingSphereRadius, cData.ratio};
 		// this should do the trick : (staticSphereCenter - cData.point).normalize() * movingSphereRadius;
-		// not sure what to return as a ratio in that case, though...
+		// the ratio is between the movement vector and the new moving sphere center
 
+	}
+
+	static PhysicsData::CollisionData collideMovingSpheres(Vector sphere1Movement, Vector sphere1Center, double sphere1Radius,
+														   Vector sphere2Movement, Vector sphere2Center, double sphere2Radius) {
 	}
 
 	/*
