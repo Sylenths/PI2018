@@ -1,8 +1,8 @@
 #ifndef CHAMPDEFORCE_H
 #define CHAMPDEFORCE_H
-#include "PowerAppareil.h"
+#include "PowerDevice.h"
 
-class ChampDeForce : public PowerAppareil {
+class ChampDeForce : public PowerDevice {
 public:
     ChampDeForce();
 };

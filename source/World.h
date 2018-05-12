@@ -22,6 +22,7 @@
 
 #include "PowerManager.h"
 #include "SIMCoinMiner.h"
+#include "Physics.h"
 
 
 class World : public Scene{
@@ -32,8 +33,7 @@ private:
     std::list<Wall*> wallList; ///< La liste de murs à afficher
     std::list<Roof*> roofList; ///< La liste de toits à afficher
 
-    std::list<PowerAppareil*> powerApparielList;
-
+    std::list<PowerDevice*> powerDeviceList;
 
     std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;
@@ -57,8 +57,8 @@ public:
     }
 
 
-    void addPowerAppariel(PowerAppareil* powerAppareil){
-        powerApparielList.push_back(powerAppareil);
+    void addPowerAppariel(PowerDevice* powerDevice){
+        powerDeviceList.push_back(powerDevice);
     }
 
     void addWall(Wall* model){
@@ -169,6 +169,7 @@ public:
             (*it)->drawAndShading(atmosphere.getRealLight().getVectorLight());
 
 
+
         atmosphere.updateAtmosphere();
         atmosphere.draw();
         context->setFrustum(IS2D);
@@ -205,8 +206,8 @@ public:
     void createMachine(int positionX, int positionY, int positionZ){
         if(SideWindow::MachineType == "SimCoinsMiner"){
             addPowerAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
-            addModel(powerApparielList.back());
-            PowerManager::getInstance()->addAppareil(powerApparielList.back());
+            addModel(powerDeviceList.back());
+            PowerManager::getInstance()->addAppareil(powerDeviceList.back());
         }
         if(SideWindow::MachineType == "PanneauSolaire"){
 
@@ -227,7 +228,39 @@ public:
     InGameOverlay* getHud(){
         return hud;
     }
+
+    /*std::list<PowerDevice*> powerDeviceList;
+
+    std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
+    std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;*/
     void collideMeteorites(){
+        if(!meteorites.empty()){
+            for( auto meteorITe : meteorites){
+                for(auto wallIt : wallList){
+                    PhysicsData::CollisionData data =  Physics::collideMovingSphereOnModel((*meteorITe).speed,(*meteorITe).centerPos,(*meteorITe).radius,(*wallIt));
+                    if(data.collided)
+                        explodeMeteorite(meteorITe);
+                }
+                for(auto roofIt : roofList){
+                    PhysicsData::CollisionData data =  Physics::collideMovingSphereOnModel((*meteorITe).speed,(*meteorITe).centerPos,(*meteorITe).radius,(*roofIt));
+                    if(data.collided)
+                        explodeMeteorite(meteorITe);
+                }
+                for(auto modelIt : modelList){
+                    PhysicsData::CollisionData data =  Physics::collideMovingSphereOnModel((*meteorITe).speed,(*meteorITe).centerPos,(*meteorITe).radius,(*modelIt));
+                    if(data.collided)
+                        explodeMeteorite(meteorITe);
+                }
+                for(auto it : powerDeviceList){
+                    PhysicsData::CollisionData data =  Physics::collideMovingSphereOnModel((*meteorITe).speed,(*meteorITe).centerPos,(*meteorITe).radius,(*modelIt));
+                    if(data.collided)
+                        explodeMeteorite(meteorITe);
+                }
+
+            }
+        }
+    }
+    void explodeMeteorite(Meteorite* meteorite){
 
     }
 

@@ -3,7 +3,7 @@
 #define POWERAPPAREIL_H
 #include "PowerNode.h"
 
-class PowerAppareil : public PowerNode {
+class PowerDevice : public PowerNode {
 protected:
     int proximityIndice;
     double usedCurrent;
@@ -12,7 +12,7 @@ protected:
     std::map<int, std::queue<int>>* pathsMap;
     int mapSize;
 public:
-    PowerAppareil(double usedCurrent, const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : PowerNode(name, posx, posy, posz ,textureID, rotHitBox, objFile) {
+    PowerDevice(double usedCurrent, const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : PowerNode(name, posx, posy, posz ,textureID, rotHitBox, objFile) {
         this->usedCurrent = usedCurrent;
         usedCurrent = currentLeft;
         mapSize = 0;

@@ -1,8 +1,8 @@
 #ifndef CLIMATISEUR_H
 #define CLIMATISEUR_H
-#include "PowerAppareil.h"
+#include "PowerDevice.h"
 
-class Climatiseur : public PowerAppareil {
+class Climatiseur : public PowerDevice {
 public:
     Climatiseur();
 };

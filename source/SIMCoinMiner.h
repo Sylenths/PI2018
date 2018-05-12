@@ -6,14 +6,14 @@
 
 #ifndef SIMCOINMINER_H
 #define SIMCOINMINER_H
-#include "PowerAppareil.h"
+#include "PowerDevice.h"
 
-class SIMCoinMiner : public PowerAppareil {
+class SIMCoinMiner : public PowerDevice {
 private:
     bool isInFunction;
     int SIMCoinsGenerated;
 public:
-    SIMCoinMiner(double usedCurrent, const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : PowerAppareil(usedCurrent, name, posx, posy, posz, textureID, rotHitBox, objFile) {
+    SIMCoinMiner(double usedCurrent, const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : PowerDevice(usedCurrent, name, posx, posy, posz, textureID, rotHitBox, objFile) {
         /*isAsource = false;
         used = 0;
         generated = 0;

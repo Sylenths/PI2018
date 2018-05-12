@@ -2,13 +2,13 @@
 #define POWERMANAGER_H
 #include "includes.h"
 #include "PowerWire.h"
-#include "PowerAppareil.h"
+#include "PowerDevice.h"
 #include "PowerSource.h"
 
 class PowerManager : public Singleton<PowerManager> {
 private:
     std::map<std::pair<int, int>, PowerWire*> adjMatrice;
-    std::map<int, PowerAppareil*> mapAppareil;
+    std::map<int, PowerDevice*> mapAppareil;
     std::map<int, PowerSource*> mapSource;
     std::map<int, std::pair<std::pair<int, int>, int>> mapPriority;
 
@@ -30,7 +30,7 @@ public:
         sourceNbr--;
     }
 
-    void addAppareil(PowerAppareil* appareil) {
+    void addAppareil(PowerDevice* appareil) {
         appareilNbr++;
         appareil->setKey(appareilNbr);
         mapAppareil[appareilNbr] = appareil;
@@ -41,7 +41,7 @@ public:
         }
     }
 
-    void removeAppareil(PowerAppareil* appareil) {
+    void removeAppareil(PowerDevice* appareil) {
         int key = appareil->getKey();
         mapAppareil[key] = mapAppareil[appareilNbr];
         mapAppareil[key]->setKey(key);
@@ -131,7 +131,7 @@ public:
     }
 
 
-    void getShortestPath(PowerAppareil* from) {
+    void getShortestPath(PowerDevice* from) {
         from->clearPathsMap();
         from->setIndice(0);
         setIndice(0);

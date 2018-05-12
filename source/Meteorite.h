@@ -14,13 +14,14 @@
 class Meteorite : public Model{
 private:
 
+
+
+public:
     double radius;///< Le rayon de la météorite
     Vector centerPos;///<La position du centre de la météorite
     Vector speed;///< Le vecteur vitesse de la météorite
     Chrono time;///< Indique le temps écoulé entre chaque rafaichissement d'écran
 
-
-public:
     /// Constructeur
     /// \param radius Le rayon du météore
     /// \param centerPos Le point central de la sphere
