@@ -27,13 +27,12 @@ public:
     /// \param objFile Nom du fichier depuis lequel charger le modèle, au format Wavefront (.obj).
     Sky(const std::string name, double posx, double posy, double posz, unsigned int textureDay, unsigned int textureNight, bool rotHitBox, const char* objFile = nullptr) : Model(name, posx, posy, posz, textureDay, rotHitBox, objFile), worldLight(500.0,10.0,500.0, 1.0) {
         skyChrono = new Chrono();
-        vecteur = {0.0,470.0,0.0};
-        vecteurTestSoleil = {0.0,510.0,0.0};
+        vecteur = {0.0, 450.0, 0.0};
         textureIDs["night"] =  textureNight;
         textureIDs["day"] = textureDay;
         textureToDraw = textureIDs["day"];
 
-        rotation.loadXrotation(90);
+        rotation.loadXrotation(90.0);
         transform(rotation);//Set skysphere in place
 
         vecteur = rotation * vecteur;//Set light in place

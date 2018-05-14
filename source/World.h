@@ -41,7 +41,7 @@ private:
     Atmosphere atmosphere;
     Vector wind;
     unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
-    Light* worldLight, * hudLight;
+    Light *hudLight;
     Chrono chrono;
     std::list<Meteorite *> meteorites;
     bool structureWasModified;

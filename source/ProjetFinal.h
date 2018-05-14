@@ -14,6 +14,7 @@
 
 #define IN2D 1
 #define IN3D 0
+
 class ProjetFinal : public Singleton<ProjetFinal> {
 private:
     GLContext* glContext; ///< GlContext qui va s'occuper de la l'affichage.
@@ -89,7 +90,7 @@ public:
         EntityManager::add(new Texture2d("wall", "../../images/wall.png"));
         EntityManager::add(new Texture2d("human", "../../images/human.png"));
         EntityManager::add(new Texture2d("clouds", "../../images/clouds.png"));
-        EntityManager::add(new Texture2d("simcoinminer", "../../images/simcoinminer.png"));
+        EntityManager::add(new Texture2d("simcoinminer", "../../images/OctoGrid.png"));
         EntityManager::add(new Texture2d("txtrWindTurbineFoot", "../../images/windTurbineFoot.png"));
 
         //Textures boutons settings
