@@ -252,7 +252,7 @@ public:
                         explodeMeteorite(meteorITe);
                 }
                 for(auto it : powerDeviceList){
-                    PhysicsData::CollisionData data =  Physics::collideMovingSphereOnModel((*meteorITe).speed,(*meteorITe).centerPos,(*meteorITe).radius,(*modelIt));
+                    PhysicsData::CollisionData data =  Physics::collideMovingSphereOnModel((*meteorITe).speed,(*meteorITe).centerPos,(*meteorITe).radius,(*it));
                     if(data.collided)
                         explodeMeteorite(meteorITe);
                 }

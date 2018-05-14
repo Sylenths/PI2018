@@ -186,6 +186,7 @@ public:
 
         sceneMap["SettingsMenu"] = new SettingsMenu();
         sceneMap["ResolutionMenu"] = new ResolutionMenu(glContext);
+        sceneMap["KeysMenu"] = new KeysMenu();
         sceneMap["HighScoresMenu"] = new HighScoresMenu();
         sceneMap["PauseMenu"] = new PauseMenu();
         sceneMap["World"] = new World("", glContext, 0, 0, 0, 20, {0, 0, 0});
