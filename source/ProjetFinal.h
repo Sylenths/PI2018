@@ -92,6 +92,8 @@ public:
         EntityManager::add(new Texture2d("clouds", "../../images/clouds.png"));
         EntityManager::add(new Texture2d("simcoinminer", "../../images/OctoGrid.png"));
         EntityManager::add(new Texture2d("txtrWindTurbineFoot", "../../images/windTurbineFoot.png"));
+        EntityManager::add(new Texture2d("txtrWindTurbineHead", "../../images/windTurbineHead.png"));
+        EntityManager::add(new Texture2d("txtrWindTurbinePropeller", "../../images/windTurbinePropeller.png"));
 
         //Textures boutons settings
         EntityManager::add(new Texture2d("FPSButton", "../../images/BoutonNO.png"));
