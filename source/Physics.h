@@ -47,6 +47,14 @@ class Physics{
 
 public:
 
+	/// Calcule le carré de la distance entre deux points.
+	/// \param p1 Point 1.
+	/// \param p2 Point 2.
+	/// \return Carré de la distance entre les points.
+	static double getSquaredDistanceBetweenPoints(Vector p1, Vector p2){
+		return ((p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p2.y) + (p1.z - p2.z)*(p1.z - p2.z));
+	}
+
 	/// Collisionne un segment et un plan infini.
 	/// \param segmentOrigin Point de départ du segment.
 	/// \param segment Segment (Vecteur)
@@ -390,6 +398,10 @@ public:
 
 	}
 
+	static bool isPointWithinSphere(Vector point, Vector sphereOrigin, double sphereRadius){
+		return ((getSquaredDistanceBetweenPoints(point, sphereOrigin)) <= (sphereRadius*sphereRadius));
+	}
+
 	/// Collisionne un vecteur sur une sphère.
 	/// \param vectorOrigin Point d'origine du vecteur.
 	/// \param vector Vecteur.
@@ -454,7 +466,7 @@ public:
 	/// \param sphereMovement Vecteur de déplacement de la sphère.
 	/// \param sphereCenter Centre de la sphère.
 	/// \param sphereRadius Rayon de la sphère.
-	/// \param model Modèle su lequel collisionner la sphère.
+	/// \param model Modèle sur lequel collisionner la sphère.
 	/// \return Structure de données contenant les résultats de la collision.
 	static PhysicsData::CollisionData collideMovingSphereOnModel(Vector& sphereMovement, Vector& sphereCenter, double& sphereRadius, Model& model){
 
@@ -493,18 +505,28 @@ public:
 
 		return {false};
 	}
+/*
+	/// Collisionne un modèle en mouvement sur une sphère.
+	/// \param modelMovement Vecteur de déplacement du modèle.
+	/// \param model Modèle à collisionner sur la sphère.
+	/// \param sphereCenter Centre de la sphère.
+	/// \param sphereRadius Rayon de la sphère.
+	/// \return Structure de données contenant les résultats de la collision.
+	static PhysicsData::CollisionData collideMovingModelOnSphere(Vector& modelMovement, Model& model, Vector& sphereCenter, double& sphereRadius){
+		modelMovement = - modelMovement;
+		return collideMovingSphereOnModel(modelMovement, sphereCenter, sphereRadius, model);
+	}*/
 
 	/// Collisionne une sphère en mouvement sur une sphère immobile
 	/// \param sphereMovement Vecteur de déplacement de la sphère en mouvemnent.
-	/// \param movingSphereCentre
+	/// \param movingSphereCentre Centre de la sphère en mouvement.
 	/// \param movingSphereRadius Rayon de la sphère en mouvement.
-	/// \param staticSphereCenter
+	/// \param staticSphereCenter Centre de la sphère immobile.
 	/// \param staticSphereRadius Rayon de la sphère immobile.
 	/// \return Structure de données contenant les résultats de la collision, le point est le point de collision sur surface de la sphère statique et le ratio correspond au rapport entre la norme du vecteur déplacement et la distance parcourue avant la collision.
 	static PhysicsData::CollisionData collideMovingSphereOnSphere(Vector sphereMovement,
 	                                                              Vector movingSphereCentre, double movingSphereRadius,
 	                                                              Vector staticSphereCenter, double staticSphereRadius){
-		// add early collision detection avoidance using radii sum test ?
 
 		// Transforming the moving sphere in a point and transfer its radius to the other sphere.
 		PhysicsData::CollisionData cData = collideVectorOnSphere(movingSphereCentre, sphereMovement, staticSphereCenter, movingSphereRadius + staticSphereRadius);
@@ -515,12 +537,61 @@ public:
 
 	}
 
-	static PhysicsData::CollisionData collideMovingSpheres(Vector sphere1Movement, Vector sphere1Center, double sphere1Radius,
-														   Vector sphere2Movement, Vector sphere2Center, double sphere2Radius) {
+	/// Vérifie si un point d'un modèle se trouve à l'intérieur d'une sphère.
+	/// \param sphereOrigin Centre de la sphère.
+	/// \param sphereRadius Rayon de la sphère.
+	/// \param model Modèle.
+	/// \return Vrai (true) si un point du modèle se trouve à l'intérieur de la sphère.
+	static bool isModelWithinSphere(Vector sphereOrigin, double sphereRadius, Model& model){
+		Vector point;
+		unsigned int pos = 0;
+		PhysicsData::CollisionData collisionResult;
+
+		for(unsigned int i = 0; i < model.vertexCount; ++i) {
+
+			pos = i * 3;
+
+			//Extract triangle from model
+			//                  x                        y                       z
+			point = {model.vertices[pos    ], model.vertices[pos + 1], model.vertices[pos + 2]}; // point
+
+			if(isPointWithinSphere(point, sphereOrigin, sphereRadius)){
+				return true;
+			}
+		}
+
+		return false;
 	}
 
+	///
+	/// \param sphere1Movement
+	/// \param sphere1Center
+	/// \param sphere1Radius
+	/// \param sphere2Movement
+	/// \param sphere2Center
+	/// \param sphere2Radius
+	/// \return
+	//static PhysicsData::CollisionData collideMovingSpheres(Vector sphere1Movement, Vector sphere1Center, double sphere1Radius,
+	//													   Vector sphere2Movement, Vector sphere2Center, double sphere2Radius) {
+
+		//
+		//
+		//
+		//
+		//
+		//
+		//
+		//
+		//
+		//
+		//
+		//
+		//
+
+	//}
+
 	/*
-	satic PhysicsData::CollisionData collideMovingSphereOnPoint(){
+	static PhysicsData::CollisionData collideMovingSphereOnPoint(){
 
 	}
 
