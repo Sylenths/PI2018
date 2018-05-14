@@ -17,6 +17,7 @@
 
 #include "PanneauSolaire.h"
 
+#include "Eolienne.h"
 #include "Wall.h"
 #include "Roof.h"
 
@@ -92,6 +93,7 @@ public:
         addModel(flatGround);
         test = 0;
         structureWasModified = false;
+
         // Génération d'une forêt de 300 arbres...
         for (int i = 0; i < 300; i++) {
           double x = rand() % 800 - 400, z = rand() % 800 - 400;
@@ -99,9 +101,6 @@ public:
             x = rand() % 800 - 400;
             z = rand() % 800 - 400;
           }
-
-
-
 
           switch(rand() % 8) {
             case 0: addModel(new Model("", x, 0.0, z, EntityManager::get<Texture2d*>("bambou")->ID,false, "../../models/obj/tree2.0.obj")); break;
@@ -116,17 +115,13 @@ public:
 
         }
 
-
-        Model* simCoinMiner = new Model("", 100.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj");
+        Model* simCoinMiner = new Model("SIMCoinMiner", 100.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj");
         simCoinMiner->setShadingOn();
         addModel(simCoinMiner);
 
-
-        SIMCoinMiner* test = new SIMCoinMiner(5.0, "SimCoinsMiner", 50.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj" );
-        addModel(test);
-        PowerManager::getInstance()->addAppareil(test);
-
-
+        Eolienne* eolienne = new Eolienne(new Vector(1.0, 0.0, 1.0), 10.0, 15.0, 0.1, "eolienne", 20.0, 0.0, -20.0, false);
+        addModel(eolienne);
+        PowerManager::getInstance()->addSource(eolienne);
 
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
 
@@ -148,8 +143,6 @@ public:
     std::vector<std::map<std::pair<int,int>, Floor*>>* getFloors(){
         return &floorGrids;
     }
-
-
 
     /// Affichage des models
     void draw() {

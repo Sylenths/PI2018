@@ -94,6 +94,7 @@
 #include "ProjetFinal.h"
 #include "Action.h"
 #include "PowerManager.h"
+#include "Eolienne.h"
 #include "Wall.h"
 #include "Roof.h"
 

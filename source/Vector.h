@@ -25,7 +25,7 @@ struct Vector {
 		this->x = x;
 		this->y = y;
 		this->z = z;
-	};
+    }
 
     /// Constructeur de copie de vecteur.
     /// \param v Vecteur à copier.
@@ -33,7 +33,7 @@ struct Vector {
       this->x = v.x;
       this->y = v.y;
       this->z = v.z;
-    };
+    }
 
     /// Calcule la norme du vecteur.
     /// \return Norme du vecteur.

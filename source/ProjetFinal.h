@@ -90,6 +90,7 @@ public:
         EntityManager::add(new Texture2d("human", "../../images/human.png"));
         EntityManager::add(new Texture2d("clouds", "../../images/clouds.png"));
         EntityManager::add(new Texture2d("simcoinminer", "../../images/simcoinminer.png"));
+        EntityManager::add(new Texture2d("txtrWindTurbineFoot", "../../images/windTurbineFoot.png"));
 
         //Textures boutons settings
         EntityManager::add(new Texture2d("FPSButton", "../../images/BoutonNO.png"));

@@ -12,8 +12,12 @@
 #include "includes.h"
 #include "MathUtils.h"
 
+#define FOOT 0
+#define HEAD 1
+#define PROPELLER 2
+
 class Eolienne : public PowerSource {
-    std::map<std::string, Model*> turbineParts;
+    Model* turbineParts[3];
     double angle;
     double windAngle;
     double power;
@@ -76,33 +80,36 @@ public:
 
         double rotationAngle = angle - previousAngle;
         rotationmatrix.loadArbitraryRotation(centerpoint,rotationAxe, rotationAngle);
-        turbineParts["Head"]->transform(rotationmatrix);
+        //turbineParts[HEAD]->transform(rotationmatrix);
     }
 
-    Eolienne(Vector* wind,double windSpeed,double temperature, double producedCurrent, const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr, double paleLength = 2): PowerSource(producedCurrent,name,posx,posy,posz,textureID,rotHitBox,objFile){
+    Eolienne(Vector* wind,double windSpeed,double temperature, double producedCurrent, const std::string& name, double posx, double posy, double posz, bool rotHitBox, const char* objFile = nullptr, double paleLength = 2): PowerSource(producedCurrent,name,posx,posy,posz,0,rotHitBox,objFile) {
    // Ajout des models de l'éolienne. Pas mis car pas encore de model.
      /*
       * turbineParts["Foot"] = new Model("", posx, posy, posz, EntityManager::get<Texture2d*>("bambou")->ID,false, "../../models/obj/tree2.0.obj");
       * turbineParts["Fan"] = new Model("", posx, posy, posz, EntityManager::get<Texture2d*>("bambou")->ID,false, "../../models/obj/tree2.0.obj");
      */
-        turbineParts["Head"] = new Model("", posx, posy, posz, EntityManager::get<Texture2d*>("bambou")->ID,false, "../../models/obj/tree2.0.obj");
+        turbineParts[FOOT] = new Model("mdlWindTurbineFoot", posx, posy, posz, EntityManager::get<Texture2d*>("txtrWindTurbineFoot")->ID,false, "../../models/obj/windTurbineFoot.obj");
+        turbineParts[HEAD] = new Model("mdlWindTurbineHead", posx, posy, posz, EntityManager::get<Texture2d*>("txtrWindTurbineFoot")->ID,false, "../../models/obj/windTurbineHead.obj");
+        turbineParts[PROPELLER] = new Model("mdlWindTurbinePropeller", posx, posy, posz, EntityManager::get<Texture2d*>("txtrWindTurbineFoot")->ID,false, "../../models/obj/windTurbinePropeller.obj");
 
         centerpoint.x = posx;
         centerpoint.y = posy;
         centerpoint.z = posz;
         rotationAxe.y = posy;
 
-        setTurbineAngle(wind);
+        //setTurbineAngle(wind);
         this->windSpeed = windSpeed;
         this->temperature = temperature;
         this->paleLength = paleLength;
-        setPaleMasse();
-
-
+        //setPaleMasse();
     }
 
-
-
+    void draw() {
+        turbineParts[FOOT]->draw();
+        turbineParts[HEAD]->draw();
+        turbineParts[PROPELLER]->draw();
+    }
 };
 
 #endif
