@@ -194,13 +194,13 @@ public:
 
     void createMachine(int positionX, int positionY, int positionZ){
         if(SideWindow::MachineType == "SimCoinsMiner"){
-            addPowerDeviceAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            addPowerDeviceAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ,  EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
             addModel(powerDeviceList.back());
             powerDeviceList.back()->setShadingOn();
             PowerManager::getInstance()->addAppareil(powerDeviceList.back());
         }
         if(SideWindow::MachineType == "PanneauSolaire"){
-            addPowerSourceAppariel(new PanneauSolaire("Eolienne", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
+            addPowerSourceAppariel(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
             addModel(powerSourceList.back());
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
