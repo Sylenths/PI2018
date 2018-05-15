@@ -563,32 +563,37 @@ public:
 		return false;
 	}
 
-	///
-	/// \param sphere1Movement
-	/// \param sphere1Center
-	/// \param sphere1Radius
-	/// \param sphere2Movement
-	/// \param sphere2Center
-	/// \param sphere2Radius
-	/// \return
-	//static PhysicsData::CollisionData collideMovingSpheres(Vector sphere1Movement, Vector sphere1Center, double sphere1Radius,
-	//													   Vector sphere2Movement, Vector sphere2Center, double sphere2Radius) {
+	/// Collisionne deux sphères en mouvemnt.
+	/// \param sphere1Movement Vecteur de déplacement de la sphère 1.
+	/// \param sphere1Center Centre de la sphère 1.
+	/// \param sphere1Radius Rayon de la sphère 1.
+	/// \param sphere2Movement Vecteur de déplacement de la sphère 2.
+	/// \param sphere2Center Centre de la sphère 2.
+	/// \param sphere2Radius Rayon de la sphère 2.
+	/// \return Structure de données contenant les résultats de la collision.
+	static PhysicsData::CollisionData collideMovingSpheres(Vector sphere1Movement, Vector sphere1Center, double sphere1Radius,
+														   Vector sphere2Movement, Vector sphere2Center, double sphere2Radius) {
+		//Make sphere 2 static by transfering its movement to sphere 1.
+		Vector moveSph1 = sphere1Movement - sphere2Movement;
 
-		//
-		//
-		//
-		//
-		//
-		//
-		//
-		//
-		//
-		//
-		//
-		//
-		//
+		PhysicsData::CollisionData cData = collideMovingSphereOnSphere(moveSph1, sphere1Center, sphere1Radius, sphere2Center, sphere2Radius);
 
-	//}
+		if(cData.collided){
+
+			// "move" the spheres to the point where they collide and find the intersection.
+			Vector newCenter1 = sphere1Center + (sphere1Movement * cData.ratio);
+			Vector newCenter2 = sphere2Center + (sphere2Movement * cData.ratio);
+
+			Vector _C1C2 = (newCenter2 - newCenter1).normalize(); // vector from new center 1 to new center 2, normalised.
+
+
+			return {true, newCenter1 + (_C1C2 * sphere1Radius), cData.ratio};
+
+		}
+
+		return {false};
+
+	}
 
 	/*
 	static PhysicsData::CollisionData collideMovingSphereOnPoint(){
