@@ -8,6 +8,8 @@
 #define SOURCE_FONDATION_H
 
 class Fondation : public Structure{
+private:
+    bool isOccupied;
 public:
     Materiel* material;
     Vector* centerPoint;
@@ -19,7 +21,16 @@ public:
     Fondation(const std::string name, double posx, double posy, double posz, bool rotHitBox,  unsigned int textureID = EntityManager::get<Texture2d*>("fondation")->ID, const char* objFile = "../../models/obj/fondation.obj") : Structure(name, posx, posy, posz, textureID, rotHitBox, objFile){
         north = south = east = west = nullptr;
         centerPoint = new Vector(posx,posy,posz);
+        isOccupied = false;
 
+    }
+
+    void setFondationOccupied(){
+        isOccupied = true;
+    }
+
+    bool getOccupiedState(){
+        return isOccupied;
     }
 };
 #endif //SOURCE_FONDATION_H
