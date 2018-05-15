@@ -8,6 +8,7 @@ class PowerNode : public Model {
 protected:
     int key;
     int indice;
+    Model* sphere;
 
 public:
     PowerNode(const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Model(name, posx, posy, posz, textureID, rotHitBox, objFile) {
