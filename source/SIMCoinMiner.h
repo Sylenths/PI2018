@@ -13,12 +13,8 @@ private:
     bool isInFunction;
     int SIMCoinsGenerated;
 public:
-    SIMCoinMiner(double usedCurrent, const std::string& name, double posx, double posy, double posz, unsigned int textureID,  bool rotHitBox, const char* objFile = nullptr) : PowerDevice(usedCurrent, name, posx, posy, posz, textureID, rotHitBox, objFile) {
-        /*isAsource = false;
-        used = 0;
-        generated = 0;
-        powerIN = 0;
-        */
+    SIMCoinMiner(double usedCurrent, const std::string& name, double posx, double posy, double posz,  bool rotHitBox, const char* objFile = nullptr) : PowerDevice(usedCurrent, name, posx, posy, posz, 0, rotHitBox, objFile) {
+        textureToDraw = EntityManager::get<Texture2d*>("simcoinminer")->ID;
         isInFunction = false;
         SIMCoinsGenerated = 0;
 
@@ -28,8 +24,20 @@ public:
 
       }
     double generateSIMCoins(){
-
+        unsigned int ratio, magicNumber;
+        ratio = 1000/usedCurrent;
+        for (int i = 0; i < 10; i++){
+            magicNumber = rand() % ratio;
+            if(magicNumber == 1){
+                SIMCoinsGenerated += 100;
+            }
+        }
     }
+
+    void setCurrent(double current){
+        usedCurrent = current;
+    }
+
 };
 
 #endif

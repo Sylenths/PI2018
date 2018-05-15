@@ -41,8 +41,9 @@ private:
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;
     Atmosphere atmosphere;
     Vector* wind;
+    double windspeed;
     unsigned int  simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
-    double windspeed, temperature, producedCurrent;
+    double temperature, producedCurrent;
     Light *hudLight;
     Chrono chrono;
     std::list<Meteorite *> meteorites;
@@ -80,7 +81,11 @@ public:
     /// Constructeur, tout les models nécéssaires sont loadés ici.
     World(const std::string name, GLContext* context, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector* wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
         this->context = context;
+        this->wind = nullptr;
         this->wind = wind;
+        if (wind == nullptr) {
+            wind = new Vector(0.0, 0.0, 0.0);
+        }
         this->temperature = temperature;
         this->sunPower = sunPower;
         this->simCoin = simCoin;
@@ -118,12 +123,13 @@ public:
         }
 
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
-        meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
+        //meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
         chrono.restart();
     }
     ~World(){
         delete hud;
         delete hudLight;
+        delete wind;
         for(auto it : modelList){
             delete it;
         }
@@ -138,6 +144,10 @@ public:
         return &floorGrids;
     }
 
+    void updateWind() {
+
+    }
+    
     /// Affichage des models
     void draw() {
         context->setFrustum(IS3D);
@@ -156,6 +166,8 @@ public:
             (*it)->drawAndShading(atmosphere.getRealLight().getVectorLight());
         for(auto it : meteorites)
             it->drawAndShading(atmosphere.getRealLight().getVectorLight());
+
+        updateWind();
 
         //collideMeteorites();
         atmosphere.updateAtmosphere();
@@ -197,22 +209,21 @@ public:
 
     void createMachine(int positionX, int positionY, int positionZ){
         if(SideWindow::MachineType == "SimCoinsMiner"){
-            powerDeviceList.push_back(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ,  EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
-            //addPowerDeviceAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ,  EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            powerDeviceList.push_back(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ, true, "../../models/obj/simcoin_miner.obj"));
             addModel(powerDeviceList.back());
-            powerDeviceList.back()->setShadingOn();
+            modelList.back()->setShadingOn();
             PowerManager::getInstance()->addAppareil(powerDeviceList.back());
         }
         if(SideWindow::MachineType == "PanneauSolaire"){
-            powerSourceList.push_back(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
-            //addPowerSourceAppariel(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
+            powerSourceList.push_back(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.1.obj"));
             addModel(powerSourceList.back());
+            modelList.back()->setShadingOn();
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
         if(SideWindow::MachineType == "WindTurbine"){
             powerSourceList.push_back(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
-            //addPowerSourceAppariel(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
             addModel(powerSourceList.back());
+            modelList.back()->setShadingOn();
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
 
@@ -238,14 +249,15 @@ public:
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;*/
     void collideMeteorites(){
         if(!meteorites.empty()){
-            for( auto meteorITe : meteorites){
+            std::list<Meteorite*> tempList;
+            for( auto meteorITe = meteorites.begin(); meteorITe != meteorites.end(); meteorITe++ ){
                 bool collided = false;
                 for(auto wallIt : wallList){
                     if(!collided) {
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*wallIt))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite* temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*wallIt))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite* temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
                         }
@@ -254,10 +266,10 @@ public:
                 for(auto roofIt : roofList){
                     if(!collided) {
 
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*roofIt))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite *temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*roofIt))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite *temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
 
@@ -267,10 +279,10 @@ public:
                 for(auto modelIt : modelList){
                     if(!collided) {
 
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*modelIt))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite *temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*modelIt))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite *temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
                         }
@@ -279,10 +291,10 @@ public:
                 for(auto it : powerDeviceList){
                     if(!collided) {
 
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*it))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite *temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*it))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite *temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
 
