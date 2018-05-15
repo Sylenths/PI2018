@@ -257,6 +257,9 @@ public:
     }
 
 
+    void drawOverlay() {
+
+    }
 };
 
 #endif

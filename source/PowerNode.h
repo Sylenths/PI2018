@@ -13,6 +13,7 @@ protected:
 public:
     PowerNode(const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : Model(name, posx, posy, posz, textureID, rotHitBox, objFile) {
         this->indice = 9999;
+        sphere = new Model("", realCenter.x, realCenter.y, realCenter.z, 2, false);
     }
 
     void setIndice(int indice) {

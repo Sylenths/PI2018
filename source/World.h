@@ -58,17 +58,9 @@ public:
         modelList.push_back(model);
     }
 
-
-    void addPowerDeviceAppariel(PowerDevice* powerDevice){
-        powerDeviceList.push_back(powerDevice);
-    }
-
-    void addPowerSourceAppariel(PowerSource* powerSource){
-        powerSourceList.push_back(powerSource);
-    }
-
     void addWall(Wall* model){
         wallList.push_back(model);
+
     }
     void addRoof(Roof* model){
         roofList.push_back(model);
@@ -159,7 +151,8 @@ public:
         for(auto it : meteorites)
             it->drawAndShading(atmosphere.getRealLight().getVectorLight());
 
-        collideMeteorites();
+
+        //collideMeteorites();
         atmosphere.updateAtmosphere();
         atmosphere.draw();
         context->setFrustum(IS2D);
@@ -233,14 +226,15 @@ public:
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;*/
     void collideMeteorites(){
         if(!meteorites.empty()){
-            for( auto meteorITe : meteorites){
+            std::list<Meteorite*> tempList;
+            for( auto meteorITe = meteorites.begin(); meteorITe != meteorites.end(); meteorITe++ ){
                 bool collided = false;
                 for(auto wallIt : wallList){
                     if(!collided) {
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*wallIt))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite* temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*wallIt))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite* temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
                         }
@@ -249,10 +243,10 @@ public:
                 for(auto roofIt : roofList){
                     if(!collided) {
 
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*roofIt))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite *temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*roofIt))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite *temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
 
@@ -262,10 +256,10 @@ public:
                 for(auto modelIt : modelList){
                     if(!collided) {
 
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*modelIt))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite *temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*modelIt))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite *temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
                         }
@@ -274,10 +268,10 @@ public:
                 for(auto it : powerDeviceList){
                     if(!collided) {
 
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*it))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite *temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*it))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite *temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
 
