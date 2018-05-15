@@ -350,6 +350,9 @@ public:
 
             controller->resetClicMousePosition();
 
+            if(Scene::getScene() == "World"){
+                ((World*)sceneMap["World"])->moveEoliennes(chrono);
+            }
         }
     }
 

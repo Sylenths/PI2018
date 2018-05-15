@@ -11,6 +11,7 @@
 #include "PowerSource.h"
 #include "includes.h"
 #include "MathUtils.h"
+#include "ProjetFinal.h"
 
 #define FOOT 0
 #define HEAD 1
@@ -55,8 +56,14 @@ public:
     }
     /// Oriente l'eolienne dans la bonne direction.
     /// \param wind vecteur représentant la direction du vent.
-    void setTurbineAngle(Vector* wind){
+    void moveTurbine(Vector* wind, Chrono chrono){
         // Trouver l'angle du vent
+        Matrix rotationmatrix;
+        rotationmatrix.loadArbitraryRotation(centerpoint,centerpoint.x,(.1*10));
+        turbineParts[PROPELLER]->transform(rotationmatrix);
+
+    }
+    void modifyTurbineAngle(Vector* wind){
         Matrix rotationmatrix;
         double previousAngle = angle;
 
@@ -64,8 +71,12 @@ public:
         angle = (double)((int)(windAngle + 180) % 360);
 
         double rotationAngle = angle - previousAngle;
-        rotationmatrix.loadArbitraryRotation(centerpoint, rotationAxe, rotationAngle);
-        turbineParts[HEAD]->transform(rotationmatrix);
+         rotationmatrix.loadArbitraryRotation(centerpoint,{0,1,0},90);
+         turbineParts[HEAD]->transform(rotationmatrix);
+
+        centerpoint.x += 0.86729;
+         rotationmatrix.loadArbitraryRotation(centerpoint,{0,1,0},90);
+         turbineParts[PROPELLER]->transform(rotationmatrix);
     }
 
     Eolienne(Vector* wind,double windSpeed,double temperature, double producedCurrent, const std::string& name, double posx, double posy, double posz, bool rotHitBox, const char* objFile = nullptr, double paleLength = 2): PowerSource(producedCurrent,name,posx,posy,posz, 0,rotHitBox,objFile) {
@@ -74,9 +85,9 @@ public:
         turbineParts[PROPELLER] = new Model("mdlWindTurbinePropeller", posx, posy, posz, EntityManager::get<Texture2d*>("txtrWindTurbinePropeller")->ID, false, "../../models/obj/windTurbinePropeller.obj");
 
         centerpoint.x = posx;
-        centerpoint.y = posy;
+        centerpoint.y = posy + 5.18;
         centerpoint.z = posz;
-        rotationAxe.y = posy;
+
 
         //setTurbineAngle(wind);
         this->windSpeed = windSpeed;
