@@ -822,6 +822,18 @@ protected:
         }
 
 
+    void setTexture(std::string name = "", unsigned int ID = 0) {
+        if((name != "") && (ID == 0))
+            textureToDraw = textureIDs[name];
+        else
+
+            if((name == "") && (ID == 0))
+                textureToDraw = textureIDs["default"];
+            else
+                if((name != "") && (ID != 0))
+                    textureIDs[name] = textureToDraw = ID;
+    }
+
         /// Destructeur.
         ~Model()
         {
@@ -844,12 +856,6 @@ protected:
             return realCenter;
         }
 
-        void setTexture(std::string name = "", unsigned int ID = 0) {
-            if ((name == "") && (ID == 0))
-                textureToDraw = textureIDs["default"];
-            else if ((name != "") && (ID != 0))
-                textureIDs[name] = textureToDraw = ID;
-        }
 
 
         /// Affiche le modèle.

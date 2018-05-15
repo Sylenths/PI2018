@@ -116,6 +116,11 @@ public:
         EntityManager::add(new Texture2d("PauseSettings", "../../images/PauseSettings.png"));
         EntityManager::add(new Texture2d("PauseSettingsOver", "../../images/PauseSettingsOver.png"));
         EntityManager::add(new Texture2d("PauseMenuFond", "../../images/PauseMenuFond.png"));
+
+        //Texture PowerOverlay
+        EntityManager::add(new Texture2d("Red", "../../images/red.png"));
+        EntityManager::add(new Texture2d("Blue", "../../images/blue.png"));
+        EntityManager::add(new Texture2d("Green", "../../images/green.png"));
     }
 
 	/// Constructeur
@@ -313,6 +318,12 @@ public:
                         sceneDisplay->pushScene("PauseMenu");
                     }
                     break;
+
+            case SDLK_SPACE:
+                if (sceneDisplay == sceneMap["World"]) {
+                    ((World*)sceneDisplay)->setPowerOverlay(true);
+                }
+                break;
             }
             switch (controller->getKeyUp()) {
                 case SDLK_f:
@@ -343,6 +354,12 @@ public:
                         sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_RIGHT);
                     }
                     break;
+
+            case SDLK_SPACE:
+                if (sceneDisplay == sceneMap["World"]) {
+                    ((World*)sceneDisplay)->setPowerOverlay(false);
+                }
+                break;
             }
             ///controle de la rotation de la camera
             if (activeCamera) {

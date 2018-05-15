@@ -258,7 +258,18 @@ public:
 
 
     void drawOverlay() {
-
+        glDisable(GL_LIGHTING);
+        glDisable(GL_DEPTH_TEST);
+        for(int i = (sourceNbr + 1); i <= appareilNbr; ++i) {
+            if(i <= 0) {
+                mapSource[i]->drawOverlay();
+            }
+            else {
+                mapAppareil[i]->drawOverlay();
+            }
+        }
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_LIGHTING);
     }
 };
 

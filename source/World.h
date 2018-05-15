@@ -48,9 +48,14 @@ private:
     Chrono chrono;
     std::list<Meteorite *> meteorites;
     bool structureWasModified;
+    bool showPowerOverlay;
 public:
     Model* flatGround;
     InGameOverlay* hud;
+
+    void setPowerOverlay(bool b) {
+        showPowerOverlay = b;
+    }
 
     /// Ajoute un model a afficher
     /// \param model le model a ajouter
@@ -85,6 +90,7 @@ public:
         this->sunPower = sunPower;
         this->simCoin = simCoin;
         this->buildingTime = buildingTime;
+        this->showPowerOverlay = false;
         totalPower = 0;
         usedPower = 0;
         elapsedTime = 0;
@@ -166,10 +172,14 @@ public:
         //collideMeteorites();
         atmosphere.updateAtmosphere();
         atmosphere.draw();
+        if(showPowerOverlay)
+        PowerManager::getInstance()->drawOverlay();
         context->setFrustum(IS2D);
         glDepthFunc(GL_LESS);
         hudLight->applyLightPosition();
         hud->draw();
+
+
     }
 
     /// Mise a jour du temps dans l'H.U.D.
