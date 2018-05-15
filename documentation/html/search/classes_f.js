@@ -1,8 +1,15 @@
 var searchData=
 [
-  ['vec2d',['Vec2D',['../struct_physics_data_1_1_vec2_d.html',1,'PhysicsData']]],
-  ['vector',['Vector',['../struct_vector.html',1,'']]],
-  ['vector2d',['Vector2d',['../class_vector2d.html',1,'']]],
-  ['visualentity',['VisualEntity',['../class_visual_entity.html',1,'']]],
-  ['visualentity2d',['VisualEntity2d',['../class_visual_entity2d.html',1,'']]]
+  ['scene',['Scene',['../class_scene.html',1,'']]],
+  ['scores',['Scores',['../class_scores.html',1,'']]],
+  ['scrollingmenu',['ScrollingMenu',['../class_scrolling_menu.html',1,'']]],
+  ['settingsmenu',['SettingsMenu',['../class_settings_menu.html',1,'']]],
+  ['sidewindow',['SideWindow',['../class_side_window.html',1,'']]],
+  ['simcoinminer',['SIMCoinMiner',['../class_s_i_m_coin_miner.html',1,'']]],
+  ['singleton',['Singleton',['../class_singleton.html',1,'']]],
+  ['singleton_3c_20powermanager_20_3e',['Singleton&lt; PowerManager &gt;',['../class_singleton.html',1,'']]],
+  ['singleton_3c_20projetfinal_20_3e',['Singleton&lt; ProjetFinal &gt;',['../class_singleton.html',1,'']]],
+  ['sky',['Sky',['../class_sky.html',1,'']]],
+  ['structure',['Structure',['../class_structure.html',1,'']]],
+  ['structurewindow',['StructureWindow',['../class_structure_window.html',1,'']]]
 ];

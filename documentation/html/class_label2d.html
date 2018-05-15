@@ -63,6 +63,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-attribs">Attributs publics</a> &#124;
 <a href="class_label2d-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle">
 <div class="title">Référence de la classe Label2d</div>  </div>
@@ -86,15 +87,12 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:a4246e62900870ef31b5f2c8d5d21fba3"><td class="memItemLeft" align="right" valign="top"><a id="a4246e62900870ef31b5f2c8d5d21fba3"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Label2d</b> (const std::string name, const <a class="el" href="struct_vector.html">Vector</a> &amp;position, <a class="el" href="class_font.html">Font</a> *font, const std::string &amp;text, const SDL_Color &amp;color)</td></tr>
 <tr class="separator:a4246e62900870ef31b5f2c8d5d21fba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d29e235ec46de71a147f2fdb6c39196"><td class="memItemLeft" align="right" valign="top"><a id="a1d29e235ec46de71a147f2fdb6c39196"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setText</b> (<a class="el" href="class_font.html">Font</a> *font, const std::string &amp;text, const SDL_Color &amp;color)</td></tr>
+<tr class="separator:a1d29e235ec46de71a147f2fdb6c39196"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fd713f27e258864e1c7548a66d741e5"><td class="memItemLeft" align="right" valign="top"><a id="a2fd713f27e258864e1c7548a66d741e5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()</td></tr>
 <tr class="separator:a2fd713f27e258864e1c7548a66d741e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08b9ae0f4292e8e6fd6fcdbbe63eb024"><td class="memItemLeft" align="right" valign="top"><a id="a08b9ae0f4292e8e6fd6fcdbbe63eb024"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getHeight</b> ()</td></tr>
-<tr class="separator:a08b9ae0f4292e8e6fd6fcdbbe63eb024"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a660cc7207479f109d3a0343662a79e"><td class="memItemLeft" align="right" valign="top"><a id="a6a660cc7207479f109d3a0343662a79e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getWidth</b> ()</td></tr>
-<tr class="separator:a6a660cc7207479f109d3a0343662a79e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa995160f8827caef0f0a817d98e8943e"><td class="memItemLeft" align="right" valign="top"><a id="aa995160f8827caef0f0a817d98e8943e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_label2d.html#aa995160f8827caef0f0a817d98e8943e">notify</a> (SDL_Event *sdlEvent)</td></tr>
 <tr class="memdesc:aa995160f8827caef0f0a817d98e8943e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reçoit une notification de l'observable. <br /></td></tr>
@@ -115,8 +113,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
 <tr class="separator:a8811e270c21f713206d5f673d5fca662 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Membres hérités additionnels</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Attributs publics</h2></td></tr>
+<tr class="memitem:ad2aa6d125a146f6e75a358c6ab75df65"><td class="memItemLeft" align="right" valign="top"><a id="ad2aa6d125a146f6e75a358c6ab75df65"></a>
+<a class="el" href="class_texture2d.html">Texture2d</a>&#160;</td><td class="memItemRight" valign="bottom"><b>texture</b></td></tr>
+<tr class="separator:ad2aa6d125a146f6e75a358c6ab75df65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_visual_entity"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_visual_entity')"><img src="closed.png" alt="-"/>&#160;Attributs publics hérités de <a class="el" href="class_visual_entity.html">VisualEntity</a></td></tr>
 <tr class="memitem:a3a93b24714dae2ac23f67e817e92c1f5 inherit pub_attribs_class_visual_entity"><td class="memItemLeft" align="right" valign="top"><a id="a3a93b24714dae2ac23f67e817e92c1f5"></a>
 std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>onClick</b></td></tr>
@@ -127,6 +128,9 @@ std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom">
 <tr class="memitem:aa27f416bd4176ace0d3281b2f9f7f7e3 inherit pub_attribs_class_visual_entity"><td class="memItemLeft" align="right" valign="top"><a id="aa27f416bd4176ace0d3281b2f9f7f7e3"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>visible</b></td></tr>
 <tr class="separator:aa27f416bd4176ace0d3281b2f9f7f7e3 inherit pub_attribs_class_visual_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Membres hérités additionnels</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_visual_entity2d"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_visual_entity2d')"><img src="closed.png" alt="-"/>&#160;Attributs protégés hérités de <a class="el" href="class_visual_entity2d.html">VisualEntity2d</a></td></tr>
 <tr class="memitem:a3f91c93a1706b06b08c36350471fc6a7 inherit pro_attribs_class_visual_entity2d"><td class="memItemLeft" align="right" valign="top"><a id="a3f91c93a1706b06b08c36350471fc6a7"></a>
 <a class="el" href="class_vector2d.html">Vector2d</a>&#160;</td><td class="memItemRight" valign="bottom"><b>size</b></td></tr>

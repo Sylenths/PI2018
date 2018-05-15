@@ -1,12 +1,7 @@
 var searchData=
 [
-  ['refresh',['refresh',['../class_g_l_context.html#a0c0b3a51e6326cbd66acbdd573d5c8bd',1,'GLContext::refresh()'],['../class_window.html#ac36d7bab3105b0a4c3d5d94fc6ad6fdd',1,'Window::refresh()']]],
-  ['releaseinput',['releaseInput',['../class_g_l_context.html#a76d1db346b8303fb60eaf0753daa2c1f',1,'GLContext']]],
-  ['remove',['remove',['../class_entity_manager.html#a00ca6d9b77129781abcca5a2da353065',1,'EntityManager']]],
-  ['resetmousemotion',['resetMouseMotion',['../class_controller.html#a0145fbb6c536915d0fdd9acce927ea0d',1,'Controller']]],
-  ['resetmouseposition',['resetMousePosition',['../class_g_l_context.html#a593755ff1b774418e2b47243f5c66790',1,'GLContext']]],
-  ['restart',['restart',['../class_chrono.html#aab26ab3b5c06258ab904b88191f10f0e',1,'Chrono']]],
-  ['rotatesky',['rotateSky',['../class_sky.html#aef9292ced9e0bc2b4c23ee1ea34ff302',1,'Sky']]],
-  ['rotateview',['rotateView',['../class_camera.html#a655a9724570e788913b64f837c177013',1,'Camera']]],
-  ['run',['run',['../class_projet_final.html#a12616db72c2d19bfe4eba5cc3e9d6eb9',1,'ProjetFinal']]]
+  ['operator_25',['operator%',['../struct_vector.html#a9bfd13b4e1d5d4f50632886975273d87',1,'Vector']]],
+  ['operator_2a',['operator*',['../struct_matrix.html#a811d539ab47c20fef6db93567a8260b9',1,'Matrix::operator*()'],['../struct_vector.html#aea357642d7c4217dcf2dc30e6bab9bab',1,'Vector::operator*(const Vector &amp;v) const'],['../struct_vector.html#aa29eda5a7977c0fc1a783a3e3fea46a4',1,'Vector::operator*(const double &amp;s) const']]],
+  ['operator_2b',['operator+',['../struct_vector.html#ae62844b362fd8c0680d28c76feca6221',1,'Vector']]],
+  ['operator_2d',['operator-',['../struct_vector.html#a449091b284984dc0768a4380b05f81d3',1,'Vector::operator-(const Vector &amp;v) const'],['../struct_vector.html#aaa5f64a3756e6294c6070b3f7c9c3b33',1,'Vector::operator-()']]]
 ];
