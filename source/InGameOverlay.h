@@ -29,10 +29,11 @@ private:
     Camera* camera;
     std::list<Image*> alertsList;///< Liste alerte annoncant les intempéries a venir
     std::list<Image*> logoList;///< Liste d'image contenant les logo a afficher
-    SideWindow* sideWindow; ///< Pointe la fenêtre de coté active
-    std::map<std::string, SideWindow*> sideWindowMap; ///< Carte de sideWindow
     SideWindow* lastSideWindow; ///< Pointe la dernière fenêtre de coté
 public:
+    SideWindow* sideWindow; ///< Pointe la fenêtre de coté active
+    std::map<std::string, SideWindow*> sideWindowMap; ///< Carte de sideWindow
+
     bool activeSideWindow;
     int constructingMode; ///< indique le mode de construction
 

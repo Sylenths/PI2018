@@ -230,7 +230,7 @@ public:
     void collideMeteorites(){
         if(!meteorites.empty()){
             std::list<Meteorite*> tempList;
-            for( auto meteorITe = meteorites.begin(); meteorITe != meteorites.end(); meteorITe++ ){
+            for( auto meteorITe = meteorites.begin(); meteorITe != meteorites.end();  ){
                 bool collided = false;
                 for(auto wallIt : wallList){
                     if(!collided) {
@@ -281,6 +281,8 @@ public:
                         }
                     }
                 }
+                if (!collided)
+                    meteorITe++;
 
             }
         }
@@ -288,19 +290,23 @@ public:
     void explodeMeteorite(Meteorite* meteorite){
         // p = mv, en d<autres mot puisque la seule chose qui fait varier la masse de la meteorite est son rayon on fera rayon * ||v||
         double explosionRadius = meteorite->radius * (meteorite->speed.getNorm() / 10);
-        for(auto wallIt : wallList){
-            if (Physics::isModelWithinSphere(meteorite->centerPos,explosionRadius,(*wallIt))){
-                Wall* temp = wallIt;
-                wallList.remove(wallIt);
+        for(auto wallIt = wallList.begin(); wallIt != wallList.end();  ){
+            if (Physics::isModelWithinSphere(meteorite->centerPos,explosionRadius, (*(*wallIt)))){
+                Wall* temp = (*wallIt);
+                wallList.remove((*wallIt) );
                 delete temp;
+
             }
+            else wallIt++;
         }
-        for(auto roofIt : roofList){
-            if (Physics::isModelWithinSphere(meteorite->centerPos,explosionRadius,(*roofIt))){
-                Roof* temp = roofIt;
-                roofList.remove(roofIt);
+        for(auto roofIt = roofList.begin(); roofIt != roofList.end();  ){
+            if (Physics::isModelWithinSphere(meteorite->centerPos,explosionRadius,(*(*roofIt)))){
+                Roof* temp = (*roofIt);
+                roofList.remove((*roofIt));
                 delete temp;
             }
+            else roofIt++;
+
 
         }
 

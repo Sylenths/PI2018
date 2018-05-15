@@ -18,13 +18,16 @@ public:
     static unsigned int storyAmount;
     static unsigned int chosenStory;
     std::vector<unsigned int> height;
+    std::map<unsigned int,unsigned int>* wallheight;
+
     StructureWindow(){
         isBuilding = false;
         chosenStory = 0;
         storyAmount = 0;
         height.push_back(1);
         modelsSideWindow["SideMenuStructure"] = new Image("SideMenuStructure", 920, 0, 0, 360, 720, EntityManager::get<Texture2d*>("StructureWindow")->ID);
-
+        wallheight = new std::map<unsigned int,unsigned int>;
+        wallheight->clear();
 
         //type de structure
         modelsSideWindow["1FondationIcon"] = new CheckBox ("1FondationIcon", 970, 90, 0, 50, 50, EntityManager::get<Texture2d*>("ChoixNonAppuyer")->ID, EntityManager::get<Texture2d*>("ChoixAppuyer")->ID);
@@ -241,12 +244,15 @@ public:
         }
 
     }
+    std::map<unsigned int, unsigned int>* getWallheight(){
+        return wallheight;
+    }
     unsigned int getFloorHeight(){
         if(chosenStory == 1)
-            return height[0];
+            return wallheight->at(0);
         unsigned int heightToReturn = 0;
         for(int i = 0; i < chosenStory; i++){
-            heightToReturn += height[i];
+            heightToReturn += wallheight->at(i);
         }
         return heightToReturn;
     }

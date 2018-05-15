@@ -937,7 +937,9 @@ public:
                     ((World *) sceneDisplay)->addWall(mur);
                 }
                 mur = new Wall("", ((World *) sceneDisplay)->hud->getHeight(), texture, &corner.front(), &first, SideWindow::materialType);
-                //((World *) sceneDisplay)->addModel(mur);
+                (((World *) sceneDisplay)->hud->sideWindowMap["Structure"]->getWallheight())->operator[](StructureWindow::chosenStory) = ((World *) sceneDisplay)->hud->sideWindowMap["Structure"]->getHeight();
+
+                        //((World *) sceneDisplay)->addModel(mur);
                 ((World *) sceneDisplay)->addWall(mur);
                 if (StructureWindow::chosenStory == StructureWindow::storyAmount)
                     StructureWindow::storyAmount++;
@@ -1139,6 +1141,8 @@ public:
                 }
                 mur = new Wall("", ((World *) sceneDisplay)->hud->getHeight(), texture, &corner.front(), &first, SideWindow::materialType);
                 //((World *) sceneDisplay)->addModel(mur);
+                (((World *) sceneDisplay)->hud->sideWindowMap["Structure"]->getWallheight())->operator[](StructureWindow::chosenStory) = ((World *) sceneDisplay)->hud->sideWindowMap["Structure"]->getHeight();
+
                 ((World *) sceneDisplay)->addWall(mur);
                 if (StructureWindow::chosenStory == StructureWindow::storyAmount)
                     StructureWindow::storyAmount++;

@@ -45,6 +45,7 @@ public:
     }
     virtual unsigned getFloorHeight(){}
     virtual unsigned int getHeight(){}
+    virtual std::map<unsigned int, unsigned int>* getWallheight(){}
 };
 int SideWindow::buildType = 0;
 int SideWindow::materialType = 0;
