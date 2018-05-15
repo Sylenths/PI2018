@@ -189,6 +189,7 @@ public:
         ((CheckBox*)modelsSideWindow["1PierreIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1SIMTiumIcon"])->uncheck();
+        ((CheckBox*)modelsSideWindow["1CartonIcon"])->check();
         materialType = CARDBOARD;
     }
     void onWoodClick(){
@@ -196,6 +197,7 @@ public:
         ((CheckBox*)modelsSideWindow["1PierreIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1SIMTiumIcon"])->uncheck();
+        ((CheckBox*)modelsSideWindow["1BoisIcon"])->check();
         materialType = WOOD;
     }
     void onRockClick(){
@@ -203,6 +205,7 @@ public:
         ((CheckBox*)modelsSideWindow["1CartonIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1SIMTiumIcon"])->uncheck();
+        ((CheckBox*)modelsSideWindow["1PierreIcon"])->check();
         materialType = ROCK;
     }
     void onMetalClick(){
@@ -210,6 +213,7 @@ public:
         ((CheckBox*)modelsSideWindow["1CartonIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1PierreIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1SIMTiumIcon"])->uncheck();
+        ((CheckBox*)modelsSideWindow["1MetalIcon"])->check();
         materialType = METAL;
     }
     void onSIMTiumClick(){
@@ -217,6 +221,7 @@ public:
         ((CheckBox*)modelsSideWindow["1CartonIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1PierreIcon"])->uncheck();
         ((CheckBox*)modelsSideWindow["1MetalIcon"])->uncheck();
+        ((CheckBox*)modelsSideWindow["1SIMTiumIcon"])->check();
         materialType = SIMTIUM;
     }
     unsigned int getHeight(){
