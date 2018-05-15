@@ -116,6 +116,11 @@ public:
         EntityManager::add(new Texture2d("PauseSettings", "../../images/PauseSettings.png"));
         EntityManager::add(new Texture2d("PauseSettingsOver", "../../images/PauseSettingsOver.png"));
         EntityManager::add(new Texture2d("PauseMenuFond", "../../images/PauseMenuFond.png"));
+
+        //Texture PowerOverlay
+        EntityManager::add(new Texture2d("Red", "../../images/red.png"));
+        EntityManager::add(new Texture2d("Blue", "../../images/blue.png"));
+        EntityManager::add(new Texture2d("Green", "../../images/green.png"));
     }
 
 	/// Constructeur
@@ -260,9 +265,27 @@ public:
                 case SDLK_e: {
                     if ((sceneDisplay == sceneMap["World"]) && (SideWindow::isBuildingMachine)) {
                         PhysicsData::CollisionData posMachine = Physics::collideVectorOnPlane(sceneDisplay->getCamera()->getPos(), sceneDisplay->getCamera()->getFront() * 10, {0.0, 0.1, 0.0}, {0.0, 1.0, 0.0});
+                        Vector front = ((World*)sceneDisplay)->getCamera()->getFront();
+                        Vector pos = ((World*)sceneDisplay)->getCamera()->getPos();
+                        Vector nFloor = {0.0, 2.5, 0.0};
                         if(posMachine.collided && spawnMachineCap == true){
-                            ((World *) sceneDisplay)->createMachine(posMachine.point.x, posMachine.point.y, posMachine.point.z);
-                            spawnMachineCap = false;
+                            if (front * nFloor) {
+                                double ratio = -(pos.y / front.y);
+                                if (ratio > 0) {
+                                    Vector intersection = (front * ratio) + pos;
+                                    int x = round(intersection.x / 2.0);
+                                    int z = round(intersection.z / 2.0);
+                                    std::map<std::pair<int,int>, Fondation*>* fondationGrid = ((World*)sceneDisplay)->getFondations();
+                                    if((*fondationGrid)[std::make_pair(x,z)] && (*fondationGrid)[std::make_pair(x,z)]->getOccupiedState() == false){
+                                        if((*fondationGrid)[std::make_pair(x + 1, z)] && (*fondationGrid)[std::make_pair(x - 1, z)] && (*fondationGrid)[std::make_pair(x, z + 1)] && (*fondationGrid)[std::make_pair(x, z - 1)] && (*fondationGrid)[std::make_pair(x - 1, z)] && (*fondationGrid)[std::make_pair(x + 1, z + 1)] && (*fondationGrid)[std::make_pair(x + 1, z - 1)] && (*fondationGrid)[std::make_pair(x - 1, z + 1)] && (*fondationGrid)[std::make_pair(x - 1, z - 1)]){
+                                            (*fondationGrid)[std::make_pair(x,z)]->setFondationOccupied();
+                                            ((World *) sceneDisplay)->createMachine(x, 0.1, z);
+                                            spawnMachineCap = false;
+                                        }
+                                    }
+                                }
+                            }
+
                         }
                     }
                 }
@@ -295,6 +318,12 @@ public:
                         sceneDisplay->pushScene("PauseMenu");
                     }
                     break;
+
+            case SDLK_SPACE:
+                if (sceneDisplay == sceneMap["World"]) {
+                    ((World*)sceneDisplay)->setPowerOverlay(true);
+                }
+                break;
             }
             switch (controller->getKeyUp()) {
                 case SDLK_f:
@@ -325,6 +354,12 @@ public:
                         sceneDisplay->getCamera()->stopMove(CAMERA_MOVE_RIGHT);
                     }
                     break;
+
+            case SDLK_SPACE:
+                if (sceneDisplay == sceneMap["World"]) {
+                    ((World*)sceneDisplay)->setPowerOverlay(false);
+                }
+                break;
             }
             ///controle de la rotation de la camera
             if (activeCamera) {
@@ -350,6 +385,9 @@ public:
 
             controller->resetClicMousePosition();
 
+            if(Scene::getScene() == "World"){
+                ((World*)sceneMap["World"])->moveEoliennes(chrono);
+            }
         }
     }
 

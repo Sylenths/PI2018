@@ -41,15 +41,22 @@ private:
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;
     Atmosphere atmosphere;
     Vector* wind;
+    double windspeed;
     unsigned int  simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
-    double windspeed, temperature, producedCurrent;
+    double temperature, producedCurrent;
     Light *hudLight;
     Chrono chrono;
     std::list<Meteorite *> meteorites;
     bool structureWasModified;
+    bool windHasChanged;
+    bool showPowerOverlay;
 public:
     Model* flatGround;
     InGameOverlay* hud;
+
+    void setPowerOverlay(bool b) {
+        showPowerOverlay = b;
+    }
 
     /// Ajoute un model a afficher
     /// \param model le model a ajouter
@@ -75,11 +82,16 @@ public:
     /// Constructeur, tout les models nécéssaires sont loadés ici.
     World(const std::string name, GLContext* context, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector* wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
         this->context = context;
+        this->wind = nullptr;
         this->wind = wind;
+        if (wind == nullptr) {
+            wind = new Vector(0.0, 0.0, 0.0);
+        }
         this->temperature = temperature;
         this->sunPower = sunPower;
         this->simCoin = simCoin;
         this->buildingTime = buildingTime;
+        this->showPowerOverlay = false;
         totalPower = 0;
         usedPower = 0;
         elapsedTime = 0;
@@ -112,12 +124,16 @@ public:
         }
 
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
-     //   meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
+       // meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
+
+
         chrono.restart();
+        windHasChanged = true;
     }
     ~World(){
         delete hud;
         delete hudLight;
+        delete wind;
         for(auto it : modelList){
             delete it;
         }
@@ -132,6 +148,10 @@ public:
         return &floorGrids;
     }
 
+    void updateWind() {
+
+    }
+    
     /// Affichage des models
     void draw() {
         context->setFrustum(IS3D);
@@ -151,14 +171,19 @@ public:
         for(auto it : meteorites)
             it->drawAndShading(atmosphere.getRealLight().getVectorLight());
 
+        updateWind();
 
         //collideMeteorites();
         atmosphere.updateAtmosphere();
         atmosphere.draw();
+        if(showPowerOverlay)
+        PowerManager::getInstance()->drawOverlay();
         context->setFrustum(IS2D);
         glDepthFunc(GL_LESS);
         hudLight->applyLightPosition();
         hud->draw();
+
+
     }
 
     /// Mise a jour du temps dans l'H.U.D.
@@ -188,25 +213,37 @@ public:
 
     void createMachine(int positionX, int positionY, int positionZ){
         if(SideWindow::MachineType == "SimCoinsMiner"){
-            powerDeviceList.push_back(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ,  EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
-            //addPowerDeviceAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ,  EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            powerDeviceList.push_back(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ, true, "../../models/obj/simcoin_miner.obj"));
             addModel(powerDeviceList.back());
-            powerDeviceList.back()->setShadingOn();
+            modelList.back()->setShadingOn();
             PowerManager::getInstance()->addAppareil(powerDeviceList.back());
         }
         if(SideWindow::MachineType == "PanneauSolaire"){
-            powerSourceList.push_back(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
-            //addPowerSourceAppariel(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
+            powerSourceList.push_back(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.1.obj"));
             addModel(powerSourceList.back());
+            modelList.back()->setShadingOn();
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
         if(SideWindow::MachineType == "WindTurbine"){
-            powerSourceList.push_back(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
+            powerSourceList.push_back(new Eolienne(wind,5.0, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
             //addPowerSourceAppariel(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
             addModel(powerSourceList.back());
+            modelList.back()->setShadingOn();
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
 
+    }
+
+    void moveEoliennes(Chrono chrono){
+         for(auto it : powerSourceList){
+          if(it->getName() == "Eolienne"){
+              ((Eolienne*)it)->moveTurbine(wind,chrono);
+              if(windHasChanged){
+                  ((Eolienne*)it)->modifyTurbineAngle(wind);
+                  windHasChanged = false;
+              }
+          }
+      }
     }
 
     virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {

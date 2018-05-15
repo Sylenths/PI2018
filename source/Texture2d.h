@@ -18,7 +18,7 @@ public:
         #if defined(_WIN32) || defined(__linux__)
           glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
         #else
-          glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, surface->pixels);
+          glTexImage2D(GL_TEXTURE_2D, 0 , GL_RGBA,mod width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, surface->pixels);
         #endif
         SDL_FreeSurface(surface);
 
