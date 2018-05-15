@@ -48,6 +48,7 @@ private:
     Chrono chrono;
     std::list<Meteorite *> meteorites;
     bool structureWasModified;
+    bool windHasChanged;
     bool showPowerOverlay;
 public:
     Model* flatGround;
@@ -123,8 +124,11 @@ public:
         }
 
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
-        //meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
+       // meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
+
+
         chrono.restart();
+        windHasChanged = true;
     }
     ~World(){
         delete hud;
@@ -221,12 +225,25 @@ public:
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
         if(SideWindow::MachineType == "WindTurbine"){
-            powerSourceList.push_back(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
+            powerSourceList.push_back(new Eolienne(wind,5.0, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
+            //addPowerSourceAppariel(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
             addModel(powerSourceList.back());
             modelList.back()->setShadingOn();
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
 
+    }
+
+    void moveEoliennes(Chrono chrono){
+         for(auto it : powerSourceList){
+          if(it->getName() == "Eolienne"){
+              ((Eolienne*)it)->moveTurbine(wind,chrono);
+              if(windHasChanged){
+                  ((Eolienne*)it)->modifyTurbineAngle(wind);
+                  windHasChanged = false;
+              }
+          }
+      }
     }
 
     virtual void subscribeAll( std::map<unsigned int, Observable<SDL_Event*>*>& observables) {
