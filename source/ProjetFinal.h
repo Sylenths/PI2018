@@ -260,9 +260,27 @@ public:
                 case SDLK_e: {
                     if ((sceneDisplay == sceneMap["World"]) && (SideWindow::isBuildingMachine)) {
                         PhysicsData::CollisionData posMachine = Physics::collideVectorOnPlane(sceneDisplay->getCamera()->getPos(), sceneDisplay->getCamera()->getFront() * 10, {0.0, 0.1, 0.0}, {0.0, 1.0, 0.0});
+                        Vector front = ((World*)sceneDisplay)->getCamera()->getFront();
+                        Vector pos = ((World*)sceneDisplay)->getCamera()->getPos();
+                        Vector nFloor = {0.0, 2.5, 0.0};
                         if(posMachine.collided && spawnMachineCap == true){
-                            ((World *) sceneDisplay)->createMachine(posMachine.point.x, posMachine.point.y, posMachine.point.z);
-                            spawnMachineCap = false;
+                            if (front * nFloor) {
+                                double ratio = -(pos.y / front.y);
+                                if (ratio > 0) {
+                                    Vector intersection = (front * ratio) + pos;
+                                    int x = round(intersection.x / 2.0);
+                                    int z = round(intersection.z / 2.0);
+                                    std::map<std::pair<int,int>, Fondation*>* fondationGrid = ((World*)sceneDisplay)->getFondations();
+                                    if((*fondationGrid)[std::make_pair(x,z)]){
+                                        if((*fondationGrid)[std::make_pair(x + 1, z)] && (*fondationGrid)[std::make_pair(x - 1, z)] && (*fondationGrid)[std::make_pair(x, z + 1)] && (*fondationGrid)[std::make_pair(x, z - 1)] && (*fondationGrid)[std::make_pair(x - 1, z)] && (*fondationGrid)[std::make_pair(x + 1, z + 1)] && (*fondationGrid)[std::make_pair(x + 1, z - 1)] && (*fondationGrid)[std::make_pair(x - 1, z + 1)] && (*fondationGrid)[std::make_pair(x - 1, z - 1)]){
+                                            ((World *) sceneDisplay)->createMachine(x, 0.1, z);
+                                            spawnMachineCap = false;
+                                        }
+                                    }
+                                    delete fondationGrid;
+                                }
+                            }
+
                         }
                     }
                 }
