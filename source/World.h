@@ -58,17 +58,9 @@ public:
         modelList.push_back(model);
     }
 
-
-    void addPowerDeviceAppariel(PowerDevice* powerDevice){
-        powerDeviceList.push_back(powerDevice);
-    }
-
-    void addPowerSourceAppariel(PowerSource* powerSource){
-        powerSourceList.push_back(powerSource);
-    }
-
     void addWall(Wall* model){
         wallList.push_back(model);
+
     }
     void addRoof(Roof* model){
         roofList.push_back(model);
@@ -159,7 +151,7 @@ public:
         for(auto it : meteorites)
             it->drawAndShading(atmosphere.getRealLight().getVectorLight());
 
-        collideMeteorites();
+        //collideMeteorites();
         atmosphere.updateAtmosphere();
         atmosphere.draw();
         context->setFrustum(IS2D);
