@@ -41,8 +41,9 @@ private:
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;
     Atmosphere atmosphere;
     Vector* wind;
+    double windspeed;
     unsigned int  simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
-    double windspeed, temperature, producedCurrent;
+    double temperature, producedCurrent;
     Light *hudLight;
     Chrono chrono;
     std::list<Meteorite *> meteorites;
@@ -75,7 +76,11 @@ public:
     /// Constructeur, tout les models nécéssaires sont loadés ici.
     World(const std::string name, GLContext* context, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector* wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
         this->context = context;
+        this->wind = nullptr;
         this->wind = wind;
+        if (wind == nullptr) {
+            wind = new Vector(0.0, 0.0, 0.0);
+        }
         this->temperature = temperature;
         this->sunPower = sunPower;
         this->simCoin = simCoin;
@@ -118,6 +123,7 @@ public:
     ~World(){
         delete hud;
         delete hudLight;
+        delete wind;
         for(auto it : modelList){
             delete it;
         }
@@ -132,6 +138,10 @@ public:
         return &floorGrids;
     }
 
+    void updateWind() {
+
+    }
+    
     /// Affichage des models
     void draw() {
         context->setFrustum(IS3D);
@@ -151,6 +161,7 @@ public:
         for(auto it : meteorites)
             it->drawAndShading(atmosphere.getRealLight().getVectorLight());
 
+        updateWind();
 
         //collideMeteorites();
         atmosphere.updateAtmosphere();
