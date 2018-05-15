@@ -120,7 +120,7 @@ public:
         }
 
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
-        meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
+     //   meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
         chrono.restart();
     }
     ~World(){
@@ -159,7 +159,7 @@ public:
         for(auto it : meteorites)
             it->drawAndShading(atmosphere.getRealLight().getVectorLight());
 
-        collideMeteorites();
+     //   collideMeteorites();
         atmosphere.updateAtmosphere();
         atmosphere.draw();
         context->setFrustum(IS2D);
@@ -233,14 +233,15 @@ public:
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;*/
     void collideMeteorites(){
         if(!meteorites.empty()){
-            for( auto meteorITe : meteorites){
+            std::list<Meteorite*> tempList;
+            for( auto meteorITe = meteorites.begin(); meteorITe != meteorites.end(); meteorITe++ ){
                 bool collided = false;
                 for(auto wallIt : wallList){
                     if(!collided) {
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*wallIt))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite* temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*wallIt))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite* temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
                         }
@@ -249,10 +250,10 @@ public:
                 for(auto roofIt : roofList){
                     if(!collided) {
 
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*roofIt))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite *temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*roofIt))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite *temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
 
@@ -262,10 +263,10 @@ public:
                 for(auto modelIt : modelList){
                     if(!collided) {
 
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*modelIt))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite *temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*modelIt))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite *temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
                         }
@@ -274,10 +275,10 @@ public:
                 for(auto it : powerDeviceList){
                     if(!collided) {
 
-                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*it))) {
-                            explodeMeteorite(meteorITe);
-                            Meteorite *temp = meteorITe;
-                            meteorites.remove(meteorITe);
+                        if (Physics::isModelWithinSphere((*meteorITe)->centerPos,(*meteorITe)->radius,(*it))) {
+                            explodeMeteorite((*meteorITe));
+                            Meteorite *temp = (*meteorITe);
+                            meteorites.remove((*meteorITe));
                             delete temp;
                             collided = true;
 
