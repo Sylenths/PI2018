@@ -42,10 +42,13 @@ public:
         currentLeft -= currentIn;
         if(currentLeft < 0.00) {
             feeded = true;
+            sphere->setTexture("Green");
             return currentLeft * -1.0;
+
         }
         else {
             feeded = false;
+            sphere->setTexture("Red");
             return 0.0;
         }
     }

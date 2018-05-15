@@ -11,9 +11,9 @@
 
 class PanneauSolaire : public PowerSource {
 public:
-    PanneauSolaire(const std::string& name, double posx, double posy, double posz, unsigned int textureID, bool rotHitBox, const char* objFile = nullptr) : PowerSource(0, name, posx, posy ,posz, textureID, rotHitBox, objFile){
+    PanneauSolaire(const std::string& name, double posx, double posy, double posz, bool rotHitBox, const char* objFile = nullptr) : PowerSource(0, name, posx, posy ,posz, 0, rotHitBox, objFile){
 
-    };
+    }
 
     /// Calcule l'angle entre le panneau solaire et le soleil
     /// \param sun Le vecteur du soleil
