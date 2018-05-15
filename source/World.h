@@ -120,7 +120,7 @@ public:
         }
 
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
-        meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
+        //meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
         chrono.restart();
     }
     ~World(){
@@ -195,21 +195,18 @@ public:
 
     void createMachine(int positionX, int positionY, int positionZ){
         if(SideWindow::MachineType == "SimCoinsMiner"){
-            powerDeviceList.push_back(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ,  EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
-            //addPowerDeviceAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ,  EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            powerDeviceList.push_back(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ, true, "../../models/obj/simcoin_miner.obj"));
             addModel(powerDeviceList.back());
             powerDeviceList.back()->setShadingOn();
             PowerManager::getInstance()->addAppareil(powerDeviceList.back());
         }
         if(SideWindow::MachineType == "PanneauSolaire"){
-            powerSourceList.push_back(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
-            //addPowerSourceAppariel(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
+            powerSourceList.push_back(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.1.obj"));
             addModel(powerSourceList.back());
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
         if(SideWindow::MachineType == "WindTurbine"){
             powerSourceList.push_back(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
-            //addPowerSourceAppariel(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
             addModel(powerSourceList.back());
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
