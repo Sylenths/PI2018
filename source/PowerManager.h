@@ -71,10 +71,13 @@ public:
         }
     }
 
-    void createWire(int node1, int node2, double lenght, double diameter, int material) {
-        std::pair<int, int> key1 = std::make_pair(node1, node2);
-        std::pair<int, int> key2 = std::make_pair(node2, node1);
-        PowerWire* wire = new PowerWire(lenght, diameter, material);
+    void createWire(PowerNode* node1, PowerNode* node2, double diameter, int material) {
+        std::pair<int, int> key1 = std::make_pair(node1->getKey(), node2->getKey());
+        std::pair<int, int> key2 = std::make_pair(node2->getKey(), node1->getKey());
+        Vector A = node1->getBaseCenter();
+        Vector B = node2->getBaseCenter();
+
+        PowerWire* wire = new PowerWire(sqrt(((A.x - B.x)*(A.x - B.x)) + ((A.y - B.y)*(A.y - B.y)) + ((A.z - B.z)*(A.z - B.z))), diameter, material);
         adjMatrice[key1] = wire;
         adjMatrice[key2] = wire;
     }

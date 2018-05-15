@@ -641,6 +641,14 @@ public:
         }
     }
 
+    Vector getBaseCenter() {
+        return baseCenter;
+    }
+
+    Vector getRealCenter() {
+        return realCenter;
+    }
+
     void setTexture(std::string name = "", unsigned int ID = 0) {
         if ((name == "") && (ID == 0))
             textureToDraw = textureIDs["default"];
