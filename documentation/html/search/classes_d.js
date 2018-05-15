@@ -1,15 +1,14 @@
 var searchData=
 [
-  ['scene',['Scene',['../class_scene.html',1,'']]],
-  ['scores',['Scores',['../class_scores.html',1,'']]],
-  ['scrollingmenu',['ScrollingMenu',['../class_scrolling_menu.html',1,'']]],
-  ['settingsmenu',['SettingsMenu',['../class_settings_menu.html',1,'']]],
-  ['sidewindow',['SideWindow',['../class_side_window.html',1,'']]],
-  ['simcoinminer',['SIMCoinMiner',['../class_s_i_m_coin_miner.html',1,'']]],
-  ['singleton',['Singleton',['../class_singleton.html',1,'']]],
-  ['singleton_3c_20powermanager_20_3e',['Singleton&lt; PowerManager &gt;',['../class_singleton.html',1,'']]],
-  ['singleton_3c_20projetfinal_20_3e',['Singleton&lt; ProjetFinal &gt;',['../class_singleton.html',1,'']]],
-  ['sky',['Sky',['../class_sky.html',1,'']]],
-  ['structure',['Structure',['../class_structure.html',1,'']]],
-  ['structurewindow',['StructureWindow',['../class_structure_window.html',1,'']]]
+  ['panneausolaire',['PanneauSolaire',['../class_panneau_solaire.html',1,'']]],
+  ['pausemenu',['PauseMenu',['../class_pause_menu.html',1,'']]],
+  ['physics',['Physics',['../class_physics.html',1,'']]],
+  ['powerdevice',['PowerDevice',['../class_power_device.html',1,'']]],
+  ['powermanager',['PowerManager',['../class_power_manager.html',1,'']]],
+  ['powernode',['PowerNode',['../class_power_node.html',1,'']]],
+  ['poweroverlay',['PowerOverlay',['../class_power_overlay.html',1,'']]],
+  ['powersource',['PowerSource',['../class_power_source.html',1,'']]],
+  ['powerswitch',['PowerSwitch',['../class_power_switch.html',1,'']]],
+  ['powerwire',['PowerWire',['../class_power_wire.html',1,'']]],
+  ['projetfinal',['ProjetFinal',['../class_projet_final.html',1,'']]]
 ];

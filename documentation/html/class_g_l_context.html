@@ -63,7 +63,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
-<a href="#pub-static-methods">Fonctions membres publiques statiques</a> &#124;
 <a href="class_g_l_context-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle">
 <div class="title">Référence de la classe GLContext</div>  </div>
@@ -86,7 +85,7 @@ Graphe d'héritage de GLContext:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:adea958a6f2efc929125f74b68a581bef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_context.html#adea958a6f2efc929125f74b68a581bef">GLContext</a> (const char *title, int x, int y, int width, int height, double angle, double nearPlane, double farPlane, unsigned int windowflags=0)</td></tr>
+<tr class="memitem:adea958a6f2efc929125f74b68a581bef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_context.html#adea958a6f2efc929125f74b68a581bef">GLContext</a> (const char *title, int x, int y, int <a class="el" href="class_window.html#af5b1c436782cc9752d386493fbc5dc8c">width</a>, int <a class="el" href="class_window.html#af0ac1732ca6b79a6f6b78aa344140514">height</a>, double angle, double nearPlane, double farPlane, unsigned int windowflags=0)</td></tr>
 <tr class="separator:adea958a6f2efc929125f74b68a581bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae8b3e070f7f2a9ecf235202f2e330dd"><td class="memItemLeft" align="right" valign="top"><a id="aae8b3e070f7f2a9ecf235202f2e330dd"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_context.html#aae8b3e070f7f2a9ecf235202f2e330dd">~GLContext</a> ()</td></tr>
@@ -111,26 +110,31 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a195cb7d169c05c6ee2102a1829d9d780"><td class="memItemLeft" align="right" valign="top"><a id="a195cb7d169c05c6ee2102a1829d9d780"></a>
 SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><b>getWindow</b> ()</td></tr>
 <tr class="separator:a195cb7d169c05c6ee2102a1829d9d780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8f37fc33c164a3b6669663bc6aba5a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_context.html#ab8f37fc33c164a3b6669663bc6aba5a1">setFrustum</a> (bool is2D)</td></tr>
+<tr class="separator:ab8f37fc33c164a3b6669663bc6aba5a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a593755ff1b774418e2b47243f5c66790"><td class="memItemLeft" align="right" valign="top"><a id="a593755ff1b774418e2b47243f5c66790"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_context.html#a593755ff1b774418e2b47243f5c66790">resetMousePosition</a> ()</td></tr>
 <tr class="memdesc:a593755ff1b774418e2b47243f5c66790"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replacer le curseur de la souris au centre de la fenêtre. <br /></td></tr>
 <tr class="separator:a593755ff1b774418e2b47243f5c66790"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_window"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_window')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques hérités de <a class="el" href="class_window.html">Window</a></td></tr>
-<tr class="memitem:a96efd3d806565db46c9328c64347a48e inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a96efd3d806565db46c9328c64347a48e">Window</a> (const char *title, int x, int y, int width, int height, unsigned int windowflags)</td></tr>
-<tr class="separator:a96efd3d806565db46c9328c64347a48e inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Fonctions membres publiques statiques</h2></td></tr>
-<tr class="memitem:a1c779af2bbacea78c93e0e44d1ab8151"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_context.html#a1c779af2bbacea78c93e0e44d1ab8151">setFrustum</a> (bool is2D)</td></tr>
-<tr class="separator:a1c779af2bbacea78c93e0e44d1ab8151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a344fa3d6ccde825e9b9ee39d7acb1966 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a344fa3d6ccde825e9b9ee39d7acb1966">Window</a> (const char *title, const int &amp;x, const int &amp;y, const int &amp;<a class="el" href="class_window.html#af5b1c436782cc9752d386493fbc5dc8c">width</a>, const int &amp;<a class="el" href="class_window.html#af0ac1732ca6b79a6f6b78aa344140514">height</a>, const unsigned int &amp;windowflags)</td></tr>
+<tr class="separator:a344fa3d6ccde825e9b9ee39d7acb1966 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Membres hérités additionnels</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_window"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_window')"><img src="closed.png" alt="-"/>&#160;Attributs protégés hérités de <a class="el" href="class_window.html">Window</a></td></tr>
-<tr class="memitem:a2fbd44b18a6d7d817eeb8d7d75733ba7 inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a id="a2fbd44b18a6d7d817eeb8d7d75733ba7"></a>
-SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7">sdlwindow</a></td></tr>
-<tr class="memdesc:a2fbd44b18a6d7d817eeb8d7d75733ba7 inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affichage de la fenêtres. <br /></td></tr>
-<tr class="separator:a2fbd44b18a6d7d817eeb8d7d75733ba7 inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6be667ef970fd951a4853e7bcc933ac8 inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a id="a6be667ef970fd951a4853e7bcc933ac8"></a>
+SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a6be667ef970fd951a4853e7bcc933ac8">sdlWindow</a></td></tr>
+<tr class="memdesc:a6be667ef970fd951a4853e7bcc933ac8 inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fenêtre. <br /></td></tr>
+<tr class="separator:a6be667ef970fd951a4853e7bcc933ac8 inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5b1c436782cc9752d386493fbc5dc8c inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a id="af5b1c436782cc9752d386493fbc5dc8c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#af5b1c436782cc9752d386493fbc5dc8c">width</a></td></tr>
+<tr class="memdesc:af5b1c436782cc9752d386493fbc5dc8c inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Largeur. <br /></td></tr>
+<tr class="separator:af5b1c436782cc9752d386493fbc5dc8c inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0ac1732ca6b79a6f6b78aa344140514 inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a id="af0ac1732ca6b79a6f6b78aa344140514"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#af0ac1732ca6b79a6f6b78aa344140514">height</a></td></tr>
+<tr class="memdesc:af0ac1732ca6b79a6f6b78aa344140514 inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hauteur. <br /></td></tr>
+<tr class="separator:af0ac1732ca6b79a6f6b78aa344140514 inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Représentation du contexte de la fenêtre. </p>
@@ -230,8 +234,8 @@ SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
-<a id="a1c779af2bbacea78c93e0e44d1ab8151"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c779af2bbacea78c93e0e44d1ab8151">&#9670;&nbsp;</a></span>setFrustum()</h2>
+<a id="ab8f37fc33c164a3b6669663bc6aba5a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8f37fc33c164a3b6669663bc6aba5a1">&#9670;&nbsp;</a></span>setFrustum()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -240,7 +244,7 @@ SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void GLContext::setFrustum </td>
+          <td class="memname">void GLContext::setFrustum </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>is2D</em></td><td>)</td>
@@ -249,7 +253,7 @@ SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

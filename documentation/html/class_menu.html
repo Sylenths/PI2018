@@ -80,11 +80,10 @@ Graphe d'héritage de Menu:</div>
  <div class="center">
   <img src="class_menu.png" usemap="#Menu_map" alt=""/>
   <map id="Menu_map" name="Menu_map">
-<area href="class_scene.html" title="Représentation de la scène active du programme. " alt="Scene" shape="rect" coords="180,0,290,24"/>
+<area href="class_scene.html" title="Représentation de la scène active du programme. " alt="Scene" shape="rect" coords="120,0,230,24"/>
 <area href="class_high_scores_menu.html" alt="HighScoresMenu" shape="rect" coords="0,112,110,136"/>
 <area href="class_in_game_overlay.html" title="Représentation de l&#39;interface en jeu. " alt="InGameOverlay" shape="rect" coords="120,112,230,136"/>
 <area href="class_pause_menu.html" title="Représentation du menu echap en jeu. " alt="PauseMenu" shape="rect" coords="240,112,350,136"/>
-<area href="class_settings_menu.html" title="Représentation du menu des options du jeu. " alt="SettingsMenu" shape="rect" coords="360,112,470,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -122,25 +121,23 @@ std::map&lt; std::string, <a class="el" href="class_model.html">Model</a> * &gt;
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Membres hérités additionnels</h2></td></tr>
 <tr class="inherit_header pub_static_methods_class_scene"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_scene')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques statiques hérités de <a class="el" href="class_scene.html">Scene</a></td></tr>
-<tr class="memitem:a1479b43180ac99f7191f8394f11f4023 inherit pub_static_methods_class_scene"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a1479b43180ac99f7191f8394f11f4023">changeActiveScene</a> (std::string scene)</td></tr>
-<tr class="separator:a1479b43180ac99f7191f8394f11f4023 inherit pub_static_methods_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8dc7821ba766ff047d10325e9dad9af inherit pub_static_methods_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="af8dc7821ba766ff047d10325e9dad9af"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#af8dc7821ba766ff047d10325e9dad9af">getActiveScene</a> ()</td></tr>
-<tr class="memdesc:af8dc7821ba766ff047d10325e9dad9af inherit pub_static_methods_class_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourner la menu actif. <br /></td></tr>
-<tr class="separator:af8dc7821ba766ff047d10325e9dad9af inherit pub_static_methods_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad910e37ae74169bda76a590603444d2d inherit pub_static_methods_class_scene"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#ad910e37ae74169bda76a590603444d2d">pushScene</a> (std::string scene)</td></tr>
+<tr class="separator:ad910e37ae74169bda76a590603444d2d inherit pub_static_methods_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36de9b3e6b87ef18115e45c4b1d8d880 inherit pub_static_methods_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="a36de9b3e6b87ef18115e45c4b1d8d880"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>popScene</b> ()</td></tr>
+<tr class="separator:a36de9b3e6b87ef18115e45c4b1d8d880 inherit pub_static_methods_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3323703969d0086caad05c25596a24c8 inherit pub_static_methods_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="a3323703969d0086caad05c25596a24c8"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a3323703969d0086caad05c25596a24c8">getScene</a> ()</td></tr>
+<tr class="memdesc:a3323703969d0086caad05c25596a24c8 inherit pub_static_methods_class_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourner la menu actif. <br /></td></tr>
+<tr class="separator:a3323703969d0086caad05c25596a24c8 inherit pub_static_methods_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec0d55a02c9ead4198c4a96319b9347c inherit pub_static_methods_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="aec0d55a02c9ead4198c4a96319b9347c"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#aec0d55a02c9ead4198c4a96319b9347c">getActiveFPS</a> ()</td></tr>
 <tr class="memdesc:aec0d55a02c9ead4198c4a96319b9347c inherit pub_static_methods_class_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourner un booléen "vrai" si l'affichage des fps est activé. <br /></td></tr>
 <tr class="separator:aec0d55a02c9ead4198c4a96319b9347c inherit pub_static_methods_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_class_scene"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_class_scene')"><img src="closed.png" alt="-"/>&#160;Attributs protégés statiques hérités de <a class="el" href="class_scene.html">Scene</a></td></tr>
-<tr class="memitem:a6b4659f25115d7a5c77d17588b1404ed inherit pro_static_attribs_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="a6b4659f25115d7a5c77d17588b1404ed"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a6b4659f25115d7a5c77d17588b1404ed">active</a> = &quot;MainMenu&quot;</td></tr>
-<tr class="memdesc:a6b4659f25115d7a5c77d17588b1404ed inherit pro_static_attribs_class_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir quel menu est actif. <br /></td></tr>
-<tr class="separator:a6b4659f25115d7a5c77d17588b1404ed inherit pro_static_attribs_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a2e352f822b420f6ea691a11e613674 inherit pro_static_attribs_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="a6a2e352f822b420f6ea691a11e613674"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a6a2e352f822b420f6ea691a11e613674">previous</a> = &quot; &quot;</td></tr>
-<tr class="memdesc:a6a2e352f822b420f6ea691a11e613674 inherit pro_static_attribs_class_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir quel était le menu précédent actif. <br /></td></tr>
-<tr class="separator:a6a2e352f822b420f6ea691a11e613674 inherit pro_static_attribs_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac210254a5412e7f5920a7c50d4216a2d inherit pro_static_attribs_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="ac210254a5412e7f5920a7c50d4216a2d"></a>
+static std::stack&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>scenes</b></td></tr>
+<tr class="separator:ac210254a5412e7f5920a7c50d4216a2d inherit pro_static_attribs_class_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9151905ea5287a0fe045f717ff07d0ec inherit pro_static_attribs_class_scene"><td class="memItemLeft" align="right" valign="top"><a id="a9151905ea5287a0fe045f717ff07d0ec"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a9151905ea5287a0fe045f717ff07d0ec">FPS</a> = false</td></tr>
 <tr class="memdesc:a9151905ea5287a0fe045f717ff07d0ec inherit pro_static_attribs_class_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir si l'affichage des fps est actif. <br /></td></tr>
@@ -184,7 +181,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 
 <p>Implémente <a class="el" href="class_scene.html#af01fb37b60b97f4ac699da325a89a35b">Scene</a>.</p>
 
-<p>Implémenté dans <a class="el" href="class_high_scores_menu.html#adaf4d7806c2fa946f1962f4d817c68b4">HighScoresMenu</a>, <a class="el" href="class_in_game_overlay.html#afa545ae8dc13fdd730a6b1488dde631c">InGameOverlay</a>, <a class="el" href="class_settings_menu.html#ad72f10b911595d756e800051943cacb6">SettingsMenu</a>, et <a class="el" href="class_pause_menu.html#aa1ad34421f6a904c76c6317e9ab35232">PauseMenu</a>.</p>
+<p>Implémenté dans <a class="el" href="class_high_scores_menu.html#adaf4d7806c2fa946f1962f4d817c68b4">HighScoresMenu</a>, <a class="el" href="class_in_game_overlay.html#afa545ae8dc13fdd730a6b1488dde631c">InGameOverlay</a>, et <a class="el" href="class_pause_menu.html#aa1ad34421f6a904c76c6317e9ab35232">PauseMenu</a>.</p>
 
 </div>
 </div>
@@ -220,7 +217,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 
 <p>Implémente <a class="el" href="class_scene.html#a9fa939dffd229738d667d808b2bb8a09">Scene</a>.</p>
 
-<p>Implémenté dans <a class="el" href="class_high_scores_menu.html#a7412fdbd146644456c4d079ad2a5d559">HighScoresMenu</a>, <a class="el" href="class_in_game_overlay.html#aeae4677cecdeb12712743ddefdd25243">InGameOverlay</a>, <a class="el" href="class_settings_menu.html#a0dd5c9a41f1de3a98cc273b46d6a75d1">SettingsMenu</a>, et <a class="el" href="class_pause_menu.html#ac03d72352a7a3b06de676c429cf32890">PauseMenu</a>.</p>
+<p>Implémenté dans <a class="el" href="class_high_scores_menu.html#a7412fdbd146644456c4d079ad2a5d559">HighScoresMenu</a>, <a class="el" href="class_in_game_overlay.html#aeae4677cecdeb12712743ddefdd25243">InGameOverlay</a>, et <a class="el" href="class_pause_menu.html#ac03d72352a7a3b06de676c429cf32890">PauseMenu</a>.</p>
 
 </div>
 </div>

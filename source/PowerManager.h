@@ -255,6 +255,11 @@ public:
         }
         std::cout << std::endl;
     }
+
+
+    void drawOverlay() {
+
+    }
 };
 
 #endif

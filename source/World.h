@@ -58,17 +58,9 @@ public:
         modelList.push_back(model);
     }
 
-
-    void addPowerDeviceAppariel(PowerDevice* powerDevice){
-        powerDeviceList.push_back(powerDevice);
-    }
-
-    void addPowerSourceAppariel(PowerSource* powerSource){
-        powerSourceList.push_back(powerSource);
-    }
-
     void addWall(Wall* model){
         wallList.push_back(model);
+
     }
     void addRoof(Roof* model){
         roofList.push_back(model);
@@ -159,7 +151,8 @@ public:
         for(auto it : meteorites)
             it->drawAndShading(atmosphere.getRealLight().getVectorLight());
 
-     //   collideMeteorites();
+
+        //collideMeteorites();
         atmosphere.updateAtmosphere();
         atmosphere.draw();
         context->setFrustum(IS2D);
@@ -195,18 +188,21 @@ public:
 
     void createMachine(int positionX, int positionY, int positionZ){
         if(SideWindow::MachineType == "SimCoinsMiner"){
-            addPowerDeviceAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ,  EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            powerDeviceList.push_back(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ,  EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            //addPowerDeviceAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ,  EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
             addModel(powerDeviceList.back());
             powerDeviceList.back()->setShadingOn();
             PowerManager::getInstance()->addAppareil(powerDeviceList.back());
         }
         if(SideWindow::MachineType == "PanneauSolaire"){
-            addPowerSourceAppariel(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
+            powerSourceList.push_back(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
+            //addPowerSourceAppariel(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
             addModel(powerSourceList.back());
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
         if(SideWindow::MachineType == "WindTurbine"){
-            addPowerSourceAppariel(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
+            powerSourceList.push_back(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
+            //addPowerSourceAppariel(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
             addModel(powerSourceList.back());
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
