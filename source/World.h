@@ -35,12 +35,14 @@ private:
     std::list<Roof*> roofList; ///< La liste de toits à afficher
 
     std::list<PowerDevice*> powerDeviceList;
+    std::list<PowerSource*> powerSourceList;
 
     std::map<std::pair<int,int>, Fondation*> fondationGrid;///< Map Qui prend une clé de pair qui sont les 2 coordonnées en x et z des fondations qui seront crées.
     std::vector<std::map<std::pair<int,int>,Floor*>> floorGrids;
     Atmosphere atmosphere;
-    Vector wind;
-    unsigned int temperature, simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
+    Vector* wind;
+    unsigned int  simCoin, totalPower, usedPower, sunPower, elapsedTime, buildingTime;
+    double windspeed, temperature, producedCurrent;
     Light *hudLight;
     Chrono chrono;
     std::list<Meteorite *> meteorites;
@@ -49,7 +51,6 @@ public:
     Model* flatGround;
     InGameOverlay* hud;
 
-    int test;
     /// Ajoute un model a afficher
     /// \param model le model a ajouter
     /// \param modelKey Nom donne au model
@@ -58,8 +59,12 @@ public:
     }
 
 
-    void addPowerAppariel(PowerDevice* powerDevice){
+    void addPowerDeviceAppariel(PowerDevice* powerDevice){
         powerDeviceList.push_back(powerDevice);
+    }
+
+    void addPowerSourceAppariel(PowerSource* powerSource){
+        powerSourceList.push_back(powerSource);
     }
 
     void addWall(Wall* model){
@@ -76,7 +81,7 @@ public:
         return &roofList;
     }
     /// Constructeur, tout les models nécéssaires sont loadés ici.
-    World(const std::string name, GLContext* context, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
+    World(const std::string name, GLContext* context, unsigned int temperature, unsigned int sunPower, unsigned int simCoin, unsigned int buildingTime, Vector* wind) : atmosphere(name, 0.0, 0.0, 0.0, false, 0, "../../models/obj/atmosphere.obj") {
         this->context = context;
         this->wind = wind;
         this->temperature = temperature;
@@ -91,7 +96,6 @@ public:
         addModel(fondationGrid[std::make_pair(0,0)]);
         flatGround =  new Model("", 0.0, 0.0, 0.0, EntityManager::get<Texture2d*>("grass")->ID, false, "../../models/obj/grass.obj");
         addModel(flatGround);
-        test = 0;
         structureWasModified = false;
 
         // Génération d'une forêt de 300 arbres...
@@ -114,14 +118,6 @@ public:
           }
 
         }
-
-        Model* simCoinMiner = new Model("SIMCoinMiner", 100.0, 0.0, 5.0, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj");
-        simCoinMiner->setShadingOn();
-        addModel(simCoinMiner);
-
-        Eolienne* eolienne = new Eolienne(new Vector(1.0, 0.0, 1.0), 10.0, 15.0, 0.1, "eolienne", 20.0, 0.0, -20.0, false);
-        addModel(eolienne);
-        PowerManager::getInstance()->addSource(eolienne);
 
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
 
@@ -198,12 +194,20 @@ public:
 
     void createMachine(int positionX, int positionY, int positionZ){
         if(SideWindow::MachineType == "SimCoinsMiner"){
-            addPowerAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
+            addPowerDeviceAppariel(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ, EntityManager::get<Texture2d*>("simcoinminer")->ID, true, "../../models/obj/simcoin_miner.obj"));
             addModel(powerDeviceList.back());
+            powerDeviceList.back()->setShadingOn();
             PowerManager::getInstance()->addAppareil(powerDeviceList.back());
         }
         if(SideWindow::MachineType == "PanneauSolaire"){
-
+            addPowerSourceAppariel(new PanneauSolaire("Eolienne", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.0.obj"));
+            addModel(powerSourceList.back());
+            PowerManager::getInstance()->addSource(powerSourceList.back());
+        }
+        if(SideWindow::MachineType == "WindTurbine"){
+            addPowerSourceAppariel(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
+            addModel(powerSourceList.back());
+            PowerManager::getInstance()->addSource(powerSourceList.back());
         }
 
     }

@@ -66,6 +66,7 @@ public:
 
 
 
+
     bool isClicked(){
         scrollDown = scrollMenu->getScrollDown();
         scrollUp = scrollMenu->getScrollUp();

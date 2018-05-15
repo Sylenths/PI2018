@@ -18,17 +18,8 @@
 
 class Eolienne : public PowerSource {
     Model* turbineParts[3];
-    double angle;
-    double windAngle;
-    double power;
-    double temperature;
-    double windSpeed;
-    double paleLength;
-    double turbineSpeed;
-    double paleMasse;
-
-    Vector centerpoint;
-    Vector rotationAxe;
+    double angle, windAngle, power, temperature, windSpeed, paleLength, turbineSpeed, paleMasse;
+    Vector centerpoint, rotationAxe;
 
     /// Production d'énergie par seconde.
     void setTurbinePower(){

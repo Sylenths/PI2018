@@ -193,7 +193,7 @@ public:
         sceneMap["KeysMenu"] = new KeysMenu();
         sceneMap["HighScoresMenu"] = new HighScoresMenu();
         sceneMap["PauseMenu"] = new PauseMenu();
-        sceneMap["World"] = new World("", glContext, 0, 0, 0, 20, {0, 0, 0});
+        sceneMap["World"] = new World("", glContext, 0, 0, 0, 20, new Vector {0,0,0});
 
         chrono.restart();
         while (Scene::getScene() != "Quit") {
