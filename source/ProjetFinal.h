@@ -277,7 +277,6 @@ public:
                                             spawnMachineCap = false;
                                         }
                                     }
-                                    delete fondationGrid;
                                 }
                             }
 

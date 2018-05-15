@@ -190,17 +190,19 @@ public:
         if(SideWindow::MachineType == "SimCoinsMiner"){
             powerDeviceList.push_back(new SIMCoinMiner (5.0, "SimCoinsMiner", positionX, positionY, positionZ, true, "../../models/obj/simcoin_miner.obj"));
             addModel(powerDeviceList.back());
-            powerDeviceList.back()->setShadingOn();
+            modelList.back()->setShadingOn();
             PowerManager::getInstance()->addAppareil(powerDeviceList.back());
         }
         if(SideWindow::MachineType == "PanneauSolaire"){
             powerSourceList.push_back(new PanneauSolaire("SolarPannel", positionX, positionY, positionZ, true, "../../models/obj/solarPanel2.1.obj"));
             addModel(powerSourceList.back());
+            modelList.back()->setShadingOn();
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
         if(SideWindow::MachineType == "WindTurbine"){
             powerSourceList.push_back(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
             addModel(powerSourceList.back());
+            modelList.back()->setShadingOn();
             PowerManager::getInstance()->addSource(powerSourceList.back());
         }
 
