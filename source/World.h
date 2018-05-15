@@ -120,7 +120,7 @@ public:
         }
 
         hudLight = new Light(0.0, 0.0, 1.0, 0.0);
-
+        meteorites.push_back(new Meteorite(1,{0.5, 50.,0.5},{0., 10.,0.}));
         chrono.restart();
     }
     ~World(){
@@ -156,9 +156,10 @@ public:
 
         for(auto it = roofList.begin(); it != roofList.end(); it++)
             (*it)->drawAndShading(atmosphere.getRealLight().getVectorLight());
+        for(auto it : meteorites)
+            it->drawAndShading(atmosphere.getRealLight().getVectorLight());
 
-
-
+        collideMeteorites();
         atmosphere.updateAtmosphere();
         atmosphere.draw();
         context->setFrustum(IS2D);
@@ -233,32 +234,86 @@ public:
     void collideMeteorites(){
         if(!meteorites.empty()){
             for( auto meteorITe : meteorites){
+                bool collided = false;
                 for(auto wallIt : wallList){
-                    PhysicsData::CollisionData data =  Physics::collideMovingSphereOnModel((*meteorITe).speed,(*meteorITe).centerPos,(*meteorITe).radius,(*wallIt));
-                    if(data.collided)
-                        explodeMeteorite(meteorITe);
+                    if(!collided) {
+                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*wallIt))) {
+                            explodeMeteorite(meteorITe);
+                            Meteorite* temp = meteorITe;
+                            meteorites.remove(meteorITe);
+                            delete temp;
+                            collided = true;
+                        }
+                    }
                 }
                 for(auto roofIt : roofList){
-                    PhysicsData::CollisionData data =  Physics::collideMovingSphereOnModel((*meteorITe).speed,(*meteorITe).centerPos,(*meteorITe).radius,(*roofIt));
-                    if(data.collided)
-                        explodeMeteorite(meteorITe);
+                    if(!collided) {
+
+                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*roofIt))) {
+                            explodeMeteorite(meteorITe);
+                            Meteorite *temp = meteorITe;
+                            meteorites.remove(meteorITe);
+                            delete temp;
+                            collided = true;
+
+                        }
+                    }
                 }
                 for(auto modelIt : modelList){
-                    PhysicsData::CollisionData data =  Physics::collideMovingSphereOnModel((*meteorITe).speed,(*meteorITe).centerPos,(*meteorITe).radius,(*modelIt));
-                    if(data.collided)
-                        explodeMeteorite(meteorITe);
+                    if(!collided) {
+
+                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*modelIt))) {
+                            explodeMeteorite(meteorITe);
+                            Meteorite *temp = meteorITe;
+                            meteorites.remove(meteorITe);
+                            delete temp;
+                            collided = true;
+                        }
+                    }
                 }
                 for(auto it : powerDeviceList){
-                    PhysicsData::CollisionData data =  Physics::collideMovingSphereOnModel((*meteorITe).speed,(*meteorITe).centerPos,(*meteorITe).radius,(*it));
-                    if(data.collided)
-                        explodeMeteorite(meteorITe);
+                    if(!collided) {
+
+                        if (Physics::isModelWithinSphere(meteorITe->centerPos,meteorITe->radius,(*it))) {
+                            explodeMeteorite(meteorITe);
+                            Meteorite *temp = meteorITe;
+                            meteorites.remove(meteorITe);
+                            delete temp;
+                            collided = true;
+
+                        }
+                    }
                 }
 
             }
         }
     }
     void explodeMeteorite(Meteorite* meteorite){
+        // p = mv, en d<autres mot puisque la seule chose qui fait varier la masse de la meteorite est son rayon on fera rayon * ||v||
+        double explosionRadius = meteorite->radius * (meteorite->speed.getNorm() / 10);
+        for(auto wallIt : wallList){
+            if (Physics::isModelWithinSphere(meteorite->centerPos,explosionRadius,(*wallIt))){
+                Wall* temp = wallIt;
+                wallList.remove(wallIt);
+                delete temp;
+            }
+        }
+        for(auto roofIt : roofList){
+            if (Physics::isModelWithinSphere(meteorite->centerPos,explosionRadius,(*roofIt))){
+                Roof* temp = roofIt;
+                roofList.remove(roofIt);
+                delete temp;
+            }
 
+        }
+
+        for(auto it : powerDeviceList){
+            if (Physics::isModelWithinSphere(meteorite->centerPos,explosionRadius,(*it))){
+                PowerDevice* temp = it;
+                powerDeviceList.remove(it);
+                delete temp;
+            }
+        }
     }
 
     bool wasStructureModified(){
