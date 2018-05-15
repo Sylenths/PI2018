@@ -71,8 +71,10 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Fonctions membres publiques statiques</h2></td></tr>
-<tr class="memitem:af0189aa1c7cf614db4bb60b33d43ce6e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#af0189aa1c7cf614db4bb60b33d43ce6e">collideVectorOnPlane</a> (<a class="el" href="struct_vector.html">Vector</a> segmentOrigin, <a class="el" href="struct_vector.html">Vector</a> segment, <a class="el" href="struct_vector.html">Vector</a> normalOrigin, <a class="el" href="struct_vector.html">Vector</a> normal)</td></tr>
-<tr class="separator:af0189aa1c7cf614db4bb60b33d43ce6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaec18defc898298102094e3910ffc14e"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#aaec18defc898298102094e3910ffc14e">getSquaredDistanceBetweenPoints</a> (<a class="el" href="struct_vector.html">Vector</a> p1, <a class="el" href="struct_vector.html">Vector</a> p2)</td></tr>
+<tr class="separator:aaec18defc898298102094e3910ffc14e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22495e72278ba87a4572c66399859f37"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a22495e72278ba87a4572c66399859f37">collideVectorOnPlane</a> (<a class="el" href="struct_vector.html">Vector</a> segmentOrigin, <a class="el" href="struct_vector.html">Vector</a> segment, <a class="el" href="struct_vector.html">Vector</a> normalOrigin, <a class="el" href="struct_vector.html">Vector</a> planeNormal)</td></tr>
+<tr class="separator:a22495e72278ba87a4572c66399859f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57b31ac76e975368b372a5e18714f366"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a57b31ac76e975368b372a5e18714f366">isPointWithinTri</a> (<a class="el" href="struct_vector.html">Vector</a> point, <a class="el" href="struct_physics_data_1_1_triangle.html">PhysicsData::Triangle</a> tri, <a class="el" href="struct_vector.html">Vector</a> normal)</td></tr>
 <tr class="separator:a57b31ac76e975368b372a5e18714f366"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65323b42bdda42c84d50e88312f76992"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a65323b42bdda42c84d50e88312f76992">collideVectorOnTri</a> (<a class="el" href="struct_vector.html">Vector</a> segmentOrigin, <a class="el" href="struct_vector.html">Vector</a> segment, <a class="el" href="struct_physics_data_1_1_triangle.html">PhysicsData::Triangle</a> tri, <a class="el" href="struct_vector.html">Vector</a> normal)</td></tr>
@@ -89,10 +91,21 @@ Fonctions membres publiques statiques</h2></td></tr>
 <tr class="separator:a34bee460d1a162b5561f0df2b43c10a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbd153e580203e04a8e25e784ec30022"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#adbd153e580203e04a8e25e784ec30022">getClosestPointOnTriSides</a> (<a class="el" href="struct_vector.html">Vector</a> point, <a class="el" href="struct_physics_data_1_1_triangle.html">PhysicsData::Triangle</a> tri)</td></tr>
 <tr class="separator:adbd153e580203e04a8e25e784ec30022"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7dacbabea9f8d99d3cfb51cad728b62"><td class="memItemLeft" align="right" valign="top"><a id="aa7dacbabea9f8d99d3cfb51cad728b62"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPointWithinSphere</b> (<a class="el" href="struct_vector.html">Vector</a> point, <a class="el" href="struct_vector.html">Vector</a> sphereOrigin, double sphereRadius)</td></tr>
+<tr class="separator:aa7dacbabea9f8d99d3cfb51cad728b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30480beab0998ea6c72630b17c4669bd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a30480beab0998ea6c72630b17c4669bd">collideVectorOnSphere</a> (<a class="el" href="struct_vector.html">Vector</a> vectorOrigin, <a class="el" href="struct_vector.html">Vector</a> vector, <a class="el" href="struct_vector.html">Vector</a> sphereOrigin, double sphereRadius)</td></tr>
 <tr class="separator:a30480beab0998ea6c72630b17c4669bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6f001478e335ed4e0f5b396b09aacb7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#aa6f001478e335ed4e0f5b396b09aacb7">collideMovingSphereOnTri</a> (<a class="el" href="struct_vector.html">Vector</a> &amp;sphereMovement, <a class="el" href="struct_vector.html">Vector</a> &amp;sphereCenter, double &amp;sphereRadius, <a class="el" href="struct_physics_data_1_1_triangle.html">PhysicsData::Triangle</a> &amp;tri, <a class="el" href="struct_vector.html">Vector</a> &amp;triangleNormal)</td></tr>
 <tr class="separator:aa6f001478e335ed4e0f5b396b09aacb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a837965f287ea07ae6fffb1624976831d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a837965f287ea07ae6fffb1624976831d">collideMovingSphereOnModel</a> (<a class="el" href="struct_vector.html">Vector</a> &amp;sphereMovement, <a class="el" href="struct_vector.html">Vector</a> &amp;sphereCenter, double &amp;sphereRadius, <a class="el" href="class_model.html">Model</a> &amp;model)</td></tr>
+<tr class="separator:a837965f287ea07ae6fffb1624976831d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa182a21bf02601f2f860f6b84f0a731b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#aa182a21bf02601f2f860f6b84f0a731b">collideMovingSphereOnSphere</a> (<a class="el" href="struct_vector.html">Vector</a> sphereMovement, <a class="el" href="struct_vector.html">Vector</a> movingSphereCentre, double movingSphereRadius, <a class="el" href="struct_vector.html">Vector</a> staticSphereCenter, double staticSphereRadius)</td></tr>
+<tr class="separator:aa182a21bf02601f2f860f6b84f0a731b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6f6ee94de4a2d8d479bfebc5d727e72"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#af6f6ee94de4a2d8d479bfebc5d727e72">isModelWithinSphere</a> (<a class="el" href="struct_vector.html">Vector</a> sphereOrigin, double sphereRadius, <a class="el" href="class_model.html">Model</a> &amp;model)</td></tr>
+<tr class="separator:af6f6ee94de4a2d8d479bfebc5d727e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a566fa16f0c5f1956192af9bb63db7fb8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a566fa16f0c5f1956192af9bb63db7fb8">collideMovingSpheres</a> (<a class="el" href="struct_vector.html">Vector</a> sphere1Movement, <a class="el" href="struct_vector.html">Vector</a> sphere1Center, double sphere1Radius, <a class="el" href="struct_vector.html">Vector</a> sphere2Movement, <a class="el" href="struct_vector.html">Vector</a> sphere2Center, double sphere2Radius)</td></tr>
+<tr class="separator:a566fa16f0c5f1956192af9bb63db7fb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
 <a id="ac33c84d82b5a1752a9714bf477bce6f5"></a>
@@ -197,6 +210,129 @@ Fonctions membres publiques statiques</h2></td></tr>
 
 </div>
 </div>
+<a id="a837965f287ea07ae6fffb1624976831d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a837965f287ea07ae6fffb1624976831d">&#9670;&nbsp;</a></span>collideMovingSphereOnModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a> Physics::collideMovingSphereOnModel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a> &amp;&#160;</td>
+          <td class="paramname"><em>sphereMovement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a> &amp;&#160;</td>
+          <td class="paramname"><em>sphereCenter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>sphereRadius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_model.html">Model</a> &amp;&#160;</td>
+          <td class="paramname"><em>model</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Collisionne une sphère en mouvement sur un modèle. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sphereMovement</td><td>Vecteur de déplacement de la sphère. </td></tr>
+    <tr><td class="paramname">sphereCenter</td><td>Centre de la sphère. </td></tr>
+    <tr><td class="paramname">sphereRadius</td><td>Rayon de la sphère. </td></tr>
+    <tr><td class="paramname">model</td><td>Modèle sur lequel collisionner la sphère. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd><a class="el" href="class_structure.html" title="Classe mère de d&#39;autre classe. ">Structure</a> de données contenant les résultats de la collision. </dd></dl>
+
+</div>
+</div>
+<a id="aa182a21bf02601f2f860f6b84f0a731b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa182a21bf02601f2f860f6b84f0a731b">&#9670;&nbsp;</a></span>collideMovingSphereOnSphere()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a> Physics::collideMovingSphereOnSphere </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>sphereMovement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>movingSphereCentre</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>movingSphereRadius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>staticSphereCenter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>staticSphereRadius</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Collisionne une sphère en mouvement sur une sphère immobile </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sphereMovement</td><td>Vecteur de déplacement de la sphère en mouvemnent. </td></tr>
+    <tr><td class="paramname">movingSphereCentre</td><td>Centre de la sphère en mouvement. </td></tr>
+    <tr><td class="paramname">movingSphereRadius</td><td>Rayon de la sphère en mouvement. </td></tr>
+    <tr><td class="paramname">staticSphereCenter</td><td>Centre de la sphère immobile. </td></tr>
+    <tr><td class="paramname">staticSphereRadius</td><td>Rayon de la sphère immobile. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd><a class="el" href="class_structure.html" title="Classe mère de d&#39;autre classe. ">Structure</a> de données contenant les résultats de la collision, le point est le point de collision sur surface de la sphère statique et le ratio correspond au rapport entre la norme du vecteur déplacement et la distance parcourue avant la collision. </dd></dl>
+
+</div>
+</div>
 <a id="aa6f001478e335ed4e0f5b396b09aacb7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa6f001478e335ed4e0f5b396b09aacb7">&#9670;&nbsp;</a></span>collideMovingSphereOnTri()</h2>
 
@@ -255,6 +391,78 @@ Fonctions membres publiques statiques</h2></td></tr>
     <tr><td class="paramname">sphereRadius</td><td>Rayon de la sphère. </td></tr>
     <tr><td class="paramname">tri</td><td>Triangle. </td></tr>
     <tr><td class="paramname">triangleNormal</td><td>Vecteur normal du triangle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd><a class="el" href="class_structure.html" title="Classe mère de d&#39;autre classe. ">Structure</a> de données contenant les résultats de la collision. </dd></dl>
+
+</div>
+</div>
+<a id="a566fa16f0c5f1956192af9bb63db7fb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a566fa16f0c5f1956192af9bb63db7fb8">&#9670;&nbsp;</a></span>collideMovingSpheres()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="struct_physics_data_1_1_collision_data.html">PhysicsData::CollisionData</a> Physics::collideMovingSpheres </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>sphere1Movement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>sphere1Center</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sphere1Radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>sphere2Movement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>sphere2Center</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sphere2Radius</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Collisionne deux sphères en mouvemnt. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sphere1Movement</td><td>Vecteur de déplacement de la sphère 1. </td></tr>
+    <tr><td class="paramname">sphere1Center</td><td>Centre de la sphère 1. </td></tr>
+    <tr><td class="paramname">sphere1Radius</td><td>Rayon de la sphère 1. </td></tr>
+    <tr><td class="paramname">sphere2Movement</td><td>Vecteur de déplacement de la sphère 2. </td></tr>
+    <tr><td class="paramname">sphere2Center</td><td>Centre de la sphère 2. </td></tr>
+    <tr><td class="paramname">sphere2Radius</td><td>Rayon de la sphère 2. </td></tr>
   </table>
   </dd>
 </dl>
@@ -364,8 +572,8 @@ Fonctions membres publiques statiques</h2></td></tr>
 
 </div>
 </div>
-<a id="af0189aa1c7cf614db4bb60b33d43ce6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0189aa1c7cf614db4bb60b33d43ce6e">&#9670;&nbsp;</a></span>collideVectorOnPlane()</h2>
+<a id="a22495e72278ba87a4572c66399859f37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22495e72278ba87a4572c66399859f37">&#9670;&nbsp;</a></span>collideVectorOnPlane()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -395,7 +603,7 @@ Fonctions membres publiques statiques</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
-          <td class="paramname"><em>normal</em>&#160;</td>
+          <td class="paramname"><em>planeNormal</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -469,7 +677,7 @@ Fonctions membres publiques statiques</h2></td></tr>
 </div><div class="memdoc">
 <p>Collisionne un vecteur sur une sphère. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vectorOrigin</td><td>point d'origine du vecteur. </td></tr>
+    <tr><td class="paramname">vectorOrigin</td><td>Point d'origine du vecteur. </td></tr>
     <tr><td class="paramname">vector</td><td>Vecteur. </td></tr>
     <tr><td class="paramname">sphereOrigin</td><td>Point d'origine de la sphère. </td></tr>
     <tr><td class="paramname">sphereRadius</td><td>Rayon de la sphère. </td></tr>
@@ -577,7 +785,7 @@ Fonctions membres publiques statiques</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Trouve le point faisant partie d'un segment de droite qui est le plus rapprochè d'un autre point situé ailleurs dans l'espace. </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Trouve le point faisant partie d'un segment de droite qui est le plus rapproché d'un autre point situé ailleurs dans l'espace. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">searchOrigin</td><td>Point dont on recherche le point le plus rapproché sur lw segment de droite. </td></tr>
     <tr><td class="paramname">a</td><td>Point un délimitant le segment de droite. </td></tr>
@@ -633,6 +841,101 @@ Fonctions membres publiques statiques</h2></td></tr>
 
 </div>
 </div>
+<a id="aaec18defc898298102094e3910ffc14e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaec18defc898298102094e3910ffc14e">&#9670;&nbsp;</a></span>getSquaredDistanceBetweenPoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double Physics::getSquaredDistanceBetweenPoints </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>p2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Calcule le carré de la distance entre deux points. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>Point 1. </td></tr>
+    <tr><td class="paramname">p2</td><td>Point 2. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Carré de la distance entre les points. </dd></dl>
+
+</div>
+</div>
+<a id="af6f6ee94de4a2d8d479bfebc5d727e72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6f6ee94de4a2d8d479bfebc5d727e72">&#9670;&nbsp;</a></span>isModelWithinSphere()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Physics::isModelWithinSphere </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>sphereOrigin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sphereRadius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_model.html">Model</a> &amp;&#160;</td>
+          <td class="paramname"><em>model</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Vérifie si un point d'un modèle se trouve à l'intérieur d'une sphère. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sphereOrigin</td><td>Centre de la sphère. </td></tr>
+    <tr><td class="paramname">sphereRadius</td><td>Rayon de la sphère. </td></tr>
+    <tr><td class="paramname">model</td><td>Modèle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Vrai (true) si un point du modèle se trouve à l'intérieur de la sphère. </dd></dl>
+
+</div>
+</div>
 <a id="a57b31ac76e975368b372a5e18714f366"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a57b31ac76e975368b372a5e18714f366">&#9670;&nbsp;</a></span>isPointWithinTri()</h2>
 
@@ -672,11 +975,11 @@ Fonctions membres publiques statiques</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Détermine si un pointse trouve à l'intérieur d'un triangle. </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Détermine si un point se trouve à l'intérieur d'un triangle. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">point</td><td>Le point. </td></tr>
-    <tr><td class="paramname">tri</td><td>Le triangle </td></tr>
-    <tr><td class="paramname">normal</td><td>Vecteur normalisé représentant la normle du triangle. </td></tr>
+    <tr><td class="paramname">tri</td><td>Le triangle. </td></tr>
+    <tr><td class="paramname">normal</td><td>Vecteur normalisé représentant la normale du triangle. </td></tr>
   </table>
   </dd>
 </dl>

@@ -86,8 +86,8 @@ Graphe d'héritage de Window:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:a96efd3d806565db46c9328c64347a48e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a96efd3d806565db46c9328c64347a48e">Window</a> (const char *title, int x, int y, int width, int height, unsigned int windowflags)</td></tr>
-<tr class="separator:a96efd3d806565db46c9328c64347a48e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a344fa3d6ccde825e9b9ee39d7acb1966"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a344fa3d6ccde825e9b9ee39d7acb1966">Window</a> (const char *title, const int &amp;x, const int &amp;y, const int &amp;<a class="el" href="class_window.html#af5b1c436782cc9752d386493fbc5dc8c">width</a>, const int &amp;<a class="el" href="class_window.html#af0ac1732ca6b79a6f6b78aa344140514">height</a>, const unsigned int &amp;windowflags)</td></tr>
+<tr class="separator:a344fa3d6ccde825e9b9ee39d7acb1966"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3914a3846297c08fe8aa8cd724c8fc8"><td class="memItemLeft" align="right" valign="top"><a id="ab3914a3846297c08fe8aa8cd724c8fc8"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ab3914a3846297c08fe8aa8cd724c8fc8">clear</a> ()=0</td></tr>
 <tr class="memdesc:ab3914a3846297c08fe8aa8cd724c8fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode virtuelle pour effacer le contenu de la fenêtre. <br /></td></tr>
@@ -99,21 +99,27 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Attributs protégés</h2></td></tr>
-<tr class="memitem:a2fbd44b18a6d7d817eeb8d7d75733ba7"><td class="memItemLeft" align="right" valign="top"><a id="a2fbd44b18a6d7d817eeb8d7d75733ba7"></a>
-SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a2fbd44b18a6d7d817eeb8d7d75733ba7">sdlwindow</a></td></tr>
-<tr class="memdesc:a2fbd44b18a6d7d817eeb8d7d75733ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affichage de la fenêtres. <br /></td></tr>
-<tr class="separator:a2fbd44b18a6d7d817eeb8d7d75733ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6be667ef970fd951a4853e7bcc933ac8"><td class="memItemLeft" align="right" valign="top"><a id="a6be667ef970fd951a4853e7bcc933ac8"></a>
+SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a6be667ef970fd951a4853e7bcc933ac8">sdlWindow</a></td></tr>
+<tr class="memdesc:a6be667ef970fd951a4853e7bcc933ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fenêtre. <br /></td></tr>
+<tr class="separator:a6be667ef970fd951a4853e7bcc933ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5b1c436782cc9752d386493fbc5dc8c"><td class="memItemLeft" align="right" valign="top"><a id="af5b1c436782cc9752d386493fbc5dc8c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#af5b1c436782cc9752d386493fbc5dc8c">width</a></td></tr>
+<tr class="memdesc:af5b1c436782cc9752d386493fbc5dc8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Largeur. <br /></td></tr>
+<tr class="separator:af5b1c436782cc9752d386493fbc5dc8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0ac1732ca6b79a6f6b78aa344140514"><td class="memItemLeft" align="right" valign="top"><a id="af0ac1732ca6b79a6f6b78aa344140514"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#af0ac1732ca6b79a6f6b78aa344140514">height</a></td></tr>
+<tr class="memdesc:af0ac1732ca6b79a6f6b78aa344140514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hauteur. <br /></td></tr>
+<tr class="separator:af0ac1732ca6b79a6f6b78aa344140514"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Représentation de la fenêtre. </p>
-<p>Affichage de la fenêtre. </p><dl class="section author"><dt>Auteur</dt><dd>Antoine Legault, Samuel Labelle </dd></dl>
+<p>Affichage de la fenêtre. </p><dl class="section author"><dt>Auteur</dt><dd>Antoine Legault, Samuel Labelle et Patrick Singcaster </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>27 mars 2018 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
-<dl class="section warning"><dt>Avertissement</dt><dd>Aucun. </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000038">Bogue:</a></b></dt><dd>Aucun. </dd></dl>
 </div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
-<a id="a96efd3d806565db46c9328c64347a48e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96efd3d806565db46c9328c64347a48e">&#9670;&nbsp;</a></span>Window()</h2>
+<a id="a344fa3d6ccde825e9b9ee39d7acb1966"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a344fa3d6ccde825e9b9ee39d7acb1966">&#9670;&nbsp;</a></span>Window()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,31 +136,31 @@ SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>y</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>width</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>height</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramtype">const unsigned int &amp;&#160;</td>
           <td class="paramname"><em>windowflags</em>&#160;</td>
         </tr>
         <tr>

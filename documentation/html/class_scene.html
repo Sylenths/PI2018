@@ -81,14 +81,16 @@ Graphe d'héritage de Scene:</div>
  <div class="center">
   <img src="class_scene.png" usemap="#Scene_map" alt=""/>
   <map id="Scene_map" name="Scene_map">
-<area href="class_menu.html" title="Représentation de menu. " alt="Menu" shape="rect" coords="180,56,290,80"/>
-<area href="class_menu2d.html" alt="Menu2d" shape="rect" coords="480,56,590,80"/>
-<area href="class_world.html" title="Reprsentation du monde et de la partie. " alt="World" shape="rect" coords="600,56,710,80"/>
+<area href="class_menu.html" title="Représentation de menu. " alt="Menu" shape="rect" coords="120,56,230,80"/>
+<area href="class_menu2d.html" alt="Menu2d" shape="rect" coords="540,56,650,80"/>
+<area href="class_world.html" title="Reprsentation du monde et de la partie. " alt="World" shape="rect" coords="660,56,770,80"/>
 <area href="class_high_scores_menu.html" alt="HighScoresMenu" shape="rect" coords="0,112,110,136"/>
 <area href="class_in_game_overlay.html" title="Représentation de l&#39;interface en jeu. " alt="InGameOverlay" shape="rect" coords="120,112,230,136"/>
 <area href="class_pause_menu.html" title="Représentation du menu echap en jeu. " alt="PauseMenu" shape="rect" coords="240,112,350,136"/>
-<area href="class_settings_menu.html" title="Représentation du menu des options du jeu. " alt="SettingsMenu" shape="rect" coords="360,112,470,136"/>
+<area href="class_keys_menu.html" alt="KeysMenu" shape="rect" coords="360,112,470,136"/>
 <area href="class_main_menu.html" title="Menu principal. " alt="MainMenu" shape="rect" coords="480,112,590,136"/>
+<area href="class_resolution_menu.html" title="Représentation du menu des résolutions. " alt="ResolutionMenu" shape="rect" coords="600,112,710,136"/>
+<area href="class_settings_menu.html" title="Représentation du menu des options du jeu. " alt="SettingsMenu" shape="rect" coords="720,112,830,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -113,12 +115,15 @@ virtual <a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class=
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Fonctions membres publiques statiques</h2></td></tr>
-<tr class="memitem:a1479b43180ac99f7191f8394f11f4023"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a1479b43180ac99f7191f8394f11f4023">changeActiveScene</a> (std::string scene)</td></tr>
-<tr class="separator:a1479b43180ac99f7191f8394f11f4023"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8dc7821ba766ff047d10325e9dad9af"><td class="memItemLeft" align="right" valign="top"><a id="af8dc7821ba766ff047d10325e9dad9af"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#af8dc7821ba766ff047d10325e9dad9af">getActiveScene</a> ()</td></tr>
-<tr class="memdesc:af8dc7821ba766ff047d10325e9dad9af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourner la menu actif. <br /></td></tr>
-<tr class="separator:af8dc7821ba766ff047d10325e9dad9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad910e37ae74169bda76a590603444d2d"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#ad910e37ae74169bda76a590603444d2d">pushScene</a> (std::string scene)</td></tr>
+<tr class="separator:ad910e37ae74169bda76a590603444d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36de9b3e6b87ef18115e45c4b1d8d880"><td class="memItemLeft" align="right" valign="top"><a id="a36de9b3e6b87ef18115e45c4b1d8d880"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>popScene</b> ()</td></tr>
+<tr class="separator:a36de9b3e6b87ef18115e45c4b1d8d880"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3323703969d0086caad05c25596a24c8"><td class="memItemLeft" align="right" valign="top"><a id="a3323703969d0086caad05c25596a24c8"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a3323703969d0086caad05c25596a24c8">getScene</a> ()</td></tr>
+<tr class="memdesc:a3323703969d0086caad05c25596a24c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourner la menu actif. <br /></td></tr>
+<tr class="separator:a3323703969d0086caad05c25596a24c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec0d55a02c9ead4198c4a96319b9347c"><td class="memItemLeft" align="right" valign="top"><a id="aec0d55a02c9ead4198c4a96319b9347c"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#aec0d55a02c9ead4198c4a96319b9347c">getActiveFPS</a> ()</td></tr>
 <tr class="memdesc:aec0d55a02c9ead4198c4a96319b9347c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourner un booléen "vrai" si l'affichage des fps est activé. <br /></td></tr>
@@ -126,14 +131,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Attributs protégés statiques</h2></td></tr>
-<tr class="memitem:a6b4659f25115d7a5c77d17588b1404ed"><td class="memItemLeft" align="right" valign="top"><a id="a6b4659f25115d7a5c77d17588b1404ed"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a6b4659f25115d7a5c77d17588b1404ed">active</a> = &quot;MainMenu&quot;</td></tr>
-<tr class="memdesc:a6b4659f25115d7a5c77d17588b1404ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir quel menu est actif. <br /></td></tr>
-<tr class="separator:a6b4659f25115d7a5c77d17588b1404ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a2e352f822b420f6ea691a11e613674"><td class="memItemLeft" align="right" valign="top"><a id="a6a2e352f822b420f6ea691a11e613674"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a6a2e352f822b420f6ea691a11e613674">previous</a> = &quot; &quot;</td></tr>
-<tr class="memdesc:a6a2e352f822b420f6ea691a11e613674"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir quel était le menu précédent actif. <br /></td></tr>
-<tr class="separator:a6a2e352f822b420f6ea691a11e613674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac210254a5412e7f5920a7c50d4216a2d"><td class="memItemLeft" align="right" valign="top"><a id="ac210254a5412e7f5920a7c50d4216a2d"></a>
+static std::stack&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>scenes</b></td></tr>
+<tr class="separator:ac210254a5412e7f5920a7c50d4216a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9151905ea5287a0fe045f717ff07d0ec"><td class="memItemLeft" align="right" valign="top"><a id="a9151905ea5287a0fe045f717ff07d0ec"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene.html#a9151905ea5287a0fe045f717ff07d0ec">FPS</a> = false</td></tr>
 <tr class="memdesc:a9151905ea5287a0fe045f717ff07d0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de savoir si l'affichage des fps est actif. <br /></td></tr>
@@ -145,10 +145,10 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <dl class="section date"><dt>Date</dt><dd>10 avril 2018 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section warning"><dt>Avertissement</dt><dd>. </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000029">Bogue:</a></b></dt><dd>Aucun. </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000032">Bogue:</a></b></dt><dd>Aucun. </dd></dl>
 </div><h2 class="groupheader">Documentation des fonctions membres</h2>
-<a id="a1479b43180ac99f7191f8394f11f4023"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1479b43180ac99f7191f8394f11f4023">&#9670;&nbsp;</a></span>changeActiveScene()</h2>
+<a id="ad910e37ae74169bda76a590603444d2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad910e37ae74169bda76a590603444d2d">&#9670;&nbsp;</a></span>pushScene()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -157,7 +157,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::string Scene::changeActiveScene </td>
+          <td class="memname">static std::string Scene::pushScene </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>scene</em></td><td>)</td>
@@ -209,7 +209,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   </dd>
 </dl>
 
-<p>Implémenté dans <a class="el" href="class_high_scores_menu.html#adaf4d7806c2fa946f1962f4d817c68b4">HighScoresMenu</a>, <a class="el" href="class_world.html#a1979a2ce1b9a056a2da24c931e960453">World</a>, <a class="el" href="class_in_game_overlay.html#afa545ae8dc13fdd730a6b1488dde631c">InGameOverlay</a>, <a class="el" href="class_main_menu.html#a53dec876303a3826e217d65150a7a21a">MainMenu</a>, <a class="el" href="class_settings_menu.html#ad72f10b911595d756e800051943cacb6">SettingsMenu</a>, <a class="el" href="class_pause_menu.html#aa1ad34421f6a904c76c6317e9ab35232">PauseMenu</a>, <a class="el" href="class_menu.html#ae4a3cc866cc4f2164f644f994bbc9ccc">Menu</a>, et <a class="el" href="class_menu2d.html#a9684af268348ffa189eda52c7e3d161c">Menu2d</a>.</p>
+<p>Implémenté dans <a class="el" href="class_world.html#a1979a2ce1b9a056a2da24c931e960453">World</a>, <a class="el" href="class_high_scores_menu.html#adaf4d7806c2fa946f1962f4d817c68b4">HighScoresMenu</a>, <a class="el" href="class_in_game_overlay.html#afa545ae8dc13fdd730a6b1488dde631c">InGameOverlay</a>, <a class="el" href="class_menu2d.html#a930fa53d7fd3310bb7fe3836089f5e49">Menu2d</a>, <a class="el" href="class_pause_menu.html#aa1ad34421f6a904c76c6317e9ab35232">PauseMenu</a>, et <a class="el" href="class_menu.html#ae4a3cc866cc4f2164f644f994bbc9ccc">Menu</a>.</p>
 
 </div>
 </div>
@@ -243,7 +243,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   </dd>
 </dl>
 
-<p>Implémenté dans <a class="el" href="class_high_scores_menu.html#a7412fdbd146644456c4d079ad2a5d559">HighScoresMenu</a>, <a class="el" href="class_world.html#ad80496fed6663ad4c56641bfffb50ad6">World</a>, <a class="el" href="class_in_game_overlay.html#aeae4677cecdeb12712743ddefdd25243">InGameOverlay</a>, <a class="el" href="class_main_menu.html#ac2800b67abd2ec8a194907c4ce1269f9">MainMenu</a>, <a class="el" href="class_settings_menu.html#a0dd5c9a41f1de3a98cc273b46d6a75d1">SettingsMenu</a>, <a class="el" href="class_pause_menu.html#ac03d72352a7a3b06de676c429cf32890">PauseMenu</a>, <a class="el" href="class_menu.html#a9e5681a44da319358b0f944ad2866c4c">Menu</a>, et <a class="el" href="class_menu2d.html#a23c09421f0ece2093ccfe3450dace060">Menu2d</a>.</p>
+<p>Implémenté dans <a class="el" href="class_world.html#ad80496fed6663ad4c56641bfffb50ad6">World</a>, <a class="el" href="class_high_scores_menu.html#a7412fdbd146644456c4d079ad2a5d559">HighScoresMenu</a>, <a class="el" href="class_in_game_overlay.html#aeae4677cecdeb12712743ddefdd25243">InGameOverlay</a>, <a class="el" href="class_menu2d.html#a78b61624e25a8b3bf6bb29ae110752e6">Menu2d</a>, <a class="el" href="class_pause_menu.html#ac03d72352a7a3b06de676c429cf32890">PauseMenu</a>, et <a class="el" href="class_menu.html#a9e5681a44da319358b0f944ad2866c4c">Menu</a>.</p>
 
 </div>
 </div>
