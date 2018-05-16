@@ -50,12 +50,13 @@ protected:
             B = Vector(vertices[i * 3], vertices[i * 3 + 1], vertices[i * 3 + 2]);
             AB = B - sun; // OB - OA = AB
 
-            k = ((0.1 - B.y) /
+            k = ((0.0 - B.y) /
                  (AB.y)); // la quantité à multiplier à chacune des composantes pour atteindre notre plan y = 0
             verticesShading[i * 3] = k * AB.x + B.x;
-            verticesShading[i * 3 + 1] = 0.1;
+            verticesShading[i * 3 + 1] = 0.0;
             verticesShading[i * 3 + 2] = k * AB.z + B.z;
         }
+
     }
 
 
@@ -83,7 +84,7 @@ protected:
             verticesEdge.push_back(verticesShading[i * 9 + 3]);
             verticesEdge.push_back(verticesShading[i * 9 + 5]);
 
-            for (int i2 = 0; i2 < vertexCount; ++i2) {
+            for (int i2 = 0; i2 < (vertexCount * 3); ++i2) {
                 if (!((verticesShading[i2 * 3] == verticesShading[i * 9]) &&
                       (verticesShading[i2 * 3 + 2] == verticesShading[i * 9 + 2]))) { // pas égal à A
                     if (!((verticesShading[i2 * 3] == verticesShading[i * 9 + 3]) &&
@@ -96,7 +97,7 @@ protected:
                             verticesEdge.pop_back();
                             verticesEdge.pop_back();
                             //overflow the iterator as a pseudo-break
-                            i2 = vertexCount;
+                            i2 = (vertexCount * 3);
                         }
                     }
                 }
@@ -110,7 +111,7 @@ protected:
             verticesEdge.push_back(verticesShading[i * 9 + 6]);
             verticesEdge.push_back(verticesShading[i * 9 + 8]);
 
-            for (int i2 = 0; i2 < vertexCount; ++i2) {
+            for (int i2 = 0; i2 < (vertexCount * 3); ++i2) {
                 if (!((verticesShading[i2 * 3] == verticesShading[i * 9 + 3]) &&
                       (verticesShading[i2 * 3 + 2] == verticesShading[i * 9 + 5]))) { // pas égal à A
                     if (!((verticesShading[i2 * 3] == verticesShading[i * 9 + 6]) &&
@@ -122,7 +123,7 @@ protected:
                             verticesEdge.pop_back();
                             verticesEdge.pop_back();
                             verticesEdge.pop_back();
-                            i2 = vertexCount;
+                            i2 = (vertexCount * 3);
                         }
                     }
                 }
@@ -136,7 +137,7 @@ protected:
             verticesEdge.push_back(verticesShading[i * 9]);
             verticesEdge.push_back(verticesShading[i * 9 + 2]);
 
-            for (int i2 = 0; i2 < vertexCount; ++i2) {
+            for (int i2 = 0; i2 < (vertexCount * 3); ++i2) {
                 if (!((verticesShading[i2 * 3] == verticesShading[i * 9 + 6]) &&
                       (verticesShading[i2 * 3 + 2] == verticesShading[i * 9 + 8]))) { // pas égal à A
                     if (!((verticesShading[i2 * 3] == verticesShading[i * 9]) &&
@@ -148,11 +149,12 @@ protected:
                             verticesEdge.pop_back();
                             verticesEdge.pop_back();
                             verticesEdge.pop_back();
-                            i2 = vertexCount;
+                            i2 = (vertexCount * 3);
                         }
                     }
                 }
             }
+        }
 
             double xAverage = 0.0;
             for (int i = 0; i < (verticesEdge.size() / 2); ++i) {
@@ -211,81 +213,81 @@ protected:
 
             if (upSector.size() == 2) {
                 realShading.push_back(xAverage);
-                realShading.push_back(0.1);
+                realShading.push_back(0.0);
                 realShading.push_back(zAverage);
 
                 realShading.push_back(upSector[0]);
-                realShading.push_back(0.1);
+                realShading.push_back(0.0);
                 realShading.push_back(upSector[1]);
 
                 realShading.push_back(downSector[0]);
-                realShading.push_back(0.1);
+                realShading.push_back(0.0);
                 realShading.push_back(downSector[1]);
                 for (int i = 1; i < (downSector.size() / 2); ++i) {
                     realShading.push_back(xAverage);
-                    realShading.push_back(0.1);
+                    realShading.push_back(0.0);
                     realShading.push_back(zAverage);
 
                     realShading.push_back(downSector[(i - 1) * 2]);
-                    realShading.push_back(0.1);
+                    realShading.push_back(0.0);
                     realShading.push_back(downSector[(i - 1) * 2 + 1]);
 
                     realShading.push_back(downSector[i * 2]);
-                    realShading.push_back(0.1);
+                    realShading.push_back(0.0);
                     realShading.push_back(downSector[i * 2 + 1]);
                 }
             } else {
                 for (int i = 1; i < (upSector.size() / 2); ++i) {
                     realShading.push_back(xAverage);
-                    realShading.push_back(0.1);
+                    realShading.push_back(0.0);
                     realShading.push_back(zAverage);
 
                     realShading.push_back(upSector[(i - 1) * 2]);
-                    realShading.push_back(0.1);
+                    realShading.push_back(0.0);
                     realShading.push_back(upSector[(i - 1) * 2 + 1]);
 
                     realShading.push_back(upSector[i * 2]);
-                    realShading.push_back(0.1);
+                    realShading.push_back(0.0);
                     realShading.push_back(upSector[i * 2 + 1]);
                 }
 
                 realShading.push_back(xAverage);
-                realShading.push_back(0.1);
+                realShading.push_back(0.0);
                 realShading.push_back(zAverage);
 
                 realShading.push_back(upSector[upSector.size() - 2]);
-                realShading.push_back(0.1);
+                realShading.push_back(0.0);
                 realShading.push_back(upSector[upSector.size() - 1]);
 
                 realShading.push_back(downSector[0]);
-                realShading.push_back(0.1);
+                realShading.push_back(0.0);
                 realShading.push_back(downSector[1]);
 
                 for (int i = 1; i < (downSector.size() / 2); ++i) {
                     realShading.push_back(xAverage);
-                    realShading.push_back(0.1);
+                    realShading.push_back(0.0);
                     realShading.push_back(zAverage);
 
                     realShading.push_back(downSector[(i - 1) * 2]);
-                    realShading.push_back(0.1);
+                    realShading.push_back(0.0);
                     realShading.push_back(downSector[(i - 1) * 2 + 1]);
 
                     realShading.push_back(downSector[i * 2]);
-                    realShading.push_back(0.1);
+                    realShading.push_back(0.0);
                     realShading.push_back(downSector[i * 2 + 1]);
                 }
             }
 
             realShading.push_back(xAverage);
-            realShading.push_back(0.1);
+            realShading.push_back(0.0);
             realShading.push_back(zAverage);
 
             realShading.push_back(downSector[downSector.size() - 2]);
-            realShading.push_back(0.1);
+            realShading.push_back(0.0);
             realShading.push_back(downSector[downSector.size() - 1]);
 
             realShading.push_back(upSector[0]);
-            realShading.push_back(0.1);
+            realShading.push_back(0.0);
             realShading.push_back(upSector[1]);
 
             delete[] verticesShading;
@@ -293,8 +295,9 @@ protected:
 
             for (int i = 0; i < realShading.size(); ++i) {
                 verticesShading[i] = realShading[i];
-                ++shadingVertexCount;
             }
+
+            shadingVertexCount = realShading.size();
 
             delete[] normalsShading;
             delete[] colorsShading;
@@ -303,7 +306,7 @@ protected:
             colorsShading = new double[((realShading.size()) / 3) * 4];
 
             for (int i = 0; i < (realShading.size() / 3); ++i) {
-                normalsShading[i] = 0.0;
+                normalsShading[i * 3] = 0.0;
                 normalsShading[i * 3 + 1] = 1.0;
                 normalsShading[i * 3 + 2] = 0.0;
                 colorsShading[i * 4] = 0; // red
@@ -312,7 +315,7 @@ protected:
                 colorsShading[i * 4 + 3] = 127; // alpha
             }
         }
-    }
+
 
         public:
         std::function<void()> onClick;  ///< Pointeur de méthode réagissant à un click de souris.
@@ -888,7 +891,7 @@ protected:
                     colorsShading = new double[vertexCount * 4];
 
                     for (int i = 0; i < vertexCount; ++i) {
-                        normalsShading[i] = 0.0;
+                        normalsShading[i * 3] = 0.0;
                         normalsShading[i * 3 + 1] = 1.0;
                         normalsShading[i * 3 + 2] = 0.0;
                         colorsShading[i * 4] = 0; // red
@@ -900,6 +903,8 @@ protected:
 
                 updateShadingVertex(lightPos);
 
+                //cleanShadingVertex();
+
                 glEnableClientState(GL_VERTEX_ARRAY);
                 glEnableClientState(GL_NORMAL_ARRAY);
                 glEnableClientState(GL_COLOR_ARRAY);
@@ -908,7 +913,7 @@ protected:
                 glNormalPointer(GL_DOUBLE, 0, normalsShading);
                 glColorPointer(4, GL_DOUBLE, 0, colorsShading);
 
-                glDrawArrays(GL_TRIANGLES, 0, shadingVertexCount);
+                glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 
                 glDisableClientState(GL_VERTEX_ARRAY);
                 glDisableClientState(GL_NORMAL_ARRAY);
