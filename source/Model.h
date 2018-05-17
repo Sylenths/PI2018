@@ -70,7 +70,6 @@ protected:
 
     /// Enlève les triangles de surplus dans l'ombre afin d'enlever les superpositions
     void cleanShadingVertex() {
-
         bool signOf;
         std::vector<double> verticesEdge;
 
@@ -168,127 +167,145 @@ protected:
 
             double temp;
 
-            std::vector<double> upSector;
-            std::vector<double> downSector;
-            std::vector<double> realShading;
+        std::vector<double> realShading;
 
-            for (int i = 0; i < (verticesEdge.size() / 2); ++i) {
-                if (verticesEdge[i * 2 + 1] <= zAverage) {
-                    upSector.push_back(verticesEdge[i * 2]);
-                    upSector.push_back(verticesEdge[i * 2 + 1]);
-                } else {
-                    downSector.push_back(verticesEdge[i * 2]);
-                    downSector.push_back(verticesEdge[i * 2 + 1]);
-                }
-            }
 
-            for (int ix = 0; ix < (upSector.size() / 2); ++ix) { // croissant
-                for (int i2x = (ix + 1); i2x < (upSector.size() / 2); ++i2x) {
-                    if (upSector[ix * 2] > upSector[i2x * 2]) {
-                        temp = upSector[i2x * 2];
-                        upSector[i2x * 2] = upSector[ix * 2];
-                        upSector[ix * 2] = temp;
+        for (int i = 0; i < (verticesEdge.size() / 4); ++i) {
+            realShading.push_back(verticesEdge[i * 4    ]);
+            realShading.push_back(0.0);
+            realShading.push_back(verticesEdge[i * 4 + 1]);
+            realShading.push_back(verticesEdge[i * 4 + 2]);
+            realShading.push_back(0.0);
+            realShading.push_back(verticesEdge[i * 4 + 3]);
+            realShading.push_back(xAverage);
+            realShading.push_back(0.0);
+            realShading.push_back(zAverage);
+        }
 
-                        temp = upSector[i2x * 2 + 1];
-                        upSector[i2x * 2 + 1] = upSector[ix * 2 + 1];
-                        upSector[ix * 2 + 1] = temp;
-                    }
-                }
-            }
 
-            for (int ix = 0; ix < (downSector.size() / 2); ++ix) { // décroissant
-                for (int i2x = (ix + 1); i2x < (downSector.size() / 2); ++i2x) {
-                    if (downSector[ix * 2] < downSector[i2x * 2]) {
-                        temp = downSector[i2x * 2];
-                        downSector[i2x * 2] = downSector[ix * 2];
-                        downSector[ix * 2] = temp;
+        /*
+        std::vector<double> upSector;
+        std::vector<double> downSector;
 
-                        temp = downSector[i2x * 2 + 1];
-                        downSector[i2x * 2 + 1] = downSector[ix * 2 + 1];
-                        downSector[ix * 2 + 1] = temp;
-                    }
-                }
-            }
-
-            if (upSector.size() == 2) {
-                realShading.push_back(xAverage);
-                realShading.push_back(0.0);
-                realShading.push_back(zAverage);
-
-                realShading.push_back(upSector[0]);
-                realShading.push_back(0.0);
-                realShading.push_back(upSector[1]);
-
-                realShading.push_back(downSector[0]);
-                realShading.push_back(0.0);
-                realShading.push_back(downSector[1]);
-                for (int i = 1; i < (downSector.size() / 2); ++i) {
-                    realShading.push_back(xAverage);
-                    realShading.push_back(0.0);
-                    realShading.push_back(zAverage);
-
-                    realShading.push_back(downSector[(i - 1) * 2]);
-                    realShading.push_back(0.0);
-                    realShading.push_back(downSector[(i - 1) * 2 + 1]);
-
-                    realShading.push_back(downSector[i * 2]);
-                    realShading.push_back(0.0);
-                    realShading.push_back(downSector[i * 2 + 1]);
-                }
+        for (int i = 0; i < (verticesEdge.size() / 2); ++i) {
+            if (verticesEdge[i * 2 + 1] <= zAverage) {
+                upSector.push_back(verticesEdge[i * 2]);
+                upSector.push_back(verticesEdge[i * 2 + 1]);
             } else {
-                for (int i = 1; i < (upSector.size() / 2); ++i) {
-                    realShading.push_back(xAverage);
-                    realShading.push_back(0.0);
-                    realShading.push_back(zAverage);
+                downSector.push_back(verticesEdge[i * 2]);
+                downSector.push_back(verticesEdge[i * 2 + 1]);
+            }
+        }
 
-                    realShading.push_back(upSector[(i - 1) * 2]);
-                    realShading.push_back(0.0);
-                    realShading.push_back(upSector[(i - 1) * 2 + 1]);
+        for (int ix = 0; ix < (upSector.size() / 2); ++ix) { // croissant
+            for (int i2x = (ix + 1); i2x < (upSector.size() / 2); ++i2x) {
+                if (upSector[ix * 2] > upSector[i2x * 2]) {
+                    temp = upSector[i2x * 2];
+                    upSector[i2x * 2] = upSector[ix * 2];
+                    upSector[ix * 2] = temp;
 
-                    realShading.push_back(upSector[i * 2]);
-                    realShading.push_back(0.0);
-                    realShading.push_back(upSector[i * 2 + 1]);
+                    temp = upSector[i2x * 2 + 1];
+                    upSector[i2x * 2 + 1] = upSector[ix * 2 + 1];
+                    upSector[ix * 2 + 1] = temp;
                 }
+            }
+        }
 
+        for (int ix = 0; ix < (downSector.size() / 2); ++ix) { // décroissant
+            for (int i2x = (ix + 1); i2x < (downSector.size() / 2); ++i2x) {
+                if (downSector[ix * 2] < downSector[i2x * 2]) {
+                    temp = downSector[i2x * 2];
+                    downSector[i2x * 2] = downSector[ix * 2];
+                    downSector[ix * 2] = temp;
+
+                    temp = downSector[i2x * 2 + 1];
+                    downSector[i2x * 2 + 1] = downSector[ix * 2 + 1];
+                    downSector[ix * 2 + 1] = temp;
+                }
+            }
+        }
+
+        if (upSector.size() == 2) {
+            realShading.push_back(xAverage);
+            realShading.push_back(0.0);
+            realShading.push_back(zAverage);
+
+            realShading.push_back(upSector[0]);
+            realShading.push_back(0.0);
+            realShading.push_back(upSector[1]);
+
+            realShading.push_back(downSector[0]);
+            realShading.push_back(0.0);
+            realShading.push_back(downSector[1]);
+            for (int i = 1; i < (downSector.size() / 2); ++i) {
                 realShading.push_back(xAverage);
                 realShading.push_back(0.0);
                 realShading.push_back(zAverage);
 
-                realShading.push_back(upSector[upSector.size() - 2]);
+                realShading.push_back(downSector[(i - 1) * 2]);
                 realShading.push_back(0.0);
-                realShading.push_back(upSector[upSector.size() - 1]);
+                realShading.push_back(downSector[(i - 1) * 2 + 1]);
 
-                realShading.push_back(downSector[0]);
+                realShading.push_back(downSector[i * 2]);
                 realShading.push_back(0.0);
-                realShading.push_back(downSector[1]);
+                realShading.push_back(downSector[i * 2 + 1]);
+            }
+        } else {
+            for (int i = 1; i < (upSector.size() / 2); ++i) {
+                realShading.push_back(xAverage);
+                realShading.push_back(0.0);
+                realShading.push_back(zAverage);
 
-                for (int i = 1; i < (downSector.size() / 2); ++i) {
-                    realShading.push_back(xAverage);
-                    realShading.push_back(0.0);
-                    realShading.push_back(zAverage);
+                realShading.push_back(upSector[(i - 1) * 2]);
+                realShading.push_back(0.0);
+                realShading.push_back(upSector[(i - 1) * 2 + 1]);
 
-                    realShading.push_back(downSector[(i - 1) * 2]);
-                    realShading.push_back(0.0);
-                    realShading.push_back(downSector[(i - 1) * 2 + 1]);
-
-                    realShading.push_back(downSector[i * 2]);
-                    realShading.push_back(0.0);
-                    realShading.push_back(downSector[i * 2 + 1]);
-                }
+                realShading.push_back(upSector[i * 2]);
+                realShading.push_back(0.0);
+                realShading.push_back(upSector[i * 2 + 1]);
             }
 
             realShading.push_back(xAverage);
             realShading.push_back(0.0);
             realShading.push_back(zAverage);
 
-            realShading.push_back(downSector[downSector.size() - 2]);
+            realShading.push_back(upSector[upSector.size() - 2]);
             realShading.push_back(0.0);
-            realShading.push_back(downSector[downSector.size() - 1]);
+            realShading.push_back(upSector[upSector.size() - 1]);
 
-            realShading.push_back(upSector[0]);
+            realShading.push_back(downSector[0]);
             realShading.push_back(0.0);
-            realShading.push_back(upSector[1]);
+            realShading.push_back(downSector[1]);
 
+            for (int i = 1; i < (downSector.size() / 2); ++i) {
+                realShading.push_back(xAverage);
+                realShading.push_back(0.0);
+                realShading.push_back(zAverage);
+
+                realShading.push_back(downSector[(i - 1) * 2]);
+                realShading.push_back(0.0);
+                realShading.push_back(downSector[(i - 1) * 2 + 1]);
+
+                realShading.push_back(downSector[i * 2]);
+                realShading.push_back(0.0);
+                realShading.push_back(downSector[i * 2 + 1]);
+            }
+        }
+
+        realShading.push_back(xAverage);
+        realShading.push_back(0.0);
+        realShading.push_back(zAverage);
+
+        realShading.push_back(downSector[downSector.size() - 2]);
+        realShading.push_back(0.0);
+        realShading.push_back(downSector[downSector.size() - 1]);
+
+        realShading.push_back(upSector[0]);
+        realShading.push_back(0.0);
+        realShading.push_back(upSector[1]);
+
+
+         */
             if (cleanVerticesShading != nullptr) {
                 delete[] cleanVerticesShading;
             }
