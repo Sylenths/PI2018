@@ -92,7 +92,7 @@ public:
 		if (intersect < 0 || intersect > 1)
 			return {false};                        // no intersection
 
-		Vector collisionPoint = segmentOrigin + segment * intersect;                  // compute segment intersect point
+		Vector collisionPoint = segmentOrigin + segment * intersect;// compute segment intersect point
 		return {true, collisionPoint, intersect};
 
 
@@ -146,6 +146,11 @@ public:
 	static PhysicsData::CollisionData collideVectorOnTri(Vector segmentOrigin, Vector segment, PhysicsData::Triangle tri, Vector normal){
 
 		PhysicsData::CollisionData cData = collideVectorOnPlane(segmentOrigin, segment, tri.p1, normal);
+
+		if(!cData.collided){
+			return {false};
+		}
+
 		bool pointInTriangle = isPointWithinTri(cData.point, tri, normal);
 
 		if(pointInTriangle){
