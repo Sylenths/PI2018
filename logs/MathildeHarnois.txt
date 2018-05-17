@@ -1,0 +1,39 @@
+Tue May 1 16:02:09 2018 -0400 : Merge branch 'master' of https://github.com/Cegep-Joliette-SIM/PI2018
+Tue May 1 16:02:02 2018 -0400 : Modify - modifs dans cleanShadingVertex
+Tue May 1 15:11:01 2018 -0400 : Merge branch 'master' of https://github.com/Cegep-Joliette-SIM/PI2018
+Tue May 1 15:10:49 2018 -0400 : Modify - Model - ajout de la méthode signOfD et modifications dans CleanShadingVertex - Résolution de conflits dans World
+Tue May 1 13:44:41 2018 -0400 : Résolution de conflits
+Tue May 1 13:43:40 2018 -0400 : Résolution de conflits
+Thu Apr 26 11:05:31 2018 -0400 : Merge branch 'master' of https://github.com/Cegep-Joliette-SIM/PI2018
+Thu Apr 26 11:05:18 2018 -0400 : Merge branch 'master' of https://github.com/Cegep-Joliette-SIM/PI2018
+Thu Apr 26 08:54:47 2018 -0400 : Merge branch 'master' of https://github.com/Cegep-Joliette-SIM/PI2018
+Thu Apr 26 08:54:40 2018 -0400 : Modify - Sky & World
+Tue Apr 17 16:48:13 2018 -0400 : Merge branch 'master' of https://github.com/Cegep-Joliette-SIM/PI2018
+Tue Apr 17 16:48:02 2018 -0400 : Add - Modele et texture de l'atmosphere - Modify - Atmosphere - Ajout des fonctions dans atmosphere - Model - ajout de virtual devant le draw afin de permettre les exceptions comme l'atmosphère (sera utile pour les ombres) - Sky - Modif pour remplacer type de deltaTime - World - Ajout du modele de l'atmosphere et implémentation de sky et atmosphere dedans
+Tue Apr 17 14:37:11 2018 -0400 : Bug - Correction de conflitsÈ
+Tue Apr 17 14:30:06 2018 -0400 : Add - Sky - Classe Atmosphere renommee - Modify - Atmosphere - Nouvelle classe vide - Wolrd - Ajout de modeles, le modele sky est maintenant un Sky - ProjetFinal - Ajout de textures
+Thu Apr 12 10:51:08 2018 -0400 : Merge branch 'master' of https://github.com/Cegep-Joliette-SIM/PI2018
+Thu Apr 12 10:50:59 2018 -0400 : Ajout - Classe Atmosphere - Modify - ajout de commentaire dans la classe world
+Thu Apr 5 11:52:15 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
+Thu Apr 5 11:52:07 2018 -0400 : Add - Ajout image temporaire pour le ciel
+Thu Apr 5 11:11:15 2018 -0400 : Bug - Resolution de conflits
+Thu Apr 5 11:01:48 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
+Thu Apr 5 11:01:29 2018 -0400 : Modify - Chrono - Renommage Chronos en Chrono, légères modifications pour normes
+Thu Apr 5 10:58:10 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
+Thu Apr 5 10:57:28 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
+Thu Apr 5 10:56:26 2018 -0400 : Modify - Chrono - Renommage Chronos en Chrono, légères modifications pour normes
+Thu Apr 5 10:44:22 2018 -0400 : Modify - World - Ajout de commentaires dans le constructeur
+Tue Apr 3 16:00:57 2018 -0400 : Modify - Highscore, InGameESC, InGameOverlay - Ajout des fonctions de l'héritage
+Tue Apr 3 15:48:27 2018 -0400 : Modify - Menu - Ajout de fonctions virtuelles subscribeAll et unsubscribeAll
+Thu Mar 29 11:45:51 2018 -0400 : Ajout - Images dans le dossier images
+Thu Mar 29 11:11:15 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
+Thu Mar 29 11:11:01 2018 -0400 : Modify - Settings - Ajout de boutons - ProjetFinal - Ajout des textures pour les boutons de Settings
+Thu Mar 29 09:10:44 2018 -0400 : Correction - Résolution de conflits dans Menu
+Thu Mar 29 09:08:06 2018 -0400 : Modify - Ajout de description dans Highscore - Ajout constructeur et destructeur dans Menu
+Tue Mar 27 17:20:15 2018 -0400 : add - Highscore - modify - MainMenu - InGameOverlay - InGameESC - Settings
+Thu Mar 22 11:48:56 2018 -0400 : Add files via upload
+Thu Mar 22 11:13:01 2018 -0400 : Update Description détaillée.md
+Thu Mar 22 11:09:08 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
+Thu Mar 22 11:08:49 2018 -0400 : ajout dossier images
+Thu Mar 22 10:29:19 2018 -0400 : Update Description détaillée.md
+Thu Mar 15 14:38:30 2018 -0400 : Correction de fautes et changements mineurs
