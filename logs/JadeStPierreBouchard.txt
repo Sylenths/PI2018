@@ -1,0 +1,52 @@
+Thu May 10 12:09:56 2018 -0400 : Modify - Eolienne.h - Modification d'eolienne pour qu'elle ait besoin d'un minimum de vent pour fonctionner
+Thu May 10 12:04:08 2018 -0400 : Modify - Eolienne.h - Modification d'eolienne pour qu'elle calacule sa puissance et sa vitesse en fonction du vent
+Tue May 8 16:18:25 2018 -0400 : Modify - Eolienne.h - Modification d'eolienne pour qu'elle fasse une rotation en fonction de la position du vent
+Thu May 3 11:53:06 2018 -0400 : Modify - Materiel - Ajout de la methode get description et creation des materiels statiques
+Thu May 3 10:43:37 2018 -0400 : Add - ajout des WindTurbineButtons
+Thu May 3 10:26:27 2018 -0400 : Modify - MachineWindows - Correction du bug d'unscubscribe et finalisation du scrollingMenu - Add - ajout des WindTurbineButtons
+Wed May 2 22:59:31 2018 -0400 : Modify - ScrollingMenu - Amélioration temporaire du scroll
+Tue May 1 16:14:56 2018 -0400 : Modify - ScollingMenu - mise en place des mouvements de boutons
+Tue May 1 14:40:11 2018 -0400 : Add - DownButton, UpButton - Ajout des boutons permettant d'activer le scrolling Menu
+Tue May 1 14:33:50 2018 -0400 : Add - PanneauSolaire.png, PanneauSolaireO.png, SimCoinMinerButton.png, SimCoinMinerButtonO.png - Ajout des images néssécaires au ScrollingMenu
+Sun Apr 29 21:43:27 2018 -0400 : Modify - MachineWindow - Correction du subscribe
+Fri Apr 27 17:01:36 2018 -0400 : Add - ScrollingMenu.h - ajout du ScrollingMenu
+Thu Apr 26 14:33:03 2018 -0400 : Modify - MachineWindow.h- ajout du scrollingMenu - Add - ScrollingMenu.h - création du scrollingMenu
+Thu Apr 26 10:15:44 2018 -0400 : Modify - SIMCoinMiner - ajout des fonctions + constructeur
+Mon Apr 16 17:46:21 2018 -0400 : Modify - Highscore - faire la documentation
+Mon Apr 16 17:40:45 2018 -0400 : Modify - Highscore - correction de l'ordre d'affichage
+Thu Apr 12 12:28:56 2018 -0400 : Modify - Projet Final- modification d'une ligne
+Thu Apr 12 12:26:41 2018 -0400 : Modify - updateScores
+Thu Apr 12 11:43:32 2018 -0400 : Modify - updateScores
+Thu Apr 12 10:42:06 2018 -0400 : Modify - Highscore - Modifier le destructeur et le sort
+Wed Apr 11 22:43:15 2018 -0400 : Modify - Highscore - Ajout du sorting
+Mon Apr 9 23:02:04 2018 -0400 : Modify - Highscore - j'affiche les noms et les scores
+Thu Apr 5 22:10:40 2018 -0400 : Debug - J'enlève une ligne que j'avais mise en commentaire : elle faisait planter le programme
+Thu Apr 5 22:08:11 2018 -0400 : Add - MenuHighscore - ajout du fond du menu highscore (Meilleur version)
+Thu Apr 5 21:24:02 2018 -0400 : Add - MenuHighscore - ajout du fond du menu highscore - Modify - Highscore - Ajout du fond et début d'implémentation des labels.
+Thu Apr 5 12:37:45 2018 -0400 : Add - SauvegardeScores - fichier de sauvegarde pour les scores - Modify - Highscore, Scores - ajout des méthodes loadScores, Save, UpdateScores, getName,getScore et setScore
+Wed Apr 4 22:40:53 2018 -0400 : Add - Scores - Permet de gérer les scores dans le menu highscores
+Wed Apr 4 22:39:04 2018 -0400 : Add - Scores - Permet de gérer les scores dans le menu highscores - Modify - Highscore - ajout du bouton back, des données membres
+Tue Apr 3 16:02:10 2018 -0400 : Modify - MainMenu, Menu - Ajout des fonctions virtuelles subscribe / unsubscribe
+Thu Mar 29 10:50:11 2018 -0400 : Modify - ProjetFinal - Destruction de menuMap dans le destructeur
+Wed Mar 28 22:43:26 2018 -0400 :  Add - Image du mainMenu
+Wed Mar 28 22:35:50 2018 -0400 :  Debug - InGameOverlay, IngameESC, Highscore, Settings - corection d'une methode virtuelle pure
+Wed Mar 28 22:27:22 2018 -0400 :  Debug - Menu - correction d'une methode virtuelle pure
+Wed Mar 28 22:18:23 2018 -0400 :  Modify - ProjetFinal - correction du plantage et ajout du pointeur de menu
+Wed Mar 28 22:01:24 2018 -0400 :  Modify - maisonApp.png -  modification de l'image
+Tue Mar 27 19:39:13 2018 -0400 : Debug -MainMenu, InGameESC, InGameOverLay, Settings, Highscore- ajout des méthodes virtuelles
+Tue Mar 27 18:17:04 2018 -0400 : Modify - ProjetFinal - Changer la liste pour une map
+Tue Mar 27 16:12:37 2018 -0400 : Add - Prototype du menu principal.
+Sat Mar 24 19:12:37 2018 -0400 :  Modify - ResourceManager - Mise en place des méthodes addResource, removeResource et getResource
+Sat Mar 24 18:37:18 2018 -0400 :  Modify - ProjetFinal - correction d'erreurs
+Sat Mar 24 18:06:30 2018 -0400 :  Modify - ProjetFinal - Ajout du constructeur / destructeur / fonction Run
+Sat Mar 24 13:45:59 2018 -0400 :  Modify - Correction d'erreur de frappe mettre Matrix à la place de Matric
+Thu Mar 22 09:49:11 2018 -0400 : Create - Normes de nomenclature pour les ressources
+Tue Mar 20 15:10:23 2018 -0400 : Modify - Correction orthographe
+Tue Mar 13 15:09:53 2018 -0400 : Modify - Grammar correction
+Tue Mar 13 15:07:00 2018 -0400 : Modify - Saut de ligne
+Tue Mar 13 15:04:04 2018 -0400 : Modify - modification des normes de description et ajout d'un rappel de commandes.
+Thu Mar 1 12:10:38 2018 -0500 : Modify - But et environnement.md - Correction du Markdown
+Thu Mar 1 12:09:31 2018 -0500 : Modify - But et environnement.md - Ajout de .md
+Thu Mar 1 12:08:27 2018 -0500 : Create - Normes de soumission (commit).md - Création des normes de soumission
+Thu Mar 1 11:40:15 2018 -0500 : Ajout de .md
+Thu Mar 1 11:39:37 2018 -0500 : Créer les normes de communication

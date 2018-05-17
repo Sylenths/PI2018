@@ -226,7 +226,6 @@ public:
         }
         if(SideWindow::MachineType == "WindTurbine"){
             powerSourceList.push_back(new Eolienne(wind,5.0, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
-            //addPowerSourceAppariel(new Eolienne(wind, windspeed, temperature, producedCurrent, "Eolienne", positionX, positionY, positionZ, true, "../../models/obj/windTurbineFoot.obj"));
             addModel(powerSourceList.back());
             modelList.back()->setShadingOn();
             PowerManager::getInstance()->addSource(powerSourceList.back());

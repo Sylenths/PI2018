@@ -1,0 +1,46 @@
+Tue May 15 12:40:20 2018 -0400 : Correction d'un bug avec les floors
+Tue May 15 09:53:34 2018 -0400 : Mise en commentaire de collideMétéorite
+Tue May 15 09:53:03 2018 -0400 : Mise en commentaire de collideMétéorite
+Tue May 15 01:59:22 2018 -0400 : Destruction des murs par météorites
+Tue May 8 12:55:51 2018 -0400 : Modify - Meteorite ajout de documentation
+Tue May 8 12:13:28 2018 -0400 : Modufy - Murs et planchers sont fixed
+Tue May 8 07:25:09 2018 -0400 : Modify - Model little fix
+Tue May 8 03:49:29 2018 -0400 : Ajout - ajout des météorites
+Mon May 7 23:29:39 2018 -0400 : Modify - Planchers et murs avec étages quasi-fonctionnel, tout petit bug mineur a regler
+Thu May 3 12:34:13 2018 -0400 : Planchers qui dépasse de deux unités l'étage inférieure
+Tue May 1 14:44:40 2018 -0400 : Affichage de 1 plancher seulement
+Tue May 1 12:57:02 2018 -0400 : Modify - Floors, reste juste a déterminer la méthode de création
+Tue May 1 01:13:22 2018 -0400 : ADD Floor.h et modification de certaines variables dans StructureWindow
+Fri Apr 27 10:03:50 2018 -0400 : MODIFY- World, ajout d'une nouvelle variable et suppression de variables inutiles
+Thu Apr 26 07:25:29 2018 -0400 : MOD- SideWindow version finale 1.0
+Thu Apr 26 05:14:56 2018 -0400 : MOD- SideWindow modification des defines
+Thu Apr 26 02:59:04 2018 -0400 : Modify - SideWindow. Apport de correction et ajout de fonctionnalités
+Sat Apr 21 22:27:09 2018 -0400 : Ajout d'une image de beton NON-NORMALISÉE (car incapable) et nettoyage de code
+Thu Apr 19 14:10:06 2018 -0400 : FIX - ProjetFinal Fix d'un bug avec les fondations
+Thu Apr 19 14:04:58 2018 -0400 : Modify - ProjetFinal, Création de fondation sur mesure à l'aide d'un clic
+Thu Apr 19 10:07:57 2018 -0400 : Modify - World, changement du pointeur de la caméra dans InGameOverlay
+Thu Apr 19 09:00:33 2018 -0400 : ADD- ajout du model de fondation
+Tue Apr 17 12:50:38 2018 -0400 : Modify - World changement de modelMap pour modelList
+Tue Apr 17 00:34:59 2018 -0400 : MODIFY - InGameOverlay modification de la actionqueue
+Sun Apr 15 22:17:49 2018 -0400 : MODIFY - Label, les caractères reste de la même grosseur après un changement de texte
+Thu Apr 12 07:34:06 2018 -0400 : Changement de private pour protected dans ActionPArameter
+Thu Apr 12 06:44:49 2018 -0400 : ADD - Ajout de la classe ActionDoubl
+Thu Apr 12 06:40:39 2018 -0400 : ADD - Ajout de la classe ActionDouble
+Thu Apr 12 06:08:38 2018 -0400 : Modify - changer le nom de light.h pour Light.h
+Thu Apr 12 05:45:54 2018 -0400 : Add - ajout des classes ActionInt et modification de SIMParameter en ActionParameter
+Tue Apr 10 16:34:04 2018 -0400 : ADD - Ajout des classes Build et SIMParameter
+Tue Apr 10 08:12:38 2018 -0400 : ADD - ajout de la classe action
+Tue Apr 3 13:03:35 2018 -0400 : MODIFY/ADD - Ajout de la classe scene et modification du pointeur de menu dans ProjetFinal et modification de GLContext
+Tue Apr 3 10:30:48 2018 -0400 : Debug
+Tue Apr 3 10:15:33 2018 -0400 : MODIFY - Initialisation de width et height dans image2D
+Mon Apr 2 23:17:53 2018 -0400 : ADD - Ajout de la classe world
+Thu Mar 29 09:23:50 2018 -0400 : modify - Button et Label Button hérite de image2d et prends une std::function (méthode bind) comme onClick
+Thu Mar 29 06:07:00 2018 -0400 : Modify - Label.h hérite maintentant de image2d et est facile de changer le text
+Thu Mar 29 00:40:51 2018 -0400 : Create - Label - La classe Label \a ete creer et devrai marcher en theorie, mais le glgentextures ne reaffecte pas le unsigned int passer en parametre
+Wed Mar 28 23:09:15 2018 -0400 : debug
+Tue Mar 27 13:02:16 2018 -0400 : ajout fichier test.png
+Tue Mar 27 12:45:42 2018 -0400 : correction cmake
+Thu Mar 22 10:17:41 2018 -0400 : Création du projet.
+Thu Mar 1 11:46:26 2018 -0500 : Rename Normes de communication.md to Normes de Communication.md
+Thu Mar 1 11:46:02 2018 -0500 : Create But et environnement
+Thu Mar 1 11:28:57 2018 -0500 : Update Normes de Programmation.md

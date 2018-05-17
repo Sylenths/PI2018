@@ -1,0 +1,103 @@
+Wed May 16 20:22:10 2018 -0400 : Modify - Fondation - déplacement de la fonction dans sa classe
+Wed May 16 19:29:46 2018 -0400 : Modify - ProjetFinal - ajout exception pour les sources pour construire sans fondation
+Tue May 15 15:33:26 2018 -0400 : Modify - Debug - Il faut etre sur une fondation entouré de fondation pour créer une machine (marche juste pour le SimMiner présentement
+Tue May 15 14:26:25 2018 -0400 : Modify - World - fonctionnement panneau solaire
+Mon May 14 21:31:02 2018 -0400 : Modify - World - changement mineur
+Mon May 14 20:15:23 2018 -0400 : modify - World - On peut créer des machines en les séclectionnant et en appuyant sur e
+Thu May 10 09:34:22 2018 -0400 : modify - projet final - bug subscribe
+Tue May 8 14:57:10 2018 -0400 : Modify - Label - lors du updateText, la largeur et la hauteur s'ajuste en conséquence
+Mon May 7 22:18:21 2018 -0400 : modify - StrcutureWindow - Changement de l'affichage des parameter
+Mon May 7 21:54:32 2018 -0400 : Modify - InGameOverlay - correction d'écriture mal centré et delete de donnée inutile
+Thu May 3 16:10:51 2018 -0400 : modify - StructureWindow - ajout spec pour les materiaux
+Thu May 3 15:56:29 2018 -0400 : modify - textWindow - tout est fonctionnel
+Thu May 3 12:32:02 2018 -0400 : Modify - StructureWindow, TextWindow - tentation d'affichage des materiaux
+Thu May 3 11:59:19 2018 -0400 : Modify - StructureWindow - ajout de description
+Thu May 3 11:29:32 2018 -0400 : Modify - TextWindow - zone de texte fonctionnelle
+Tue May 1 16:57:00 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
+Sun Apr 29 22:01:23 2018 -0400 : Modify - textWindow - avancement sur la classe
+Thu Apr 26 20:04:27 2018 -0400 : Create - création d'un classe pour les description
+Thu Apr 26 12:31:45 2018 -0400 : Checkbox - ajustement
+Thu Apr 26 10:34:30 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
+Thu Apr 26 10:34:03 2018 -0400 : Modify - StructureWindow - Bouton fonctionne bien pour la height
+Thu Apr 26 11:21:08 2018 -0400 : Modify - StructureWindow - Rajout label for the height
+Thu Apr 26 11:11:24 2018 -0400 : Modify - ProjetFinal - unsubcribe et subscribe quand on change le mode de la camera
+Wed Apr 25 20:15:51 2018 -0400 : modify - structureWindow - rajout de bouton et tentative de fonctionnement du bouton add
+Wed Apr 25 19:47:06 2018 -0400 : Modify - ProjetFinal, InGameOverlay, StructureWindow - les boutons appuyé dans les sides menus retourne mainteant un string qui peut être associé à une fonction
+Tue Apr 24 16:19:55 2018 -0400 : Modify - Label - Fucking label marche avec la meme taille pour chaque chaine de caractère
+Mon Apr 23 21:42:41 2018 -0400 : Add, Modify - Les classes sideWindow - rajout de bouton build et cancel
+Mon Apr 23 21:12:32 2018 -0400 : Modify - WireWindow, StructureWindow - rajout d'autre bouton et les crash ne sont plus présent, donc tout fonctionne
+Sun Apr 22 22:08:20 2018 -0400 : Modify - Fichier des sideMenu - Amélioration et continuation, l'affichage est en commentaire pour le moment à cause d'un petit bug
+Sun Apr 22 22:07:15 2018 -0400 : Add - ajout d'images
+Thu Apr 19 15:50:42 2018 -0400 : Modify - InGameOverLay - amélioration de la classe et optimisation
+Thu Apr 19 15:24:52 2018 -0400 : Modify - InGameOverlay - amélioration en cours
+Thu Apr 19 14:12:58 2018 -0400 : Modify - Scene - Ajout de la documentation
+Thu Apr 19 12:59:20 2018 -0400 : Modify - ProjetFinal, GlContext - Les fps sont maintenant affichés dans le titre de la fenêtre
+Tue Apr 17 12:07:05 2018 -0400 : ProjetFinal - Modify - Affichage des fps maintenant en bas à droite
+Tue Apr 17 11:45:29 2018 -0400 : Modify - SettingsMenu - Bouton show fps fonctionne correctement
+Mon Apr 16 17:39:10 2018 -0400 : Modify - Settings - Amélioration du menu settings qui affiche mainteant les touches utilisées dans le programme
+Mon Apr 16 16:11:00 2018 -0400 : Modify - Scene , SettingsMenu - Rajout d'une fonction pour savoir si le bouton fps est activé ou non
+Thu Apr 12 11:15:04 2018 -0400 : Modify - ProjetFinal - Rajout d'un bouton pour quitter le jeu
+Thu Apr 12 09:46:17 2018 -0400 : Modify - PauseMenu - Le bouton back fonctionne bien dans tous les cas
+Wed Apr 11 22:24:05 2018 -0400 : Modify - PauseMenu - ajout documentation
+Wed Apr 11 22:16:32 2018 -0400 : Modify - Majorité des menu - implémentation du menu pause (non final)
+Wed Apr 11 18:10:00 2018 -0400 : Create - PauseMenu - Pause menu est créé, il reste qu'à l'implémenter
+Tue Apr 10 16:18:04 2018 -0400 : Modify - settings - Réglage du bug du back
+Tue Apr 10 09:45:22 2018 -0400 : Modify - Button, Settings - ajustement de la documentation doxygene
+Tue Apr 10 09:38:35 2018 -0400 : Modify - Checkbox, settings - La classe CheckBox est fonctionnelle
+Tue Apr 10 09:20:46 2018 -0400 : Create - CheckBox - création de la classe checkbox
+Tue Apr 10 09:20:08 2018 -0400 : Create - CheckBox - création de la classe checkbox
+Mon Apr 9 22:14:52 2018 -0400 : Modify - Settings, MainMenu, Settings - Rajout de la documentation
+Mon Apr 9 21:50:33 2018 -0400 : Modify - Settings - Changement du code par la nouvelle facon.. liste
+Thu Apr 5 11:51:15 2018 -0400 : Modify - Settings - Bouton Fps presque fonctionniel
+Thu Apr 5 11:18:28 2018 -0400 : Debug
+Thu Apr 5 11:17:56 2018 -0400 : Debug
+Thu Apr 5 10:55:34 2018 -0400 : Modify - Settings & MainMenu - Changement du mouseover et correction de l'affichage du titre dans settigns
+Thu Apr 5 10:33:45 2018 -0400 : Debug
+Thu Apr 5 09:12:10 2018 -0400 : Debug
+Wed Apr 4 22:51:41 2018 -0400 : Modify - Highscore - correction du bug
+Wed Apr 4 22:33:20 2018 -0400 : Modify - Settings - rajout du destructeur
+Wed Apr 4 22:05:21 2018 -0400 : Modify - Settings & ProjetFinal - Rajout des images
+Wed Apr 4 22:02:27 2018 -0400 : Modify - Settings & ProjetFinal - Rajout de MouseOver sur les autres boutons
+Tue Apr 3 21:54:44 2018 -0400 : Modify - Settings - Commencement pour chnager FPS on ou off
+Tue Apr 3 21:40:04 2018 -0400 : Modify - Highscore - rajout d'un bouton back
+Tue Apr 3 21:34:21 2018 -0400 : Modify - MainMenu - correction du fameux bug
+Tue Apr 3 20:35:55 2018 -0400 : Modify - Settings et projetFinal - Le back marche il me reste à trouver une facon d'enlerver les boutons du menu précédent qui sont toujours subscribe
+Tue Apr 3 19:59:33 2018 -0400 : Modify - Settings et projetFinal - réglages bugs et observateurs
+Tue Apr 3 16:04:07 2018 -0400 : Modify - Settings - ajout méthode subscribe unsubscirbe
+Tue Apr 3 15:44:48 2018 -0400 : Modify - Settings - Les settings s'affichent, il reste a faire fonction le fps on/off
+Tue Apr 3 14:21:28 2018 -0400 : Delete - ProjetFinal - fonctions inutiles
+Sun Apr 1 16:37:40 2018 -0400 : Modify - MainMenu, Settings et ProjetFinal - Ajout de fonction pour les boutons et ajustement avec la commande bind
+Thu Mar 29 17:21:32 2018 -0400 : Modify - MenuMain - Avancement des pointeurs de fonction pour les boutons du menu
+Thu Mar 29 11:54:27 2018 -0400 : Modify - OnclicFonction - Fonction pour changer de menu
+Thu Mar 29 10:50:12 2018 -0400 : Modify - MainMenu - ajutement coordonnée et image dans le menu principal
+Wed Mar 28 23:01:33 2018 -0400 : Modify - MainMenu - Il reste un petit bug a corriger
+Wed Mar 28 22:45:05 2018 -0400 : Modify - MenuMain - Affichage des bouton marche à moitié, il manque l'image
+Wed Mar 28 22:34:42 2018 -0400 : Modify - MainMenu - Affiche mainmenu
+Wed Mar 28 22:16:34 2018 -0400 : Modify - MainMenu - Affiche mainmenu
+Wed Mar 28 21:40:04 2018 -0400 : Modify - MainMenu - Commencement de l'affichage
+Wed Mar 28 16:45:36 2018 -0400 : Modify - ajout fichier doxygen
+Wed Mar 28 16:16:50 2018 -0400 : Create - Doxygen - génération de la documentation doxugen
+Tue Mar 27 16:22:16 2018 -0400 : Modify - Menu et MainMenu - Dérivation
+Tue Mar 27 16:14:06 2018 -0400 : Modify - ProjetFinal - Modification mineur
+Tue Mar 27 16:09:17 2018 -0400 : Create - Ajout des prototypes de menu
+Tue Mar 27 15:57:51 2018 -0400 : Delete - ProjetFinal - Fonction de default path
+Tue Mar 27 15:43:00 2018 -0400 : Modify - ProjetFinal - ajout observable et notification de facon automatique
+Mon Mar 26 11:59:10 2018 -0400 : Modify - Plusieurs classes - correction de la documentation doxygene et correction de certains conflit
+Sat Mar 24 18:49:24 2018 -0400 : Create - Textfield, label - Doivent être modifé
+Sat Mar 24 18:41:02 2018 -0400 : Create - Buttom - Push de la classe buttom
+Sat Mar 24 18:35:52 2018 -0400 : Modify - Resource manager - ajustement de variable
+Sat Mar 24 18:15:10 2018 -0400 : Modify - ProjetFinal - règlage des bugs
+Sat Mar 24 17:24:54 2018 -0400 : Modify - main - commencement de l'interface
+Sat Mar 24 12:26:13 2018 -0400 : Modify and Create - création de font et modification de ResourceManager et TextureID - commencement du gestionnaire de resource
+Sat Mar 24 02:41:40 2018 -0400 : Create - Majorité des classes qui seront nécessaires - création de la classe + description
+Sat Mar 24 02:33:53 2018 -0400 : Create - Majorité des classes qui seront nécessaires - création de la classe + description
+Sat Mar 24 02:06:36 2018 -0400 : Modify - correction du bug
+Thu Mar 22 19:09:18 2018 -0400 : Create - Tous les fichiers nécessaires pour les menus - Il manque la claase Mesh
+Thu Mar 22 18:56:36 2018 -0400 : Modify - Tous les fichiers - ajustement des variables et des fonctions aux normes de programmation
+Thu Mar 22 11:31:25 2018 -0400 : Create - Singleton - Ajout de la classe Singleton
+Thu Mar 22 11:18:57 2018 -0400 : Create- Matrix - Ajout de la classe matrix commenté
+Thu Mar 22 11:14:17 2018 -0400 : Modify- Glcontext - Savoir si on est en 2D ou 3D dans la méthode Setfrostum
+Thu Mar 22 10:41:20 2018 -0400 : Create - GlConext, Observer, Observable, Window, Vector3D - Ajout des classes qui pourrait servir et commenté
+Thu Mar 22 10:08:48 2018 -0400 : Modify - ajout commande git clone
+Tue Mar 13 15:06:58 2018 -0400 : Modify - saut de ligne
+Tue Mar 13 15:05:47 2018 -0400 : Create - Normes de modelage et texturisation

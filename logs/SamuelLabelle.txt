@@ -1,0 +1,54 @@
+Tue May 15 12:51:50 2018 -0400 : Modify - Documentation - Regenerate.
+Tue May 15 12:45:31 2018 -0400 : Modify - Physics.h - Method to collide two moving spheres.
+Mon May 14 14:55:11 2018 -0400 : Modify - Physics.h - Method to detect if a model is within a sphere.
+Thu May 10 12:15:00 2018 -0400 : Debug - Physics.h - Vector on plane collision.
+Thu May 10 10:52:56 2018 -0400 : Modify - Physics.h - Edge-case detection...
+Wed May 9 20:29:01 2018 -0400 : Modify - Pyhsics.h - Add moving on static sphere collision.
+Tue May 8 15:45:07 2018 -0400 : Modify - human.blend, human.obj - Revert to older version
+Tue May 8 15:20:41 2018 -0400 : Modify - meteorite.obj - Revert to older version
+Tue May 8 12:17:47 2018 -0400 : Modify - Physics.h - Collide sphere on model now working.
+Tue May 8 10:23:29 2018 -0400 : Modify - Physics.h - Collide sphere on triangle now working.
+Mon May 7 22:29:09 2018 -0400 : Modify - Physics.h - Add warning regarding incompleteness of sphere collision methods.
+Mon May 7 22:24:46 2018 -0400 : Modify - Physics.h - Increase modularity, begin implementing sphere-on-triangle related collision methods, regenerate documentation.
+Sun May 6 15:10:36 2018 -0400 : Modify - Physics.h - Implement collision of a vector with an infinite plane.
+Thu May 3 11:00:28 2018 -0400 : Debug - Physics.h - Fix passing double instead of normal vector.
+Thu May 3 10:06:14 2018 -0400 : Modify - skysphere.obj - Align moon texture and UV mesh.
+Thu May 3 10:01:05 2018 -0400 : Modify - skysphere.obj - Align sun texture and UV mesh.
+Thu May 3 09:46:27 2018 -0400 : Modify - skysphere_day.png - Sun position
+Tue May 1 19:14:57 2018 -0400 : Create - meteorite.blend, meteorite.obj, meteorite.png - Meteorite model and texture.
+Thu Apr 26 09:57:12 2018 -0400 : Modify - Textures - Normalise
+Thu Apr 26 09:52:57 2018 -0400 : Modify - trees and button textures - Normalise
+Thu Apr 26 11:27:59 2018 -0400 : Debug - Collisions - Fix naming issues.
+Wed Apr 25 01:23:55 2018 -0400 : Modify - Physics.h - Fix methods taking copies of models instead of references.
+Wed Apr 25 01:08:03 2018 -0400 : Modify - Documentation - Regenerate project documentation.
+Wed Apr 25 01:05:22 2018 -0400 : Modify - Physics.h, Vector.h - More collision algorithms and addition of an operator overload for vector negation.
+Tue Apr 24 01:10:35 2018 -0400 : Create - Physics.h - Collisions
+Wed Apr 18 22:47:39 2018 -0400 : Create / Modify - grass.obj, Camera.h simcoin miner files - Simcoin miner and placeholder texture added, enlarge grass.obj, speed up camera movement.
+Tue Apr 17 20:10:39 2018 -0400 : Debug / Merge - ProjetFinal.h, World.h - Les textures s'affichent à nouveau et le compteur de FPS utilise sont propre chrono distinct de celui de la caméra.
+Mon Apr 16 23:03:36 2018 -0400 : Modify / Debug - Camera.h cloudsphere.obj ProjetFinal.h World.h - Fix floating point and rounding errors causing camera failure; Add cloudsphere object and texture.
+Sun Apr 15 01:16:41 2018 -0400 : Debug / Modify - Camera, Controler, GLContext, ProjetFinal - Fix distorted F.O.V., Stabilise camera motion, Improve controler code, Fix sideways rotation of camera caused by floating point error accumulation.
+Fri Apr 13 23:09:03 2018 -0400 : Modify - normalise.sh - Add directory normalizing, help (-h) and overwrite.
+Thu Apr 12 23:04:50 2018 -0400 : Modify - All image files in the image directory. - Normalise everything.
+Thu Apr 12 11:47:22 2018 -0400 : Modify - Camrea - Improve motion, MVC
+Wed Apr 11 20:11:01 2018 -0400 : Create - Human model, texture and .blend
+Tue Apr 10 19:32:07 2018 -0400 : Move - *.blend - Move to a different directory, to separate them from the *.obj files.
+Tue Apr 10 16:24:21 2018 -0400 : Move - skysphere.obj - to models/obj/
+Sat Apr 7 15:54:10 2018 -0400 : Create - daysky.png, nightsky.png skysphere.obj - Textures et modèle pour la skysphere.
+Thu Apr 5 23:48:26 2018 -0400 : Modify - InGameOverlay.h - improve toggleHud()
+Thu Apr 5 23:35:59 2018 -0400 : Debug - Highscore.h - Replace nonstandard itoa() with sprintf()
+Thu Apr 5 23:17:35 2018 -0400 : Modify / Debug - Camera.h, Vector.h, Matrix.h - Fix some vectors not being normalized in matrix, Rename camera methods and make it notify()-able, Rename Vector methods, regen docs.
+Thu Apr 5 13:28:44 2018 -0400 : Modify - Matrix.h - Add axis normalisation.
+Thu Apr 5 12:54:45 2018 -0400 : Modify - skyTexture_placeholder.png - normaliser texture ciel
+Thu Apr 5 11:14:21 2018 -0400 : Modify - Camera.h - Remove unused modes from camera.
+Wed Apr 4 22:11:21 2018 -0400 : Modify - Camera.h - Limiter la rotation.
+Wed Apr 4 21:41:47 2018 -0400 : Matrix conflict
+Tue Apr 3 00:12:19 2018 -0400 : Conflict resolution and Modify - MathUtils.h - Fix missing M_PI and replace by PI to the 20th digit.
+Mon Apr 2 16:11:35 2018 -0400 : Add / Modify - Camera, MathUtils, Matrix, Vector(3D), utilisateurs de Matrix et Vector, docs. - Ajout de la caméra, correction du manque de destructeur de Matrix et les incompatibilitées avec la caméra, renommer Vector 3D en vector, créer MathUtils.h, regénérer la doc.
+Wed Mar 28 21:19:13 2018 -0400 : Create - normalizer.sh - Script de normalisation d'image
+Wed Mar 28 17:42:59 2018 -0400 : Add / Modify / Remove - Many documentation related files - Set up Doxygen and documentation.
+Wed Mar 28 10:25:57 2018 -0400 : Modify - Allmost all of the source directory - Improve and add documentation; Catch an OS-specific issue in main.cpp
+Tue Mar 27 20:18:27 2018 -0400 : Delete - cmake-bulild-debug/*
+Tue Mar 27 20:13:55 2018 -0400 : Modiy - .gitignore - Exclude all CLion folders.
+Tue Mar 27 09:20:01 2018 -0400 : Debug - ResourceManager.h - Destructor should now be working.
+Tue Mar 27 09:04:21 2018 -0400 : Modify - Improve documentation.
+Fri Mar 23 01:18:44 2018 -0400 : Add - Prototype d'interface du in-game HUD.

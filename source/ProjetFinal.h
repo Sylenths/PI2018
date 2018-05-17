@@ -276,12 +276,15 @@ public:
                                     int x = round(intersection.x / 2.0);
                                     int z = round(intersection.z / 2.0);
                                     std::map<std::pair<int,int>, Fondation*>* fondationGrid = ((World*)sceneDisplay)->getFondations();
-                                    if((*fondationGrid)[std::make_pair(x,z)] && (*fondationGrid)[std::make_pair(x,z)]->getOccupiedState() == false){
-                                        if((*fondationGrid)[std::make_pair(x + 1, z)] && (*fondationGrid)[std::make_pair(x - 1, z)] && (*fondationGrid)[std::make_pair(x, z + 1)] && (*fondationGrid)[std::make_pair(x, z - 1)] && (*fondationGrid)[std::make_pair(x - 1, z)] && (*fondationGrid)[std::make_pair(x + 1, z + 1)] && (*fondationGrid)[std::make_pair(x + 1, z - 1)] && (*fondationGrid)[std::make_pair(x - 1, z + 1)] && (*fondationGrid)[std::make_pair(x - 1, z - 1)]){
+                                    if((*fondationGrid)[std::make_pair(x,z)] && ((*fondationGrid)[std::make_pair(x,z)]->getOccupiedState() == false) && (SideWindow::MachineType == "SimCoinsMiner")){
                                             (*fondationGrid)[std::make_pair(x,z)]->setFondationOccupied();
                                             ((World *) sceneDisplay)->createMachine(x, 0.1, z);
                                             spawnMachineCap = false;
-                                        }
+                                    }
+                                    if(!(*fondationGrid)[std::make_pair(x,z)] && (SideWindow::MachineType == "PanneauSolaire" || SideWindow::MachineType == "WindTurbine" )){
+
+                                        ((World *) sceneDisplay)->createMachine(posMachine.point.x, 0.1, posMachine.point.z);
+                                        spawnMachineCap = false;
                                     }
                                 }
                             }
