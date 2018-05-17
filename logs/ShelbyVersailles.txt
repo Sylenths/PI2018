@@ -1,43 +1,29 @@
-Thu May 10 16:52:42 2018 -0400 : gestion de conflit
 Thu May 10 16:49:00 2018 -0400 : modify - projetfinal - testforcollapse (pas tester mais pas utiliser)
-Thu May 10 10:09:54 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Thu May 10 10:09:29 2018 -0400 : create - Wall.h et Roof.h
 Thu May 10 10:08:42 2018 -0400 : create - Wall.h et Roof.h
-Tue May 8 15:49:10 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Tue May 8 15:49:03 2018 -0400 : modify - ingameoverlay - ajout de .0 pour les doubles
 Tue May 8 15:27:37 2018 -0400 : modify - projetFinal - creatRoof
-Tue May 8 15:26:21 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Tue May 8 15:26:14 2018 -0400 : modify - projetFinal - creatRoof
-Thu May 3 14:56:44 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Thu May 3 14:56:33 2018 -0400 : modify - projetFinal - creatRoof
 Thu May 3 09:44:09 2018 -0400 : modify - projetFinal - createwall
 Tue May 1 17:55:01 2018 -0400 : modify - projetFinal - createRoof()
-Thu Apr 26 10:09:10 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Thu Apr 26 10:09:01 2018 -0400 : modify - projet final, texture des murs en fonction du materiau choisis
 Thu Apr 26 09:29:45 2018 -0400 : modify - projet final, correction des bug de génération des murs
 Sun Apr 22 19:56:31 2018 -0400 : add - createWall dans projet final
-Thu Apr 19 18:39:41 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Thu Apr 19 18:39:32 2018 -0400 : modify - world et model, debut de generation de mur hardcoder
-Thu Apr 19 10:19:58 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Thu Apr 19 10:19:35 2018 -0400 : add - BuildWall.h
 Thu Apr 19 10:03:40 2018 -0400 : add - Structure.h, Materiel.h, Fondation.h
 Tue Apr 17 17:42:04 2018 -0400 : add - Structure.h, Materiel.h, Fondation.h
 Thu Apr 12 13:11:05 2018 -0400 : modify - ProjetFinal, controler - ajout d'un chrono, documentation et correction d'un erreur ce copier coller
-Thu Apr 12 12:34:43 2018 -0400 : merge
 Thu Apr 12 12:31:57 2018 -0400 : modify - world, scene, projetfinal - getCamera, controle des touche et du deplacement de la souris
-Thu Apr 12 11:59:09 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Thu Apr 12 11:58:57 2018 -0400 : modify - world, scene, projetfinal - getCamera, controle des touche
 Thu Apr 12 11:52:45 2018 -0400 : modify - world, scene, projetfinal - getCamera, controle des touche
-Thu Apr 12 10:52:40 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
-Thu Apr 12 10:51:42 2018 -0400 : gestion de conflit
 Thu Apr 12 10:46:36 2018 -0400 : Ajout - Class controler
-Tue Apr 10 12:22:41 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Tue Apr 10 12:19:10 2018 -0400 : modify - world et projetfinal - ajout de la camera
 Thu Apr 5 12:17:10 2018 -0400 : modify - agrandisement de la sphere
 Thu Apr 5 11:58:42 2018 -0400 : create - sky.obj et sky.blend
 Thu Apr 5 11:45:45 2018 -0400 : create - toit à 2 cotés
 Thu Apr 5 11:32:01 2018 -0400 : create - model du sol et d'un toit à 4 cotés
-Thu Apr 5 10:49:18 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Thu Apr 5 10:47:44 2018 -0400 : create - class chronos
 Mon Apr 2 21:18:30 2018 -0400 : add - model du sol et du ciel
 Mon Apr 2 21:16:32 2018 -0400 : add - texture sol et ciel

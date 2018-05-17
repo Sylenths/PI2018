@@ -1,24 +1,17 @@
-Thu May 10 01:53:19 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Thu May 10 01:53:11 2018 -0400 : Modify - Atmosphere - Reajustement du cycle jour nuit avec des transitions plus douce
 Tue May 8 17:27:01 2018 -0400 : Retrait de meteorite du world
 Tue May 8 17:23:46 2018 -0400 : Modify - Ajustement calcul panneau solaire
-Mon May 7 23:42:45 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
-Mon May 7 23:37:47 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Mon May 7 23:37:41 2018 -0400 : Modify - PanneauSolaire - Ajout de methode pour le panneau solaire
 Mon May 7 16:19:41 2018 -0400 : Modify - Checkbox - Correction bug d'affichage
-Thu May 3 17:08:38 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Thu May 3 17:08:28 2018 -0400 : Modify - La lumiere se deplace maintenant
 Wed May 2 23:35:54 2018 -0400 : Modify - Atmosphere et World - Rotation de la terre et ajout cycle nuit
-Thu Apr 26 20:49:26 2018 -0400 : Merge branch 'master' of github.com:Cegep-Joliette-SIM/PI2018
 Thu Apr 26 20:49:22 2018 -0400 : Modify - Atmosphere - Debut du cycle de la journee
 Thu Apr 26 16:40:29 2018 -0400 : Modify ProjetFinal- Mise en commentaire de texture n'ayant pas le png associée
 Thu Apr 26 16:14:06 2018 -0400 : Bug - MachineWindow - La classe scrollingMenu est inexistante
-Thu Apr 26 14:59:26 2018 -0400 : Gestion conflit
 Thu Apr 26 14:54:38 2018 -0400 : Modify - Atmosphere peut maintenant changer de couleur et d'opacite
 Mon Apr 23 23:11:31 2018 -0400 : Modify - ProjetFinal  InGameOverlay - Ajout documentation et d'un model blend
 Sun Apr 22 12:50:44 2018 -0400 : Modify - InGameOverlay - Bouton structure permet de construire
 Sat Apr 21 00:01:48 2018 -0400 : Modify - Erreur de fatigue zzzz
-Fri Apr 20 23:58:48 2018 -0400 : Gestion conflit
 Fri Apr 20 23:56:54 2018 -0400 : Add - Classe SideWindow
 Fri Apr 20 23:53:28 2018 -0400 : Modify - ProjetFinal.h - Bug
 Fri Apr 20 23:46:36 2018 -0400 : Add - Ajout de classe pour les side windows du HUD
