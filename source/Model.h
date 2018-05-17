@@ -21,6 +21,7 @@ protected:
     double *vertices, *texCoords, *normals, *verticesHitBox, *normalsHitBox;
 
     double *verticesShading; ///< Nombre de vertices pour l'ombrage
+    double *cleanVerticesShading;
     double *normalsShading; ///< Nombre de normales pour l'ombrage
     double *colorsShading; ///< Un tableau de couleur RGBA pour chacun des triangles
 
@@ -56,7 +57,6 @@ protected:
             verticesShading[i * 3 + 1] = 0.0;
             verticesShading[i * 3 + 2] = k * AB.z + B.z;
         }
-
     }
 
 
@@ -70,12 +70,11 @@ protected:
 
     /// Enlève les triangles de surplus dans l'ombre afin d'enlever les superpositions
     void cleanShadingVertex() {
-        shadingVertexCount = 0;
 
         bool signOf;
         std::vector<double> verticesEdge;
 
-        for (int i = 0; i < vertexCount; ++i) {
+        for (int i = 0; i < (vertexCount); ++i) {
             signOf = getSign(verticesShading[i * 9], verticesShading[i * 9 + 2], verticesShading[i * 9 + 3],
                              verticesShading[i * 9 + 5], verticesShading[i * 9 + 6], verticesShading[i * 9 + 8]);
 
@@ -200,7 +199,7 @@ protected:
             for (int ix = 0; ix < (downSector.size() / 2); ++ix) { // décroissant
                 for (int i2x = (ix + 1); i2x < (downSector.size() / 2); ++i2x) {
                     if (downSector[ix * 2] < downSector[i2x * 2]) {
-                        temp = upSector[i2x * 2];
+                        temp = downSector[i2x * 2];
                         downSector[i2x * 2] = downSector[ix * 2];
                         downSector[ix * 2] = temp;
 
@@ -290,11 +289,14 @@ protected:
             realShading.push_back(0.0);
             realShading.push_back(upSector[1]);
 
-            delete[] verticesShading;
-            verticesShading = new double[realShading.size()];
+            if (cleanVerticesShading != nullptr) {
+                delete[] cleanVerticesShading;
+            }
+
+            cleanVerticesShading = new double[realShading.size()];
 
             for (int i = 0; i < realShading.size(); ++i) {
-                verticesShading[i] = realShading[i];
+                cleanVerticesShading[i] = realShading[i];
             }
 
             shadingVertexCount = realShading.size();
@@ -848,6 +850,7 @@ protected:
                 delete[] verticesShading;
                 delete[] normalsShading;
                 delete[] colorsShading;
+                delete[] cleanVerticesShading;
             }
         }
 
@@ -899,21 +902,24 @@ protected:
                         colorsShading[i * 4 + 2] = 0; // blue
                         colorsShading[i * 4 + 3] = 127; // alpha
                     }
+
+                    cleanVerticesShading = nullptr;
+
                 }
 
                 updateShadingVertex(lightPos);
 
-                //cleanShadingVertex();
+                cleanShadingVertex();
 
                 glEnableClientState(GL_VERTEX_ARRAY);
                 glEnableClientState(GL_NORMAL_ARRAY);
                 glEnableClientState(GL_COLOR_ARRAY);
 
-                glVertexPointer(3, GL_DOUBLE, 0, verticesShading);
+                glVertexPointer(3, GL_DOUBLE, 0, cleanVerticesShading);
                 glNormalPointer(GL_DOUBLE, 0, normalsShading);
                 glColorPointer(4, GL_DOUBLE, 0, colorsShading);
 
-                glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+                glDrawArrays(GL_TRIANGLES, 0, shadingVertexCount / 3);
 
                 glDisableClientState(GL_VERTEX_ARRAY);
                 glDisableClientState(GL_NORMAL_ARRAY);
